@@ -86,7 +86,7 @@ enemyDamageValue(objBusterShotCharged, 4);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
-enemyDamageValue(objLaserTrident, 5);
+enemyDamageValue(objLaserTrident, 4);
 enemyDamageValue(objWaterShield, 1);
 enemyDamageValue(objTornadoBlow, 4);
 enemyDamageValue(objThunderBeam, 3);
@@ -107,7 +107,7 @@ enemyDamageValue(objWireAdapter, 3);
 
 // MaGMML1
 enemyDamageValue(objMetalBlade, 2);
-enemyDamageValue(objGeminiLaser, 5);
+enemyDamageValue(objGeminiLaser, 4);
 enemyDamageValue(objSolarBlaze, 2);
 enemyDamageValue(objTopSpin, 1);
 enemyDamageValue(objThunderWool, 2);

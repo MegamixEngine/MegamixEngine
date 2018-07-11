@@ -117,7 +117,7 @@ enemyDamageValue(objGeminiLaser, 1);
 enemyDamageValue(objSolarBlaze, 4);
 enemyDamageValue(objTopSpin, 1);
 enemyDamageValue(objThunderWool, 1);
-enemyDamageValue(objPharaohShot, 2);
+enemyDamageValue(objPharaohShot, 3);
 enemyDamageValue(objBlackHoleBomb, 1);
 enemyDamageValue(objMagicCard, 1);
 
