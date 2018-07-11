@@ -72,7 +72,7 @@ freshSaveFile();
         exit;
     }
     
-    if ((demoTimer++) mod 500 == 495)
+    if ((demoTimer++) mod 500 == 595)
     {
         if (!recordInputPlayback(
             choose("Recordings/demoPharaohMan.mrc",
