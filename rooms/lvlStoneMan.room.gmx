@@ -4,7 +4,7 @@
   <width>5888</width>
   <height>2160</height>
   <vsnap>16</vsnap>
-  <hsnap>16</hsnap>
+  <hsnap>8</hsnap>
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>0</persistent>
@@ -182,8 +182,6 @@ with (objDestroyField)
     <instance objName="objMetallMommy" x="1168" y="1760" name="inst_A9D49C6E" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSubeil" x="1240" y="1792" name="inst_87280E2F" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSubeil" x="1136" y="1856" name="inst_6C3AE786" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDustmanBlock" x="1248" y="1872" name="inst_6B7E5BB5" locked="0" code="respawn = 0;&#xA;if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDustmanBlock" x="1264" y="1872" name="inst_EC066C6C" locked="0" code="respawn = 0;&#xA;if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTaban" x="1152" y="1488" name="inst_82B07FA9" locked="0" code="col = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTaban" x="1248" y="1504" name="inst_46BA1FE8" locked="0" code="col = 1;&#xA;if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMetallMommy" x="1104" y="1520" name="inst_BA28719C" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -292,7 +290,7 @@ with (objDestroyField)
     <instance objName="objEasyPlatform32" x="3728" y="512" name="inst_FB514004" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="3760" y="560" name="inst_9EAFC130" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDefaultSpawn" x="5504" y="176" name="inst_51AA28A4" locked="0" code="if (!global.debugSkipStageMode)&#xA;    instance_destroy();&#xA;    &#xA;else with object_index&#xA;{&#xA;    if (id != other.id)&#xA;        instance_destroy();&#xA;}" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDefaultSpawn" x="120" y="2096" name="inst_73ED06CB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDefaultSpawn" x="128" y="2096" name="inst_73ED06CB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBunbyCatcher" x="928" y="1936" name="inst_6FE895C9" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDoncatch" x="1240" y="1536" name="inst_299EBDB3" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objReflectBlockSmall" x="1104" y="1792" name="inst_91738006" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -405,10 +403,6 @@ with (objDestroyField)
     <instance objName="objStoneHead" x="2960" y="1024" name="inst_29E33CD2" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;itemDrop = objKey;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="2832" y="1152" name="inst_5E2BF250" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="2824" y="1152" name="inst_7036FED8" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="0.5" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDestroyField" x="1248" y="1872" name="inst_4A1D336B" locked="0" code="destroyEntities = false;&#xA;destroySolids = false;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDestroyField" x="1264" y="1872" name="inst_E0E1DCA2" locked="0" code="destroyEntities = false;&#xA;destroySolids = false;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSolid" x="1248" y="1872" name="inst_6E821737" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSolid" x="1264" y="1872" name="inst_15939B3E" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="1152" y="1712" name="inst_2F248657" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="1168" y="1712" name="inst_0596A346" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="1200" y="1760" name="inst_98119D42" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -457,6 +451,7 @@ with (objDestroyField)
     <instance objName="objReflectBlockSmall" x="1232" y="1728" name="inst_840D97B3" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="608" y="2064" name="inst_96CEC1A5" locked="0" code="destroyTilesDepth = 999990;&#xA;" scaleX="1" scaleY="6" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponModifier" x="1424" y="1872" name="inst_7BF37532" locked="0" code="weapon = objMagnetBeam;&#xA;levelReward = true;&#xA;sprite_index = sprMagnetBeamPickup;&#xA;destroyIfUnlocked = true;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDestroyableBlock" x="1248" y="1872" name="inst_B2F7ECCB" locked="0" code="weakness = global.weaponID[? objPlantBarrier];&#xA;" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstStoneman" x="560" y="2064" w="16" h="16" xo="64" yo="144" id="11262413" name="inst_1B0549D4" depth="1000002" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
