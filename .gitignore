@@ -2,8 +2,3 @@
 
 gm_ttt_*
 *.swp
-objects/objDestroyableBlock.object.gmx
-objects/objDestroyableBlock.object.gmx
-extensions/GameMusicEmu.extension.gmx
-extensions/GameMusicEmu.extension.gmx
-scripts/playerStep.gml
