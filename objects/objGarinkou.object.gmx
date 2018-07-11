@@ -80,6 +80,10 @@ if (entityCanStep())
         {
             landTimer--;
             image_index = landTimer div 8;
+            
+            //Play sound
+            if (landTimer == 15)
+                playSFX(sfxGarinkou);
         }
         
         // jumping animation

@@ -108,7 +108,7 @@ enemyDamageValue(objHomingSniper, 2);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
 enemyDamageValue(objChillShot, 3);
-enemyDamageValue(objChillSpikeLanded, 3);
+enemyDamageValue(objChillSpikeLanded, 6);
 
 // Misc.
 enemyDamageValue(objPowerStone, 3);
@@ -324,9 +324,9 @@ if (entityCanStep())
                 {
                     // jump
                     stop = false;
-                    if (place_meeting(x + 10 * image_xscale, y, objSolid) || !position_meeting(x + 10 * image_xscale, y + 20, objSolid))
+                    if (checkSolid(10 * image_xscale, 0,1,1) || !positionCollision(10 * image_xscale,20,1,1))
                     {
-                        if (!place_meeting(x + 10 * image_xscale, y - 16, objSolid))
+                        if (!checkSolid(10 * image_xscale,- 16,1,1))
                         {
                             // no wall preventing a jump
                             timer = 0;
@@ -340,6 +340,7 @@ if (entityCanStep())
                         }
                     }
                     
+            
                     // going off screen
                     if ((image_xscale &lt; 0 &amp;&amp; x + 16 * image_xscale &lt; view_xview[0])
                         || (image_xscale &gt; 0 &amp;&amp; x + 16 * image_xscale &gt; view_xview[0] + view_wview[0]))

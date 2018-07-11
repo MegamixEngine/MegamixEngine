@@ -440,6 +440,14 @@ else
 {
     image_speed = 0;
 }
+
+// FOR EXAMPLE GAME ONLY: Time Stopper drains Guts Man's health
+if (global.timeStopped)
+{
+    healthpoints -= 1 / 30;
+    if (healthpoints &lt;= 0)
+        event_user(EV_DEATH);
+}
 </string>
           </argument>
         </arguments>
