@@ -50,6 +50,18 @@ teleportTimer = 0;
 upordown = 'down';
 
 alarm[0] = 1;
+
+//Play correct sounds
+if (global.teleportSound)
+{
+    warpInSFX = sfxTeleportInClassic;
+    warpOutSFX = sfxTeleportOutClassic;
+}
+else
+{
+    warpInSFX = sfxTeleportIn;
+    warpOutSFX = sfxTeleportOut;
+}
 </string>
           </argument>
         </arguments>
@@ -192,7 +204,7 @@ if (!global.frozen)
             if (teleportTimer == 1)
             {
                 image_index = 0;
-                playSFX(sfxTeleportIn);
+                playSFX(warpInSFX);
             }
             if (teleportTimer == 3)
             {
@@ -241,7 +253,7 @@ if (!global.frozen)
             if (teleportTimer == 0)
             {
                 image_index = 2;
-                playSFX(sfxTeleportOut);
+                playSFX(warpOutSFX);
             }
             if (teleportTimer == 3)
             {
@@ -262,6 +274,17 @@ if (!global.frozen)
         }
         teleportTimer += 1;
     }
+}
+
+if (global.teleportSound)
+{
+    warpInSFX = sfxTeleportInClassic;
+    warpOutSFX = sfxTeleportOutClassic;
+}
+else
+{
+    warpInSFX = sfxTeleportIn;
+    warpOutSFX = sfxTeleportOut;
 }
 </string>
           </argument>
