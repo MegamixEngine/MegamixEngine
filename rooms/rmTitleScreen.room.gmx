@@ -34,7 +34,7 @@
     <background visible="-1" foreground="0" name="bgStarFieldBackground" x="0" y="0" htiled="-1" vtiled="-1" hspeed="-2" vspeed="0" stretch="0"/>
     <background visible="-1" foreground="0" name="bgStarFieldMiddleground" x="0" y="0" htiled="-1" vtiled="-1" hspeed="-3" vspeed="0" stretch="0"/>
     <background visible="-1" foreground="0" name="bgStarFieldForeground" x="0" y="0" htiled="-1" vtiled="-1" hspeed="-4" vspeed="0" stretch="0"/>
-    <background visible="-1" foreground="0" name="bgTitleScreen" x="0" y="16" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
+    <background visible="-1" foreground="0" name="bgTitleScreen" x="0" y="0" htiled="0" vtiled="0" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
