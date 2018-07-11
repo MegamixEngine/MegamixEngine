@@ -14,6 +14,7 @@ Spin Attaxx
 PhazonMotherBrain
 Duan'duliir
 Mick Galbani
+MiniMacro
 
 ## Testing
 Flashman85
@@ -40,6 +41,7 @@ Pachy
 M-Jacq
 StOil
 Flashman85
+MiniMacro
 
 ## Original audio
 CosmicGem
