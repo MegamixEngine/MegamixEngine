@@ -30,6 +30,10 @@
 enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
+enemyDamageValue(objLaserTrident, 4);
+enemyDamageValue(objGeminiLaser, 4);
+enemyDamageValue(objTornadoBlow, 4);
+
 
 healthpointsStart = 14;
 healthpoints = healthpointsStart;
