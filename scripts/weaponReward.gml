@@ -8,5 +8,6 @@ if (obj != noone)
     if (global.weaponLocked[global.weaponID[? obj]])
     {
         arrayAppendUnique(global.levelReward, obj);
+        setWeaponLocked(obj, false);
     }
 }
