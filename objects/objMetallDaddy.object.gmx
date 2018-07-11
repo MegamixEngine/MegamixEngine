@@ -40,7 +40,7 @@ attackTimer = 0;
 hasTriggeredFall = false;
 spreadYspeed = -2;
 
-introType = 3;
+introType = 0;
 
 bossTriggered = true;
 phase = 0;
@@ -169,7 +169,7 @@ enemyDamageValue(objIceSlasher, 1);
 event_inherited();
 
 // all of metall daddy's events trigger when the game isn't frozen.
-if (!global.frozen)
+if (entityCanStep())
 {
     // metall daddy's custom intro
     if (startIntro)
@@ -179,29 +179,35 @@ if (!global.frozen)
         startIntro = false;
         isIntro = true;
         visible = true;
+        y=ystart;
         calibrateDirection();
+        yspeed=0;
+        grav=0;
     }
     else if (isIntro)
     {
         // custom intro:
-        image_speed = 0;
-        attackTimer += 1;
-        if (attackTimer mod 8 == 7 &amp;&amp; hatFrame &lt; 6)
-            hatFrame++;
-        if (attackTimer == 50)
+        if(y&gt;=ystart)
         {
-            myHat = instance_create(x, y + hatOffset, objMetallDaddyHelmet);
-            myHat.parent = id;
-            canFillHealthBar = true;
-            isIntro = false;
-            attackTimer = 0;
-            hasFired = false;
-            storeDirection = image_xscale;
-            grav = gravStart;
-            blockCollision = blockCollisionStart;
-            with (objMegaman)
+            image_speed = 0;
+            attackTimer += 1;
+            if (attackTimer mod 8 == 7 &amp;&amp; hatFrame &lt; 6)
+                hatFrame++;
+            if (attackTimer == 50)
             {
-                stunLock = noone;
+                myHat = instance_create(x, y + hatOffset, objMetallDaddyHelmet);
+                myHat.parent = id;
+                canFillHealthBar = true;
+                isIntro = false;
+                attackTimer = 0;
+                hasFired = false;
+                storeDirection = image_xscale;
+                grav = gravStart;
+                blockCollision = blockCollisionStart;
+                with (objMegaman)
+                {
+                    stunLock = noone;
+                }
             }
         }
     }

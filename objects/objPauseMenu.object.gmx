@@ -587,6 +587,17 @@ if ((global.keyWeaponSwitchLeft[playerID] &amp;&amp; global.keyWeaponSwitchRight
     {
         global.weaponHotbar[i] = i;
     }
+    
+    weaponVisibleN = 0;
+    for (var i = 0; i &lt;= global.totalWeapons; i++)
+    {
+        if (global.weaponLocked[global.weaponHotbar[i]] &lt; 2)
+        {
+            weaponVisible[weaponVisibleN++] = i;
+        }
+    }
+    visibleWeapons = min(10, weaponVisibleN); // up to 10 visible
+    oldOption = 0;
 }
 
 // Set weapon

@@ -136,7 +136,7 @@ enemyDamageValue(objIceSlasher, 1);
 event_inherited();
 
 // all of iron balls's events trigger when the game isn't frozen.
-if (!global.frozen)
+if (entityCanStep())
 {
     // iron balls's custom intro
     if (startIntro)

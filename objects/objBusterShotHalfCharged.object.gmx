@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 
-bulletLimitCost = 3;
+bulletLimitCost = 1;
 
 contactDamage = 1;
 

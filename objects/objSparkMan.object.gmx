@@ -141,7 +141,7 @@ enemyDamageValue(objIceSlasher, 1);
 event_inherited();
 
 // all of spark man's events trigger when the game isn't frozen.
-if (!global.frozen)
+if (entityCanStep())
 {
     // spark man's custom intro
     if (startIntro)
