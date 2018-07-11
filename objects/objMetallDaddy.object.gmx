@@ -135,8 +135,8 @@ enemyDamageValue(objHomingSniper, 1);
 // MaG24HMML
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
-enemyDamageValue(objChillSpikeLanded, 4);
+enemyDamageValue(objChillShot, 2);
+enemyDamageValue(objChillSpikeLanded, 5);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);

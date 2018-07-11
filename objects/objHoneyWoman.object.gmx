@@ -108,7 +108,7 @@ enemyDamageValue(objHomingSniper, 2);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
 enemyDamageValue(objChillShot, 3);
-enemyDamageValue(objChillSpikeLanded, 3);
+enemyDamageValue(objChillSpikeLanded, 6);
 
 // Misc.
 enemyDamageValue(objPowerStone, 3);
