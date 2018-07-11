@@ -80,9 +80,17 @@ cloneId = 0;
         instance_destroy();
     exit;
 }
-
-if (floor(clone.healthpoints) &lt;= 0 || clone.healthpoints &lt;= (clone.healthpointsStart - ((cloneId) * (floor(clone.healthpointsStart) / (maxClones))))) // destroy self
-    instance_destroy();
+if(clone.isHard)
+{
+    if (floor(clone.healthpoints) &lt;= 0 || clone.healthpoints &lt;= (clone.healthpointsStart - ((cloneId) * (floor(clone.healthpointsStart) / (maxClones))))) // destroy self
+        instance_destroy();
+}
+else
+{
+    if(clone.healthpoints&lt;clone.healthpointsStart/2)
+        instance_destroy();
+    
+}
 
 event_inherited();
 </string>

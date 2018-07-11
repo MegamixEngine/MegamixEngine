@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>i = 0;
+            <string>event_perform_object(prtEntity,ev_create,0);
+i = 0;
 hitRoof = false;
 offRoof = false;
 </string>
@@ -50,24 +51,24 @@ offRoof = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!place_meeting(x, y, objSolid))
+            <string>if (!checkSolid(0,0,1,1))
 {
     for (i = 0; i &lt; 256; i += 1)
     {
         y -= 1;
-        if (place_meeting(x, y, objSolid))
+        if (checkSolid(0, 0,1,1))
         {
             hitRoof = true;
             break;
         }
     }
 }
-if (place_meeting(x, y, objSolid))
+if (checkSolid(0,0,1,1))
 {
     hitRoof = true;
     y += 8;
 }
-if (!place_meeting(x, y, objSolid) &amp;&amp; hitRoof == true)
+if (!checkSolid(0, 0,1,1) &amp;&amp; hitRoof == true)
     offRoof = true;
 if (!instance_exists(objVoltMan))
     instance_destroy();

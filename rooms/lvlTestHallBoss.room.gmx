@@ -14,7 +14,12 @@
 with (objTeleporter)
 {
     pressUp = true;
-    }</code>
+}
+with(prtBoss)
+{
+    useEndStageBehavior=false;
+    itemDrop=objYashichi; 
+}</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -94,24 +99,17 @@ with (objTeleporter)
     <instance objName="objRightScrolling" x="512" y="0" name="inst_D9ED08F0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="768" y="0" name="inst_27B1BA90" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1024" y="0" name="inst_07F234F0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBombMan" x="720" y="176" name="inst_4DA925A5" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCutMan" x="976" y="176" name="inst_EEF3D314" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="576" y="176" name="inst_C43BFA54" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="864" y="176" name="inst_29FFCA4C" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="1088" y="176" name="inst_05277654" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
-    <instance objName="objFireMan" x="1248" y="176" name="inst_54196100" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1280" y="0" name="inst_3303BB96" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1536" y="0" name="inst_C0BCD28D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="1344" y="176" name="inst_303D591D" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
-    <instance objName="objGutsMan" x="1488" y="176" name="inst_FF34D75B" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objIceMan" x="1744" y="176" name="inst_E5238305" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="1616" y="176" name="inst_30425A54" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1792" y="0" name="inst_045C0EE1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="2048" y="0" name="inst_4683042A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="1856" y="176" name="inst_22546618" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
-    <instance objName="objOilMan" x="2000" y="176" name="inst_7900F42C" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="2112" y="176" name="inst_70201773" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
-    <instance objName="objAirMan" x="2256" y="176" name="inst_5D2F1291" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="272" y="176" name="inst_1E5412F8" locked="0" code="X = 2064;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="2304" y="0" name="inst_2F7FE55A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="2352" y="176" name="inst_9BAD0C60" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
@@ -127,7 +125,6 @@ with (objTeleporter)
     <instance objName="objSectionArrowUp" x="3392" y="176" name="inst_16BB52FC" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="3648" y="176" name="inst_33901BA8" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="3904" y="176" name="inst_AE70682B" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
-    <instance objName="objBubbleMan" x="2512" y="176" name="inst_FF3C90AD" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCrashMan" x="2768" y="176" name="inst_5B210C7E" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFlashMan" x="3024" y="176" name="inst_FD4C6F40" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHeatMan" x="3280" y="176" name="inst_C5FFB498" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -231,13 +228,21 @@ with (objTeleporter)
     <instance objName="objDanganMan" x="11216" y="160" name="inst_8BFB2FF3" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objKomusoMan" x="11488" y="176" name="inst_3AE2ECC8" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGreyDevil" x="11728" y="160" name="inst_F560730A" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDynaMan" x="11984" y="176" name="inst_B7849A7E" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSonicMan" x="12240" y="160" name="inst_990CA68F" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVoltMan" x="12496" y="176" name="inst_458F983E" locked="0" code="itemDrop = objEnergyElement;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWater" x="12032" y="0" name="inst_AC635FFE" locked="0" code="" scaleX="16" scaleY="14" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="336" y="176" name="inst_8692D3C7" locked="0" code="X = 10000;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="368" y="176" name="inst_3A9033D2" locked="0" code="X = 11024;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="400" y="176" name="inst_FA6CA6B1" locked="0" code="X = 11792;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objIronBall" x="11984" y="160" name="inst_5E980A8D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMetallDaddy" x="960" y="160" name="inst_5D587717" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDarkMan4" x="1232" y="176" name="inst_DC1F0CDA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHornetMan" x="1488" y="176" name="inst_55B16C44" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objQuint" x="1744" y="176" name="inst_3E978CC4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEnker" x="2000" y="176" name="inst_8CBFAAC9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDanganMan" x="2256" y="160" name="inst_035A9BDB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objVoltMan" x="2512" y="176" name="inst_7CEAB7FF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHoneyWoman" x="720" y="176" name="inst_055FAA67" locked="0" code="itemDrop=-1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMM9Wily3" x="0" y="0" w="128" h="128" xo="0" yo="0" id="11304282" name="inst_F7C9C6FB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

@@ -75,7 +75,7 @@ gravStart = 0;
 
 // intro stuff
 active = false;
-startIntro = true;
+startIntro = false;
 isIntro = false;
 startFight = 0;
 isFight = false;
@@ -182,7 +182,6 @@ visible = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-exit;
 
 // STARTING THE BOSS SETUP (Triggering it, healthbar fillup)
 if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight)
@@ -197,6 +196,8 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight)
                 active = true;
                 startIntro = true;
                 drawBoss = true;
+                blockCollisionStart = blockCollision;
+                gravStart = grav;
                 
                 // Lock player movement, spread out co-op players, make megaman face the boss
                 introLock = lockPoolLock(global.playerLock[PL_LOCK_MOVE],
@@ -445,11 +446,12 @@ if (entityCanStep())
             
             // move on to the actual intro
             isIntro = true;
-            grav = 0;
-            blockCollision = 0;
             if (facePlayerOnSpawn || facePlayer)
                 calibrateDirection(); // face player
         }
+        grav = 0;
+        blockCollision = 0;
+        yspeed=0;
     }
     
     // Intro animation
@@ -542,6 +544,7 @@ if (entityCanStep())
 }
 
 // STARTING THE BOSS SETUP (Triggering it, healthbar fillup)
+/*
 if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight)
 {
     if (!objMegaman.teleporting &amp;&amp; !objMegaman.showReady)
@@ -695,6 +698,7 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight)
             }
         }
 }
+*/
 </string>
           </argument>
         </arguments>
@@ -720,11 +724,6 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight)
             <string>event_inherited();
 if (spawned)
 {
-    if (blockCollisionStart == noone)
-    {
-        blockCollisionStart = blockCollision;
-        gravStart = grav;
-    }
     if (!isFight &amp;&amp; !quickSpawn)
     {
         visible = false;
