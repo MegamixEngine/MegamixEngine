@@ -72,12 +72,11 @@ freshSaveFile();
         exit;
     }
     
-    if ((demoTimer++) mod 500 == 595)
+    if ((demoTimer++) mod 500 == 495)
     {
         if (!recordInputPlayback(
             choose("Recordings/demoPharaohMan.mrc",
-            "Recordings/demoHoneyWoman.mrc",
-            "Recordings/demoPico.mrc")))
+            "Recordings/demoHoneyWoman.mrc")))
             canProceed = false;
         exit;
     }
