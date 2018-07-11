@@ -1,0 +1,187 @@
+body {
+	background: #151515;
+	color: #EEEEEE;
+	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+div.page {
+	margin: 8px;
+}
+
+/* Light is 335387, dark is 203c6a */
+
+h1 {
+	margin: 0;
+	font-size: 1.5em;
+	padding: 0 0.8em;
+	line-height: 2em;
+	background: #203c6a;
+	border-radius: 0.5em 0.5em 0 0;
+}
+
+h2 {
+	margin: 0;
+	font-size: 1.0em;
+	padding: 0.5em;
+	line-height: 2em;
+	background: #1C1C1C;
+	font-weight: bold;
+	font-style: italic;
+}
+
+h3 {
+	margin: 0;
+	font-size: 1.2em;
+	padding: 0.5em 0.85em 0;
+	line-height: 2em;
+	background: #242424;
+	font-weight: bold;
+	color: #335387;
+}
+
+h4 {
+	margin: 0;
+	font-size: 1.1em;
+	padding: 0em 0.85em 0;
+	line-height: 1em;
+	background: #242424;
+	font-weight: bold;
+	font-style: italic;
+}
+
+h5 {
+	margin: 0;
+	text-align: center;
+	padding: 0.25em;
+	font-size: 10px;
+	font-weight: normal;
+	background: #1C1C1C;
+}
+
+a:link, a:visited{
+	color: #335387;
+}
+
+a:hover, a:active{
+	color: #2a4878;
+}
+
+td b {
+	color: #000000 
+}
+
+hr {
+	background-color: #203c6a;
+	border: 0px solid #203c6a
+}
+
+table{
+	border: 0px;
+	margin: 10px;
+	cellspacing: 10px;
+	cellmargin: 0px;
+	border-collapse: separate;
+	border-spacing: 2px;
+	background: #335387;
+	border-bottom: #141414 4px solid;
+	border-right: #141414 4px solid;
+}
+
+table.compat{
+	table-layout: fixed;
+	text-align: center;
+	background: #335387;
+}
+
+th{
+	background: #141414;
+}
+
+td.param{
+	width: 20%;
+}
+
+tr.alt{
+	background: #203c6a;
+}
+
+td.compat{
+	background: #555555;
+}
+
+tr:nth-child(odd) {
+	background: #203c6a;
+	width: 70%;
+}
+
+button {
+	border: 0px;
+	width: 100%;
+	background-color: #203c6a;
+}
+
+button h2 {
+	background: #203c6a;
+	float: left;
+}
+
+h3.alt{
+	font-size:12px;
+	font-weight:bold;
+	line-height:18px;
+	margin-top:0
+}
+
+.row.no-gutters {
+	margin-right: 0;
+	margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+img.centre {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	image-rendering: pixelated;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: crisp-edges;
+}
+
+table.centre {
+	margin-left: auto;
+	margin-right: auto;
+	width: 95%;
+}
+
+.cc {
+	font-weight:bold;
+	color:#f80;
+}
+
+th, td {
+	padding: 2px;
+}
+
+code {
+	color: white;
+	background-color: #404040;
+}
+
+tr code{
+	background: #203c6a;
+}
+
+tr:nth-child(odd) code {
+	background: #335387;
+}
+
+a.dropdown {
+	color: white;
+	font-weight: bold;
+}

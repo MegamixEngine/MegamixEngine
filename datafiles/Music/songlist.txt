@@ -1,0 +1,407 @@
+Mega_Man_1.nsf:
+0 - Stage Select
+1 - Stage Selected Jingle
+2 - Cut Man
+3 - Guts Man
+4 - Ice Man
+5 - Bomb Man
+6 - Fire Man
+7 - Elec Man
+8 - Vs Robot Master
+9 - Stage Clear Jingle
+10 - Game Over Jingle
+11 - Wily Stage 1/2
+12 - Wily Stage 3/4
+13 - Vs Wily Boss
+14 - Wily Clear Jingle
+15 - Ending
+
+Mega_Man_2.nsf:
+0 - Intro 1
+1 - Title Screen
+2 - Flash Man
+3 - Wood Man
+4 - Crash Man
+5 - Heat Man
+6 - Air Man
+7 - Metal Man
+8 - Quick Man
+9 - Bubble Man
+10 - Wily Stage 1/2 
+11 - Wily Stage 3/4/5
+12 - Weapon Get
+13 - Password
+14 - Stage Select
+15 - Stage Selected Jingle
+16 - Wily Castle Jingle
+17 - Vs Boss
+18 - Stage Clear Jingle
+19 - Game Over Jingle
+20 - Wily Clear Jingle
+21 - Ending 1
+22 - Ending 2
+23 - Credits
+
+Mega_Man_3.nsf
+0 - Title Screen
+1 - Needle Man
+2 - Magnet Man
+3 - Gemini Man
+4 - Hard Man
+5 - Top Man
+6 - Snake Man
+7 - Spark Man
+8 - Shadow Man
+9 - Wily Stage 1/2
+10 - Wily Stage 3/4
+11 - Wily Stage 5/6
+12 - Vs Robot Master
+13 - Vs Wily Boss
+14 - Password
+15 - Credits
+16 - Stage Select
+17 - Proto Man Whistle Jingle
+18 - Proto Man Theme / Ending
+51 - Stage Selected Jingle
+53 - Weapon Get
+54 - Wily Castle Jingle
+55 - Wily Clear Jingle
+56 - Stage Clear Jingle
+
+Mega_Man_4.nsf
+0 - Bright Man
+1 - Toad Man
+2 - Ring Man
+3 - Drill Man
+4 - Pharaoh Man
+5 - Dive Man
+6 - Skull Man
+7 - Dust Man
+8 - Cossack Stage 1/2
+9 - Wily Stage 1/2
+10 - Intro 1
+11 - Ending
+12 - Stage Clear Jingle
+13 - Password
+14 - Game Over Jingle
+15 - Stage Selected Jingle
+16 - Stage Select
+17 - Vs Boss
+18 - Title Screen
+19 - Theme of Mega Man / Credits
+20 - Weapon Get
+21 - Cossack Stage 3/4
+22 - Wily Stage 3/4
+58 - Item Get Jingle
+59 - Wily Castle Jingle
+60 - Cossack Citadel Jingle
+63 - Proto Man Whistle Jingle
+67 - Intro 2
+69 - Vs Wily Capsule
+70 - Wily Clear Jingle
+
+Mega_Man_5.nsf
+0 - Gravity Man
+1 - Stone Man
+2 - Wave Man
+3 - Star Man
+4 - Crystal Man
+5 - Gyro Man
+6 - Charge Man
+7 - Napalm Man
+8 - Proto Man Stage
+9 - Wily Stage
+10 - Vs Boss
+11 - Intro 
+12 - Credits
+13 - Stage Select
+14 - Stage Selected Jingle
+15 - Proto Man Castle Jingle
+16 - Wily Castle Jingle
+17 - Stage Clear Jingle
+18 - Game Over Jingle
+19 - Password
+20 - Weapon Get
+21 - Wily Clear Jingle
+22 - Vs Wily Capsule
+47 - Dark Man Whistle
+48 - Proto Man Whistle
+73 - Title Screen
+74 - Ending
+
+Mega_Man_6.nsf
+0 - Wind Man
+1 - Blizzard Man
+2 - Yamato Man
+3 - Flame Man
+4 - Plant Man
+5 - Centaur Man
+6 - Tomahawk Man
+7 - Knight Man
+8 - Ending Part 1
+9 - Mr X Stage
+10 - Credits
+11 - Wily Stage
+12 - Vs Boss
+13 - Intro
+14 - Capcom Jingle
+15 - Stage Select
+16 - Stage Selected Jingle
+17 - Mr X Dojo Jingle
+18 - Wily Castle Jingle
+19 - Stage Cleared Jingle
+20 - Game Over
+21 - Password
+22 - Weapon Get
+23 - Wily Clear Jingle
+24 - Vs Wily Machine
+25 - Title Screen
+27 - Ending Part 2
+28 - Ending Part 3
+29 - Ending Part 4
+30 - Ending Part 5
+31 - Ending Part 6
+33 - Ending Part 8
+34 - Ending Part 9
+
+Mega_Man_9.nsf (Recreation by tssf)
+0 - Intro 1
+1 - Intro 2
+2 - Intro 3
+3 - Title Screen
+4 - Menu
+5 - Stage Select
+6 - Stage Selected Jingle
+7 - Concrete Man
+8 - Tornado Man
+9 - Splash Woman
+10 - Plug Man
+11 - Jewel Man
+12 - Hornet Man
+13 - Magma Man
+14 - Magma Man (alt. recreation)
+15 - Please don't
+16 - Vs Boss
+17 - Stage Cleared Jingle
+18 - Weapon Get
+19 - Shop
+20 - Rush Jet Cutscene
+21 - Tense Cutscene
+22 - Wily UFO
+23 - Wily Castle Jingle
+24 - Wily Stage 1
+25 - Wily Stage 2
+26 - Wily Stage 2 (alt. recreation)
+27 - Wily Stage 3
+28 - Wily Stage 4
+29 - Vs Wily Machine
+30 - Vs Wily Machine (alt. recreation)
+31 - "And this time! And this time!"
+32 - Ending
+33 - Special Stage (Fake Man)
+34 - Endless Attack
+35 - Game Over
+
+Mega_Man_10.nsf (Recreation by tssf)
+0 - Capcom Logo
+1 - Timeline Screen
+2 - Intro 1
+3 - Intro 2
+4 - Intro 3
+5 - Intro 4
+6 - Title Screen
+7 - Menu
+8 - Stage Select
+9 - Stage Selected Jingle
+10 - Pump Man
+11 - Nitro Man
+12 - Strike Man
+13 - Sheep Man
+14 - Chill Man
+15 - Solar Man
+16 - Commando Man
+17 - Blade Man
+18 - Boss Theme
+19 - Stage Cleared Jingle
+20 - "Weapon" Get
+21 - Shop (Mega Man)
+22 - Shop (Proto Man)
+23 - Shop (Bass)
+24 - Tense Cutscene
+25 - Wily Cutscene
+26 - Roll's Theme
+27 - Wily Castle Jingle
+28 - Wily Stage 1 (Silent Rain)
+29 - Wily Stage Boss
+30 - Wily Stage 1 (Abandoned Memory)
+31 - Wily Stage 2
+32 - Wily Stage 3
+33 - Wily Stage 4
+34 - Vs Wily Machine
+35 - Wily Castle Jingle 2
+36 - Wily Stage 5
+37 - Vs Wily Capsule
+38 - All Stages Cleared Jingle
+39 - Ending 1
+40 - Ending 2
+41 - Challenge Mode
+42 - Special Stage 1 (Enker)
+43 - Special Stage 2 (Punk)
+44 - Special Stage 3 (Ballade)
+45 - Endless Attack
+46 - Game Over
+
+Rockboard.nsf
+0 - Title Screen
+1 - Main Menu
+2 - Metool Race
+3 - Auction
+4 - Game Results
+5 - Unused Track
+6 - Credits
+7 - Green Continent (Wood Man)
+8 - Cold Island
+9 - Hot Zone
+10 - Metropolis
+11 - Bonus Card Received Jingle
+12 - Lose a Turn Jingle
+13 - Boss Card Recieved Jingle
+14 - Under Attack Jingle 
+
+Mega_Man_1GB.gbs
+0 - Title Screen
+1 - Password
+2 - Stage Select
+3 - Stage Selected Jingle
+4 - Cut Man
+5 - Ice Man
+6 - Elec Man
+7 - Fire Man
+8 - Vs Boss
+9 - Stage Clear Jingle
+10 - Enker Stage
+11 - Weapon Get
+12 - Wily Stage
+13 - Wily Station Jingle
+14 - Unused Track
+15 - Ending
+
+
+Mega_Man_2GB.gbs
+0 - Title Screen
+1 - Stage Select
+2 - Stage Selected Jingle
+3 - Password
+4 - Vs Boss
+5 - Stage Clear Jingle
+6 - Weapon Get
+7 - Crash Man
+8 - Air Man
+9 - Metal Man
+10 - Hard Man
+11 - Wood Man
+12 - Top Man
+13 - Magnet Man
+14 - Needle Man
+15 - Wily Castle Jingle
+16 - Vs Quint
+17 - Credits
+18 - Unused Track (Credits Remix)
+
+Mega_Man_3GB.gbs
+0 - Stage Select
+1 - Stage Selected Jingle
+2 - Shadow Man
+3 - Vs Mega Man 3 Boss
+4 - Gemini Man
+5 - Snake Man
+6 - Spark Man
+7 - Ending
+8 - Game Over
+9 - Vs Mega Man 4 Boss
+10 - Stage Clear Jingle
+11 - Theme of Mega Man
+12 - Dust Man
+13 - Dive Man
+14 - Skull Man
+15 - Drill Man
+16 - Wily Castle Jingle
+17 - Wily Clear Jingle
+18 - Wily Stage 1/2
+19 - Wily Stage 3
+20 - Theme of Punk
+21 - Weapon Get
+22 - Title Screen
+23 - Password
+
+Mega_Man_4GB.gbs
+0 - Bright Man
+1 - Toad Man
+2 - Ring Man
+3 - Pharaoh Man
+4 - Stone Man
+5 - Crystal Man
+6 - Charge Man
+7 - Napalm Man
+8 - Vs Mega Man 5 Boss
+9 - Proto Man Whistle
+10 - Stage Select 1
+11 - Stage Select 2
+12 - Password
+13 - Stage Selected Jingle
+14 - Game Over
+15 - Stage Cleared Jingle
+16 - Wily Cleared Jingle
+17 - Weapon Get
+18 - Beat Get
+19 - Wily Castle Jingle
+20 - Vs Fortress Boss 2
+21 - Vs Mega Man 4 Boss
+22 - Title Screen
+23 - Ending
+24 - Unused Track
+25 - Wily Appears
+26 - Vs Fortress Boss 3 (Unused)
+27 - Vs Fortress Boss 1
+28 - Wily Cutscene
+29 - Unknown Get (Unused)
+30 - Unused Track
+31 - Light's Lab
+32 - Wily Stage
+33 - Theme of Mega Man (Credits)
+34 - Shop
+
+Mega_Man_5GB.gbs
+0 - Stage Select
+1 - Unused Jingle 1
+2 - Uranus
+3 - Wily Stage 1
+4 - Neptune
+5 - Unused Track 1 (Boss)
+6 - Vs Boss
+7 - Saturn
+8 - Mercury
+9 - Flight Cutscene
+10 - Mars
+11 - Jupiter
+12 - Unused Track 2 (Stage)
+13 - Pluto
+14 - Wily Star
+15 - Intro 1
+16 - Stage Selected Jingle
+17 - Game Over
+18 - Stage Clear Jingle
+19 - Unused Jingle 2
+20 - Weapon Get
+21 - Ending
+22 - Unused Jingle 3
+23 - Unused Track 3 (Stage)
+24 - Title Screen
+25 - Theme of Terra
+26 - Shop
+27 - Light's Lab
+28 - Wily Cutscene
+29 - Password
+30 - Vs Sunstar
+31 - Sunstar Clear Jingle
+32 - Venus 
