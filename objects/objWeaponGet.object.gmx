@@ -132,7 +132,7 @@ if (!controlsLocked)
         {
             // go home:
             returnFromLevel();
-            lockControls = true;
+            controlsLocked = true;
             finalFadeOut = true;
             playSFX(sfxMenuSelect);
         }

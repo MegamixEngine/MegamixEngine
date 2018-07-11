@@ -70,13 +70,14 @@ if (instance_exists(target))
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+image_index = col;
 if (entityCanStep())
 {
     if (checkSolid(0, 0, 1, 1))
+        explod = true;
+    if (explod == true)
     {
         event_user(EV_DEATH);
-        instance_destroy();
     }
 }
 else if (dead == true)
@@ -86,8 +87,6 @@ else if (dead == true)
     yspeed = 0;
     image_index = 0;
 }
-
-image_index = col;
 </string>
           </argument>
         </arguments>
@@ -110,15 +109,15 @@ image_index = col;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
-
-playSFX(sfxMM3Explode);
+            <string>dead=true;
 var ID;
-ID = instance_create(spriteGetXCenter(), spriteGetYCenter(),
-    objHarmfulExplosion);
-{
-    ID.xscale = image_xscale;
-}
+        ID = instance_create(spriteGetXCenter(), spriteGetYCenter(),
+            objHarmfulExplosion);
+        {
+            ID.xscale = image_xscale;
+        }
+        instance_destroy();
+        playSFX(sfxMM3Explode);
 </string>
           </argument>
         </arguments>

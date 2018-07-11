@@ -144,20 +144,20 @@ enemyDamageValue(objIceSlasher, 0);
 event_inherited();
 
 // all of ballade's events trigger when the game isn't frozen.
-if (!global.frozen)
+if (entityCanStep())
 {
     // ballade's custom intro
     if (startIntro)
     {
-        y -= view_hview;
+        y += view_yview - bbox_bottom;
         canFillHealthBar = false;
         image_index = 4;
         startIntro = false;
         isIntro = true;
-        visible = true;
+        visible=1;
         calibrateDirection();
     }
-    else if (isIntro)
+    if (isIntro)
     {
         // custom intro:
         if (y &lt;= ystart &amp;&amp; !hasTriggeredFall)
@@ -183,13 +183,14 @@ if (!global.frozen)
                 attackTimer = 0;
                 blockCollision = blockCollisionStart;
                 grav = gravStart;
+                ground=true;
             }
         }
     }
 }
 if (entityCanStep())
 {
-    if (isFight == true)
+    if (isFight)
     {
         if (instance_exists(target))
         {
@@ -349,8 +350,6 @@ if (entityCanStep())
         }
     }
 }
-else
-{ }
 </string>
           </argument>
         </arguments>
