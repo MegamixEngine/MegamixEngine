@@ -107,7 +107,7 @@ if (!controlsLocked)
                     global.difficulty = DIFF_HARD;
                     break;
                 case 4:
-                    global.difficulty = DIFF_EASY;
+                    global.difficulty = DIFF_HARD;
                     global.debugSkipStageMode = true;
                     break;
             }

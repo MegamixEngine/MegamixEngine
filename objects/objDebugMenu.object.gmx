@@ -38,7 +38,7 @@ playerID = 0;
 pauseLock = lockPoolLock(global.playerLock[PL_LOCK_PAUSE]);
 option = 0;
 quickScrollTimer = 25;
-endy = 9;
+endy = 10;
 mode = 0; // 0: normal. 1: record input menu
 
 optionText = "ROOM SELECT#
@@ -49,7 +49,8 @@ SWAP GRAVITY#
 COSTUME CHANGE#
 RECORD INPUT#
 VISIBLE COLLISION#
-PRESS 2";
+PRESS 2#
+KILL ONSCREEN ENTITIES";
 </string>
           </argument>
         </arguments>
@@ -298,6 +299,19 @@ if (mode == 0)
                     global.playerHealth[i] = 0;
                 }
                 instance_destroy();
+                break;
+            
+            // instakill entities
+            case 9:
+                playSFX(sfxExplosion2);
+                with prtEntity
+                {
+                    if canHit &amp;&amp; object_index != objMegaman
+                    {
+                        healthpoints = 0;
+                        event_user(EV_DEATH);
+                    }
+                }
                 break;
         }
     }

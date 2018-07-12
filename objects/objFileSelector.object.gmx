@@ -30,8 +30,6 @@
 /// variables
 
 selection = 0;
-
-global.debugEnabled = false;
 </string>
           </argument>
         </arguments>
