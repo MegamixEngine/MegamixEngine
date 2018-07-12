@@ -10,7 +10,7 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>stopMusic();</code>
+  <code>playMusic('Mega_Man_1GB.GBS', "VGM", 1, 0, 0, 0, 1);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -51,9 +51,7 @@
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="objNPC" x="48" y="144" name="inst_2177C050" locked="0" code="/*name = &quot;Dr. Light&quot;;&#xA;name_color = global.nesPalette[31];&#xA;text = &quot;Not even water can put out the /1FLAMES OF JUSTICE/0! &quot;;&#xA;mugshot_start = 0;&#xA;mugshot_end = 0;&#xA;face_player = true;*/&#xA;&#xA;idle_sprite = sprNPCDrLight;&#xA;//idle_end = 9;&#xA;&#xA;grav = 0;&#xA;/*talkSprite = sprNPCDrLight;&#xA;talkEnd = 9;&#xA;talkSpeed = 0.125;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objNPC" x="192" y="144" name="inst_714A0ABB" locked="0" code="//Change these&#xA;drawX = 204;&#xA;drawY = 180;&#xA;&#xA;grav = 0;&#xA;&#xA;for (var i = 0; i &lt; global.playerCount; i++)&#xA;{&#xA;  drawPlayer(i, i, 11, 5, drawX, drawY, 1, 1);&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objEddieShopControl" x="0" y="0" name="inst_A11621B1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNPC" x="48" y="144" name="inst_2177C050" locked="0" code="idle_sprite = sprNPCDrLight;&#xA;idle_end = 0;&#xA;text = &quot;HOW&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="0" y="160" name="inst_3454BC2D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="16" y="160" name="inst_654BA506" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="32" y="160" name="inst_5397087F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -70,6 +68,7 @@
     <instance objName="objSolid" x="208" y="160" name="inst_8484D85D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="224" y="160" name="inst_6F6C264B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="240" y="160" name="inst_5547B00F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objShopControl" x="0" y="0" name="inst_8537214B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMM10Lab" x="0" y="160" w="32" h="16" xo="0" yo="0" id="11305692" name="inst_D4DAAA3E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

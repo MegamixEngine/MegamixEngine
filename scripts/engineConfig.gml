@@ -35,5 +35,13 @@ global.defaultLives = 2;
 // maximum number of lives
 global.maxLives = 9;
 
+// maximum number of tanks
+global.maxETanks = 9;
+global.maxWTanks = 9;
+global.maxMTanks = 1;
+
+// maximum number of bolts
+global.maxBolts = 9999;
+
 // debug mode and keys (1, 2) are enabled.
 global.debugEnabled = true;

@@ -34,7 +34,7 @@ selection = 0;
 optionText[0] = "Return to Menu";
 optionText[1] = "Try Again";
 
-global.livesRemaining = global.defaultLives;
+global.livesRemaining = max(global.defaultLives, global.livesRemaining);
 global.checkpoint = false;
 
 playMusic("Mega_Man_3.nsf", "VGM", 53, 0, 0, true, 1);

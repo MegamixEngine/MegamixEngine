@@ -180,9 +180,8 @@ stageIcon[1, 1] = 11 - stageLock[1, 1];
 stageRoom[0, 3] = rmTitleScreen;
 stageName[0, 3] = "MENU";
 
-// stageRoom[1, 3] = rmShop;
+stageRoom[1, 3] = rmShop;
 stageName[1, 3] = "SHOP";
-stageLock[1, 3] = true;
 
 // convenience feature
 global.livesRemaining = max(global.defaultLives, global.livesRemaining);

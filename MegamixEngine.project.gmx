@@ -3420,6 +3420,7 @@
       <sprite>sprites\sprControllerOverlayThin</sprite>
       <sprite>sprites\sprRecPlay</sprite>
       <sprite>sprites\sprSavingIcon</sprite>
+      <sprite>sprites\sprEnergySaver</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -5698,7 +5699,6 @@
         <object>objects\objStageSelect</object>
         <object>objects\objNewFile</object>
         <object>objects\objEddieShopControl</object>
-        <object>objects\objShopControl</object>
         <object>objects\objGameOver</object>
         <object>objects\objCredits</object>
         <object>objects\objWeaponGet</object>
@@ -5720,6 +5720,7 @@
         <object>objects\objBigExplosion</object>
         <object>objects\objDialogueBox</object>
       </objects>
+      <object>objects\objShopControl</object>
     </objects>
   </objects>
   <rooms name="rooms">

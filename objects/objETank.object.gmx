@@ -58,7 +58,7 @@ heavy = 1;
 
 var pid = collectPlayer.playerID;
 
-if (global.eTanks &lt; 9)
+if (global.eTanks &lt; global.maxETanks)
 {
     global.eTanks += 1;
 }
