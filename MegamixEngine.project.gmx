@@ -3440,7 +3440,6 @@
       <background>background\bgStarFieldForeground</background>
       <background>background\tstChallenge</background>
       <background>background\tstStageSelect</background>
-      <background>background\bgCutManWWSunset_NemZ</background>
     </backgrounds>
     <backgrounds name="Tilesets">
       <background>background\tstBeta</background>
