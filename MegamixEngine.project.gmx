@@ -3421,6 +3421,7 @@
       <sprite>sprites\sprControllerOverlayThin</sprite>
       <sprite>sprites\sprRecPlay</sprite>
       <sprite>sprites\sprSavingIcon</sprite>
+      <sprite>sprites\sprEnergySaver</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -3440,7 +3441,6 @@
       <background>background\bgStarFieldForeground</background>
       <background>background\tstChallenge</background>
       <background>background\tstStageSelect</background>
-      <background>background\bgCutManWWSunset_NemZ</background>
     </backgrounds>
     <backgrounds name="Tilesets">
       <background>background\tstBeta</background>
@@ -5699,7 +5699,6 @@
         <object>objects\objFileSelector</object>
         <object>objects\objStageSelect</object>
         <object>objects\objWeaponGet</object>
-        <object>objects\objEddieShopControl</object>
         <object>objects\objShopControl</object>
         <object>objects\objGameOver</object>
         <object>objects\objCredits</object>
@@ -5727,38 +5726,6 @@
     <room>rooms\rmInit</room>
     <room>rooms\lvlBeta</room>
     <room>rooms\lvlCopyThisRoom</room>
-    <rooms name="Asset Showcases">
-      <room>rooms\lvlShowcaseHUB</room>
-      <room>rooms\rmShowcaseBossEarth</room>
-      <room>rooms\rmShowcaseBossElectric</room>
-      <room>rooms\rmShowcaseBossFanFlame</room>
-      <room>rooms\rmShowcaseBossFlashGravity</room>
-      <room>rooms\rmShowcaseBossFluidic</room>
-      <room>rooms\rmShowcaseBossOrdinance</room>
-      <room>rooms\rmShowcaseBossMisc</room>
-      <room>rooms\rmShowcaseBossSharp</room>
-      <room>rooms\rmShowcaseBossSummoner</room>
-      <room>rooms\rmShowcaseExplosions</room>
-      <room>rooms\rmShowcaseFlying</room>
-      <room>rooms\rmShowcaseIceFire</room>
-      <room>rooms\rmShowcaseIndustrial</room>
-      <room>rooms\rmShowcaseJoes</room>
-      <room>rooms\rmShowcaseMets</room>
-      <room>rooms\rmShowcaseJumping</room>
-      <room>rooms\rmShowcaseLeftovers</room>
-      <room>rooms\rmShowcaseMinibossAnimals</room>
-      <room>rooms\rmShowcaseMinibossIndustrial</room>
-      <room>rooms\rmShowcaseMinibossMisc</room>
-      <room>rooms\rmShowcaseMinibossWater</room>
-      <room>rooms\rmShowcaseMovement</room>
-      <room>rooms\rmShowcaseMovingPlatforms</room>
-      <room>rooms\rmShowcaseNoveltyPlatforms</room>
-      <room>rooms\rmShowcaseSpawners</room>
-      <room>rooms\rmShowcaseSurprise</room>
-      <room>rooms\rmShowcaseSwitches</room>
-      <room>rooms\rmShowcaseTurrets</room>
-      <room>rooms\rmShowcaseWater</room>
-    </rooms>
     <rooms name="Example Game">
       <room>rooms\lvlGutsMan</room>
       <room>rooms\lvlFlashMan</room>

@@ -34,7 +34,7 @@ selection = 0;
 optionText[0] = "Return to Menu";
 optionText[1] = "Try Again";
 
-global.livesRemaining = global.defaultLives;
+global.livesRemaining = max(global.defaultLives, global.livesRemaining);
 global.checkpoint = false;
 
 playMusic("Mega_Man_3.nsf", "VGM", 53, 0, 0, true, 1);
@@ -173,7 +173,7 @@ spinFrame += spinSpeed;
 {
     var drawX = x + i * 24 - (global.playerCount - 1) * 12;
     var drawY = y - 16;
-    var p = roundTo(fadeInTimer / 120, 1 / 4);
+    var p = clamp(roundTo((fadeInTimer) / 45, 1 / 3), 0, 1);
     
     // determine weapon colours
     var cp, cs, ap = 1, as = 1;
@@ -214,9 +214,7 @@ spinFrame += spinSpeed;
     drawCostume(global.playerSprite[i], floor(spinFrame) mod 10, 11, drawX, drawY, 1, 1, c_white, cp, cs, c_black, 1, ap, as, 1);
     
     // fade darken
-    draw_set_blend_mode(bm_add);
     drawCostume(global.playerSprite[i], floor(spinFrame) mod 10, 11, drawX, drawY, 1, 1, c_black, c_black, c_black, c_black, p, 0, 0, 0);
-    draw_set_blend_mode(bm_normal);
 }
 
 clearDrawState();

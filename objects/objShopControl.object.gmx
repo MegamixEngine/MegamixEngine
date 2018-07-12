@@ -27,20 +27,348 @@
             <kind>1</kind>
             <string>image_speed = 0;
 
-option = 1; // cursor position in the room list
-endx = 8; // how many rooms fit on the screen at once
-selected = 0;
-shift = 0; // position in the list to start drawing to the screen from
-timer = 0;
-quickScrollTimer = 25;
+// contants
+iconsXOffset = 52 + 12;
+iconsYOffset = 24;
+iconsXSpacing = 52;
+iconsYSpacing = 34;
 
-itemList = ds_list_create();
+priceXOffset = iconsXOffset;
+priceYOffset = iconsYOffset + 16;
 
-ds_list_add(itemList, objLife);
-ds_list_add(itemList, objETank);
-ds_list_add(itemList, objMTank);
+nameXOffset = 0;
+nameYOffset = 176;
 
-playMusic('Mega_Man_1GB.GBS', "VGM", 1, 0, 0, 0, 1);
+descriptionXOffset = nameXOffset + 16;
+descriptionYOffset = nameYOffset + 16;
+
+boltIconXOffset = 29;
+boltIconYOffset = 97;
+boltCounterXOffset = boltIconXOffset + 16;
+boltCounterYOffset = boltIconYOffset + 7;
+
+playersXOffset = 224;
+playersYOffset = 144;
+playersXSpacing = 24;
+
+menuWidth = 3;
+menuHeight = 2;
+
+quickScrollWait = 25; // how long until quick scroll activates
+quickScrollStutter = 8; // how long the cursor pauses before moving again while quick scrolling
+
+// variables
+cursorX = 0;
+cursorY = 0;
+cursorImgIndex = 0;
+cursorImgSpd = 0.2;
+
+horizontalQuickScrollTimer = quickScrollWait;
+verticalQuickScrollTimer = quickScrollWait;
+
+displayBolts = global.bolts;
+targetBolts = displayBolts;
+
+lockControls = false;
+
+// initialize arrays
+for (i = 0; i &lt; menuWidth; i++)
+{
+    for (j = 0; j &lt; menuHeight; j++)
+    {
+        itemUnavailable[i, j] = 0; // 0 = available, 1 = sold out, 2 = hidden 
+        itemIcon[i, j] = noone;
+        itemPrice[i, j] = noone;
+        itemName[i, j] = noone;
+        itemDescription[i, j] = noone;
+        //itemPurchaseAction[i, j] = ""; // put arbitrary code here. Note that stringExecutePartial cannot handle a lot of GML functions.
+    }
+}
+
+// setup shop contents
+itemUnavailable[0, 0] = global.livesRemaining &gt;= global.maxLives; // cannot buy lives if you have max
+itemIcon[0, 0] = sprLife;
+itemPrice[0, 0] = 20;
+itemName[0, 0] = "Life";
+itemDescription[0, 0] = "Gives you an extra try at beating a stage."
+//itemPurchaseAction[0, 0] = "global.livesRemaining++; if (global.livesRemaining &gt;= global.maxLives) { itemUnavailable[0, 0] = 1; }";
+
+itemUnavailable[1, 0] = global.energySaver &gt; 0;
+itemIcon[1, 0] = sprEnergySaver;
+itemPrice[1, 0] = 200;
+itemName[1, 0] = "Energy Saver";
+itemDescription[1, 0] = "Lowers the amount of weapon energy that's consumed when using weapons."
+//itemPurchaseAction[1, 0] = "global.energySaver = true; itemUnavailable[1, 0] = 1;";
+
+itemUnavailable[2, 0] = global.weaponLocked[global.weaponID[? objRushCycle]] == 0;
+itemIcon[2, 0] = sprWeaponIconsRushCycle;
+itemPrice[2, 0] = 100;
+itemName[2, 0] = "Rush Cycle";
+itemDescription[2, 0] = "Turns rush into a motorcycle, allowing you to travel at high speeds!";
+//itemPurchaseAction[2, 0] = "global.weaponLocked[global.weaponID[? objRushCycle]] = false; itemUnavailable[2, 0] = true;";
+
+itemUnavailable[0, 1] = global.eTanks &gt;= global.maxETanks;
+itemIcon[0, 1] = sprETank;
+itemPrice[0, 1] = 30;
+itemName[0, 1] = "E-Tank";
+itemDescription[0, 1] = "Completely refills your health upon use.";
+//itemPurchaseAction[0, 1] = "global.eTanks++; if (global.eTanks &gt;= global.maxETanks) { itemUnavailable[0, 1] = 1; }";
+
+itemUnavailable[1, 1] = global.wTanks &gt;= global.maxWTanks;
+itemIcon[1, 1] = sprWTank;
+itemPrice[1, 1] = 30;
+itemName[1, 1] = "W-Tank";
+itemDescription[1, 1] = "Completely refills the energy of all of your weapons upon use.";
+//itemPurchaseAction[1, 1] = "global.wTanks++; if (global.wTanks &gt;= global.maxWTanks) { itemUnavailable[1, 1] = 1; }";
+
+itemUnavailable[2, 1] = global.mTanks &gt;= global.maxMTanks;
+itemIcon[2, 1] = sprMTank;
+itemPrice[2, 1] = 50;
+itemName[2, 1] = "M-Tank";
+itemDescription[2, 1] = "Completely refills both your health and the energy for all of your weapons upon use."
+//itemPurchaseAction[2, 1] = "global.mTanks++; if (global.mTanks &gt;= global.maxMTanks) { itemUnavailable[2, 1] = 1; }";;
+
+
+// hacky way to make sure the player palettes are set
+for (i = 0; i &lt; global.playerCount; i++)
+{
+    instance_create(0, 0, objMegaman);
+}
+
+with (objMegaman)
+{
+    instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!global.frozen)
+{
+    // controls
+    xDir = global.keyRightPressed[0] - global.keyLeftPressed[0];
+    yDir = global.keyDownPressed[0] - global.keyUpPressed[0];
+    
+    cursorX += xDir;
+    cursorY += yDir;
+    
+    if (cursorX &lt; 0)
+    {
+        cursorX += menuWidth
+    }
+    
+    if (cursorX &gt;= menuWidth)
+    {
+        cursorX -= menuWidth;
+    }
+    
+    if (cursorY &lt; 0)
+    {
+        cursorY += menuHeight;
+    }
+    
+    if (cursorY &gt;= menuHeight)
+    {
+        cursorY -= menuHeight;
+    }
+    
+    if (xDir != 0 || yDir != 0)
+    {
+        playSFX(sfxMenuMove);
+    }
+    
+    // doing menu selections
+    if (global.keyPausePressed[0])
+    {
+        if (global.bolts &gt;= itemPrice[cursorX, cursorY] &amp;&amp; itemUnavailable[cursorX, cursorY] == 0)
+        { // buy the item
+            if (cursorX == 0 &amp;&amp; cursorY == 0)
+            { // life
+                global.livesRemaining++;
+                if (global.livesRemaining &gt;= global.maxLives)
+                {
+                    itemUnavailable[0, 0] = 1;
+                }
+            }
+            else if (cursorX == 1 &amp;&amp; cursorY == 0)
+            { // energy saver
+                global.energySaver = true;
+                itemUnavailable[1, 0] = 1;
+            }
+            else if (cursorX == 2 &amp;&amp; cursorY == 0)
+            { // rush cycle
+                global.weaponLocked[global.weaponID[? objRushCycle]] = false;
+                itemUnavailable[2, 0] = true;
+            }
+            else if (cursorX == 0 &amp;&amp; cursorY == 1)
+            { // etank
+                global.eTanks++;
+                if (global.eTanks &gt;= global.maxETanks)
+                {
+                    itemUnavailable[0, 1] = 1;
+                }
+            }
+            else if (cursorX == 1 &amp;&amp; cursorY == 1)
+            { // wtank
+                global.wTanks++;
+                if (global.wTanks &gt;= global.maxWTanks)
+                {
+                    itemUnavailable[1, 1] = 1;
+                }
+            }
+            else if (cursorX == 2 &amp;&amp; cursorY == 1)
+            { // mtank
+                global.mTanks++;
+                if (global.mTanks &gt;= global.maxMTanks)
+                {
+                    itemUnavailable[2, 1] = 1;
+                }
+            }
+            
+            //stringExecutePartial(itemPurchaseAction[cursorX, cursorY]);
+            
+            global.bolts -= itemPrice[cursorX, cursorY];
+            targetBolts = global.bolts;
+            playSFX(sfxMenuSelect);
+        }
+        else if (itemUnavailable[cursorX, cursorY] != 2)
+        { // unable to buy the item
+            playSFX(sfxError);
+        }
+    }
+    
+    // roll bolt counter
+    if (displayBolts &gt; targetBolts)
+    {
+        displayBolts--;
+    }
+    else if (displayBolts &lt; targetBolts)
+    { // lol I'm sure someone will do an item that costs negative bolts    :P
+        displayBolts++;
+    }
+    
+    // exit
+    if (global.keyShootPressed[0])
+    {
+        lockControls = true;
+        global.nextRoom = rmStageSelect;
+        saveLoadGame(true);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// bolt counter
+draw_sprite(sprBoltBig, 0, view_xview[0] + boltIconXOffset, view_yview[0] + boltIconYOffset);
+draw_set_valign(fa_top);
+draw_text(view_xview[0] + boltCounterXOffset, view_yview[0] + boltCounterYOffset, zeroPad(displayBolts, 4));
+
+// shop info
+for (i = 0; i &lt; menuWidth; i++)
+{
+    for (j = 0; j &lt; menuHeight; j++)
+    {
+        if (itemUnavailable[i, j] &lt; 2)
+        {
+            // item icon
+            if (itemIcon[i, j] != noone)
+            {
+                draw_sprite(itemIcon[i, j], 0, view_xview[0] + iconsXOffset + i * iconsXSpacing
+                    , view_yview[0] + iconsYOffset + j * iconsYSpacing);
+            }
+            
+            // name and description
+            if (i == cursorX &amp;&amp; j == cursorY)
+            {
+                draw_set_halign(fa_left);
+                
+                if (itemName[i, j] != noone)
+                {
+                    draw_text_ext(view_xview[0] + nameXOffset, view_yview[0] + nameYOffset, itemName[i, j], 8, view_wview[0] - nameXOffset);
+                }
+                
+                if (itemDescription[i, j] != noone)
+                {
+                    draw_text_ext(view_xview[0] + descriptionXOffset, view_yview[0] + descriptionYOffset, itemDescription[i, j], 8, view_wview[0] - descriptionXOffset);
+                }
+            }
+        }
+        
+        if (itemUnavailable[i, j] == 0 &amp;&amp; itemPrice[i, j] != noone)
+        {
+            // price
+            draw_set_halign(fa_center);
+            draw_text(view_xview[0] + iconsXOffset + i * iconsXSpacing - sprite_get_xoffset(itemIcon[i, j]) + sprite_get_width(itemIcon[i, j]) / 2
+                , view_yview[0] + iconsYOffset + j * iconsYSpacing - sprite_get_yoffset(itemIcon[i, j]) + sprite_get_height(itemIcon[i, j]) + 4, string(itemPrice[i, j]));
+        }
+        
+        if (itemUnavailable[i, j] == 1)
+        {
+            // maxed out
+            draw_set_halign(fa_center);
+            draw_text(view_xview[0] + iconsXOffset + i * iconsXSpacing - sprite_get_xoffset(itemIcon[i, j]) + sprite_get_width(itemIcon[i, j]) / 2
+                , view_yview[0] + iconsYOffset + j * iconsYSpacing - sprite_get_yoffset(itemIcon[i, j]) + sprite_get_height(itemIcon[i, j]) + 4, "MAX");
+        }
+    }
+}
+
+// menu cursor
+draw_sprite(sprShopCursor, cursorImgIndex div 1, view_xview[0] + iconsXOffset + cursorX * iconsXSpacing, view_yview[0] + iconsYOffset + cursorY * iconsYSpacing + 1);
+cursorImgIndex += cursorImgSpd;
+if (cursorImgIndex &gt;= sprite_get_number(sprShopCursor))
+{
+    cursorImgIndex = 0;
+}
+
+draw_set_halign(fa_left);
+
+// players
+for (var i = 0; i &lt; global.playerCount; i++)
+{
+    drawPlayer(i, i, 0, 0, view_xview[0] + playersXOffset - playersXSpacing * i, view_yview[0] + playersYOffset, -1, 1);
+}
+
+// exit notification
+draw_sprite(sprButtonPrompts, 5, 144, 96);
+draw_text(154, 96, ":EXIT");
+
 </string>
           </argument>
         </arguments>
