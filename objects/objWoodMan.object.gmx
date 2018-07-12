@@ -181,6 +181,7 @@ if (entityCanStep())
                             shield = instance_create(x, y, objWoodLeafShield);
                             shield.image_xscale = image_xscale;
                             shield.direction = i * 45;
+                            shield.despawnRange = -1;
                             with (shield)
                             {
                                 if (direction / 90 != floor(direction / 90))
@@ -226,9 +227,13 @@ if (entityCanStep())
                     else if (leafTimer &lt;= 0)
                     {
                         image_index = 4;
-                        objWoodLeafShield.xspeed = 4 * image_xscale;
-                        objWoodLeafShield.yspeed = 0;
-                        objWoodLeafShield.followWood = false;
+                        if instance_exists(objWoodLeafShield)
+                        {
+                            objWoodLeafShield.xspeed = 4 * image_xscale;
+                            objWoodLeafShield.yspeed = 0;
+                            objWoodLeafShield.followWood = false;
+                            objWoodLeafShield.despawnRange = 4;
+                        }
                         phase = 3;
                         leafTimer = 15; // reusing this again
                         shield = 0;

@@ -40,7 +40,7 @@ killOverride = true;
 
 visible = 0;
 
-shiftVisible = 2;
+shiftVisible = 3;
 despawnRange = -1;
 
 playSFX(sfxBreakDash); // needs its own sfx later

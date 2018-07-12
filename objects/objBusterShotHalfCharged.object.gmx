@@ -33,9 +33,6 @@ contactDamage = 1;
 
 image_speed = 1 / 3;
 
-penetrate = 0;
-pierces = 1;
-
 playSFX(sfxBusterHalfCharged);
 </string>
           </argument>
