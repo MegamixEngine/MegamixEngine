@@ -88,7 +88,7 @@ if (!global.frozen)
                     if (!playerIsLocked(PL_LOCK_SHOOT))
                     {
                         // drain ammo
-                        global.ammo[playerID, global.weapon[playerID]] = max(0, global.ammo[playerID, global.weapon[playerID]] - 1 / 30);
+                        global.ammo[playerID, global.weapon[playerID]] = max(0, global.ammo[playerID, global.weapon[playerID]] - 1 / 30 / (global.energySaver + 1));
                         
                         // Shoot a dummy bullet to get Mega Man's shoot coordinates
                         i = fireWeapon(20, -3, prtPlayerProjectile, 0, 0, 0, 0);

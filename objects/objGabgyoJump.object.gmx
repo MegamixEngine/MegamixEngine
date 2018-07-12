@@ -32,7 +32,8 @@ event_inherited();
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
-contactDamage = 3;
+ogContactDamage = 3;
+contactDamage = 0;
 
 category = "aquatic, nature";
 
@@ -84,6 +85,7 @@ if (phase != 1)
 {
     visible = false;
     canHit = false;
+    contactDamage = 0;
 }
 
 event_inherited();
@@ -105,6 +107,7 @@ if (entityCanStep())
                     visible = true;
                     canHit = true;
                     grav = gravAccel;
+                    contactDamage = ogContactDamage;
                     
                     playSFX(sfxSplash);
                     
@@ -115,6 +118,7 @@ if (entityCanStep())
                     }
                 }
             }
+            
             break;
         
         // jumping
@@ -147,6 +151,7 @@ if (entityCanStep())
                 visible = false;
                 imgIndex = 0;
             }
+            
             break;
         
         // cooldown
@@ -157,6 +162,7 @@ if (entityCanStep())
                 phase = 0;
                 timer = 0;
             }
+            
             break;
     }
 }
