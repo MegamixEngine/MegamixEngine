@@ -23,6 +23,7 @@ global.sturdyHelmet = sl(global.sturdyHelmet);
 global.converter = sl(global.converter);
 global.difficulty = sl(global.difficulty, "difficulty");
 global.debugSkipStageMode = sl(global.debugSkipStageMode, "skip-stages");
+global.energySaver = sl(global.energySaver, "energy-saver");
 
 global.gameTimer = sl(global.gameTimer);
 

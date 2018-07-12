@@ -56,7 +56,7 @@ heavy = 1;
             <kind>1</kind>
             <string>instance_destroy();
 
-if (global.wTanks &lt; 9)
+if (global.wTanks &lt; global.maxWTanks)
 {
     global.wTanks += 1;
 }

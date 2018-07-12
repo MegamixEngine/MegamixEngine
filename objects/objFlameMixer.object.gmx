@@ -103,8 +103,8 @@ if (!global.frozen)
         {
             if (global.ammo[playerID, global.weapon[playerID]] &gt; 0 &amp;&amp; original &amp;&amp; drainDelay &lt;= 0) // drain weapon energy
             {
-                global.ammo[playerID, global.weapon[playerID]] -= 1 / 48;
-                if (global.ammo[playerID, global.weapon[playerID]] &lt;= 1 / 48 &amp;&amp; drainDelay &lt;= 0)
+                global.ammo[playerID, global.weapon[playerID]] -= 1 / 48 / (global.energySaver + 1);
+                if (global.ammo[playerID, global.weapon[playerID]] &lt;= 1 / 48 / (global.energySaver + 1) &amp;&amp; drainDelay &lt;= 0)
                 {
                     global.ammo[playerID, global.weapon[playerID]] = 0;
                 }
