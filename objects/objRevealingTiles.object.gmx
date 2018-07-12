@@ -66,7 +66,12 @@ scanned = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!scanned)
+            <string>if(!insideSection(x,y))
+{
+    instance_deactivate_object(id);
+}
+    
+if (!scanned)
 {
     tiles = tile_get_ids_at_depth(layer);
     tile_layer_hide(layer);

@@ -107,7 +107,7 @@ if (entityCanStep())
         }
         else if (ground)
         {
-            if (checkFall(16 * image_xscale, false))
+            if (checkFall(16 * image_xscale))
             {
                 image_xscale *= -1;
             }

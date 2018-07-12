@@ -95,7 +95,7 @@ if (entityCanStep())
             leftLimit = xstart + maxDist * 16 * startXscale;
             rightLimit = xstart;
         }
-        if (xcoll != 0 || checkFall(32 * sign(xspeed), true) || (x &gt; rightLimit) || ((x &lt; leftLimit))) //! checkSolid(xspeed + sign(xspeed) * abs(bbox_left - bbox_right) + sign(xspeed), 3)
+        if (xcoll != 0 || checkFall(32 * sign(xspeed)) || (x &gt; rightLimit) || ((x &lt; leftLimit))) //! checkSolid(xspeed + sign(xspeed) * abs(bbox_left - bbox_right) + sign(xspeed), 3)
         {
             if (phase == 0)
             {

@@ -272,7 +272,7 @@ if (entityCanStep())
     }
     
     // turn around if a wall is hit, or there's no more ground
-    if (xspeed == 0 || checkFall(image_xscale * 16, true)) //! positionCollision(x + sprite_width / 2 + xspeed, y - 1 * image_yscale))
+    if (xspeed == 0 || checkFall(image_xscale * 16)) //! positionCollision(x + sprite_width / 2 + xspeed, y - 1 * image_yscale))
     {
         image_xscale = -image_xscale;
         xspeed = spd * image_xscale;
