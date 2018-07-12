@@ -396,8 +396,12 @@ if (isIntro)
             break;
         // Player disguise
         case 1:
-            _costume = objMegaman.costumeID;
-            targetPID = objMegaman.playerID;
+            if instance_exists(target)
+            {
+                _costume = target.costumeID;
+                targetPID = target.playerID;
+            }
+            
             if (attackTimer &lt; 10)
             {
                 drawPlayer(targetPID, _costume, 0, 0, x, y, image_xscale, image_yscale);

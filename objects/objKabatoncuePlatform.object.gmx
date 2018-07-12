@@ -81,7 +81,7 @@ if (entityCanStep())
     }
     
     // Crawl back up if it's lowered
-    if (y &gt; ystart)
+    if (y &gt; ystart &amp;&amp; !instance_exists(objSectionSwitcher))
     {
         yspeed = -spd;
         

@@ -34,6 +34,8 @@ contactDamage = 0;
 
 grav = 0;
 blockCollision = 0;
+
+respawnRange = 0;
 </string>
           </argument>
         </arguments>

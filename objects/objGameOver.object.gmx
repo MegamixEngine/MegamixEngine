@@ -34,6 +34,8 @@ playMusic("Mega_Man_2.nsf", "VGM", 13, 0, 0, true, 1);
 
 optionText[0] = "Return to Hub";
 optionText[1] = "Try Again";
+
+global.livesRemaining = 2;
 </string>
           </argument>
         </arguments>

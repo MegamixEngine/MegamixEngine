@@ -829,7 +829,14 @@ with (objMegaman)
     instance_destroy();
 
 // weapon clean up
+for (i = 0; i &lt;= global.playerCount; i += 1)
+{
+    global.weapon[i] = 0;
+}
+
 global.lockBuster = false;
+
+global.timeStopped = false;
 
 // forcibly reset control locks
 globalLockReset();
