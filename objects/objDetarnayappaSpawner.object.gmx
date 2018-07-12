@@ -94,6 +94,7 @@ if (entityCanStep())
         {
             target = other.target;
             dir = other.dir;
+            depth=other.depth;
         }
     }
 }

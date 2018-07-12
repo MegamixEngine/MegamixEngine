@@ -69,7 +69,7 @@ if (entityCanStep())
     xSpeedTurnaround();
     
     // turn around on ledges
-    if (checkFall(24 * image_xscale, true))
+    if (checkFall(24 * image_xscale))
     {
         image_xscale *= -1;
         xspeed = .7 * image_xscale;

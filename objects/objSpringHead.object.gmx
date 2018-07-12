@@ -101,7 +101,7 @@ if (entityCanStep())
     }
     else
     {
-        if (checkFall(16 * image_xscale, false) || (xcoll != 0))
+        if (checkFall(16 * image_xscale) || (xcoll != 0))
         {
             x -= image_xscale;
             image_xscale = -image_xscale;

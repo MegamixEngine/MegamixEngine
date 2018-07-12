@@ -116,7 +116,7 @@ if (entityCanStep())
                         timer = 0;
                     }
                     var onLimit = sign(x - (prevX + maxDist * image_xscale)) == image_xscale;
-                    if (checkFall(32, true) || onLimit)
+                    if (checkFall(32*sign(image_xscale)) || onLimit)
                     {
                         if (onLimit)
                         {

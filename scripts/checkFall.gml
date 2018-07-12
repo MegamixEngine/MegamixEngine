@@ -1,6 +1,7 @@
-/// checkFall(xOffset,ignoreSlopes)
+/// checkFall(xOffset,[usePositionCollision])
 // check if an object would fall at a horizontal offset
 // Note: checking for slopes with big collision masks might be slow
+//if usePositionCollision us true, only the sign of xOffset will be used
 if (!ground || !blockCollision)
     return true;
 var _x = x;
@@ -9,40 +10,30 @@ var _xspeed = xspeed;
 var _yspeed = yspeed;
 var _xcoll = xcoll;
 var _ycoll = ycoll;
-
-// Simple check
-xspeed = argument0;
-generalCollision(1); // Ignore slopes for now
-checkGround(1);
-var colX = x;
-var result = !ground;
-
-// If a ledge is detected in a world of squares check for slopes
-if (result && argument1 == false)
+var usePositionCollision=false;
+if(argument_count>1)
 {
-    if (checkSolid(-4 * sign(argument0), sign(grav) * 16, 1))
-    {
-        x = _x;
-        repeat (2)
-        {
-            xspeed = floor(argument0 / 2);
-            ground = true;
-            generalCollision();
-            xspeed += sign(xspeed) * (((bbox_bottom - bbox_top) + (bbox_right - bbox_left)) / 2);
-            gound = true;
-            checkGround();
-            if (ground)
-                break;
-        }
-        result = !ground;
-        if (object_index == objSpine)
-            print("Slope code for some reason");
-    }
-    else
-    {
-        if (object_index == objSpine)
-            print("Didn't find a slope");
-    }
+    usePositionCollision=argument[1];
+}
+var result=0;
+if(usePositionCollision)
+{
+    var base = bbox_bottom;
+    var front = bbox_right;
+    if(sign(argument[0])==-1)
+        front=bbox_left;
+    if(sign(grav)==-1)
+        base=bbox_top;
+    result =  !positionCollision(front+sign(argument[0]),base+sign(grav),1,1);
+}
+else
+{
+    //Slope code has to be made, so I'll keep it simple for now
+    
+    xspeed = argument[0];
+    generalCollision(1);
+    checkGround(1);
+    result = !ground;
 }
 
 x = _x;
@@ -52,5 +43,5 @@ ycoll = _ycoll;
 ground = true;
 xspeed = _xspeed;
 yspeed = _yspeed;
-blockCollision = true;
+
 return result;
