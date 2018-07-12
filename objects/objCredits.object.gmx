@@ -26,11 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>timer = 0;
+phase = 0;
 
-creditsPosition = view_hview * 2;
+creditsPosition = view_hview * 1.1;
 
 creditsText =
-    "MEGAMIX ENGINE
+"MEGAMIX ENGINE
 
 
 
@@ -41,9 +42,12 @@ Mick Galbani
 ACESpark
 snoruntpyro
 
+
 ORIGINAL MEGA ENGINE
 
 WreckingPrograms
+
+
 
 
 PROGRAMMERS
@@ -72,6 +76,7 @@ ORIGINAL MEGA MAN SPRITES
 
 Capcom
 
+
 NEW ART
 
 ACESpark
@@ -89,10 +94,12 @@ StOil
 ThatEntityGuy
 
 
+
 AUDIO
 
 CosmicGem
 MiniMacro
+
 
 
 BETA TESTING
@@ -105,10 +112,12 @@ gone-sovereign
 ParmaJon
 
 
+
 TILESET RIPPING + ORGANIZATION
 
 GingerMochi
 TimeLink
+
 
 
 WEAPON OF THE WEEK
@@ -122,6 +131,8 @@ TimeLink
 ThatEntityGuy
 
 
+
+
 EXAMPLE GAME
 
 
@@ -131,6 +142,7 @@ GingerMochi
 snoruntpyro
 ThatEntityGuy
 
+
 EASY AND NORMAL MODE LEVELS
 
 ACESpark
@@ -139,6 +151,7 @@ CWU-01P
 GingerMochi
 snoruntpyro
 Zatsupachi
+
 
 HARD MODE LEVELS
 
@@ -199,6 +212,71 @@ Thank you for playing!
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>timer ++;
+
+switch phase
+{
+    // rise up
+    case 0:
+        creditsPosition -= (.5 + (global.keyJump[0] * 2));
+    
+        if creditsPosition &lt; -1275 // 1 minute
+        {
+            timer = 0;
+            phase = 1;
+            
+            creditsText = "Thank you for playing!";
+            creditsPosition = (view_hview/2) - 4;
+        }
+        
+        if timer == 10
+        {
+            stopMusic();
+            playMusic("Mega_Man_2.nsf", "VGM", 21, 0, 0, 0, 1);
+        }
+        break;
+    case 1:
+        // sparkles =w=
+        if (timer mod 3 == 0)
+        {
+            with (instance_create(view_xview + irandom_range(0, view_wview), view_yview + irandom_range(0, view_hview), objSlideDust))
+            {
+                sprite_index = sprShine;
+                image_xscale = choose(1, -1);
+                direction = irandom(360);
+                rotationMovement(xstart, ystart, irandom_range(5, 12), 0);
+            }
+        }
+    
+        // reset game if jump or pause button is pressed
+        if ((global.keyJumpPressed[0] || global.keyPausePressed[0]) &amp;&amp; (timer &gt; 60))
+        {
+            game_restart();
+        }
+        break;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -216,38 +294,10 @@ Thank you for playing!
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text(view_xview + 128, creditsPosition, creditsText);
+            <string>draw_set_halign(fa_center);
+draw_set_valign(fa_top);
 
-// do timer stuff here because i don't want to make a step event lol
-
-// stop rising if everything is done
-
-if (creditsPosition &gt; (view_yview + 112) + (string_height_ext(creditsText, -1, -1)))
-{
-    creditsPosition -= (1.5 * (global.keyJump[0] * 2));
-}
-else
-{
-    timer++;
-    
-    // sparkles =w=
-    if (timer mod 3 == 0)
-    {
-        with (instance_create(view_xview + irandom_range(0, view_xview), view_yview + irandom_range(0, view_hview), objSlideDust))
-        {
-            sprite_index = sprShine;
-            image_xscale = choose(1, -1);
-            direction = irandom(360);
-            rotationMovement(xstart, ystart, irandom_range(5, 12), 0);
-        }
-    }
-    
-    // reset game if jump or pause button is pressed
-    if ((global.keyJumpPressed[0] || global.keyPausePressed[0]) &amp;&amp; (timer &gt; 60))
-    {
-        game_restart();
-    }
-}
+draw_text(view_xview + 128, creditsPosition, creditsText);
 </string>
           </argument>
         </arguments>

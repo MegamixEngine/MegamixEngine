@@ -94,7 +94,7 @@ while (ds_list_size(roomlist) &lt; 8)
     ds_list_add(roomnames, '-Slot Empty-');
 }
 
-playMusic('Mega_Man_1GB.GBS', "VGM", 1, 0, 0, 0, 1);
+//playMusic('Mega_Man_1GB.GBS', "VGM", 1, 0, 0, 0, 1);
 </string>
           </argument>
         </arguments>

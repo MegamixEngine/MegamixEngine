@@ -5694,14 +5694,14 @@
         <object>objects\objPauseMenu</object>
         <object>objects\objOptionsMenu</object>
         <object>objects\objColoredTextOverlaysMenu</object>
+        <object>objects\objNewFile</object>
         <object>objects\objFileSelector</object>
         <object>objects\objStageSelect</object>
-        <object>objects\objNewFile</object>
+        <object>objects\objWeaponGet</object>
         <object>objects\objEddieShopControl</object>
         <object>objects\objShopControl</object>
         <object>objects\objGameOver</object>
         <object>objects\objCredits</object>
-        <object>objects\objWeaponGet</object>
         <objects name="WilyCastle">
           <object>objects\objWilyCastle</object>
           <object>objects\objWilyCastleDot</object>

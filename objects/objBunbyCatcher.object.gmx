@@ -258,7 +258,14 @@ image_index = (imageOffset + (grabbedPlayer * 2)) + (col * 4);
 
 if (poppedUp)
 {
-    other.guardCancel = 0;
+    if (grabbedPlayer &amp;&amp; (other.object_index == objBusterShot || other.object_index == objBusterShotHalfCharged || other.object_index = objBusterShotCharged))
+    {
+        other.guardCancel = 3;
+    }
+    else
+    {
+        other.guardCancel = 0;
+    }
 }
 else
 {
