@@ -31,7 +31,7 @@
 
 selection = 0;
 
-global.debugEnabled = false;
+global.debugEnabled = false; // debug keys not allowed for now
 </string>
           </argument>
         </arguments>

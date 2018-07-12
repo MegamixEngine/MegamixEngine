@@ -148,7 +148,7 @@ if (!selected)
             shift -= 1;
         }
         
-        if (option &lt;= 1)
+        if (option &lt; 1)
         {
             // scroll to the bottom
             option = ds_list_size(roomlist);

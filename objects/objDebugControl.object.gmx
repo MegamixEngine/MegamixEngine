@@ -185,7 +185,7 @@ if (viewobjects)
     scroll += global.keyDownPressed[0] - global.keyUpPressed[0];
     scroll = min(max(0, scroll), ds_list_size(ids) - limit);
     
-    if (keyboard_check_pressed(vk_backspace)) // Disable
+    if (keyboard_check_pressed(vk_backspace) || keyboard_check_pressed(ord('3'))) // Disable
     {
         ds_list_destroy(ids);
         ds_map_destroy(names);
@@ -194,8 +194,7 @@ if (viewobjects)
         viewobjects = 0;
     }
 }
-
-if (keyboard_check_pressed(vk_shift)) // Set lists
+else if (keyboard_check_pressed(ord('3'))) // Set lists
 {
     if (!viewobjects)
     {
