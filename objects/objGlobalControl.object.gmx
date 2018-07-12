@@ -1212,7 +1212,6 @@ if (!global.frozen)
     {
         global.flashTimer -= 1;
         draw_sprite_ext(sprDot, image_index, view_xview, view_yview, view_wview, view_hview, image_angle, image_blend, image_alpha);
-        show_message("a");
     }
 }
 

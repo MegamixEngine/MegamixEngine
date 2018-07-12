@@ -77,14 +77,7 @@ if (entityCanStep())
         explod = true;
     if (explod == true)
     {
-        var ID;
-        ID = instance_create(spriteGetXCenter(), spriteGetYCenter(),
-            objHarmfulExplosion);
-        {
-            ID.xscale = image_xscale;
-        }
-        instance_destroy();
-        playSFX(sfxMM3Explode);
+        event_user(EV_DEATH);
     }
 }
 else if (dead == true)
@@ -94,6 +87,37 @@ else if (dead == true)
     yspeed = 0;
     image_index = 0;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>dead=true;
+var ID;
+        ID = instance_create(spriteGetXCenter(), spriteGetYCenter(),
+            objHarmfulExplosion);
+        {
+            ID.xscale = image_xscale;
+        }
+        instance_destroy();
+        playSFX(sfxMM3Explode);
 </string>
           </argument>
         </arguments>

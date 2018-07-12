@@ -197,7 +197,7 @@ if (!global.frozen &amp;&amp; !dead)
                     
                     if (talkable)
                     {
-                        if (global.keyUpPressed[other.playerID])
+                        if (global.keyUpPressed[other.playerID] &amp;&amp; !other.climbing)
                         {
                             spawnTextBoxSingleString(name, name_color, text);
                             addMugshot(mugshot_sprite, mugshot_start, mugshot_end, mugshot_speed);

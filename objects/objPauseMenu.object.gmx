@@ -583,10 +583,21 @@ if ((global.keyWeaponSwitchLeft[playerID] &amp;&amp; global.keyWeaponSwitchRight
     || (global.keyWeaponSwitchLeftPressed[playerID] &amp;&amp; global.keyWeaponSwitchRight[playerID]))
 {
     playSFX(sfxMenuSelect);
-    for (var i = 0; i &lt; global.totalWeapons; i++)
+    for (var i = 0; i &lt;= global.totalWeapons; i++)
     {
         global.weaponHotbar[i] = i;
     }
+    
+    weaponVisibleN = 0;
+    for (var i = 0; i &lt;= global.totalWeapons; i++)
+    {
+        if (global.weaponLocked[global.weaponHotbar[i]] &lt; 2)
+        {
+            weaponVisible[weaponVisibleN++] = i;
+        }
+    }
+    visibleWeapons = min(10, weaponVisibleN); // up to 10 visible
+    oldOption = 0;
 }
 
 // Set weapon
@@ -742,7 +753,7 @@ if (phase != 0)
         draw_text(x + 78, y + 4, "- WEAPONS -");
     }
     
-    if (weaponOffset &lt; weaponVisibleN - visibleWeapons)
+    if (weaponOffset &lt; weaponVisibleN - visibleWeapons - 1)
     {
         draw_sprite_ext(sprArrow, 3, x + 74, y + 215, 1, 1, 0, c_white, arrowTimer mod 40 &lt; 20); // Down
     }
