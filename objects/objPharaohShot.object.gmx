@@ -39,6 +39,8 @@ attackDelay = 16;
 timer = 0;
 charging = true;
 extraDamage = 0;
+
+despawnRange = 48; // don't die when going above the screen ;_;
 </string>
           </argument>
         </arguments>
@@ -186,7 +188,8 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (global.keyShoot[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT)
+&amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
 {
     fireWeapon(0, 0, objPharaohShot, 2, 0, 0, 0);
 }

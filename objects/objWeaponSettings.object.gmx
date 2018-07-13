@@ -31,11 +31,12 @@
 // global.weaponLocked[whatever] = true or false
 // global.infiniteEnergy[whatever] = true or false
 /*
-valid options: 0 - 12
+to access a weapon, use global.weaponID[? objWeapon], with objWeapon
+being substitued for the weapon's object name
     
 Examples:
-    - global.weaponLocked[0] = true
-    - global.infiniteEnergy[3] = false
+    - global.weaponLocked[global.weaponID[? objSolarBlaze]] = true
+    - global.infiniteEnergy[global.weaponID[? objIceSlasher]] = false
     
 This object must be placed for this effect; do not use room creation code for this.
 objGlobalControl resets infiniteEnergy to zero on a room begin unless this

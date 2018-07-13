@@ -120,6 +120,13 @@ if (entityCanStep())
     {
         canHit = true;
     }
+    
+    // Camouflametalls don't move on the ground. Why?
+    // So you can make Eddie throw them out and they won't slide on the ground
+    if ground
+    {
+        xspeed = 0;
+    }
 }
 else if (dead)
 {

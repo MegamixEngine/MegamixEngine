@@ -236,13 +236,15 @@ if (image_index == 0)
 {
     other.guardCancel = 1;
 }
-
-// Stop charge shot (accurate to MM5)
-if (other.object_index == objBusterShotCharged)
+else
 {
-    with (other)
+    // Stop charge shot (accurate to MM5)
+    if (other.object_index == objBusterShotCharged)
     {
-        instance_destroy();
+        with (other)
+        {
+            instance_destroy();
+        }
     }
 }
 </string>

@@ -1,4 +1,4 @@
-// spawnTextBox(screenTop, endEvent, name, name color, mugshot sprite, mugshot index, text)
+// spawnTextBox(screenTop, endEvent, name, name color, text)
 // argument0: 0 at the top; 1 in the middel; 2 at the bottom
 // argument1: what event 'event_user(x)' it triggers after closing it. If it's -1, it defaults to just freeing MM.
 // argument2: name;

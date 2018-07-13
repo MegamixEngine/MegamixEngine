@@ -171,10 +171,24 @@ if (!global.frozen &amp;&amp; !lock)
                         i.newStage = other.newStage;
                         i.returnToHub = other.returnToHub;
                         
+                        i.teleportLock = lockPoolLock(
+                            localPlayerLock[PL_LOCK_MOVE],
+                            localPlayerLock[PL_LOCK_PHYSICS],
+                            localPlayerLock[PL_LOCK_SHOOT],
+                            localPlayerLock[PL_LOCK_CLIMB],
+                            localPlayerLock[PL_LOCK_CHARGE],
+                            localPlayerLock[PL_LOCK_PAUSE],
+                            localPlayerLock[PL_LOCK_TURN],
+                            localPlayerLock[PL_LOCK_GRAVITY],
+                            localPlayerLock[PL_LOCK_SLIDE],
+                            );
+                        
                         with (objMegaman)
                         {
                             visible = 0;
                             yDir = 0;
+                            xspeed = 0;
+                            yspeed = 0;
                         }
                         
                         global.frozen = true;

@@ -42,10 +42,10 @@ nameYOffset = 176;
 descriptionXOffset = nameXOffset + 16;
 descriptionYOffset = nameYOffset + 16;
 
-boltIconXOffset = 29;
+boltIconXOffset = 30;
 boltIconYOffset = 97;
-boltCounterXOffset = boltIconXOffset + 16;
-boltCounterYOffset = boltIconYOffset + 7;
+boltCounterXOffset = boltIconXOffset + 18;
+boltCounterYOffset = boltIconYOffset + 8;
 
 playersXOffset = 224;
 playersYOffset = 144;
@@ -103,7 +103,7 @@ itemDescription[1, 0] = "Lowers the amount of weapon energy that's consumed when
 itemUnavailable[2, 0] = global.weaponLocked[global.weaponID[? objRushCycle]] == 0;
 itemIcon[2, 0] = sprWeaponIconsRushCycle;
 itemPrice[2, 0] = 100;
-itemName[2, 0] = "Rush Cycle";
+itemName[2, 0] = "Rush Bike";
 itemDescription[2, 0] = "Turns rush into a motorcycle, allowing you to travel at high speeds!";
 //itemPurchaseAction[2, 0] = "global.weaponLocked[global.weaponID[? objRushCycle]] = false; itemUnavailable[2, 0] = true;";
 
@@ -270,7 +270,6 @@ with (objMegaman)
     {
         lockControls = true;
         global.nextRoom = rmStageSelect;
-        saveLoadGame(true);
     }
 }
 </string>

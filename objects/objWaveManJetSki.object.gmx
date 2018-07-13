@@ -96,7 +96,7 @@ inWater = -1;
             <string>if (!global.frozen)
 {
     // Animation while active
-    if (active)
+    if (active &amp;&amp; instance_exists(rider))
     {
         // Make sure the camera isn't following MM anymore - instead, the autoscroll
         with (objMegaman)
