@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -39,31 +39,31 @@ grav = 0;
 fire = false;
 
 // What lights oil on fire
-fireSource[1] = objFireBlockFire;
-fireSource[2] = objFirePillar;
-fireSource[3] = objFireWave;
-fireSource[4] = objTackleFire;
-fireSource[5] = objHotDogFire;
-fireSource[6] = objLightningLordLightning;
-fireSource[7] = objApacheJoeProjectile;
-fireSource[8] = objFireBoyShot;
-fireSource[9] = objFireTellyShot;
-fireSource[10] = objFireSpike;
-fireSource[11] = objHeatMan;
-fireSource[12] = objHeatManFire;
-fireSource[13] = objMechaDragonFire;
-fireSource[14] = objPharaohManShot;
-fireSource[15] = objPharaohManShotBig;
-fireSource[16] = objPharaohShot;
-fireSource[17] = objSolarBlaze;
-fireSource[18] = objNapalm;
-fireSource[19] = objPopoHeliFire;
-fireSource[20] = objChangkeyDragon;
-fireSource[21] = objChangkeyDragonFire;
-fireSource[22] = objSuzak;
-fireSource[23] = objFenix;
-fireSource[24] = objSFFire;
-fireSource[25] = objFlameMixer;
+fireSource[0] = objFireBlockFire;
+fireSource[1] = objFirePillar;
+fireSource[2] = objFireWave;
+fireSource[3] = objTackleFire;
+fireSource[4] = objHotDogFire;
+fireSource[5] = objLightningLordLightning;
+fireSource[6] = objApacheJoeProjectile;
+fireSource[7] = objFireBoyShot;
+fireSource[8] = objFireTellyShot;
+fireSource[9] = objFireSpike;
+fireSource[10] = objHeatMan;
+fireSource[11] = objHeatManFire;
+fireSource[12] = objMechaDragonFire;
+fireSource[13] = objPharaohManShot;
+fireSource[14] = objPharaohManShotBig;
+fireSource[15] = objPharaohShot;
+fireSource[16] = objSolarBlaze;
+fireSource[17] = objNapalm;
+fireSource[18] = objPopoHeliFire;
+fireSource[19] = objChangkeyDragon;
+fireSource[20] = objChangkeyDragonFire;
+fireSource[21] = objSuzak;
+fireSource[22] = objFenix;
+fireSource[23] = objSFFire;
+fireSource[24] = objFlameMixer;
 </string>
           </argument>
         </arguments>
@@ -88,43 +88,46 @@ fireSource[25] = objFlameMixer;
             <kind>1</kind>
             <string>event_inherited();
 
-// MM walking check
-with (objMegaman)
+if (entityCanStep())
 {
-    if (ground &amp;&amp; place_meeting(x, y + gravDir, other) &amp;&amp; xspeed != 0
-        &amp;&amp; ((stepTimer &gt;= stepFrames) || (isSlide)) &amp;&amp; !(hitLock))
+    // MM walking check
+    with (objMegaman)
     {
-        playSFX(sfxFireTotemFire);
-        playerGetShocked(0, 0, true, 25); // make sure to change to MM1 stun when made
-        stepTimer = 0;
+        if (ground &amp;&amp; place_meeting(x, y + gravDir, other) &amp;&amp; xspeed != 0
+            &amp;&amp; ((stepTimer &gt;= stepFrames) || (isSlide)) &amp;&amp; !(hitLock))
+        {
+            playSFX(sfxFireTotemFire);
+            playerGetShocked(0, 0, true, 25); // make sure to change to MM1 stun when made
+            stepTimer = 0;
+        }
     }
-}
 
-if (!fire)
-{
-    // manual exception, since these share an object.
-    if (instance_place(x, y, objPicket))
+    if (!fire)
     {
-        a = instance_place(x, y, objPicket);
-        if (a.sprite_index == sprTackleFire &amp;&amp; a.yspeed &gt; 0)
+        // manual exception, since these share an object.
+        if (instance_place(x, y, objPicket))
         {
-            event_user(0);
+            a = instance_place(x, y, objPicket);
+            if (a.sprite_index == sprTackleFire &amp;&amp; a.yspeed &gt; 0)
+            {
+                event_user(0);
+            }
         }
-    }
     
-    // ITS LIT FAM :joy:
-    for (var i = 0; i &lt; array_length_1d(fireSource); i++)
-    {
-        if (place_meeting(x, y, fireSource[i]))
+        // ITS LIT FAM :joy:
+        for (var i = 0; i &lt; array_length_1d(fireSource); i++)
         {
-            event_user(0);
+            if (place_meeting(x, y, fireSource[i]))
+            {
+                event_user(0);
+            }
         }
     }
-}
-else
-{
-    instance_create(x + 1, y, objPUOilFire);
-    instance_destroy();
+    else
+    {
+        instance_create(x + 1, y, objPUOilFire);
+        instance_destroy();
+    }
 }
 </string>
           </argument>

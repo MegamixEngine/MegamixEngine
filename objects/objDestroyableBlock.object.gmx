@@ -28,17 +28,17 @@
             <string>event_inherited();
 
 contactDamage = 0;
+isSolid = 1;
+
+fnsolid = 1;
+faction = 7;
 
 //@cc hot to use
 //@cc weakness = global.weaponID[? objWeaponObject];
 //@cc To make it a reflect block, use "weakness = -1;"
 weakness = 0;
 
-isSolid = 1;
-
 timer = 0;
-
-dieToSpikes = false;
 </string>
           </argument>
         </arguments>
