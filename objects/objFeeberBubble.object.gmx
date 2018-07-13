@@ -72,7 +72,7 @@ if (entityCanStep())
         if (collision_rectangle(x - 12, y - 24, x + 12, y, target, false, true))
         {
             target.x = x;
-            target.y = sprite_height / 2;
+            target.y = y - (sprite_height/2) - 4;
             if (myLock == 0)
             {
                 myLock = lockPoolLock(global.playerLock[PL_LOCK_SHOOT],
