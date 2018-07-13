@@ -5699,7 +5699,7 @@
         <object>objects\objFileSelector</object>
         <object>objects\objStageSelect</object>
         <object>objects\objWeaponGet</object>
-        <object>objects\objEddieShopControl</object>
+        <object>objects\objShopControl</object>
         <object>objects\objGameOver</object>
         <object>objects\objCredits</object>
         <objects name="WilyCastle">
@@ -5720,7 +5720,6 @@
         <object>objects\objBigExplosion</object>
         <object>objects\objDialogueBox</object>
       </objects>
-      <object>objects\objShopControl</object>
     </objects>
   </objects>
   <rooms name="rooms">

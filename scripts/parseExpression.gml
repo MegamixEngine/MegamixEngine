@@ -126,6 +126,7 @@ else if (stringStartsWith(str, "("))
 }
 else
 {
+    global.retval = 0;
     // direct value or variable
     global.retval_exprlen += string_length(expr) + whitespaceDropped;
     

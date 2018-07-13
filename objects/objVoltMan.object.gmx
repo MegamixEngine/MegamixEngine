@@ -30,10 +30,6 @@
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
 
-// Health Bar
-healthBarPrimaryColor[1] = 18;
-healthBarSecondaryColor[1] = 48;
-
 pose = sprVoltIntro;
 poseImgSpeed = 8 / 60;
 contactDamage = 4;
@@ -52,8 +48,8 @@ attackTimerMax[2] = 25;
 attackTimerMax[3] = 20;
 
 // Health Bar
-healthBarPrimaryColor[1] = 22;
-healthBarSecondaryColor[1] = 17;
+healthBarPrimaryColor[1] = 18;
+healthBarSecondaryColor[1] = 48;
 
 // Music
 music = "Mega_Man_5GB.gbs";

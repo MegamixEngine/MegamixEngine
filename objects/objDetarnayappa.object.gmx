@@ -72,16 +72,16 @@ if (entityCanStep())
     {
         if (instance_exists(target))
         {
-            var minY = distanceToSolid(x, y, 0, 16 * dir, false, true);
-            if (minY != -1)
+            var ey = distanceToSolid(x, y, 0, 16 * dir, false, true);
+            if (ey != -1)
             {
-                minY = y + dir * 16 * minY;
+                ey = y + dir * 16 * ey;
             }
-            if (minY == -1)
+            if (ey == -1)
             {
-                minY = view_yview[0] + view_hview[0] * (dir == 1);
+                ey = view_yview[0] + view_hview[0] * (dir == 1);
             }
-            print(minY);
+            print(ey);
             var distToPlayer = 0;
             var tgt = self;
             if (instance_exists(target))
@@ -89,21 +89,21 @@ if (entityCanStep())
                 tgt = target.id;
                 if (dir == 1)
                 {
-                    distToPlayer = abs(bbox_bottom - tgt.bbox_bottom);
+                    distToPlayer = abs(bbox_bottom - (tgt.bbox_bottom+32));
                 }
                 else
                 {
-                    distToPlayer = abs(bbox_top - tgt.bbox_top);
+                    distToPlayer = -abs(bbox_top -( tgt.bbox_top-32));
                 }
             }
             
-            var maxi = y;
+            var mini = y;
             if (dir == -1)
-                maxi = minY;
-            var mini = minY;
+                mini = ey;
+            var maxi = ey;
             if (dir == -1)
-                mini = y;
-            endY = clamp(minY - dir * (irandom(abs(minY - y) - distToPlayer)), mini, maxi); // minY -dir * irandom(floor(abs(minY - (target.y - 32 * target.image_yscale))));
+                maxi = y;
+            endY = clamp(ey - dir * irandom(abs(ey-(y+distToPlayer))), mini, maxi);
             shootY = endY - dir * floor(abs(endY - ystart) / 2);
         }
         else

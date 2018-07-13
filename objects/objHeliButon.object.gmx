@@ -205,6 +205,8 @@ else
 }
 
 image_index = imgIndex div 1;
+
+contactDamage = 3 * visible;
 </string>
           </argument>
         </arguments>

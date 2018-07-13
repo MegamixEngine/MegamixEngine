@@ -5,22 +5,24 @@
 slBegin(argument0, "options.sav")
 
 // option flags
-global.screensize     = sl(global.screensize,   "screensize");
-global.musicvolume    = sl(global.musicvolume,  "mvol");
-global.soundvolume    = sl(global.soundvolume,  "svol");
-global.damagePopup    = sl(global.damagePopup,  "dpop");
-global.mmColor        = sl(global.mmColor,      "mmcol");
-global.chargeBar      = sl(global.chargeBar,    "cbar");
-global.showFPS        = sl(global.showFPS,      "fps");
-global.healthEffect   = sl(global.healthEffect, "healthfx");
-global.playerCount    = sl(global.playerCount,  "player-count");
-global.healthEffect   = sl(global.healthEffect,   "healthfx");
-global.playerCount    = sl(global.playerCount,    "player-count");
-global.pickupGraphics = sl(global.pickupGraphics, "item-graphics");
-global.deathEffect    = sl(global.deathEffect, "death-effect");
-global.jumpSound      = sl(global.jumpSound, "jump-sound");
-global.teleportSound  = sl(global.teleportSound, "teleport-sound");
-global.vsync          = sl(global.vsync,          "vsync");
+global.screensize            = sl(global.screensize,   "screensize");
+global.musicvolume           = sl(global.musicvolume,  "mvol");
+global.soundvolume           = sl(global.soundvolume,  "svol");
+global.damagePopup           = sl(global.damagePopup,  "dpop");
+global.mmColor               = sl(global.mmColor,      "mmcol");
+global.chargeBar             = sl(global.chargeBar,    "cbar");
+global.showFPS               = sl(global.showFPS,      "fps");
+global.healthEffect          = sl(global.healthEffect, "healthfx");
+global.playerCount           = sl(global.playerCount,  "player-count");
+global.healthEffect          = sl(global.healthEffect,   "healthfx");
+global.playerCount           = sl(global.playerCount,    "player-count");
+global.pickupGraphics        = sl(global.pickupGraphics, "item-graphics");
+global.deathEffect           = sl(global.deathEffect, "death-effect");
+global.jumpSound             = sl(global.jumpSound, "jump-sound");
+global.teleportSound         = sl(global.teleportSound, "teleport-sound");
+global.vsync                 = sl(global.vsync,          "vsync");
+global.showControllerOverlay = sl(global.showControllerOverlay, "controlleroverlay");
+globalescapeBehavior         = sl(global.escapeBehavior, "escapebehavior");
 
 // controls
 for (var i = 0; i < 4; i += 1)

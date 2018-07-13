@@ -27,13 +27,13 @@
             <kind>1</kind>
             <string>event_inherited();
 
-delay = 60;
+healthParent=noone;//The clones don't draw their healthBar and when one takes a hit
+delay = 60;//every other boss with the same parent and the parent gets hit
 isFight = true;
 drawBoss = true;
 startIntro = false;
 isIntro = false;
 visible = 1;
-clone = noone;
 cloneId = 0;
 </string>
           </argument>
@@ -57,37 +57,19 @@ cloneId = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!instance_exists(clone))
+            <string>if (!instance_exists(healthParent))
 {
-    var newClone = noone;
-    with (objGemineighbour)
-    {
-        if (id != other.id &amp;&amp; clone == other.clone)
-        {
-            newClone = id;
-            break;
-        }
-    }
-    if (newClone != noone)
-    {
-        with (objGemineighbour)
-        {
-            if (clone.id == other.clone.id)
-                clone = newClone;
-        }
-    }
-    if (newClone == noone)
         instance_destroy();
     exit;
 }
-if(clone.isHard)
+if(healthParent.isHard)
 {
-    if (floor(clone.healthpoints) &lt;= 0 || clone.healthpoints &lt;= (clone.healthpointsStart - ((cloneId) * (floor(clone.healthpointsStart) / (maxClones))))) // destroy self
+    if (floor(healthParent.healthpoints) &lt;= 0 || healthParent.healthpoints &lt;= (healthParent.healthpointsStart - ((cloneId) * (floor(healthParent.healthpointsStart) / (maxClones))))) // destroy self
         instance_destroy();
 }
 else
 {
-    if(clone.healthpoints&lt;clone.healthpointsStart/2)
+    if(healthParent.healthpoints&lt;healthParent.healthpointsStart/2)
         instance_destroy();
     
 }

@@ -115,7 +115,7 @@ if (entityCanStep())
                     }
                 }
                 
-                if (xcoll != 0 || checkFall(16 * image_xscale, 1)) //! checkSolid(16 * image_xscale, 8 * image_yscale))
+                if (xcoll != 0 || checkFall(16 * image_xscale)) //! checkSolid(16 * image_xscale, 8 * image_yscale))
                 {
                     xspeed = 0;
                     timer = 30;

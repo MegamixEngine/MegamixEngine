@@ -86,7 +86,7 @@ if (entityCanStep())
             xs = bbox_left - 1;
         }
         
-        if (checkFall(32 * image_xscale, false))
+        if (checkFall(32 * image_xscale))
         {
             image_xscale *= -1;
             xspeed = 1 * image_xscale;

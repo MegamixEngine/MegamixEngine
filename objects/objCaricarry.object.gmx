@@ -112,7 +112,7 @@ if (entityCanStep())
         if (shooting == false)
         {
             turnTimer -= 1;
-            if (turnTimer &lt;= 0 || checkSolid(xspeed, -1))
+            if (turnTimer &lt;= 0 || checkSolid(xspeed, -1) || checkFall(dir,1))
             {
                 dir = -dir;
                 turnTimer = turnTimerStart;

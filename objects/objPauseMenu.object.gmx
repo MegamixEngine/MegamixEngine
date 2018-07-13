@@ -824,7 +824,14 @@ if (phase != 0)
     {
         livesText = "--";
     }
+    
     draw_text(x + 216, y + 92 + 18, livesText);
+    
+    // energy saver
+    if (global.energySaver)
+    {
+        draw_sprite(sprEnergySaver, 0, x + 180, y + 160);
+    }
     
     // colored text overlays
     if (global.showColoredTextOverlays)

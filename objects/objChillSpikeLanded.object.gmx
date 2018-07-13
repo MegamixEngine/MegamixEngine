@@ -27,10 +27,12 @@
             <kind>1</kind>
             <string>event_inherited();
 
+bulletLimitCost = 0;
+
 contactDamage = 5;
 
-penetrate = -1;
-pierces = false;
+penetrate = 0;
+pierces = 0;
 
 dir = 1; // 0: ceiling, 1: ground, 2: left wall, 3: right wall
 firstFrame = true;

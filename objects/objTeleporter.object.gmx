@@ -170,11 +170,13 @@ if (!global.frozen &amp;&amp; !lock)
                         i.Y = other.Y;
                         i.newStage = other.newStage;
                         i.returnToHub = other.returnToHub;
-                        
+
                         with (objMegaman)
                         {
                             visible = 0;
                             yDir = 0;
+                            xspeed = 0;
+                            yspeed = 0;
                         }
                         
                         global.frozen = true;

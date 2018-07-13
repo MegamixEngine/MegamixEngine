@@ -43,6 +43,8 @@ Y = -1;
 newStage = false;
 returnToHub = true;
 
+teleportLock = -1;
+
 if (global.teleportSound)
 {
     warpOutSFX = sfxTeleportOutClassic;
@@ -97,13 +99,25 @@ if (myRoom &lt;= 0 &amp;&amp; !returnToHub)
         
         setSection(x, y, 1);
         playerCamera(1);
-        reAndDeactivateObjects(1, 1);
+        reAndDeactivateObjects(1, 1);  
         
         if (other.type &lt; 3)
         {
             teleporting = 1;
             teleportTimer = 0;
             landy = y;
+            
+            teleportLock = lockPoolLock(
+                localPlayerLock[PL_LOCK_MOVE],
+                localPlayerLock[PL_LOCK_PHYSICS],
+                localPlayerLock[PL_LOCK_SHOOT],
+                localPlayerLock[PL_LOCK_CLIMB],
+                localPlayerLock[PL_LOCK_CHARGE],
+                localPlayerLock[PL_LOCK_PAUSE],
+                localPlayerLock[PL_LOCK_TURN],
+                localPlayerLock[PL_LOCK_GRAVITY],
+                localPlayerLock[PL_LOCK_SLIDE],
+                );
         }
     }
 }
@@ -189,7 +203,7 @@ if (type &lt; 3)
 else
 {
     var ximg = 0 + min(4, t);
-    var yimg = 10;
+    var yimg = 11;
     
     if (t == 0)
     {
@@ -208,6 +222,13 @@ if (t == 9)
 if (drawMe)
 {
     drawPlayer(pid, cid, ximg, yimg, x, y, image_xscale, image_yscale);
+}
+
+// stop moving pls
+with objMegaman
+{
+    xspeed = 0;
+    yspeed = 0;
 }
 </string>
           </argument>

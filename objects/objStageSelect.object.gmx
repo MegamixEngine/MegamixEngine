@@ -185,6 +185,9 @@ stageName[1, 3] = "SHOP";
 
 // convenience feature
 global.livesRemaining = max(global.defaultLives, global.livesRemaining);
+
+// save
+saveLoadGame(true);
 </string>
           </argument>
         </arguments>

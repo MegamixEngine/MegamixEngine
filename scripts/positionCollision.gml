@@ -2,7 +2,6 @@
 // Check for solid at the given x, y coordinates
 
 var remask = mask_index;
-var reSprite = sprite_index;
 var rexsc = image_xscale;
 var reysc = image_yscale;
 var reimg = image_index;
@@ -13,7 +12,6 @@ if (argument_count > 3)
 if (argument_count > 4)
     alwaysCheckSolids = argument[4];
 
-sprite_index = sprDot;
 mask_index = sprDot;
 image_xscale = 1;
 image_yscale = 1;
@@ -21,7 +19,6 @@ image_index = 0;
 
 var _re = checkSolid(argument[0] - x, argument[1] - y, noSlopeConditions, alwaysCheckSolids);
 
-sprite_index = reSprite;
 mask_index = remask;
 image_xscale = rexsc;
 image_yscale = reysc;

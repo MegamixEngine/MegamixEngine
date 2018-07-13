@@ -657,6 +657,8 @@
     <tile bgName="bgBasic" x="32" y="176" w="16" h="16" xo="112" yo="48" id="11301866" name="inst_ABC7B95E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="16" y="176" w="16" h="16" xo="96" yo="48" id="11301867" name="inst_C37C051D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="16" y="144" w="32" h="32" xo="96" yo="16" id="11301868" name="inst_66B82F36" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="400" y="480" w="16" h="16" xo="32" yo="48" id="11310969" name="inst_1DE6595B" depth="1000000" locked="0" colour="4294967295" scaleX="-1" scaleY="1"/>
+    <tile bgName="bgBasic" x="400" y="480" w="16" h="16" xo="32" yo="48" id="11310970" name="inst_6F1E49A7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1552" y="640" w="16" h="16" xo="0" yo="48" id="11301871" name="inst_F6362B1F" depth="100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1568" y="640" w="16" h="16" xo="16" yo="48" id="11301872" name="inst_D6F8F24A" depth="100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1584" y="640" w="16" h="16" xo="16" yo="48" id="11301873" name="inst_F91A01CF" depth="100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

@@ -829,7 +829,14 @@ with (objMegaman)
     instance_destroy();
 
 // weapon clean up
+for (i = 0; i &lt;= global.playerCount; i += 1)
+{
+    global.weapon[i] = 0;
+}
+
 global.lockBuster = false;
+
+global.timeStopped = false;
 
 // forcibly reset control locks
 globalLockReset();
@@ -1350,23 +1357,44 @@ depth = depthstart;
     }
     
     var bossFade = 0;
-    
+    var healthIndex=0;
     with (prtBoss) // Boss healthbars
     {
-        if (drawHealthBar)
+        if (drawHealthBar &amp;&amp; healthParent==-1)
         {
-            var dxx = dx + ((healthIndex - 2) * 8) // Multibosses
+            var dxx = dx + ((healthIndex - 1) * 8); // Multibosses
             
             // Initial black bg for healthbar
-            ;
             draw_sprite_ext(sprHealthbarBackground, 0, dxx, dy, 1, 1, image_angle, c_black, image_alpha);
             
             // Choose color to draw
             var currentExtraHealthBar = 0;
             var myPrimaryColor, mySecondaryColor;
+            var _currentHealth=0;
             
+            if(fillingHealthBar)//Intro health bar
+            {
+                _currentHealth=ceil(healthBarHealth);
+            }
+            else 
+            {
+                if(shareMode==1)//Combine health bars if needed
+                {
+                    with(prtBoss)
+                    {
+                        if(id==other.id||(healthParent==other.id&amp;&amp;drawHealthBar))
+                        {
+                            _currentHealth+=healthpoints;
+                        }
+                    }
+                }
+                else
+                {
+                    _currentHealth=healthpoints;
+                }
+            }
             // draw the health within the healthbar.
-            for (i = 1; i &lt;= ceil((healthBarHealth) - (healthpointsStart - healthpoints)); i += 1)
+            for (i = 1; i &lt;= ceil(_currentHealth); i += 1;)
             {
                 // If the boss has more than 28 health, use this math to find out what 'layer' of
                 // health the boss is currently on. It's i-1/28 because if it was i/28, it would start
@@ -1397,6 +1425,7 @@ depth = depthstart;
                     dy + (sprite_get_height(sprHealthbarBackground)) - ((i - (currentExtraHealthBar * 28)) * 2),
                     1, 1, 0, mySecondaryColor, 1);
             }
+            healthIndex+=1;
         }
         
         if (isIntro &amp;&amp; introType == 3) // MM6 intro fading
