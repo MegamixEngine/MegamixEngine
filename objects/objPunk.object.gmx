@@ -47,7 +47,7 @@ shotsFired = 0;
 grav = 0.25;
 
 // Health Bar
-healthBarPrimaryColor[1] = make_colour_rgb(216, 40, 0);
+healthBarPrimaryColor[1] = 6;
 healthBarSecondaryColor[1] = 40;
 
 // Music
