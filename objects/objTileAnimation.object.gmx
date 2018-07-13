@@ -72,8 +72,16 @@ alarm[0] = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// This generates tiles all across the levet
-// Note this causes lag at the start of the stage in larger levels
+            <string>/// This generates tiles all across the levet
+/// Note this causes lag at the start of the stage in larger levels
+///Example: to animate tstAirman you do something like this
+///animLength = 4;
+///animTime = 3;
+///animationLayer=1000010;
+///tileID[0]=tstAirman;
+///tileID[1]=tstAirmanAnimated;
+///tileID[2]=tstAirmanAnimated1;
+///tileID[3]=tstAirmanAnimated2;
 
 print("Animating");
 var tiles = tile_get_ids_at_depth(animationLayer);

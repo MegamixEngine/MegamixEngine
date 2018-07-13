@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 
-healthIndex = 1;
+healthParent=-1;//The parent gemini man acts normally, only its clones need to change this
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
 pose = sprGeminiIntro;
@@ -164,6 +164,7 @@ if (entityCanStep())
                 print("Made a clone");
                 var c = instance_create(x, y, objGemineighbour);
                 c.clone = id;
+                c.healthParent=id;
                 c.sprite_index = sprGeminiStand;
                 c.maxClones = maxClones;
                 c.xstart = xstart;
@@ -172,16 +173,19 @@ if (entityCanStep())
                 c.phase = phase;
                 c.attackTimer = attackTimer;
                 c.healthpoints=c.healthpointsStart;
+                c.healthParent=id;//Sync damage and healthbars
                 c.makeClones = 0;
                 c.delay = cloneDelayOffset + i * cloneAddedDelay;
                 c.cloneId = i + 1;
                 c.itemDrop = -1;
                 c.useEndStageBehavior = false;
+                c.syncIFrames=syncIFrames;
             }
             makeClones = false;
         }
         
         // share healthbar
+        /*
         with (objGeminiMan)
         {
             if (id != other.id &amp;&amp; clone.id == other.clone.id)
@@ -197,7 +201,7 @@ if (entityCanStep())
             event_user(EV_DEATH);
             exit;
         }
-        
+        */
         switch (phase)
         {
             case 0: // RunJumping 

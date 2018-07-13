@@ -25,19 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>//Health sharing in Room Start
+event_inherited();
 event_perform_object(prtRail, ev_create, 0);
 
 numberOfRounder = 1;
-healthIndex = 1;
 hitInvun = 1;
 introType = 2;
 
 totalHealth = 28;
-actualHealth = -1;
-healthpointsStart = actualHealth;
-healthpoints = actualHealth;
-healthBarHealth = -(actualHealth * (numberOfRounder - 1));
+healthpointsStart = 28
+healthpoints = 28;
 pose = sprRounderV2;
 poseImgSpeed = 4 / 60;
 contactDamage = 4;
@@ -151,18 +149,6 @@ enemyDamageValue(objIceSlasher, 1);
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-healthpoints = 0;
-
-for (var i = 0; i &lt; numberOfRounder; i += 1)
-{
-    if (instance_exists(rounder[i]))
-    {
-        with (rounder[i])
-        {
-            other.healthpoints += actualHealth;
-        }
-    }
-}
 if (entityCanStep())
 {
     if (isFight == true)
@@ -319,35 +305,6 @@ event_inherited();
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="19">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>event_inherited();
-
-actualHealth -= global.damage;
-if (actualHealth &lt;= 0 &amp;&amp; healthpoints &gt; 0)
-{
-    event_user(EV_DEATH);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="7" enumb="10">
       <action>
         <libid>1</libid>
@@ -388,20 +345,23 @@ if (actualHealth &lt;= 0 &amp;&amp; healthpoints &gt; 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (objRounderV2)
+            <string>if(healthParent!=-1)
+    exit;
+var parent = instance_find(objRounderV2, 0);
+with (objRounderV2)
 {
-    healthIndex = 1;
-    
+    healthParent = parent.id;
     numberOfRounder = instance_number(objRounderV2);
-    healthpointsStart = totalHealth;
-    healthpoints = totalHealth;
-    actualHealth = ceil(totalHealth / numberOfRounder);
+    healthpoints = ceil(totalHealth / numberOfRounder);
+    healthpointsStart = healthpoints;
+    shareMode=1;
     var i;
     for (i = 0; i &lt; instance_number(objRounderV2); i += 1)
     {
         rounder[i] = instance_find(objRounderV2, i);
     }
 }
+parent.healthParent=-1;
 </string>
           </argument>
         </arguments>
