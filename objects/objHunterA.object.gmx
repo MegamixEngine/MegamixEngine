@@ -28,7 +28,6 @@
             <string>// This Hunter bounces off walls and spawns weaker, slower copies of itself.
 event_inherited();
 
-healthIndex = 1;
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
 pose = sprHunterA;

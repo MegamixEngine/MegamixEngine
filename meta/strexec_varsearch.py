@@ -23,7 +23,7 @@ sourcen = 0;
 for (dirp, dirs, files) in chain.from_iterable(os.walk(os.path.join(pathTo, path)) for path in paths):
   for filename in files:
     cnt = ""
-    with open(os.path.join(dirp, filename)) as file:
+    with open(os.path.join(dirp, filename),encoding='utf8') as file:
       cnt = file.read();
       sourcen += 1
 
