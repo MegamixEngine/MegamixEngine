@@ -30,6 +30,11 @@
 // Creation code:
 // healthpoints: The Boss health. Default is 28. This can be used for enemies, too, but I'm restating it here because why not.
 // hitInvun: the length of the hit invulnerablilty of the boss, in frames. If this is 1 or lower, they don't have any.
+// healthParent: Whatever instance ID this is set to, if the boss takes damage its parent(healthParent) and its brothers will also take damage, if this value is different from -1 the healthbar wont be drawn, so leave this untouched in the healthParent
+// syncIFrames : if using a healthParent and this is true, iFrames will be applied to the parent(healthParent) and its brothers
+// shareMode : Mode 0: for bosses that share the same healthbar, so if one dies all of them die;
+///             Mode 1: for bosses with individual healthbars that are drawn as one
+// dieToPits : if true the boss will die if it falls into a pit
 
 // music: just the file name of the music you're using for the boss. MUST BE A STRING
 // musicType: Type of file to load. "OGG" loads OGGs, "VGM" loads NSFs/SPCs/VGMs/GBSs
@@ -50,7 +55,7 @@
 // elementScript: If itemDrop is objEnergyElement, this is the script of the EE they drop.
 // elementCode: If itemDrop is objEnergyElement, this is the code string of the EE they drop.
 // stopOnFlash: If set to true, the enemy will be affected by timestopping weapons. Default false.
-// healthParent: Whatever object ID this is set to, that object will take damage instead of this object when it's hit. Object ID, NOT object NAME. Used for stuff like Weapons Archive.
+
 
 // healthBarPrimaryColor[1]: Primary color of the boss' first healthbar. THE [1] IS IMPORTANT. Use the number of the color you want that's on the NES palette reference.
 // healthBarSecondaryColor[1]: Secondary color of the boss' first healthbar. THE [1] IS IMPORTANT. Use the number of the color you want that's on the NES palette reference.
@@ -98,10 +103,10 @@ introType = 1;
 introFade = 0;
 cutsceneTimer = 0;
 cutsceneScript = "";
-quickSpawn = false; // If true, it will act as a regular enemy
+quickSpawn = false; // If true, it will spawn as a regular enemy
 destroyOnDeath = true;
 doPlayerExplosion = true; // If true it will use the same death effect as the player
-
+dieToPits = true;
 useEndStageBehavior = true;
 lockTransitions = true;
 
@@ -140,6 +145,8 @@ healthBarHealth = 0;
 healthIndex = -1; // If a boss shares a healthbar with another boss set it manually from the create event to the same value(check gemini man or rounder v2 for more details on how to share healthbars)
 
 healthParent = -1;
+syncIFrames = false;
+shareMode = 0;
 
 dead = false;
 
@@ -182,7 +189,22 @@ visible = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+// Prevent bosses from healing past their max HP - this means you, Heat Man and Mercury!
+if (isFight == true)
+{
+    if (healthpoints &gt; healthpointsStart)
+    {
+        healthpoints = healthpointsStart;
+    }
+    
+    if(dieToPits)
+    {
+        if( (sign(grav)&gt;0 &amp;&amp; bbox_top&gt;global.sectionBottom)
+        || sign(grav)&lt;0 &amp;&amp; bbox_bottom&lt;global.sectionTop )
+            event_user(EV_DEATH);
+    }
+    
+}
 // STARTING THE BOSS SETUP (Triggering it, healthbar fillup)
 if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight)
 {
@@ -243,16 +265,18 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight)
                 
                 with (prtBoss)
                 {
-                    if (id != other.id &amp;&amp; (!dead || active))
+                    if (id != other.id &amp;&amp; active)
                     {
                         global.aliveBosses += 1;
                     }
                 }
                 
+                /*
                 if (healthIndex == -1)
                 {
                     healthIndex = global.aliveBosses; // used to track healthbars
                 }
+                */
                 
                 // start music
                 if (music != "" &amp;&amp; global.aliveBosses == 1)
@@ -310,7 +334,7 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight)
             if (fillingHealthBar)
             {
                 // make sure sfx is playing if the healthbar is filling
-                if (!audio_is_playing(sfxEnergyRestore))
+                if (healthParent==-1&amp;&amp;!audio_is_playing(sfxEnergyRestore))
                 {
                     loopSFX(sfxEnergyRestore);
                 }
@@ -325,16 +349,38 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight)
                     healthBarHealth += healthBarTimer div 3;
                     healthBarTimer = 0;
                 }
-                
-                if (healthBarHealth &gt;= healthpoints)
+                var maxHealth=healthpoints;
+                if(shareMode==1)
                 {
-                    healthBarHealth = healthpoints;
+                    with(prtBoss)
+                    {
+                        if(id!=other.id&amp;&amp;active&amp;&amp;(healthParent==other.id||(healthParent!=-1&amp;&amp; healthParent==other.healthParent)))
+                        {
+                            maxHealth+=healthpoints;
+                        }
+                    }   
+                }
+                
+                    if (healthBarHealth &gt;= maxHealth)
+                {
+                    healthBarHealth = maxHealth;
+                     if(shareMode==1)
+                    {
+                        with(prtBoss)
+                        {
+                            if(id!=other.id&amp;&amp;!dead&amp;&amp;(healthParent==other.id||(healthParent!=-1&amp;&amp; healthParent==other.healthParent)))
+                            {
+                                healthBarHealth=other.healthBarHealth;
+                            }
+                        }   
+                    }
                     with (prtBoss)
                     {
                         startFight += 1;
                     }
                     fillingHealthBar = false;
-                    stopSFX(sfxEnergyRestore);
+                    if(healthParent==-1)
+                        stopSFX(sfxEnergyRestore);
                 }
             }
         }
@@ -413,11 +459,6 @@ if (_init)
 if (entityCanStep())
 {
     setTargetStep();
-    
-    if (healthParent != -1)
-    {
-        drawHealthBar = false;
-    } // hey
     
     // Starting the intro pose (and falling down)
     if (startIntro == true)
@@ -533,172 +574,7 @@ if (entityCanStep())
         isFight = true;
     }
     
-    // Prevent bosses from healing past their max HP - this means you, Heat Man and Mercury!
-    if (isFight == true)
-    {
-        if (healthpoints &gt; healthpointsStart)
-        {
-            healthpoints = healthpointsStart;
-        }
-    }
 }
-
-// STARTING THE BOSS SETUP (Triggering it, healthbar fillup)
-/*
-if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight)
-{
-    if (!objMegaman.teleporting &amp;&amp; !objMegaman.showReady)
-        if (insideSection(x, y))
-        {
-            // Locks the player and activates the boss (but won't make the boss move yet, it just performs its starting pose)
-            // Also plays the boss music
-            if (!(active))
-            {
-                active = true;
-                startIntro = true;
-                drawBoss = true;
-                
-                // Lock player movement, spread out co-op players, make megaman face the boss
-                introLock = lockPoolLock(global.playerLock[PL_LOCK_MOVE],
-                    global.playerLock[PL_LOCK_SLIDE],
-                    global.playerLock[PL_LOCK_SHOOT],
-                    global.playerLock[PL_LOCK_TURN],
-                    global.playerLock[PL_LOCK_CHARGE],
-                    global.playerLock[PL_LOCK_CLIMB],
-                    global.playerLock[PL_LOCK_JUMP],
-                    global.playerLock[PL_LOCK_PAUSE],
-                    global.playerFrozen);
-                
-                with (objMegaman)
-                {
-                    isSlide = false;
-                    slideLock = lockPoolRelease(slideLock);
-                    slideChargeLock = lockPoolRelease(slideChargeLock);
-                    mask_index = mskMegaman;
-                    xspeed = 0;
-                    yspeed = 0;
-                    
-                    if (x &lt; other.x)
-                    {
-                        image_xscale = 1;
-                    }
-                    else
-                    {
-                        image_xscale = -1;
-                    }
-                    if (abs(other.maxFanOutDistance) &gt; 0)
-                    {
-                        playerFanOut(20 * image_xscale, other.maxFanOutDistance);
-                    }
-                }
-                
-                // Lock the transitions of the room
-                if (other.lockTransitions)
-                {
-                    global.lockTransition = true;
-                }
-                
-                global.aliveBosses = 1; // Used for multiple bosses being around.
-                
-                with (prtBoss)
-                {
-                    if (id != other.id &amp;&amp; (!dead || active))
-                    {
-                        global.aliveBosses += 1;
-                    }
-                }
-                
-                if (healthIndex == -1)
-                {
-                    healthIndex = global.aliveBosses; // used to track healthbars
-                }
-                
-                // start music
-                if (music != "" &amp;&amp; global.aliveBosses == 1)
-                {
-                    musicStore = global.levelSong;
-                    musicTypeStore = global.levelSongType;
-                    musicLoopStartStore = global.levelLoopStart;
-                    musicLoopEndStore = global.levelLoopEnd;
-                    musicLoopStore = global.levelLoop;
-                    musicVolumeStore = global.levelVolume;
-                    musicTrackNumberStore = global.levelTrackNumber;
-                    
-                    stopMusic();
-                    playMusic(music, musicType, musicTrackNumber, musicLoopSecondsStart, musicLoopSecondsEnd, musicLoop, musicVolume);
-                }
-                else if (music != "")
-                {
-                    with (prtBoss)
-                    {
-                        if (id != other.id &amp;&amp; !dead)
-                        {
-                            other.musicStore = musicStore;
-                            other.musicTypeStore = musicTypeStore;
-                            other.musicLoopStartStore = musicLoopStartStore;
-                            other.musicLoopEndStore = musicLoopEndStore;
-                            other.musicLoopStore = musicLoopStore;
-                            other.musicVolumeStore = musicVolumeStore;
-                            other.musicTrackNumberStore = musicTrackNumberStore;
-                            break;
-                        }
-                    }
-                }
-            }
-            
-            // Preparing to fill the health bar
-            if (canFillHealthBar)
-            {
-                // If the intro is done check
-                if (isIntro == false &amp;&amp; startIntro == false)
-                {
-                    healthBarTimer += 1;
-                    
-                    if (healthBarTimer &gt;= healthBarTimerMax)
-                    {
-                        healthBarTimer = 0;
-                        canFillHealthBar = false;
-                        fillingHealthBar = true;
-                        loopSFX(sfxEnergyRestore);
-                        drawHealthBar = true;
-                    }
-                }
-            }
-            
-            // Filling the health bar
-            if (fillingHealthBar)
-            {
-                // make sure sfx is playing if the healthbar is filling
-                if (!audio_is_playing(sfxEnergyRestore))
-                {
-                    loopSFX(sfxEnergyRestore);
-                }
-                
-                healthBarTimerSpeed = (healthBarHealth div 28)
-                    * healthBarTimerSpeedExtra + 1;
-                
-                healthBarTimer += healthBarTimerSpeed;
-                
-                if (healthBarTimer &gt;= 3)
-                {
-                    healthBarHealth += healthBarTimer div 3;
-                    healthBarTimer = 0;
-                }
-                
-                if (healthBarHealth &gt;= healthpoints)
-                {
-                    healthBarHealth = healthpoints;
-                    with (prtBoss)
-                    {
-                        startFight += 1;
-                    }
-                    fillingHealthBar = false;
-                    stopSFX(sfxEnergyRestore);
-                }
-            }
-        }
-}
-*/
 </string>
           </argument>
         </arguments>
@@ -771,7 +647,29 @@ if (global.aliveBosses &lt;= 0)
         playMusic(musicStore, musicTypeStore, musicTrackNumberStore, musicLoopStartStore, musicLoopEndStore, musicLoopStore, musicVolumeStore);
     }
 }
-
+else
+{   
+    if(healthParent==-1)
+    {
+        var newParent = noone;
+        with(prtBoss)
+        {
+            if(id!=other.id&amp;&amp;!dead &amp;&amp; healthParent == other.id)
+            {
+                newParent=id;
+                healthParent=-1;
+                break;
+            }
+        }
+        with(prtBoss)
+        {
+            if(id!=newParent&amp;&amp;id!=other.id&amp;&amp;!dead &amp;&amp; healthParent == other.id)
+            {
+                healthParent=newParent;
+            }
+        }
+    }
+}
 
 if (doPlayerExplosion)
 {
@@ -858,6 +756,25 @@ if (destroyOnDeath)
 iFrames = max(1, hitInvun); // Being able to get hit again
 
 playSFX(sfxEnemyHit);
+with(prtBoss)
+{
+    if(id!=other&amp;&amp;!dead &amp;&amp;((id==other.healthParent || healthParent==other.id)||(healthParent!=-1&amp;&amp;healthParent==other.healthParent)))
+    {
+        if(shareMode==0)
+        {
+            healthpoints-=global.damage;
+                
+            if(healthpoints&lt;=0)
+            {
+                event_user(EV_DEATH);
+            }
+        }
+        if(other.syncIFrames&amp;&amp;syncIFrames)
+        {
+            iFrames += other.iFrames;
+        }
+    }
+}   
 </string>
           </argument>
         </arguments>

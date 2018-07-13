@@ -28,7 +28,6 @@
             <string>// This Hunter sticks to walls and floors while creating a partner that does the same.
 event_inherited();
 
-healthIndex = 1;
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
 pose = sprHunterB;
@@ -167,14 +166,6 @@ if (entityCanStep())
         if (onOrOff &amp;&amp; image_index &lt; 5 &amp;&amp; attackTimer mod 5 == 4)
             image_index += 1;
         
-        // compare health to clone's health, and set.
-        if (instance_exists(clone))
-        {
-            if (healthpoints &lt; clone.healthpoints)
-            {
-                clone.healthpoints = healthpoints;
-            }
-        }
         
         // if meeting up with clone, move platforms in arena.
         if (place_meeting(x, y, clone) &amp;&amp; !hasFired)
@@ -214,6 +205,7 @@ if (entityCanStep())
                     if (!instance_exists(clone))
                         clone = instance_create(x, y, objHunterBPartner);
                     clone.clone = id;
+                    clone.healthParent = id;//Share health bars
                 }
                 else if (object_index == objHunterBPartner &amp;&amp; xspeed == 0)
                 {

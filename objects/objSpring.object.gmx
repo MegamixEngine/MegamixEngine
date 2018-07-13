@@ -75,7 +75,7 @@ if (!global.frozen)
     {
         if (!dead)
         {
-            if (blockCollision)
+            if (blockCollision &amp;&amp; grav!=0)
             {
                 if (ground || ycoll &gt; 0)
                 {
