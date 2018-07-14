@@ -122,7 +122,7 @@ mySpeed = 1</code>
     <instance objName="objObjectSetter" x="16" y="240" name="inst_597A453D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLife" x="1224" y="832" name="inst_44E0F015" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;    instance_destroy();&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="1120" y="144" name="inst_981B234F" locked="0" code="    if (global.difficulty &gt; DIFF_NORMAL)&#xA;    itemDrop = objShieldAttackerTRL;&#xA;    xScale = -1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objChillManBlock" x="1088" y="144" name="inst_DAB9E0CD" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    itemDrop = objCrazyRazy;&#xA;    xScale = -1;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objChillManBlock" x="1088" y="144" name="inst_DAB9E0CD" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    itemDrop = objCrazyRazy;&#xA;    xScale = -1;&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="1056" y="144" name="inst_EB6A998B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="1216" y="176" name="inst_205CAD56" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="1088" y="288" name="inst_2609E2BF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -168,10 +168,10 @@ mySpeed = 1</code>
     <instance objName="objChillManBlock" x="2144" y="544" name="inst_5DAC69AE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="2112" y="608" name="inst_EAF381CD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="2208" y="384" name="inst_26059B61" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objChillManBlock" x="2208" y="352" name="inst_9D656552" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objChillManBlock" x="2208" y="352" name="inst_9D656552" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="2176" y="352" name="inst_75B65163" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="2144" y="352" name="inst_4D2B1DFF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objChillManBlock" x="2112" y="320" name="inst_A599697A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objChillManBlock" x="2112" y="320" name="inst_A599697A" locked="0" code="if (global.difficulty == DIFF_EASY)&#xA;  itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="2352" y="144" name="inst_DDD85621" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="2432" y="160" name="inst_9FBC3AF2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="2496" y="144" name="inst_4FC3D167" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -238,7 +238,7 @@ mySpeed = 1</code>
     <instance objName="objEasyPlatform24" x="1192" y="400" name="inst_92169AAF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform24" x="1088" y="624" name="inst_A2534BBF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform24" x="1112" y="624" name="inst_C426F3F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objYashichi" x="2232" y="1040" name="inst_36D8DB73" locked="0" code="if (global.difficulty == DIFF_NORMAL)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objYashichi" x="2232" y="1040" name="inst_36D8DB73" locked="0" code="if (global.difficulty == DIFF_NORMAL)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="2352" y="192" name="inst_397DFB00" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="2432" y="192" name="inst_E171FCE0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="2496" y="192" name="inst_27356A4E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -250,7 +250,7 @@ mySpeed = 1</code>
     <instance objName="objEasyPlatform32" x="2864" y="192" name="inst_21403391" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="2896" y="192" name="inst_40D6B07A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDefaultSpawn" x="128" y="160" name="inst_2DB5EAFE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTsurareStamp" x="2160" y="336" name="inst_72FDF625" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTsurareStamp" x="2160" y="336" name="inst_72FDF625" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();&#xA;if (global.difficulty == DIFF_EASY)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="1168" y="112" name="inst_A817C287" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="1008" y="112" name="inst_66E142DF" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="1072" y="368" name="inst_FDB4A7E5" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -265,7 +265,7 @@ mySpeed = 1</code>
     <instance objName="objGenericStopper" x="2176" y="784" name="inst_BB96D721" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="2080" y="496" name="inst_AF109F70" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="2240" y="496" name="inst_A92F2099" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTsurareStamp" x="3472" y="160" name="inst_A454F264" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTsurareStamp" x="3472" y="160" name="inst_A454F264" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();&#xA;if (global.difficulty == DIFF_EASY)&#xA;  instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objKaonaGeeno" x="512" y="96" name="inst_657130C5" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGarinkou" x="2192" y="400" name="inst_39A16E14" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGarinkou" x="2416" y="128" name="inst_91DA1F9E" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -273,7 +273,7 @@ mySpeed = 1</code>
     <instance objName="objGarinkou" x="2688" y="96" name="inst_0E4D9417" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGarinkou" x="2912" y="144" name="inst_C9336AD3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="464" y="80" name="inst_C4D10F7C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objKaonaGeeno" x="464" y="144" name="inst_72C330FE" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objKaonaGeeno" x="464" y="144" name="inst_72C330FE" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;if (global.difficulty == DIFF_EASY)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="624" y="176" name="inst_FAF0610A" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy()&#xA;" scaleX="3" scaleY="3" colour="4294967295" rotation="0"/>
     <instance objName="objShirokumachineGTV" x="880" y="96" name="inst_8A29409A" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;variant = 0;&#xA;lockTransition = false;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="896" y="144" name="inst_F17497ED" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy()&#xA;" scaleX="3" scaleY="5" colour="4294967295" rotation="0"/>
@@ -372,7 +372,7 @@ mySpeed = 1</code>
     <instance objName="objMM10Suzy" x="2256" y="816" name="inst_DAAE0558" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM10Suzy" x="2272" y="800" name="inst_B26305E1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM10Suzy" x="2224" y="752" name="inst_03065E48" locked="0" code="dir = 'v';&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM10Suzy" x="2208" y="608" name="inst_2FF1F9F4" locked="0" code="dir = 'v';&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM10Suzy" x="2208" y="608" name="inst_2FF1F9F4" locked="0" code="if (global.difficulty == DIFF_EASY)&#xA;  instance_destroy();&#xA;dir = 'v';&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSwalloweggSpawner" x="2560" y="32" name="inst_051AF4ED" locked="0" code="delay = 84;&#xA;if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSwalloweggSpawner" x="2816" y="32" name="inst_F7F539B3" locked="0" code="delay = 84;&#xA;if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objShirokumachineGTV" x="2224" y="96" name="inst_F695420C" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;&#xA;lockTransition = false;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -398,7 +398,7 @@ mySpeed = 1</code>
     <instance objName="objFootholder" x="3152" y="144" name="inst_F267B41D" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;myFlag = 2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFootholder" x="3264" y="80" name="inst_9124467B" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;myFlag = 3;&#xA;variant = 2" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM10Suzy" x="2192" y="576" name="inst_543AE66B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM10Suzy" x="2144" y="608" name="inst_7AEB17CE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM10Suzy" x="2144" y="608" name="inst_7AEB17CE" locked="0" code="if (global.difficulty == DIFF_EASY)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM10Suzy" x="2112" y="544" name="inst_2B47FD88" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSingleTilesetAnimation" x="0" y="384" name="inst_1A8C9B33" locked="0" code="//This animtor animates things tile by tile, luckily the snow only needs one tile&#xA;&#xA;//Background&#xA;animBackgrounds[0]=tstChillMan;&#xA;//Animation setup&#xA;animLengths[0] = 4;&#xA;//Animation spd&#xA;animSpeeds[0]=0.08;&#xA;animDelays[0]=120;&#xA;&#xA;//Ice&#xA;regionLeft[0]=0;&#xA;regionTop[0]=0;&#xA;regionWidth[0]=112;&#xA;regionHeight[0]=144;&#xA;animType[0]=0;//Vertical strip&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSingleTilesetAnimation" x="16" y="384" name="inst_C4F460C8" locked="0" code="//This animtor animates things tile by tile, luckily the snow only needs one tile&#xA;&#xA;//Background&#xA;animBackgrounds[0]=tstChillMan;&#xA;//Animation setup&#xA;animLengths[0] = 4;&#xA;animLayer=1100000;&#xA;//Animation spd&#xA;animSpeeds[0]=0.1;&#xA;animDelays[0]=0;&#xA;//Snow&#xA;regionLeft[0]=112;&#xA;regionTop[0]=128;&#xA;regionWidth[0]=32;&#xA;regionHeight[0]=32;&#xA;animType[0]=0;//Vertical strip&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -414,7 +414,7 @@ mySpeed = 1</code>
     <instance objName="objFootholderGuide" x="3424" y="128" name="inst_F53A7658" locked="0" code="myFlag = 4&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFootholderGuide" x="3456" y="80" name="inst_3E79BDFF" locked="0" code="myFlag = 5&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFootholderGuide" x="3488" y="208" name="inst_7B00A348" locked="0" code="myFlag = 5;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeckyun" x="1376" y="1008" name="inst_7F9878E2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeckyun" x="1376" y="1008" name="inst_7F9878E2" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeckyun" x="1520" y="1008" name="inst_7905DE6A" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSwalloweggSpawner" x="2560" y="16" name="inst_64BA3093" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;delay = 78&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSwalloweggSpawner" x="2720" y="16" name="inst_F978C40A" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;delay = 78" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -430,24 +430,26 @@ mySpeed = 1</code>
     <instance objName="objGarinkou" x="784" y="128" name="inst_3848A6F2" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="2656" y="192" name="inst_BC071B7B" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;healthpointsStart = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillManBlock" x="2832" y="192" name="inst_F16C4E3F" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;healthpointsStart = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objKaonaGeeno" x="1520" y="992" name="inst_4CAAF430" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objKaonaGeeno" x="1520" y="992" name="inst_4CAAF430" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGarinkou" x="2128" y="528" name="inst_5BDB2937" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGarinkou" x="848" y="96" name="inst_01DD37DE" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeckyun" x="1984" y="1056" name="inst_AD00951C" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSwalloweggSpawner" x="3104" y="16" name="inst_ED2926D1" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;delay = 98&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSwalloweggSpawner" x="3408" y="16" name="inst_B26AAD03" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;delay = 98&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objShieldAttackerTRL" x="704" y="96" name="inst_8637460F" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objShieldAttackerTRL" x="736" y="160" name="inst_CA607B7E" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objShieldAttackerTRL" x="1152" y="128" name="inst_9207C6BB" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objShieldAttackerTRL" x="1168" y="384" name="inst_608072D8" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objShieldAttackerTRL" x="704" y="96" name="inst_8637460F" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    instance_destroy();&#xA;if (global.difficulty == DIFF_EASY)&#xA;  instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objShieldAttackerTRL" x="736" y="160" name="inst_CA607B7E" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    instance_destroy();" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objShieldAttackerTRL" x="1152" y="128" name="inst_9207C6BB" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    instance_destroy();&#xA;if (global.difficulty == DIFF_EASY)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objShieldAttackerTRL" x="1168" y="384" name="inst_608072D8" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objShieldAttackerTRL" x="1072" y="576" name="inst_CC7409C1" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objShieldAttackerTRL" x="1200" y="480" name="inst_BD0C48F0" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objShieldAttackerTRL" x="1136" y="704" name="inst_C7F88467" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objShieldAttackerTRL" x="1136" y="816" name="inst_0128BF63" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objShieldAttackerTRL" x="2128" y="512" name="inst_C77E5410" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objShieldAttackerTRL" x="1136" y="816" name="inst_0128BF63" locked="0" code="if (global.difficulty == DIFF_EASY)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objShieldAttackerTRL" x="2128" y="512" name="inst_C77E5410" locked="0" code="if (global.difficulty == DIFF_EASY)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objShieldAttackerTRL" x="2096" y="800" name="inst_EC86BACD" locked="0" code="if (global.difficulty &gt; DIFF_NORMAL)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objShieldAttackerTRL" x="1616" y="1040" name="inst_AE5CB0F2" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objShieldAttackerTRL" x="512" y="96" name="inst_D8BAEC8C" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="2080" y="592" name="inst_7477F8DE" locked="0" code="if (global.difficulty &gt; DIFF_EASY)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="1232" y="160" name="inst_BD674167" locked="0" code="if (global.difficulty &gt; DIFF_EASY)&#xA;  instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstChillMan" x="624" y="160" w="16" h="16" xo="208" yo="80" id="11266596" name="inst_736FA47E" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
