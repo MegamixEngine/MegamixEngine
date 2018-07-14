@@ -2795,6 +2795,7 @@
         </sprites>
         <sprites name="Ballade">
           <sprite>sprites\sprBallade1</sprite>
+          <sprite>sprites\sprBallade2</sprite>
           <sprite>sprites\sprBalladeBalladeCracker</sprite>
           <sprite>sprites\mskBallade</sprite>
         </sprites>
