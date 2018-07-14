@@ -36,6 +36,8 @@ canHit = true;
 grav = 0;
 despawnRange = -1;
 
+reflectable = 0;
+
 // Enemy specific code
 newX = 0;
 newY = 0;
