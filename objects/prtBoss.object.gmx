@@ -361,7 +361,7 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight)
                     }   
                 }
                 
-                    if (healthBarHealth &gt;= maxHealth)
+                if (healthBarHealth &gt;= maxHealth)
                 {
                     healthBarHealth = maxHealth;
                      if(shareMode==1)
