@@ -55,8 +55,10 @@ healthBarSecondaryColor[1] = 0;
 
 // Music
 music = "RnFBossNES.ogg";
-musicType = "VGM";
-musicTrackNumber = 0;
+musicType = "OGG";
+musicLoopSecondsStart = 55.70;
+musicLoopSecondsEnd = 79.70;
+musicVolume = 0.8;
 
 // Damage Table
 enemyDamageValue(objBusterShot, 1);
@@ -220,7 +222,15 @@ if (entityCanStep())
                 
                 // this increases grey devil's hitbox. we make this an ellipse rather than a square because otherwise mega man would be hit by a lot of empty space.
                 with (collision_ellipse(x - 32, y + 8, x + 32, y + 32, objMegaman, false, true))
-                    playerGetHit(4);
+                { 
+                    if (iFrames == 0 &amp;&amp; canHit)
+                    {
+                        with other
+                        {
+                            entityEntityCollision(4);
+                        }
+                    }
+                }
                 
                 // the boss otherwise deals no combat damage, this is to stop mega man from being hit by dead air as he jumps over him.
                 contactDamage = 0;

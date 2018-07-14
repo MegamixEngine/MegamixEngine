@@ -65,7 +65,7 @@ yPrev = 0;
 
 if (entityCanStep())
 {
-    if (xcoll != 0)
+    if (xcoll != 0 &amp;&amp; image_index != 2)
     {
         image_index = 2;
         xPrev = -xcoll;
@@ -95,7 +95,7 @@ if (entityCanStep())
         }
     }
     
-    if (ycoll != 0)
+    if (ycoll != 0 &amp;&amp; image_index != 1)
     {
         image_index = 1;
         xPrev = xspeed;

@@ -269,7 +269,7 @@ if (!global.frozen)
                 {
                     if (global.keyJumpPressed[playerID] &amp;&amp; ground /* checkSolid(0, gravDir * 2 )*/ )
                     {
-                        playSFX(sfxRushCycle2);
+                        playSFX(sfxRushCycle1);
                         yspeed = -4 * gravDir;
                     }
                 }

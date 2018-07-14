@@ -57,8 +57,10 @@ healthBarSecondaryColor[1] = 27;
 
 // Music
 music = "RnFBossNES.ogg";
-musicType = "VGM";
-musicTrackNumber = 0;
+musicType = "OGG";
+musicLoopSecondsStart = 55.70;
+musicLoopSecondsEnd = 79.70;
+musicVolume = 0.8;
 
 // Damage Table
 enemyDamageValue(objBusterShot, 1);

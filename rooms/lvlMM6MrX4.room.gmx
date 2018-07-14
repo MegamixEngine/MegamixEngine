@@ -235,10 +235,10 @@ with objDiarn
     <instance objName="objEasyPlatform32" x="2112" y="384" name="inst_E77B6A9E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="2048" y="384" name="inst_831C0D22" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="2592" y="576" name="inst_E450EC78" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objLifeEnergyBig" x="328" y="768" name="inst_48546C55" locked="0" code="depth = 200000;&#xA;blockCollision = 0;&#xA;grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objWeaponEnergyBig" x="392" y="768" name="inst_4316250B" locked="0" code="depth = 200000;&#xA;blockCollision = 0;&#xA;grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objLifeEnergySmall" x="556" y="768" name="inst_1E6E882F" locked="0" code="depth = 200000;&#xA;blockCollision = 0;&#xA;grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objWeaponEnergySmall" x="548" y="768" name="inst_8154533A" locked="0" code="depth = 200000;&#xA;blockCollision = 0;&#xA;grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="328" y="768" name="inst_48546C55" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWeaponEnergyBig" x="392" y="768" name="inst_4316250B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergySmall" x="556" y="768" name="inst_1E6E882F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWeaponEnergySmall" x="548" y="768" name="inst_8154533A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="160" y="1280" name="inst_FAC1024B" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="5" colour="4294967295" rotation="0"/>
     <instance objName="objRotatingSpikePlatform" x="192" y="1360" name="inst_8AB8C1C0" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRotatingSpikePlatform" x="160" y="1312" name="inst_367B7819" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

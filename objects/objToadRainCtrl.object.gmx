@@ -134,12 +134,15 @@ y = ystart;
             <kind>1</kind>
             <string>event_inherited();
 
-if ((!global.frozen &amp;&amp; !dead) || global.switchingSections)
+if ((!global.frozen &amp;&amp; !dead) || instance_exists(objSectionSwitcher))
 {
     with (objMegaman)
     {
-        if (global.switchingSections)
-            break;
+        if (instance_exists(objSectionSwitcher))
+        {
+            exit;
+        }
+        
         if (place_meeting(x, y, objToadRain) &amp;&amp; !instance_exists(objWireAdapter))
         {
             if (ground)

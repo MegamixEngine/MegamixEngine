@@ -1,5 +1,9 @@
+# Staying up-to-date with Engine Updates using Git
+
 Git is an optional way to keep up-to-date with changes made to the engine. Using git means you don't have to
-go through the hassle of manually copying in engine changes or downloading a fresh copy of the engine
+go through the hassle of manually copying in engine changes or downloading a fresh copy of the engine.
+
+Git will also allow you to submit changes to the engine, if you're so inclined to help! (Note that you will need to get a permission from a dev in order to submit your changes, and they will be examined first.) Scroll down to the bottom for some information on how to contribute to the engine development.
 
 <!--more-->
 
@@ -7,7 +11,7 @@ go through the hassle of manually copying in engine changes or downloading a fre
 
 Download the git terminal interface: [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-I would recommend **not** using a client with a GUI (graphical user interface). The reason a lot of
+We recommend **not** using a client with a GUI (graphical user interface). The reason a lot of
 people want to use the GUI clients is because people are
 afraid that they are going to somehow "mess up" with git and break the whole repository permanently. In reality, so long as you
 commit frequently, it's very, very difficult to actually permanently break something.
@@ -59,17 +63,20 @@ just press the escape key and type `:q!` and press enter to quit. Obviously.*
 
 First navigate to the folder you want to download it to. (Type `pwd` in the console to make sure you're in the correct directory. If it says `/`, you will either need to use the `cd` command (e.g. `cd "Documents and Settings"`) or if you installed the "Windows Explorer Integrations" above, you can right-click on a folder on your computer and open git bash that way. The `ls` command is also helpful to display the contents of the current folder.)
 
-Once you're in the desired folder, you can then type into the terminal:
+Once you're in the desired folder, you can then type into the terminal (one command at a time):
 
 ```
-git clone https://github.com/MegamixEngine/MegamixEngine.github.io
+git clone https://github.com/MegamixEngine/MegamixEngine
+cd MegamixEngine
+git remote add engine https://github.com/MegamixEngine/MegamixEngine
 ```
 
-Swap out the URL in question for the URL of the repo you want to download. Note that
-the windows git bash terminal is too good for `ctrl+v`; you must use `shift+insert` to paste.
+Not all of these commands output anything in response. Note that the windows git bash terminal is too good for `ctrl+v`; you must use `shift+insert` to paste.
 
 If you later change your mind and want the repository to be located elsewhere, you can cut-paste the whole folder to somewhere else you prefer.
 (Just make sure you don't miss the hidden `.git` subfolder!)
+
+If you are starting a new project, you can skip the next section. If you have existing changes in an existing engine download that you want to keep, proceed to the next section.
 
 ## How to hook up an existing project folder with git
 
@@ -109,7 +116,7 @@ It's important that merge conflicts be dealt with correctly, lest you encounter 
 ## How to make commits (save changes to the repo)
 
 After you've edited the files you want to edit, saving changes to a repo is a four-step process:
-(0) check everything is okay, (1) tell git what files to commit in the next commit, (2) tell git to make a commit, (3) download any changes made since you last downloaded, (4) upload the commit to git. There's a TLDR at the end.
+(0) check everything is okay, (1) tell git what files to commit in the next commit, (2) tell git to make a commit, (3) download any changes made since you last downloaded, (4 -- optional) upload the commit to the repository host server. There's a TLDR at the end.
 
 **Step Zero**: Navigate to the top-level folder in the project and
 run
@@ -118,7 +125,7 @@ run
 git status
 ```
 
-. It will list all the files that you've edited and also other useful miscellany
+It will list all the files that you've edited and also other useful miscellany
 in a very readable format. This is a good thing to do every time
 you want to commit, or any time you're confused because something is not working correctly. If there are
 any unexpected messages at this step, stop and think.
@@ -130,7 +137,7 @@ any unexpected messages at this step, stop and think.
 git add --all
 ```
 
-in the top-level folder.
+in the top-level folder. **Ensure that you have saved everything in GMS before doing this.**
 
 **Step Two**: You have to create the commit.
 
@@ -142,16 +149,18 @@ This will open up a text editor! It could open up vim if you didn't configure yo
 vim (you'll know because the console will clear and everything will become horrible for you), don't panic, just press
 the escape key and type `:q!` and then enter. Then try changing your editor above.
 
-**Step Three**: Before you can upload your changes, you need to download any changes that have been made recently by your
-team-mates:
+**Step Three**: It's now time to download the latest changes. Even if you just want to upload changes, you must still do this before uploading. You should begin by closing GMS, and then type the following:
 
 ```
-git pull origin master
+git pull engine master
 ```
 
 This could trigger a merge! If that happens, see the next section.
 
-**Step Four**: It's finally time to upload your changes.
+At this point, if all you wanted was to download the latest changes, you're done. If you would like to upload your changes
+to a repository online, either to the engine or to your own repository, you may proceed to step 4.
+
+**Step Four (Optional)**: It's finally time to upload your changes.
 
 ```
 git push origin master
@@ -165,8 +174,8 @@ And you're done!
 git status
 git add --all
 git commit
-git pull
-git push
+git pull engine master
+git push engine dev
 ```
 
 ## Merging (AKA suffering)
@@ -294,5 +303,29 @@ it's simpler.
 ## What comes next?
 
 The above guide is for the basics. You'll probably learn a lot more by running into problems
-and googling how to solve them. Once you've become a great enough master, you can learn how to use
+and Googling how to solve them. Once you've become a great enough master, you can learn how to use
 branches and how to "rebase" commits as well.
+
+## Information for engine developers
+
+The main difference between just keeping up-to-date with engine changes and actually contributing to the engine is that you need to *push* changes, which is described in step 4 above. You first have to fork the engine and switch to the dev branch. Additionally, you will need to send pull requests.
+
+### Forking the Engine
+
+The first thing to do is to [fork the engine on GitHub](https://github.com/MegamixEngine/MegamixEngine). There should be a button on the GitHub webpage for this.
+
+Once you have a fork, look at the URL -- it should be something like `https://github.com/MyUserName/MegamixEngine` where "MyUserName" is actually *your* username. In git, type the following:
+
+```
+git remote set-url origin https://github.com/MegamixEngine/MegamixEngine
+```
+
+Now you should have *origin* referring to your personal fork, and *engine* referring to the base repository for the engine.
+
+### Switching to the development branch
+
+This is important if you want to contribute to the engine or just to stay up-to-date with unstable, bleeding-edge changes. Type `git fetch engine dev` and then `git checkout dev`. When using the instructions for submitting above, instead of typing `git push origin master`, you should type `git push origin dev`.
+
+### Making a submission
+
+After doing `git push origin dev` and that goes through, you should go to GitHub and [make a pull request](https://help.github.com/articles/creating-a-pull-request/), which is a request for us to pull the changes you've made into the engine. Make sure to set the "base" of the PR to be the engine, and the "compare" of the PR to be your own fork. Once a dev with permission has approved it, it will then be in the `dev` branch, and when the `dev` branch becomes stable, the engine `master` branch will merge in the changes from `dev` and will be released as a new version on the releases page.

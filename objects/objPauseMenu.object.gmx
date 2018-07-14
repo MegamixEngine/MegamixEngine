@@ -200,7 +200,7 @@ switch (phase)
                 // Check if weapon energy actually needs filling
                 var proceed;
                 proceed = false;
-                for (i = 1; i &lt;= weaponVisibleN; i += 1)
+                for (i = 0; i &lt; weaponVisibleN; i += 1)
                 {
                     if (ceil(global.ammo[playerID, global.weaponHotbar[weaponVisible[i]]]) &lt; 28)
                     {
@@ -227,7 +227,7 @@ switch (phase)
                 if (global.mTanks &gt; 0) // Check if health or weapon energy actually needs filling
                 {
                     var proceed = false;
-                    for (i = 1; i &lt;= weaponVisibleN; i += 1)
+                    for (i = 0; i &lt; weaponVisibleN; i += 1)
                     {
                         if (ceil(global.ammo[playerID, global.weaponHotbar[weaponVisible[i]]]) &lt; 28)
                         {

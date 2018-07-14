@@ -164,7 +164,6 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 {
                     instance_create(x, y + 16, objExplosion);
                     dead = true;
-                    visible = 0;
                 }
             }
             break;
