@@ -23,14 +23,19 @@ if (other.ignoreBullet == id)
 
 // Set proper damage values from the hitter's end
 if (faction == 2)
+{
     event_user(EV_WEAPON_SETDAMAGE);
+}
 
 with (other) // damage table stuff goes here
 {
     event_user(EV_WEAPON_SETDAMAGE);
 }
-if(global.damage==0)
-    _penetrate=0;
+
+if (global.damage == 0)
+{
+    _penetrate = 0;
+}
     
 
 // 0 = hits.
@@ -113,7 +118,7 @@ if (global.damage != 0)
         hitterID = other.id;
         event_user(EV_HURT);
         hitTimer = 0;
-        if (healthpoints <= 0)
+        if (healthpoints <= 0 && object_index != objMegaman)
         {
             // if killOverride is set, only call the base prtPlayerProjectile death
             // (for stuff like tornado blow)

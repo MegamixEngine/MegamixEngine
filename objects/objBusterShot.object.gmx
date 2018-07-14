@@ -71,7 +71,7 @@ var initChargeTime = 20;
 
 if (!global.lockBuster)
 {
-    if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+    if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; chargeTimer == 0)
     {
         i = fireWeapon(16, 0, objBusterShot, bulletLimit, weaponCost, action, willStop);
         if (i)

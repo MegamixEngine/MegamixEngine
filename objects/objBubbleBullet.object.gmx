@@ -52,10 +52,16 @@ image_speed = 0.2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (inWater)
+            <string>event_inherited();
+
+if (inWater)
+{
     sprite_index = sprBubbleManShot;
+}
 else
+{
     sprite_index = sprBubbleManShotLand;
+}
 </string>
           </argument>
         </arguments>

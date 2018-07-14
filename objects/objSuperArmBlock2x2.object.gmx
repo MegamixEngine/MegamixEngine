@@ -3,7 +3,7 @@
   <spriteName>sprSuperArm2x2</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>10000</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>objSuperArmBlock</parentName>
   <maskName>&lt;undefined&gt;</maskName>
