@@ -30,6 +30,9 @@
 blockCollision = 0;
 grav = 0;
 
+despawnRange = -1;
+respawnRange = -1;
+
 stopOnFlash = false;
 
 isTargetable = false;
