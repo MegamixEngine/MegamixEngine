@@ -25,19 +25,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// An alternative to the original tile animator that animates tiles with only one background
-// and you can do more than one animation with one object, its recomended to keep the animated tiles in their
-// own layer for better load times(might with a lot of tiles + an object setter, but its a bit faster than the original tileAnimation).
+            <string>///Used to animate tilesets in one background file, it animates horizontal and vertical strips
+///from left to right and from top to bottom.
 
-// How to use
-// Set up the variables bellow, you need to provide the top left coordinate in the background
-// from the region the animation starts, as well as the size of the animated region.
+///This object can have more than one animation but the tiles must be in the same layer
 
+///An object setter is required for animating chunks of tiles(you don't have to set any object if you
+///don't want to, just put one in the tileset so its tiles are splited).
 
-// Note: This only uses one background per animation, for switching bagrounds use the original objTileAnimation.
-// Note2: the tileIDs can't be shared between animations using the same background
+/// How to use
 
-// The following arrays must have the same size and be set in creation code
+/// Set animLayer to the layer where the animated tiles are, then set the region of the first frame in the animation
+/// (relative to the background), and animLengths to the number of frames of each animation
+/// Set animType to 0 if the frames are aligned vertically(with the first frame on the top)
+/// or set it to 1 if the frames are aligned horizontally(with the first frame on the left)
+
+/// The following arrays must have the same size and be set in creation code
 animBackgrounds[0] = 0; //@cc **Mandatory** for each animation a background must be provided
 animLengths[0] = 0; //@cc **Mandatory** sets the lenght of each animation
 animSpeeds[0] = -1; //@cc **Mandatory** sets the speed of each animation

@@ -78,7 +78,15 @@ if (entityCanStep())
     if (startIntro)
     {
         startIntro = false;
-        protoLock = playerLockMovement();
+        protoLock = lockPoolLock(global.playerLock[PL_LOCK_MOVE],
+                    global.playerLock[PL_LOCK_SLIDE],
+                    global.playerLock[PL_LOCK_SHOOT],
+                    global.playerLock[PL_LOCK_TURN],
+                    global.playerLock[PL_LOCK_CHARGE],
+                    global.playerLock[PL_LOCK_CLIMB],
+                    global.playerLock[PL_LOCK_JUMP],
+                    global.playerLock[PL_LOCK_PAUSE],
+                    global.playerFrozen);
         stopMusic();
         playSFX(sfxWhistle);
         visible = true;
