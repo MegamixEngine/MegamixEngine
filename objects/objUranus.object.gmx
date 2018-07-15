@@ -162,9 +162,9 @@ if (!global.frozen)
     if (entityCanStep())
     {
         // uranus' custom intro
-        if (!isFight &amp;&amp; !startIntro)
+        if (!isFight)
         {
-            if (!hasTriggeredFall &amp;&amp; !checkSolid(0, 0))
+            if (!hasTriggeredFall &amp;&amp; !checkSolid(x, y))
                 hasTriggeredFall = true;
             
             // since bosses do not have gravity during intros, we need to reuse this here
@@ -177,19 +177,19 @@ if (!global.frozen)
         if (startIntro)
         {
             calibrateDirection();
-            visible=1;
-            y += (view_yview + 2) - bbox_bottom;
+            y += view_yview - bbox_bottom;
             canFillHealthBar = false;
             image_index = 3;
             startIntro = false;
             isIntro = true;
+            visible = true;
         }
         else if (isIntro)
         {
             // custom intro:
             if ((y &lt;= view_yview + view_hview / 2) &amp;&amp; !hasTriggeredFall)
             {
-                grav = gravAccel;
+                yspeed += gravAccel;
             }
             
             
@@ -218,7 +218,6 @@ if (!global.frozen)
                     isIntro = false;
                     grav = gravStart;
                     blockCollision = blockCollisionStart;
-                    grav = gravStart;
                     canFillHealthBar = true;
                     yspeed = 0;
                 }

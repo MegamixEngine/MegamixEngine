@@ -101,7 +101,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     {
         with (objMegaman)
         {
-            if (ground)
+            if (!playerIsLocked(PL_LOCK_MOVE) &amp;&amp; ground)
             {
                 if (place_meeting(other.x, other.y - gravDir, other.id)
                     &amp;&amp; !place_meeting(x, y, other.id))
