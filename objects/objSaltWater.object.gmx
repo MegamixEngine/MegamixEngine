@@ -194,8 +194,21 @@ if (!global.frozen)
     i = fireWeapon(25, -1, objSaltWater, 1, 1, 1, 2);
     if (instance_exists(i)) // Set starting speed
     {
-        i.yspeed = -2 * image_yscale;
-        i.xspeed = 2 * image_xscale;
+        if (global.keyUp[playerID])
+        {
+            i.yspeed = -5 * image_yscale;
+            i.xspeed = 2 * image_xscale;
+        }
+        else if (global.keyDown[playerID])
+        {
+            i.yspeed = -2 * image_yscale;
+            i.xspeed = 2 * image_xscale;
+        }
+        else
+        {
+            i.yspeed = -3 * image_yscale; //-2
+            i.xspeed = 2 * image_xscale;
+        }
         i.grav = i.grav * image_yscale;
         playSFX(sfxBuster);
     }
