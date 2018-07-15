@@ -8,6 +8,7 @@ var inStr = str;
 var whitespaceDropped = 0;
 global.retval_exprlen = 0;
 global.retval_exprval = 0;
+global.retval = 0;
 global.retval_error = false;
 
 while (stringStartsWith(str, " "))
@@ -126,7 +127,7 @@ else if (stringStartsWith(str, "("))
 }
 else
 {
-    global.retval = 0;
+    
     // direct value or variable
     global.retval_exprlen += string_length(expr) + whitespaceDropped;
     

@@ -81,6 +81,17 @@ playSFX(sfxIceWall);
 
 if (!global.frozen)
 {
+    if(!isFree)
+        isFree = !checkSolid(0, 0,1,1);
+    if(!isFree)
+    {
+        blockCollision=false;
+        x=xprevious;
+        y=yprevious;
+        xspeed=0;
+        yspeed=0;
+        grav=0;
+    }
     if (!forming)
     {
         if (isFree)
@@ -138,7 +149,7 @@ if (!global.frozen)
         }
         else
         {
-            isFree = !checkSolid(0, 0);
+            healthpoints = 0;
         }
         
         healthpoints -= (healthpointsStart / 256) * (1 - (xspeed != 0) * 0.25);
@@ -201,7 +212,8 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>specialDamageValue("fire", 5);
+            <string>event_inherited();
+specialDamageValue("fire", 5);
 specialDamageValue("flying", 4);
 specialDamageValue("aquatic", 3);
 specialDamageValue("nature", 3);
@@ -358,14 +370,17 @@ if (!audio_is_playing(sfxReflect) || !(timer mod 4))
         if (image_index &gt;= 4)
         {
             forming = 0;
-            isSolid = 1;
-            
-            blockCollision = 1;
-            grav = 0.25 * image_yscale;
+            if(isFree)
+            {
+                isSolid = 1;
+                
+                blockCollision = 1;
+                grav = 0.25 * image_yscale;
+            }
         }
     }
     
-    timer++;
+    timer+=2;
 }
 else
 {

@@ -122,12 +122,6 @@ if (entityCanStep())
         }
     }
 }
-else if (dead)
-{
-    animTimer = 0;
-    hasBomb = true;
-    image_index = 0;
-}
 </string>
           </argument>
         </arguments>
@@ -153,8 +147,12 @@ else if (dead)
             <string>event_inherited();
 
 if (spawned)
-{
+{   
+    animTimer = 0;
+    hasBomb = true;
+    image_index = 0;
     xspeed = 2 * image_xscale;
+    flyAwayTimer = 0;
 }
 </string>
           </argument>
