@@ -142,7 +142,7 @@ if (entityCanStep())
             ID.dir = -45;
             ID.sprite_index = sprEnemyBullet;
             
-            playSFX(sfxEnemyShoot);
+            //playSFX(sfxEnemyShoot);
         }
         else if (cooldownTimer == 60)
         {

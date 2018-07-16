@@ -1356,6 +1356,7 @@
             <sprite>sprites\sprWeaponIconsBrickWeapon</sprite>
             <sprite>sprites\sprWeaponIconsPlantBarrier</sprite>
             <sprite>sprites\sprWeaponIconsPowerStone</sprite>
+            <sprite>sprites\sprWeaponIconsTimeStopper</sprite>
             <sprite>sprites\sprWeaponIconsIceSlasher</sprite>
           </sprites>
         </sprites>
