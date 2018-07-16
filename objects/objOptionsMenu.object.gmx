@@ -56,6 +56,9 @@ horizontalQuickScrollTimer = 25;
 newControls = 0;
 current = 'NONE';
 press = 1;
+currentKeys[40]=-1;
+keyID = 0;
+key = -1;
 
 // Option text
 optionText[0] = 'CLOSE';
@@ -445,7 +448,10 @@ if (phase == 2 &amp;&amp; !selected)
                 newControls = 1;
                 selected = 1;
                 current = 'LEFT';
+                keyID=0;
                 pID = pausePressed - 1;
+                for(var i=0;i&lt;40;i++)
+                    currentKeys[i]=-1;
                 break;
             
             // set gamepad controls
@@ -464,9 +470,12 @@ if (phase == 2 &amp;&amp; !selected)
                     exit;
                 }
                 newControls = 2;
+                keyID=0;
                 selected = 1;
                 current = 'JUMP';
                 pID = pausePressed - 1;
+                for(var i=0;i&lt;40;i++)
+                    currentKeys[i]=-1;
                 break;
             
             // colored text overlays
@@ -575,7 +584,6 @@ if (!newControls)
 }
 
 // control configuration
-var key;
 key = -1;
 
 // control configuration
@@ -612,8 +620,12 @@ if (newControls == 1)
         press = 0;
     }
     
+    event_user(0);
+    
     if (key != -1 &amp;&amp; !press)
     {
+        currentKeys[keyID + pID*10]=key;
+        keyID++;
         // assign key
         press = 1;
         switch (current)
@@ -704,8 +716,11 @@ if (newControls == 2)
     {
         press = 0;
     }
+    event_user(0);
     if (key != -1 &amp;&amp; !press)
     {
+        currentKeys[keyID + pID*10]=key;
+        keyID++;
         press = 1;
         switch (current)
         {
@@ -721,7 +736,7 @@ if (newControls == 2)
                 global.joystick_slideKey[pID] = key;
                 current = 'PREV WPN';
                 break;
-            case 'PREVIOUS WPN':
+            case 'PREV WPN':
                 global.joystick_weaponSwitchLeftKey[pID] = key;
                 current = 'NEXT WPN';
                 break;
@@ -744,6 +759,41 @@ if (newControls == 2)
         }
         
         playSFX(sfxMenuMove);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Validate inputs
+
+if(key != -1 &amp;&amp; !press)
+{
+    for(var i=0;i&lt;10 &amp;&amp; currentKeys[i+pID*10]!=-1;i++)
+    {
+        if(currentKeys[i+pID*10]==key)
+        {
+            key=-1;
+            break;
+        }
     }
 }
 </string>
