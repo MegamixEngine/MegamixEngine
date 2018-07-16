@@ -32,6 +32,7 @@ bulletLimitCost = 1;
 contactDamage = 1;
 
 blockCollision = 1;
+noCollision = 0;
 grav = 0;
 
 penetrate = 0;
@@ -70,6 +71,21 @@ wallCooldown = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(entityCanStep() &amp;&amp; !noCollision)//Manually call generalCollision()
+{
+    if(!blockCollision)
+    {
+        x=xprevious;//Position is updated in the step event of prtEntity so we have to revert the change first
+        y=yprevious;
+    }
+    else
+    {
+        blockCollision=0;
+    }
+    ground=false;
+    
+    generalCollision(1);
+}
 
 if (init == 1)
 {
@@ -89,7 +105,7 @@ if (init == 1)
     
     image_xscale = 1;
     
-    while (checkSolid(0, 0))
+    while (checkSolid(0, 0,1,1))
     {
         x -= image_xscale;
     }
@@ -113,7 +129,7 @@ if (!global.frozen)
     // disable collision after a while
     if ((bounceCount &gt; 8) || (!canDamage))
     {
-        blockCollision = 0;
+        noCollision = 1;
         exit;
     }
     
