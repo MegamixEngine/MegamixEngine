@@ -49,6 +49,7 @@ hasFired = false;
 shotsFired = 0;
 grav = 0.25;
 manualColors = true;
+form = 0; //SET IN CREATION CODE: Use this to set Ballade's sprites.
 
 // Health Bar
 healthBarPrimaryColor[1] = make_color_rgb(128, 0, 240);
@@ -406,6 +407,15 @@ event_inherited();
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+// Draw Ballade's sprite index based on creation code
+if (form != 0)
+{
+    sprite_index = sprBallade2;
+}
+else
+{
+    sprite_index = sprBallade1;
+}
 </string>
           </argument>
         </arguments>

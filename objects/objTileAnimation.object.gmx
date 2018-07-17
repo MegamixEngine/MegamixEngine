@@ -26,7 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+///Used to animate a tileset with its animation frames in different backgrounds
+///An object setter is required for animating chunks of tiles(you don't have to set any object if you
+///don't want to, just put one in the tileset so its tiles are splited).
+///To use you have to set the animID array to the animation frames of the tileset
+///and set animationLayer to the layer where the animated tiles are
 /*
 animLength = how many frames
 animTime = interval before change
@@ -42,65 +46,14 @@ see the example level for how to set this up.
 
 animLength = 1;
 animTime = 1;
-animationLayer = 1;
 animateOnTransition = false;
 animID[10] = tstAnimated;
 animID[0] = noone;
+animationLayer=100000;
 
 timer = 0;
 tileID = 0;
-alarm[0] = 1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// This generates tiles all across the levet
-/// Note this causes lag at the start of the stage in larger levels
-///Example: to animate tstAirman you do something like this
-///animLength = 4;
-///animTime = 3;
-///animationLayer=1000010;
-///tileID[0]=tstAirman;
-///tileID[1]=tstAirmanAnimated;
-///tileID[2]=tstAirmanAnimated1;
-///tileID[3]=tstAirmanAnimated2;
-
-print("Animating");
-var tiles = tile_get_ids_at_depth(animationLayer);
-var total = array_length_1d(tiles);
-for (var i = 0; i &lt; total; i++)
-{
-    var tile = tiles[i];
-    if (animID[0] != noone)
-    {
-        tile_set_background(tile, animID[0]);
-    }
-    for (k = 1; k &lt; animLength; k += 1)
-    {
-        tile_add(animID[k], tile_get_left(tile),
-            tile_get_top(tile), 16,
-            16, tile_get_x(tile), tile_get_y(tile),
-            animationLayer + k);
-    }
-}
+init=1;
 </string>
           </argument>
         </arguments>
@@ -123,7 +76,57 @@ for (var i = 0; i &lt; total; i++)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.frozen)
+            <string>
+/// This generates tiles all across the levet
+/// Note this causes lag at the start of the stage in larger levels
+
+
+if(init)
+{
+    print("Animating");
+    var tiles = tile_get_ids_at_depth(animationLayer);
+    var total = array_length_1d(tiles);
+    if(total&lt;=0)
+    {
+        init=0;
+        instance_destroy();
+        exit;
+    }
+    for (var i = 0; i &lt; total; i++)
+    {
+        var tile = tiles[i];
+        var bg=tile_get_background(tile);
+        var skip=true;
+        for(var j=0; j&lt;animLength;j++;)
+        {
+            if(bg==animID[j])
+            {
+                skip=false;
+                break;
+            }
+        }
+        if(skip)
+            continue;
+        var j=1,k=indexOf(animID,bg)+1;
+        while(j&lt;animLength)
+        {
+            if(k==animLength)
+            {
+                k=0;
+            }
+            tile_add(animID[k], tile_get_left(tile),
+                tile_get_top(tile), 16,
+                16, tile_get_x(tile), tile_get_y(tile),
+                animationLayer + j);
+            k++;
+            j++;
+        }
+    }
+    init=false;
+    exit;
+}
+
+if (global.frozen)
 {
     if (!instance_exists(objSectionSwitcher))
     {
@@ -156,13 +159,6 @@ else
     }
 }
 
-/*
-animLength = how many frames
-animTime = interval before change
-animID# = background frame (Note # goes up from 0 to animLength)
-animateOnTransition = will stop animations during the transition
-
-animationLayer = Layer animated tiles start at (your animated tiles should start on this layer)
 </string>
           </argument>
         </arguments>

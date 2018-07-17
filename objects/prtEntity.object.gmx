@@ -403,8 +403,6 @@ else if (!global.frozen) // Basically everything prtEntity should usually be doi
         }
     }
 }
-
-spawned = false;
 </string>
           </argument>
         </arguments>

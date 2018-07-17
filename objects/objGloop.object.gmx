@@ -133,6 +133,7 @@ if (!pop)
                         }
                     }
                     global.playerHealth[playerID] -= other.dmg;
+                    playSFX(sfxHit);
                 }
                 other.hurtMega = false;
             }
@@ -146,12 +147,15 @@ if (!pop)
                 // disable mega man's abilities whilst glooped
                 statusObject.statusCanJump = false;
                 statusObject.statusCanClimb = false;
-                if (!statusObject.statusCanShoot)
-                {
-                    isShoot = false;
-                    statusObject.statusCanShoot = false;
-                }
                 statusObject.statusCanSlide = false;
+                
+                statusObject.statusCanShoot = false;
+                // reset charge
+                if isCharge
+                {
+                    isCharge = false;
+                    playerPalette();
+                }
             }
             if (climbing)
             {

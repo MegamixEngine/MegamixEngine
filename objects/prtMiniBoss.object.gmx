@@ -343,6 +343,8 @@ killed = true;
           <argument>
             <kind>1</kind>
             <string>// handles stuff differently than the Puny Regular Enemies....
+if(!spawned)
+    exit;
 if (introTimer &gt; 0 &amp;&amp; doesIntro)
 {
     draw_sprite_ext(introSprite, 2 - (min(2, min(introTimer, 15) / 5)), x,
@@ -350,13 +352,6 @@ if (introTimer &gt; 0 &amp;&amp; doesIntro)
 }
 else
 {
-    // this debug message should be left in until
-    // the spawn system stops breaking every week.
-    
-    if (spawned == -1)
-    {
-        show_debug_message(object_get_name(object_index) + " drawn without having ever spawned!");
-    }
     if ((ceil(iFrames / 2) mod 4) || !iFrames)
     {
         if ((ceil(iFrames / 2) mod 2) || (iceTimer &gt; 0))

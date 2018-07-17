@@ -30,10 +30,6 @@
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
 
-// Health Bar
-healthBarPrimaryColor[1] = 18;
-healthBarSecondaryColor[1] = 48;
-
 pose = sprVoltIntro;
 poseImgSpeed = 8 / 60;
 contactDamage = 4;
@@ -52,8 +48,8 @@ attackTimerMax[2] = 25;
 attackTimerMax[3] = 20;
 
 // Health Bar
-healthBarPrimaryColor[1] = 22;
-healthBarSecondaryColor[1] = 17;
+healthBarPrimaryColor[1] = 18;
+healthBarSecondaryColor[1] = 48;
 
 // Music
 music = "Mega_Man_5GB.gbs";
@@ -272,28 +268,31 @@ if (entityCanStep())
                     VS.image_xscale = -1;
                     
                     // scatter shield to the four winds
-                    VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
-                        objVoltmanDischarge);
-                    VS.image_index = 0;
-                    VS.xspeed = 2.5;
-                    VS.yspeed = -2.5;
-                    VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
-                        objVoltmanDischarge);
-                    VS.image_index = 1;
-                    VS.xspeed = 2.5;
-                    VS.yspeed = 2.5;
-                    VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
-                        objVoltmanDischarge);
-                    VS.image_index = 2;
-                    VS.xspeed = -2.5;
-                    VS.yspeed = 2.5;
-                    VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
-                        objVoltmanDischarge);
-                    VS.image_index = 3;
-                    VS.xspeed = -2.5;
-                    VS.yspeed = -2.5;
-                    with (objVoltBarrier)
-                        instance_destroy();
+                    if (instance_exists(objVoltBarrier))
+                    {
+                        VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
+                            objVoltmanDischarge);
+                        VS.image_index = 0;
+                        VS.xspeed = 2.5;
+                        VS.yspeed = -2.5;
+                        VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
+                            objVoltmanDischarge);
+                        VS.image_index = 1;
+                        VS.xspeed = 2.5;
+                        VS.yspeed = 2.5;
+                        VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
+                            objVoltmanDischarge);
+                        VS.image_index = 2;
+                        VS.xspeed = -2.5;
+                        VS.yspeed = 2.5;
+                        VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
+                            objVoltmanDischarge);
+                        VS.image_index = 3;
+                        VS.xspeed = -2.5;
+                        VS.yspeed = -2.5;
+                        with (objVoltBarrier)
+                            instance_destroy();
+                    }
                     attackTimer = -10;
                     sprite_index = sprVoltIdle;
                     phase = 0;
