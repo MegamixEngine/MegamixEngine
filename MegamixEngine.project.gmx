@@ -2780,6 +2780,7 @@
         </sprites>
         <sprites name="GiantSuzy">
           <sprite>sprites\sprGiantSuzy</sprite>
+          <sprite>sprites\sprGiantSuzyArtColours</sprite>
         </sprites>
         <sprites name="Punk">
           <sprite>sprites\sprPunk</sprite>

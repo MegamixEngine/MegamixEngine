@@ -32,6 +32,7 @@ imgsp = 0.125;
 stretchX = 1;
 stretchY = 1;
 stopXScale = false;
+noRain = true;
 
 // Autocombine quicksand stuff
 if (!instance_place(x - sandWidth, y, objQuickSand)
@@ -124,7 +125,7 @@ if (stretchX &gt; 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!global.frozen)
+            <string>if (!global.frozen) &amp;&amp; (noRain)
 {
     image_speed = imgsp;
     
@@ -135,11 +136,20 @@ if (stretchX &gt; 1)
             shiftObject(0, 0.125, 1);
         }
     }
+    
+    with (objRainFlush)
+    {
+        if (timer &gt;= 30)
+        {
+            other.noRain = false;
+        }
+    }
 }
 else
 {
     image_speed = 0;
 }
+print(noRain);
 </string>
           </argument>
         </arguments>
