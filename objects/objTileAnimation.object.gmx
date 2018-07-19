@@ -76,11 +76,8 @@ init=1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-/// This generates tiles all across the levet
+            <string>/// This generates tiles all across the levet
 /// Note this causes lag at the start of the stage in larger levels
-
-
 if(init)
 {
     print("Animating");
@@ -92,43 +89,50 @@ if(init)
         instance_destroy();
         exit;
     }
-    for (var i = 0; i &lt; total; i++)
+    
+    for (var i = 0; i &lt; total; i+=1)
     {
         var tile = tiles[i];
         var bg=tile_get_background(tile);
         var skip=true;
-        for(var j=0; j&lt;animLength;j++;)
+        var k=0;
+        for(var j=0; j&lt;animLength;j+=1;)
         {
             if(bg==animID[j])
             {
                 skip=false;
+                k=j+1;
                 break;
             }
         }
         if(skip)
             continue;
-        var j=1,k=indexOf(animID,bg)+1;
-        while(j&lt;animLength)
+        if(k&gt;=animLength)
         {
-            if(k==animLength)
-            {
-                k=0;
-            }
+            k=0;
+        }
+        for(var j=1;j&lt;animLength;j++)
+        {
             tile_add(animID[k], tile_get_left(tile),
                 tile_get_top(tile), 16,
                 16, tile_get_x(tile), tile_get_y(tile),
                 animationLayer + j);
-            k++;
-            j++;
+            ++k;
+            if(k&gt;=animLength)
+            {
+                k=0;
+            }
         }
     }
+    for(var i =1;i&lt;animLength;i++)
+        tile_layer_hide(animationLayer+i);
     init=false;
     exit;
 }
 
 if (global.frozen)
 {
-    if (!instance_exists(objSectionSwitcher))
+    if (!global.switchingSections)
     {
         exit;
     }
@@ -145,16 +149,12 @@ if (timer &lt; animTime)
 else
 {
     timer = 0;
-    if (tileID &lt; animLength - 1)
+    if (tileID &lt; animLength)
     {
         tile_layer_hide(animationLayer + tileID);
         tileID += 1;
-        tile_layer_show(animationLayer + tileID);
-    }
-    else
-    {
-        tile_layer_hide(animationLayer + tileID);
-        tileID = 0;
+        if(tileID==animLength)
+            tileID = 0;
         tile_layer_show(animationLayer + tileID);
     }
 }
