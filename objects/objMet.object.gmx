@@ -130,7 +130,7 @@ if (entityCanStep())
                     ID.image_xscale = image_xscale;
                     ID.sprite_index = sprEnemyBullet;
                 }
-                playSFX(sfxEnemyShoot);
+                playSFX(sfxEnemyShootClassic);
                 break;
             case 60: // run towards player 
                 xspeed = 2 * image_xscale;

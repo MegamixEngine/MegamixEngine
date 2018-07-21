@@ -140,7 +140,7 @@ if (entityCanStep())
             image_index = 4;
             animTimer = 16;
             shoot = 1;
-            playSFX(sfxEnemyShoot);
+            //playSFX(sfxEnemyShoot);
         }
         else if (cooldownTimer == 150)
         {
@@ -153,7 +153,7 @@ if (entityCanStep())
     {
         ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objEnemyBullet);
         ID.xspeed = 2 * image_xscale;
-        playSFX(sfxEnemyShoot);
+        //playSFX(sfxEnemyShoot);
     }
 }
 else if (dead)

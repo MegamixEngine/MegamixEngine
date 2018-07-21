@@ -211,6 +211,9 @@
     <instance objName="objDarkmanBlock" x="1760" y="608" name="inst_BA22D674" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDarkmanBlock" x="1760" y="624" name="inst_363FFC3B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionFreeVerticalScrolling" x="1536" y="448" name="inst_81B493AA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNumetall" x="480" y="640" name="inst_3D952D5C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objGenericStopper" x="432" y="624" name="inst_99BAA40C" locked="0" code="objectToStop=objNumetall;&#xA;" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
+    <instance objName="objGenericStopper" x="512" y="624" name="inst_38ACAFA4" locked="0" code="objectToStop=objNumetall;&#xA;" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgBasic" x="96" y="176" w="16" h="16" xo="16" yo="48" id="11300187" name="inst_B8EA5CF3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

@@ -78,7 +78,36 @@ if (entityCanStep())
     if (startIntro)
     {
         startIntro = false;
-        protoLock = playerLockMovement();
+        protoLock = lockPoolLock(global.playerLock[PL_LOCK_MOVE],
+                    global.playerLock[PL_LOCK_SLIDE],
+                    global.playerLock[PL_LOCK_SHOOT],
+                    global.playerLock[PL_LOCK_TURN],
+                    global.playerLock[PL_LOCK_CHARGE],
+                    global.playerLock[PL_LOCK_CLIMB],
+                    global.playerLock[PL_LOCK_JUMP],
+                    global.playerLock[PL_LOCK_PAUSE],
+                    global.playerFrozen);
+        with (objMegaman)
+        {
+            isSlide = false;
+            slideLock = lockPoolRelease(slideLock);
+            slideChargeLock = lockPoolRelease(slideChargeLock);
+            mask_index = mskMegaman;
+            xspeed = 0;
+            yspeed = 0;                   
+            if (x &lt; other.x)
+            {
+                image_xscale = 1;
+            }
+            else
+            {
+                image_xscale = -1;
+            }
+            if (abs(other.maxFanOutDistance) &gt; 0)
+            {
+                playerFanOut(20 * image_xscale, other.maxFanOutDistance);
+            }
+        }
         stopMusic();
         playSFX(sfxWhistle);
         visible = true;
@@ -127,7 +156,7 @@ if (entityCanStep())
                 event_user(0);
             }
             resumeMusic();
-            playerFreeMovement(protoLock);
+            lockPoolRelease(protoLock);
         }
     }
 }

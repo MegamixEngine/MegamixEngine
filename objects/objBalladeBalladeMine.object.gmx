@@ -33,6 +33,7 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 destroyTimer = 250;
+itemDrop = -1;
 </string>
           </argument>
         </arguments>

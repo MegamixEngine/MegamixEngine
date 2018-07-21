@@ -39,6 +39,7 @@ jumpTimer = 0;
 jumpAmount = 0;
 canInitShoot = true;
 phase = 0;
+syncIFrames=true;
 getLastXspeed = xspeed;
 landTimer = 0;
 clone = id;
@@ -172,7 +173,7 @@ if (entityCanStep())
                 c.image_xscale = image_xscale;
                 c.phase = phase;
                 c.attackTimer = attackTimer;
-                c.healthpoints=c.healthpointsStart;
+                c.healthpoints=healthpoints;
                 c.healthParent=id;//Sync damage and healthbars
                 c.makeClones = 0;
                 c.delay = cloneDelayOffset + i * cloneAddedDelay;

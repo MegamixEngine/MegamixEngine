@@ -91,6 +91,7 @@ else
 reAndDeactivateObjects(0, 1);
 
 activate = 1;
+endit=0;
 
 xvs = view_xview;
 yvs = view_yview;
@@ -159,7 +160,7 @@ canStep = true;
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="1">
+    <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -180,6 +181,10 @@ canStep = true;
 {
     reAndDeactivateObjects(1, 0);
     activate = 0;
+}
+if(endit)
+{
+    event_user(1);
 }
 </string>
           </argument>
@@ -215,7 +220,8 @@ if (darken &amp;&amp; (instance_exists(objMegaman)))
 
 if (!instance_exists(triggerPlayer))
 {
-    event_user(1);
+    endit=1;
+    reAndDeactivateObjects(1,0);
     exit;
 }
 
@@ -323,7 +329,8 @@ if (canStep) // When the door is closing, we should not move
                 if (!mydoor)
                 {
                     // finish
-                    event_user(1);
+                    endit=1;
+                    reAndDeactivateObjects(1,0);
                 }
                 else
                 {
@@ -448,16 +455,14 @@ if (instance_exists(triggerPlayer))
 
 // event_user(0);
 
-reAndDeactivateObjects(1, 1);
+reAndDeactivateObjects(0, 1);
 
 if (plat)
 {
     plat.shiftVisible = platv;
 }
-
 canProgressDoor = true;
 global.frozen = false;
-
 instance_destroy();
 </string>
           </argument>

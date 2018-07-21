@@ -31,6 +31,7 @@ healthpointsStart = 5;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
+
 category = "semi bulky";
 
 facePlayer = true;

@@ -1,4 +1,4 @@
-/// room_external_setup_pre()
+/// roomExternalSetupPre()
 // sets up the current room from the external room loader map
 // should be called before all object create events,
 // and only in externally loaded rooms.

@@ -1356,6 +1356,7 @@
             <sprite>sprites\sprWeaponIconsBrickWeapon</sprite>
             <sprite>sprites\sprWeaponIconsPlantBarrier</sprite>
             <sprite>sprites\sprWeaponIconsPowerStone</sprite>
+            <sprite>sprites\sprWeaponIconsTimeStopper</sprite>
             <sprite>sprites\sprWeaponIconsIceSlasher</sprite>
           </sprites>
         </sprites>
@@ -2779,6 +2780,7 @@
         </sprites>
         <sprites name="GiantSuzy">
           <sprite>sprites\sprGiantSuzy</sprite>
+          <sprite>sprites\sprGiantSuzyArtColours</sprite>
         </sprites>
         <sprites name="Punk">
           <sprite>sprites\sprPunk</sprite>
@@ -2795,6 +2797,7 @@
         </sprites>
         <sprites name="Ballade">
           <sprite>sprites\sprBallade1</sprite>
+          <sprite>sprites\sprBallade2</sprite>
           <sprite>sprites\sprBalladeBalladeCracker</sprite>
           <sprite>sprites\mskBallade</sprite>
         </sprites>
@@ -3422,6 +3425,7 @@
       <sprite>sprites\sprRecPlay</sprite>
       <sprite>sprites\sprSavingIcon</sprite>
       <sprite>sprites\sprEnergySaver</sprite>
+      <sprite>sprites\sprRushBikeShopIcon</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">

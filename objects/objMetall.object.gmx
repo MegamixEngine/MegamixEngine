@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Tt's an upgrade of the met from Mega Man 2. It now has feet and can walk.
+            <string>/// It's an upgrade of the Neo Metall from Mega Man 2. It now has feet and can walk.
 event_inherited();
 
 healthpointsStart = 1;
@@ -41,6 +41,7 @@ radius = 4
     * 16; // Four blocks; the radius that MM needs to enter to trigger the shooting of the met
 cooldownTimer = 0;
 canShoot = true;
+canBounce = true;
 
 animTimer = 0;
 isFromMiniboss = false;
@@ -134,7 +135,7 @@ if (entityCanStep())
             ID.xscale = image_xscale;
             ID.sprite_index = sprEnemyBullet;
             
-            playSFX(sfxEnemyShoot);
+            //playSFX(sfxEnemyShoot);
         }
         else if (cooldownTimer == 60)
         {
@@ -161,6 +162,19 @@ if (entityCanStep())
         {
             instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
             instance_destroy();
+        }
+        
+        if (ground)
+        {
+            if (canBounce)
+            {
+                yspeed = -3;
+                canBounce = false;
+            }
+            else
+            {
+                xspeed = 2.5 * image_xscale;
+            }   
         }
     }
 }

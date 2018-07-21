@@ -268,28 +268,31 @@ if (entityCanStep())
                     VS.image_xscale = -1;
                     
                     // scatter shield to the four winds
-                    VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
-                        objVoltmanDischarge);
-                    VS.image_index = 0;
-                    VS.xspeed = 2.5;
-                    VS.yspeed = -2.5;
-                    VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
-                        objVoltmanDischarge);
-                    VS.image_index = 1;
-                    VS.xspeed = 2.5;
-                    VS.yspeed = 2.5;
-                    VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
-                        objVoltmanDischarge);
-                    VS.image_index = 2;
-                    VS.xspeed = -2.5;
-                    VS.yspeed = 2.5;
-                    VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
-                        objVoltmanDischarge);
-                    VS.image_index = 3;
-                    VS.xspeed = -2.5;
-                    VS.yspeed = -2.5;
-                    with (objVoltBarrier)
-                        instance_destroy();
+                    if (instance_exists(objVoltBarrier))
+                    {
+                        VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
+                            objVoltmanDischarge);
+                        VS.image_index = 0;
+                        VS.xspeed = 2.5;
+                        VS.yspeed = -2.5;
+                        VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
+                            objVoltmanDischarge);
+                        VS.image_index = 1;
+                        VS.xspeed = 2.5;
+                        VS.yspeed = 2.5;
+                        VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
+                            objVoltmanDischarge);
+                        VS.image_index = 2;
+                        VS.xspeed = -2.5;
+                        VS.yspeed = 2.5;
+                        VS = instance_create(objVoltBarrier.x, objVoltBarrier.y,
+                            objVoltmanDischarge);
+                        VS.image_index = 3;
+                        VS.xspeed = -2.5;
+                        VS.yspeed = -2.5;
+                        with (objVoltBarrier)
+                            instance_destroy();
+                    }
                     attackTimer = -10;
                     sprite_index = sprVoltIdle;
                     phase = 0;

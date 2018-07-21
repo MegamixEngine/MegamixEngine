@@ -87,11 +87,11 @@ if (entityCanStep())
         loadTimer -= 1;
     
     // spring out if mega man draws too near:
-    if (springTimer &lt;= -30)
+    if (springTimer &lt;= 0)//-30
     {
         with (objMegaman)
         {
-            if (point_distance(x, y, other.x, other.y - 16) &lt; 40)
+            if (point_distance(x, y, other.x, other.y - 16) &lt; 60)
             {
                 other.target = id;
                 other.springTimer = 110;
@@ -112,6 +112,7 @@ else if (dead)
 if (springTimer &gt; 0)
 {
     xspeed = 0;
+    loadTimer = 60;
     image_index = 3 + ((springTimer div 6) mod 4);
     if (image_index == 3)
         image_index = 5;
