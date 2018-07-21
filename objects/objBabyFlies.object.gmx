@@ -70,9 +70,12 @@ if (entityCanStep())
     cosCounter += .025;
     yspeed = -(cos(cosCounter) * 0.7);
     
-    if ((xcoll != 0) || (target.x - 32 &gt; x) &amp;&amp; (image_xscale == -1) || (target.x + 32 &lt; x) &amp;&amp; (image_xscale == 1))
+    if(instance_exists(target))
     {
-        image_xscale *= -1;
+        if ((xcoll != 0) || (target.x - 32 &gt; x) &amp;&amp; (image_xscale == -1) || (target.x + 32 &lt; x) &amp;&amp; (image_xscale == 1))
+        {
+            image_xscale *= -1;
+        }
     }
     
     if ((ycoll == 1) &amp;&amp; (yspeed &gt; 0) || (ycoll == 1) &amp;&amp; (yspeed &lt; 0))

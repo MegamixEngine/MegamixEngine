@@ -226,12 +226,16 @@ if (entityCanStep())
           <argument>
             <kind>1</kind>
             <string>/// On spawn/Despawn
-xscaleStorage = 0;
-image_index = 0;
-xspeed = 0;
-yspeed = -1;
-yOffset = yOffsetMax;
-imageTimer = 1;
+event_inherited();
+if(spawned)
+{
+    xscaleStorage = 0;
+    image_index = 0;
+    xspeed = 0;
+    yspeed = -1;
+    yOffset = yOffsetMax;
+    imageTimer = 1;
+}
 </string>
           </argument>
         </arguments>
@@ -288,7 +292,9 @@ if (b &gt;= bbox_bottom - yOffset)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (iFrames == 1 || iFrames == 3)
+            <string>if(!spawned)
+    exit;
+if (iFrames == 1 || iFrames == 3)
 {
     d3d_set_fog(true, c_white, 0, 0);
 }

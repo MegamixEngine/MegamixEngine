@@ -342,8 +342,7 @@ killed = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// handles stuff differently than the Puny Regular Enemies....
-if(!spawned)
+            <string>if(!spawned)
     exit;
 if (introTimer &gt; 0 &amp;&amp; doesIntro)
 {
