@@ -24,6 +24,11 @@ if (!isHit && (_IgnoreGround || ground))
         }
         else
         {
+            if (instance_exists(objBreakDash))
+            { 
+                xspeed = 0; //stops you dead in your tracks.
+            }
+            
             shootTimer = 0;
             isShocked = true;
             isShoot = 0;
