@@ -721,7 +721,7 @@ if (newControls == 2)
                 global.joystick_slideKey[pID] = key;
                 current = 'PREV WPN';
                 break;
-            case 'PREVIOUS WPN':
+            case 'PREV WPN':
                 global.joystick_weaponSwitchLeftKey[pID] = key;
                 current = 'NEXT WPN';
                 break;

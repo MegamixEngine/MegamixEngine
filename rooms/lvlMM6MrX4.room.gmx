@@ -327,7 +327,6 @@ with objDiarn
     <instance objName="objPowerSlam" x="2432" y="320" name="inst_C918D8C2" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objReflectBlockLarge" x="2464" y="272" name="inst_41ECBDCC" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;&#xA;grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="3136" y="672" name="inst_5B3713E5" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;&#xA;destroySolids = false;&#xA;" scaleX="2" scaleY="3" colour="4294967295" rotation="0"/>
-    <instance objName="objDefaultSpawn" x="3456" y="624" name="inst_5AABDBA2" locked="0" code="if (!global.debugSkipStageMode)&#xA;    instance_destroy();&#xA;    &#xA;else with object_index&#xA;{&#xA;    if (id != other.id)&#xA;        instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMrX4" x="96" y="1296" w="16" h="16" xo="144" yo="64" id="11294375" name="inst_FBE38FE1" depth="9999999" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
