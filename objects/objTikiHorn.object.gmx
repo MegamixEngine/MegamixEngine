@@ -34,6 +34,7 @@ contactDamage = 2;
 image_speed = 0.25;
 
 respawn = false;
+isTargetable = false;
 
 respawnRange = -1;
 despawnRange = -1;

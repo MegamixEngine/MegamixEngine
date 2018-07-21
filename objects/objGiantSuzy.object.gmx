@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>// Using Giant Suzy:
 /*
-Since she can spend quite some time on the cieling, Giant Suzy works best in smaller rooms, almost boss corridor-like in size.
+Since it can spend quite some time on the ceiling, Giant Suzy works best in smaller rooms, almost boss corridor-like in size.
 */
 
 event_inherited();
@@ -50,6 +50,9 @@ hasTriggeredQuake = false;
 
 introType = 0;
 shakeTimer = 0;
+
+init = 0;
+col = 0; //SET IN CREATION CODE: use this to set Giant Suzy's colours.
 
 spd = 0;
 phase = 0;
@@ -146,6 +149,24 @@ enemyDamageValue(objIceSlasher, 1);
             <kind>1</kind>
             <string>// leave this. this is needed.
 event_inherited();
+
+if (!init)
+{
+    switch (col)
+    {
+        // Red colours (default)
+        case 0:
+            sprite_index = sprGiantSuzy;
+            healthBarPrimaryColor[1] = 18;
+            healthBarSecondaryColor[1] = 45;
+        // Official art colours
+        case 1:
+            sprite_index = sprGiantSuzyArtColours;
+            healthBarPrimaryColor[1] = 28;
+            healthBarSecondaryColor[1] = 42;
+    }
+    init++;
+}
 
 // all of giant suzy's events trigger when the game isn't frozen.
 if (!global.frozen)

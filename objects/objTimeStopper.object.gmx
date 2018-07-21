@@ -181,7 +181,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weaponSetup("TIME STOPPER", global.nesPalette[17], global.nesPalette[44], sprWeaponIconsFlashStopper);
+            <string>weaponSetup("TIME STOPPER", global.nesPalette[17], global.nesPalette[44], sprWeaponIconsTimeStopper);
 </string>
           </argument>
         </arguments>

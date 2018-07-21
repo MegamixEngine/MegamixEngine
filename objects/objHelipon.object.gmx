@@ -147,7 +147,7 @@ if (entityCanStep())
                 }
                 break;
             case 7:
-                if (actionTimer == 80)
+                if (actionTimer == 40)
                 {
                     action += 1;
                     image_index = 8;

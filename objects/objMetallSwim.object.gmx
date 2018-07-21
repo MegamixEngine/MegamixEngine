@@ -145,7 +145,7 @@ if (entityCanStep())
                 ID.xscale = image_xscale;
                 ID.sprite_index = sprEnemyBullet;
             }
-            playSFX(sfxEnemyShoot);
+            //playSFX(sfxEnemyShoot);
         }
         else if (cooldownTimer == 90)
         {
