@@ -104,6 +104,11 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
                     i.image_index += 2;
                 }
             }
+            
+            if (gravDir == -1)
+            {
+                i.image_yscale *= -1;
+            }
         }
         else
         {
