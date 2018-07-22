@@ -150,7 +150,7 @@ if (!global.frozen)
 
 if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(20, -3, objMagnetBeam, 3, 1, 1, 0);
+    i = fireWeapon(20, -3 * image_yscale, objMagnetBeam, 3, 1, 1, 0);
     if (instance_exists(i))
     {
         playSFX(sfxBlockZap);
@@ -216,8 +216,8 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
         {
             var draw = min(sprite_get_width(sprite_index) - img, length);
             
-            draw_sprite_part_ext(sprite_index, 0, img, 0, draw, sprite_height, round(x) + ((sLength - length) * sign(image_xscale)), round(y), sign(image_xscale), image_yscale, global.primaryCol[playerID], 1);
-            draw_sprite_part_ext(sprite_index, 1, img, 0, draw, sprite_height, round(x) + ((sLength - length) * sign(image_xscale)), round(y), sign(image_xscale), image_yscale, global.secondaryCol[playerID], 1);
+            draw_sprite_part_ext(sprite_index, 0, img, 0, draw, sprite_height * image_yscale, round(x) + ((sLength - length) * sign(image_xscale)), round(y), sign(image_xscale), image_yscale, global.primaryCol[playerID], 1);
+            draw_sprite_part_ext(sprite_index, 1, img, 0, draw, sprite_height * image_yscale, round(x) + ((sLength - length) * sign(image_xscale)), round(y), sign(image_xscale), image_yscale, global.secondaryCol[playerID], 1);
             
             length -= draw;
             img = 0;
@@ -236,8 +236,8 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
                 continue;
             }
             
-            draw_sprite_ext(sprMagnetBeamEnd, floor(timer / 4), x + xs, round(y), 1, 1, image_angle, global.primaryCol[playerID], image_alpha);
-            draw_sprite_ext(sprMagnetBeamEnd, floor(timer / 4) + 1, x + xs, round(y), 1, 1, image_angle, global.secondaryCol[playerID], image_alpha);
+            draw_sprite_ext(sprMagnetBeamEnd, floor(timer / 4), x + xs, round(y), 1, image_yscale, image_angle, global.primaryCol[playerID], image_alpha);
+            draw_sprite_ext(sprMagnetBeamEnd, floor(timer / 4) + 1, x + xs, round(y), 1, image_yscale, image_angle, global.secondaryCol[playerID], image_alpha);
         }
     }
 }

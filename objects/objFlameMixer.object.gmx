@@ -93,6 +93,7 @@ if (!global.frozen)
         image_index += 0.325;
         drainDelay -= 1;
         
+        image_yscale = parent.image_yscale;
         
         if (cDistance &lt; 24)
         {

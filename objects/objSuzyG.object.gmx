@@ -124,14 +124,14 @@ if (entityCanStep() &amp;&amp; instance_exists(target))
                 objMM2MetBullet);
             {
                 ID.dir = 180;
-                ID.xscale = image_xscale;
+                ID.image_xscale = image_xscale;
                 ID.sprite_index = sprEnemyBullet;
             }
             ID = instance_create(x, spriteGetYCenter() + (3 * sign(grav)),
                 objMM2MetBullet);
             {
                 ID.dir = 0;
-                ID.xscale = image_xscale;
+                ID.image_xscale = image_xscale;
                 ID.sprite_index = sprEnemyBullet;
             }
             
