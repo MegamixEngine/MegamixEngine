@@ -531,7 +531,6 @@
     <instance objName="objWater" x="1168" y="944" name="inst_58C31B25" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSpike" x="1056" y="816" name="inst_D00668FD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSpike" x="1072" y="864" name="inst_9F1176B1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDefaultSpawn" x="2944" y="176" name="inst_9F70EF30" locked="0" code="if (!global.debugSkipStageMode)&#xA;    instance_destroy();&#xA;    &#xA;else with object_index&#xA;{&#xA;    if (id != other.id)&#xA;        instance_destroy();&#xA;}" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMM4Wily1" x="448" y="432" w="16" h="16" xo="240" yo="16" id="11288537" name="inst_7727B126" depth="10000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

@@ -239,7 +239,6 @@ if global.difficulty == DIFF_HARD
     <instance objName="objEasyPlatform24" x="3232" y="912" name="inst_5E56DF0C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform24" x="3256" y="912" name="inst_E7B5AD57" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objYashichi" x="1664" y="656" name="inst_08D2E9C3" locked="0" code="if (global.difficulty &gt; DIFF_EASY)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDefaultSpawn" x="5760" y="1376" name="inst_908814CE" locked="0" code="if (!global.debugSkipStageMode)&#xA;    instance_destroy();&#xA;    &#xA;else with object_index&#xA;{&#xA;    if (id != other.id)&#xA;        instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="2952" y="576" name="inst_163A872E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="1648" y="432" name="inst_19845961" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHaehaey" x="1088" y="64" name="inst_230A83E3" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

@@ -90,7 +90,7 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
         
         // Releasing the ladder
         var jump = global.keyJumpPressed[playerID] && yDir != -gravDir && !playerIsLocked(PL_LOCK_CLIMB);
-        if ((ground && yDir == gravDir) || !place_meeting(x, y, objLadder) || jump)
+        if ((ground && yDir == gravDir) || !place_meeting(bbox_left, y, objLadder) || !place_meeting(bbox_right, y, objLadder) || jump)
         {
             if (!place_meeting(x, y, objLadder))
             {

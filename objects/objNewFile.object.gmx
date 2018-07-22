@@ -35,7 +35,6 @@ optionText[0] = "Back...";
 optionText[1] = "Easy";
 optionText[2] = "Normal";
 optionText[3] = "Hard";
-optionText[4] = "Skip";
 </string>
           </argument>
         </arguments>
@@ -62,7 +61,7 @@ optionText[4] = "Skip";
 
 if (!controlsLocked)
 {
-    var selectionCount = 5;
+    var selectionCount = 4;
     
     // switch selection
     var yDir = 0;

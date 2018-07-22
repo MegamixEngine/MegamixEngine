@@ -8,8 +8,8 @@ if (!ground)
     
     if (object_index == objMegaman)
     {
-        grav = (0.25 * gravfactor * gravDir) * !playerIsLocked(PL_LOCK_GRAVITY);
-        waterGrav = gravWater;
+        grav = (gravAccel * gravfactor * gravDir) * !playerIsLocked(PL_LOCK_GRAVITY);
+        waterGrav = (gravWater * gravfactor * gravDir) * !playerIsLocked(PL_LOCK_GRAVITY);
     }
     
     if (inWater)

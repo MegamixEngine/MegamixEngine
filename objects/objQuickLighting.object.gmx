@@ -187,6 +187,8 @@ draw_set_alpha(1 - roundedLightingLevel);
 {
     draw_rectangle(global.sectionLeft, global.sectionTop, global.sectionRight, global.sectionBottom, false);
 }
+
+draw_set_alpha(1);
 </string>
           </argument>
         </arguments>

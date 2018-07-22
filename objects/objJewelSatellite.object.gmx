@@ -216,6 +216,8 @@ if (!global.frozen)
             {
                 ys -= parent.gravDir * 4;
             }
+            
+            image_yscale = parent.image_yscale;
         }
         else
         {

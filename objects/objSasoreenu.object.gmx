@@ -123,7 +123,7 @@ if (entityCanStep())
     }
     
     // Rise up if in quicksand
-    if (place_meeting(x, y, objQuickSand) &amp;&amp; !sink)
+    if (place_meeting(x, y, objQuickSand)) &amp;&amp; (objQuickSand.noRain) &amp;&amp; (!sink)
     {
         calibrateDirection();
         inQuicksand = true;

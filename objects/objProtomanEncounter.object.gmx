@@ -47,6 +47,9 @@ startIntro = true;
 // set this to something in creation code if desired
 itemDrop = -1;
 protoLock = false;
+
+// @cc if true, protoman will go away instantly when he does his thing instead of waiting
+instantLeave = false;
 </string>
           </argument>
         </arguments>
@@ -74,10 +77,12 @@ protoLock = false;
 if (entityCanStep())
 {
     with (objBossBarrier)
+    {
         delay = 24;
+    }
+        
     if (startIntro)
     {
-        startIntro = false;
         protoLock = lockPoolLock(global.playerLock[PL_LOCK_MOVE],
                     global.playerLock[PL_LOCK_SLIDE],
                     global.playerLock[PL_LOCK_SHOOT],
@@ -87,6 +92,7 @@ if (entityCanStep())
                     global.playerLock[PL_LOCK_JUMP],
                     global.playerLock[PL_LOCK_PAUSE],
                     global.playerFrozen);
+                    
         with (objMegaman)
         {
             isSlide = false;
@@ -103,58 +109,101 @@ if (entityCanStep())
             {
                 image_xscale = -1;
             }
-            if (abs(other.maxFanOutDistance) &gt; 0)
+            /*if (abs(other.maxFanOutDistance) &gt; 0)
             {
                 playerFanOut(20 * image_xscale, other.maxFanOutDistance);
-            }
+            }*/
         }
+        
         stopMusic();
         playSFX(sfxWhistle);
-        visible = true;
+        visible = false;
         y = view_yview[0] + 8;
+        startIntro = false;
     }
     if (phase == 2)
     {
         y -= 8;
         if (y &lt; view_yview[0] - 16)
+        {
             instance_destroy();
+        }
     }
     else if (y &lt; ystart) // descend
-        y += 8;
+    {
+        if !audio_is_playing(sfxWhistle)
+        {
+            y += 8;
+            visible = true;
+        }
+    }
     else
     {
         y = ystart;
+        
         if (phase == 0)
+        {
             animTimer++;
+            if animTimer == 1
+            {
+                playSFX(sfxTeleportIn);
+            }
+        }
         else
+        {
             animTimer--;
+        }
+        
         image_index = 3 - (animTimer div 4 mod 2);
+        
         if (animTimer &gt; 16)
         {
             image_index = 0;
-            if (animTimer &gt; 100 + 100 * (itemDrop != -1))
+            if (animTimer &gt; 150)
             {
                 animTimer = 15;
                 phase = 1;
             }
-            if (itemDrop != -1 &amp;&amp; animTimer == 150)
+            
+            // item dropping
+            if (itemDrop != -1 &amp;&amp; animTimer == 100)
             {
                 with (instance_create(x, y, itemDrop))
                 {
-                    xspeed = other.image_xscale * 2;
+                    xspeed = other.image_xscale * 1.5;
                     yspeed = -3;
+                }
+            
+                // there he goes
+                if instantLeave
+                {
+                    animTimer = 151;
+                }
+            }
+            // break blocks
+            else if (itemDrop == -1 &amp;&amp; animTimer == 75)
+            {
+                with (objBossBarrier)
+                {
+                    delay = 0;
+                    event_user(0);
+                    playSFX(sfxExplosion);
+                }
+                
+                // there he goes 2
+                if instantLeave
+                {
+                    animTimer = 151;
                 }
             }
         }
+        
         if (animTimer &lt; 0)
         {
             image_index = 1;
             phase = 2;
-            with (objBossBarrier)
-            {
-                delay = 0;
-                event_user(0);
-            }
+            playSFX(sfxTeleportOut);
+            
             resumeMusic();
             lockPoolRelease(protoLock);
         }

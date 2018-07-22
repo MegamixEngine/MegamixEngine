@@ -80,6 +80,7 @@ if (!global.frozen)
         {
             x = parent.x + parent.image_xscale;
             y = parent.y - (20 * sign(image_yscale));
+            image_yscale = parent.image_yscale;
         }
         else
         {

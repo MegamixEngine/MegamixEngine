@@ -26,10 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
 respawn = false;
 healthpointsStart = 4;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+
+killOverride = false;
 
 // Enemy specific code
 xspeed = 0;

@@ -132,9 +132,9 @@ if (!global.frozen &amp;&amp; canDamage)
     }
     else if (phase == 1) // Attached to solids
     {
-        var gravDir = 1;
-        if (instance_exists(parent))
-            gravDir = parent.gravDir;
+        var gravDir = sign(grav);
+        //if (instance_exists(parent))
+        //    gravDir = parent.gravDir;
         if (!snapToGround(spd, 4, 1))
         {
             event_user(EV_DEATH); // Die if the script fails

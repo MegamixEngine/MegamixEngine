@@ -340,10 +340,14 @@ else
           <argument>
             <kind>1</kind>
             <string>with (objBombManBomb)
+{
     instance_create(x, y, objExplosion);
-instance_destroy();
-with (objBombManBlast)
     instance_destroy();
+}
+with (objBombManBlast)
+{
+    instance_destroy();
+}
 event_inherited();
 </string>
           </argument>
