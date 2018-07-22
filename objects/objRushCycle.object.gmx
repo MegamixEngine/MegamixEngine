@@ -172,7 +172,7 @@ if (!global.frozen)
             // Take away ammo
             global.ammo[playerID, global.weapon[playerID]] = max(0,
                 global.ammo[playerID, global.weapon[playerID]]
-                - ((1 / 120) / (global.energySaver + 1)));
+                - ((1 / 60) / (global.energySaver + 1)));
             
             turning = 0;
             

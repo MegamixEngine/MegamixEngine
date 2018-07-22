@@ -1354,7 +1354,7 @@ depth = depthstart;
             // Weapons
             if (global.weapon[z] != 0) // Weapon energy
             {
-                c = ceil(global.ammo[z, global.weapon[z]]);
+                c = round(global.ammo[z, global.weapon[z]]);
             }
             else // Charge bar
             {
@@ -1398,10 +1398,10 @@ depth = depthstart;
     }
     
     var bossFade = 0;
-    var healthIndex=0;
+    var healthIndex = 0;
     with (prtBoss) // Boss healthbars
     {
-        if (drawHealthBar &amp;&amp; healthParent==-1)
+        if (drawHealthBar &amp;&amp; healthParent == -1)
         {
             var dxx = dx + ((healthIndex - 1) * 8); // Multibosses
             
@@ -1411,27 +1411,27 @@ depth = depthstart;
             // Choose color to draw
             var currentExtraHealthBar = 0;
             var myPrimaryColor, mySecondaryColor;
-            var _currentHealth=0;
+            var _currentHealth = 0;
             
-            if(fillingHealthBar)//Intro health bar
+            if (fillingHealthBar) //Intro health bar
             {
-                _currentHealth=ceil(healthBarHealth);
+                _currentHealth = ceil(healthBarHealth);
             }
             else 
             {
-                if(shareMode==1)//Combine health bars if needed
+                if (shareMode==1) //Combine health bars if needed
                 {
-                    with(prtBoss)
+                    with (prtBoss)
                     {
-                        if(id==other.id||(healthParent==other.id&amp;&amp;drawHealthBar))
+                        if (id == other.id || (healthParent==other.id &amp;&amp; drawHealthBar))
                         {
-                            _currentHealth+=healthpoints;
+                            _currentHealth += healthpoints;
                         }
                     }
                 }
                 else
                 {
-                    _currentHealth=healthpoints;
+                    _currentHealth = healthpoints;
                 }
             }
             // draw the health within the healthbar.
@@ -1466,7 +1466,7 @@ depth = depthstart;
                     dy + (sprite_get_height(sprHealthbarBackground)) - ((i - (currentExtraHealthBar * 28)) * 2),
                     1, 1, 0, mySecondaryColor, 1);
             }
-            healthIndex+=1;
+            healthIndex += 1;
         }
         
         if (isIntro &amp;&amp; introType == 3) // MM6 intro fading

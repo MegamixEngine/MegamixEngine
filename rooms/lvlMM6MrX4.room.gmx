@@ -173,7 +173,7 @@ with objDiarn
     <instance objName="objWeaponEnergySmall" x="476" y="896" name="inst_D1727448" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergySmall" x="484" y="896" name="inst_A7FCDF11" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPeat" x="1104" y="896" name="inst_2AD267C7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPeat" x="1360" y="896" name="inst_706EA86B" locked="0" code="if global.difficulty == DIFF_EASY&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPeat" x="1360" y="896" name="inst_706EA86B" locked="0" code="if global.difficulty == DIFF_EASY&#xA;{&#xA;    instance_destroy();&#xA;}" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPeat" x="1488" y="832" name="inst_C691FCAB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWallBlaster2" x="1184" y="840" name="inst_D0A8A8C5" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWallBlaster2" x="1328" y="872" name="inst_853D15C3" locked="0" code="if global.difficulty == DIFF_EASY&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -186,15 +186,15 @@ with objDiarn
     <instance objName="objShieldAttackerGTR" x="1488" y="384" name="inst_3609803D" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSW525" x="1472" y="48" name="inst_668BECC1" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
     <instance objName="objSW525" x="1616" y="48" name="inst_F748C980" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
-    <instance objName="objSW525" x="1776" y="80" name="inst_A26ED379" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
+    <instance objName="objSW525" x="1776" y="80" name="inst_A26ED379" locked="0" code="if global.difficulty == DIFF_EASY&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
     <instance objName="objSW525" x="1888" y="48" name="inst_64F2E070" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
-    <instance objName="objSW525" x="2000" y="48" name="inst_19F06824" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
+    <instance objName="objSW525" x="2000" y="48" name="inst_19F06824" locked="0" code="if global.difficulty == DIFF_EASY&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
     <instance objName="objSW525" x="2064" y="117" name="inst_A76C8CFF" locked="0" code="startDir = 1;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSW525" x="2160" y="85" name="inst_C8DCBAE5" locked="0" code="startDir = 1;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSW525" x="2240" y="117" name="inst_F1B212FA" locked="0" code="startDir = 1;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLife" x="2312" y="80" name="inst_D9B0C87C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSW525" x="2432" y="117" name="inst_4CB7ABE7" locked="0" code="startDir = 1;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSW525" x="2480" y="117" name="inst_74536A9A" locked="0" code="startDir = 1;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSW525" x="2480" y="117" name="inst_74536A9A" locked="0" code="startDir = 1;&#xA;&#xA;if global.difficulty == DIFF_EASY&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objETank" x="2528" y="656" name="inst_B69ADFF7" locked="0" code="if global.difficulty == DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPeat" x="2608" y="656" name="inst_C463D810" locked="0" code="if global.difficulty == DIFF_EASY&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPeat" x="2736" y="592" name="inst_A1781AFC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -327,6 +327,18 @@ with objDiarn
     <instance objName="objPowerSlam" x="2432" y="320" name="inst_C918D8C2" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objReflectBlockLarge" x="2464" y="272" name="inst_41ECBDCC" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;&#xA;grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="3136" y="672" name="inst_5B3713E5" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;&#xA;destroySolids = false;&#xA;" scaleX="2" scaleY="3" colour="4294967295" rotation="0"/>
+    <instance objName="objEasyPlatform32" x="2768" y="640" name="inst_EE43FA65" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEasyPlatform32" x="2832" y="640" name="inst_4421F0F7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEasyPlatform32" x="2624" y="672" name="inst_E201AE67" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEasyPlatform32" x="2688" y="672" name="inst_318C7529" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEasyPlatform32" x="3024" y="560" name="inst_3947DFA7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEasyPlatform32" x="3056" y="560" name="inst_943FD9F0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEasyPlatform32" x="3088" y="560" name="inst_8D7D489B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEasyPlatform32" x="3120" y="560" name="inst_E5A6F258" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEasyPlatform32" x="3152" y="560" name="inst_38FE0AA1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEasyPlatform32" x="3168" y="672" name="inst_C3572450" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEasyPlatform32" x="3248" y="640" name="inst_D258A5A4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objEasyPlatform16" x="1712" y="400" name="inst_B721FB16" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMrX4" x="96" y="1296" w="16" h="16" xo="144" yo="64" id="11294375" name="inst_FBE38FE1" depth="9999999" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

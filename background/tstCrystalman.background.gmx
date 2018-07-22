@@ -13,7 +13,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>256</width>
-  <height>240</height>
+  <width>288</width>
+  <height>256</height>
   <data>images\tstCrystalman.png</data>
 </background>
