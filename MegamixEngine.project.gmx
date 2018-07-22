@@ -2391,6 +2391,7 @@
         <sprites name="Bomb">
           <sprite>sprites\sprBombMan</sprite>
           <sprite>sprites\sprBombManBomb</sprite>
+          <sprite>sprites\sprBombManBlast</sprite>
           <sprite>sprites\mskBombMan</sprite>
         </sprites>
         <sprites name="Cut">
