@@ -29,6 +29,7 @@
 event_inherited();
 
 isSolid = 1;
+isTargetable = false;
 
 grav = 0;
 blockCollision = 0;
