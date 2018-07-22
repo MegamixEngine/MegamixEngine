@@ -82,7 +82,6 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 objHarmfulExplosion);
             playSFX(sfxMM3Explode);
             dead = true;
-            visible = false;
         }
         
         image_index = (60 - countTimer) / 10;

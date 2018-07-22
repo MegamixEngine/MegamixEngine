@@ -87,6 +87,27 @@ if (entityCanStep())
                     global.playerLock[PL_LOCK_JUMP],
                     global.playerLock[PL_LOCK_PAUSE],
                     global.playerFrozen);
+        with (objMegaman)
+        {
+            isSlide = false;
+            slideLock = lockPoolRelease(slideLock);
+            slideChargeLock = lockPoolRelease(slideChargeLock);
+            mask_index = mskMegaman;
+            xspeed = 0;
+            yspeed = 0;                   
+            if (x &lt; other.x)
+            {
+                image_xscale = 1;
+            }
+            else
+            {
+                image_xscale = -1;
+            }
+            if (abs(other.maxFanOutDistance) &gt; 0)
+            {
+                playerFanOut(20 * image_xscale, other.maxFanOutDistance);
+            }
+        }
         stopMusic();
         playSFX(sfxWhistle);
         visible = true;
@@ -135,7 +156,7 @@ if (entityCanStep())
                 event_user(0);
             }
             resumeMusic();
-            playerFreeMovement(protoLock);
+            lockPoolRelease(protoLock);
         }
     }
 }

@@ -69,10 +69,10 @@
     <instance objName="objSpike" x="48" y="64" name="inst_FD584F96" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSuperCutterSpawner" x="1424" y="176" name="inst_8FCF12BC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSuperCutterSpawner" x="912" y="1136" name="inst_ED8C8621" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlader" x="336" y="2016" name="inst_3ADF9FF3" locked="0" code="faction = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlader" x="656" y="2016" name="inst_3B68B3DC" locked="0" code="pierces = 0;&#xA;faction = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlader" x="624" y="2064" name="inst_CF7C7FA4" locked="0" code="pierces = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlader" x="576" y="2000" name="inst_E1B270B0" locked="0" code="pierces = 0;&#xA;faction = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlader" x="336" y="2016" name="inst_3ADF9FF3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlader" x="656" y="2016" name="inst_3B68B3DC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlader" x="624" y="2064" name="inst_CF7C7FA4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlader" x="576" y="2000" name="inst_E1B270B0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlader" x="1936" y="144" name="inst_F8595D8E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlader" x="1952" y="112" name="inst_3583DF10" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlader" x="1888" y="80" name="inst_B8EC1589" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

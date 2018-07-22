@@ -73,7 +73,6 @@ if (!global.frozen &amp;&amp; !dead)
     }
     else
     {
-        canHit = true;
         image_index += 0.35;
         if (image_index &gt;= 7 &amp;&amp; looped &lt; loops)
         {
@@ -94,7 +93,6 @@ else if (dead || instance_exists(objSectionSwitcher))
     image_index = 0;
     timer = 0;
     looped = 0;
-    canHit = false;
 }
 </string>
           </argument>

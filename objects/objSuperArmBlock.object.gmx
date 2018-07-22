@@ -59,6 +59,7 @@ contactDamage = 0;
 
 grav = 0;
 blockCollision = 0;
+shiftVisible=1;
 </string>
           </argument>
         </arguments>

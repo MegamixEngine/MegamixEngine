@@ -154,7 +154,6 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objEasyPlatform16" x="2448" y="592" name="inst_CF91B9E0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objYashichi" x="2736" y="1104" name="inst_97412533" locked="0" code="if (global.difficulty &gt; DIFF_EASY)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform16" x="2320" y="128" name="inst_70398A86" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDefaultSpawn" x="2944" y="1104" name="inst_978229EE" locked="0" code="if (!global.debugSkipStageMode)&#xA;    instance_destroy();&#xA;    &#xA;else with object_index&#xA;{&#xA;    if (id != other.id)&#xA;        instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSFXEmitter" x="496" y="16" name="inst_D9E1243F" locked="0" code="sfx = sfxGutsLift;&#xA;interval = -1; // loop&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSFXEmitter" x="688" y="16" name="inst_C75968EC" locked="0" code="sfx = sfxGutsLift;&#xA;interval = -1; // loop" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSFXEmitter" x="912" y="16" name="inst_A3D17F9E" locked="0" code="sfx = sfxGutsLift;&#xA;interval = -1; // loop&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

@@ -101,7 +101,7 @@ itemDescription[1, 0] = "Lowers the amount of weapon energy that's consumed when
 //itemPurchaseAction[1, 0] = "global.energySaver = true; itemUnavailable[1, 0] = 1;";
 
 itemUnavailable[2, 0] = global.weaponLocked[global.weaponID[? objRushCycle]] == 0;
-itemIcon[2, 0] = sprWeaponIconsRushCycle;
+itemIcon[2, 0] = sprRushBikeShopIcon;
 itemPrice[2, 0] = 100;
 itemName[2, 0] = "Rush Bike";
 itemDescription[2, 0] = "Turns rush into a motorcycle, allowing you to travel at high speeds!";

@@ -93,8 +93,11 @@ if (entityCanStep())
         a.contactDamage = 3;
         a.yspeed = -4;
         a.target = target;
-        if (instance_exists(target))
-            xspeed = xSpeedAim(x, y, target.x, target.y);
+        with (a)
+        {
+            if (instance_exists(target))
+                xspeed = xSpeedAim(x, y, target.x, target.y,yspeed,grav);
+        }
     }
     if (shootTimer == 120)
     {

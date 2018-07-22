@@ -193,7 +193,6 @@ mySpeed = 1</code>
     <instance objName="objCountBomb" x="2144" y="986" name="inst_4A0004AC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWTank" x="2188" y="848" name="inst_F864D47C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillMan" x="4048" y="176" name="inst_54F7C3AC" locked="0" code="elementName = &quot;chill&quot;;&#xA;elementCode = &quot;weaponReward(objChillShot);&quot;;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDefaultSpawn" x="3712" y="160" name="inst_659FD62F" locked="0" code="if (!global.debugSkipStageMode)&#xA;    instance_destroy();&#xA;    &#xA;else with object_index&#xA;{&#xA;    if (id != other.id)&#xA;        instance_destroy();&#xA;}" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1280" y="0" name="inst_81A9FDDF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1280" y="224" name="inst_B5461749" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1280" y="448" name="inst_A843C823" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
