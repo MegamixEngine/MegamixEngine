@@ -162,7 +162,8 @@ if (!global.frozen)
             <kind>1</kind>
             <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    if (!instance_exists(objRushCoil) &amp;&amp; !instance_exists(objRushTeleport))
+    if (!instance_exists(objRushCoil) &amp;&amp; !instance_exists(objRushTeleport)
+    &amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
     {
         i = fireWeapon(26, 0, objRushTeleport, 4, 0, 0, 0);
         with (i)

@@ -36,6 +36,8 @@ contactDamage = 4;
 ground = false;
 attackTimer = 0;
 
+introType = 2;
+
 // grav = 0;
 phase = 0;
 spd = 2;

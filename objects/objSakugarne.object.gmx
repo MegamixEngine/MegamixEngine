@@ -34,14 +34,16 @@ contactDamage = 4;
 penetrate = 3;
 pierces = 2;
 
-canHit = false;
+blockCollision = 1;
+grav = gravAccel;
 
+canDamage = false;
+
+// Enemy specific
 active = false;
 
 bounce = 3;
 
-blockCollision = 1;
-grav = gravAccel;
 riderPhysicsAllowed = false;
 </string>
           </argument>
@@ -145,7 +147,6 @@ if (!global.frozen)
                     {
                         yspeed = 0;
                         active = true;
-                        canHit = true;
                         canDamage = true;
                         dontDieToScreenTransitions = true;
                         shiftVisible = 2;
@@ -300,7 +301,8 @@ if (other.reflectable == 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT)
+&amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
 {
     i = fireWeapon(26, 0, objRushTeleport, 1, 0, 0, 0);
     with (i)

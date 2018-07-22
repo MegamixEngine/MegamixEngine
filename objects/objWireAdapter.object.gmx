@@ -207,11 +207,11 @@ if (!global.frozen)
             y -= 1;
         }
         
-        if (y &lt; view_yview + 4 &amp;&amp; gravDir == 1)
+        if (y &lt; view_yview + 8 &amp;&amp; gravDir == 1)
         {
             yspeed = 4;
         }
-        if (y &gt; view_yview + view_hview - 4 &amp;&amp; gravDir == -1)
+        if (y &gt; view_yview + view_hview - 8 &amp;&amp; gravDir == -1)
         {
             yspeed = -4;
         }

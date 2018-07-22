@@ -38,6 +38,8 @@ pierces = 2;
 attackDelay = 4;
 killOverride = true;
 
+despawnRange = 64; // don't be despawned by scrolling offscreen
+
 xst = image_xscale;
 
 playSFX(sfxSlashClaw);

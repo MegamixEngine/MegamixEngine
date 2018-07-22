@@ -13,7 +13,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>240</width>
-  <height>224</height>
-  <data>images\tstTomahawkMan.png</data>
+  <width>208</width>
+  <height>192</height>
+  <data>images\tstBrightmanAnimated1.png</data>
 </background>

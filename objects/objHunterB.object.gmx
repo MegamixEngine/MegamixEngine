@@ -33,6 +33,8 @@ healthpoints = healthpointsStart;
 pose = sprHunterB;
 poseImgSpeed = 4 / 60;
 contactDamage = 4;
+introType = 2;
+
 ground = false;
 attackTimer = 0;
 onOrOff = false;
