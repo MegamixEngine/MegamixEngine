@@ -3556,7 +3556,7 @@
         <background>background\tstMM4Wily4</background>
         <background>background\tstTeleporter</background>
         <backgrounds name="Animated">
-          <background>background\tstTeleporter1</background>
+          <background>background\tstBrightmanAnimated1</background>
           <background>background\tstPharohManFlame1</background>
           <background>background\tstPharohManFlame2</background>
           <background>background\tstPharohManFlame3</background>
@@ -3565,6 +3565,7 @@
           <background>background\tstPharohManStars1</background>
           <background>background\tstPharohManStars2</background>
           <background>background\tstPharohManStars3</background>
+          <background>background\tstTeleporter1</background>
         </backgrounds>
       </backgrounds>
       <backgrounds name="MM5">
@@ -3640,6 +3641,7 @@
         <background>background\tstMM9Wily2</background>
         <background>background\tstMM9Wily3</background>
         <background>background\tstMM9Wily4</background>
+        <background>background\tstFakeman</background>
         <background>background\tstMM9Endless</background>
       </backgrounds>
       <backgrounds name="MM10">
@@ -3660,6 +3662,7 @@
         <background>background\tstMM10Enker</background>
         <background>background\tstMM10Punk</background>
         <background>background\tstMM10Lab</background>
+        <background>background\tstMM10Endless</background>
         <backgrounds name="Animated">
           <background>background\tstCommandoManAnimated1</background>
           <background>background\tstCommandoManAnimated2</background>
