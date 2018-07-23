@@ -79,7 +79,7 @@ breakDashLock = false;
 
 if (instance_exists(parent))
 {
-    breakDashLock = lockPoolRelease(breakDashLock);
+    lockPoolRelease(breakDashLock);
 }
 
 with (parent)
@@ -149,12 +149,16 @@ if (!global.frozen)
     
     with (parent) // Mega Man anim + movement forcing
     {
-        if (!other.breakDashLock)
+        if (!other.breakDashLock &amp;&amp; ground)
+        {
             other.breakDashLock = lockPoolLock(
                 localPlayerLock[PL_LOCK_MOVE],
                 localPlayerLock[PL_LOCK_SHOOT],
                 localPlayerLock[PL_LOCK_SLIDE],
                 localPlayerLock[PL_LOCK_TURN]);
+            xspeed=0;
+            yspeed=0;
+        }
         
         if (!ground) // No air break dashes, sorry :c
         {

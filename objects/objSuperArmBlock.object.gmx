@@ -59,6 +59,7 @@ contactDamage = 0;
 
 grav = 0;
 blockCollision = 0;
+shiftVisible=1;
 </string>
           </argument>
         </arguments>
@@ -112,6 +113,7 @@ if (superArmHoldOwner != noone)
             <kind>1</kind>
             <string>// remove solids under self
 depth = layer;
+
 carveSolid(bbox_left, bbox_top, bbox_bottom, bbox_right, true);
 with (objSolid)
 {
@@ -119,6 +121,17 @@ with (objSolid)
     {
         other.isSolid = true;
         instance_destroy();
+    }
+}
+
+// place pickups under the super arm block so they become Hidden Boys
+if (place_meeting(x, y, prtPickup))
+{
+    with instance_place(x, y, prtPickup)
+    {
+        depth = other.layer + 1;
+        blockCollision = 0;
+        grav = 0;
     }
 }
 

@@ -1356,6 +1356,7 @@
             <sprite>sprites\sprWeaponIconsBrickWeapon</sprite>
             <sprite>sprites\sprWeaponIconsPlantBarrier</sprite>
             <sprite>sprites\sprWeaponIconsPowerStone</sprite>
+            <sprite>sprites\sprWeaponIconsTimeStopper</sprite>
             <sprite>sprites\sprWeaponIconsIceSlasher</sprite>
           </sprites>
         </sprites>
@@ -2390,6 +2391,7 @@
         <sprites name="Bomb">
           <sprite>sprites\sprBombMan</sprite>
           <sprite>sprites\sprBombManBomb</sprite>
+          <sprite>sprites\sprBombManBlast</sprite>
           <sprite>sprites\mskBombMan</sprite>
         </sprites>
         <sprites name="Cut">
@@ -2779,6 +2781,7 @@
         </sprites>
         <sprites name="GiantSuzy">
           <sprite>sprites\sprGiantSuzy</sprite>
+          <sprite>sprites\sprGiantSuzyArtColours</sprite>
         </sprites>
         <sprites name="Punk">
           <sprite>sprites\sprPunk</sprite>
@@ -2795,6 +2798,7 @@
         </sprites>
         <sprites name="Ballade">
           <sprite>sprites\sprBallade1</sprite>
+          <sprite>sprites\sprBallade2</sprite>
           <sprite>sprites\sprBalladeBalladeCracker</sprite>
           <sprite>sprites\mskBallade</sprite>
         </sprites>
@@ -3422,6 +3426,7 @@
       <sprite>sprites\sprRecPlay</sprite>
       <sprite>sprites\sprSavingIcon</sprite>
       <sprite>sprites\sprEnergySaver</sprite>
+      <sprite>sprites\sprRushBikeShopIcon</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -3551,7 +3556,7 @@
         <background>background\tstMM4Wily4</background>
         <background>background\tstTeleporter</background>
         <backgrounds name="Animated">
-          <background>background\tstTeleporter1</background>
+          <background>background\tstBrightmanAnimated1</background>
           <background>background\tstPharohManFlame1</background>
           <background>background\tstPharohManFlame2</background>
           <background>background\tstPharohManFlame3</background>
@@ -3560,6 +3565,7 @@
           <background>background\tstPharohManStars1</background>
           <background>background\tstPharohManStars2</background>
           <background>background\tstPharohManStars3</background>
+          <background>background\tstTeleporter1</background>
         </backgrounds>
       </backgrounds>
       <backgrounds name="MM5">
@@ -3635,6 +3641,7 @@
         <background>background\tstMM9Wily2</background>
         <background>background\tstMM9Wily3</background>
         <background>background\tstMM9Wily4</background>
+        <background>background\tstFakeman</background>
         <background>background\tstMM9Endless</background>
       </backgrounds>
       <backgrounds name="MM10">
@@ -3655,6 +3662,7 @@
         <background>background\tstMM10Enker</background>
         <background>background\tstMM10Punk</background>
         <background>background\tstMM10Lab</background>
+        <background>background\tstMM10Endless</background>
         <backgrounds name="Animated">
           <background>background\tstCommandoManAnimated1</background>
           <background>background\tstCommandoManAnimated2</background>

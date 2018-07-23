@@ -96,7 +96,7 @@ xcoll = 0;
 ycoll = 0;
 plt = 0;
 
-itemDrop = 0;
+itemDrop = 0;//This object will be spawned once the entity dies
 
 stopOnFlash = true;
 iceTimer = 0; // is iced (frozen cold), and how much remaining time to spend iced
@@ -403,8 +403,6 @@ else if (!global.frozen) // Basically everything prtEntity should usually be doi
         }
     }
 }
-
-spawned = false;
 </string>
           </argument>
         </arguments>

@@ -28,16 +28,16 @@
             <string>event_inherited();
 
 bulletLimitCost = 1;
-
 contactDamage = 2;
-
-image_speed = 0.15;
 
 penetrate = 0;
 pierces = 1;
+despawnRange = 64;
 
 pickup = 0;
 boomerangBack = false;
+
+image_speed = 0.15;
 
 playSFX(sfxMagicCard);
 </string>

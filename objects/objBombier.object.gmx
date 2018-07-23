@@ -29,15 +29,14 @@
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
+
 contactDamage = 5;
-
 category = "flying";
-
 blockCollision = 0;
 grav = 0;
-
 facePlayerOnSpawn = true;
 
+// Enemy specific
 animTimer = 0;
 hasBomb = true;
 
@@ -116,17 +115,11 @@ if (entityCanStep())
     if (!hasBomb)
     {
         flyAwayTimer += 1;
-        if (flyAwayTimer == 15)
+        if (flyAwayTimer &gt;= 15)
         {
             xspeed = 2 * image_xscale;
         }
     }
-}
-else if (dead)
-{
-    animTimer = 0;
-    hasBomb = true;
-    image_index = 0;
 }
 </string>
           </argument>
@@ -152,10 +145,12 @@ else if (dead)
             <kind>1</kind>
             <string>event_inherited();
 
-if (spawned)
-{
-    xspeed = 2 * image_xscale;
-}
+animTimer = 0;
+hasBomb = true;
+image_index = 0;
+    
+xspeed = 2 * image_xscale;
+flyAwayTimer = 0;
 </string>
           </argument>
         </arguments>

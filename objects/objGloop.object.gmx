@@ -133,6 +133,7 @@ if (!pop)
                         }
                     }
                     global.playerHealth[playerID] -= other.dmg;
+                    playSFX(sfxHit);
                 }
                 other.hurtMega = false;
             }

@@ -78,6 +78,8 @@ if (!global.frozen || instance_exists(objSectionSwitcher))
 {
     if (instance_exists(parent))
     {
+        image_yscale = parent.image_yscale;
+        
         angle += rotationSpeed;
         
         x = min(view_xview + view_wview + 4, max(view_xview - 4, parent.x + lengthdir_x(distance, angle) * image_xscale));

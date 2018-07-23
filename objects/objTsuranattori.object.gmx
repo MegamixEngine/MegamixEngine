@@ -33,6 +33,8 @@ event_inherited();
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 2;
+respawnRange=0;
+despawnRange=16;
 
 category = "flying, bird";
 
@@ -130,11 +132,11 @@ if (entityCanStep())
         
         if (dir == -1)
         {
-            x = view_xview[0] + view_wview[0] - 10;
+            x += (view_xview[0] + view_wview[0]) - bbox_left;
         }
         else
         {
-            x = view_xview[0] + 10;
+            x += view_xview[0] - bbox_right;
         }
     }
     else
@@ -268,12 +270,12 @@ if (spawned)
     {
         if (target.x &lt; x)
         {
-            x = view_xview[0] + view_wview[0] - 10;
+            x += (view_xview[0] + view_wview[0]) - bbox_left;
             dir = -1;
         }
         else
         {
-            x = view_xview[0] + 10;
+            x += view_xview[0] - bbox_right;
             dir = 1;
         }
     }
@@ -296,6 +298,7 @@ if (spawned)
                 respawn = false;
                 birdInstanceStore = birdID;
                 delayMove = 16 * (i + 1);
+                despawnRange=16*(i+1);
             }
         }
         
@@ -336,8 +339,8 @@ if (respawn)
         if (birdInstanceStore == birdID &amp;&amp; respawn == 0)
         {
             aiTurn = 2;
-            ySpeed = 0;
-            xSpeed = moveSpeedX * dir;
+            yspeed = 0;
+            xspeed = moveSpeedX * dir;
         }
     }
 }

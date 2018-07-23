@@ -125,7 +125,8 @@ if (entityCanStep())
                     cooldownTimer = -600;
                     image_index = 3;
                     canShoot = false;
-                    xspeed = 2.5 * other.image_xscale;
+                    image_xscale = other.image_xscale;
+                    //xspeed = 2.5 * other.image_xscale;
                     respawn = false;
                     isFromMiniboss = true;
                     facePlayerOnSpawn = true;
@@ -161,13 +162,17 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>other.guardCancel = 2;
+            <string>//other.guardCancel = 2;
 
 if (other.y &lt; y - 16 &amp;&amp; other.y &gt; y - 32
     &amp;&amp; other.x * image_xscale &lt; (x - 8) * image_xscale
     &amp;&amp; other.x * image_xscale &gt; (x + 4) * image_xscale)
 {
     other.guardCancel = 0;
+}
+else
+{
+    other.guardCancel = 2;
 }
 </string>
           </argument>

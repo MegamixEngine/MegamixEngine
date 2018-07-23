@@ -46,6 +46,8 @@ mySpeed = 5;
 mySpeed *= -parent.image_xscale;
 direction += sign(mySpeed) * 10;
 
+despawnRange = 64; // don't be despawned by scrolling offscreen
+
 alarm[1] = 8;
 dirphase = 1;
 dirdir = 0.5;
@@ -216,6 +218,8 @@ if (!global.frozen)
             {
                 ys -= parent.gravDir * 4;
             }
+            
+            image_yscale = parent.image_yscale;
         }
         else
         {

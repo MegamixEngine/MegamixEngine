@@ -166,7 +166,7 @@ if (entityCanStep())
             else if (animFrame == 6)
             {
                 timer += 1;
-                if (timer &gt; 90)
+                if (timer &gt;60)
                 {
                     phase = 2;
                     timer = 0;

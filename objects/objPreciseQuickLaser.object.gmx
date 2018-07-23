@@ -181,6 +181,8 @@ if (entityCanStep())
     var ang = image_angle;
     if (hacks &amp;&amp; image_angle &gt;= 177 &amp;&amp; image_angle &lt;= 187) // These messed up with place_free so we handle them as 180(there are still some more but thats ok)
         image_angle = 180;
+    else if(hacks&amp;&amp;image_angle&gt;=265 &amp;&amp; image_angle&lt;280)
+        image_angle=270;
     if (image_angle == 0 || image_angle == 180 || image_angle == 270 || image_angle == 90) // Thse also messed up with place free, but in this case is faster to use a bounding box anyway
     {
         mask_index = nonPreciseMask;
@@ -191,14 +193,30 @@ if (entityCanStep())
         mask_index = preciseMask;
         image_yscale = 1;
     }
-    image_xscale += mySpeed;
+    
+    var tx=x+cos(degtorad(image_angle))*image_xscale;
+    var ty=y-sin(degtorad(image_angle))*image_xscale;
+    
+    if(point_in_rectangle(tx,ty,global.sectionLeft,global.sectionTop,global.sectionRight,global.sectionBottom))
+    {
+        image_xscale += mySpeed;
+    }
     if (!place_free(x, y))
     {
         image_xscale = floor(image_xscale);
+        while (!place_free(x, y) &amp;&amp; (image_xscale - 32) &gt;= 0)
+        {
+            image_xscale -= 32;
+        }
         while (!place_free(x, y) &amp;&amp; (image_xscale - 1) &gt;= 0)
         {
             image_xscale -= 1;
         }
+        while (place_free(x, y))
+        {
+            image_xscale += 1;
+        }
+        image_xscale -=1;
     }
     image_angle = ang;
     with (prtEntity)

@@ -138,7 +138,7 @@ if (entityCanStep())
             ID.dir = -45;
             ID.image_xscale = image_xscale;
             ID.sprite_index = sprEnemyBullet;
-            playSFX(sfxEnemyShoot);
+            //playSFX(sfxEnemyShoot);
         }
         if (imageOffset == 0 &amp;&amp; hasFired)
         {

@@ -13,7 +13,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>256</width>
+  <width>208</width>
   <height>192</height>
   <data>images\tstBrightman.png</data>
 </background>
