@@ -50,6 +50,8 @@ _dir = 1;
 _velX = 0;
 _velY = 0;
 _prevCollision = 0;
+
+gravDir = 1;
 </string>
           </argument>
         </arguments>
@@ -80,23 +82,32 @@ if (!global.frozen &amp;&amp; canDamage)
     if (phase == 0) // Coming out
     {
         if (xcoll != 0)
+        {
             xspeed = xcoll;
+        }
         if (ycoll != 0)
+        {
             yspeed = ycoll;
+        }
+            
         if (sign(grav) == 1)
         {
             _groundDir = 270;
             image_index = 0;
+            gravDir = 1;
         }
         else
         {
             _groundDir = 90;
             image_index = 2;
+            gravDir = -1;
         }
+        
         if (xcoll != 0 || ycoll != 0)
         {
             phase = 1;
         }
+        
         if (phase == 1)
         {
             grav = 0;
@@ -132,9 +143,10 @@ if (!global.frozen &amp;&amp; canDamage)
     }
     else if (phase == 1) // Attached to solids
     {
-        var gravDir = sign(grav);
+        //var gravDir = sign(grav);
         //if (instance_exists(parent))
         //    gravDir = parent.gravDir;
+        
         if (!snapToGround(spd, 4, 1))
         {
             event_user(EV_DEATH); // Die if the script fails

@@ -82,16 +82,20 @@ playSFX(sfxIceWall);
 if (!global.frozen)
 {
     if(!isFree)
-        isFree = !checkSolid(0, 0,1,1);
-    if(!isFree)
     {
-        blockCollision=false;
-        x=xprevious;
-        y=yprevious;
-        xspeed=0;
-        yspeed=0;
-        grav=0;
+        isFree = !checkSolid(0, 0,1,1);
     }
+    
+    if (!isFree)
+    {
+        blockCollision = false;
+        x = xprevious;
+        y = yprevious;
+        xspeed = 0;
+        yspeed = 0;
+        grav = 0;
+    }
+    
     if (!forming)
     {
         if (isFree)
@@ -101,6 +105,7 @@ if (!global.frozen)
                 grav = 0;
                 yspeed *= 1 - (1 / 8);
                 shiftObject(0, -0.75, blockCollision);
+                
                 xspeed = 0;
             }
             else if (!place_meeting(x, y, objWater))
@@ -119,7 +124,7 @@ if (!global.frozen)
             {
                 if (pushed &gt; 8)
                 {
-                    if (abs(xspeed) &lt; 2)
+                    if (abs(xspeed) &lt; 2 &amp;&amp; !inWater)
                     {
                         xspeed += 0.04 * dir;
                     }
@@ -152,8 +157,10 @@ if (!global.frozen)
             healthpoints = 0;
         }
         
+        // gradually die
         healthpoints -= (healthpointsStart / 256) * (1 - (xspeed != 0) * 0.25);
         
+        // update image index to be cracked and stuff
         image_index = max(4, 6 - floor((healthpoints / healthpointsStart) * 3));
         
         if (healthpoints &lt;= 0)

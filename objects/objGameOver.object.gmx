@@ -36,6 +36,7 @@ optionText[0] = "Return to Hub";
 optionText[1] = "Try Again";
 
 global.livesRemaining = 2;
+global.checkpoint = false;
 </string>
           </argument>
         </arguments>
