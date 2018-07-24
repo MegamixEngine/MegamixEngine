@@ -1010,7 +1010,7 @@ if (global.inGame)
     }
     
     // Connect Horizontal borders
-    with (objStopScrollingHorizontal)
+    /*with (objStopScrollingHorizontal)
     {
         if (!place_meeting(x, y - 12, object_index))
         {
@@ -1023,7 +1023,7 @@ if (global.inGame)
                 }
             }
         }
-    }
+    }*/
     
     ds_list_clear(global.borderlist);
     
@@ -1481,6 +1481,10 @@ depth = depthstart;
     {
         draw_sprite_ext(sprDot, 0, view_xview, view_yview, view_wview, view_hview, 0, c_black, bossFade);
     }
+    
+    // reset position
+    var dx = view_xview + 16;
+    var dy = view_yview + 17;
     
     // Keys
     for (i = 0; i &lt; global.keyNumber; i += 1)

@@ -32,8 +32,12 @@ blockCollision = 0;
 
 canHit = false;
 
+// @cc speed at which junk blocks fall down
 timer = 120;
 startTimer = timer;
+
+// @cc sprite for the spawned junk block
+junkBlockSprite = sprJunkBlock;
 
 init = 1;
 </string>
@@ -78,6 +82,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         {
             ID = instance_create(x, y, objJunkBlock);
             ID.respawn = false;
+            ID.sprite_index = junkBlockSprite;
         }
         timer = startTimer;
     }

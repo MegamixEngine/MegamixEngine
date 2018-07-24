@@ -34,7 +34,7 @@ isSolid = true;
 grav = 0;
 
 delayDisplay = 2;
-speedSet = noone;
+kamapotSpeed = noone;
 jitter = true;
 jitterTime = 4;
 moveTimer = 0;
@@ -109,17 +109,15 @@ if (entityCanStep())
     {
         imgIndex += imgSpd;
         
-        switch (speedSet)
+        yspeed = kamapotSpeed;
+        
+        // shift up player if theyre on top of the kamapot
+        if place_meeting(x, y - 1, objMegaman)
         {
-            case 'slow':
-                yspeed = -1;
-                break;
-            case 'medium':
-                yspeed = -2;
-                break;
-            case 'fast':
-                yspeed = -3;
-                break;
+            with instance_place(x, y - 1, objMegaman)
+            {
+                shiftObject(0, -1, true);
+            }
         }
         
         if (!collision_rectangle(x, y, x + 16, y + 26, objSolid, false, true))

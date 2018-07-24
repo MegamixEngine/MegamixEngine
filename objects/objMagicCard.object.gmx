@@ -104,7 +104,7 @@ if (!global.frozen)
             speed += 0.2;
             mp_linear_step(parent.x, parent.y, speed, false);
             
-            if (place_meeting(x, y, parent)) // die on contact with parent
+            if (place_meeting(x, y, parent) &amp;&amp; !pickup) // die on contact with parent if no item is held
             {
                 instance_destroy();
             }

@@ -64,6 +64,7 @@ fireSource[22] = objSuzak;
 fireSource[23] = objFenix;
 fireSource[24] = objSFFire;
 fireSource[25] = objFlameMixer;
+fireSource[26] = objPUOilFire;
 </string>
           </argument>
         </arguments>
@@ -155,18 +156,25 @@ else
 
 fire = true;
 
-if (place_meeting(x + 16, y, object_index))
+var oil;
+oil[0] = objOil;
+oil[1] = objPUOil;
+
+for (i = 0; i &lt;= 1; i += 1)
 {
-    with (instance_place(x + 16, y, object_index))
+    if (place_meeting(x + 16, y, object_index))
     {
-        event_user(0);
+        with (instance_place(x + 16, y, object_index))
+        {
+            event_user(0);
+        }
     }
-}
-if (place_meeting(x - 16, y, object_index))
-{
-    with (instance_place(x - 16, y, object_index))
+    if (place_meeting(x - 16, y, object_index))
     {
-        event_user(0);
+        with (instance_place(x - 16, y, object_index))
+        {
+            event_user(0);
+        }
     }
 }
 </string>

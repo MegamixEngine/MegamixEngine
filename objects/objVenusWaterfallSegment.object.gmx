@@ -77,7 +77,7 @@ if (entityCanStep())
             }
             else
             {
-                gravfactor = 1.9;
+                gravfactor = 1.975;
                 blockCollision = false;
                 if (other.myLock == 0)
                 {
@@ -90,8 +90,11 @@ if (entityCanStep())
     {
         with (objMegaman)
         {
-            gravfactor = 1;
-            blockCollision = true;
+            if gravfactor == 1.975 &amp;&amp; !place_meeting(x, y, other.object_index)
+            {
+                gravfactor = 1;
+                blockCollision = true;
+            }
         }
         myLock = lockPoolRelease(myLock);
     }
