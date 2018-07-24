@@ -860,8 +860,6 @@ else if (global.decrementLivesOnRoomEnd)
     if (global.livesRemaining &lt; 0)
     {
         global.inGame = false;
-        
-        global.checkpoint = false;
     }
 }
 
@@ -878,6 +876,8 @@ for (i = 0; i &lt;= global.playerCount; i += 1)
 global.lockBuster = false;
 
 global.timeStopped = false;
+
+application_surface_draw_enable(true);
 
 // forcibly reset control locks
 globalLockReset();
@@ -1010,7 +1010,7 @@ if (global.inGame)
     }
     
     // Connect Horizontal borders
-    with (objStopScrollingHorizontal)
+    /*with (objStopScrollingHorizontal)
     {
         if (!place_meeting(x, y - 12, object_index))
         {
@@ -1023,7 +1023,7 @@ if (global.inGame)
                 }
             }
         }
-    }
+    }*/
     
     ds_list_clear(global.borderlist);
     
@@ -1057,34 +1057,37 @@ if (global.inGame)
             spawn_y = objDefaultSpawn.y;
         }
     }
-    else if (global.checkpoint == room)
+    else 
     {
-        // respawn after death
-        spawn_x = global.checkpointX;
-        spawn_y = global.checkpointY;
-        
-        // reset health
-        for (var i = 0; i &lt; global.playerCount; i++)
+        if (global.checkpoint == room)
         {
-            global.playerHealth[i] = 28;
-        }
-    }
-    else
-    {
-        // Level start. Use default spawn location.
-        global.checkpoint = room;
-        global.checkpointX = objDefaultSpawn.x;
-        global.checkpointY = objDefaultSpawn.y;
-        global.respawnAnimation = objDefaultSpawn.respawnAnimation;
-        global.freeMovement = false;
-        if (instance_exists(objMegaman))
-        {
-            objMegaman.showDuringReady = objDefaultSpawn.showDuringReady;
-        }
-        spawn_x = global.checkpointX;
-        spawn_y = global.checkpointY;
+            // respawn after death
+            spawn_x = global.checkpointX;
+            spawn_y = global.checkpointY;
         
-        stageStart();
+            // reset health
+            for (var i = 0; i &lt; global.playerCount; i++)
+            {
+                global.playerHealth[i] = 28;
+            }
+        }
+        else
+        {
+            // Level start. Use default spawn location.
+            global.checkpoint = room;
+            global.checkpointX = objDefaultSpawn.x;
+            global.checkpointY = objDefaultSpawn.y;
+            global.respawnAnimation = objDefaultSpawn.respawnAnimation;
+            global.freeMovement = false;
+            if (instance_exists(objMegaman))
+            {
+                objMegaman.showDuringReady = objDefaultSpawn.showDuringReady;
+            }
+            spawn_x = global.checkpointX;
+            spawn_y = global.checkpointY;
+        
+            stageStart();
+        }
     }
     
     // Create players
@@ -1481,6 +1484,10 @@ depth = depthstart;
     {
         draw_sprite_ext(sprDot, 0, view_xview, view_yview, view_wview, view_hview, 0, c_black, bossFade);
     }
+    
+    // reset position
+    var dx = view_xview + 16;
+    var dy = view_yview + 17;
     
     // Keys
     for (i = 0; i &lt; global.keyNumber; i += 1)

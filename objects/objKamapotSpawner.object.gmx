@@ -32,7 +32,8 @@ grav = 0;
 blockCollision = 0;
 kamapot = noone;
 
-kamapotSpeed = 0; // SET IN ROOM EDITOR - choose between 'slow', 'medium', and 'fast'.
+kamapotSpeed = -2; // SET IN ROOM EDITOR - choose between 'slow', 'medium', and 'fast'.
+kamapotDelay = 60;
 </string>
           </argument>
         </arguments>
@@ -61,20 +62,20 @@ if (entityCanStep())
 {
     if (!instance_exists(kamapot))
     {
-        var i = instance_create(x, y - 3, objKamapot);
-        i.speedSet = kamapotSpeed;
-        if (kamapotSpeed == 'slow')
+        var i = instance_create(x, y - 3 * image_yscale, objKamapot);
+        i.kamapotSpeed = kamapotSpeed * image_yscale;
+        i.image_yscale = image_yscale;
+        
+        // shift up player if theyre on top of the kamapot
+        if place_meeting(x, y - 3 * image_yscale, objMegaman)
         {
-            i.moveTimer = 10;
+            with instance_place(x, y - 3 * image_yscale, objMegaman)
+            {
+                shiftObject(0, -3 * image_yscale, true);
+            }
         }
-        else if (kamapotSpeed == 'medium')
-        {
-            i.moveTimer = 60;
-        }
-        else if (kamapotSpeed == 'fast')
-        {
-            i.moveTimer = 100;
-        }
+        
+        i.moveTimer = kamapotDelay;
         kamapot = i.id;
     }
 }

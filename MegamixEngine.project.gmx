@@ -5773,6 +5773,7 @@
       <room>rooms\lvlTestHall4</room>
       <room>rooms\lvlTestHall5</room>
       <room>rooms\lvlTestHallBoss</room>
+      <room>rooms\lvlSaturnTest</room>
     </rooms>
   </rooms>
   <constants number="36">

@@ -35,7 +35,7 @@ customPose = true;
 ground = false;
 attackTimer = 0;
 hasTriggeredFall = false;
-introType = 0;
+introType = 1;
 bossTriggered = true;
 delayUse = false;
 attackTimerMax = 145;
@@ -160,8 +160,10 @@ if (!global.frozen)
     else if (isIntro)
     {
         // custom intro:
-        if (y &lt;= ystart &amp;&amp; !hasTriggeredFall)
-            y += 4;
+        if (!hasTriggeredFall)
+        {
+            image_index = 5;
+        }
         if (y &gt;= ystart || hasTriggeredFall)
         {
             // since bosses do not have gravity during intros, we need to reuse this here.
@@ -184,9 +186,9 @@ if (!global.frozen)
             }
             if (attackTimer == 17)
                 image_index = 2;
-            if (attackTimer == 30)
+            if (attackTimer == 25)
                 image_index = 3;
-            if (attackTimer == 75)
+            if (attackTimer == 40)
             {
                 canFillHealthBar = true;
                 isIntro = false;
@@ -332,14 +334,18 @@ if (entityCanStep())
             case 7: // black hole 
                 delayUse = true;
                 image_index = 7 + (attackTimer / 3) mod 3;
-                canHit = false;
+                //canHit = false;
                 with (prtPlayerProjectile)
                 {
                     if (xspeed != 0 || yspeed != 0)
                         mp_linear_step(other.x + 16 * other.image_xscale, other.y + 24, 8, false);
                     if (((x &gt;= other.x + 12 &amp;&amp; x &lt;= other.x + 20 &amp;&amp; other.image_xscale == 1) || (x &gt;= other.x - 20 &amp;&amp; x &lt;= other.x - 12 &amp;&amp; other.image_xscale == -1))
                         &amp;&amp; y &gt;= other.y + 22 &amp;&amp; y &lt;= other.y + 26)
-                        instance_destroy();
+                    {
+                        if (object_index != objThunderBeam) &amp;&amp; (object_index != objThunderWool)
+                        &amp;&amp; (object_index != objConcreteShot) &amp;&amp; (object_index != objJewelSatellite)
+                            instance_destroy();
+                    }
                 }
                 with (objMegaman)
                 {
@@ -365,6 +371,40 @@ else
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="21">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (phase == 7)
+{
+    if (other.object_index == objThunderBeam) || (other.object_index == objThunderWool)
+    || (other.object_index == objConcreteShot) || (other.object_index == objJewelSatellite)
+    {
+        attackTimer = 0;
+        canHit = true;
+        phase = 0;
+    }
+    else
+        other.guardCancel = 2;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="20">
       <action>
         <libid>1</libid>
@@ -383,12 +423,18 @@ else
           <argument>
             <kind>1</kind>
             <string>with (objSaturnRing)
+{
     instance_create(x, y, objExplosion);
-instance_destroy();
-with (objSaturnBullet)
     instance_destroy();
+}
+with (objSaturnBullet)
+{
+    instance_destroy();
+}
 if (lockPoolExists(timeStopLock))
+{
     timeStopLock = playerTimeRestored(timeStopLock);
+}
 event_inherited();
 </string>
           </argument>

@@ -34,7 +34,7 @@ isSolid = true;
 grav = 0;
 
 delayDisplay = 2;
-speedSet = noone;
+kamapotSpeed = noone;
 jitter = true;
 jitterTime = 4;
 moveTimer = 0;
@@ -109,20 +109,19 @@ if (entityCanStep())
     {
         imgIndex += imgSpd;
         
-        switch (speedSet)
+        yspeed = kamapotSpeed;
+        
+        // shift up player if theyre on top of the kamapot
+        if place_meeting(x, y - 1 * image_yscale, objMegaman)
         {
-            case 'slow':
-                yspeed = -1;
-                break;
-            case 'medium':
-                yspeed = -2;
-                break;
-            case 'fast':
-                yspeed = -3;
-                break;
+            with instance_place(x, y - 1 * image_yscale, objMegaman)
+            {
+                shiftObject(0, -1 * image_yscale, true);
+            }
         }
         
-        if (!collision_rectangle(x, y, x + 16, y + 26, objSolid, false, true))
+        if (!collision_rectangle(x - (16 * image_yscale == -1), y - (26 * image_yscale == -1), 
+        x + (16 * image_yscale == 1), y + 26 * (image_yscale == 1), objSolid, false, true))
         {
             if (instance_exists(child))
             {
@@ -160,11 +159,13 @@ image_index = imgIndex div 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (collision_rectangle(x, y, x + 16, y + 26, objSolid, false, true))
+            <string>if (collision_rectangle(x - (16 * image_yscale == -1), y - (26 * image_yscale == -1), 
+x + (16 * image_yscale == 1), y + 26 * (image_yscale == 1), objSolid, false, true))
 {
     var cover = instance_create(x, y, objGundrillCover); // Use this to hide underground parts
     cover.parent = id;
     child = cover.id;
+    cover.image_yscale = image_yscale;
 }
 </string>
           </argument>
