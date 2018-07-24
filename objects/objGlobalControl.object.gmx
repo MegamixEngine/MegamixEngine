@@ -879,6 +879,8 @@ global.lockBuster = false;
 
 global.timeStopped = false;
 
+application_surface_draw_enable(true);
+
 // forcibly reset control locks
 globalLockReset();
 </string>

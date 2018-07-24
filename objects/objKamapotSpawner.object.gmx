@@ -62,15 +62,16 @@ if (entityCanStep())
 {
     if (!instance_exists(kamapot))
     {
-        var i = instance_create(x, y - 3, objKamapot);
-        i.kamapotSpeed = kamapotSpeed;
+        var i = instance_create(x, y - 3 * image_yscale, objKamapot);
+        i.kamapotSpeed = kamapotSpeed * image_yscale;
+        i.image_yscale = image_yscale;
         
         // shift up player if theyre on top of the kamapot
-        if place_meeting(x, y - 3, objMegaman)
+        if place_meeting(x, y - 3 * image_yscale, objMegaman)
         {
-            with instance_place(x, y - 3, objMegaman)
+            with instance_place(x, y - 3 * image_yscale, objMegaman)
             {
-                shiftObject(0, -3, true);
+                shiftObject(0, -3 * image_yscale, true);
             }
         }
         
