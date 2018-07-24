@@ -5,7 +5,7 @@
   <visible>0</visible>
   <depth>-100</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>prtAlwaysActive</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -42,8 +42,6 @@ respawnAnimation = 0;
 
 //@cc play the animation sequence while ready's being displayed
 showDuringReady = false;
-
-alarm[0] = 1;
 </string>
           </argument>
         </arguments>

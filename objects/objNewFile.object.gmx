@@ -153,7 +153,7 @@ if (!controlsLocked)
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
-for (var i = 0; i &lt; 5; i++)
+for (var i = 0; i &lt; 4; i++)
 {
     var draw_y = 48 + i * 12;
     

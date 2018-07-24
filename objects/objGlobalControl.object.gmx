@@ -860,8 +860,6 @@ else if (global.decrementLivesOnRoomEnd)
     if (global.livesRemaining &lt; 0)
     {
         global.inGame = false;
-        
-        global.checkpoint = false;
     }
 }
 
@@ -1059,34 +1057,37 @@ if (global.inGame)
             spawn_y = objDefaultSpawn.y;
         }
     }
-    else if (global.checkpoint == room)
+    else 
     {
-        // respawn after death
-        spawn_x = global.checkpointX;
-        spawn_y = global.checkpointY;
-        
-        // reset health
-        for (var i = 0; i &lt; global.playerCount; i++)
+        if (global.checkpoint == room)
         {
-            global.playerHealth[i] = 28;
-        }
-    }
-    else
-    {
-        // Level start. Use default spawn location.
-        global.checkpoint = room;
-        global.checkpointX = objDefaultSpawn.x;
-        global.checkpointY = objDefaultSpawn.y;
-        global.respawnAnimation = objDefaultSpawn.respawnAnimation;
-        global.freeMovement = false;
-        if (instance_exists(objMegaman))
-        {
-            objMegaman.showDuringReady = objDefaultSpawn.showDuringReady;
-        }
-        spawn_x = global.checkpointX;
-        spawn_y = global.checkpointY;
+            // respawn after death
+            spawn_x = global.checkpointX;
+            spawn_y = global.checkpointY;
         
-        stageStart();
+            // reset health
+            for (var i = 0; i &lt; global.playerCount; i++)
+            {
+                global.playerHealth[i] = 28;
+            }
+        }
+        else
+        {
+            // Level start. Use default spawn location.
+            global.checkpoint = room;
+            global.checkpointX = objDefaultSpawn.x;
+            global.checkpointY = objDefaultSpawn.y;
+            global.respawnAnimation = objDefaultSpawn.respawnAnimation;
+            global.freeMovement = false;
+            if (instance_exists(objMegaman))
+            {
+                objMegaman.showDuringReady = objDefaultSpawn.showDuringReady;
+            }
+            spawn_x = global.checkpointX;
+            spawn_y = global.checkpointY;
+        
+            stageStart();
+        }
     }
     
     // Create players
