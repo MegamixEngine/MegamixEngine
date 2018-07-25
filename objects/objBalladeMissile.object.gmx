@@ -122,14 +122,8 @@ playSFX(sfxMM9Explosion);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(objSectionSwitcher))
-{
-    exit;
-}
-else
-{
-    event_inherited();
-}
+            <string>
+            event_inherited();
 </string>
           </argument>
         </arguments>
