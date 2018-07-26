@@ -56,6 +56,7 @@ lightSource[10] = objFireWave;
 lightSource[11] = objFireTotem;
 lightSource[12] = objChangkeyDragon;
 lightSource[13] = objSuzakAndFenix;
+lightSource[14] = objDompanFireworkSpark;
 
 // don't edit these
 respawnRange = -1;

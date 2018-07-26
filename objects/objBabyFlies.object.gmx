@@ -118,11 +118,13 @@ if ((other.object_index != objTornadoBlow) &amp;&amp; (other.object_index != obj
     i.image_xscale = 1;
     i.moveTimer = 4;
     i.facePlayerOnSpawn = false;
+    i.respawn = false;
     
     var i = instance_create(x - 1, y, objBabyFliesMedium);
     i.image_xscale = -1;
     i.moveTimer = 4;
     i.facePlayerOnSpawn = false;
+    i.respawn = false;
 }
 
 if ((other.object_index == objSlashEffect) || (other.object_index == objBreakDash))
