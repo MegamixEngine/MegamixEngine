@@ -27,13 +27,17 @@ while (true)
     }
     var char = string_char_at(str, 1);
     str = stringSubstring(str, 2);
-    if (char == ";" || char == "
-    " && bracketCounter == 0)
-        break;
     if (char == "{" || char == "(" || char == "[")
         bracketCounter++;
     if (char == "}" || char == ")" || char == "]")
         bracketCounter--;
+    // returned to 0
+    if (bracketCounter == 0)
+    {
+        break;
+    }
 }
+
+len++;
 
 return stringSubstring(strInit, 1, len);

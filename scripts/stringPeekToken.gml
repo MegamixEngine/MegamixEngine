@@ -1,5 +1,6 @@
 /// string_peek_token(string)
 // returns the first word in the string (up to whitespace).
+// require the string to *not* start with whitespace
 
 var str = argument0;
 var split, split_n, csplit;
