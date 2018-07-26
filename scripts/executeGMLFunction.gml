@@ -66,6 +66,8 @@ else if (fname == "position_meeting")
     global.gml_fn_retval = position_meeting(a0, a1, a2);
 else if (fname == "instance_destroy")
     instance_destroy();
+else if (fname == "instance_create")
+    instance_create(a0, a1, a2);
 else
     global.execute_gml_function_ERR = true;
 return 0;
