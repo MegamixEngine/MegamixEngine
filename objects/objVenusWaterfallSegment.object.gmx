@@ -99,6 +99,15 @@ if (entityCanStep())
         myLock = lockPoolRelease(myLock);
     }
 }
+else if (dead)
+{
+    with (objMegaman)
+    {
+        gravfactor = 1;
+        blockCollision = true;
+    }
+    myLock = lockPoolRelease(myLock);
+}
 </string>
           </argument>
         </arguments>

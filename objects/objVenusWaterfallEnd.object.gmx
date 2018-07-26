@@ -3,7 +3,7 @@
   <spriteName>sprVenusWaterfallEnd</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>4</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -61,13 +61,12 @@ if (entityCanStep())
     
     if (yDist == 8)
     {
-        /* if (instance_exists(i))
-        {
-            i.y = y;
-        }*/
         if (place_meeting(x, y, objVenusWaterfallSegment))
         {
-            objVenusWaterfallSegment.y = y + 14;
+            with (instance_nearest(x,y,objVenusWaterfallSegment))
+            {
+                y = other.y + 14;
+            }
         }
         yDist = 0;
     }
