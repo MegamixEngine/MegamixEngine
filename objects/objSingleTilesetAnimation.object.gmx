@@ -52,6 +52,7 @@ regionLeft[0] = 0; //@cc *Mandatory**
 regionWidth[0] = 0; //@cc *Mandatory** the width of the tileset(without repeating)
 regionHeight[0] = 0; //@cc the height of the tileset(without repeating)
 animType[0] = -1; //@cc if the background repeats horizontally set to 1
+reverse[0] = -1;
 
 
 //@cc
@@ -105,6 +106,11 @@ if (animDelays[0] == -1)
 {
     for (i = 0; i &lt; animTotal; i++)
         animDelays[i] = 0;
+}
+if (reverse[0] == -1)
+{
+    for (i = 0; i &lt; animTotal; i++)
+        reverse[i] = 0;
 }
 if (animSpeeds[0] == -1)
 {
@@ -188,6 +194,7 @@ for (var i = 0; i &lt; tileTotal; i++)
                         
                         while (l &gt;= 0 &amp;&amp; f != frame)
                         {
+                            tile_layer_hide(animLayer - layerOffset - animLayerOffset - l);
                             var fX = animFrames[offset + t, f] mod gridWidth;
                             var fY = animFrames[offset + t, f] div gridWidth;
                             tile_add(animBackgrounds[j], fX * 16, fY * 16, 16, 16, tx, ty, animLayer - layerOffset - animLayerOffset - l);
@@ -196,6 +203,18 @@ for (var i = 0; i &lt; tileTotal; i++)
                             if (f &gt; animLengths[j] - 1)
                                 f = 0;
                         }
+                        
+                        if(!reverse[j])
+                        {
+                            
+                            tile_layer_show(animLayer - layerOffset - animLayerOffset - (animLengths[j] - 1));
+                        }
+                        else
+                        {
+                            tile_layer_show(animLayer - layerOffset - animLayerOffset - (animLengths[j] - 1) - animLengths[j]-1);
+                        }
+                                
+                        
                         if (deleteOriginals)
                             tile_delete(tiles[i]);
                     }
@@ -246,8 +265,18 @@ animFrames = 0;
             }
             if (floor(prev) != floor(animTimers[i]))
             {
-                tile_layer_hide(animLayer - layerOffset - animLayerOffset - ((animLengths[i] - 1) - floor(prev)));
-                tile_layer_show(animLayer - layerOffset - animLayerOffset - ((animLengths[i] - 1) - floor(animTimers[i])));
+                var animFrame = (floor(prev) + 1) mod animLengths[i];
+                animTimers[i] = animFrame;
+                var prevFrame = (floor(prev));
+                
+                if(reverse[i])
+                {
+                    animFrame = animLengths[i] - animFrame -1;
+                    prevFrame = (animLengths[i]-floor(prev)-1);
+                }
+                
+                tile_layer_hide(animLayer - layerOffset - animLayerOffset - ((animLengths[i] - 1) - prevFrame));
+                tile_layer_show(animLayer - layerOffset - animLayerOffset - ((animLengths[i] - 1) - animFrame));
             }
         }
         else

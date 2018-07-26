@@ -33,6 +33,8 @@ yDist = 0; // Distance to travel before creating waterfall segment
 respawn = false;
 spawner = noone;
 i = instance_create(x, y, objVenusWaterfallSegment);
+
+despawnRange = -1;
 </string>
           </argument>
         </arguments>
@@ -68,6 +70,11 @@ if (entityCanStep())
             i.image_yscale++;
         }
         yDist = 0;
+    }
+    
+    if !insideSection(x, y)
+    {
+        instance_destroy();
     }
 }
 </string>

@@ -36,6 +36,9 @@ waterTimer = 0; // How long to wait until stopping waterfall
 
 start = noone;
 stop = noone;
+
+despawnRange = -1;
+respawnRange = -1;
 </string>
           </argument>
         </arguments>
@@ -59,7 +62,7 @@ stop = noone;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (entityCanStep())
+if (entityCanStep() &amp;&amp; insideSection(x, y + 1))
 {
     moveTimer++;
     
