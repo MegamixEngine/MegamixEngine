@@ -1166,12 +1166,6 @@ with (objTeleporter)
     <tile bgName="bgBasic" x="880" y="336" w="16" h="16" xo="64" yo="32" id="11282758" name="inst_37156699" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="896" y="336" w="16" h="16" xo="64" yo="32" id="11282759" name="inst_257DC75C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="912" y="336" w="16" h="16" xo="64" yo="32" id="11282760" name="inst_19048D3F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="864" y="320" w="16" h="16" xo="48" yo="0" id="11282761" name="inst_7E4E4A4D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="864" y="304" w="16" h="16" xo="48" yo="0" id="11282762" name="inst_726CECB3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="864" y="288" w="16" h="16" xo="48" yo="0" id="11282763" name="inst_8CC6D150" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="912" y="320" w="16" h="16" xo="48" yo="0" id="11282764" name="inst_558FF998" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="912" y="304" w="16" h="16" xo="48" yo="0" id="11282765" name="inst_E2F6E4A7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="912" y="288" w="16" h="16" xo="48" yo="0" id="11282766" name="inst_1781EA76" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="800" y="320" w="16" h="16" xo="64" yo="32" id="11282767" name="inst_6F1534B9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="800" y="304" w="16" h="16" xo="64" yo="32" id="11282768" name="inst_F3D3A72F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="800" y="288" w="16" h="16" xo="64" yo="32" id="11282769" name="inst_218916FB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
