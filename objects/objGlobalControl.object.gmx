@@ -1404,7 +1404,7 @@ depth = depthstart;
     var healthIndex = 0;
     with (prtBoss) // Boss healthbars
     {
-        if (drawHealthBar &amp;&amp; healthParent == -1)
+        if (!quickSpawn&amp;&amp;drawHealthBar &amp;&amp; healthParent == -1)
         {
             var dxx = dx + ((healthIndex - 1) * 8); // Multibosses
             
