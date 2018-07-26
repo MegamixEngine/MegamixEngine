@@ -235,7 +235,7 @@ if (superArmHeldObject != noone)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weaponSetup("SUPER ARM", global.nesPalette[19], global.nesPalette[40], sprWeaponIconsSuperArm);
+            <string>weaponSetup("SUPER ARM", global.nesPalette[20], global.nesPalette[40], sprWeaponIconsSuperArm);
 
 // objects which have the 'superArmTarget' category
 // must have the following instance variables:
