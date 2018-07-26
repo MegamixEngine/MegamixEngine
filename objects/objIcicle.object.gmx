@@ -123,7 +123,7 @@ if (entityCanStep())
         {
             if (object_index != objMegaman &amp;&amp; object_get_parent(object_index) != prtPlayerProjectile)
             {
-                if (canHit)
+                if (canHit &amp;&amp; !dead)
                 {
                     if (place_meeting(x, y, other))
                     {

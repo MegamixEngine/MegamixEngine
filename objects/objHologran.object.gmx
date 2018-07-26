@@ -132,6 +132,7 @@ if (entityCanStep())
 }
 else if (dead)
 {
+    action = 0;
     actionTimer = 0;
     image_index = 0;
 }

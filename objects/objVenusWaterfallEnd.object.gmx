@@ -31,6 +31,8 @@ blockCollision = false;
 grav = 0;
 yDist = 0;
 respawn = false;
+
+despawnRange = -1;
 </string>
           </argument>
         </arguments>
@@ -69,6 +71,11 @@ if (entityCanStep())
             }
         }
         yDist = 0;
+    }
+    
+    if !insideSection(x, y)
+    {
+        instance_destroy();
     }
 }
 </string>

@@ -39,6 +39,9 @@ init = 0;
 
 start = noone;
 stop = noone;
+
+despawnRange = -1;
+respawnRange = -1;
 </string>
           </argument>
         </arguments>
@@ -62,7 +65,7 @@ stop = noone;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (entityCanStep())
+if (entityCanStep() &amp;&amp; insideSection(x, y + 1))
 {
     // Set default waterDelay number if none is provided in creation code
     if (init == 0)

@@ -34,6 +34,8 @@ respawn = false;
 spawner = noone;
 water = instance_create(x, y, objVenusWaterfallSegment);
 i = water.id;
+
+despawnRange = -1;
 </string>
           </argument>
         </arguments>
@@ -69,6 +71,11 @@ if (entityCanStep())
             i.image_yscale++;
         }
         yDist = 0;
+    }
+    
+    if !insideSection(x, y)
+    {
+        instance_destroy();
     }
 }
 </string>

@@ -96,23 +96,26 @@ if (entityCanStep())
     
     if (moveTimer &lt; 0)
     {
-        with (target)
+        if instance_exists(target)
         {
-            // if there is no status effect object for current player, create one.
-            if (!instance_exists(statusObject))
+            with (target)
             {
-                statusObject = instance_create(x, y, objStatusEffect);
-            }
-            else
-            {
-                statusObject.statusWalkSpeed = 1.3 / 2;
-                statusObject.statusChangedWalk = true;
-                statusObject.statusJumpSpeed = 4.75 / 2;
-                statusObject.statusChangedJump = true;
-                gravfactor = 0.25;
-                if (isHit)
+                // if there is no status effect object for current player, create one.
+                if (!instance_exists(statusObject))
                 {
-                    gravfactor = 1;
+                    statusObject = instance_create(x, y, objStatusEffect);
+                }
+                else
+                {
+                    statusObject.statusWalkSpeed = 1.3 / 2;
+                    statusObject.statusChangedWalk = true;
+                    statusObject.statusJumpSpeed = 4.75 / 2;
+                    statusObject.statusChangedJump = true;
+                    gravfactor = 0.25;
+                    if (isHit)
+                    {
+                        gravfactor = 1;
+                    }
                 }
             }
         }
@@ -120,13 +123,16 @@ if (entityCanStep())
         drawTimer--;
         if (drawTimer == 0)
         {
-            if (target.inked == false)
+            if instance_exists(target)
             {
-                target.inked = true;
-            }
-            else
-            {
-                target.inked = false;
+                if (target.inked == false)
+                {
+                    target.inked = true;
+                }
+                else
+                {
+                    target.inked = false;
+                }
             }
             drawTimer = 4;
         }
