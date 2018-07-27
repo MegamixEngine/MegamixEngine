@@ -63,7 +63,12 @@ destroyTilesDepth = 1000000;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var solids;
+            <string>if (!instance_exists(id))
+{
+    exit;
+}
+
+var solids;
 solids[0] = objSolid;
 solids[1] = objLadder;
 solids[2] = objTopSolid;
