@@ -81,17 +81,23 @@ while (!file_text_eof(file))
     
     // backgrounds
     if (stringStartsWith(text, "<background "))
+    {
         prop_background[prop_bg_n++] = xmlParseTag(text);
+    }
     
     // views [not implemented]
     
     // instances
     if (stringStartsWith(text, "<instance "))
+    {
         prop_inst[prop_inst_n++] = xmlParseTag(text);
+    }
     
     // tiles
     if (stringStartsWith(text, "<tile "))
+    {
         prop_tile[prop_tile_n++] = xmlParseTag(text);
+    }
 }
 
 file_text_close(file);
