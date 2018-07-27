@@ -1956,6 +1956,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "imheight") imheight = _____val_____;
     else if (_____vs_____ == "imwidth") imwidth = _____val_____;
     else if (_____vs_____ == "inAir") inAir = _____val_____;
+    else if (_____vs_____ == "instantLeave") instantLeave = _____val_____;
     else if (_____vs_____ == "inArr") inArr = _____val_____;
     else if (_____vs_____ == "inQuicksand") inQuicksand = _____val_____;
     else if (_____vs_____ == "inShell") inShell = _____val_____;

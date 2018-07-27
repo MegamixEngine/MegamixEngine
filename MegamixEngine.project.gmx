@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="90" name="datafiles">
+  <datafiles number="102" name="datafiles">
     <datafile>
       <name>CleanMem.dll</name>
       <exists>-1</exists>
@@ -55,7 +55,7 @@
       </ConfigOptions>
       <filename>GMFMODSimple.dll</filename>
     </datafile>
-    <datafiles number="90" name="Music">
+    <datafiles number="102" name="Music">
       <datafile>
         <name>14 Tenguman.spc</name>
         <exists>-1</exists>
@@ -516,7 +516,7 @@
         <filename>WilyIntro.ogg</filename>
       </datafile>
     </datafiles>
-    <datafiles number="90" name="Recordings">
+    <datafiles number="102" name="Recordings">
       <datafile>
         <name>demoHoneyWoman.mrc</name>
         <exists>-1</exists>
@@ -569,8 +569,8 @@
         <filename>demoPico.mrc</filename>
       </datafile>
     </datafiles>
-    <datafiles number="90" name="UnitTests">
-      <datafiles number="90" name="Rooms">
+    <datafiles number="102" name="UnitTests">
+      <datafiles number="102" name="Rooms">
         <datafile>
           <name>lvlRecordingTest.room.gmx</name>
           <exists>-1</exists>
@@ -691,7 +691,7 @@
           <filename>lvlUnitTestBossDoors.room.gmx</filename>
         </datafile>
       </datafiles>
-      <datafiles number="90" name="Recordings">
+      <datafiles number="102" name="Recordings">
         <datafile>
           <name>RecordingObjectSet.mrc</name>
           <exists>-1</exists>
@@ -830,7 +830,7 @@
         </datafile>
       </datafiles>
     </datafiles>
-    <datafiles number="90" name="Misc">
+    <datafiles number="102" name="Misc">
       <datafile>
         <name>sinTable.txt</name>
         <exists>-1</exists>
@@ -866,7 +866,58 @@
         <filename>cosTable.txt</filename>
       </datafile>
     </datafiles>
-    <datafiles number="90" name="Rooms">
+    <datafiles number="102" name="Levels">
+      <datafile>
+        <name>lvlChillMan.room.gmx</name>
+        <exists>-1</exists>
+        <size>987034</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlChillMan.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>lvlFlashMan.room.gmx</name>
+        <exists>-1</exists>
+        <size>945487</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlFlashMan.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>lvlGeminiMan.room.gmx</name>
+        <exists>-1</exists>
+        <size>1041204</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlGeminiMan.room.gmx</filename>
+      </datafile>
       <datafile>
         <name>lvlGutsMan.room.gmx</name>
         <exists>-1</exists>
@@ -883,6 +934,159 @@
           </Config>
         </ConfigOptions>
         <filename>lvlGutsMan.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>lvlHoneyWoman.room.gmx</name>
+        <exists>-1</exists>
+        <size>1041352</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlHoneyWoman.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>lvlPharaohMan.room.gmx</name>
+        <exists>-1</exists>
+        <size>885967</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlPharaohMan.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>lvlPlantMan.room.gmx</name>
+        <exists>-1</exists>
+        <size>863081</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlPlantMan.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>lvlStoneMan.room.gmx</name>
+        <exists>-1</exists>
+        <size>1443633</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlStoneMan.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>lvlMM5Dark1.room.gmx</name>
+        <exists>-1</exists>
+        <size>1055348</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlMM5Dark1.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>lvlMM4Wily1.room.gmx</name>
+        <exists>-1</exists>
+        <size>1019311</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlMM4Wily1.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>lvlMM9Wily3.room.gmx</name>
+        <exists>-1</exists>
+        <size>1274932</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlMM9Wily3.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>lvlMM6MrX4.room.gmx</name>
+        <exists>-1</exists>
+        <size>1098617</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlMM6MrX4.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>lvlMM10Wily4.room.gmx</name>
+        <exists>-1</exists>
+        <size>858380</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlMM10Wily4.room.gmx</filename>
       </datafile>
     </datafiles>
   </datafiles>
@@ -3815,6 +4019,7 @@
       <script>scripts\setWeaponLocked.gml</script>
       <script>scripts\specialDamageValue.gml</script>
       <script>scripts\getWeaponDamage.gml</script>
+      <script>scripts\getWeaponID.gml</script>
       <script>scripts\weaponReward.gml</script>
     </scripts>
     <scripts name="Views/Section">
@@ -5752,22 +5957,7 @@
   <rooms name="rooms">
     <room>rooms\rmInit</room>
     <room>rooms\lvlCopyThisRoom</room>
-    <rooms name="Example Game">
-      <room>rooms\lvlFlashMan</room>
-      <room>rooms\lvlGeminiMan</room>
-      <room>rooms\lvlPharaohMan</room>
-      <room>rooms\lvlStoneMan</room>
-      <room>rooms\lvlPlantMan</room>
-      <room>rooms\lvlHoneyWoman</room>
-      <room>rooms\lvlChillMan</room>
-      <room>rooms\lvlCastleIntro</room>
-      <room>rooms\lvlMM5Dark1</room>
-      <room>rooms\lvlMM4Wily1</room>
-      <room>rooms\lvlMM9Wily3</room>
-      <room>rooms\lvlMM6MrX4</room>
-      <room>rooms\lvlMM10Wily4</room>
-      <room>rooms\lvlCutMan</room>
-    </rooms>
+    <room>rooms\lvlCutMan</room>
     <rooms name="Engine">
       <room>rooms\rmDisclaimer</room>
       <room>rooms\rmTitleScreen</room>
@@ -5781,6 +5971,7 @@
       <room>rooms\rmWeaponGet</room>
       <room>rooms\rmUnitTest</room>
       <room>rooms\rmShop</room>
+      <room>rooms\rmCastleIntro</room>
     </rooms>
     <rooms name="Test Rooms">
       <room>rooms\lvlTestHallTemp</room>

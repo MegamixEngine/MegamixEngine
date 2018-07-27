@@ -97,7 +97,7 @@ for (var i = 0; i &lt; 3; i++)
 }
 
 // define stages
-stageRoom[0, 0] = getRoom("lvlGutsMan", "Levels/lvlGutsMan");
+stageRoom[0, 0] = "lvlGutsMan"
 stageIcon[0, 0] = 2;
 stageName[0, 0] = " GUTS#    MAN";
 stageBeaten[0, 0] = indexOf(global.elementsCollected, "guts") &gt;= 0;
@@ -106,7 +106,7 @@ stageBossJumpIndex[0, 0] = 0;
 stageBossIntroSprite[0, 0] = sprGutsIdle;
 stageBossIntroSpeed[0, 0] = 0.1;
 
-stageRoom[1, 0] = getRoom("lvlFlashMan", "Levels/lvlFlashMan");
+stageRoom[1, 0] = "lvlFlashMan"
 stageIcon[1, 0] = 3;
 stageName[1, 0] = " FLASH#    MAN";
 stageBeaten[1, 0] = indexOf(global.elementsCollected, "flash") &gt;= 0;
@@ -115,7 +115,7 @@ stageBossJumpIndex[1, 0] = 6;
 stageBossIntroSprite[1, 0] = sprFlashIntro;
 stageBossIntroSpeed[1, 0] = 10 / 60;
 
-stageRoom[2, 0] = getRoom("lvlGeminiMan", "Levels/lvlGeminiMan");
+stageRoom[2, 0] = "lvlGeminiMan";
 stageIcon[2, 0] = 4;
 stageName[2, 0] = " GEMINI#    MAN";
 stageBeaten[2, 0] = indexOf(global.elementsCollected, "gemini") &gt;= 0;
@@ -124,7 +124,7 @@ stageBossJumpIndex[2, 0] = 0;
 stageBossIntroSprite[2, 0] = sprGeminiIntro;
 stageBossIntroSpeed[2, 0] = 16 / 60;
 
-stageRoom[0, 1] = getRoom("lvlPharaohMan", "Levels/lvlPharaohMan");
+stageRoom[0, 1] = "lvlPharaohMan";
 stageIcon[0, 1] = 5;
 stageName[0, 1] = "PHARAOH#    MAN";
 stageBeaten[0, 1] = indexOf(global.elementsCollected, "pharaoh") &gt;= 0;
@@ -133,7 +133,7 @@ stageBossJumpIndex[0, 1] = 0;
 stageBossIntroSprite[0, 1] = sprPharaohPose;
 stageBossIntroSpeed[0, 1] = 3 / 60;
 
-stageRoom[2, 1] = getRoom("lvlStoneMan", "Levels/lvlStoneMan");
+stageRoom[2, 1] = "lvlStoneMan";
 stageIcon[2, 1] = 6;
 stageName[2, 1] = " STONE#    MAN";
 stageBeaten[2, 1] = indexOf(global.elementsCollected, "stone") &gt;= 0;
@@ -142,7 +142,7 @@ stageBossJumpIndex[2, 1] = 5;
 stageBossIntroSprite[2, 1] = sprStoneManIntro;
 stageBossIntroSpeed[2, 1] = 0.3;
 
-stageRoom[0, 2] = getRoom("lvlPlantMan", "Levels/lvlPlantMan");
+stageRoom[0, 2] = "lvlPlantMan";
 stageIcon[0, 2] = 7;
 stageName[0, 2] = " PLANT#    MAN";
 stageBeaten[0, 2] = indexOf(global.elementsCollected, "plant") &gt;= 0;
@@ -151,7 +151,7 @@ stageBossJumpIndex[0, 2] = 0;
 stageBossIntroSprite[0, 2] = sprPlantIntro;
 stageBossIntroSpeed[0, 2] = 10 / 60;
 
-stageRoom[1, 2] = getRoom("lvlHoneyWoman", "Levels/lvlHoneyWoman");
+stageRoom[1, 2] = "lvlHoneyWoman";
 stageIcon[1, 2] = 8;
 stageName[1, 2] = " HONEY#  WOMAN";
 stageBeaten[1, 2] = indexOf(global.elementsCollected, "honey") &gt;= 0;
@@ -160,7 +160,7 @@ stageBossJumpIndex[1, 2] = 11;
 stageBossIntroSprite[1, 2] = sprHoneyWomanIntro;
 stageBossIntroSpeed[1, 2] = 0.11;
 
-stageRoom[2, 2] = getRoom("lvlChillMan", "Levels/lvlChillMan");
+stageRoom[2, 2] = "lvlChillMan";
 stageIcon[2, 2] = 9;
 stageName[2, 2] = " CHILL#    MAN";
 stageBeaten[2, 2] = indexOf(global.elementsCollected, "chill") &gt;= 0;
@@ -170,17 +170,17 @@ stageBossIntroSprite[2, 2] = sprChillIntro;
 stageBossIntroSpeed[2, 2] = 6 / 60;
 
 // Set center stage after grabbing all other indexes
-stageRoom[1, 1] = lvlCastleIntro;
+stageRoom[1, 1] = "rmCastleIntro";
 stageLock[1, 1] = !(stageBeaten[0, 0] &amp;&amp; stageBeaten[1, 0] &amp;&amp; stageBeaten[2, 0]
     &amp;&amp; stageBeaten[0, 1] &amp;&amp; stageBeaten[2, 1] &amp;&amp; stageBeaten[0, 2]
     &amp;&amp; stageBeaten[1, 2] &amp;&amp; stageBeaten[2, 2]);
 stageIcon[1, 1] = 11 - stageLock[1, 1];
 
 // menu selections
-stageRoom[0, 3] = rmTitleScreen;
+stageRoom[0, 3] = "rmTitleScreen";
 stageName[0, 3] = "MENU";
 
-stageRoom[1, 3] = rmShop;
+stageRoom[1, 3] = "rmShop";
 stageName[1, 3] = "SHOP";
 
 // convenience feature
@@ -345,13 +345,14 @@ if (instance_exists(bossObject))
                 else
                 {
                     // already beaten level
-                    goToLevel(stageRoom[cursorX, cursorY], true);
+                    var level = getRoom(stageRoom[cursorX, cursorY], "Levels/" + stageRoom[cursorX, cursorY])
+                    goToLevel(level, true);
                 }
             }
             else
             {
                 // menu room
-                global.nextRoom = stageRoom[cursorX, cursorY];
+                global.nextRoom = getRoom(stageRoom[cursorX, cursorY]);
             }
         }
         else
@@ -439,7 +440,8 @@ if (instance_exists(bossObject))
                 // go to the stage
                 if (timer &gt;= 400)
                 {
-                    goToLevel(stageRoom[cursorX, cursorY]);
+                    var level = getRoom(stageRoom[cursorX, cursorY], "Levels/" + stageRoom[cursorX, cursorY])
+                    goToLevel(level, true);
                     
                     // nothing is reset here since the object is going to get deleted upon room switch
                 }
@@ -544,7 +546,8 @@ if (instance_exists(bossObject))
                 // go to the stage
                 if (bossObjectIntroFinished &amp;&amp; timer &gt;= 400)
                 {
-                    goToLevel(stageRoom[cursorX, cursorY], true);
+                    var level = getRoom(stageRoom[cursorX, cursorY], "Levels/" + stageRoom[cursorX, cursorY])
+                    goToLevel(level, true);
                     
                     // nothing is reset here since the object is going to get deleted upon room switch
                 }

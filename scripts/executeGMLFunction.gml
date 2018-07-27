@@ -68,6 +68,8 @@ else if (fname == "instance_destroy")
     instance_destroy();
 else if (fname == "instance_create")
     instance_create(a0, a1, a2);
+else if (fname == "tile_layer_delete")
+    tile_layer_delete(a0);
 else
     global.execute_gml_function_ERR = true;
 return 0;
