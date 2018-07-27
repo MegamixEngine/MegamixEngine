@@ -33,7 +33,6 @@ grav = 0;
 contactDamage = 4;
 
 spd = 3;
-xspeed = spd * -image_xscale;
 yspeed = 0;
 missleDir = 0;
 animTimer = 0;
