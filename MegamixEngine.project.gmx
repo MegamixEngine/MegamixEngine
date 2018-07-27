@@ -5751,7 +5751,6 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rmInit</room>
-    <room>rooms\lvlBeta</room>
     <room>rooms\lvlCopyThisRoom</room>
     <rooms name="Example Game">
       <room>rooms\lvlFlashMan</room>
