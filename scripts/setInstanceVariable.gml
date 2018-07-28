@@ -4277,6 +4277,7 @@ else if (stringStartsWith(_____vs_____, 'x'))
     else if (_____vs_____ == "xs") xs = _____val_____;
     else if (_____vs_____ == "xsc") xsc = _____val_____;
     else if (_____vs_____ == "xscale") xscale = _____val_____;
+    else if (_____vs_____ == "xScale") xScale = _____val_____;
     else if (_____vs_____ == "xscaleStart") xscaleStart = _____val_____;
     else if (_____vs_____ == "xscaleStorage") xscaleStorage = _____val_____;
     else if (_____vs_____ == "xshift") xshift = _____val_____;

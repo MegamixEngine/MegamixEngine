@@ -70,6 +70,10 @@ else if (fname == "instance_create")
     instance_create(a0, a1, a2);
 else if (fname == "tile_layer_delete")
     tile_layer_delete(a0);
+else if (fname == "tile_layer_show")
+    tile_layer_show(a0);
+else if (fname == "tile_layer_hide")
+    tile_layer_hide(a0);
 else
     global.execute_gml_function_ERR = true;
 return 0;
