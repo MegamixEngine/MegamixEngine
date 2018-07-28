@@ -221,7 +221,9 @@ if (darken &amp;&amp; (instance_exists(objMegaman)))
 if (!instance_exists(triggerPlayer))
 {
     endit=1;
+    global.switchingSections=false;
     reAndDeactivateObjects(1,0);
+    global.switchingSections=true;
     exit;
 }
 
@@ -330,7 +332,10 @@ if (canStep) // When the door is closing, we should not move
                 {
                     // finish
                     endit=1;
-                    reAndDeactivateObjects(1,0);
+                    global.switchingSections=0;
+                    reAndDeactivateObjects(1, 0);
+                    global.switchingSections=1;
+                    exit;
                 }
                 else
                 {
@@ -407,7 +412,7 @@ y = triggerPlayer.y;
             <string>/// end transition
 
 global.switchingSections = false;
-
+instance_activate_object(objMegaman);
 if (instance_exists(triggerPlayer))
 {
     with (objMegaman)
@@ -464,6 +469,7 @@ if (plat)
 canProgressDoor = true;
 global.frozen = false;
 instance_destroy();
+
 </string>
           </argument>
         </arguments>

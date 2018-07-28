@@ -201,6 +201,7 @@ if (global.nextRoom != 0 || fadeAlpha &gt; 0)
     {
         if (global.nextRoom &amp;&amp; fadeAlpha == 1)
         {
+            global.previousRoom = room;
             room_goto(global.nextRoom);
         }
         
