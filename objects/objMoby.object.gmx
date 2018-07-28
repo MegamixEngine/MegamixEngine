@@ -120,6 +120,7 @@ if (entityCanStep() &amp;&amp; introTimer &lt;= 0)
             myAttack = instance_create(x + 38 * image_xscale, y + 20,
                 objMobbyMissle);
             myAttack.image_xscale = image_xscale;
+            myAttack.xspeed = myAttack.spd * image_xscale;
         }
         else
         {

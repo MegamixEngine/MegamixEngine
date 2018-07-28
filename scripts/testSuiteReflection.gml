@@ -112,5 +112,36 @@ if (unitCase("arithmetic"))
         stringExecutePartial("value = ((7 * 13) - (5)) mod 6");
         unitRequireEquals(value, 2, "incorrectly computed arithmetic");
         unitRequire(!global.retval_error, "error occurred while executing string");
+        stringExecutePartial("value = -9");
+        unitRequireEquals(value, -9, "cannot handle negative numbers (-9)");
+        unitRequire(!global.retval_error, "error occurred while executing string");
+    }
+}
+
+if (unitCase("if statements"))
+{
+    if (unitExecute())
+    {
+        value = 5;
+        stringExecutePartial("if (3 < 5) {value = 6} ");
+        unitRequireEquals(value, 6, "if statement did not trigger");
+        unitRequire(!global.retval_error, "error occurred while executing string");
+        stringExecutePartial("value = 9; if (5 < 3) {value = 7} ");
+        unitRequireEquals(value, 9, "if statement triggered when it should not have");
+        unitRequire(!global.retval_error, "error occurred while executing string");
+    }
+}
+
+if (unitCase("else-if statements"))
+{
+    if (unitExecute())
+    {
+        value = 5;
+        stringExecutePartial("if (3 < 5) {value = 6} else {value = 7}");
+        unitRequire(value != 7, "else block triggered when it should not have");
+        unitRequire(!global.retval_error, "error occurred while executing string");
+        stringExecutePartial("value = 8; if (5 < 3) {value = 7} else {value = 9}");
+        unitRequireEquals(value, 9, "else block failed to trigger");
+        unitRequire(!global.retval_error, "error occurred while executing string");
     }
 }

@@ -28,9 +28,6 @@
             <string>// An enemy from Galaxy Man's stage. It's a mini UFO that moves in a wave pattern, starting by moving
 // downwards.
 
-// Creation code (all optional):
-// col = &lt;number&gt; (0 = green (default); 1 = yellow; 2 = pink )
-
 event_inherited();
 
 respawn = true;
@@ -50,7 +47,11 @@ sinCounter = 0;
 
 imageOffset = 0;
 
+// @cc color of adamski. (0 = green (default); 1 = yellow; 2 = pink )
 col = 0;
+
+// @cc if false, the Wily UFO sound will not play
+playUFOSounds = true;
 </string>
           </argument>
         </arguments>
@@ -87,7 +88,7 @@ if (entityCanStep())
     sinCounter += .02;
     yspeed = (cos(sinCounter) * .7);
     
-    if (!audio_is_playing(sfxWilyUFO))
+    if (!audio_is_playing(sfxWilyUFO) &amp;&amp; playUFOSounds)
     {
         playSFX(sfxWilyUFO);
     }

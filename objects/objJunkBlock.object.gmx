@@ -74,6 +74,12 @@ superArmThrown = false;
             <string>event_inherited();
 
 isSolid = ground;
+
+if (superArmHoldOwner != noone)
+{
+    contactDamage = 0;
+    isSolid = 0;
+}
 </string>
           </argument>
         </arguments>
