@@ -40,10 +40,14 @@ phase = 4;
 stopOnFlash = false;
 
 targetPID = 0;
-hasCostume = 1; // SET IN CREATION CODE:
 
+// SET hasCostume IN CREATION CODE:
 // 0 = No disguise, 1 = Player disguise, 2 = MM5 Proto Man disguise, 3 = Custom disguise
-_costume = 0;
+// For 3, set sprite_index and/or image_index to the sprite/frame you want to use
+// e.g. hasCostume = 3, sprite_index = sprQuickMan
+hasCostume = 1; 
+
+_costume = 0; 
 
 shots = 0; // How many shots has Dark Man fired?
 shooting = false; // Is Dark Man shooting?
