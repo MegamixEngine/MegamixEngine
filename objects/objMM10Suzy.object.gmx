@@ -30,7 +30,6 @@
 // Wash, rinse, repeat.
 
 // Creation code (all optional):
-// col = &lt;number&gt; (0 = red (default); 1 = orange; 2 = blue)
 // dir = "h"/"v" ("h" = horizontal (default); "v" = vertical)
 // startDir = -1/1 (1 makes the suzy move right/down first (default); -1 makes the suzy move left/up first)
 

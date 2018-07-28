@@ -116,7 +116,7 @@ if (!fire)
     // ITS LIT FAM :joy:
     for (var i = 0; i &lt; array_length_1d(fireSource); i++)
     {
-        if (place_meeting(x, y, fireSource[i]))
+        if (place_meeting(x, y - 1, fireSource[i]))
         {
             event_user(0);
         }
@@ -162,16 +162,16 @@ oil[1] = objPUOil;
 
 for (i = 0; i &lt;= 1; i += 1)
 {
-    if (place_meeting(x + 16, y, object_index))
+    if (place_meeting(x + 16, y, oil[i]))
     {
-        with (instance_place(x + 16, y, object_index))
+        with (instance_place(x + 16, y, oil[i]))
         {
             event_user(0);
         }
     }
-    if (place_meeting(x - 16, y, object_index))
+    if (place_meeting(x - 16, y, oil[i]))
     {
-        with (instance_place(x - 16, y, object_index))
+        with (instance_place(x - 16, y, oil[i]))
         {
             event_user(0);
         }
