@@ -4426,6 +4426,9 @@ else if (stringStartsWith(_____vs_____, 'D'))
 {
     if (_____vs_____ == "") return false;
     else if (_____vs_____ == "DEFAULT_SPAWN_LIST") global.retval = DEFAULT_SPAWN_LIST;
+    else if (_____vs_____ == "DIFF_EASY") global.retval = DIFF_EASY;
+    else if (_____vs_____ == "DIFF_NORMAL") global.retval = DIFF_NORMAL;
+    else if (_____vs_____ == "DIFF_HARD") global.retval = DIFF_HARD;
     else return false;
 }
 else if (stringStartsWith(_____vs_____, 'E'))

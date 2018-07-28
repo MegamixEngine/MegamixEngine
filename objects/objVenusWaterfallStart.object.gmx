@@ -3,7 +3,7 @@
   <spriteName>sprVenusWaterfallStart</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>4</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -32,7 +32,10 @@ grav = 0;
 yDist = 0; // Distance to travel before creating waterfall segment
 respawn = false;
 spawner = noone;
-i = instance_create(x, y, objVenusWaterfallSegment);
+water = instance_create(x, y, objVenusWaterfallSegment);
+i = water.id;
+
+despawnRange = -1;
 </string>
           </argument>
         </arguments>
@@ -61,13 +64,18 @@ if (entityCanStep())
     y += 4;
     yDist += 4;
     
-    if (yDist == 8)
+    if (yDist &gt;= 8)
     {
         if (instance_exists(i))
         {
             i.image_yscale++;
         }
         yDist = 0;
+    }
+    
+    if !insideSection(x, y)
+    {
+        instance_destroy();
     }
 }
 </string>
