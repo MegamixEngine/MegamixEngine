@@ -267,7 +267,7 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight &a
                 
                 /*with (prtBoss)
                 {
-                    if (id != other.id &amp;&amp; active &amp;&amp; !dead)
+                    if (!quickSpawn&amp;&amp;id != other.id &amp;&amp; active &amp;&amp; !dead)
                     {
                         global.aliveBosses += 1;
                     }
@@ -641,10 +641,13 @@ if (spawned)
           <argument>
             <kind>1</kind>
             <string>global.bossTextShown = false;
-global.aliveBosses -= 1;
+if (!quickSpawn)
+{
+    global.aliveBosses -= 1;
+}
 wasKilled = true;
 
-if (global.aliveBosses &lt;= 0)
+if (!quickSpawn &amp;&amp; global.aliveBosses &lt;= 0)
 {
     if (useEndStageBehavior)
     {
@@ -657,7 +660,7 @@ if (global.aliveBosses &lt;= 0)
         playMusic(musicStore, musicTypeStore, musicTrackNumberStore, musicLoopStartStore, musicLoopEndStore, musicLoopStore, musicVolumeStore);
     }
 }
-else
+else if(!quickSpawn)
 {   
     if (healthParent==-1)
     {
@@ -705,7 +708,7 @@ if (doPlayerExplosion)
 }
 
 // HANDLING ITEM DROPS
-if (global.aliveBosses &lt;= 0)
+if (quickSpawn || global.aliveBosses &lt;= 0)
 {
     if (itemDrop == objKey)
     {

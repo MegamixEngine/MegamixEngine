@@ -92,13 +92,18 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
         var jump = global.keyJumpPressed[playerID] && yDir != -gravDir && !playerIsLocked(PL_LOCK_CLIMB);
         if ((ground && yDir == gravDir) || !place_meeting(bbox_left, y, objLadder) || !place_meeting(bbox_right, y, objLadder) || jump)
         {
+            y-=gravDir;
+            y=round(y);
             if (!place_meeting(x, y, objLadder))
             {
-                if (place_meeting(x, y + (gravDir * climbSpeed), objLadder))
+                if (place_meeting(x, y + (gravDir * climbSpeed) + gravDir, objLadder))
                 {
-                    shiftObject(0, climbSpeed * gravDir, 1);
+                    xspeed=0;
+                    yspeed=(climbSpeed * gravDir);
+                    generalCollision();
                 }
             }
+            
             climbing = false;
             yspeed = 0;
             isSlide = false;

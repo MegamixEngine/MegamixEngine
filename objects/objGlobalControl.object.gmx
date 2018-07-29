@@ -201,6 +201,7 @@ if (global.nextRoom != 0 || fadeAlpha &gt; 0)
     {
         if (global.nextRoom &amp;&amp; fadeAlpha == 1)
         {
+            global.previousRoom = room;
             room_goto(global.nextRoom);
         }
         
@@ -1404,7 +1405,7 @@ depth = depthstart;
     var healthIndex = 0;
     with (prtBoss) // Boss healthbars
     {
-        if (drawHealthBar &amp;&amp; healthParent == -1)
+        if (!quickSpawn&amp;&amp;drawHealthBar &amp;&amp; healthParent == -1)
         {
             var dxx = dx + ((healthIndex - 1) * 8); // Multibosses
             
