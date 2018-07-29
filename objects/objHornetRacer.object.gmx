@@ -42,6 +42,8 @@ minusX = 0;
 timer = 0;
 timerMax = 70;
 hasFired = false;
+targetX=0;
+targetY=0;
 </string>
           </argument>
         </arguments>
@@ -80,15 +82,20 @@ if (entityCanStep())
     else if (!hasFired &amp;&amp; target != noone) // divebomb!
     {
         image_index = 2;
-        if (image_yscale == 1)
+        if(instance_exists(target))
         {
-            yspeed = ySpeedAim(y, target.y, grav);
-            xspeed = -xSpeedAim(x, y, target.x, target.y, yspeed, grav);
-        }
-        else
-        {
-            yspeed = ySpeedAim(y, target.y - 8, grav);
-            xspeed = xSpeedAim(x, y, target.x, target.y, yspeed, grav);
+            if (image_yscale == 1)
+            {
+                yspeed = ySpeedAim(y, target.y, -0.25 * image_yscale);
+                xspeed = xSpeedAim(x, y, target.x, target.y, yspeed, 0.001);
+            }
+            else
+            {
+                yspeed = ySpeedAim(y, target.y - 8, -0.25 * image_yscale);
+                xspeed = xSpeedAim(x, y, target.x, target.y-8, yspeed,0.001);
+            }
+            targetX=target.x;
+            targetY=target.y;
         }
         minusX = 0 - xspeed;
         hasFired = true;
@@ -104,7 +111,7 @@ if (entityCanStep())
             yspeed = 0;
             y = ystart;
         }
-        if ((xspeed &gt; 0 &amp;&amp; x &gt; target.x) || (xspeed &lt; 0 &amp;&amp; x &lt; target.x))
+        if ((xspeed &gt; 0 &amp;&amp; x &gt; targetX) || (xspeed &lt; 0 &amp;&amp; x &lt; targetX))
         {
             passedTarget = true;
         }
