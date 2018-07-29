@@ -57,6 +57,9 @@ mySpeed = 0.5;
 
 //@cc the amount of frames to wait in between entering the autoscroll section and the scrolling actually starting.
 waitFrames = 64;
+
+//@cc if set to true, the camera will be unlocked when it's done autoscrolling
+unlockBounds = false;
 </string>
           </argument>
         </arguments>
@@ -146,6 +149,30 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 {
                     global.sectionTop += mySpeed;
                     global.sectionBottom += mySpeed;
+                }
+            }
+            break;
+        case 4: // unlock bounds once finished, if set to true
+            if unlockBounds
+            {
+                if (dir == "h")
+                {
+                    global.sectionLeft = sL;
+                    global.sectionRight = sR;
+                }
+                else if (dir == "v")
+                {
+                    global.sectionTop = sT;
+                    global.sectionBottom = sB;
+                }
+                
+                // give camera back to mega man
+                if (instance_exists(objMegaman))
+                {
+                    with (objMegaman)
+                    {
+                        viewPlayer = 1;
+                    }
                 }
             }
             break;

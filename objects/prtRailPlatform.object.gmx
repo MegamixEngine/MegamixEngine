@@ -42,7 +42,7 @@ mySpeed = 1;
 
 init = 1;
 dir = "none"; // left, up, down, right
-startDir = "none";
+startDir = dir;
 
 // distance from the x and y position to check by
 xOffset = 8;
@@ -105,8 +105,7 @@ if (init)
                 dir = "down";
                 break;
         }
-        if(startDir == "none")
-            startDir = dir;
+        startDir = dir;
         init = false;
     }
 }

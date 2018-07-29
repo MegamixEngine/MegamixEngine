@@ -85,6 +85,7 @@ global.checkpoint = false;
     // select an option
     if (selected)
     {
+        stopMusic();
         if (selection == 0)
         {
             // quit:

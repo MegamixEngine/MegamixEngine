@@ -47,9 +47,6 @@ arrayAppend(nonLevels, rmTitleScreen);
 ds_list_add(roomlist, -3);
 ds_list_add(roomnames, "@#Difficulty: ");
 
-ds_list_add(roomlist, -4);
-ds_list_add(roomnames, "@$Lives: ");
-
 ds_list_add(roomlist, rmFileSelect);
 ds_list_add(roomnames, "@Example Game");
 arrayAppend(nonLevels, rmFileSelect);

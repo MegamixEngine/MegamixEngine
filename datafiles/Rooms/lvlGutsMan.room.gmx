@@ -13,7 +13,7 @@
   <code>playMusic("Mega_Man_1.nsf", "VGM", 3, 0, 0, 0, 1);
 
 with objSFXEmitter
-if global.difficulty &lt; DIFF_HARD
+if global.difficulty &lt; DIFF_NORMAL
 {
     instance_destroy();
 }</code>
@@ -159,7 +159,7 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objSFXEmitter" x="912" y="16" name="inst_A3D17F9E" locked="0" code="sfx = sfxGutsLift;&#xA;interval = -1; // loop&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSFXEmitter" x="1104" y="16" name="inst_5EEAD7B8" locked="0" code="sfx = sfxGutsLift;&#xA;interval = -1; // loop&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="320" y="96" name="inst_E84C2139" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}" scaleX="2" scaleY="9" colour="4294967295" rotation="0"/>
-    <instance objName="objDestroyField" x="288" y="144" name="inst_2BABBD31" locked="0" code="destroyEntities = false;&#xA;if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="objDestroyField" x="288" y="144" name="inst_2BABBD31" locked="0" code="destroyEntities = false;&#xA;if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="296" y="160" name="inst_DCC63713" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDrillBoulderSpawner" x="80" y="16" name="inst_84E58B15" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDefaultSpawn" x="16" y="176" name="inst_4A636CAB" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -189,7 +189,7 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objSuperArmBlock" x="1872" y="176" name="inst_749F21E7" locked="0" code="" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSuperArmBlock" x="2592" y="1136" name="inst_D905086C" locked="0" code="" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSuperArmBlock" x="2640" y="1136" name="inst_A42B7F38" locked="0" code="" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDestroyField" x="288" y="176" name="inst_A5FF9FF7" locked="0" code="destroyTilesDepth = 999990;&#xA;&#xA;if global.difficulty == DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDestroyField" x="288" y="176" name="inst_A5FF9FF7" locked="0" code="destroyTilesDepth = 999990;&#xA;&#xA;if global.difficulty == DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2720" y="1120" name="inst_2E38AD14" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2720" y="1136" name="inst_E99C9F78" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2720" y="1152" name="inst_82CA9C4A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

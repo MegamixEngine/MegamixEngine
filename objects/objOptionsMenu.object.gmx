@@ -1046,7 +1046,7 @@ for (var j = 0; j &lt; visibleOptions; j++)
             }
             else
             {
-                opt += 'NEW';
+                opt += 'MM2+';
             }
             break;
         
@@ -1054,11 +1054,11 @@ for (var j = 0; j &lt; visibleOptions; j++)
         case 18:
             if (global.deathEffect)
             {
-                opt += 'OLD';
+                opt += 'MM1/MM2';
             }
             else
             {
-                opt += 'NEW';
+                opt += 'MM3+';
             }
             break;
         
@@ -1066,11 +1066,11 @@ for (var j = 0; j &lt; visibleOptions; j++)
         case 19:
             if (global.jumpSound)
             {
-                opt += 'OLD';
+                opt += 'MM1/MM2';
             }
             else
             {
-                opt += 'NEW';
+                opt += 'MM3-6';
             }
             break;
         
@@ -1078,11 +1078,11 @@ for (var j = 0; j &lt; visibleOptions; j++)
         case 20:
             if (global.teleportSound)
             {
-                opt += 'OLD';
+                opt += 'MM1/MM2';
             }
             else
             {
-                opt += 'NEW';
+                opt += 'MM3-MM6';
             }
             break;
     }
