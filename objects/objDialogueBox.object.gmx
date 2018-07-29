@@ -301,8 +301,11 @@ if (showtext)
         {
             if (string_char_at(itext, i + 1) == "C") // Color
             {
-                colour = global.nesPalette[real(string_char_at(itext, i + 2))];
-                i += 2;
+                var col1 = string_char_at(itext, i + 2);
+                var col2 = string_char_at(itext, i + 3);
+                var col3 = col1 + col2;
+                colour = global.nesPalette[real(col3)];
+                i += 3;
                 continue;
             }
             else if (string_digits(string_char_at(itext, i + 1)) != "") // Movement

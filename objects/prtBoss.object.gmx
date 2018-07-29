@@ -84,7 +84,7 @@ startIntro = false;
 isIntro = false;
 startFight = 0;
 isFight = false;
-wasKilled=false;
+wasKilled = false;
 
 // BOSS SETTINGS !
 music = "Mega_Man_2.nsf";
@@ -210,6 +210,7 @@ if (isFight == true)
 if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight &amp;&amp; !wasKilled)
 {
     if (!objMegaman.teleporting &amp;&amp; !objMegaman.showReady)
+    {
         if (insideSection(x, y))
         {
             // s the player and activates the boss (but won't make the boss move yet, it just performs its starting pose)
@@ -264,7 +265,7 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight &a
                 
                 global.aliveBosses += 1; // Used for multiple bosses being around.
                 
-                with (prtBoss)
+                /*with (prtBoss)
                 {
                     if (!quickSpawn&amp;&amp;id != other.id &amp;&amp; active &amp;&amp; !dead)
                     {
@@ -272,7 +273,6 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight &a
                     }
                 }
                 
-                /*
                 if (healthIndex == -1)
                 {
                     healthIndex = global.aliveBosses;
@@ -365,13 +365,13 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight &a
                 if (healthBarHealth &gt;= maxHealth)
                 {
                     healthBarHealth = maxHealth;
-                     if(shareMode==1)
+                    if(shareMode==1)
                     {
-                        with(prtBoss)
+                        with (prtBoss)
                         {
-                            if(id!=other.id&amp;&amp;!dead&amp;&amp;(healthParent==other.id||(healthParent!=-1&amp;&amp; healthParent==other.healthParent)))
+                            if (id!=other.id &amp;&amp; !dead &amp;&amp; (healthParent == other.id || (healthParent != -1 &amp;&amp; healthParent == other.healthParent)))
                             {
-                                healthBarHealth=other.healthBarHealth;
+                                healthBarHealth = other.healthBarHealth;
                             }
                         }   
                     }
@@ -380,11 +380,14 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight &a
                         startFight += 1;
                     }
                     fillingHealthBar = false;
-                    if(healthParent==-1)
+                    if (healthParent == -1)
+                    {
                         stopSFX(sfxEnergyRestore);
+                    }
                 }
             }
         }
+    }
 }
 </string>
           </argument>
@@ -493,7 +496,7 @@ if (entityCanStep())
         }
         grav = 0;
         blockCollision = 0;
-        yspeed=0;
+        yspeed = 0;
     }
     
     // Intro animation
@@ -536,7 +539,11 @@ if (entityCanStep())
                 if (introType != 0)
                 {
                     y = ystart;
-                    yspeed = 0;
+                    
+                    if yspeed &gt; 0
+                    {
+                        yspeed = 0;
+                    }
                     
                     if (!customPose)
                     {
@@ -568,7 +575,7 @@ if (entityCanStep())
     
     // Starting the actual fight, checking if all other onscreen bosses are done w/ animations
     // in the process.
-    if (!wasKilled&amp;&amp;(startFight == global.aliveBosses) &amp;&amp; (global.aliveBosses &gt; 0))
+    if (!wasKilled &amp;&amp; (startFight == global.aliveBosses) &amp;&amp; (global.aliveBosses &gt; 0))
     {
         lockPoolRelease(introLock);
         startFight = 0;
@@ -634,11 +641,12 @@ if (spawned)
           <argument>
             <kind>1</kind>
             <string>global.bossTextShown = false;
-if(!quickSpawn)
+if (!quickSpawn)
 {
     global.aliveBosses -= 1;
 }
-wasKilled=true;
+wasKilled = true;
+
 if (!quickSpawn &amp;&amp; global.aliveBosses &lt;= 0)
 {
     if (useEndStageBehavior)
@@ -654,28 +662,29 @@ if (!quickSpawn &amp;&amp; global.aliveBosses &lt;= 0)
 }
 else if(!quickSpawn)
 {   
-    if(healthParent==-1)
+    if (healthParent==-1)
     {
         var newParent = noone;
-        with(prtBoss)
+        with (prtBoss)
         {
-            if(id!=other.id&amp;&amp;!dead &amp;&amp; healthParent == other.id)
+            if (id!=other.id &amp;&amp; !dead &amp;&amp; healthParent == other.id)
             {
-                newParent=id;
-                healthParent=-1;
+                newParent = id;
+                healthParent = -1;
                 break;
             }
         }
-        with(prtBoss)
+        with (prtBoss)
         {
-            if(id!=newParent&amp;&amp;id!=other.id&amp;&amp;!dead &amp;&amp; healthParent == other.id)
+            if (id != newParent &amp;&amp; id != other.id &amp;&amp; !dead &amp;&amp; healthParent == other.id)
             {
-                healthParent=newParent;
+                healthParent = newParent;
             }
         }
     }
 }
-active=false;
+active = false;
+
 if (doPlayerExplosion)
 {
     playSFX(sfxDeath);
@@ -733,7 +742,9 @@ if (quickSpawn || global.aliveBosses &lt;= 0)
 }
 
 if (destroyOnDeath)
+{
     instance_destroy();
+}
 </string>
           </argument>
         </arguments>

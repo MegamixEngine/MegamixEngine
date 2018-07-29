@@ -68,17 +68,11 @@ doneCritSwing = false;
             <kind>1</kind>
             <string>event_inherited();
 
-if (state == 2)
-{
-    grav = 0.25;
-}
-else
-{
-    grav = 0;
-}
-
 if (entityCanStep())
 {
+    grav = 0.25 * (state == 2);
+    blockCollision = (state != 1);
+    
     // general action timer
     actionTimer += 1;
     
@@ -93,7 +87,7 @@ if (entityCanStep())
                 animTimer = 0;
                 y -= 2;
             }
-            if (actionTimer &gt; 30 &amp;&amp; yspeed == 0)
+            if (actionTimer &gt; 30 &amp;&amp; ycoll &lt; 0)
             {
                 state = 1;
                 sprite_index = sprReturningMonkingSwing;
@@ -102,6 +96,7 @@ if (entityCanStep())
                 actionTimer = 0;
                 state = 1;
                 y += 8;
+                yspeed = 0;
             }
             break;
         case 1: // swinging on ceiling

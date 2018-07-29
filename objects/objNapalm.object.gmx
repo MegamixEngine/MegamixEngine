@@ -74,7 +74,7 @@ if (entityCanStep())
         image_index = animTimer div 4;
         
         // special interactions
-        with (objWaterShield)
+        with (objWaterShield) || (objRainFlush) || (objTornadoBlow)
         {
             if (place_meeting(x, y, other))
             {
@@ -85,7 +85,14 @@ if (entityCanStep())
                     animTimer = 0;
                 }
                 playSFX(sfxEnemyHit);
-                instance_create(x, y, objBubblePopEffect);
+                if (object_index == objWaterShield)
+                {
+                    instance_create(x, y, objBubblePopEffect);
+                }
+                if (object_index == objTornadoBlow)
+                {
+                    guardCancel = 2;
+                }
                 instance_destroy();
             }
         }
