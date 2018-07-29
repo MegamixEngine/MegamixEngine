@@ -185,21 +185,26 @@ if (instance_exists(objMegaman))
         global.waveManWarpLock = lockPoolLock(
             global.playerLock[PL_LOCK_MOVE],
             global.playerLock[PL_LOCK_TURN],
-            global
-            .playerLock[PL_LOCK_SHOOT]);
+            global.playerLock[PL_LOCK_SHOOT]);
+            
     with (objMegaman)
     {
-        x = other.x;
-        y = other.y + 4;
-        xspeed = 0;
-        yspeed = 0;
+        if !instance_exists(objSectionSwitcher)
+        {
+            x = other.x;
+            y = other.y + 4;
+            xspeed = 0;
+            yspeed = 0;
+            blockCollision = false;
+        }
+        
         spriteX = 7;
     }
 }
 if (instance_exists(objSectionSwitcher))
 {
     x = objSectionSwitcher.x;
-    y = objSectionSwitcher.y;
+    y = objSectionSwitcher.y - 2;
 }
 if (instance_exists(objMegaman))
 {
@@ -210,6 +215,7 @@ if (instance_exists(objMegaman))
         {
             xspeed = other.xspeed;
             yspeed = other.yspeed;
+            blockCollision = true;
         }
         global.waveManWarpLock = lockPoolRelease(
             global

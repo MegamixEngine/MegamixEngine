@@ -162,18 +162,6 @@ if (!global.frozen)
     if (entityCanStep())
     {
         // uranus' custom intro
-        if (!isFight)
-        {
-            if (!hasTriggeredFall &amp;&amp; !checkSolid(x, y))
-                hasTriggeredFall = true;
-            
-            // since bosses do not have gravity during intros, we need to reuse this here
-            if (hasTriggeredFall)
-            {
-                blockCollision = blockCollisionStart;
-                grav = gravStart;
-            }
-        }
         if (startIntro)
         {
             calibrateDirection();
@@ -187,37 +175,49 @@ if (!global.frozen)
         else if (isIntro)
         {
             // custom intro:
-            if ((y &lt;= view_yview + view_hview / 2) &amp;&amp; !hasTriggeredFall)
+            if ((y &lt;= view_yview + view_hview / 2) &amp;&amp; grav == 0)
             {
                 yspeed += gravAccel;
             }
             
             
-            if (ground)
+            if (y &gt;= ystart || blockCollision)
             {
+                grav = gravStart;
+                blockCollision = blockCollisionStart;
+                
                 image_speed = 0;
                 attackTimer += 1;
                 if (attackTimer == 15)
+                {
                     image_index = 2;
+                }
+                
                 if (attackTimer == 30)
                 {
                     yspeed = jumpY;
                     image_index = 3;
                 }
-                if (attackTimer == 60)
-                    image_index = 2;
-                if (attackTimer == 75)
+                if (attackTimer &gt;= 40 &amp;&amp; attackTimer &lt; 240 &amp;&amp; ycoll &gt; 0)
                 {
-                    yspeed = jumpY * 1.5;
+                    shakeTimer = 25;
+                    playSFX(sfxBikkyLand);
+                    image_index = 2;
+                    attackTimer = 240;
+                }
+                
+                if (attackTimer == 255)
+                {
+                    yspeed = jumpY * 1.25;
                     image_index = 3;
                 }
-                if (attackTimer &gt; 90)
+                if (attackTimer &gt;= 260 &amp;&amp; ycoll &gt; 0)
                 {
+                    shakeTimer = 25;
+                    playSFX(sfxBikkyLand);
                     attackTimer = 0;
                     image_index = 0;
                     isIntro = false;
-                    grav = gravStart;
-                    blockCollision = blockCollisionStart;
                     canFillHealthBar = true;
                     yspeed = 0;
                 }
@@ -232,7 +232,7 @@ if (!global.frozen)
         xOff = 1;
     
     // if urnaus lands for any reason, shake screen.
-    if (image_index == 3 &amp;&amp; ground &amp;&amp; ycoll &gt;= 0)
+    if (image_index == 3 &amp;&amp; ground &amp;&amp; yspeed == 0) //&amp;&amp; ycoll &gt; 0)
     {
         shakeTimer = 25;
         image_index = 0;
@@ -438,8 +438,6 @@ if (!global.frozen)
         }
     }
 }
-else
-{ }
 </string>
           </argument>
         </arguments>

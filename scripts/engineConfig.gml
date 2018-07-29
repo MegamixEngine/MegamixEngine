@@ -27,7 +27,7 @@ global.warningLevel = WL_ERR;
 global.respawnDonateThreshold = 5;
 
 // if this is set to false, 1-ups restore health to full and game overs do not occur.
-global.livesEnabled = true;
+global.livesEnabled = false;
 
 // number of lives before getting a game over.
 global.defaultLives = 2;

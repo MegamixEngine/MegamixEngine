@@ -58,7 +58,7 @@ phase = 0;
             <kind>1</kind>
             <string>event_inherited();
 
-if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
+if (entityCanStep())
 {
     switch (phase)
     {
@@ -105,6 +105,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             timer--;
             if (timer == 0)
             {
+                event_user(EV_DEATH);
                 dead = true;
                 instance_create(x + 8, y + 8, objHarmfulExplosion); //( sprite_width/2,sprite_height/2,objHarmfulExplosion);
                 playSFX(sfxMM9Explosion);
