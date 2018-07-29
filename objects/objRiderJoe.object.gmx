@@ -70,7 +70,7 @@ if (entityCanStep())
     
     if (cooldownTimer == cooldownTimerMax)
     {
-        i = instance_create(x + image_xscale * 8, spriteGetYCenter(),
+        i = instance_create(x + image_xscale * 8, spriteGetYCenter() + 7,
             objEnemyBullet);
         i.xspeed = 4 * image_xscale;
         i.xscale = image_xscale;

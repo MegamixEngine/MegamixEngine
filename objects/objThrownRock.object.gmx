@@ -87,7 +87,7 @@ if (entityCanStep())
             ID.xscale = image_xscale;
         }
         instance_destroy();
-        playSFX(sfxMM3Explode);
+        playSFX(sfxExplosion);
     }
 }
 else if (dead == true)

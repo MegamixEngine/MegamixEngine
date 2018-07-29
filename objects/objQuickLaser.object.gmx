@@ -267,7 +267,7 @@ if (entityCanStep())
         {
             with (prtEntity)
             {
-                if (id != other.id)
+                if (id != other.id &amp;&amp; !dead)
                 {
                     c = collision_line(other.x1, other.y1, other.x2, other.y2, id, false, false);
                     if (c != noone &amp;&amp; isSolid != 0) // only collide if this entity is solid

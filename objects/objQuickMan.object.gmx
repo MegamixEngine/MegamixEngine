@@ -184,7 +184,6 @@ if (entityCanStep())
                             has_fired = false;
                         }
                         jump_count += 1;
-                        playSFX(sfxLand);
                     }
                     else
                         bugActive = false;
@@ -239,7 +238,6 @@ if (entityCanStep())
                 else if (ground)
                 {
                     // landed; restart jump (or next phase after three jumps)
-                    playSFX(sfxLand);
                     if (jump_count &gt;= 3)
                     {
                         // next phase (running)

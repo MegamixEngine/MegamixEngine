@@ -134,7 +134,8 @@ y = ystart;
             <kind>1</kind>
             <string>event_inherited();
 
-if ((!global.frozen &amp;&amp; !dead) || instance_exists(objSectionSwitcher))
+if ((!global.frozen &amp;&amp; !dead || instance_exists(objSectionSwitcher))
+&amp;&amp; insideSection(x, y))
 {
     with (objMegaman)
     {

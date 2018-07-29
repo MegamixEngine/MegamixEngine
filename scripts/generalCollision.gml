@@ -289,6 +289,15 @@ if (!ground && sinkin)
 
 if (dieToSpikes)
 {
+    // don't hit MM if he's teleporting in lol
+    if (object_index == objMegaman)
+    {
+        if (teleporting || showReady)
+        {
+            exit;
+        }
+    }
+    
     if (!spSolid) // spikes caused death
     {
         spSolid = instance_place(x, y, objSpike);

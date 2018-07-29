@@ -36,6 +36,7 @@ parent = noone;
 myLock = 0;
 
 despawnRange = -1;
+shiftVisible = 1;
 </string>
           </argument>
         </arguments>
@@ -136,7 +137,7 @@ if (entityCanStep())
     }
     
     // force despawn
-    if bbox_top &gt; global.sectionBottom
+    if (bbox_top &gt; global.sectionBottom) || (x &gt; global.sectionRight) || (x &lt; global.sectionLeft)
     {
         instance_destroy();
     }
@@ -172,7 +173,13 @@ else if (dead)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (var i = 0; i &lt; image_yscale; i++)
+            <string>// overriding shiftVisible be like.....bottom text
+if (instance_exists(objSectionSwitcher))
+{
+    exit;
+}
+
+for (var i = 0; i &lt; image_yscale; i++)
 {
     draw_sprite(sprite_index, image_index, round(x), round(y + i * 8));
 }
