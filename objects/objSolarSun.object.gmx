@@ -257,7 +257,7 @@ else
             <string>if (other.object_index != objTornadoBlow)
 {
     iFrames = 0;
-    if (other.object_index != objWaterShield)
+    if (other.object_index != objWaterShield) &amp;&amp; (other.object_index != objRainFlush)
     {
         curSunLevel++;
         if (curSunLevel &gt;= sunLevel)
@@ -279,13 +279,24 @@ else
             {
                 curSunLevel = 0;
             }
+            
+            if (other.object_index == objWaterShield)
+            {
+                with (objWaterShield)
+                {
+                    instance_create(x, y, objBubblePopEffect);
+                }
+            }
         }
     }
     
     with (other)
     {
         guardCancel = 2;
-        event_user(EV_DEATH);
+        if (object_index != objRainFlush)
+        {
+            event_user(EV_DEATH);
+        }
     }
 }
 </string>

@@ -183,7 +183,19 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>other.guardCancel = 3;
+            <string>if (other.object_index != objFlameMixer) &amp;&amp; (other.object_index != objTornadoBlow)
+&amp;&amp; (other.object_index != objSolarBlaze)
+{
+    other.guardCancel = 3;
+}
+else
+{
+    if (other.object_index != objTornadoBlow)
+    {
+        instance_create(x,y,objExplosion);
+    }
+    event_user(EV_DEATH);
+}
 </string>
           </argument>
         </arguments>

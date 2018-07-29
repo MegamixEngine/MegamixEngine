@@ -317,6 +317,7 @@ with (objWoodRisingLeaves)
 }
 with (objWoodLeafShield)
 {
+    instance_create(x, y, objExplosion);
     instance_destroy();
 }
 event_inherited();
