@@ -101,7 +101,7 @@ global.lockBuster = false;
 
 for (i = 0; i &lt;= global.totalWeapons; i += 1)
 {
-    global.weaponUnlocked[i] = true;
+    global.weaponLocked[i] = false;
     global.infiniteEnergy[i] = false;
 }
 </string>
