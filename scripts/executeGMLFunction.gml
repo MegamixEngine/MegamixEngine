@@ -72,6 +72,8 @@ else if (fname == "instance_destroy")
     instance_destroy();
 else if (fname == "instance_create")
     instance_create(a0, a1, a2);
+else if (fname == "instance_exists")
+    global.gml_fn_retval = instance_exists(a0);
 else if (fname == "string")
     global.gml_fn_retval = string(a0);
 else if (fname == "floor")
