@@ -33,8 +33,7 @@ selection = 0;
 
 
 global.debugEnabled = false; // debug keys not allowed for now
-
-
+global.livesEnabled = true;
 </string>
           </argument>
         </arguments>
@@ -133,6 +132,8 @@ if (!controlsLocked)
             // quit:
             global.nextRoom = rmTitleScreen;
             lockControls = true;
+            global.debugEnabled = true;
+            global.livesEnabled = false;
         }
         else if (selection == selectionCount - 1)
         {

@@ -120,6 +120,10 @@ with (solidBlock)
                 tileY[tileNumber] = tile_get_y(myTile) - y;
                 tileNumber += 1;
             }
+            else
+            {
+                instance_destroy();
+            }
         }
     }
     startingY = y;

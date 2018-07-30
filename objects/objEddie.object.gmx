@@ -25,10 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// myItem = [objectName]
-// permanent =
-
-event_inherited();
+            <string>event_inherited();
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
@@ -36,8 +33,15 @@ contactDamage = 0;
 
 canHit = false;
 
+// @cc the object_index of the item Eddie will send out. If not set, he will choose
+// randomly from his pickup pool
 myItem = 0;
+
+// @cc if set to true, Eddie will never respawn once the item is given out
 permanent = true;
+
+// @cc if set to false, Eddie will stay still and not move towards MM when giving out items
+moveTowardsPlayer = true;
 
 phase = 0;
 timer = 0;
@@ -76,7 +80,7 @@ if (entityCanStep())
     
     if (phase == 0)
     {
-        if (ground)
+        if (ground &amp;&amp; moveTowardsPlayer)
         {
             if (!(timer mod 6))
             {
@@ -89,6 +93,10 @@ if (entityCanStep())
         else
         {
             xspeed = 0;
+            if !moveTowardsPlayer
+            {
+                calibrateDirection();
+            }
         }
         
         if (instance_exists(target))

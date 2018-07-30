@@ -37,6 +37,8 @@ respawnRange = -1;
 despawnRange = -1;
 blockCollision = 0;
 grav = 0;
+
+initImageIndex = -1;
 </string>
           </argument>
         </arguments>
@@ -59,9 +61,14 @@ grav = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>if initImageIndex == -1
+{
+    initImageIndex = image_index;
+}
 
-if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
+event_inherited();
+
+if (entityCanStep() &amp;&amp; insideSection(x, y))
 {
     if (image_index == 0)
     {
@@ -149,6 +156,12 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     }
     
     isSolid = (image_index == 0 || image_index == 4);
+}
+else if (!insideSection(x,y))
+{
+    phase = 0;
+    timer = 0;
+    image_index = initImageIndex;
 }
 </string>
           </argument>

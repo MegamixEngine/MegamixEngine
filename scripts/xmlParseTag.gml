@@ -6,13 +6,21 @@
 var dsm, tag = stringTrim(argument0);
 
 dsm = ds_map_create();
+// seek to end of tag
+tag = stringSubstring(tag, string_pos(" ", tag) + 1);
 while (string_pos(" ", tag) != 0)
 {
-    var attr, tag;
-    tag = stringSubstring(tag, string_pos(" ", tag) + 1);
+    var attr, value;
+    tag = stringTrim(tag);
+    
+    // read attribute
     attr = stringSubstring(tag, 1, string_pos("=", tag));
-    tag = stringSubstring(tag, string_pos("=", tag) + 2);
+    tag = stringSubstring(tag, string_pos("=", tag) + 1);
+    
+    // read value
+    tag = stringSubstring(tag, string_pos('"', tag) + 1);
     value = stringSubstring(tag, 1, string_pos('"', tag));
+    tag = stringSubstring(tag, string_pos('"', tag) + 1);
     
     dsm[? attr] = value;
 }

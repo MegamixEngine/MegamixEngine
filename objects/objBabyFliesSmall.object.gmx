@@ -89,7 +89,7 @@ else if (dead)
 {
     healthpoints = healthpointsStart;
     cosCounter = 0;
-    instance_destroy();
+    //instance_destroy(); // Why was this here?
 }
 </string>
           </argument>

@@ -34,8 +34,14 @@ grav = 0;
 moveTimer = 0; // Time until next action is performed
 waterTimer = 0; // How long to wait until stopping waterfall
 
+waterDelay = 0; // SET IN CREATION CODE - the limit for moveTimer, controls when waterfalls start
+init = 0;
+
 start = noone;
 stop = noone;
+
+despawnRange = -1;
+respawnRange = -1;
 </string>
           </argument>
         </arguments>
@@ -59,23 +65,33 @@ stop = noone;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (entityCanStep())
+if (entityCanStep() &amp;&amp; insideSection(x, y + 1))
 {
-    moveTimer++;
-    
-    if (moveTimer == 60)
+    // Set default waterDelay number if none is provided in creation code
+    if (init == 0)
     {
-        instance_create(x + 16, y, objVenusWaterfallDrop);
+        if (waterDelay == 0)
+        {
+            waterDelay = 180;
+        }
+        init = 1;
     }
     
-    if (moveTimer == 180)
+    moveTimer++;
+    
+    if (moveTimer == floor(waterDelay / 3)) //60
+    {
+        instance_create(x + 16, y + 3, objVenusWaterfallDrop);
+    }
+    
+    if (moveTimer == waterDelay)
     {
         var i = instance_create(x, y - 3, objVenusWaterfallStart);
         start = i.id;
         playSFX(sfxRushingWater);
     }
     
-    if ((moveTimer &gt; 180) &amp;&amp; (!instance_exists(start)))
+    if ((moveTimer &gt; waterDelay) &amp;&amp; (!instance_exists(start)))
     {
         waterTimer++;
         if (waterTimer == 60)
@@ -86,7 +102,7 @@ if (entityCanStep())
         
         if ((waterTimer &gt; 60) &amp;&amp; (!instance_exists(stop)))
         {
-            moveTimer = -60;
+            moveTimer = 0; //-60;
             waterTimer = 0;
         }
     }

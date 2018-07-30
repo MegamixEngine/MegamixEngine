@@ -158,7 +158,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                         ys = sign(yy);
                         if (ys == 0)
                         {
-                            ys = -gravDir;
+                            ys = -instance_place(x, y, objMegaman).gravDir;
                         }
                         with (objMegaman)
                         {

@@ -72,7 +72,7 @@ isMaster = false;
 master = noone;
 firstFrame = true;
 entityN = 0;
-popList = makeArray();
+popList = makeArray("");
 rippleN = 0;
 </string>
           </argument>
@@ -120,7 +120,8 @@ if (entityCanStep() &amp;&amp; isMaster)
     {
         timer = 0;
         popEntity = true;
-        popList = makeArray();
+        popN = 0;
+        popList = makeArray("");
     }
     
     // update entities
@@ -137,7 +138,7 @@ if (entityCanStep() &amp;&amp; isMaster)
             // pop out of wall candidate
             if (popEntity &amp;&amp; insideView(popX, popY) &amp;&amp; position_meeting(popX, popY, object_index))
             {
-                arrayAppend(popList, i);
+                popList[popN++] = i;
             }
             
             // leaving section?
@@ -223,7 +224,7 @@ if (entityCanStep() &amp;&amp; isMaster)
     }
     
     // randomly select a valid candidate to pop out of wall
-    if (popEntity &amp;&amp; array_length_1d(popList) &gt; 0)
+    if (popEntity &amp;&amp; popN &gt; 0)
     {
         var popIndex = chooseFromArray(popList);
         entityPop[popIndex] = true;

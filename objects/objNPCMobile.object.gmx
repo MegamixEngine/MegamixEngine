@@ -325,6 +325,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped &amp;&amp; !dead)
           <argument>
             <kind>1</kind>
             <string>/// start dialogue
+event_inherited();
 
 sprite_index = talk_sprite;
 image_speed = talk_speed;
@@ -351,6 +352,7 @@ image_speed = talk_speed;
           <argument>
             <kind>1</kind>
             <string>/// end dialogue
+event_inherited();
 
 active = false;
 image_xscale = _prev_direction;

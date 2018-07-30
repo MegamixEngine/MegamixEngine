@@ -20,7 +20,7 @@ while (stringStartsWith(str, " "))
 var expr = stringPeekToken(str);
 str = stringSubstring(str, string_length(expr) + 1);
 
-// not (!)
+// not (!) [unary]
 if (expr == "!")
 {
     parseExpression(str);
@@ -30,7 +30,30 @@ if (expr == "!")
     }
     global.retval_exprlen += 1 + whitespaceDropped;
     global.retval_exprval = !global.retval_exprval;
-} // strip parentheses
+}
+// negative [unary]
+else if (expr == "-")
+{
+    parseExpression(str);
+    if (global.retval_error)
+    {
+        exit;
+    }
+    global.retval_exprlen += 1 + whitespaceDropped;
+    global.retval_exprval = -global.retval_exprval;
+}
+// tilde [unary]
+else if (expr == "~")
+{
+    parseExpression(str);
+    if (global.retval_error)
+    {
+        exit;
+    }
+    global.retval_exprlen += 1 + whitespaceDropped;
+    global.retval_exprval = ~global.retval_exprval;
+}
+// strip parentheses
 else if (expr == "(")
 {
     var paren_match = 1;
@@ -59,7 +82,8 @@ else if (expr == "(")
         global.retval_error = true;
         exit;
     }
-} // parse function
+}
+// parse function
 else if (stringStartsWith(str, "("))
 {
     var fn_str = expr;

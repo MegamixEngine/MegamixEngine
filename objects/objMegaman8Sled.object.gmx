@@ -244,7 +244,7 @@ shootYOffset = 5;
                 with (rider)
                 {
                     vehicle = other.id;
-                    shiftObject(other.xspeed, 0, false);
+                    shiftObject(other.xspeed, 0, true);
                     if (xDir != 0)
                     {
                         image_xscale = xDir;
