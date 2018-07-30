@@ -37,6 +37,8 @@ myLock = 0;
 
 despawnRange = -1;
 shiftVisible = 1;
+
+sectionBottom = global.sectionBottom;
 </string>
           </argument>
         </arguments>
@@ -137,7 +139,8 @@ if (entityCanStep())
     }
     
     // force despawn
-    if (bbox_top &gt; global.sectionBottom) || (x &gt; global.sectionRight) || (x &lt; global.sectionLeft)
+    if (bbox_top &gt; sectionBottom) || (x &gt; global.sectionRight) || (x &lt; global.sectionLeft)
+    || (instance_exists(objSectionSwitcher))
     {
         instance_destroy();
     }

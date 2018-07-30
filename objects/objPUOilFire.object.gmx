@@ -36,6 +36,8 @@ image_speed = 0.3;
 reflectable = 0;
 
 destroyTimer = 300;
+
+fire = true;
 </string>
           </argument>
         </arguments>
