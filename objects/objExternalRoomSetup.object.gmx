@@ -28,7 +28,12 @@
             <string>/// the depth is intended to make this object's create event
 /// run before that of all other instances.
 
-roomExternalSetupPre();
+// (hack to prevent running multiple times)
+if (image_xscale &gt; 0)
+{
+    image_xscale = -1;
+    roomExternalSetupPre();
+}
 </string>
           </argument>
         </arguments>
@@ -51,9 +56,12 @@ roomExternalSetupPre();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>roomExternalSetupPost();
-
-instance_destroy();
+            <string>if (instance_exists(id))
+{
+    roomExternalSetupPost();
+    
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>

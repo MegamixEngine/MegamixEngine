@@ -34,12 +34,13 @@
 /*
 animLength = how many frames
 animTime = interval before change
-animID# = background frame (Note # goes up from 0 to animLength)
+animID[#] = background frame (Note # goes up from 0 to animLength)
 animateOnTransition = will stop animations during the transition
 
 animationLayer = Layer animated tiles start at (your animated tiles should start on this layer)
 
 Note: This only works for tiles on a 16x16 grid
+
 
 see the example level for how to set this up.
 */

@@ -128,7 +128,9 @@ if (entityCanStep())
 }
 else if (dead)
 {
+    actionTimer = -1;
     imageOffset = 0;
+    state = 0;
 }
 
 image_index = (6 * flower) + imageOffset; // Modify sprite based on set flower

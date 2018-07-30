@@ -45,7 +45,7 @@ col = 0;
 image_speed = 0.25;
 alarmChange = 20;
 
-direction = irandom_range(0, 360);
+direction = -1;
 speed = 1.5;
 </string>
           </argument>
@@ -73,6 +73,7 @@ speed = 1.5;
 
 if (init)
 {
+    direction = irandom_range(0, 360);
     init = 0;
     switch (col)
     {

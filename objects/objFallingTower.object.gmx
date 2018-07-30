@@ -307,6 +307,7 @@ if (entityCanStep() &amp;&amp; insideSection(x + 8, y))
             fall = false;
             yspeed = 0;
             timer = 0;
+            objMegaman.viewPlayer = 1;
             if (sign(image_yscale) == 1)
             {
                 global.sectionTop = sectionTop;

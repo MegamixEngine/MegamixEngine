@@ -19,7 +19,7 @@ of custom spawners, the variable is called `code`.
 ## Limitations
 
 Not all game maker syntax is supported, and the parser is incomplete and rather hacky. Currently missing features include
-`for` loops (but not `with` loops), **the ability to read variables**, local variables (`var`), and others.
+`for` loops (but not `with` loops), local variables (`var`), and others.
 
 `stringExecutePartial` also requires a list of all variables in the engine to be maintained. If you add a new variable
 to any object and you wish to be able to access that variable from within `stringExecutePartial`, you must run the bash
@@ -89,13 +89,39 @@ while (string_length(str) > 0)
             break;
         }
         
-        str = stringSubstring(str, string_length(block_string) + 1);
+        str = stringSubstring(str, string_length(block_string) + 2);
         if (expr)
         {
             stringExecutePartial(block_string);
         }
         if (global.retval_error)
             break;
+            
+        // else
+        str = stringTrim(str);
+        tokElse = stringPeekToken(str);
+        if (tokElse == "else")
+        {
+            str = stringSubstring(str, string_length(tokElse) + 1);
+            var block_string = stringPeekBlock(str);
+            if (global.retval_error)
+            {
+                break;
+            }
+            var block_string = stringPeekBlock(str);
+            if (global.retval_error)
+            {
+                break;
+            }
+            
+            str = stringSubstring(str, string_length(block_string) + 1);
+            if (!expr)
+            {
+                stringExecutePartial(block_string);
+            }
+            if (global.retval_error)
+                break;
+        }
         continue;
     }
     

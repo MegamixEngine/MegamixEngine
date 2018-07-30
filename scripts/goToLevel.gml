@@ -33,5 +33,6 @@ if (fadeOut)
 }
 else
 {
+    global.previousRoom = room;
     room_goto(rm);
 }

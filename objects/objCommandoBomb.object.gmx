@@ -143,7 +143,9 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (other.object_index != objBreakDash)
+            <string>if (other.object_index != objBreakDash) &amp;&amp; (other.object_index != objTenguDash)
+&amp;&amp; (other.object_index != objSaltWater) &amp;&amp; (other.object_index != objWheelCutter)
+&amp;&amp; (other.object_index != objMetalBlade)
 {
     with (other)
     {

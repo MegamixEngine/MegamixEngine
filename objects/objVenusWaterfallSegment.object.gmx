@@ -34,6 +34,43 @@ image_speed = 0.1;
 moveTimer = 60;
 parent = noone;
 myLock = 0;
+
+despawnRange = -1;
+shiftVisible = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if instance_exists(objMegaman)
+{
+    with (objMegaman)
+    {
+        if gravfactor == 1.975 &amp;&amp; !place_meeting(x, y, other.object_index)
+        {
+            gravfactor = 1;
+            blockCollision = true;
+        }
+    }
+    myLock = lockPoolRelease(myLock);
+}
 </string>
           </argument>
         </arguments>
@@ -98,6 +135,21 @@ if (entityCanStep())
         }
         myLock = lockPoolRelease(myLock);
     }
+    
+    // force despawn
+    if (bbox_top &gt; global.sectionBottom) || (x &gt; global.sectionRight) || (x &lt; global.sectionLeft)
+    {
+        instance_destroy();
+    }
+}
+else if (dead)
+{
+    with (objMegaman)
+    {
+        gravfactor = 1;
+        blockCollision = true;
+    }
+    myLock = lockPoolRelease(myLock);
 }
 </string>
           </argument>
@@ -121,7 +173,13 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (var i = 0; i &lt; image_yscale; i++)
+            <string>// overriding shiftVisible be like.....bottom text
+if (instance_exists(objSectionSwitcher))
+{
+    exit;
+}
+
+for (var i = 0; i &lt; image_yscale; i++)
 {
     draw_sprite(sprite_index, image_index, round(x), round(y + i * 8));
 }

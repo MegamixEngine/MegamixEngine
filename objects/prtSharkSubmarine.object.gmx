@@ -243,6 +243,7 @@ if (!global.frozen &amp;&amp; !killed &amp;&amp; !allDead)
         else
         {
             isIntro = false;
+            canFillHealthBar=true;
         }
     }
 }
@@ -354,7 +355,7 @@ allDead = true;
 stop = true;
 with (prtSharkSubmarine)
 {
-    if (id != other.id &amp;&amp; startRef == other.startRef)
+    if (insideSection(x,y)&amp;&amp;id != other.id &amp;&amp; startRef == other.startRef)
         other.stop = false;
 }
 instance_activate_object(prtSharkSubmarine);

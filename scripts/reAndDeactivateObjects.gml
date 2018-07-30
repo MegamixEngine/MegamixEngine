@@ -39,7 +39,7 @@ if (deac)
             
             if (shiftVisible)
             {
-                reset = (!sw && !collision_rectangle(global.sectionLeft, global.sectionTop, global.sectionRight, global.sectionBottom, id, true, false));
+                reset = ((!sw &&(!collision_rectangle(global.sectionLeft, global.sectionTop, global.sectionRight, global.sectionBottom, id, true, false))));
                 
                 if (!reset)
                 {
@@ -84,12 +84,12 @@ if (deac)
                         }
                     }
                 }
-                
                 if (shiftVisible < 3)
                 {
                     instance_deactivate_object(id);
                 }
             }
+            
         }
         else if (object_index != prtAlwaysActive && !object_is_ancestor(object_index, prtAlwaysActive))
         {
