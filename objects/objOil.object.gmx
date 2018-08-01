@@ -65,6 +65,10 @@ fireSource[23] = objFenix;
 fireSource[24] = objSFFire;
 fireSource[25] = objFlameMixer;
 fireSource[26] = objPUOilFire;
+
+// oil
+oil[0] = objOil;
+oil[1] = objPUOilFire;
 </string>
           </argument>
         </arguments>
@@ -99,16 +103,38 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
             a = instance_place(x, y, objPicket);
             if (a.sprite_index == sprTackleFire &amp;&amp; a.yspeed &gt; 0)
             {
-                event_user(0);
+                fire = true;
             }
         }
         
         // ITS LIT FAM :joy:
-        for (var i = 0; i &lt; array_length_1d(fireSource); i++)
+        for (i = 0; i &lt; array_length_1d(fireSource); i++)
         {
             if (place_meeting(x, y, fireSource[i]))
             {
-                event_user(0);
+                fire = true;
+            }
+        }
+        
+        // check if anything else is on fire near it
+        for (i = 0; i &lt;= 1; i += 1)
+        {
+            if (place_meeting(x - 16, y, oil[i]))
+            {
+                if instance_place(x - 16, y, oil[i]).fire
+                {
+                    fire = true;
+                    image_index = instance_place(x - 16, y, oil[i]).image_index;
+                }
+            }
+            
+            if (place_meeting(x + 16, y, oil[i]))
+            {
+                if instance_place(x + 16, y, oil[i]).fire
+                {
+                    fire = true;
+                    image_index = instance_place(x + 16, y, oil[i]).image_index;
+                }
             }
         }
     }
@@ -156,6 +182,7 @@ else if (dead)
 {
     spl = instance_create(target.x, bbox_top + 4, objSplash);
     spl.sprite_index = sprOilSplash;
+    spl.blockCollision = 0;
 }
 playSFX(sfxOil);
 </string>
@@ -186,28 +213,6 @@ playSFX(sfxOil);
 }
 
 fire = true;
-
-var oil;
-oil[0] = objOil;
-oil[1] = objPUOil;
-
-for (i = 0; i &lt;= 1; i += 1)
-{
-    if (place_meeting(x + 16, y, oil[i]))
-    {
-        with (instance_place(x + 16, y, oil[i]))
-        {
-            event_user(0);
-        }
-    }
-    if (place_meeting(x - 16, y, oil[i]))
-    {
-        with (instance_place(x - 16, y, oil[i]))
-        {
-            event_user(0);
-        }
-    }
-}
 </string>
           </argument>
         </arguments>

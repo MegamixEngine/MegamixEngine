@@ -118,7 +118,7 @@ if (entityCanStep() &amp;&amp; insideSection(x + 8, y))
             yspeed = -spd * sign(image_yscale);
             
             // move player and their projectiles
-            if (!place_meeting(x, y - 1 - (abs(yspeed)), objMegaman)
+            if (!place_meeting(x, y - (1 + (abs(yspeed))) * sign(image_yscale), objMegaman)
                 &amp;&amp; collision_rectangle(x, view_yview - view_hview, x + image_xscale * 16, view_yview + view_hview * 2, objMegaman, false, true))
             {
                 with (objMegaman)
@@ -221,14 +221,14 @@ if (init &amp;&amp; insideSection(x + 8, y))
     
     // sign(image_yscale) is used here so you can make reverse grav towers.
     while (insideSection(x, y - 16 * sign(image_yscale))
-        &amp;&amp; tile_layer_find(myTile, x, y - 16 * sign(image_yscale)) &amp;&amp; y &gt; 0)
+        &amp;&amp; tile_layer_find(myTile, x, y - (16 * sign(image_yscale)) + (1 * (sign(image_yscale) == -1))) &amp;&amp; y &gt; 0)
     {
-        y -= 16;
+        y -= 16 * sign(image_yscale);
     }
     height = 1 * sign(image_yscale);
     
     while (insideSection(x, y + height * 16)
-        &amp;&amp; tile_layer_find(myTile, x, y + height * 16)
+        &amp;&amp; tile_layer_find(myTile, x, y - (1 * (sign(image_yscale) == -1)) + height * 16)
         &amp;&amp; y + (height * 16 * sign(image_yscale)) &lt; room_height)
     {
         height += 1 * sign(image_yscale);
