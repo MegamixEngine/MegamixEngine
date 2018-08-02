@@ -50,7 +50,6 @@ xspeed = 0;
 yspeed = 0;
 time = 0; // time is set in creation code - anywhere from 1 to 9
 
-// currentTime = time; //What is Alabell's current time?
 dir = 0;
 
 init = 1;
@@ -81,16 +80,6 @@ init = 1;
 if (init)
 {
     currentTime = time;
-    init = 0;
-}
-
-if (healthpoints &lt; healthpointsStart)
-{
-    healthpoints = healthpointsStart; // Always heal damage received - can't be killed
-}
-
-if (entityCanStep())
-{
     if (dir == 0)
     {
         if (instance_exists(target)) // Set direction
@@ -105,7 +94,16 @@ if (entityCanStep())
             }
         }
     }
-    
+    init = 0;
+}
+
+if (healthpoints &lt; healthpointsStart)
+{
+    healthpoints = healthpointsStart; // Always heal damage received - can't be killed
+}
+
+if (entityCanStep())
+{
     // Change directions when touching wall
     if (xcoll != 0 &amp;&amp; (yspeed == 0) &amp;&amp; (ground))
     {
@@ -213,6 +211,7 @@ else if (dead)
     xspeed = 0;
     yspeed = 0;
     dir = 0;
+    init = 1;
 }
 </string>
           </argument>

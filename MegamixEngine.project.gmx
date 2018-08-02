@@ -5752,6 +5752,7 @@
   <rooms name="rooms">
     <room>rooms\rmInit</room>
     <room>rooms\lvlCopyThisRoom</room>
+    <room>rooms\lvlSpinAttaxx_Level</room>
     <rooms name="Example Game">
       <room>rooms\lvlFlashMan</room>
       <room>rooms\lvlGeminiMan</room>
