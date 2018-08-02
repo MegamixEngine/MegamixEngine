@@ -171,10 +171,14 @@ if (entityCanStep())
                 }
             }
         }
-        
-        x = spriteGetXCenterObject(nearInst);
-        phase = 1;
-        setY = spriteGetYCenterObject(nearInst) - view_yview;
+        if (instance_exists(nearInst))
+        {
+            x = spriteGetXCenterObject(nearInst);
+            phase = 1;
+            setY = spriteGetYCenterObject(nearInst) - view_yview;
+        }
+        else
+            phase = 1;
     }
     
     
@@ -197,28 +201,34 @@ if (entityCanStep())
     
     if (phase == 1)
     {
+    
         // move up, and track the object its supposed to grab
         yspeed = -2;
-        x = spriteGetXCenterObject(nearInst);
-        setY = spriteGetYCenterObject(nearInst) - view_yview;
-        if (y &lt;= view_yview + setY + 16) // if it has found the object, grab the graphic for the object. this will be applied via draw effect.
+        if (instance_exists(nearInst))
         {
-            storeSprite = nearInst.sprite_index;
-            storeXOffset = nearInst.x - x;
-            storeYOffset = nearInst.y - y;
-            storeImageIndex = nearInst.image_index;
-            storeXScale = nearInst.image_xscale;
-            storeYScale = nearInst.image_yscale;
-            with (nearInst)
+            x = spriteGetXCenterObject(nearInst);
+            setY = spriteGetYCenterObject(nearInst) - view_yview;
+            if (y &lt;= view_yview + setY + 16) // if it has found the object, grab the graphic for the object. this will be applied via draw effect.
             {
-                instance_create(spriteGetXCenter(), spriteGetYCenter(), objExplosion);
-                
-                dead = true;
+                storeSprite = nearInst.sprite_index;
+                storeXOffset = nearInst.x - x;
+                storeYOffset = nearInst.y - y;
+                storeImageIndex = nearInst.image_index;
+                storeXScale = nearInst.image_xscale;
+                storeYScale = nearInst.image_yscale;
+                with (nearInst)
+                {
+                    instance_create(spriteGetXCenter(), spriteGetYCenter(), objExplosion);
+                    
+                    dead = true;
+                }
+                instance_deactivate_object(nearInst);
+                grabbedObject = true;
+                phase = 2;
             }
-            instance_deactivate_object(nearInst);
-            grabbedObject = true;
-            phase = 2;
         }
+        else 
+            phase = 3;
     }
     
     if (phase == 2)

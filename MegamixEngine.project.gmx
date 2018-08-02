@@ -3200,8 +3200,6 @@
         <sprite>sprites\sprWily4Laser</sprite>
         <sprite>sprites\mskWily4Laser</sprite>
         <sprite>sprites\mskWily4LaserPrecise</sprite>
-        <sprite>sprites\sprWily4LaserSpawner</sprite>
-        <sprite>sprites\sprWily4LaserStopper</sprite>
         <sprite>sprites\sprBokazurahPlatform</sprite>
         <sprite>sprites\sprMagmaBeamParticle</sprite>
       </sprites>
