@@ -365,7 +365,20 @@ other.guardCancel = 1;
 
 // pass through treads
 if (other.y &gt;= y - 5)
+{
     other.guardCancel = 2;
+}
+
+if (other.object_index == objPharaohShot)
+{
+    with (objPharaohShot)
+    {
+        if (sprite_index = sprPharaohShotCharged)
+        {
+            extraDamage = 4;
+        }
+    }
+}
 
 // pass through front:
 if ((other.x - x) * image_xscale &gt; -60)

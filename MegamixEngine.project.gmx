@@ -4944,7 +4944,7 @@
           <object>objects\objBombManBomb</object>
           <object>objects\objCutBullet</object>
           <object>objects\objFireFlame</object>
-          <object>objects\objFireStorm</object>
+          <object>objects\objFireManStorm</object>
           <object>objects\objGutsBossBlock</object>
           <object>objects\objGutsBossBlockRubble</object>
           <object>objects\objIceManSlasher</object>
