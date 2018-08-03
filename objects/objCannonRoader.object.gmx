@@ -31,8 +31,14 @@ healthpointsStart = 2;
 healthpoints = healthpointsStart;
 
 contactDamage = 3;
-imgSpd = 0.18;
+
+// @cc - use this to change how fast Cannon Roader charges at the player
+chargeSpeed = 3;
+
+// @cc - use this to change how long it takes Cannon Roader to charge at the player
 moveTimer = 70;
+
+imgSpd = 0.18;
 charge = false;
 itemDrop = -1;
 facePlayerOnSpawn = true;
@@ -62,53 +68,54 @@ facePlayerOnSpawn = true;
 
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    if ((ground) &amp;&amp; (!charge))
     {
-        if ((ground) &amp;&amp; (!charge))
+        /*if ((abs(target.x - x) &gt; 48) || (target.x &gt; x) &amp;&amp; (image_xscale == -1)
+            || (target.x &lt; x) &amp;&amp; (image_xscale == 1))*/
+            
+        // If Mega Man is far away, roll around
+        xspeed = 1 * image_xscale;
+                
+        image_index += imgSpd;
+        if (image_index &gt;= 2)
         {
-            if ((abs(target.x - x) &gt; 48) || (target.x &gt; x) &amp;&amp; (image_xscale == -1)
-                || (target.x &lt; x) &amp;&amp; (image_xscale == 1)) // If Mega Man is far away, roll around
-            {
-                xspeed = 1 * image_xscale;
+            image_index = 0;
+        }
                 
-                image_index += imgSpd;
-                if (image_index &gt;= 2)
-                {
-                    image_index = 0;
-                }
-                
-                if ((!positionCollision(x + 8 * image_xscale, bbox_bottom + 2))
-                    || (xcoll != 0))
-                {
-                    image_xscale *= -1;
-                }
-            } // Charge when Mega Man is close.
-            else
+        if ((!positionCollision(x + 8 * image_xscale, bbox_bottom + 2))
+            || (xcoll != 0))
+        {
+            image_xscale *= -1;
+        }
+        // Charge when Mega Man is close.
+        if (instance_exists(target))
+        {
+            if (abs(target.x - x) &lt;= 48)
             {
                 charge = true;
             }
         }
-        if (charge == true)
+    }
+    if (charge == true)
+    {
+        xspeed = 0;
+        moveTimer--;
+        image_index += imgSpd;
+        if (image_index &gt;= 5)
         {
-            xspeed = 0;
-            moveTimer--;
-            image_index += imgSpd;
-            if (image_index &gt;= 5)
-            {
-                image_index = 3;
-            }
+            image_index = 3;
+        }
             
-            // Charge forward after countdown
-            if (moveTimer &lt;= 0)
+        // Charge forward after countdown
+        if (moveTimer &lt;= 0)
+        {
+            xspeed = chargeSpeed * image_xscale;
+            
+            if (xcoll != 0)
             {
-                xspeed = 3 * image_xscale;
-                
-                if (xcoll != 0)
-                {
-                    dead = true;
-                    instance_create(x, y + (sprite_height / 2), objHarmfulExplosion);
-                    playSFX(sfxMM9Explosion);
-                }
+                dead = true;
+                instance_create(x, bboxGetYCenter(), objHarmfulExplosion);
+                playSFX(sfxMM9Explosion);
             }
         }
     }
@@ -149,7 +156,7 @@ if (dead)
 {
     if ((other.object_index != objTornadoBlow) &amp;&amp; (other.object_index != objBlackHoleBomb))
     {
-        instance_create(x, y - 10, objHarmfulExplosion);
+        instance_create(x, bboxGetYCenter(), objHarmfulExplosion);
         playSFX(sfxMM9Explosion);
         
         if ((other.object_index == objSlashClaw) || (other.object_index == objBreakDash))

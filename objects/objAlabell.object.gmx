@@ -31,8 +31,6 @@
 
 event_inherited();
 
-respawn = true; // Can it respawn?
-
 healthpointsStart = 36;
 healthpoints = healthpointsStart;
 
@@ -41,17 +39,14 @@ jumpTimer = 120;
 contactDamage = 4; // Damage dealt to Mega Man via contact
 
 // Enemy Specific Code
-// animTimer = 0;
+// @cc - Set time from 1-9 based on when you want Alabell to explode
+time = 3;
+
+dir = 0;
+currentTime = time;
 animBack = false; // Do we reverse the animation?
 imgSpd = 0.1;
 phase = 0;
-
-xspeed = 0;
-yspeed = 0;
-time = 0; // time is set in creation code - anywhere from 1 to 9
-
-// currentTime = time; //What is Alabell's current time?
-dir = 0;
 
 init = 1;
 </string>
@@ -80,17 +75,6 @@ init = 1;
 
 if (init)
 {
-    currentTime = time;
-    init = 0;
-}
-
-if (healthpoints &lt; healthpointsStart)
-{
-    healthpoints = healthpointsStart; // Always heal damage received - can't be killed
-}
-
-if (entityCanStep())
-{
     if (dir == 0)
     {
         if (instance_exists(target)) // Set direction
@@ -105,7 +89,16 @@ if (entityCanStep())
             }
         }
     }
-    
+    init = 0;
+}
+
+if (healthpoints &lt; healthpointsStart)
+{
+    healthpoints = healthpointsStart; // Always heal damage received - can't be killed
+}
+
+if (entityCanStep())
+{
     // Change directions when touching wall
     if (xcoll != 0 &amp;&amp; (yspeed == 0) &amp;&amp; (ground))
     {
@@ -193,6 +186,7 @@ if (entityCanStep())
         {
             actionTimer = 60;
             currentTime -= 1;
+            playSFX(sfxCountBomb);
             exit;
         }
         else
@@ -213,6 +207,7 @@ else if (dead)
     xspeed = 0;
     yspeed = 0;
     dir = 0;
+    init = 1;
 }
 </string>
           </argument>

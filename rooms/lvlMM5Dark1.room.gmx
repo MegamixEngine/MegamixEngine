@@ -372,6 +372,18 @@ if global.difficulty == DIFF_HARD
     <instance objName="objEasyCube16" x="1952" y="448" name="inst_E2EF377A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
+    <tile bgName="tstDark1" x="3584" y="144" w="16" h="16" xo="176" yo="80" id="11311054" name="inst_72FB6FB8" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark1" x="3584" y="160" w="16" h="16" xo="176" yo="96" id="11311055" name="inst_FB3EBC1D" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark1" x="3584" y="176" w="16" h="16" xo="176" yo="96" id="11311056" name="inst_07A007B8" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark1" x="3568" y="176" w="16" h="16" xo="176" yo="96" id="11311057" name="inst_CD91AC12" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark1" x="3568" y="160" w="16" h="16" xo="176" yo="96" id="11311058" name="inst_8DB778F0" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark1" x="3568" y="144" w="16" h="16" xo="176" yo="80" id="11311059" name="inst_64BC6AAC" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark1" x="3824" y="144" w="16" h="16" xo="176" yo="80" id="11311061" name="inst_870AE73B" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark1" x="3840" y="144" w="16" h="16" xo="176" yo="80" id="11311062" name="inst_21DE0098" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark1" x="3824" y="160" w="16" h="16" xo="176" yo="96" id="11311063" name="inst_4952E2A4" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark1" x="3840" y="160" w="16" h="16" xo="176" yo="96" id="11311064" name="inst_2B711888" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark1" x="3824" y="176" w="16" h="16" xo="176" yo="96" id="11311065" name="inst_7CB1759C" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark1" x="3840" y="176" w="16" h="16" xo="176" yo="96" id="11311066" name="inst_29B65866" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstDark1" x="0" y="800" w="16" h="16" xo="48" yo="64" id="10012056" name="tile_8BKRSFBA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstDark1" x="0" y="816" w="16" h="16" xo="48" yo="64" id="10012056" name="tile_Z3IKZFH2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstDark1" x="0" y="832" w="16" h="16" xo="0" yo="16" id="10012056" name="tile_ZKSEYAZJ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

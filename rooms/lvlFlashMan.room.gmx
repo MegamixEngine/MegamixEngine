@@ -328,6 +328,22 @@
     <tile bgName="tstFlashman" x="2624" y="1904" w="16" h="16" xo="64" yo="48" id="11288652" name="inst_3AA1EE47" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlashman" x="2688" y="1904" w="16" h="16" xo="64" yo="48" id="11288653" name="inst_FCC70F54" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlashman" x="2768" y="1904" w="16" h="16" xo="64" yo="48" id="11288654" name="inst_036F147C" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="3056" y="1744" w="16" h="16" xo="64" yo="32" id="11311013" name="inst_B3B1D0EE" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="2816" y="1744" w="16" h="16" xo="64" yo="32" id="11311014" name="inst_22771D0D" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="2800" y="1744" w="16" h="16" xo="64" yo="32" id="11311015" name="inst_4AD76D11" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="2816" y="1760" w="16" h="16" xo="64" yo="64" id="11311016" name="inst_C0FAB1A8" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="2816" y="1792" w="16" h="16" xo="64" yo="64" id="11311017" name="inst_20F41E0C" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="2800" y="1776" w="16" h="16" xo="64" yo="48" id="11311019" name="inst_B2A6F804" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="2800" y="1792" w="16" h="16" xo="64" yo="48" id="11311021" name="inst_AFBC12C1" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="2800" y="1760" w="16" h="16" xo="64" yo="48" id="11311022" name="inst_33275EE9" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="2816" y="1776" w="16" h="16" xo="64" yo="48" id="11311023" name="inst_145668C0" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="3056" y="1760" w="16" h="16" xo="64" yo="48" id="11311024" name="inst_B8EA3FE5" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="3056" y="1776" w="16" h="16" xo="64" yo="48" id="11311025" name="inst_DD8E32F3" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="3056" y="1792" w="16" h="16" xo="64" yo="48" id="11311026" name="inst_90E4A9B4" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="3072" y="1744" w="16" h="16" xo="96" yo="64" id="11311027" name="inst_5362C49A" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="3072" y="1760" w="16" h="16" xo="80" yo="80" id="11311028" name="inst_3B2A58A4" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="3072" y="1776" w="16" h="16" xo="80" yo="80" id="11311029" name="inst_1CFA0E2F" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstFlashman" x="3072" y="1792" w="16" h="16" xo="80" yo="80" id="11311030" name="inst_E3252A80" depth="100000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlashman" x="0" y="112" w="16" h="16" xo="32" yo="112" id="10012056" name="tile_2NRTG7N3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlashman" x="0" y="128" w="16" h="16" xo="16" yo="16" id="10012056" name="tile_24UO01L6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlashman" x="0" y="144" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_V0I58FNM" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

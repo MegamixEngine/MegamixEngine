@@ -90,7 +90,7 @@ enemyDamageValue(objWireAdapter, 1);
 // MaGMML1
 enemyDamageValue(objMetalBlade, 2);
 enemyDamageValue(objGeminiLaser, 1);
-enemyDamageValue(objSolarBlaze, 4);
+enemyDamageValue(objSolarBlaze, 5);
 enemyDamageValue(objTopSpin, 1);
 enemyDamageValue(objThunderWool, 1);
 enemyDamageValue(objPharaohShot, 2);
