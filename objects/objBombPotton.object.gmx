@@ -36,6 +36,9 @@ facePlayerOnSpawn = false;
 //@cc Explosion lenght
 explosionLenght = 3;
 
+//@cc if false the explision will damage other enemies
+onlyDamageMines=true;
+
 phase = 0;
 timer = 0;
 deccel = 0;
@@ -156,6 +159,7 @@ if (entityCanStep())
         {
             var i = instance_create(x - 2 * image_xscale, y + 6, objBombPottonBomb);
             animOffset = 1.99999;
+            i.onlyDamageMines=onlyDamageMines;
             i.remaining = explosionLenght - 1;
         }
         timer += 1;
