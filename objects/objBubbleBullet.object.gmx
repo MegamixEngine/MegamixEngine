@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 contactDamage = 2;
+blockCollision = 0;
 grav = 0;
 stopOnFlash = false;
 image_speed = 0.2;

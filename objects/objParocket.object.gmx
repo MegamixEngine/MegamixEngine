@@ -68,79 +68,79 @@ animBack = false;
 
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
-        {
-            // On ground
-            case 0:
-                moveTimer--;
-                if (moveTimer &lt;= 0)
+        // On ground
+        case 0:
+            moveTimer--;
+            if (moveTimer &lt;= 0)
+            {
+                if (bounceTimes &lt; 2)
                 {
-                    if (bounceTimes &lt; 2)
+                    if (ground)
                     {
-                        if (ground)
-                        {
-                            y -= 1;
-                        }
-                        else
-                        {
-                            y += 1;
-                            bounceTimes++;
-                        }
+                        y -= 1;
                     }
                     else
                     {
-                        phase = 1;
-                        moveTimer = 30;
-                    }
-                }
-                break;
-            // Rising
-            case 1:
-                image_index += imgSpd;
-                if ((image_index &gt;= 4) &amp;&amp; (y &gt; view_yview))
-                {
-                    yspeed = -3;
-                    blockCollision = false;
-                }
-                if (image_index &gt;= 6)
-                {
-                    image_index = 4;
-                }
-                if (y &lt; view_yview - 2)
-                {
-                    yspeed = 0;
-                    moveTimer--;
-                    if (moveTimer &lt;= 0)
-                    {
-                        x += 40;
-                        sprite_index = sprParocketFall;
-                        yspeed = 1;
-                        phase = 2;
-                    }
-                }
-                break;
-            // Falling
-            case 2:
-                if (animBack == false)
-                {
-                    image_index += 0.05;
-                    if (image_index &gt;= 3)
-                    {
-                        animBack = true;
-                        image_index = 2;
+                        y += 1;
+                        bounceTimes++;
                     }
                 }
                 else
                 {
-                    image_index -= 0.05;
-                    if (image_index &lt; 0) //== 0
-                    {
-                        animBack = false;
-                        image_index = 1;
-                    }
+                    phase = 1;
+                    moveTimer = 30;
                 }
+            }
+            break;
+        // Rising
+        case 1:
+            image_index += imgSpd;
+            if ((image_index &gt;= 4) &amp;&amp; (y &gt; view_yview))
+            {
+                yspeed = -3;
+                blockCollision = false;
+            }
+            if (image_index &gt;= 6)
+            {
+                image_index = 4;
+            }
+            if (y &lt; view_yview - 2)
+            {
+                yspeed = 0;
+                moveTimer--;
+                if (moveTimer &lt;= 0)
+                {
+                    x += 40;
+                    sprite_index = sprParocketFall;
+                    yspeed = 1;
+                    phase = 2;
+                }
+            }
+            break;
+        // Falling
+        case 2:
+            if (animBack == false)
+            {
+                image_index += 0.05;
+                if (image_index &gt;= 3)
+                {
+                    animBack = true;
+                    image_index = 2;
+                }
+            }
+            else
+            {
+                image_index -= 0.05;
+                if (image_index &lt; 0) //== 0
+                {
+                    animBack = false;
+                    image_index = 1;
+                }
+            }
+            if (instance_exists(target))
+            {
                 if (target.x &gt; x)
                 {
                     xspeed = 0.5;
@@ -153,20 +153,20 @@ if (entityCanStep())
                 {
                     xspeed = 0;
                 }
-                if (y &gt; view_yview + 32)
+            }
+            if (y &gt; view_yview + 32)
+            {
+                blockCollision = true;
+                if ((xcoll != 0) || (ycoll != 0))
                 {
-                    blockCollision = true;
-                    if ((xcoll != 0) || (ycoll != 0))
-                    {
-                        dead = true;
-                        itemDrop = -1;
-                        i = instance_create(x, y, objHarmfulExplosion);
-                        i.contactDamage = 6;
-                        playSFX(sfxMM9Explosion);
-                    }
+                    dead = true;
+                    itemDrop = -1;
+                    i = instance_create(x, y, objHarmfulExplosion);
+                    i.contactDamage = 6;
+                    playSFX(sfxMM9Explosion);
                 }
-                break;
-        }
+            }
+            break;
     }
 }
 else if (dead)

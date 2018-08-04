@@ -67,102 +67,95 @@ animTimer = 10;
 
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
-        {
-            // Prepare Bubble
-            case 0:
-                moveTimer--;
-                if (moveTimer &gt; 0)
+        // Prepare Bubble
+        case 0:
+            moveTimer--;
+            if (moveTimer &gt; 0)
+            {
+                image_index += imgSpd;
+                if (image_index == 2)
                 {
-                    image_index += imgSpd;
-                    if (image_index == 2)
-                    {
-                        image_index = 0;
-                    }
-                }
-                else
-                {
-                    image_index += imgSpd;
-                    if (image_index == 4)
-                    {
-                        phase = 1;
-                        moveTimer = 60;
-                    }
-                }
-                break;
-            case 1:
-                moveTimer--;
-                if (moveTimer == 30)
-                {
-                    if (!instance_exists(bubble))
-                    {
-                        i = instance_create(x, y, objFeeberBubble);
-                        i.xspeed = 1 * image_xscale;
-                        i.image_xscale = image_xscale;
-                        i.parent = id;
-                        bubble = i.id;
-                        playSFX(sfxOil);
-                    }
-                }
-                if (moveTimer &lt;= 0)
-                {
-                    if (image_index &gt; 2)
-                    {
-                        image_index -= imgSpd;
-                    }
-                    else // if (image_index == 1)
-                    {
-                        image_index = 0;
-                        animTimer--;
-                        if (animTimer == 0)
-                        {
-                            if ((target.x &gt; x) &amp;&amp; (image_index == -1)
-                                || (target.x &lt; x) &amp;&amp; (image_index == 1))
-                            {
-                                image_index *= -1;
-                            }
-                            image_index = 4;
-                            animBack = false;
-                            phase = 2;
-                            moveTimer = 120;
-                            animTimer = 10;
-                        }
-                    }
-                }
-                break;
-            case 2:
-                moveTimer--;
-                if (moveTimer &gt; 0)
-                {
-                    if (animBack == false)
-                    {
-                        image_index += imgSpd;
-                        if (image_index &gt;= 7)
-                        {
-                            image_index = 6;
-                            animBack = true;
-                        }
-                    }
-                    else
-                    {
-                        image_index -= imgSpd;
-                        if (image_index &lt; 4)
-                        {
-                            image_index = 5;
-                            animBack = false;
-                        }
-                    }
-                }
-                else
-                {
-                    moveTimer = 30;
                     image_index = 0;
-                    phase = 0;
                 }
-                break;
-        }
+            }
+            else
+            {
+                image_index += imgSpd;
+                if (image_index == 4)
+                {
+                    phase = 1;
+                    moveTimer = 60;
+                }
+            }
+            break;
+        case 1:
+            moveTimer--;
+            if (moveTimer == 30)
+            {
+                if (!instance_exists(bubble))
+                {
+                    i = instance_create(x, y, objFeeberBubble);
+                    i.xspeed = 1 * image_xscale;
+                    i.image_xscale = image_xscale;
+                    i.parent = id;
+                    bubble = i.id;
+                    playSFX(sfxOil);
+                }
+            }
+            if (moveTimer &lt;= 0)
+            {
+                if (image_index &gt; 2)
+                {
+                    image_index -= imgSpd;
+                }
+                else // if (image_index == 1)
+                {
+                    image_index = 0;
+                    animTimer--;
+                    if (animTimer == 0)
+                    {
+                        calibrateDirection();
+                        image_index = 4;
+                        animBack = false;
+                        phase = 2;
+                        moveTimer = 120;
+                        animTimer = 10;
+                    }
+                }
+            }
+            break;
+        case 2:
+            moveTimer--;
+            if (moveTimer &gt; 0)
+            {
+                if (animBack == false)
+                {
+                    image_index += imgSpd;
+                    if (image_index &gt;= 7)
+                    {
+                        image_index = 6;
+                        animBack = true;
+                    }
+                }
+                else
+                {
+                    image_index -= imgSpd;
+                    if (image_index &lt; 4)
+                    {
+                        image_index = 5;
+                        animBack = false;
+                    }
+                }
+            }
+            else
+            {
+                moveTimer = 30;
+                image_index = 0;
+                phase = 0;
+            }
+            break;
     }
 }
 else if (dead)
