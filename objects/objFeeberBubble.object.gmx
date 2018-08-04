@@ -101,41 +101,41 @@ if (entityCanStep())
                 // lockPoolRelease(myLock);
             }
         }
+    }
         
-        // Turn around when hitting wall
-        if (xcoll != 0)
+    // Turn around when hitting wall
+    if (xcoll != 0)
+    {
+        image_xscale *= -1;
+    }
+    
+    // Stop moving when falling
+    if (!ground)
+    {
+        xspeed = 0;
+    }
+    else
+    {
+        xspeed = 1 * image_xscale;
+    }
+    
+    // Animation
+    if (animBack == false)
+    {
+        imgIndex += image_speed;
+        if (imgIndex &gt;= 4)
         {
-            image_xscale *= -1;
+            animBack = true;
+            imgIndex = 3;
         }
-        
-        // Stop moving when falling
-        if (!ground)
+    }
+    else
+    {
+        imgIndex -= image_speed;
+        if (imgIndex == 1)
         {
-            xspeed = 0;
-        }
-        else
-        {
-            xspeed = 1 * image_xscale;
-        }
-        
-        // Animation
-        if (animBack == false)
-        {
-            imgIndex += image_speed;
-            if (imgIndex &gt;= 4)
-            {
-                animBack = true;
-                imgIndex = 3;
-            }
-        }
-        else
-        {
-            imgIndex -= image_speed;
-            if (imgIndex == 1)
-            {
-                animBack = false;
-                imgIndex = 2;
-            }
+            animBack = false;
+            imgIndex = 2;
         }
     }
 }

@@ -147,10 +147,13 @@ if (entityCanStep())
     
     if (phase != 0)
     {
-        // Affect Mega Man
-        with (objMegaman)
+        if (instance_exists(objMegaman))
         {
-            playerBlow(other.pullSpd * other.pullDir * other.image_xscale);
+            // Affect Mega Man
+            with (objMegaman)
+            {
+                playerBlow(other.pullSpd * other.pullDir * other.image_xscale);
+            }
         }
     }
 }
