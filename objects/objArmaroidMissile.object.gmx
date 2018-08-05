@@ -161,7 +161,7 @@ if (entityCanStep())
         dead = true;
     }
 }
-else if (dead)
+/*else if (dead)
 {
     event_user(EV_DEATH);
     instance_create(x, y, objExplosion);

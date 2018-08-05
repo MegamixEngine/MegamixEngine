@@ -1967,6 +1967,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "imheight") imheight = _____val_____;
     else if (_____vs_____ == "imwidth") imwidth = _____val_____;
     else if (_____vs_____ == "inAir") inAir = _____val_____;
+    else if (_____vs_____ == "instantLeave") instantLeave = _____val_____;
     else if (_____vs_____ == "inArr") inArr = _____val_____;
     else if (_____vs_____ == "inQuicksand") inQuicksand = _____val_____;
     else if (_____vs_____ == "inShell") inShell = _____val_____;
@@ -4307,6 +4308,7 @@ else if (stringStartsWith(_____vs_____, 'x'))
     else if (_____vs_____ == "xs") xs = _____val_____;
     else if (_____vs_____ == "xsc") xsc = _____val_____;
     else if (_____vs_____ == "xscale") xscale = _____val_____;
+    else if (_____vs_____ == "xScale") xScale = _____val_____;
     else if (_____vs_____ == "xscaleStart") xscaleStart = _____val_____;
     else if (_____vs_____ == "xscaleStorage") xscaleStorage = _____val_____;
     else if (_____vs_____ == "xshift") xshift = _____val_____;

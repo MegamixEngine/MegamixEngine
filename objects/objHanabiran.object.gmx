@@ -174,7 +174,6 @@ if (entityCanStep())
                     if (flowerNumber == other.shotsFired &amp;&amp; parent == other.id)
                     {
                         hasFired = true;
-                        playSFX(sfxEnemyShoot);
                     }
                 }
                 shotsFired++;

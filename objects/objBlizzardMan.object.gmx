@@ -79,7 +79,7 @@ enemyDamageValue(objGeminiLaser, 2);
 enemyDamageValue(objSolarBlaze, 4);
 enemyDamageValue(objTopSpin, 1);
 enemyDamageValue(objThunderWool, 1);
-enemyDamageValue(objPharaohShot, 2);
+enemyDamageValue(objPharaohShot, 3);
 enemyDamageValue(objBlackHoleBomb, 2);
 enemyDamageValue(objMagicCard, 1);
 
@@ -351,6 +351,17 @@ else
 if (image_index &gt;= 5)
 {
     other.guardCancel = 1;
+}
+
+if (other.object_index == objPharaohShot)
+{
+    with (objPharaohShot)
+    {
+        if (sprite_index = sprPharaohShotCharged)
+        {
+            extraDamage = 3;
+        }
+    }
 }
 </string>
           </argument>

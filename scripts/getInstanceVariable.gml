@@ -254,6 +254,10 @@ else if (stringStartsWith(_____vs_____, 'b'))
     else if (_____vs_____ == "baseCol") global.retval = baseCol;
     else if (_____vs_____ == "bboxHeight") global.retval = bboxHeight;
     else if (_____vs_____ == "bboxWidth") global.retval = bboxWidth;
+    else if (_____vs_____ == "bbox_left") global.retval = bbox_left;
+    else if (_____vs_____ == "bbox_top") global.retval = bbox_top;
+    else if (_____vs_____ == "bbox_right") global.retval = bbox_right;
+    else if (_____vs_____ == "bbox_bottom") global.retval = bbox_bottom;
     else if (_____vs_____ == "bee") global.retval = bee;
     else if (_____vs_____ == "beenOutsideView") global.retval = beenOutsideView;
     else if (_____vs_____ == "beginAttackTimer") global.retval = beginAttackTimer;

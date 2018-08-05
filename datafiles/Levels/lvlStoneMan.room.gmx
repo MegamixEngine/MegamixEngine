@@ -450,7 +450,7 @@ with (objDestroyField)
     <instance objName="objReflectBlockSmall" x="1232" y="1728" name="inst_840D97B3" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="608" y="2064" name="inst_96CEC1A5" locked="0" code="destroyTilesDepth = 999990;&#xA;" scaleX="1" scaleY="6" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponModifier" x="1424" y="1872" name="inst_7BF37532" locked="0" code="weapon = objMagnetBeam;&#xA;levelReward = true;&#xA;sprite_index = sprMagnetBeamPickup;&#xA;destroyIfUnlocked = true;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDestroyableBlock" x="1248" y="1872" name="inst_B2F7ECCB" locked="0" code="weakness = global.weaponID[? objPlantBarrier];&#xA;" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
+    <instance objName="objDestroyableBlock" x="1248" y="1872" name="inst_B2F7ECCB" locked="0" code="weakness = getWeaponID(objPlantBarrier);&#xA;" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstStoneman" x="560" y="2064" w="16" h="16" xo="64" yo="144" id="11262413" name="inst_1B0549D4" depth="1000002" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

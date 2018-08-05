@@ -10,19 +10,19 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>with objReflectBlockSmall
+  <code>with objReflectBlockSmall{
 if (global.difficulty &lt; DIFF_HARD)
-    instance_destroy();
+    instance_destroy();}
 with objDestroyField
 destroyEntities = false;
-with objSpawnCondition
+with objSpawnCondition{
 if (global.difficulty &lt; DIFF_HARD)
-  instance_destroy();
+  instance_destroy();}
 playMusic("Chill Man.ogg", "OGG", 4, 6.482, 83.276, true, 1);
 with objFootholder
 mode = 1;
-with objFootholder
-mySpeed = 1</code>
+with objFootholder{
+mySpeed = 1}</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -813,6 +813,22 @@ mySpeed = 1</code>
     <tile bgName="tstChillMan" x="2688" y="32" w="32" h="16" xo="112" yo="128" id="11284569" name="inst_691FD6EC" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstChillMan" x="2944" y="32" w="32" h="16" xo="112" yo="128" id="11284573" name="inst_F884EBE9" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstChillMan" x="2960" y="80" w="16" h="16" xo="128" yo="144" id="11284574" name="inst_DB377B76" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3584" y="112" w="16" h="16" xo="224" yo="0" id="11311037" name="inst_4D0F5C02" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3584" y="128" w="16" h="16" xo="224" yo="16" id="11311038" name="inst_89EC0516" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3584" y="144" w="16" h="16" xo="224" yo="16" id="11311039" name="inst_312F437D" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3584" y="160" w="16" h="16" xo="224" yo="16" id="11311040" name="inst_1B90FE57" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3568" y="160" w="16" h="16" xo="224" yo="16" id="11311041" name="inst_A0C484F4" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3568" y="144" w="16" h="16" xo="224" yo="16" id="11311042" name="inst_8D1904CE" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3568" y="128" w="16" h="16" xo="224" yo="16" id="11311043" name="inst_0BF01633" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3568" y="112" w="16" h="16" xo="224" yo="0" id="11311044" name="inst_93F54C75" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3824" y="112" w="16" h="16" xo="224" yo="0" id="11311045" name="inst_AE208EA7" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3824" y="128" w="16" h="16" xo="224" yo="16" id="11311046" name="inst_DA53860F" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3824" y="144" w="16" h="16" xo="224" yo="16" id="11311047" name="inst_3FC73DC2" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3824" y="160" w="16" h="16" xo="224" yo="16" id="11311048" name="inst_55D60740" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3840" y="160" w="16" h="16" xo="224" yo="16" id="11311049" name="inst_800DB6A4" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3840" y="144" w="16" h="16" xo="224" yo="16" id="11311050" name="inst_FE3062B5" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3840" y="128" w="16" h="16" xo="224" yo="16" id="11311051" name="inst_D157EF3A" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChillMan" x="3840" y="112" w="16" h="16" xo="224" yo="0" id="11311052" name="inst_EEAF2D3C" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstChillMan" x="0" y="144" w="16" h="16" xo="208" yo="80" id="10012056" name="tile_9SCK3W0A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstChillMan" x="0" y="160" w="16" h="16" xo="208" yo="80" id="10012056" name="tile_2O4QL565" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstChillMan" x="0" y="176" w="16" h="16" xo="16" yo="0" id="10012056" name="tile_3LNPB7FK" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
