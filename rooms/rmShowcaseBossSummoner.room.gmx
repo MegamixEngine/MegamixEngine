@@ -10,13 +10,7 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>;
-
-with (objPicoBrick)
-{
-    useEndStageBehavior = false;
-    itemDrop = noone;
-}</code>
+  <code></code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -150,20 +144,20 @@ with (objPicoBrick)
     <instance objName="objKamegoroTornadoMakerH" x="1264" y="1056" name="inst_5F02FECC" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objKamegoroTornadoMakerH" x="1040" y="960" name="inst_F966BDA7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objKamegoroTornadoMakerH" x="1264" y="960" name="inst_007426AD" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="784" y="672" name="inst_14A989BF" locked="0" code="maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="816" y="672" name="inst_1E33668A" locked="0" code="maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="848" y="672" name="inst_6549E7F6" locked="0" code="maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="880" y="672" name="inst_5D12795D" locked="0" code="maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="912" y="672" name="inst_07CEA7C2" locked="0" code="maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="944" y="672" name="inst_20664B8E" locked="0" code="maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="976" y="672" name="inst_0DA3240B" locked="0" code="maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="784" y="448" name="inst_301D192F" locked="0" code="minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="816" y="448" name="inst_793D13E7" locked="0" code="minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="848" y="448" name="inst_6ADDBAFF" locked="0" code="minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="880" y="448" name="inst_28910427" locked="0" code="minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="912" y="448" name="inst_4F1E1F03" locked="0" code="minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="944" y="448" name="inst_C50C609C" locked="0" code="minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="976" y="448" name="inst_EA74262D" locked="0" code="minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="784" y="672" name="inst_14A989BF" locked="0" code="timerMax = 128;&#xA;maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="816" y="672" name="inst_1E33668A" locked="0" code="timerMax = 128;&#xA;maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="848" y="672" name="inst_6549E7F6" locked="0" code="timerMax = 128;&#xA;maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="880" y="672" name="inst_5D12795D" locked="0" code="timerMax = 128;&#xA;maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="912" y="672" name="inst_07CEA7C2" locked="0" code="timerMax = 128;&#xA;maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="944" y="672" name="inst_20664B8E" locked="0" code="timerMax = 128;&#xA;maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="976" y="672" name="inst_0DA3240B" locked="0" code="timerMax = 128;&#xA;maxY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="784" y="448" name="inst_301D192F" locked="0" code="timerMax = 128;&#xA;minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="816" y="448" name="inst_793D13E7" locked="0" code="timerMax = 128;&#xA;minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="848" y="448" name="inst_6ADDBAFF" locked="0" code="timerMax = 128;&#xA;minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="880" y="448" name="inst_28910427" locked="0" code="timerMax = 128;&#xA;minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="912" y="448" name="inst_4F1E1F03" locked="0" code="timerMax = 128;&#xA;minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="944" y="448" name="inst_C50C609C" locked="0" code="timerMax = 128;&#xA;minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="976" y="448" name="inst_EA74262D" locked="0" code="timerMax = 128;&#xA;minY = 0;&#xA;isRandom = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="80" y="240" name="inst_49F470FB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="64" y="240" name="inst_FAE07746" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="48" y="240" name="inst_CD73475D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -197,7 +191,7 @@ with (objPicoBrick)
     <instance objName="objPicoBrick" x="176" y="240" name="inst_A8C387EB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="160" y="240" name="inst_A5B872FE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="144" y="240" name="inst_A466C825" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPicoBrick" x="96" y="240" name="inst_8BA7743E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPicoBrick" x="96" y="240" name="inst_8BA7743E" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;&#xA;settingTransplant = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="64" y="352" name="inst_3D82A057" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="80" y="352" name="inst_A4B7DEB8" locked="0" code="priority = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="160" y="352" name="inst_349F73A8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -272,12 +266,13 @@ with (objPicoBrick)
     <instance objName="objBossDoor" x="1264" y="576" name="inst_B24FDFC0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoor" x="1264" y="592" name="inst_DAFBE732" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoor" x="1264" y="608" name="inst_2FB6C9EF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="1264" y="624" name="inst_6D6C6FAD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objYashichi" x="888" y="1072" name="inst_7D3287F7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionFreeVerticalScrolling" x="1536" y="672" name="inst_BE582793" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWater" x="1184" y="784" name="inst_B781EEE9" locked="0" code="" scaleX="6" scaleY="7" colour="4294967295" rotation="0"/>
     <instance objName="objWater" x="1280" y="656" name="inst_D83A8334" locked="0" code="" scaleX="32" scaleY="14.9333333969116" colour="4294967295" rotation="0"/>
     <instance objName="objWater" x="1024" y="960" name="inst_C4B2C0A7" locked="0" code="" scaleX="16" scaleY="10" colour="4294967295" rotation="0"/>
+    <instance objName="objGenericStopper" x="1296" y="672" name="inst_FA75C6B5" locked="0" code="objectToStop = objSplashWoman;&#xA;" scaleX="14" scaleY="0.5" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoor" x="1264" y="624" name="inst_405FE651" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgBasic" x="112" y="16" w="32" h="64" xo="96" yo="0" id="11275503" name="inst_CA471D57" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
