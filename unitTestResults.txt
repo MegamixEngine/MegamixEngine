@@ -1,4 +1,4 @@
-Tests last run: 2018-7-19 20:12:56 (UTC)
+Tests last run: 2018-8-5 6:16:14 (UTC)
 Test result summary: success
 
 ===========================
@@ -52,6 +52,10 @@ Suite: testSuiteReflection (String Execute Partial)
     Case: get global array
       PASSED
     Case: arithmetic
+      PASSED
+    Case: if statements
+      PASSED
+    Case: else-if statements
       PASSED
 
 
