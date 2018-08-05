@@ -17,7 +17,7 @@ if global.difficulty == DIFF_HARD
 {
     with objHover
     {
-        travelSpeed *= 2;
+        travelSpeed = travelSpeed * 2;
     }
 }</code>
   <enableViews>-1</enableViews>
@@ -121,7 +121,7 @@ if global.difficulty == DIFF_HARD
     <instance objName="objBattonton" x="4160" y="768" name="inst_6D83028F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBattonton" x="4240" y="768" name="inst_2DD603C8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBattonton" x="4288" y="768" name="inst_616393B1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMumaria" x="2496" y="672" name="inst_9EE795AD" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    x += 48;&#xA;    xstart = x;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMumaria" x="2496" y="672" name="inst_9EE795AD" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    x = x + 48;&#xA;    xstart = x;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMumaria" x="2592" y="576" name="inst_597A8DF0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMumaria" x="2720" y="640" name="inst_1FB6DE66" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMumaria" x="3008" y="576" name="inst_C4180B60" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -194,7 +194,7 @@ if global.difficulty == DIFF_HARD
     <instance objName="objSasoreenu" x="272" y="232" name="inst_55FD8D94" locked="0" code="despawnRange = 0;&#xA;respawnRange = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSasoreenu" x="416" y="232" name="inst_2B239B0B" locked="0" code="if global.difficulty == DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSasoreenu" x="528" y="232" name="inst_DBFE8174" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSasoreenu" x="720" y="232" name="inst_A4EBD242" locked="0" code="if global.difficulty == DIFF_HARD&#xA;{&#xA;    x += 32;&#xA;    xstart = x;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSasoreenu" x="720" y="232" name="inst_A4EBD242" locked="0" code="if global.difficulty == DIFF_HARD&#xA;{&#xA;    x = x + 32;&#xA;    xstart = x;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSasoreenu" x="816" y="232" name="inst_E2B3D8CD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSasoreenu" x="992" y="232" name="inst_C6DE218B" locked="0" code="if global.difficulty == DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSasoreenu" x="1120" y="232" name="inst_01279E00" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -276,7 +276,7 @@ if global.difficulty == DIFF_HARD
     <instance objName="objTama" x="4240" y="848" name="inst_8194A4EB" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;&#xA;lockTransition = false;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChunco" x="4016" y="784" name="inst_47A67F9E" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="4224" y="1088" name="inst_AD26F803" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}" scaleX="4" scaleY="2" colour="4294967295" rotation="0"/>
-    <instance objName="objSpike" x="4160" y="1136" name="inst_912EB6DA" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;&#xA;// loophole around destroyfield&#xA;var hey = collision_rectangle(other.x, other.y, other.x + other.sprite_width*other.image_xscale, other.y+16, objSolid, false, true);&#xA;&#xA;if hey&#xA;{&#xA;    with hey&#xA;    {&#xA;        instance_destroy();&#xA;    }&#xA;}&#xA;" scaleX="10" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSpike" x="4160" y="1136" name="inst_912EB6DA" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;&#xA;/* loophole around destroyfield */&#xA;&#xA;with (collision_rectangle(x, y, bbox_right, y+16, objSolid, false, true))&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="10" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHover" x="4304" y="1104" name="inst_4FC8F572" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;&#xA;travelSpeed = -0.5;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChunco" x="4208" y="1056" name="inst_3B57C940" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChunco" x="4176" y="1072" name="inst_3B0DB324" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -309,7 +309,7 @@ if global.difficulty == DIFF_HARD
     <instance objName="objDestroyField" x="5984" y="1360" name="inst_A202C05B" locked="0" code="if global.difficulty &gt; DIFF_EASY&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="4" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="5952" y="1376" name="inst_F0C98906" locked="0" code="if global.difficulty &gt; DIFF_EASY&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="4192" y="1120" name="inst_9F9785D9" locked="0" code="destroyEntities = false;&#xA;&#xA;if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDestroyField" x="4160" y="1136" name="inst_472901ED" locked="0" code="destroySolids = false;&#xA;&#xA;if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}" scaleX="10" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDestroyField" x="4160" y="1152" name="inst_472901ED" locked="0" code="destroySolids = false;&#xA;&#xA;if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}" scaleX="10" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="4128" y="1328" name="inst_69738414" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objReflectBlockSmall" x="4160" y="1312" name="inst_A82E3FDD" locked="0" code="grav = 0;&#xA;&#xA;if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTaketento" x="2320" y="640" name="inst_277A9E57" locked="0" code="if global.difficulty &lt; DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

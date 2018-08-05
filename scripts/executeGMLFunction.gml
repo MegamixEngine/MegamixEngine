@@ -89,7 +89,9 @@ else if (fname == "round")
 else if (fname == "ceil")
     global.gml_fn_retval = ceil(a0);
 else if (fname == "tile_add")
-    tile_add(a0,a1,a2,a3,a4,a5,a6,a7);
+    global.gml_fn_retval = tile_add(a0,a1,a2,a3,a4,a5,a6,a7);
+else if (fname == "collision_rectangle")
+    global.gml_fn_retval = collision_rectangle(a0, a1, a2, a3, a4, a5, a6);
 else
     global.execute_gml_function_ERR = true;
 return 0;

@@ -106,7 +106,7 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objRightScrollingNES" x="5376" y="0" name="inst_723C4CBC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrollingNES" x="5632" y="0" name="inst_BDA14D01" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrollingNES" x="2304" y="240" name="inst_5B90CB34" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objGeminiMan" x="5856" y="176" name="inst_8ED2AF88" locked="0" code="music = &quot;Mega_Man_3.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 12;&#xA;introType = 2;&#xA;&#xA;elementName = &quot;gemini&quot;;&#xA;elementCode = &quot;weaponReward(objGeminiLaser);&quot;;&#xA;isHard = global.difficulty == DIFF_HARD;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objGeminiMan" x="5856" y="176" name="inst_8ED2AF88" locked="0" code="music = &quot;Mega_Man_3.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 12;&#xA;//introType = 2;&#xA;&#xA;elementName = &quot;gemini&quot;;&#xA;elementCode = &quot;weaponReward(objGeminiLaser);&quot;;&#xA;isHard = global.difficulty == DIFF_HARD;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="2304" y="480" name="inst_96A8C68F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="2816" y="480" name="inst_67C97B6A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="2816" y="240" name="inst_594DBF50" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -443,6 +443,10 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objCheckpoint" x="2384" y="624" name="inst_5AF54E92" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
+    <tile bgName="tstGeminiman" x="5632" y="128" w="16" h="16" xo="112" yo="64" id="11311032" name="inst_60D1BEA0" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5632" y="144" w="16" h="16" xo="128" yo="64" id="11311033" name="inst_05E67CA1" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5632" y="160" w="16" h="16" xo="128" yo="64" id="11311034" name="inst_41C93C7A" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5632" y="176" w="16" h="16" xo="128" yo="64" id="11311035" name="inst_5859F82B" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="64" y="400" w="16" h="16" xo="0" yo="64" id="10012056" name="tile_QS5QHDQZ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="64" y="416" w="16" h="16" xo="0" yo="80" id="10012056" name="tile_2OVY16EL" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="64" y="432" w="16" h="16" xo="0" yo="80" id="10012056" name="tile_A44SP5NF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

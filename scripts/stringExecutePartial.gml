@@ -38,8 +38,8 @@ while (string_length(str) > 0)
     // skip non-logical tokens:
     str = stringTrim(str);
     var next_char = string_char_at(str, 1);
-    if (next_char == " " || next_char == ";" || next_char == "  " || next_char == "
-    " || next_char == chr(10) || next_char == "{" || next_char == "}")
+    if (next_char == " " || next_char == ";" || next_char == "  " || next_char == global.newLine
+    || next_char == chr(10) || next_char == "{" || next_char == "}")
     {
         str = stringSubstring(str, 2);
         continue;
@@ -48,10 +48,11 @@ while (string_length(str) > 0)
     // skip comments -- single-line
     if (stringStartsWith(str, "//"))
     {
-        var nextline = string_pos(chr(10), str);
+        var nextline = string_pos(global.newLine, str);
         if (nextline == 0)
             exit;
         str = stringSubstring(str, nextline + 1);
+        continue;
     }
     
     // skip comments -- multi-line
@@ -61,6 +62,7 @@ while (string_length(str) > 0)
         if (nextline == 0)
             break;
         str = stringSubstring(str, nextline + 2);
+        continue;
     }
     
     // keywords
@@ -106,11 +108,13 @@ while (string_length(str) > 0)
             var block_string = stringPeekBlock(str);
             if (global.retval_error)
             {
+                printErr("... in: " + full_code);
                 break;
             }
             var block_string = stringPeekBlock(str);
             if (global.retval_error)
             {
+            printErr("... in: " + full_code);
                 break;
             }
             
@@ -120,7 +124,10 @@ while (string_length(str) > 0)
                 stringExecutePartial(block_string);
             }
             if (global.retval_error)
+            {
+                printErr("... in: " + full_code);
                 break;
+            }
         }
         continue;
     }

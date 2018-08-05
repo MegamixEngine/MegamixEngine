@@ -94,6 +94,7 @@ else if (stringStartsWith(str, "("))
         str = stringSubstring(str, 2);
         var exprlen = string_length(expr) + 1;
         var arg_n = 1;
+        var arg;
         arg[0] = fn_str;
         
         // read arguments
@@ -115,7 +116,7 @@ else if (stringStartsWith(str, "("))
                 exit;
             }
             arg[arg_n++] = global.retval_exprval;
-            str = stringSubstring(str, global.retval_exprlen + 1) + whitespaceDropped;
+            str = stringSubstring(str, global.retval_exprlen + 1 + whitespaceDropped);
             exprlen += global.retval_exprlen;
             exprlen += string_length(str);
             str = stringTrim(str);

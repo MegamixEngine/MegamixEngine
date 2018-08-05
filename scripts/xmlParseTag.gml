@@ -11,7 +11,6 @@ tag = stringSubstring(tag, string_pos(" ", tag) + 1);
 while (string_pos(" ", tag) != 0)
 {
     var attr, value;
-    tag = stringTrim(tag);
     
     // read attribute
     var eqPos = string_pos("=", tag);
@@ -23,7 +22,7 @@ while (string_pos(" ", tag) != 0)
     tag = stringSubstring(tag, q1Pos + 1);
     var q2Pos = string_pos('"', tag)
     value = stringSubstring(tag, 1, q2Pos);
-    tag = stringSubstring(tag, q2Pos + 1);
+    tag = stringSubstring(tag, q2Pos + 2);
     
     dsm[? attr] = value;
 }
