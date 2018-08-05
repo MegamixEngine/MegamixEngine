@@ -84,7 +84,6 @@
     <instance objName="objNombrellan" x="656" y="512" name="inst_FF0E3508" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFankurow" x="528" y="656" name="inst_607BE9A6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPikashu" x="608" y="512" name="inst_786847DF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTelTel" x="544" y="528" name="inst_52BC536C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTrainShake" x="720" y="464" name="inst_B5591909" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
