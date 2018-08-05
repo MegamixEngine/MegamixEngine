@@ -76,7 +76,6 @@
     <instance objName="objCustomSpawner" x="1232" y="800" name="inst_2BDBC366" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEnemySpawner" x="1200" y="784" name="inst_7366EC8B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStegorus" x="1152" y="848" name="inst_BE645E6D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTackleFireDispenser" x="1136" y="880" name="inst_5E8EF8E1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objAstroWall" x="1232" y="768" name="inst_59F17063" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
