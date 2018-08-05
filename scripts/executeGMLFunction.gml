@@ -17,6 +17,10 @@ if (argument_count > 5)
     a4 = argument[5];
 if (argument_count > 6)
     a5 = argument[6];
+if (argument_count > 7)
+    a6 = argument[7];
+if (argument_count > 8)
+    a7 = argument[8];
 
 var fname = argument[0];
 
@@ -74,6 +78,18 @@ else if (fname == "tile_layer_show")
     tile_layer_show(a0);
 else if (fname == "tile_layer_hide")
     tile_layer_hide(a0);
+else if (fname == "instance_exists")
+    global.gml_fn_retval = instance_exists(a0);
+else if (fname == "string")
+    global.gml_fn_retval = string(a0);
+else if (fname == "floor")
+    global.gml_fn_retval = floor(a0);
+else if (fname == "round")
+    global.gml_fn_retval = round(a0);
+else if (fname == "ceil")
+    global.gml_fn_retval = ceil(a0);
+else if (fname == "tile_add")
+    tile_add(a0,a1,a2,a3,a4,a5,a6,a7);
 else
     global.execute_gml_function_ERR = true;
 return 0;

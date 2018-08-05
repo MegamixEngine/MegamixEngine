@@ -37,6 +37,8 @@ blockCollision = 0;
 
 respawnRange = -1;
 despawnRange = -1;
+
+gravitySet = 0.4;
 </string>
           </argument>
         </arguments>
@@ -67,7 +69,7 @@ if (!dead)
     {
         with (objMegaman)
         {
-            gravfactor = gravWater;
+            gravfactor = other.gravitySet;
         }
     }
     

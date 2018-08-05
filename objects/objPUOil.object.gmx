@@ -65,6 +65,10 @@ fireSource[23] = objFenix;
 fireSource[24] = objSFFire;
 fireSource[25] = objFlameMixer;
 fireSource[26] = objPUOilFire;
+
+// oil
+oil[0] = objOil;
+oil[1] = objPUOilFire;
 </string>
           </argument>
         </arguments>
@@ -109,16 +113,36 @@ if (!fire)
         a = instance_place(x, y, objPicket);
         if (a.sprite_index == sprTackleFire &amp;&amp; a.yspeed &gt; 0)
         {
-            event_user(0);
+            fire = true;
         }
     }
     
     // ITS LIT FAM :joy:
     for (var i = 0; i &lt; array_length_1d(fireSource); i++)
     {
-        if (place_meeting(x, y, fireSource[i]))
+        if (place_meeting(x, y - 1, fireSource[i]))
         {
-            event_user(0);
+            fire = true;
+        }
+    }
+    
+    // check if anything else is on fire near it
+    for (i = 0; i &lt;= 1; i += 1)
+    {
+        if (place_meeting(x - 16, y - 1, oil[i]))
+        {
+            if instance_place(x - 16, y - 1, oil[i]).fire
+            {
+                fire = true;
+            }
+        }
+            
+        if (place_meeting(x + 16, y - 1, oil[i]))
+        {
+            if instance_place(x + 16, y - 1, oil[i]).fire
+            {
+                fire = true;
+            }
         }
     }
 }
@@ -149,7 +173,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (fire)
+            <string>/*if (fire)
 {
     exit;
 }
@@ -162,18 +186,24 @@ oil[1] = objPUOil;
 
 for (i = 0; i &lt;= 1; i += 1)
 {
-    if (place_meeting(x + 16, y, object_index))
+    if (place_meeting(x + 16, y, oil[i]))
     {
-        with (instance_place(x + 16, y, object_index))
+        with (instance_place(x + 16, y, oil[i]))
         {
-            event_user(0);
+            if id != other.id &amp;&amp; !fire
+            {
+                event_user(0);
+            }
         }
     }
-    if (place_meeting(x - 16, y, object_index))
+    if (place_meeting(x - 16, y, oil[i]))
     {
-        with (instance_place(x - 16, y, object_index))
+        with (instance_place(x - 16, y, oil[i]))
         {
-            event_user(0);
+            if id != other.id &amp;&amp; !fire
+            {
+                event_user(0);
+            }
         }
     }
 }

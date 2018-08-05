@@ -27,7 +27,7 @@ if (abs(xdis) > xpos)
     {
         x = view_xview + (view_wview * 0.5) + xpos * sign(xdis);
         xspeed = 0;
-        if (checkSolid(0, 0))
+        if (checkSolid(0, 0) && blockCollision)
         {
             global.playerHealth[playerID] = 0;
         }

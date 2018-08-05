@@ -362,7 +362,7 @@ if (entityCanStep())
                 {
                     drawLSpark = false;
                     image_index = 4;
-                    playSFX(sfxElectricShot);
+                    playSFX(sfxSparkShock);
                     with (instance_create(x + 16 * image_xscale, y, objSparkmanProjectile))
                     {
                         if (instance_exists(target))

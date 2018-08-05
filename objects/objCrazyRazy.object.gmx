@@ -122,7 +122,9 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// On spawn
+            <string>event_inherited();
+
+/// On spawn
 timer = 0;
 split = 0;
 </string>

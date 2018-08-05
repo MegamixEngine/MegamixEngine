@@ -212,11 +212,12 @@ with (i)
     sprite_index = sprSola0Beam;
     image_speed = 0.35;
     image_xscale = other.image_xscale;
+    image_yscale = other.image_yscale;
     x = other.x;
-    y = other.y - 21;
+    y = other.y - 21*image_yscale;;
     blockCollision = false;
     contactDamage = 3;
-    xspeed = other.image_xscale * 4;
+    xspeed = image_xscale * 4;
 }
 playSFX(sfxSola0Shoot);
 </string>

@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="102" name="datafiles">
+  <datafiles number="92" name="datafiles">
     <datafile>
       <name>CleanMem.dll</name>
       <exists>-1</exists>
@@ -55,7 +55,7 @@
       </ConfigOptions>
       <filename>GMFMODSimple.dll</filename>
     </datafile>
-    <datafiles number="102" name="Music">
+    <datafiles number="92" name="Music">
       <datafile>
         <name>14 Tenguman.spc</name>
         <exists>-1</exists>
@@ -516,7 +516,7 @@
         <filename>WilyIntro.ogg</filename>
       </datafile>
     </datafiles>
-    <datafiles number="102" name="Recordings">
+    <datafiles number="92" name="Recordings">
       <datafile>
         <name>demoHoneyWoman.mrc</name>
         <exists>-1</exists>
@@ -569,8 +569,8 @@
         <filename>demoPico.mrc</filename>
       </datafile>
     </datafiles>
-    <datafiles number="102" name="UnitTests">
-      <datafiles number="102" name="Rooms">
+    <datafiles number="92" name="UnitTests">
+      <datafiles number="92" name="Rooms">
         <datafile>
           <name>lvlRecordingTest.room.gmx</name>
           <exists>-1</exists>
@@ -691,7 +691,7 @@
           <filename>lvlUnitTestBossDoors.room.gmx</filename>
         </datafile>
       </datafiles>
-      <datafiles number="102" name="Recordings">
+      <datafiles number="92" name="Recordings">
         <datafile>
           <name>RecordingObjectSet.mrc</name>
           <exists>-1</exists>
@@ -830,7 +830,7 @@
         </datafile>
       </datafiles>
     </datafiles>
-    <datafiles number="102" name="Misc">
+    <datafiles number="92" name="Misc">
       <datafile>
         <name>sinTable.txt</name>
         <exists>-1</exists>
@@ -3404,8 +3404,6 @@
         <sprite>sprites\sprWily4Laser</sprite>
         <sprite>sprites\mskWily4Laser</sprite>
         <sprite>sprites\mskWily4LaserPrecise</sprite>
-        <sprite>sprites\sprWily4LaserSpawner</sprite>
-        <sprite>sprites\sprWily4LaserStopper</sprite>
         <sprite>sprites\sprBokazurahPlatform</sprite>
         <sprite>sprites\sprMagmaBeamParticle</sprite>
       </sprites>
@@ -5151,7 +5149,7 @@
           <object>objects\objBombManBomb</object>
           <object>objects\objCutBullet</object>
           <object>objects\objFireFlame</object>
-          <object>objects\objFireStorm</object>
+          <object>objects\objFireManStorm</object>
           <object>objects\objGutsBossBlock</object>
           <object>objects\objGutsBossBlockRubble</object>
           <object>objects\objIceManSlasher</object>
@@ -5958,6 +5956,21 @@
     <room>rooms\rmInit</room>
     <room>rooms\lvlCopyThisRoom</room>
     <room>rooms\lvlCutMan</room>
+    <rooms name="Example Game">
+      <room>rooms\lvlGutsMan</room>
+      <room>rooms\lvlFlashMan</room>
+      <room>rooms\lvlGeminiMan</room>
+      <room>rooms\lvlPharaohMan</room>
+      <room>rooms\lvlStoneMan</room>
+      <room>rooms\lvlPlantMan</room>
+      <room>rooms\lvlHoneyWoman</room>
+      <room>rooms\lvlChillMan</room>
+      <room>rooms\lvlMM5Dark1</room>
+      <room>rooms\lvlMM4Wily1</room>
+      <room>rooms\lvlMM9Wily3</room>
+      <room>rooms\lvlMM6MrX4</room>
+      <room>rooms\lvlMM10Wily4</room>
+    </rooms>
     <rooms name="Engine">
       <room>rooms\rmDisclaimer</room>
       <room>rooms\rmTitleScreen</room>

@@ -809,8 +809,7 @@ if (phase != 0)
     draw_sprite_ext(sprKey, 0, x + 178, y + 92, 1, 1, 0, c_white, 1);
     
     draw_text(x + 178 + 8, y + 92 + 18, zeroPad(0, 3));
-    
-    // lives remaining
+
     with (objMegaman)
     {
         if (playerID == other.playerID)
@@ -819,6 +818,7 @@ if (phase != 0)
         }
     }
     
+    // lives remaining
     var livesText = zeroPad(global.livesRemaining, 2);
     if (!global.livesEnabled)
     {

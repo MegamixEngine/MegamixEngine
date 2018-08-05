@@ -107,7 +107,6 @@ if (entityCanStep())
     {
         instance_create(bboxGetXCenter(), bboxGetYCenter(), objHarmfulExplosion);
         playSFX(sfxMM3Explode);
-        visible = false;
         dead = true;
     }
 }

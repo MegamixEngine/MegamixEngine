@@ -102,6 +102,7 @@ global.lastTeleporterX = 128;
 global.lastTeleporterY = 160;
 global.roomTimer = 0;
 
+global.previousRoom = rmTitleScreen;
 global.roomReturn = rmTitleScreen;
 global.roomReturnIsStage = false;
 global.levelReward = makeArray(0);

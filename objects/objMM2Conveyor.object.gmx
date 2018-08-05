@@ -40,6 +40,7 @@ event_inherited();
 
 canHit = false;
 isSolid = 1;
+hasBelt=false;
 
 respawn = true;
 
@@ -113,19 +114,16 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     {
         with (prtEntity)
         {
-            if (blockCollision &amp;&amp; !dead &amp;&amp; grav != 0)
+            if (blockCollision &amp;&amp; !dead &amp;&amp; ground &amp;&amp; grav != 0)
             {
-                if (object_index != objCrusher)
+                if (object_index != objCrusher &amp;&amp; object_index!=objOshitsuOsarettsu)
                 {
-                    with (other)
+                    if(place_meeting(x,y+2*sign(grav), other))
                     {
-                        if (place_meeting(x, y - sign(other.grav), other))
-                        {
-                            with (other)
-                            {
-                                shiftObject(exspd * sign(grav), 0, 1);
-                            }
-                        }
+                        if(!other.hasBelt)
+                            shiftObject(exspd, 0, 1);    
+                        else
+                            shiftObject(exspd*sign(grav), 0, 1);  
                     }
                 }
             }

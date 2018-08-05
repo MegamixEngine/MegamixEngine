@@ -104,7 +104,7 @@ if (!global.frozen)
             // visible = false;
             if (cooldownTimer mod 8 == 0)
             {
-                playSFX(sfxCrashBomb);
+                playSFX(sfxEnemyHit);//playSFX(sfxCrashBomb);
                 var i;
                 d = choose(1, -1);
                 t = irandom(45) * -d;

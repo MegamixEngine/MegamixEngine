@@ -92,19 +92,28 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
         var jump = global.keyJumpPressed[playerID] && yDir != -gravDir && !playerIsLocked(PL_LOCK_CLIMB);
         if ((ground && yDir == gravDir) || !place_meeting(bbox_left, y, objLadder) || !place_meeting(bbox_right, y, objLadder) || jump)
         {
+            var climbedUp=false;
             if (!place_meeting(x, y, objLadder))
             {
                 if (place_meeting(x, y + (gravDir * climbSpeed), objLadder))
-                {
-                    shiftObject(0, climbSpeed * gravDir, 1);
+                {   
+                    playLandSound=0;
+                    ground=false;  
+                    climbedUp=true;
                 }
             }
+    
             climbing = false;
             yspeed = 0;
             isSlide = false;
             climbLock = lockPoolRelease(climbLock);
             shootStandStillLock = lockPoolRelease(shootStandStillLock);
             image_xscale = ladderXScale;
+            if(climbedUp)
+            {
+                yspeed = gravDir*climbSpeed;
+                event_inherited();
+            }
         }
     }
 }

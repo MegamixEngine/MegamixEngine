@@ -64,7 +64,7 @@
     <instance objName="objSolid" x="32" y="80" name="inst_D2EE18FF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLadder" x="48" y="48" name="inst_84DE253D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBigEye" x="2016" y="912" name="inst_E79AFF5B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCutMan" x="3264" y="896" name="inst_6FD50996" locked="0" code="music = &quot;Mega_Man_1.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 8;&#xA;&#xA;hasKnockback = true;&#xA;&#xA;healthBarPrimaryColor[1] = 18;&#xA;healthBarSecondaryColor[1] = 40;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCutMan" x="3264" y="896" name="inst_6FD50996" locked="0" code="music = &quot;Mega_Man_1.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 8;&#xA;&#xA;hasKnockback = true;&#xA;&#xA;healthBarPrimaryColor[1] = 18;&#xA;healthBarSecondaryColor[1] = 40;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objObjectSetter" x="0" y="0" name="inst_42650392" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSpike" x="48" y="64" name="inst_FD584F96" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSuperCutterSpawner" x="1424" y="176" name="inst_8FCF12BC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

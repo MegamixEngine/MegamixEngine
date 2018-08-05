@@ -43,6 +43,8 @@ mask_index = sprNeedleRight;
 
 active = false;
 
+initialDelay = 0;
+waitTimer = 0;
 timer = 0;
 visible = false;
 </string>
@@ -70,6 +72,11 @@ visible = false;
             <string>event_inherited();
 if (entityCanStep())
 {
+    if(waitTimer&gt;0)
+    {
+        waitTimer--;
+        exit;
+    }
     // timer
     timer += 1;
     if (timer == 10)
@@ -137,6 +144,7 @@ if (entityCanStep())
 if (spawned)
 {
     timer = 0;
+    waitTimer = initialDelay;
     visible = false;
 }
 </string>

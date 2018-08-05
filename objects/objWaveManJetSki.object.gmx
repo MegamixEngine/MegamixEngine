@@ -209,6 +209,16 @@ inWater = -1;
                             global.weapon[playerID] = 0;
                             playerPalette();
                             vehicle = other.id;
+                            
+                            // fully reset the state when entering
+                            if lockPoolExists(slideLock)
+                            {
+                                slideLock = lockPoolRelease(slideLock);
+                            }
+                            if lockPoolExists(climbLock)
+                            {
+                                slideLock = lockPoolRelease(climbLock);
+                            }
                         }
                         
                         physicsLock = lockPoolLock(
@@ -217,6 +227,8 @@ inWater = -1;
                             rider.localPlayerLock[PL_LOCK_SLIDE],
                             rider.localPlayerLock[PL_LOCK_CHARGE],
                             rider.localPlayerLock[PL_LOCK_CLIMB]);
+                            
+                        
                         break;
                     }
                 }
