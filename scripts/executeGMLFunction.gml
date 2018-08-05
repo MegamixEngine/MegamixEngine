@@ -72,6 +72,12 @@ else if (fname == "instance_destroy")
     instance_destroy();
 else if (fname == "instance_create")
     instance_create(a0, a1, a2);
+else if (fname == "tile_layer_delete")
+    tile_layer_delete(a0);
+else if (fname == "tile_layer_show")
+    tile_layer_show(a0);
+else if (fname == "tile_layer_hide")
+    tile_layer_hide(a0);
 else if (fname == "instance_exists")
     global.gml_fn_retval = instance_exists(a0);
 else if (fname == "string")
@@ -83,7 +89,9 @@ else if (fname == "round")
 else if (fname == "ceil")
     global.gml_fn_retval = ceil(a0);
 else if (fname == "tile_add")
-    tile_add(a0,a1,a2,a3,a4,a5,a6,a7);
+    global.gml_fn_retval = tile_add(a0,a1,a2,a3,a4,a5,a6,a7);
+else if (fname == "collision_rectangle")
+    global.gml_fn_retval = collision_rectangle(a0, a1, a2, a3, a4, a5, a6);
 else
     global.execute_gml_function_ERR = true;
 return 0;

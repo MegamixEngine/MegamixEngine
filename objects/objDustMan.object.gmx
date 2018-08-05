@@ -329,7 +329,7 @@ if (entityCanStep())
                     }
                     
                     // disable suck if timer runs out, or he collides with mega man
-                    if (attackTimer &gt;= 224 || place_meeting(x - 4 * image_xscale, y, objMegaman))
+                    if (attackTimer &gt;= suckTimer || place_meeting(x - 4 * image_xscale, y, objMegaman))
                     {
                         image_index = 1;
                         attackTimer = 0;

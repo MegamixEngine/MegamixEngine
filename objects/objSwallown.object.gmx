@@ -79,7 +79,7 @@ if (entityCanStep())
         xspeed = 1.5 * image_xscale;
         with (objCoswallown)
         {
-            if (instance_exists(target))
+            if (parent = other.id &amp;&amp; instance_exists(target))
             {
                 move_towards_point(target.x, target.y, 1.5);
                 xspeed = hspeed;
@@ -99,6 +99,7 @@ if (entityCanStep())
     {
         i = instance_create(view_xview[0] + 128 - (128 * image_xscale), y, objCoswallown);
         i.image_xscale = image_xscale;
+        i.parent = id;
     }
 }
 else if (dead)

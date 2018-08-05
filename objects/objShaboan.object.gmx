@@ -64,14 +64,14 @@ canBlink = true;
             <string>event_inherited();
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
-        {
-            // Hang on ceiling
-            case 0:
-                image_index += imgSpd;
+        // Hang on ceiling
+        case 0:
+        image_index += imgSpd;
                 
+            if (instance_exists(target))
+            {
                 // Mostly here for the sake of the "else" block.
                 if ((target.x &gt; x + 85) || (target.x &lt; x - 85))
                 {
@@ -84,86 +84,83 @@ if (entityCanStep())
                 {
                     if (image_index == 2)
                     {
-                        if ((target.x &gt; x) &amp;&amp; (image_index == -1) || (target.x &lt; x) &amp;&amp; (image_index == 1))
-                        {
-                            image_xscale *= -1;
-                        }
+                        calibrateDirection();
                         phase = 1;
                     }
                 }
-                break;
+            }
+            break;
+        
+        // Drop down
+        case 1:
+        moveTimer--;
+        if (moveTimer &lt;= 0)
+        {
+            image_index = 3;
+            grav = 0.25;
+            if (ground)
+            {
+                playSFX(sfxWaveManPipe);
+                image_index = 4;
+                phase = 2;
+            }
+        }
+        break;
+        
+        // On ground
+        case 2:
+            image_index += imgSpd;
+            if (image_index == 9)
+            {
+                image_index = 10;
+            }
+            if (image_index == 12)
+            {
+                xspeed = 2 * image_xscale;
+                yspeed = -5;
+                phase = 3;
+                moveTimer = 30;
+            }
+            calibrateDirection();
+            break;
             
-            // Drop down
-            case 1:
-                moveTimer--;
-                if (moveTimer &lt;= 0)
+        // Land from jump
+        case 3:
+            if (yspeed &gt; 0)
+            {
+                image_index = 4;
+            }
+            if (ground)
+            {
+                xspeed = 0;
+                if (sprite_index != sprShaboanLand)
                 {
-                    image_index = 3;
-                    grav = 0.25;
-                    if (ground)
+                    sprite_index = sprShaboanLand;
+                    image_index = 0;
+                    playSFX(sfxWaveManPipe);
+                }
+                if (image_index &lt; 6)
+                {
+                    image_index += imgSpd;
+                }
+                else
+                {
+                    moveTimer--;
+                    if (moveTimer &lt;= 0)
                     {
-                        playSFX(sfxWaveManPipe);
-                        image_index = 4;
-                        phase = 2;
+                        sprite_index = sprShaboan;
+                        image_index = 6;
+                        phase = 4;
+                        moveTimer = 120;
                     }
                 }
-                break;
-            
-            // On ground
-            case 2:
-                image_index += imgSpd;
-                if (image_index == 9)
-                {
-                    image_index = 10;
-                }
-                if (image_index == 12)
-                {
-                    xspeed = 2 * image_xscale;
-                    yspeed = -5;
-                    phase = 3;
-                    moveTimer = 30;
-                }
-                if ((target.x &gt; x) &amp;&amp; (image_xscale == -1)
-                    || (target.x &lt; x) &amp;&amp; (image_xscale == 1))
-                {
-                    image_xscale *= -1;
-                }
-                break;
-            // Land from jump
-            case 3:
-                if (yspeed &gt; 0)
-                {
-                    image_index = 4;
-                }
-                if (ground)
-                {
-                    xspeed = 0;
-                    if (sprite_index != sprShaboanLand)
-                    {
-                        sprite_index = sprShaboanLand;
-                        image_index = 0;
-                        playSFX(sfxWaveManPipe); // playSFX(sfxMetallCannon);
-                    }
-                    if (image_index &lt; 6)
-                    {
-                        image_index += imgSpd;
-                    }
-                    else
-                    {
-                        moveTimer--;
-                        if (moveTimer &lt;= 0)
-                        {
-                            sprite_index = sprShaboan;
-                            image_index = 6;
-                            phase = 4;
-                            moveTimer = 120;
-                        }
-                    }
-                }
-                break;
-            // Remain idle
-            case 4:
-                image_index += imgSpd;
+            }
+            break;
+        // Remain idle
+        case 4:
+            image_index += imgSpd;
+            if (instance_exists(target))
+            {
                 if ((target.x &gt; x + 85) || (target.x &lt; x - 85))
                 {
                     moveTimer--;
@@ -185,9 +182,30 @@ if (entityCanStep())
                 {
                     phase = 2;
                 }
-                break;
-            // Blink Once
-            case 5:
+            }
+            // Do idle animation if Mega Man is dead
+            else
+            {
+                moveTimer--;
+                if (moveTimer &gt; 0)
+                {
+                    if (image_index &gt;= 8)
+                    {
+                        image_index = 6;
+                    }
+                }
+                else
+                {
+                    image_index = 9;
+                    moveTimer = 30;
+                    phase = 5;
+                }
+            }
+            break;
+        // Blink Once
+        case 5:
+            if (instance_exists(target))
+            {
                 if ((target.x &gt; x + 100) || (target.x &lt; x - 100))
                 {
                     if (canBlink == true)
@@ -222,8 +240,11 @@ if (entityCanStep())
                     canBlink = true;
                     phase = 2;
                 }
-                break;
-            case 6:
+            }
+            break;
+        case 6:
+            if (instance_exists(target))
+            {
                 if ((target.x &gt; x + 100) || (target.x &lt; x - 100))
                 {
                     image_index += imgSpd;
@@ -252,8 +273,8 @@ if (entityCanStep())
                     canBlink = true;
                     phase = 2;
                 }
-                break;
-        }
+            }
+            break;
     }
 }
 else if (dead)

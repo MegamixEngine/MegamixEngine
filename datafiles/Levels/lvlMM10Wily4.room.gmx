@@ -190,7 +190,7 @@ isTile = true;</code>
     <instance objName="objDestroyField" x="864" y="832" name="inst_0BB04310" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="4" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="544" y="336" name="inst_E6E9176C" locked="0" code="X = 800;&#xA;Y = 848;&#xA;if (global.difficulty == DIFF_EASY)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="592" y="976" name="inst_736BAB2E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="640" y="1008" name="inst_C1CB1F90" locked="0" code="if (global.difficulty == DIFF_NORMAL)&#xA;{&#xA;        X = 544;&#xA;        Y = 1312;&#xA;}&#xA;else if (global.difficulty == DIFF_EASY)&#xA;{&#xA;        X = 864;&#xA;        Y = 1088;&#xA;}&#xA;else if (global.difficulty == DIFF_HARD)&#xA;{&#xA;        X = 896;&#xA;        Y = 1536;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="640" y="1008" name="inst_C1CB1F90" locked="0" code="if (global.difficulty == DIFF_NORMAL)&#xA;{&#xA;        X = 544;&#xA;        Y = 1312;&#xA;}&#xA;if (global.difficulty == DIFF_EASY)&#xA;{&#xA;        X = 864;&#xA;        Y = 1088;&#xA;}&#xA;if (global.difficulty == DIFF_HARD)&#xA;{&#xA;        X = 896;&#xA;        Y = 1536;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objToadMan" x="976" y="624" name="inst_5A84F2E3" locked="0" code="music = &quot;Mega_Man_4.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 17;&#xA;&#xA;itemDrop = objLifeEnergyBig;&#xA;useEndStageBehavior = false;&#xA;if (global.difficulty &gt; DIFF_EASY)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCrashMan" x="464" y="400" name="inst_43FBAAF9" locked="0" code="itemDrop = objLifeEnergyBig;&#xA;useEndStageBehavior = false;&#xA;if (global.difficulty &gt; DIFF_EASY)&#xA;    instance_destroy();" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCutMan" x="464" y="848" name="inst_7D6D7E1C" locked="0" code="music = &quot;Mega_Man_1.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 8;&#xA;introType = 2;&#xA;&#xA;itemDrop = objLifeEnergyBig;&#xA;useEndStageBehavior = false;&#xA;if (global.difficulty &gt; DIFF_EASY)&#xA;    instance_destroy();&#xA;hasKnockback = true;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -217,8 +217,8 @@ isTile = true;</code>
     <instance objName="objEasyPlatform32" x="864" y="1056" name="inst_7195970D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="912" y="1040" name="inst_A5356160" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="800" y="1072" name="inst_E92FFF81" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDestroyableBlock" x="976" y="960" name="inst_FE9ECB57" locked="0" code="weakness = global.weaponID[? objPharaohShot];&#xA;itemDrop = objWeaponEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDestroyableBlock" x="976" y="992" name="inst_E3A1E0B3" locked="0" code="weakness = global.weaponID[? objPharaohShot]&#xA;itemDrop = objWeaponEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDestroyableBlock" x="976" y="960" name="inst_FE9ECB57" locked="0" code="weakness = getWeaponID(objPharaohShot);&#xA;itemDrop = objWeaponEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDestroyableBlock" x="976" y="992" name="inst_E3A1E0B3" locked="0" code="weakness = getWeaponID(objPharaohShot)&#xA;itemDrop = objWeaponEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="1120" y="1104" name="inst_62CF480B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="1152" y="1104" name="inst_4BEBE6C2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform24" x="1140" y="1024" name="inst_C0723C06" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -229,8 +229,8 @@ isTile = true;</code>
     <instance objName="objBoobeam" x="1264" y="1072" name="inst_55F3B8ED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBoobeamControl" x="1136" y="960" name="inst_ECB315D3" locked="0" code="music = &quot;Mega_Man_5GB.GBS&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 30;&#xA;&#xA;elementName = &quot;wily5&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCustomSpawner" x="1216" y="896" name="inst_E186CCC2" locked="0" code="object = objWeaponEnergyBig;&#xA;startWait = 140;&#xA;spawnWait = 480;&#xA;limit = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDestroyableBlock" x="1040" y="1072" name="inst_B91D507D" locked="0" code="grav = 0;&#xA;weakness = global.weaponID[? objPharaohShot];" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDestroyableBlock" x="1216" y="1056" name="inst_A85A28C1" locked="0" code="grav = 0;&#xA;weakness = global.weaponID[? objPharaohShot];" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDestroyableBlock" x="1040" y="1072" name="inst_B91D507D" locked="0" code="grav = 0;&#xA;weakness = getWeaponID(objPharaohShot);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDestroyableBlock" x="1216" y="1056" name="inst_A85A28C1" locked="0" code="grav = 0;&#xA;weakness = getWeaponID(objPharaohShot);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1280" y="896" name="inst_FF17E0EE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1024" y="896" name="inst_A388909B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLadder" x="1168" y="912" name="inst_F8824C45" locked="0" code="" scaleX="2" scaleY="4" colour="4294967295" rotation="0"/>
@@ -269,8 +269,8 @@ isTile = true;</code>
     <instance objName="objBossDoor" x="1008" y="944" name="inst_38819AAF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoor" x="1008" y="960" name="inst_7059608A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoor" x="1008" y="976" name="inst_866547C8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="1008" y="992" name="inst_B1502BEE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="1008" y="1008" name="inst_A7FAA5BE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoor" x="1008" y="1008" name="inst_B1502BEE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoor" x="1008" y="992" name="inst_A7FAA5BE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBoobeam" x="1264" y="928" name="inst_A2E83254" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossRush" x="736" y="240" name="inst_49CD0CCD" locked="0" code="bossesToDefeat = 8;&#xA;finalTeleportX = 592;&#xA;finalTeleportY = 976;&#xA;if (global.difficulty == DIFF_EASY)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="512" y="1152" name="inst_5382115E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -659,6 +659,17 @@ isTile = true;</code>
     <tile bgName="tstMM10Wily4" x="880" y="864" w="32" h="16" xo="32" yo="0" id="11305683" name="inst_B13A81A3" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM10Wily4" x="912" y="864" w="32" h="16" xo="32" yo="0" id="11305684" name="inst_F8A574CA" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM10Wily4" x="944" y="864" w="16" h="16" xo="32" yo="0" id="11305685" name="inst_433F750D" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM2Wily4" x="1008" y="944" w="16" h="16" xo="16" yo="16" id="11311077" name="inst_9C7585DB" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM2Wily4" x="1008" y="960" w="16" h="16" xo="48" yo="16" id="11311078" name="inst_C9CDA133" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM2Wily4" x="1008" y="992" w="16" h="16" xo="48" yo="16" id="11311079" name="inst_5C5C5DE3" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM2Wily4" x="1008" y="1008" w="16" h="16" xo="48" yo="16" id="11311080" name="inst_106FC808" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM2Wily4" x="1008" y="976" w="16" h="16" xo="48" yo="16" id="11311081" name="inst_3C75C417" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark4" x="752" y="1248" w="16" h="16" xo="48" yo="64" id="11311082" name="inst_024BE24F" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark4" x="768" y="1248" w="16" h="16" xo="48" yo="64" id="11311083" name="inst_34D55F35" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark4" x="768" y="1264" w="16" h="16" xo="48" yo="64" id="11311084" name="inst_9EA62B11" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark4" x="752" y="1264" w="16" h="16" xo="48" yo="64" id="11311085" name="inst_6CD8FA43" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark4" x="752" y="1280" w="16" h="16" xo="48" yo="64" id="11311086" name="inst_7A782E14" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstDark4" x="768" y="1280" w="16" h="16" xo="48" yo="64" id="11311087" name="inst_E132B015" depth="1000010" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM10Wily4" x="0" y="32" w="16" h="16" xo="32" yo="16" id="10012056" name="tile_QRHEA0EE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM10Wily4" x="0" y="48" w="16" h="16" xo="0" yo="16" id="10012056" name="tile_WO4S2XI7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM10Wily4" x="0" y="64" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_UVSUPLCC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

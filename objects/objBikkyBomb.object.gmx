@@ -66,127 +66,124 @@ jumps = 0;
 
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
+        // spawn and Spin
+        case 0:
+        moveTimer--;
+        if (moveTimer &lt;= 0)
         {
-            // spawn and Spin
-            case 0:
-                moveTimer--;
-                if (moveTimer &lt;= 0)
-                {
-                    spinTimer--;
+            spinTimer--;
                     
-                    if (spinTimer &gt; 0)
+            if (spinTimer &gt; 0)
+            {
+                if (animBack == false)
+                {
+                    imgIndex += imgSpd;
+                    if (imgIndex &gt;= 4)
                     {
-                        if (animBack == false)
-                        {
-                            imgIndex += imgSpd;
-                            if (imgIndex &gt;= 4)
-                            {
-                                imgIndex = 2;
-                                animBack = true;
-                            }
-                        }
-                        else
-                        {
-                            imgIndex -= imgSpd;
-                            if (imgIndex &lt; 1)
-                            {
-                                imgIndex = 2;
-                                animBack = false;
-                            }
+                        imgIndex = 2;
+                        animBack = true;
                         }
                     }
                     else
                     {
-                        imgIndex = 0;
-                        phase = 1;
-                        moveTimer = 60;
-                        spinTimer = 120;
-                        animBack = false;
-                    }
-                }
-                break;
-            // Toss bomb
-            case 1:
-                imgIndex += imgSpd;
-                if (imgIndex == 1)
-                {
-                    imgIndex = 4;
-                }
-                if (imgIndex == 4)
-                {
-                    var i = instance_create(x + 8 * image_xscale, y - 4, objBikkyBombBall);
-                    i.yspeed = -4;
-                    i.image_xscale = image_xscale;
-                    playSFX(sfxEnemyDrop);
-                }
-                if (imgIndex &gt;= 5)
-                {
-                    imgIndex = 0;
-                    phase = 2;
-                }
-                break;
-            // Jump
-            case 2:
-                moveTimer--;
-                if (moveTimer &lt;= 0)
-                {
-                    if (jumps &lt; 3)
-                    {
-                        calibrateDirection();
-                        yspeed = -4;
-                        xspeed = 1 * image_xscale;
-                        phase = 3;
-                    }
-                    else
-                    {
-                        phase = 0;
-                        calibrateDirection();
-                        jumps = 0;
-                    }
-                }
-                break;
-            // In Air
-            case 3:
-                if (!ground)
-                {
-                    if (yspeed &gt;= 0)
-                    {
-                        if (imgIndex != 6)
+                        imgIndex -= imgSpd;
+                        if (imgIndex &lt; 1)
                         {
-                            imgIndex += imgSpd;
-                            if (imgIndex == 1)
-                            {
-                                imgIndex = 5;
-                            }
+                            imgIndex = 2;
+                            animBack = false;
                         }
                     }
                 }
                 else
                 {
-                    phase = 4;
                     imgIndex = 0;
-                    xspeed = 0;
-                    jumps++;
-                }
-                break;
-            // Landing animation
-            case 4:
-                imgIndex += imgSpd;
-                if (imgIndex == 1)
-                {
-                    imgIndex = 5;
-                }
-                if (imgIndex == 6)
-                {
-                    imgIndex = 0;
-                    phase = 2;
+                    phase = 1;
                     moveTimer = 60;
+                    spinTimer = 120;
+                    animBack = false;
                 }
-                break;
-        }
+            }
+            break;
+        // Toss bomb
+        case 1:
+            imgIndex += imgSpd;
+            if (imgIndex == 1)
+            {
+                imgIndex = 4;
+            }
+            if (imgIndex == 4)
+            {
+                var i = instance_create(x + 8 * image_xscale, y - 4, objBikkyBombBall);
+                i.yspeed = -4;
+                i.image_xscale = image_xscale;
+                playSFX(sfxEnemyDrop);
+            }
+            if (imgIndex &gt;= 5)
+            {
+                imgIndex = 0;
+                phase = 2;
+            }
+            break;
+        // Jump
+        case 2:
+            moveTimer--;
+            if (moveTimer &lt;= 0)
+            {
+                if (jumps &lt; 3)
+                {
+                    yspeed = -4;
+                    xspeed = 1 * image_xscale;
+                    phase = 3;
+                    calibrateDirection();
+                }
+                else
+                {
+                    phase = 0;
+                    jumps = 0;
+                    calibrateDirection();
+                }
+            }
+            break;
+        // In Air
+        case 3:
+            if (!ground)
+            {
+                if (yspeed &gt;= 0)
+                {
+                    if (imgIndex != 6)
+                    {
+                        imgIndex += imgSpd;
+                        if (imgIndex == 1)
+                        {
+                            imgIndex = 5;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                phase = 4;
+                imgIndex = 0;
+                xspeed = 0;
+                jumps++;
+            }
+            break;
+        // Landing animation
+        case 4:
+            imgIndex += imgSpd;
+            if (imgIndex == 1)
+            {
+                imgIndex = 5;
+            }
+            if (imgIndex == 6)
+            {
+                imgIndex = 0;
+                phase = 2;
+                moveTimer = 60;
+            }
+            break;
     }
 }
 else if (dead)

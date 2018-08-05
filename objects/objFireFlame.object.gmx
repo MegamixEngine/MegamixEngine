@@ -92,7 +92,8 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if ((other.object_index == objIceWall) || (other.object_index == objWaterShield))
+            <string>if ((other.object_index == objIceWall) || (other.object_index == objWaterShield)
+    || (other.object_index == objJewelSatellite))
 {
     instance_create(sprite_width / 2, sprite_height / 2, objExplosion);
     event_user(EV_DEATH);

@@ -187,11 +187,6 @@ if (entityCanStep())
                             lastDrop = rockDrop[rn];
                             lastDrop.active = true;
                         }
-                        
-                        /* else
-                        {
-                            print(rn);
-                        }*/
                     }
                     dropTime = 4;
                 }

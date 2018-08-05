@@ -448,6 +448,13 @@ if (image_index &gt;= 7 &amp;&amp; image_index &lt;= 12)
         {
             charge = 10;
             phase = 5;
+            if (other.object_index == objPharaohShot)
+            {
+                with (objPharaohShot)
+                {
+                    extraDamage = 4;
+                }
+            }
         }
         
         with (other)

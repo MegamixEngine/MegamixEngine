@@ -65,112 +65,104 @@ phase = 0;
 
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
-        {
-            case 0:
-                moveTimer--;
-                if (moveTimer &lt;= 0)
+        case 0:
+            moveTimer--;
+            if (moveTimer &lt;= 0)
+            {
+                yspeed = -1;
+                
+                image_index += imgSpd;
+                if (image_index &gt;= 2)
                 {
-                    yspeed = -1;
-                    
-                    image_index += imgSpd;
-                    if (image_index &gt;= 2)
-                    {
-                        image_index = 0;
-                    }
-                    
-                    warpDelay--;
-                    if (warpDelay == 0)
-                    {
-                        yspeed = 0;
-                        phase = 1;
-                        warpDelay = 30;
-                        moveTimer = 10;
-                    }
+                    image_index = 0;
                 }
-                break;
-            // warp out
-            case 1:
-                if (image_index == 0)
-                {
-                    image_index = 2;
-                    canDamage = false;
-                    canHit = false;
-                    playSFX(sfxPortal);
-                }
-                else
-                {
-                    image_index += imgSpd;
-                    if (image_index &gt;= 5)
-                    {
-                        image_alpha = 0;
-                        phase = 2;
-                    }
-                }
-                break;
-            
-            // warp In
-            case 2:
+                
                 warpDelay--;
                 if (warpDelay == 0)
                 {
-                    image_alpha = 1;
-                    
-                    /* x = target.x;
-                    y = target.y - 64 ;*/
-                    var newY = target.y - 64;
-                    if (!insideSection(target.x, newY))
-                        newY = global.sectionTop + 8;
-                    shiftObject(0, newY - y, true);
-                    shiftObject(target.x - x, 0, true);
-                    canDamage = true;
-                    canHit = true;
+                    yspeed = 0;
+                    phase = 1;
+                    warpDelay = 30;
+                    moveTimer = 10;
                 }
-                if (warpDelay &lt; 0)
+            }
+            break;
+        // warp out
+        case 1:
+            if (image_index == 0)
+            {
+                image_index = 2;
+                canDamage = false;
+                canHit = false;
+                playSFX(sfxPortal);
+            }
+            else
+            {
+                image_index += imgSpd;
+                if (image_index &gt;= 5)
                 {
-                    image_index -= imgSpd;
-                    
-                    if ((target.x &gt; x) &amp;&amp; (image_xscale == -1)
-                        || (target.x &lt; x) &amp;&amp; (image_xscale == 1))
-                    {
-                        image_xscale *= -1;
-                    }
-                    
-                    if (image_index == 2)
-                    {
-                        image_index = 0;
-                        phase = 3;
-                        warpDelay = 4; // Reusing warpDelay as a timer for next phase
-                    }
+                    image_alpha = 0;
+                    phase = 2;
                 }
-                break;
-            case 3:
-                moveTimer--;
-                if (moveTimer &lt;= 0)
-                {
-                    yspeed = 3;
-                    if (ground)
-                    {
-                        warpDelay--;
-                        if (warpDelay &gt; 0)
-                        {
-                            image_index = 5;
-                        }
-                        else
-                        {
-                            playSFX(sfxHeavyLand);
-                            phase = 0;
-                            image_index = 0;
-                            moveTimer = 30;
-                            warpDelay = 30;
-                            canAnimate = true;
-                        }
-                    }
-                }
-                break;
+            }
+            break;
+        
+        // warp In
+        case 2:
+        warpDelay--;
+        if (warpDelay == 0)
+        {
+            image_alpha = 1;
+            if (instance_exists(target))
+            {
+                var newY = target.y - 64;
+                if (!insideSection(target.x, newY))
+                    newY = global.sectionTop + 8;
+                shiftObject(0, newY - y, true);
+                shiftObject(target.x - x, 0, true);
+            }
+            canDamage = true;
+            canHit = true;
         }
+        if (warpDelay &lt; 0)
+        {
+            image_index -= imgSpd;
+            calibrateDirection();
+            
+            if (image_index == 2)
+            {
+                image_index = 0;
+                phase = 3;
+                warpDelay = 4; // Reusing warpDelay as a timer for next phase
+            }
+        }
+        break;
+    case 3:
+        moveTimer--;
+        if (moveTimer &lt;= 0)
+        {
+            yspeed = 3;
+            if (ground)
+            {
+                warpDelay--;
+                if (warpDelay &gt; 0)
+                {
+                    image_index = 5;
+                }
+                else
+                {
+                    playSFX(sfxHeavyLand);
+                    phase = 0;
+                    image_index = 0;
+                    moveTimer = 30;
+                    warpDelay = 30;
+                    canAnimate = true;
+                }
+            }
+        }
+        break;
     }
 }
 </string>
