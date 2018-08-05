@@ -110,6 +110,10 @@ if (instance_exists(caughtPlayer))
                 other.caughtTimer++;
             }
             other.caughtXScalePrev = image_xscale;
+            if(isLocked(other.honeyLock))
+            {
+                lockPoolRelease(other.honeyLock);
+            }
         }
     }
 }
@@ -189,9 +193,10 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
     despawnTimer += 1;
     if (despawnTimer &gt;= 370)
     {
-        if (instance_exists(caughtPlayer))
+        if (isLocked(honeyLock))
             honeyLock = lockPoolRelease(honeyLock);
         instance_destroy();
+        exit;
     }
     else if (despawnTimer &gt;= 300)
     {

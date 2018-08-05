@@ -40,10 +40,14 @@ shiftObject(0, 2, true);
 checkGround();
 if (ground)
     exit;
-while (j &lt; (232 / 4) &amp;&amp; !checkSolid(0, 1))
+while (j &lt; (232 / 4) &amp;&amp; !checkSolid(0, 1,1,1))
 {
     shiftObject(0, 4, true);
     j += 1;
+}
+if(checkSolid(0,0,1,1))
+{
+    event_user(EV_DEATH);
 }
 </string>
           </argument>

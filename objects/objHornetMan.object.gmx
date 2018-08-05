@@ -269,7 +269,7 @@ if (entityCanStep())
                 {
                     stop = false;
                     
-                    if (checkSolid(10 * image_xscale, 0,1,1) || !positionCollision(10 * image_xscale,20,1,1))
+                    if (checkSolid(10 * image_xscale, 0,1,1) || !positionCollision(x+10 * image_xscale,y+20,1,1))
                     {
                         if (!checkSolid(10 * image_xscale,- 16,1,1))
                         {

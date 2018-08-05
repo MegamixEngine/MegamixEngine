@@ -150,7 +150,10 @@ if (entityCanStep())
         // Affect Mega Man
         with (objMegaman)
         {
-            playerBlow(other.pullSpd * other.pullDir * other.image_xscale);
+            if(!playerIsLocked(PL_LOCK_MOVE,PL_LOCK_PHYSICS,PL_LOCK_PAUSE,PL_LOCK_GRAVITY,PL_LOCK_TURN))
+            {
+                playerBlow(other.pullSpd * other.pullDir * other.image_xscale);
+            }
         }
     }
 }

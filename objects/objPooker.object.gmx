@@ -40,7 +40,6 @@ timer = 0;
 dir = 1;
 getY = y;
 yOffset = 0;
-movingPlat = noone;
 lock = false;
 platTarget = noone;
 </string>
@@ -73,7 +72,8 @@ if (entityCanStep())
     {
         // normal attacking behavior
         case 0: // shoot projectiles 
-            timer += 1;
+            facePlayer = 1;
+            timer += 1; 
             if (timer == 120)
             {
                 instance_create(x, y - 8, objPookerProjectile);
@@ -89,6 +89,7 @@ if (entityCanStep())
         
         // flip over after being hit by a charge shot
         case 1:
+            facePlayer=0;
             timer = 0;
             
             // animation
@@ -101,12 +102,17 @@ if (entityCanStep())
                 image_index = 2;
             }
             
-            // land in liquid
+            // land in liquidmovingPlat
             if ((place_meeting(x, y, objOil) || place_meeting(x, y, objWater)) &amp;&amp; !checkSolid(0, 0, 1, 1))
             {
-                phase = 2;
+                phase = 2
+                platTarget = noone;
+                lock = false;
+                
+                
                 xspeed = 0;
                 yspeed = 0;
+                lock=0;
                 if (place_meeting(x, y, objWater))
                     y -= 1;
                 
@@ -187,6 +193,7 @@ if (entityCanStep())
                             {
                                 _hasWeight = true;
                                 other.platTarget = id;
+
                                 break;
                             }
                         }
@@ -214,20 +221,18 @@ if (entityCanStep())
                     timer = 32;
                     lock = true;
                     yOffset = 2;
+                    var direc = sign(image_xscale);
+                    if (instance_exists(platTarget))
+                        direc = sign(platTarget.image_xscale);
+                    dir = direc;
+                    image_xscale = dir;
                 }
                 else if (!instance_exists(platTarget) || (((instance_exists(platTarget) &amp;&amp; !(place_meeting(x, y - 2, platTarget) &amp;&amp; platTarget.bbox_bottom &lt; bbox_top + 5)) || !instance_exists(platTarget)) &amp;&amp; (image_index != 8 || timer == 0)))
                 {
                     lock = false;
+                    platTarget = noone;
                 }
-                
-                if (!lock)
-                {
-                    var direc = 1;
-                    if (instance_exists(platTarget))
-                        direc = platTarget.image_xscale;
-                    dir = direc;
-                }
-                
+
                 if (floor(image_index) == 8)
                 {
                     if (!checkSolid(xspeed, 0, 1, 1))

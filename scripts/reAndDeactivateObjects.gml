@@ -28,12 +28,7 @@ if (deac)
     
     with (all)
     {
-        if(object_index==objSolid)
-        {
-            if(!collision_rectangle(global.sectionLeft-1,global.sectionTop-1,global.sectionRight+1,global.sectionBottom+1,id,false,false))
-                instance_deactivate_object(id);
-        }
-        else if (object_index == prtEntity || object_is_ancestor(object_index, prtEntity))
+        if (object_index == prtEntity || object_is_ancestor(object_index, prtEntity))
         {
             var reset = 1;
             
