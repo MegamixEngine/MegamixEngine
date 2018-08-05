@@ -54,10 +54,8 @@
     <instance objName="objOilMan" x="32" y="32" name="inst_93F390C7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objToadMan" x="80" y="32" name="inst_DF62C5B3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlizzardMan" x="128" y="32" name="inst_17BB3E67" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHoneyWoman" x="176" y="32" name="inst_3D26F528" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objChillMan" x="224" y="32" name="inst_FAEFE372" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMercury" x="32" y="96" name="inst_DD6E69DC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objGreyDevil" x="80" y="80" name="inst_ECED9772" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objIceMan" x="128" y="96" name="inst_65A9178F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBubbleMan" x="176" y="96" name="inst_5CE742A0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSonicMan" x="224" y="96" name="inst_D39BD557" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
