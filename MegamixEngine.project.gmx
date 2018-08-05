@@ -5953,6 +5953,38 @@
   <rooms name="rooms">
     <room>rooms\rmInit</room>
     <room>rooms\lvlCopyThisRoom</room>
+    <rooms name="Asset Showcases">
+      <room>rooms\lvlShowcaseHUB</room>
+      <room>rooms\rmShowcaseBossEarth</room>
+      <room>rooms\rmShowcaseBossElectric</room>
+      <room>rooms\rmShowcaseBossFanFlame</room>
+      <room>rooms\rmShowcaseBossFlashGravity</room>
+      <room>rooms\rmShowcaseBossFluidic</room>
+      <room>rooms\rmShowcaseBossMisc</room>
+      <room>rooms\rmShowcaseBossOrdinance</room>
+      <room>rooms\rmShowcaseBossSharp</room>
+      <room>rooms\rmShowcaseBossSummoner</room>
+      <room>rooms\rmShowcaseExplosions</room>
+      <room>rooms\rmShowcaseFlying</room>
+      <room>rooms\rmShowcaseIceFire</room>
+      <room>rooms\rmShowcaseIndustrial</room>
+      <room>rooms\rmShowcaseJoes</room>
+      <room>rooms\rmShowcaseJumping</room>
+      <room>rooms\rmShowcaseLeftovers</room>
+      <room>rooms\rmShowcaseMets</room>
+      <room>rooms\rmShowcaseMinibossAnimals</room>
+      <room>rooms\rmShowcaseMinibossIndustrial</room>
+      <room>rooms\rmShowcaseMinibossMisc</room>
+      <room>rooms\rmShowcaseMinibossWater</room>
+      <room>rooms\rmShowcaseMovement</room>
+      <room>rooms\rmShowcaseMovingPlatforms</room>
+      <room>rooms\rmShowcaseNoveltyPlatforms</room>
+      <room>rooms\rmShowcaseSpawners</room>
+      <room>rooms\rmShowcaseSurprise</room>
+      <room>rooms\rmShowcaseSwitches</room>
+      <room>rooms\rmShowcaseTurrets</room>
+      <room>rooms\rmShowcaseWater</room>
+    </rooms>
     <rooms name="Engine">
       <room>rooms\rmDisclaimer</room>
       <room>rooms\rmTitleScreen</room>
