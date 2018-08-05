@@ -598,7 +598,11 @@
     <instance objName="objWily4Laser" x="1184" y="1648" name="inst_40AD1685" locked="0" code="obstacleList[0] = objElectricGabyoallCurrent;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
     <instance objName="objElectricGabyoall" x="1088" y="1600" name="inst_1356A739" locked="0" code="height = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDefaultSpawn" x="48" y="400" name="inst_0B169881" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objEnergyElement" x="1216" y="1520" name="inst_374BBFDB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="1216" y="1520" name="inst_B5BF2DC6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="1232" y="1520" name="inst_F6C62D34" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="1216" y="1472" name="inst_03AE12BB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="1232" y="1472" name="inst_1E00342B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="1232" y="1504" name="inst_4F662BCD" locked="0" code="light = 6;&#xA;myRoom = lvlShowcaseHUB;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMrX3" x="168" y="1056" w="16" h="16" xo="16" yo="48" id="11264265" name="inst_E95D0681" depth="1500000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -712,6 +716,7 @@
     <tile bgName="tstMrX2" x="1072" y="1552" w="16" h="16" xo="176" yo="32" id="11285550" name="inst_35AF3A05" depth="1500000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMrX2" x="1088" y="1552" w="16" h="16" xo="176" yo="32" id="11285551" name="inst_C3C898E5" depth="1500000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMrX2" x="1104" y="1552" w="16" h="16" xo="176" yo="32" id="11285552" name="inst_82981E91" depth="1500000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM6Wily4" x="1216" y="1472" w="32" h="64" xo="64" yo="128" id="11324611" name="inst_70AD2EAF" depth="1500000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstSparkman" x="0" y="560" w="16" h="16" xo="64" yo="128" id="11264364" name="inst_2E4C0D42" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstSparkman" x="16" y="560" w="16" h="16" xo="64" yo="128" id="11264365" name="inst_3A13198A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstSparkman" x="32" y="560" w="16" h="16" xo="64" yo="128" id="11264366" name="inst_6E129042" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
