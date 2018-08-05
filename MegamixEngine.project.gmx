@@ -5953,7 +5953,6 @@
   <rooms name="rooms">
     <room>rooms\rmInit</room>
     <room>rooms\lvlCopyThisRoom</room>
-<<<<<<< HEAD
     <rooms name="Asset Showcases">
       <room>rooms\lvlShowcaseHUB</room>
       <room>rooms\rmShowcaseBossEarth</room>
@@ -5986,25 +5985,6 @@
       <room>rooms\rmShowcaseTurrets</room>
       <room>rooms\rmShowcaseWater</room>
     </rooms>
-    <rooms name="Example Game">
-      <room>rooms\lvlFlashMan</room>
-      <room>rooms\lvlGeminiMan</room>
-      <room>rooms\lvlPharaohMan</room>
-      <room>rooms\lvlStoneMan</room>
-      <room>rooms\lvlPlantMan</room>
-      <room>rooms\lvlHoneyWoman</room>
-      <room>rooms\lvlChillMan</room>
-      <room>rooms\lvlCastleIntro</room>
-      <room>rooms\lvlMM5Dark1</room>
-      <room>rooms\lvlMM4Wily1</room>
-      <room>rooms\lvlMM9Wily3</room>
-      <room>rooms\lvlMM6MrX4</room>
-      <room>rooms\lvlMM10Wily4</room>
-      <room>rooms\lvlCutMan</room>
-    </rooms>
-=======
-    <room>rooms\lvlCutMan</room>
->>>>>>> 4407c503c7f22ed1800d03a463e785a89c2e01d2
     <rooms name="Engine">
       <room>rooms\rmDisclaimer</room>
       <room>rooms\rmTitleScreen</room>
