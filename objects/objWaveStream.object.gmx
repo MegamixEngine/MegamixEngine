@@ -64,7 +64,7 @@ sprite_index = sprWaveSteam;
             <kind>1</kind>
             <string>event_inherited();
 
-if (!global.frozen &amp;&amp; !dead)
+if (entityCanStep())
 {
     if (timer &lt; wait)
     {
@@ -83,10 +83,11 @@ if (!global.frozen &amp;&amp; !dead)
         {
             image_index = 0;
             timer = 0;
-            canHit = false;
             looped = 0;
         }
     }
+    
+    contactDamage = 4 * (image_index &gt;= 1);
 }
 else if (dead || instance_exists(objSectionSwitcher))
 {
