@@ -41,12 +41,17 @@ dir = image_xscale;
 respawnRange = -1;
 despawnRange = -1;
 
-sinc = 0;
-sinCounter = 0;
-
 xs = x;
 
 sprite_index = sprMM2CloudPlatform;
+
+//creation code
+sinc = 0; //@cc default sinCounter setting
+
+
+sinCounter = sinc;
+
+
 </string>
           </argument>
         </arguments>
@@ -81,7 +86,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 }
 else if (dead)
 {
-    sinc = 0;
+    sinCounter = sinc;
 }
 </string>
           </argument>

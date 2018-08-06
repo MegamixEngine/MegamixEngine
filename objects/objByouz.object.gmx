@@ -40,6 +40,12 @@ imgSpd = 0.2;
 image_index = 1;
 animBack = true;
 moveTimer = 20;
+
+// @cc - use this to change how fast Byouz moves
+moveSpeed = 1;
+
+// @cc - use this to change how low Byouz jumps
+jumpSpeed = 5;
 </string>
           </argument>
         </arguments>
@@ -65,56 +71,53 @@ moveTimer = 20;
             <string>event_inherited();
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
-        {
-            // Waddle around
-            case 0:
-                if ((target.x &gt; x) || (target.x &lt; x))
-                {
-                    if (ground)
-                    {
-                        xspeed = 1 * image_xscale;
+        // Waddle around
+        case 0:
+            if (ground)
+            {
+                xspeed = moveSpeed * image_xscale;
                         
-                        if (!positionCollision(x + 8 * image_xscale, bbox_top - 2))
-                        {
-                            image_xscale *= -1;
-                        }
-                    }
-                    else
-                    {
-                        xspeed = 0;
-                    }
-                    
-                    // Turn around when touching wall
-                    if (xcoll != 0)
-                    {
-                        image_xscale *= -1;
-                    }
-                    
-                    // Animation
-                    if (animBack == false)
-                    {
-                        image_index += imgSpd;
-                        if (image_index &gt;= 3)
-                        {
-                            animBack = true;
-                            image_index = 1;
-                        }
-                    }
-                    else
-                    {
-                        image_index -= imgSpd;
-                        if (image_index &lt; 0)
-                        {
-                            animBack = false;
-                            image_index = 1;
-                        }
-                    }
+                if (!positionCollision(x + 8 * image_xscale, bbox_top - 2))
+                {
+                    image_xscale *= -1;
                 }
-                moveTimer--;
-                if (moveTimer &lt;= 0)
+            }
+            else
+            {
+                xspeed = 0;
+            }
+            // Turn around when touching wall
+            if (xcoll != 0)
+            {
+                image_xscale *= -1;
+            }
+            
+            // Animation
+            if (animBack == false)
+            {
+                image_index += imgSpd;
+                if (image_index &gt;= 3)
+                {
+                    animBack = true;
+                    image_index = 1;
+                }
+            }
+            else
+            {
+                image_index -= imgSpd;
+                if (image_index &lt; 0)
+                {
+                    animBack = false;
+                    image_index = 1;
+                }
+            }
+            
+            moveTimer--;
+            if (moveTimer &lt;= 0)
+            {
+                if (instance_exists(target))
                 {
                     if (floor(target.x) == x)
                     {
@@ -125,35 +128,35 @@ if (entityCanStep())
                         moveTimer = 10;
                     }
                 }
-                break;
+            }
+            break;
             // Jump
-            case 1:
-                moveTimer--;
-                if (moveTimer == 5)
+        case 1:
+            moveTimer--;
+            if (moveTimer == 5)
+            {
+                image_index = 3;
+            }
+            if (moveTimer &lt;= 0)
+            {
+                image_index = 4;
+                yspeed = jumpSpeed;
+                phase = 2;
+            }
+            break;
+        case 2:
+            if (yspeed &lt;= 0)
+            {
+                image_index = 5;
+                if (ground)
                 {
-                    image_index = 3;
+                    image_index = 1;
+                    phase = 0;
+                    mask_index = sprByouzMask;
+                    moveTimer = 20;
                 }
-                if (moveTimer &lt;= 0)
-                {
-                    image_index = 4;
-                    yspeed = 5;
-                    phase = 2;
-                }
-                break;
-            case 2:
-                if (yspeed &lt;= 0)
-                {
-                    image_index = 5;
-                    if (ground)
-                    {
-                        image_index = 1;
-                        phase = 0;
-                        mask_index = sprByouzMask;
-                        moveTimer = 20;
-                    }
-                }
-                break;
-        }
+            }
+            break;
     }
 }
 else if (dead)

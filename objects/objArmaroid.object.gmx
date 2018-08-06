@@ -69,14 +69,13 @@ hasLooped = 0;
 
 if (entityCanStep())
 {
-    print(imgIndex);
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
-        {
-            // Shoot
-            case 0: // if (!instance_exists(missile))
-            //{ 
+        // Shoot
+        case 0:
+            if (instance_exists(target)) &amp;&amp; (distance_to_object(target) &gt; radius)
+                &amp;&amp; (distance_to_object(target) &lt;= radius * 2)
+            {
                 imgIndex += 0.1;
                 if (imgIndex == 1)
                 {
@@ -103,29 +102,33 @@ if (entityCanStep())
                     phase = 1;
                 }
                 
-                //}
-                break;
-            // Idle
-            case 1:
-                if (animBack == false)
+            }
+            else
+                phase = 1;
+            break;
+        // Idle
+        case 1:
+            if (animBack == false)
+            {
+                imgIndex += 0.1;
+                if (imgIndex == 3)
                 {
-                    imgIndex += 0.1;
-                    if (imgIndex == 3)
-                    {
-                        imgIndex = 2;
-                        animBack = true;
-                    }
+                    imgIndex = 2;
+                    animBack = true;
                 }
-                else
+            }
+            else
+            {
+                imgIndex -= 0.1;
+                if (imgIndex &lt; 0)
                 {
-                    imgIndex -= 0.1;
-                    if (imgIndex &lt; 0)
-                    {
-                        imgIndex = 0;
-                        animBack = false;
-                        hasLooped = 1;
-                    }
+                    imgIndex = 0;
+                    animBack = false;
+                    hasLooped = 1;
                 }
+            }
+            if (instance_exists(target))
+            {
                 if ((!instance_exists(missile)) &amp;&amp; (imgIndex &lt; 1))
                 {
                     phase = 0;
@@ -139,87 +142,87 @@ if (entityCanStep())
                         animBack = false;
                     }
                 }
-                break;
-            // Go into shell
-            case 2:
-                if (imgIndex &lt; 5)
+            }
+            break;
+        // Go into shell
+        case 2:
+            if (imgIndex &lt; 5)
+            {
+                imgIndex += imgSpd;
+            }
+            else
+            {
+                phase = 3;
+                hasLooped = 0;
+                shotsFired = 0;
+            }
+            break;
+        // Spin
+        case 3:
+            moveTimer--;
+            if (moveTimer &lt;= 0)
+            {
+                spinTimer--;
+                if (spinTimer &gt; 0)
                 {
-                    imgIndex += imgSpd;
-                }
-                else
-                {
-                    phase = 3;
-                    hasLooped = 0;
-                    shotsFired = 0;
-                }
-                break;
-            // Spin
-            case 3:
-                moveTimer--;
-                if (moveTimer &lt;= 0)
-                {
-                    spinTimer--;
-                    if (spinTimer &gt; 0)
+                    if (spinTimer &lt;= 90)
                     {
-                        if (spinTimer &lt;= 90)
-                        {
-                            xspeed = 2 * image_xscale;
-                        }
+                        xspeed = 2 * image_xscale;
+                    }
                         
-                        if ((xcoll != 0) || (!positionCollision(x + 10 * image_xscale, bbox_bottom + 2)))
-                        {
-                            image_xscale *= -1;
-                        }
+                    if ((xcoll != 0) || (!positionCollision(x + 10 * image_xscale, bbox_bottom + 2)))
+                    {
+                        image_xscale *= -1;
+                    }
                         
-                        if (animBack == false)
+                    if (animBack == false)
+                    {
+                        imgIndex += imgSpd;
+                        if (imgIndex == 8)
                         {
-                            imgIndex += imgSpd;
-                            if (imgIndex == 8)
-                            {
-                                imgIndex = 7;
-                                animBack = true;
-                            }
-                        }
-                        else
-                        {
-                            imgIndex -= imgSpd;
-                            if (imgIndex == 5)
-                            {
-                                imgIndex = 6;
-                                animBack = false;
-                            }
+                            imgIndex = 7;
+                            animBack = true;
                         }
                     }
                     else
                     {
-                        calibrateDirection();
-                        xspeed = 0;
                         imgIndex -= imgSpd;
-                        
-                        if (imgIndex &gt;= 7)
+                        if (imgIndex == 5)
                         {
-                            image_xscale *= -1;
-                            imgIndex = 4;
-                        }
-                        
-                        if (imgIndex &lt; 3)
-                        {
-                            imgIndex = 0;
-                            if (instance_exists(missile))
-                            {
-                                phase = 1;
-                            }
-                            else
-                            {
-                                phase = 0;
-                            }
-                            moveTimer = 30;
-                            spinTimer = 120;
+                            imgIndex = 6;
+                            animBack = false;
                         }
                     }
                 }
+                else
+                {
+                    calibrateDirection();
+                    xspeed = 0;
+                    imgIndex -= imgSpd;
+                    
+                    if (imgIndex &gt;= 7)
+                    {
+                        image_xscale *= -1;
+                        imgIndex = 4;
+                    }
+                        
+                    if (imgIndex &lt; 3)
+                    {
+                        imgIndex = 0;
+                        if (instance_exists(missile))
+                        {
+                            phase = 1;
+                        }
+                        else
+                        {
+                            phase = 0;
+                        }
+                        moveTimer = 30;
+                        spinTimer = 120;
+                    }
+                }
+            }
                 break;
-        }
     }
 }
 else if (dead)
@@ -233,7 +236,6 @@ else if (dead)
     moveTimer = 30;
     spinTimer = 120;
 }
-
 image_index = imgIndex div 1;
 </string>
           </argument>

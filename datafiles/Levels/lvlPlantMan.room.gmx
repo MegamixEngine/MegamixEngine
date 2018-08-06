@@ -140,10 +140,10 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objHeliButon" x="456" y="560" name="inst_82A55FF0" locked="0" code="variation = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBatabattan" x="592" y="640" name="inst_6E241DD4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBatabattan" x="784" y="576" name="inst_27487EC0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBatabattan" x="912" y="544" name="inst_B29F8A45" locked="0" code="if global.difficulty == DIFF_HARD&#xA;{&#xA;    x += 16;&#xA;    xstart += 16;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBatabattan" x="912" y="544" name="inst_B29F8A45" locked="0" code="if global.difficulty == DIFF_HARD&#xA;{&#xA;    x = x + 16;&#xA;    xstart += 16;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergyBig" x="904" y="592" name="inst_15499D4B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLife" x="936" y="592" name="inst_36EE6382" locked="0" code="if global.difficulty == DIFF_HARD&#xA;{&#xA;    instance_create(x+8,y+16,objCamouflametall);&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPowerSlam" x="848" y="352" name="inst_17273659" locked="0" code="if global.difficulty == DIFF_HARD&#xA;{&#xA;    x += 16;&#xA;    xstart += 16;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPowerSlam" x="848" y="352" name="inst_17273659" locked="0" code="if global.difficulty == DIFF_HARD&#xA;{&#xA;    x = x + 16;&#xA;    xstart += 16;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPropellerEye" x="808" y="72" name="inst_0A6A4978" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTadahou" x="968" y="144" name="inst_32FA5962" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPropellerEye" x="1048" y="112" name="inst_13E243A6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

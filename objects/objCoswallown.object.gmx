@@ -37,6 +37,7 @@ category = "flying, nature";
 
 grav = -0.1;
 blockCollision = 0;
+parent = noone;
 
 facePlayerOnSpawn = true;
 

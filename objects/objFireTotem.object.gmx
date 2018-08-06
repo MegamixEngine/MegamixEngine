@@ -389,6 +389,45 @@ else if (phase != 3)
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// EV_DEATH: death
+
+dead = 1;
+var dropY = (y -12 - 6) - sz*8;
+var _ex = instance_create(bboxGetXCenter(), dropY, objExplosion);
+
+if (itemDrop == objKey)
+{
+    _ex = instance_create(bboxGetXCenter() - 8, dropY - 8, objKey);
+    _ex.yspeed = -4;
+    _ex.homingTimer = 90;
+    playSFX(sfxKeySpawn);
+}
+else
+{
+    _ex.myItem = itemDrop;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="10">
       <action>
         <libid>1</libid>
@@ -504,10 +543,10 @@ if (!dead)
         yo+=1;
     event_inherited();
     image_index = img;
-    if ((ceil(iFrames / 2) mod 2) || (iceTimer &gt; 0))
+    if ((ceil(iFrames / 2) mod 2) || (iceTimer &gt; 0&amp;&amp;iceGraphicStyle==0))
     {
         color = c_white;
-        if (iceTimer &gt; 0)
+        if (iceTimer &gt; 0&amp;&amp;iceGraphicStyle==0)
             color = make_color_rgb(0, 120, 255);
         d3d_set_fog(true, color, 0, 0);
     }
@@ -517,7 +556,7 @@ if (!dead)
     if (image_index &gt;= 6)
         draw_sprite_ext(sprFireTotemHead, floor(animFrameHead), x, y - 12 + yo - ((i) * 8), image_xscale, image_yscale, 0, color, image_alpha);
     d3d_set_fog(false, 0, 0, 0);
-    if (iceTimer &gt; 0)
+    if (iceTimer &gt; 0 &amp;&amp; iceGraphicStyle==0)
     {
         draw_set_blend_mode(bm_add);
         for (i = 0; i &lt; sz; i++)

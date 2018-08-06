@@ -71,7 +71,7 @@ enemyDamageValue(objIceWall, 4);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
-enemyDamageValue(objJewelSatellite, 1);
+enemyDamageValue(objJewelSatellite, 6);
 enemyDamageValue(objGrabBuster, 1);
 enemyDamageValue(objTripleBlade, 2);
 enemyDamageValue(objSlashClaw, 2);
@@ -210,7 +210,7 @@ if (entityCanStep())
                 moveTimer--;
                 if (moveTimer == 29)
                 {
-                    var i = instance_create(x, y, objFireStorm);
+                    var i = instance_create(x, y, objFireManStorm);
                     i.image_xscale = image_xscale;
                 }
                 if (moveTimer &lt;= 0)
@@ -276,7 +276,7 @@ phase = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (objFireStorm)
+            <string>with (objFireManStorm)
 {
     instance_destroy();
 }

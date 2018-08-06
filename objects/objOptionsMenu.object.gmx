@@ -587,6 +587,8 @@ if (!newControls)
 key = -1;
 
 // control configuration
+var skip = newControlls &amp;&amp; (keyboard_key == vk_delete);
+
 if (newControls == 1)
 {
     if (keyboard_check_pressed(vk_anykey))
@@ -688,37 +690,45 @@ if (newControls == 1)
 // gamepad configuration
 if (newControls == 2)
 {
-    if (!objGlobalControl.joystick_connected)
+    if(!(skip&amp;&amp;press==0))
     {
-        newControls = 0;
-        selected = 0;
-        press = 1;
-        buffer = 1;
-        alarm[0] = 10;
-        exit;
-    }
-    
-    var i, b;
-    var jID = pID;
-    if (!gamepad_is_connected(jID))
-        jID += 4 - objGlobalControl.xinputDeviceCount;
-    b = gamepad_button_count(jID);
-    
-    for (i = 0; i &lt; b; i += 1)
-    {
-        if (gamepad_button_check(jID, i))
+        if (!objGlobalControl.joystick_connected)
         {
-            key = i;
-            break;
+            newControls = 0;
+            selected = 0;
+            press = 1;
+            buffer = 1;
+            alarm[0] = 10;
+            exit;
         }
-    }
-    if (key == -1)
+        
+        var i, b;
+        var jID = pID;
+        if (!gamepad_is_connected(jID))
+            jID += 4 - objGlobalControl.xinputDeviceCount;
+        b = gamepad_button_count(jID);
+        
+        for (i = 0; i &lt; b; i += 1)
+        {
+            if (gamepad_button_check(jID, i))
+            {
+                key = i;
+                break;
+            }
+        }
+        if (key == -1)
+        {
+            press = 0;
+        }
+        event_user(0);
+    }  
+    if ((key != -1 &amp;&amp; !press) || (skip &amp;&amp; !press))
     {
-        press = 0;
-    }
-    event_user(0);
-    if (key != -1 &amp;&amp; !press)
-    {
+        if(skip)
+        {
+            key = -1;
+        }
+        
         currentKeys[keyID + pID*10]=key;
         keyID++;
         press = 1;
@@ -1100,7 +1110,10 @@ if (newControls)
 {
     draw_sprite(sprControlconfigureScreen, 0, drawXPosition + 64, drawYPosition + 64);
     draw_set_halign(fa_center);
-    draw_text(drawXPosition + 128, drawYPosition + 88, 'PRESS KEY FOR');
+    if(newControls == 1)
+        draw_text(drawXPosition + 128, drawYPosition + 88, 'PRESS KEY FOR');
+    else
+        draw_text(drawXPosition + 128, drawYPosition + 88, 'PRESS KEY FOR#(PRESS DEL TO SKIP)');
     var playerMod = "";
     playerMod = " (P" + string(pID + 1) + ")";
     draw_text(drawXPosition + 128, drawYPosition + 104, current + playerMod);

@@ -3,7 +3,7 @@
   <spriteName>mskMegaman</spriteName>
   <solid>0</solid>
   <visible>0</visible>
-  <depth>0</depth>
+  <depth>-10</depth>
   <persistent>0</persistent>
   <parentName>prtPlayerProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -79,13 +79,12 @@ breakDashLock = false;
 
 if (instance_exists(parent))
 {
-    lockPoolRelease(breakDashLock);
-}
-
-with (parent)
-{
-    hitTimer = 0;
-    iFrames = 50;
+    with(parent)
+    {
+        lockPoolRelease(other.breakDashLock);
+        hitTimer = 0;
+        iFrames = 50;
+    }
 }
 </string>
           </argument>
@@ -171,6 +170,14 @@ if (!global.frozen)
             iFrames = -1;
         }
     }
+    if(isLocked(global.playerLock[PL_LOCK_MOVE])&amp;&amp;
+    isLocked(global.playerLock[PL_LOCK_TURN]))
+    {
+        dashTimer=0;
+        with(parent)
+            xspeed=0;
+    }
+    
     
     // Destroy timer
     dashTimer -= 1;

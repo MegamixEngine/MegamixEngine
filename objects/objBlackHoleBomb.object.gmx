@@ -40,6 +40,7 @@ killOverride = true;
 
 blownUp = false;
 canHit = false;
+canDamage = false;
 destroyTimer = 0;
 
 loopSFX(sfxBlackHoleBomb);
@@ -108,6 +109,7 @@ if (!global.frozen)
                 audio_stop_sound(sfxBlackHoleBomb);
                 loopSFX(sfxBlackHoleBombOpen);
                 canHit = true;
+                canDamage = true;
                 xspeed = 0;
                 yspeed = 0;
                 blownUp = true;
@@ -133,13 +135,8 @@ if (!global.frozen)
     if (blownUp) // eventually pitter out
     {
         destroyTimer += 1;
-        if (destroyTimer &gt;= 360)
-        {
-            i = instance_create(x, y, objHarmfulExplosion);
-            i.contactDamage = 0;
-            playSFX(sfxExplosion2);
+        if (destroyTimer &gt;= 240)
             instance_destroy();
-        }
     }
 }
 </string>
