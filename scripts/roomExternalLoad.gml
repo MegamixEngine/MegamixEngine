@@ -58,7 +58,8 @@ var code_str = "";
 // parse properties:
 while (!file_text_eof(file))
 {
-    var text = stringTrim(file_text_readln(file));
+    var text = file_text_readln(file);
+    text = stringSubstring(text, string_pos("<", text));
     
     // room properties
     if (stringStartsWith(text, "<width>"))
@@ -69,12 +70,12 @@ while (!file_text_eof(file))
         prop_colour = real(string_digits(text));
     if (stringStartsWith(text, "<code>"))
     {
-        code_str = text + chr(10);
+        code_str = text + global.newLine;
         while (!file_text_eof(file))
         {
             if (string_pos("</code>", code_str) != 0)
                 break;
-            code_str += file_text_readln(file) + chr(10);
+            code_str += file_text_readln(file) + global.newLine;
         }
         continue;
     }
