@@ -80,6 +80,7 @@ enemyDamageValue(objTripleBlade, 2);
 enemyDamageValue(objSlashClaw, 2);
 enemyDamageValue(objWheelCutter, 2);
 enemyDamageValue(objSakugarne, 4);
+enemyDamageValue(objWireAdapter, 2);
 
 // MaGMML1
 enemyDamageValue(objMetalBlade, 2);
