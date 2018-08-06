@@ -156,6 +156,7 @@ else if (dead)
     imageTimer = 0;
     activated = false;
     delay = 0;
+    activated = false;
 }
 </string>
           </argument>
