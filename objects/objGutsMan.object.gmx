@@ -442,7 +442,7 @@ else
 }
 
 // FOR EXAMPLE GAME ONLY: Time Stopper drains Guts Man's health
-if (global.timeStopped)
+if (instance_exists(objTimeStopper))
 {
     healthpoints -= 1 / 30;
     if (healthpoints &lt;= 0)

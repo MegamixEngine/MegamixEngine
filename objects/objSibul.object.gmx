@@ -95,48 +95,49 @@ if (entityCanStep())
     }
     
     // Movement
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
-        {
-            case 0:
-                if (moveSpeed == 0)
+        case 0:
+            if (moveSpeed == 0)
+            {
+                moveTimer--;
+                if (moveTimer == 0)
                 {
-                    moveTimer--;
-                    if (moveTimer == 0)
+                    calibrateDirection();
+                    if (instance_exists(target))
                     {
-                        if ((target.x &gt; x) &amp;&amp; (image_xscale == -1)
-                            || (target.x &lt; x) &amp;&amp; (image_xscale == 1))
-                        {
-                            image_xscale *= -1;
-                        }
                         targX = target.x + 16 * image_xscale;
                         targY = target.y;
-                        phase = 1;
-                        imgSpd = 0.5;
-                        moveSpeed = 3; // accel;
                     }
+                    else
+                    {
+                        targX = x;
+                        targY = y;
+                    }
+                    phase = 1;
+                    imgSpd = 0.5;
+                    moveSpeed = 3; // accel;
                 }
-                break;
-            case 1:
-                move_towards_point(targX, targY, moveSpeed);
-                if ((distance_to_point(targX, targY) &lt; 60) &amp;&amp; (moveSpeed &gt; 0))
-                {
-                    moveSpeed -= accel;
-                    imgSpd = 0.1;
-                }
-                else if (moveSpeed &lt; 3)
-                {
-                    moveSpeed += 0.5;
-                }
-                if (moveSpeed == 0)
-                {
-                    phase = 0;
-                    moveTimer = 60;
-                    imgSpd = 0.1;
-                }
-                break;
-        }
+            }
+            break;
+        case 1:
+            move_towards_point(targX, targY, moveSpeed);
+            if ((distance_to_point(targX, targY) &lt; 60) &amp;&amp; (moveSpeed &gt; 0))
+            {
+                moveSpeed -= accel;
+                imgSpd = 0.1;
+            }
+            else if (moveSpeed &lt; 3)
+            {
+                moveSpeed += 0.5;
+            }
+            if (moveSpeed == 0)
+            {
+                phase = 0;
+                moveTimer = 60;
+                imgSpd = 0.1;
+            }
+            break;
     }
     
     // Self destruct after several seconds

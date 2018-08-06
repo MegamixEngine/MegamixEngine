@@ -65,33 +65,33 @@ hasBlinked = false;
 
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
-        {
-            // Blinking
-            case 0:
-                facePlayer = true;
-                moveTimer--;
-                if (moveTimer &lt;= 0)
+        // Blinking
+        case 0:
+            facePlayer = true;
+            moveTimer--;
+            if (moveTimer &lt;= 0)
+            {
+                if (hasBlinked == false)
                 {
-                    if (hasBlinked == false)
+                    image_index += imgSpd;
+                }
+                if (image_index &gt;= 3)
+                {
+                    animBack = true;
+                    hasBlinked = true;
+                }
+                if (animBack == true)
+                {
+                    image_index -= imgSpd;
+                    if (image_index == 0)
                     {
-                        image_index += imgSpd;
-                    }
-                    if (image_index &gt;= 3)
-                    {
-                        animBack = true;
-                        hasBlinked = true;
-                    }
-                    if (animBack == true)
-                    {
-                        image_index -= imgSpd;
-                        if (image_index == 0)
+                        animBack = false;
+                        
+                        // Is Mega Man near? Yes = throw hands. No = jump.
+                        if (instance_exists(target))
                         {
-                            animBack = false;
-                            
-                            // Is Mega Man near? Yes = throw hands. No = jump.
                             if ((target.x &gt; x - 80) &amp;&amp; (image_xscale == -1) ||
                                 (target.x &lt; x + 80) &amp;&amp; (image_xscale == 1))
                             {
@@ -110,113 +110,116 @@ if (entityCanStep())
                         }
                     }
                 }
-                else
+            }
+            else
+            {
+                image_index = 0;
+            }
+            break;
+        
+        // Jumping
+        case 1:
+            moveTimer--;
+            if (moveTimer == 10)
+            {
+                image_index = 4;
+            }
+            if (moveTimer &lt;= 0)
+            {
+                image_index = 3;
+                if (image_index == 3)
                 {
-                    image_index = 0;
-                }
-                break;
-            
-            // Jumping
-            case 1:
-                moveTimer--;
-                if (moveTimer == 10)
-                {
-                    image_index = 4;
-                }
-                if (moveTimer &lt;= 0)
-                {
-                    image_index = 3;
-                    if (image_index == 3)
-                    {
-                        y -= 3;
-                        yspeed -= 4;
-                        xspeed = 1 * image_xscale;
-                        phase = 4;
-                    }
-                }
-                break;
-            
-            // Punching
-            case 2:
-                if ((floor(image_index) == 12) || (floor(image_index) == 17))
-                {
-                    moveTimer--;
-                    if (moveTimer == 29)
-                    {
-                        var i = instance_create(x + 8 * image_xscale, y - 7, objHandooHand);
-                        i.xspeed = 2 * image_xscale;
-                        i.image_xscale = image_xscale;
-                    }
-                    
-                    if (moveTimer == 0)
-                    {
-                        image_index += 1;
-                        moveTimer = 30;
-                    }
-                }
-                else
-                {
-                    image_index += imgSpd;
-                }
-                if (image_index &gt; 19)
-                {
-                    image_index = 21;
-                    phase = 3;
-                }
-                break;
-            
-            // Charging
-            case 3:
-                if (ground)
-                {
+                    y -= 3;
+                    yspeed -= 4;
                     xspeed = 1 * image_xscale;
-                    
+                    phase = 4;
+                }
+            }
+            break;
+        
+        // Punching
+        case 2:
+            if ((floor(image_index) == 12) || (floor(image_index) == 17))
+            {
+                moveTimer--;
+                if (moveTimer == 29)
+                {
+                    var i = instance_create(x + 8 * image_xscale, y - 7, objHandooHand);
+                    i.xspeed = 2 * image_xscale;
+                    i.image_xscale = image_xscale;
+                }
+                
+                if (moveTimer == 0)
+                {
+                    image_index += 1;
+                    moveTimer = 30;
+                }
+            }
+            else
+            {
+                image_index += imgSpd;
+            }
+            if (image_index &gt; 19)
+            {
+                image_index = 21;
+                phase = 3;
+            }
+            break;
+        
+        // Charging
+        case 3:
+            if (ground)
+            {
+                xspeed = 1 * image_xscale;
+                
+                if (instance_exists(target))
+                {
                     if ((image_xscale == -1) &amp;&amp; (x &lt; target.x - 16) ||
                         (image_xscale == 1) &amp;&amp; (x &gt; target.x + 16))
                     {
                         image_xscale *= -1;
                     }
                 }
-                else
-                {
-                    xspeed = 0;
-                }
+            }
+            else
+            {
+                xspeed = 0;
+            }
                 
-                // Animation
-                if (!animBack)
+            // Animation
+            if (!animBack)
+            {
+                image_index += 0.2;
+                if (image_index &gt;= 23)
                 {
-                    image_index += 0.2;
-                    if (image_index &gt;= 23)
-                    {
-                        animBack = true;
-                        image_index = 21;
-                    }
+                    animBack = true;
+                    image_index = 21;
                 }
-                else
+            }
+            else
+            {
+                image_index -= 0.2;
+                if (image_index &lt;= 20)
                 {
-                    image_index -= 0.2;
-                    if (image_index &lt;= 20)
-                    {
-                        animBack = false;
-                        image_index = 21;
-                    }
+                    animBack = false;
+                    image_index = 21;
                 }
-                break;
-            
-            // Mid-air movement (see case 1)
-            case 4:
-                if (ground)
-                {
-                    xspeed = 0;
-                    yspeed = 0;
-                    image_index = 4;
-                    moveTimer = 60;
-                    inAir = false;
-                    phase = 0;
-                    facePlayer = true;
-                }
-                break;
-        }
+            }
+            break;
+        
+        // Mid-air movement (see case 1)
+        case 4:
+            if (ground)
+            {
+                xspeed = 0;
+                yspeed = 0;
+                image_index = 4;
+                moveTimer = 60;
+                inAir = false;
+                phase = 0;
+                facePlayer = true;
+            }
+            break;
     }
 }
 else if (dead)

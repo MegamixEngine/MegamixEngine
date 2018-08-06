@@ -254,7 +254,7 @@ if (entityCanStep())
                 
                 // if grey devil reaches edge of room or wall, he turns round and changes to phase 2.
                 if ((x &lt;= view_xview + 26 &amp;&amp; image_xscale == -1) || (x &gt;= view_xview + view_wview - 26 &amp;&amp; image_xscale == 1)
-                    || (place_meeting(x - 2, y - 1, objSolid) &amp;&amp; image_xscale == -1) || (place_meeting(x + 2, y - 1, objSolid) &amp;&amp; image_xscale == 1))
+                    || (checkSolid(-2,-1,1,1) &amp;&amp; image_xscale == -1) || (checkSolid(2,-1,1,1) &amp;&amp; image_xscale == 1))
                 {
                     xspeed = 0;
                     image_index = 1;

@@ -76,123 +76,120 @@ safety = 0;
 
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
-        {
-            case 0:
-                if (dives &gt; 0)
+        case 0:
+            if (dives &gt; 0)
+            {
+                sinCounter += .065;
+                ySpePrev = sign(yspeed);
+                yspeed = sin(sinCounter) * 1.3;
+                
+                if (sign(yspeed) != ySpePrev)
                 {
-                    sinCounter += .065;
-                    ySpePrev = sign(yspeed);
-                    yspeed = sin(sinCounter) * 1.3;
-                    
-                    if (sign(yspeed) != ySpePrev)
-                    {
-                        dives--;
-                    }
+                    dives--;
                 }
-                else
-                {
-                    cosCounter += .135;
-                    yspeed = -(cos(cosCounter) * 0.5);
-                    
-                    moveTimer--;
-                    if (moveTimer &lt;= 0)
-                    {
-                        xspeed += accel * image_xscale;
-                        yspeed = 0;
-                        phase = 1;
-                    }
-                }
-                break;
-            case 1: // Bob up and down 
+            }
+            else
+            {
                 cosCounter += .135;
                 yspeed = -(cos(cosCounter) * 0.5);
                 
-                // Move horizontally
-                if (xspeed != 2 * image_xscale)
+                moveTimer--;
+                if (moveTimer &lt;= 0)
                 {
                     xspeed += accel * image_xscale;
+                    yspeed = 0;
+                    phase = 1;
                 }
-                
-                // Failsafes against going offscreen
-                if ((bbox_left &lt; view_xview + 32) &amp;&amp; (image_xscale == -1))
-                {
-                    if (xspeed != 0)
-                    {
-                        xspeed += 0.10;
-                    }
-                }
-                
-                if ((bbox_right &gt; (view_xview + view_wview) - 32) &amp;&amp; (image_xscale == 1))
-                {
-                    if (xspeed != 0)
-                    {
-                        xspeed -= 0.10;
-                    }
-                }
-                
-                // If not moving, attack
-                if (xspeed == 0)
-                {
-                    phase = 0;
-                    moveTimer = 60;
-                    if (sign(yspeed) == 1)
-                    {
-                        dives = 6;
-                    }
-                    else
-                    {
-                        dives = 7;
-                    }
-                }
-                break;
-        }
-        
-        shootTimer--;
-        if (shootTimer == 0)
-        {
-            var i = instance_create(x + 10 * image_xscale, y + 10, objEnemyBullet);
-            i.xspeed = 2 * image_xscale;
-            i.yspeed = 2;
-            playSFX(sfxEnemyShootClassic);
-        }
-        if (shootTimer == -10)
-        {
-            var i = instance_create(x + 10 * image_xscale, y + 10, objEnemyBullet);
-            i.xspeed = 2 * image_xscale;
-            i.yspeed = 2;
-            playSFX(sfxEnemyShootClassic);
-        }
-        if (shootTimer == -20)
-        {
-            var i = instance_create(x + 10 * image_xscale, y + 10, objEnemyBullet);
-            i.xspeed = 2 * image_xscale;
-            i.yspeed = 2;
-            playSFX(sfxEnemyShootClassic);
-        }
-        
-        if (shootTimer == -60)
-        {
-            if (!instance_exists(missile))
+            }
+            break;
+        case 1: // Bob up and down 
+            cosCounter += .135;
+            yspeed = -(cos(cosCounter) * 0.5);
+            
+            // Move horizontally
+            if (xspeed != 2 * image_xscale)
             {
-                var i = instance_create(x + 10 * image_xscale, y + 10, objHyoeyMissile);
-                if (image_index == -1)
+                xspeed += accel * image_xscale;
+            }
+            
+            // Failsafes against going offscreen
+            if ((bbox_left &lt; view_xview + 32) &amp;&amp; (image_xscale == -1))
+            {
+                if (xspeed != 0)
                 {
-                    i.image_index = 5;
+                    xspeed += 0.10;
+                }
+            }
+            
+            if ((bbox_right &gt; (view_xview + view_wview) - 32) &amp;&amp; (image_xscale == 1))
+            {
+                if (xspeed != 0)
+                {
+                    xspeed -= 0.10;
+                }
+            }
+            
+            // If not moving, attack
+            if (xspeed == 0)
+            {
+                phase = 0;
+                moveTimer = 60;
+                if (sign(yspeed) == 1)
+                {
+                    dives = 6;
                 }
                 else
                 {
-                    i.image_index = 7;
+                    dives = 7;
                 }
-                missile = i.id;
-                i.parent = id;
-                i.direction = point_direction(x, y, target.x, target.y);
-                playSFX(sfxMissileLaunch);
             }
-            shootTimer = 180;
+            break;
+    }
+    
+    shootTimer--;
+    if (shootTimer == 0)
+    {
+        var i = instance_create(x + 10 * image_xscale, y + 10, objEnemyBullet);
+        i.xspeed = 2 * image_xscale;
+        i.yspeed = 2;
+        playSFX(sfxEnemyShootClassic);
+    }
+    if (shootTimer == -10)
+    {
+        var i = instance_create(x + 10 * image_xscale, y + 10, objEnemyBullet);
+        i.xspeed = 2 * image_xscale;
+        i.yspeed = 2;
+        playSFX(sfxEnemyShootClassic);
+    }
+    if (shootTimer == -20)
+    {
+        var i = instance_create(x + 10 * image_xscale, y + 10, objEnemyBullet);
+        i.xspeed = 2 * image_xscale;
+        i.yspeed = 2;
+        playSFX(sfxEnemyShootClassic);
+    }
+    
+    if (shootTimer == -60)
+    {
+        if (!instance_exists(missile)) &amp;&amp; (instance_exists(target))
+        {
+            var i = instance_create(x + 10 * image_xscale, y + 10, objHyoeyMissile);
+            if (image_index == -1)
+            {
+                i.image_index = 5;
+            }
+            else
+            {
+                i.image_index = 7;
+            }
+            missile = i.id;
+            i.parent = id;
+            i.direction = point_direction(x, y, target.x, target.y);
+            playSFX(sfxMissileLaunch);
         }
+        shootTimer = 180;
     }
     
     // Play audio as long as Hyoey can move

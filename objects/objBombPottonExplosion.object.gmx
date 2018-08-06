@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtPlayerProjectile</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -33,16 +33,21 @@ playSFX(sfxBombPotton);
 grav = 0;
 blockCollision = 0;
 remaining = 2;
+onlyDamageMines = true;
 
 var j = 0;
 shiftObject(0, 2, true);
 checkGround();
 if (ground)
     exit;
-while (j &lt; (232 / 4) &amp;&amp; !checkSolid(0, 1))
+while (j &lt; (232 / 4) &amp;&amp; !checkSolid(0, 1,1,1))
 {
     shiftObject(0, 4, true);
     j += 1;
+}
+if(checkSolid(0,0,1,1))
+{
+    event_user(EV_DEATH);
 }
 </string>
           </argument>
@@ -86,7 +91,13 @@ if (entityCanStep())
             remaining = 0;
         }
     }
-    with (prtEntity)
+    var obj;
+    if(onlyDamageMines)
+        obj=objCommandoMine;
+    else
+        obj=prtEntity;
+    
+    with (obj)
     {
         if (id == other.id || faction != 3 || !canHit || hitTimer &lt; other.attackDelay || iFrames != 0 || dead)
             continue;

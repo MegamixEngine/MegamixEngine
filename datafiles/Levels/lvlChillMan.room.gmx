@@ -10,19 +10,19 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>with objReflectBlockSmall
+  <code>with objReflectBlockSmall{
 if (global.difficulty &lt; DIFF_HARD)
-    instance_destroy();
+    instance_destroy();}
 with objDestroyField
 destroyEntities = false;
-with objSpawnCondition
+with objSpawnCondition{
 if (global.difficulty &lt; DIFF_HARD)
-  instance_destroy();
+  instance_destroy();}
 playMusic("Chill Man.ogg", "OGG", 4, 6.482, 83.276, true, 1);
 with objFootholder
 mode = 1;
-with objFootholder
-mySpeed = 1</code>
+with objFootholder{
+mySpeed = 1}</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

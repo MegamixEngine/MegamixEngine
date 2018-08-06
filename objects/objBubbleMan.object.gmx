@@ -283,7 +283,7 @@ if (entityCanStep())
                 yCount += 0.5;
                 if ((yCount == 16) &amp;&amp; (sprite_index == sprBubbleShoot))
                 {
-                    var i = instance_create(x + 16 * image_xscale, y, objEnemyBullet);
+                    var i = instance_create(x + 16 * image_xscale, y, objBubbleBullet);
                     i.image_xscale = image_xscale;
                     i.xspeed = 2 * image_xscale;
                     i.parent = id;
@@ -317,7 +317,7 @@ if (entityCanStep())
                     attackTimer++;
                     if (attackTimer == 1)
                     {
-                        var i = instance_create(x + 16 * image_xscale, y, objEnemyBullet);
+                        var i = instance_create(x + 16 * image_xscale, y, objBubbleBullet);
                         i.image_xscale = image_xscale;
                         i.xspeed = 2 * image_xscale;
                         i.parent = id;

@@ -1410,7 +1410,7 @@ depth = depthstart;
             var dxx = dx + ((healthIndex - 1) * 8); // Multibosses
             
             // Initial black bg for healthbar
-            draw_sprite_ext(sprHealthbarBackground, 0, dxx, dy, 1, 1, image_angle, c_black, image_alpha);
+            draw_sprite_ext(sprHealthbarBackground, 0, dxx, dy, 1, 1, 0, c_black, 1);
             
             // Choose color to draw
             var currentExtraHealthBar = 0;

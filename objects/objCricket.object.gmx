@@ -38,11 +38,15 @@ isSolid = 2;
 
 offset = 0;
 
-dir = 1;
+dir = image_xscale;
+
+startDir = dir;
 init = 1;
 
 hops = 3;
-startHops = hops;
+
+//@cc
+startHops = 3;
 
 phase = 0;
 timer = 0;
@@ -178,6 +182,36 @@ else if (dead)
 {
     image_index = 0;
     active = false;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(spawned)
+{
+    dir = startDir;
+    image_xscale = dir;
+    image_index = 0;
+    active = false;
+    hops = startHops;
 }
 </string>
           </argument>
