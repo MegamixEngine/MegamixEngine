@@ -206,12 +206,13 @@
     <instance objName="objHeatMan" x="976" y="160" name="inst_B7E80504" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPharaohMan" x="2008" y="176" name="inst_70C93050" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objKomusoMan" x="2512" y="160" name="inst_F1196A80" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMechaDragon" x="2624" y="336" name="inst_6C182B30" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = noone;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMechaDragon" x="2624" y="336" name="inst_6C182B30" locked="0" code="useEndStageBehavior = false;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objYashichi" x="2936" y="400" name="inst_D0D0F909" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDefaultEffect" x="16" y="16" name="inst_7CD6FA15" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2800" y="192" name="inst_392FDD37" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>
     <instance objName="objFireMan" x="464" y="160" name="inst_90F96B7B" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolarMan" x="1504" y="144" name="inst_BDE1A2C9" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="2944" y="336" name="inst_FEF81A17" locked="0" code="myRoom = lvlShowcaseHUB;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMagmaman" x="1328" y="200" w="16" h="32" xo="16" yo="48" id="11324613" name="inst_DC1B623C" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
