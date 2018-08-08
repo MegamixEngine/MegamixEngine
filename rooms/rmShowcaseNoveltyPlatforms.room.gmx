@@ -56,17 +56,14 @@
     <instance objName="objDropPlatform" x="368" y="112" name="inst_AA5145F2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTileScrollSolid" x="432" y="48" name="inst_DA74B607" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTopLift" x="448" y="192" name="inst_25591FB1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objWanaan" x="304" y="112" name="inst_36020B23" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBuildingPlatform" x="256" y="80" name="inst_CFCD82D8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCossackPlatform" x="272" y="48" name="inst_5AE1D55D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCossackPlatform" x="272" y="128" name="inst_5AE1D55D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objForkBlock" x="400" y="144" name="inst_0C0DC43F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHover" x="496" y="144" name="inst_CFA1F3F3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRingmanPlatform" x="352" y="128" name="inst_D3D22147" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFallingPlatform" x="432" y="112" name="inst_F1711B8A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM5SpinningPlatform" x="480" y="16" name="inst_F9C8B38B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPlantmanPlatform" x="368" y="80" name="inst_A7972ED9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRotatingSpikePlatform" x="400" y="96" name="inst_F4A9089E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objXBlock" x="256" y="112" name="inst_6E934615" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objConcreteDown" x="480" y="80" name="inst_4F577A1C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objConcreteUp" x="480" y="48" name="inst_BB508F9B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHornetRoll" x="304" y="64" name="inst_D4000CA3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
