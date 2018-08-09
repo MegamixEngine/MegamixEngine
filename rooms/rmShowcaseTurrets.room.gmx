@@ -51,45 +51,45 @@
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="objBeak" x="800" y="688" name="inst_8D5050D2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBeak" x="544" y="912" name="inst_8D5050D2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objScrewBomber" x="640" y="704" name="inst_CA2D6B20" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCrazyCannon" x="656" y="896" name="inst_82F6EB90" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCrazyCannon" x="688" y="992" name="inst_82F6EB90" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCannon" x="640" y="832" name="inst_1C8EC261" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objNewShotman" x="544" y="768" name="inst_CD93BAB3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPetitSnakey" x="528" y="688" name="inst_6CD7A512" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPetitSnakeyPillar" x="512" y="704" name="inst_9CD60FF0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGachappon" x="576" y="832" name="inst_99E1FFE8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPakatto24" x="720" y="896" name="inst_F23BE7B4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSkullmet" x="688" y="896" name="inst_AE7A4C18" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTotemPolen" x="848" y="784" name="inst_28A4B4D9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objWallBlaster" x="864" y="704" name="inst_C6B54FE2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBBitter" x="528" y="720" name="inst_6D49DC7A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objRockThrown" x="784" y="688" name="inst_2940E765" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTatepakkan" x="656" y="848" name="inst_F9612813" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPakatto24" x="576" y="864" name="inst_F23BE7B4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSkullmet" x="560" y="992" name="inst_AE7A4C18" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTotemPolen" x="592" y="1008" name="inst_28A4B4D9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWallBlaster" x="608" y="928" name="inst_C6B54FE2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBBitter" x="656" y="992" name="inst_6D49DC7A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objRockThrown" x="528" y="912" name="inst_2940E765" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTatepakkan" x="656" y="976" name="inst_F9612813" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTossMachine" x="624" y="688" name="inst_CAAA7B38" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTwinCannon" x="688" y="832" name="inst_A342BF0B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBenK" x="784" y="752" name="inst_DB4D1E4D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBrown" x="688" y="848" name="inst_BB830C7A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objColton" x="832" y="688" name="inst_094B47E9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBenK" x="528" y="960" name="inst_DB4D1E4D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBrown" x="608" y="848" name="inst_BB830C7A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objColton" x="576" y="912" name="inst_094B47E9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPandeeta" x="736" y="816" name="inst_E241C258" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTadahou" x="752" y="880" name="inst_6708EC5B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTatebo" x="720" y="848" name="inst_69CC8775" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTadahou" x="544" y="848" name="inst_6708EC5B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTatebo" x="640" y="848" name="inst_69CC8775" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeck" x="576" y="736" name="inst_93071151" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWallBlaster2" x="528" y="816" name="inst_75EFEC61" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBombomboy" x="752" y="752" name="inst_755ECC05" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objClassicalCannon" x="624" y="800" name="inst_764BC861" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSakrets" x="896" y="736" name="inst_A9B22754" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBombomboy" x="736" y="752" name="inst_755ECC05" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objClassicalCannon" x="736" y="992" name="inst_764BC861" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSakrets" x="624" y="960" name="inst_A9B22754" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objArigockG" x="576" y="704" name="inst_9F6CECA3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objRMechaPitchan" x="688" y="688" name="inst_0D2CAE85" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBMechaPitchan" x="656" y="688" name="inst_9D0AFC8C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objNewClassicalCannon" x="672" y="800" name="inst_2E6644DF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSola0" x="896" y="704" name="inst_E270515F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPierrobug" x="752" y="688" name="inst_7CAAE8CC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objRMechaPitchan" x="624" y="992" name="inst_0D2CAE85" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBMechaPitchan" x="528" y="992" name="inst_9D0AFC8C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNewClassicalCannon" x="736" y="1024" name="inst_2E6644DF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSola0" x="640" y="928" name="inst_E270515F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPierrobug" x="736" y="688" name="inst_7CAAE8CC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHandoo" x="608" y="832" name="inst_06822187" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMonkikki" x="816" y="720" name="inst_FA33A37F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDachone" x="928" y="704" name="inst_49B9A85C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDachoneLtdEd" x="976" y="704" name="inst_8E7C98A0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCyorown" x="752" y="768" name="inst_DFDE92C4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMonkikki" x="560" y="944" name="inst_FA33A37F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDachone" x="672" y="928" name="inst_49B9A85C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDachoneLtdEd" x="720" y="928" name="inst_8E7C98A0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCyorown" x="736" y="768" name="inst_DFDE92C4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="0" y="0" name="inst_5AFF59A7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="16" y="0" name="inst_474AAB16" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="32" y="0" name="inst_6190F9A2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -277,11 +277,67 @@
     <instance objName="objSoftBorderHor" x="768" y="1792" name="inst_8A8511E1" locked="0" code="deactivationDistance = 12;&#xA;" scaleX="1" scaleY="9" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="2048" y="896" name="inst_5C52F148" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMonkikki" x="2144" y="848" name="inst_1C06ACC3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="2208" y="848" name="inst_F6972A48" locked="0" code="text = &quot;This enemy from Mega Man V for Game Boy is called Monkiki. Monkiki jumps &quot;&#xA;    + &quot;up and down when the distance between its X coordinate and the player's &quot;&#xA;    + &quot;X coordinate is 80 or less. It also throws bananas at the player.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2208" y="848" name="inst_F6972A48" locked="0" code="text = &quot;This enemy from Mega Man V for Game Boy is called Monkiki. Monkiki jumps &quot;&#xA;    + &quot;up and down when the distance between its X coordinate and the player's &quot;&#xA;    + &quot;X coordinate is 80 or less. It also throws bananas at the player.&quot;;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeftScrolling" x="2048" y="672" name="inst_7E01CBC8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="1968" y="704" name="inst_468C4762" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTotemPolen" x="1904" y="864" name="inst_9C2CC2F1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="1872" y="704" name="inst_DE6A2AFB" locked="0" code="text = &quot;Down below is a Totem Polen from Mega Man 4. As you've probably noticed, &quot;&#xA;    + &quot;the Totem Polen jumps while the player goes overhead. It will also &quot;&#xA;    + &quot;occasionally shoot a bullet from one of its four mouths.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSkullmet" x="1664" y="784" name="inst_2C59A3BF" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSkullmet" x="1568" y="848" name="inst_DB6AD9C2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1616" y="704" name="inst_015BD75E" locked="0" code="text = &quot;Skullmets, from Mega Man 4, are shielded from behind. Their means of attacking &quot;&#xA;    + &quot;is firing a shot towards the player in an arc. To change the direction it faces, &quot;&#xA;    + &quot;flip its X scale with the 'Flip X' button in the room editor.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLeftScrolling" x="1536" y="672" name="inst_E15BCC5C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingHorizontal" x="1024" y="672" name="inst_7C838F92" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLeftScrolling" x="1280" y="672" name="inst_4D9143DF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objVerticalScrolling" x="1024" y="896" name="inst_5663DCC4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingHorizontal" x="1024" y="896" name="inst_ECE24312" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objRMechaPitchan" x="1328" y="784" name="inst_7C113D5F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1488" y="832" name="inst_00ED5C84" locked="0" code="text = &quot;Red Mecha Pitchans come from Mega Man 10. This sports fan likes to throw &quot;&#xA;    + &quot;baseballs towards the player in a downwards parabolic curve. The baseballs &quot;&#xA;    + &quot;can be destroyed.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBMechaPitchan" x="1104" y="752" name="inst_12979F36" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1232" y="784" name="inst_F00AD0C0" locked="0" code="text = &quot;Blue Mecha Pitchans also come from Mega Man 10. These fans of the other &quot;&#xA;    + &quot;sports team throw destroyable baseballs that act just like the balls thrown &quot;&#xA;    + &quot;by the red ones... at least at first. After a moment, this enemy's &quot;&#xA;    + &quot;baseballs will stop in midair and home in on the player.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingHorizontal" x="1280" y="896" name="inst_D540DAC6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingHorizontal" x="1280" y="1120" name="inst_44C623FE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objVerticalScrolling" x="1024" y="1120" name="inst_54EB78DC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTatepakkan" x="1136" y="960" name="inst_856F180E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTatepakkan" x="1136" y="1072" name="inst_DEA2F210" locked="0" code="col = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objETank" x="1168" y="1152" name="inst_9A173190" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTatepakkan" x="1088" y="1056" name="inst_7FF960F5" locked="0" code="col = 2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTatepakkan" x="1136" y="1184" name="inst_FF8F835B" locked="0" code="col = 3;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1088" y="992" name="inst_FAC4294F" locked="0" code="text = &quot;These shielded enemies from Mega Man 5 are called Tatepakkans. What these &quot;&#xA;    + &quot;enemies do is hold their shield between you and them to block your shots, &quot;&#xA;    + &quot;lifting the shield occasionally to shoot. The color of these enemies can be &quot;&#xA;    + &quot;changed with creation code. Leaving col at its default of 0 lets Tatepakkan &quot;&#xA;    + &quot;keep its orange color, setting col to 1 turns it red, setting col to 2 makes &quot;&#xA;    + &quot;it green, and setting col to 3 gives it the color scheme it had in Mega Man for &quot;&#xA;    + &quot;the Game Gear, as shown in the next room.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1072" y="1152" name="inst_A3F78B85" locked="0" code="text = &quot;Like in Mega Man IV for Game Boy, the player is able to stand on top of &quot;&#xA;    + &quot;Tatepakkans, using them as platforms.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1056" y="992" name="inst_4F224BFF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTatepakkan" x="1060" y="1184" name="inst_0721910E" locked="0" code="col = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLeftScrolling" x="1024" y="1120" name="inst_819F051D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="1072" y="1248" name="inst_B5FECE28" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1152" y="1248" name="inst_D4BFD26E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingHorizontal" x="768" y="1120" name="inst_3E3FBD37" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objVerticalScrolling" x="768" y="1120" name="inst_93129406" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingHorizontal" x="768" y="896" name="inst_F4BCB811" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingHorizontal" x="768" y="672" name="inst_E6AB125B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingHorizontal" x="768" y="448" name="inst_64CE9AD7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objVerticalScrolling" x="768" y="672" name="inst_351FC31B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objVerticalScrolling" x="768" y="896" name="inst_6E9F1C03" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCrazyCannon" x="800" y="1312" name="inst_BF3A4D20" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCrazyCannon" x="960" y="1200" name="inst_72E1A3E7" locked="0" code="col = 1;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="976" y="1248" name="inst_CFC0639F" locked="0" code="text = &quot;These are Crazy Cannons, enemies from Mega Man 2 that will alternate &quot;&#xA;    + &quot;between low-arcing and high-arcing shots. The direction that a Crazy Cannon &quot;&#xA;    + &quot;faces can be switched by flipping its X scale with the 'Flip X' button in &quot;&#xA;    + &quot;the room editor. The color scheme of a Crazy Cannon can be changed to red &quot;&#xA;    + &quot;by setting col to 1 in its creation code.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objRightScrolling" x="1024" y="448" name="inst_87D24203" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objClassicalCannon" x="816" y="1056" name="inst_6CD306FE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objClassicalCannon" x="960" y="912" name="inst_F935A273" locked="0" code="" scaleX="-1" scaleY="-1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="960" y="1072" name="inst_C33E8F7A" locked="0" code="text = &quot;These enemies from Mega Man 9 are Classical Cannons, enemies that aim in &quot;&#xA;    + &quot;front of them to &quot;&#xA;    + &quot;try and shoot the player with an explosive. Classical Cannons can have their &quot;&#xA;    + &quot;direction changed by flipping their X scale with the 'Flip X' button in the &quot;&#xA;    + &quot;room editor, and they can be placed on the ceiling after flipping their Y &quot;&#xA;    + &quot;scale with the 'Flip Y' button in the room editor. &quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNewClassicalCannon" x="960" y="736" name="inst_48367FB9" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
+    <instance objName="objNewClassicalCannon" x="816" y="880" name="inst_EC52BC3A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNewClassicalCannon" x="848" y="720" name="inst_336633E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="976" y="864" name="inst_56272D45" locked="0" code="text = &quot;Unlike MM9's Classical Cannons, New Classical Cannons from Mega Man 10 &quot;&#xA;    + &quot;can aim behind them to fire explosives. Their shot trajectory is also a bit &quot;&#xA;    + &quot;different from Classical Cannons. All information on the X and Y scales &quot;&#xA;    + &quot;of the MM9 Classical Cannons can be applied to the MM10 New Classical Cannons.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="800" y="624" name="inst_01535A2B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBBitter" x="912" y="624" name="inst_1DB3E2F8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBBitter" x="992" y="576" name="inst_74E39CC7" locked="0" code="col = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="832" y="624" name="inst_D9418DCF" locked="0" code="text = &quot;B Biters, from Mega Man 5, hide in the ground until the player gets close, &quot;&#xA;    + &quot;at which point the B Biter pops out of hiding to try and shoot the player. &quot;&#xA;    + &quot;You can set col to 1 in a B Biter's creation code to make it orange.&quot;; &#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="976" y="944" name="inst_3C5EC211" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="816" y="784" name="inst_4018488B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="976" y="624" name="inst_363056D8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="1728" y="704" name="inst_E039C2BE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="1200" y="1024" name="inst_6624F394" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objETank" x="1056" y="624" name="inst_11DD604A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="768" y="384" name="inst_6D48BE63" locked="0" code="" scaleX="1" scaleY="4" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstTomahawkMan" x="0" y="0" w="240" h="224" xo="0" yo="0" id="11318155" name="inst_BDFA5635" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -918,6 +974,403 @@
     <tile bgName="tstTomahawkMan" x="1568" y="848" w="16" h="16" xo="16" yo="16" id="11318917" name="inst_F1F43B66" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstTomahawkMan" x="1552" y="848" w="16" h="16" xo="16" yo="16" id="11318918" name="inst_15A90DF3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstTomahawkMan" x="1536" y="848" w="16" h="16" xo="16" yo="16" id="11318919" name="inst_E3DB1225" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1680" y="720" w="16" h="16" xo="16" yo="16" id="11349567" name="inst_AA9EDAB9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1520" y="736" w="32" h="48" xo="0" yo="176" id="11349568" name="inst_AA23BB9E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1520" y="704" w="32" h="32" xo="0" yo="176" id="11349569" name="inst_BDA99455" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1520" y="672" w="32" h="32" xo="0" yo="176" id="11349570" name="inst_27AFB4AD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1520" y="640" w="32" h="32" xo="0" yo="176" id="11349571" name="inst_368BF322" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1520" y="608" w="32" h="32" xo="0" yo="144" id="11349572" name="inst_B4B72B96" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1664" y="784" w="16" h="16" xo="32" yo="16" id="11349573" name="inst_FC8A2216" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1536" y="784" w="16" h="16" xo="16" yo="16" id="11349574" name="inst_1D10F7D7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1552" y="784" w="16" h="16" xo="16" yo="16" id="11349575" name="inst_BEC70E4A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1568" y="784" w="16" h="16" xo="16" yo="16" id="11349576" name="inst_094C3226" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1584" y="784" w="16" h="16" xo="16" yo="16" id="11349577" name="inst_E7B01467" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1600" y="784" w="16" h="16" xo="16" yo="16" id="11349578" name="inst_DB439F4A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1616" y="784" w="16" h="16" xo="16" yo="16" id="11349579" name="inst_AAB6E490" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1632" y="784" w="16" h="16" xo="16" yo="16" id="11349580" name="inst_1CFFBC17" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1648" y="784" w="16" h="16" xo="16" yo="16" id="11349581" name="inst_C63D4A31" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1520" y="848" w="16" h="16" xo="16" yo="16" id="11349582" name="inst_DBEEE6EC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1664" y="720" w="16" h="16" xo="16" yo="16" id="11349584" name="inst_0DA021F4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1648" y="720" w="16" h="16" xo="16" yo="16" id="11349585" name="inst_D8868069" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1632" y="720" w="16" h="16" xo="16" yo="16" id="11349586" name="inst_87B89A40" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1616" y="720" w="16" h="16" xo="16" yo="16" id="11349587" name="inst_41D9B561" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1600" y="720" w="16" h="16" xo="0" yo="16" id="11349588" name="inst_8F82DC02" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1504" y="848" w="16" h="16" xo="16" yo="16" id="11349589" name="inst_22AA7AD7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1488" y="848" w="16" h="16" xo="16" yo="16" id="11349590" name="inst_3424A629" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1472" y="848" w="16" h="16" xo="16" yo="16" id="11349591" name="inst_AC9FFAFD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1456" y="848" w="16" h="16" xo="16" yo="16" id="11349592" name="inst_A6476E9D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1440" y="848" w="16" h="16" xo="16" yo="16" id="11349593" name="inst_27820D81" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1424" y="848" w="16" h="16" xo="16" yo="16" id="11349594" name="inst_3CCBF54B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1408" y="848" w="16" h="16" xo="16" yo="16" id="11349595" name="inst_7440F73C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1392" y="848" w="16" h="16" xo="16" yo="16" id="11349596" name="inst_8B8EFC4D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1376" y="848" w="16" h="16" xo="16" yo="16" id="11349597" name="inst_90D452C7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1360" y="848" w="16" h="16" xo="16" yo="16" id="11349598" name="inst_BAB7F133" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1344" y="848" w="16" h="16" xo="16" yo="16" id="11349599" name="inst_E1D8685F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1328" y="848" w="16" h="16" xo="16" yo="16" id="11349600" name="inst_49208C3A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1312" y="848" w="16" h="16" xo="16" yo="16" id="11349601" name="inst_CCECDEB4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1296" y="848" w="16" h="16" xo="16" yo="16" id="11349602" name="inst_260A7920" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1280" y="848" w="16" h="16" xo="16" yo="16" id="11349603" name="inst_FBB7C94E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="848" w="16" h="16" xo="16" yo="16" id="11349604" name="inst_64F8C526" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1248" y="848" w="16" h="16" xo="16" yo="16" id="11349605" name="inst_E30A0B60" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="848" w="16" h="16" xo="16" yo="16" id="11349606" name="inst_344891A9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1216" y="848" w="16" h="16" xo="16" yo="16" id="11349607" name="inst_2B13172F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="864" w="32" h="32" xo="0" yo="144" id="11349608" name="inst_0F525F8B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="864" w="32" h="32" xo="0" yo="144" id="11349609" name="inst_655F6AC7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1088" y="848" w="16" h="16" xo="0" yo="16" id="11349617" name="inst_21AFF46E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1104" y="848" w="16" h="16" xo="16" yo="16" id="11349621" name="inst_3D5D8F9E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1120" y="848" w="16" h="16" xo="16" yo="16" id="11349622" name="inst_C8BD6B7C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1136" y="848" w="16" h="16" xo="16" yo="16" id="11349623" name="inst_ECC39209" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1152" y="848" w="16" h="16" xo="16" yo="16" id="11349624" name="inst_9F447B72" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1168" y="848" w="16" h="16" xo="16" yo="16" id="11349625" name="inst_4C710DF7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1184" y="848" w="16" h="16" xo="16" yo="16" id="11349626" name="inst_D29FEFCB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1200" y="848" w="16" h="16" xo="16" yo="16" id="11349627" name="inst_16A0C2D0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="928" w="32" h="32" xo="0" yo="176" id="11349644" name="inst_B30F6B6C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="896" w="32" h="32" xo="0" yo="176" id="11349645" name="inst_7AA2EF3E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="864" w="32" h="32" xo="0" yo="176" id="11349646" name="inst_2D2486FE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="832" w="32" h="32" xo="0" yo="176" id="11349647" name="inst_0F60E5D8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="800" w="32" h="32" xo="0" yo="176" id="11349648" name="inst_E0F6CEE2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="768" w="32" h="32" xo="0" yo="176" id="11349649" name="inst_77F28A9F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="736" w="32" h="32" xo="0" yo="176" id="11349650" name="inst_27190906" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="704" w="32" h="32" xo="0" yo="176" id="11349651" name="inst_099087D5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="672" w="32" h="32" xo="0" yo="176" id="11349652" name="inst_621BF735" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="896" w="32" h="32" xo="0" yo="176" id="11349653" name="inst_8DA2C291" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="928" w="32" h="32" xo="0" yo="176" id="11349654" name="inst_E48B450A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="960" w="32" h="32" xo="0" yo="176" id="11349655" name="inst_9E99563D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="992" w="32" h="32" xo="0" yo="176" id="11349656" name="inst_FED08670" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="1024" w="32" h="32" xo="0" yo="176" id="11349657" name="inst_85766A88" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="1056" w="32" h="32" xo="0" yo="176" id="11349658" name="inst_8AA8C9FC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="1088" w="32" h="32" xo="0" yo="176" id="11349659" name="inst_D8C17A7E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="896" w="16" h="32" xo="0" yo="176" id="11349660" name="inst_410B17F9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="928" w="16" h="32" xo="0" yo="176" id="11349661" name="inst_4BD674FE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="960" w="16" h="32" xo="0" yo="176" id="11349662" name="inst_07F9A0E4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="992" w="16" h="32" xo="0" yo="176" id="11349663" name="inst_D2F22F6B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="1024" w="16" h="32" xo="0" yo="176" id="11349664" name="inst_93C88BA6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="1056" w="16" h="32" xo="0" yo="176" id="11349665" name="inst_90C8D264" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="1088" w="16" h="32" xo="0" yo="176" id="11349666" name="inst_A2A1B97F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="640" w="32" h="32" xo="0" yo="176" id="11349667" name="inst_479187DC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1104" y="1008" w="16" h="16" xo="16" yo="16" id="11349680" name="inst_A2027003" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1088" y="1008" w="16" h="16" xo="16" yo="16" id="11349681" name="inst_593A08FF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1072" y="1008" w="16" h="16" xo="16" yo="16" id="11349682" name="inst_0D12AFA0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1056" y="1008" w="16" h="16" xo="16" yo="16" id="11349683" name="inst_868BBC19" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1120" y="1008" w="16" h="16" xo="32" yo="16" id="11349684" name="inst_DC67F846" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1312" y="800" w="32" h="32" xo="0" yo="144" id="11349686" name="inst_4356679D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1312" y="832" w="32" h="16" xo="0" yo="208" id="11349687" name="inst_FD96B462" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1280" y="800" w="32" h="32" xo="0" yo="144" id="11349688" name="inst_FF5536FF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1248" y="800" w="32" h="32" xo="0" yo="144" id="11349689" name="inst_FC6834E6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1280" y="832" w="32" h="16" xo="0" yo="208" id="11349690" name="inst_5E24359C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1248" y="832" w="32" h="16" xo="0" yo="208" id="11349691" name="inst_9330A123" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1120" y="800" w="32" h="32" xo="0" yo="144" id="11349693" name="inst_B9C4D05D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1088" y="768" w="32" h="32" xo="0" yo="144" id="11349694" name="inst_941B26C2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1152" y="800" w="32" h="32" xo="0" yo="144" id="11349695" name="inst_889F3429" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1120" y="832" w="32" h="16" xo="0" yo="208" id="11349696" name="inst_29924197" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1216" y="832" w="32" h="16" xo="0" yo="208" id="11349697" name="inst_D432930B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1088" y="800" w="32" h="48" xo="0" yo="176" id="11349699" name="inst_21E2545C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1184" y="800" w="32" h="32" xo="0" yo="144" id="11349700" name="inst_4E8057AA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1216" y="800" w="32" h="32" xo="0" yo="144" id="11349701" name="inst_97023BCD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1152" y="832" w="32" h="16" xo="0" yo="208" id="11349702" name="inst_3D46B3F8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1184" y="832" w="32" h="16" xo="0" yo="208" id="11349703" name="inst_B6557422" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1104" y="976" w="16" h="16" xo="0" yo="16" id="11349709" name="inst_00F1D0F3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1104" y="992" w="16" h="16" xo="0" yo="16" id="11349710" name="inst_2D2B8F02" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1168" y="976" w="16" h="16" xo="32" yo="16" id="11349711" name="inst_E84CB5EB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1120" y="992" w="16" h="16" xo="32" yo="16" id="11349712" name="inst_21846F31" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1136" y="976" w="16" h="16" xo="16" yo="16" id="11349713" name="inst_E6860A39" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1152" y="976" w="16" h="16" xo="16" yo="16" id="11349714" name="inst_3D923620" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="1120" w="32" h="32" xo="0" yo="176" id="11349717" name="inst_CFA971C5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="1152" w="32" h="32" xo="0" yo="176" id="11349718" name="inst_89EA9A80" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="1184" w="32" h="32" xo="0" yo="176" id="11349719" name="inst_2E43713F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="1216" w="32" h="32" xo="0" yo="176" id="11349720" name="inst_979C0A73" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="1248" w="32" h="32" xo="0" yo="176" id="11349721" name="inst_34CA7028" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="1280" w="32" h="32" xo="0" yo="176" id="11349722" name="inst_96EF48F7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="1312" w="32" h="32" xo="0" yo="176" id="11349723" name="inst_5D25C38A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="1120" w="16" h="32" xo="0" yo="176" id="11349724" name="inst_767C18D6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="1152" w="16" h="32" xo="0" yo="176" id="11349725" name="inst_A7D03AA5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="1184" w="16" h="32" xo="0" yo="176" id="11349726" name="inst_DBC4965E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="1216" w="16" h="32" xo="0" yo="176" id="11349727" name="inst_4970E4BC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="1248" w="16" h="32" xo="0" yo="176" id="11349728" name="inst_F462DDEA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="1280" w="16" h="32" xo="0" yo="176" id="11349729" name="inst_59B816D2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="1312" w="16" h="32" xo="0" yo="176" id="11349730" name="inst_59F7E6E1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1040" y="1008" w="16" h="16" xo="0" yo="16" id="11349731" name="inst_DE0DB47F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="960" w="32" h="32" xo="0" yo="176" id="11349732" name="inst_D41F2054" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="992" w="32" h="32" xo="0" yo="176" id="11349733" name="inst_6818BDE2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="1024" w="32" h="32" xo="0" yo="176" id="11349734" name="inst_F58F1B3D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="1056" w="32" h="32" xo="0" yo="176" id="11349735" name="inst_9C64F4AB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="1088" w="32" h="32" xo="0" yo="176" id="11349736" name="inst_325846B2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="1120" w="32" h="32" xo="0" yo="176" id="11349737" name="inst_9B2C6CA2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="1152" w="32" h="32" xo="0" yo="176" id="11349738" name="inst_2346F506" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1216" y="1088" w="16" h="16" xo="32" yo="16" id="11349739" name="inst_CC66A1AF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1072" y="1088" w="16" h="16" xo="0" yo="16" id="11349740" name="inst_78F26265" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1104" y="1088" w="16" h="16" xo="16" yo="16" id="11349741" name="inst_93F5445C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1120" y="1088" w="16" h="16" xo="16" yo="16" id="11349742" name="inst_5E01DABD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1136" y="1088" w="16" h="16" xo="16" yo="16" id="11349743" name="inst_A6BAD7E5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1152" y="1088" w="16" h="16" xo="16" yo="16" id="11349744" name="inst_AA2F7A05" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1168" y="1088" w="16" h="16" xo="16" yo="16" id="11349745" name="inst_7A21811D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1184" y="1088" w="16" h="16" xo="16" yo="16" id="11349746" name="inst_2D9C3B34" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1200" y="1088" w="16" h="16" xo="16" yo="16" id="11349747" name="inst_8579A144" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1216" y="1136" w="16" h="16" xo="32" yo="16" id="11349748" name="inst_5D16E842" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1152" y="1136" w="16" h="16" xo="0" yo="16" id="11349751" name="inst_8F96FDD8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1088" y="1088" w="16" h="16" xo="16" yo="16" id="11349752" name="inst_88B681E3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1152" y="1168" w="16" h="16" xo="0" yo="16" id="11349753" name="inst_5CBC2ACD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1184" y="1168" w="16" h="16" xo="32" yo="16" id="11349758" name="inst_D55F50C4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="1184" w="32" h="16" xo="0" yo="208" id="11349766" name="inst_49C191ED" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="1200" w="16" h="16" xo="16" yo="16" id="11349767" name="inst_240BD040" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1024" y="1200" w="16" h="16" xo="16" yo="16" id="11349768" name="inst_E8905393" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1040" y="1200" w="16" h="16" xo="16" yo="16" id="11349769" name="inst_2946A449" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1056" y="1200" w="16" h="16" xo="16" yo="16" id="11349770" name="inst_AC64C12B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1072" y="1200" w="16" h="16" xo="16" yo="16" id="11349771" name="inst_5CA76F05" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1088" y="1200" w="16" h="16" xo="16" yo="16" id="11349772" name="inst_5EF5294F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1104" y="1200" w="16" h="16" xo="16" yo="16" id="11349773" name="inst_BFBA3D9F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1120" y="1200" w="16" h="16" xo="16" yo="16" id="11349774" name="inst_5547A752" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1136" y="1200" w="16" h="16" xo="16" yo="16" id="11349775" name="inst_D6B0AD74" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1152" y="1200" w="16" h="16" xo="16" yo="16" id="11349776" name="inst_EE5587C7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1184" y="1200" w="16" h="16" xo="32" yo="16" id="11349777" name="inst_9088B934" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1152" y="1104" w="16" h="16" xo="0" yo="16" id="11349778" name="inst_407D404F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1152" y="1120" w="16" h="16" xo="0" yo="16" id="11349779" name="inst_BF14820B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1216" y="1104" w="16" h="16" xo="32" yo="16" id="11349780" name="inst_90634EC1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1216" y="1120" w="16" h="16" xo="32" yo="16" id="11349781" name="inst_21F31D8E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1088" y="1072" w="16" h="16" xo="32" yo="16" id="11349782" name="inst_3933C1F6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1072" y="1072" w="16" h="16" xo="0" yo="16" id="11349783" name="inst_BED99B86" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1168" y="1136" w="16" h="16" xo="16" yo="16" id="11349784" name="inst_BEB378EA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1184" y="1136" w="16" h="16" xo="16" yo="16" id="11349785" name="inst_1D9CDA78" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1200" y="1136" w="16" h="16" xo="16" yo="16" id="11349786" name="inst_45A99D86" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1200" y="1120" w="16" h="16" xo="16" yo="16" id="11349787" name="inst_796C5FD6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1184" y="1120" w="16" h="16" xo="16" yo="16" id="11349788" name="inst_A85A6D8B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1168" y="1120" w="16" h="16" xo="16" yo="16" id="11349789" name="inst_A07C47FE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1168" y="1104" w="16" h="16" xo="16" yo="16" id="11349790" name="inst_EF7CEC7C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1184" y="1104" w="16" h="16" xo="16" yo="16" id="11349791" name="inst_232D14A9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1200" y="1104" w="16" h="16" xo="16" yo="16" id="11349792" name="inst_AE6249F7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1168" y="1168" w="16" h="16" xo="16" yo="16" id="11349793" name="inst_BC0EB75C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1168" y="1200" w="16" h="16" xo="16" yo="16" id="11349794" name="inst_A6CD1E76" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1200" y="1040" w="32" h="32" xo="0" yo="144" id="11349802" name="inst_4BE3A09D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1200" y="1072" w="32" h="16" xo="0" yo="208" id="11349803" name="inst_57FF6B3A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1120" y="976" w="16" h="16" xo="16" yo="16" id="11349804" name="inst_4758E099" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1216" y="1264" w="16" h="16" xo="32" yo="16" id="11349806" name="inst_4F40F6A0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1200" y="1264" w="16" h="16" xo="16" yo="16" id="11349819" name="inst_85023FE1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1184" y="1264" w="16" h="16" xo="16" yo="16" id="11349820" name="inst_E5B9833B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1168" y="1264" w="16" h="16" xo="16" yo="16" id="11349821" name="inst_6B9685A2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1152" y="1264" w="16" h="16" xo="16" yo="16" id="11349822" name="inst_72CF7412" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1136" y="1264" w="16" h="16" xo="16" yo="16" id="11349823" name="inst_173488DF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1120" y="1264" w="16" h="16" xo="16" yo="16" id="11349824" name="inst_A28F41C5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1104" y="1264" w="16" h="16" xo="16" yo="16" id="11349825" name="inst_490D4096" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1088" y="1264" w="16" h="16" xo="16" yo="16" id="11349826" name="inst_F14B1C6F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1072" y="1264" w="16" h="16" xo="16" yo="16" id="11349827" name="inst_3D99F8B4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1056" y="1264" w="16" h="16" xo="16" yo="16" id="11349828" name="inst_CB5DCC8B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1040" y="1264" w="16" h="16" xo="16" yo="16" id="11349829" name="inst_EF5684D3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1024" y="1264" w="16" h="16" xo="16" yo="16" id="11349830" name="inst_EFB472D3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="1264" w="16" h="16" xo="16" yo="16" id="11349831" name="inst_941D3E36" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="1280" w="16" h="16" xo="0" yo="48" id="11349832" name="inst_1AA4E9B1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="1296" w="16" h="16" xo="0" yo="48" id="11349833" name="inst_5AC3E459" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="1312" w="16" h="16" xo="0" yo="48" id="11349834" name="inst_AD9D3778" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="1328" w="16" h="16" xo="0" yo="48" id="11349835" name="inst_1AA2C150" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1040" y="1280" w="16" h="16" xo="0" yo="48" id="11349836" name="inst_4DF26E4A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1040" y="1296" w="16" h="16" xo="0" yo="48" id="11349837" name="inst_6BBC4336" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1040" y="1312" w="16" h="16" xo="0" yo="48" id="11349838" name="inst_FC8D9949" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1040" y="1328" w="16" h="16" xo="0" yo="48" id="11349839" name="inst_423D2E2B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="1264" w="16" h="16" xo="16" yo="16" id="11349840" name="inst_C6489C39" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="960" y="1264" w="16" h="16" xo="0" yo="16" id="11349841" name="inst_CE4FB3B6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="976" y="1312" w="16" h="16" xo="32" yo="16" id="11349842" name="inst_8564EC9C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="1312" w="16" h="16" xo="0" yo="16" id="11349843" name="inst_C236FB38" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="800" y="1312" w="16" h="16" xo="16" yo="16" id="11349844" name="inst_829669FB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="816" y="1312" w="16" h="16" xo="16" yo="16" id="11349845" name="inst_03289B85" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="832" y="1312" w="16" h="16" xo="16" yo="16" id="11349846" name="inst_1D450866" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="848" y="1312" w="16" h="16" xo="16" yo="16" id="11349847" name="inst_D060372F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="864" y="1312" w="16" h="16" xo="16" yo="16" id="11349848" name="inst_47FA696D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="880" y="1312" w="16" h="16" xo="16" yo="16" id="11349849" name="inst_47405D2A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="896" y="1312" w="16" h="16" xo="16" yo="16" id="11349850" name="inst_E45B8D4F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="912" y="1312" w="16" h="16" xo="16" yo="16" id="11349851" name="inst_7A0564CF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="928" y="1312" w="16" h="16" xo="16" yo="16" id="11349852" name="inst_DB31A853" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="944" y="1312" w="16" h="16" xo="16" yo="16" id="11349853" name="inst_1D83ED74" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="960" y="1312" w="16" h="16" xo="16" yo="16" id="11349854" name="inst_882DA0E7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="1120" w="16" h="32" xo="16" yo="176" id="11349855" name="inst_863167F2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="1152" w="16" h="32" xo="16" yo="176" id="11349856" name="inst_F6841E24" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="1184" w="16" h="32" xo="16" yo="176" id="11349857" name="inst_1FFDE5A3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="1216" w="16" h="32" xo="16" yo="176" id="11349858" name="inst_6C40F2C7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="1248" w="16" h="32" xo="16" yo="176" id="11349859" name="inst_F4AD4374" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="1280" w="16" h="32" xo="16" yo="176" id="11349860" name="inst_B50905D8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="1312" w="16" h="32" xo="16" yo="176" id="11349861" name="inst_3DB0899E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="1088" w="16" h="32" xo="16" yo="176" id="11349862" name="inst_C5DB5C51" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="1056" w="16" h="32" xo="16" yo="176" id="11349863" name="inst_4FC254D5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="1024" w="16" h="32" xo="16" yo="176" id="11349864" name="inst_F543B08F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="896" w="16" h="32" xo="16" yo="176" id="11349865" name="inst_516310B2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="928" w="16" h="32" xo="16" yo="176" id="11349866" name="inst_C29EA7C8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="960" w="16" h="32" xo="16" yo="176" id="11349867" name="inst_4BD7F14B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="992" w="16" h="32" xo="16" yo="176" id="11349868" name="inst_8F81D87A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="672" w="16" h="32" xo="16" yo="176" id="11349869" name="inst_01797B81" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="704" w="16" h="32" xo="16" yo="176" id="11349870" name="inst_4B019DF4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="736" w="16" h="32" xo="16" yo="176" id="11349871" name="inst_539C73A9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="768" w="16" h="32" xo="16" yo="176" id="11349872" name="inst_15B374D8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="800" w="16" h="32" xo="16" yo="176" id="11349873" name="inst_9E0312F5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="832" w="16" h="32" xo="16" yo="176" id="11349874" name="inst_BECB8FD9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="864" w="16" h="32" xo="16" yo="176" id="11349875" name="inst_4FF4611C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="448" w="16" h="32" xo="16" yo="176" id="11349876" name="inst_321E38BC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="480" w="16" h="32" xo="16" yo="176" id="11349877" name="inst_5A36BB0C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="512" w="16" h="32" xo="16" yo="176" id="11349878" name="inst_39F62994" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="544" w="16" h="32" xo="16" yo="176" id="11349879" name="inst_67AF6907" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="576" w="16" h="32" xo="16" yo="176" id="11349880" name="inst_6AD8F170" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="608" w="16" h="32" xo="16" yo="176" id="11349881" name="inst_D084B30E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="768" y="640" w="16" h="32" xo="16" yo="176" id="11349882" name="inst_2CBCEE80" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="1200" w="16" h="16" xo="16" yo="16" id="11349883" name="inst_B2B91753" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="976" y="1200" w="16" h="16" xo="16" yo="16" id="11349884" name="inst_F5BEF951" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="960" y="1200" w="16" h="16" xo="16" yo="16" id="11349885" name="inst_8A9D49A0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="800" y="1088" w="16" h="16" xo="16" yo="16" id="11349886" name="inst_B5CAA03A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="816" y="1088" w="16" h="16" xo="16" yo="16" id="11349887" name="inst_F2C2E8DB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="832" y="1088" w="16" h="16" xo="16" yo="16" id="11349888" name="inst_AB877322" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="848" y="1088" w="16" h="16" xo="16" yo="16" id="11349889" name="inst_44D92F8F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="864" y="1088" w="16" h="16" xo="16" yo="16" id="11349890" name="inst_AF201253" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="880" y="1088" w="16" h="16" xo="16" yo="16" id="11349891" name="inst_9355CC6D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="896" y="1088" w="16" h="16" xo="16" yo="16" id="11349892" name="inst_1E6C6443" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="912" y="1088" w="16" h="16" xo="16" yo="16" id="11349893" name="inst_B07AC7D4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="928" y="1088" w="16" h="16" xo="16" yo="16" id="11349894" name="inst_ABFAF729" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="944" y="1088" w="16" h="16" xo="16" yo="16" id="11349895" name="inst_A53162F7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="960" y="1088" w="16" h="16" xo="16" yo="16" id="11349896" name="inst_0BA4A7FE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="976" y="1088" w="16" h="16" xo="32" yo="16" id="11349897" name="inst_E715F337" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="1088" w="16" h="16" xo="0" yo="16" id="11349898" name="inst_A31B5C7F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="800" y="1200" w="16" h="16" xo="0" yo="16" id="11349899" name="inst_0A3447C5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="848" y="1200" w="16" h="16" xo="16" yo="16" id="11349900" name="inst_19C120D9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="864" y="1200" w="16" h="16" xo="16" yo="16" id="11349901" name="inst_382BBB95" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="880" y="1200" w="16" h="16" xo="16" yo="16" id="11349902" name="inst_2CC2D0CA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="896" y="1200" w="16" h="16" xo="16" yo="16" id="11349903" name="inst_63886FF3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="912" y="1200" w="16" h="16" xo="16" yo="16" id="11349904" name="inst_56B34ADB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="928" y="1200" w="16" h="16" xo="16" yo="16" id="11349905" name="inst_1B1081EE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="944" y="1200" w="16" h="16" xo="16" yo="16" id="11349906" name="inst_DBCE303C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="1088" w="16" h="16" xo="48" yo="192" id="11349907" name="inst_C95E2174" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="1104" w="16" h="16" xo="48" yo="192" id="11349908" name="inst_53BDF707" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="1120" w="16" h="16" xo="48" yo="192" id="11349909" name="inst_62F8F387" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="1136" w="16" h="16" xo="48" yo="192" id="11349910" name="inst_D4978F47" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="1152" w="16" h="16" xo="48" yo="192" id="11349911" name="inst_AD47A07B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="1200" w="16" h="16" xo="48" yo="192" id="11349912" name="inst_B9892441" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="1216" w="16" h="16" xo="48" yo="192" id="11349913" name="inst_BDE95EE1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="1232" w="16" h="16" xo="48" yo="192" id="11349914" name="inst_E9864D2E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="1248" w="16" h="16" xo="48" yo="192" id="11349915" name="inst_C252F2E4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="816" y="1200" w="16" h="16" xo="16" yo="16" id="11349916" name="inst_A22C72C7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="832" y="1200" w="16" h="16" xo="16" yo="16" id="11349917" name="inst_C00CDA0B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="976" y="1264" w="16" h="16" xo="16" yo="16" id="11349918" name="inst_4B3FA9A1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1520" y="784" w="16" h="16" xo="0" yo="16" id="11349919" name="inst_F62ACE24" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="1056" w="32" h="32" xo="64" yo="160" id="11349920" name="inst_7C2E2CC7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="816" y="1056" w="32" h="32" xo="64" yo="160" id="11349921" name="inst_3D73157D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="848" y="1056" w="32" h="32" xo="64" yo="160" id="11349922" name="inst_D923E943" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="832" y="960" w="16" h="16" xo="0" yo="16" id="11349923" name="inst_20A251C6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="960" w="16" h="16" xo="32" yo="16" id="11349924" name="inst_6BF9E10B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="848" y="960" w="16" h="16" xo="16" yo="16" id="11349925" name="inst_5E996A02" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="864" y="960" w="16" h="16" xo="16" yo="16" id="11349926" name="inst_FBFE1886" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="880" y="960" w="16" h="16" xo="16" yo="16" id="11349927" name="inst_BFD14B77" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="896" y="960" w="16" h="16" xo="16" yo="16" id="11349928" name="inst_90339039" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="912" y="960" w="16" h="16" xo="16" yo="16" id="11349929" name="inst_F6D657EA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="928" y="960" w="16" h="16" xo="16" yo="16" id="11349930" name="inst_5C6D1BE3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="944" y="960" w="16" h="16" xo="16" yo="16" id="11349931" name="inst_D563CB29" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="960" y="960" w="16" h="16" xo="16" yo="16" id="11349932" name="inst_54B0AF61" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="976" y="960" w="16" h="16" xo="16" yo="16" id="11349933" name="inst_6DD1BDDB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="816" y="960" w="16" h="16" xo="48" yo="192" id="11349934" name="inst_F2D22BD7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="816" y="976" w="16" h="16" xo="48" yo="192" id="11349935" name="inst_5CC42EF9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="816" y="992" w="16" h="16" xo="48" yo="192" id="11349936" name="inst_4FC579D2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="912" w="16" h="16" xo="48" yo="192" id="11349937" name="inst_A415B6D3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="896" w="16" h="16" xo="48" yo="192" id="11349938" name="inst_E79B0F6E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="880" w="16" h="16" xo="48" yo="192" id="11349939" name="inst_C4B92573" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="976" y="880" w="16" h="16" xo="32" yo="16" id="11349941" name="inst_130BF0D9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="880" w="16" h="16" xo="0" yo="16" id="11349942" name="inst_CE8C827B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="800" y="880" w="16" h="16" xo="16" yo="16" id="11349943" name="inst_81037569" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="816" y="880" w="16" h="16" xo="16" yo="16" id="11349944" name="inst_43EFF2E0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="832" y="880" w="16" h="16" xo="16" yo="16" id="11349945" name="inst_C62E2C8C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="848" y="880" w="16" h="16" xo="16" yo="16" id="11349946" name="inst_A7303BB5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="864" y="880" w="16" h="16" xo="16" yo="16" id="11349947" name="inst_40990531" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="880" y="880" w="16" h="16" xo="16" yo="16" id="11349948" name="inst_26FACDEE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="896" y="880" w="16" h="16" xo="16" yo="16" id="11349949" name="inst_1ACE8123" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="912" y="880" w="16" h="16" xo="16" yo="16" id="11349950" name="inst_51F9327F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="928" y="880" w="16" h="16" xo="16" yo="16" id="11349951" name="inst_D6FD4E35" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="944" y="880" w="16" h="16" xo="16" yo="16" id="11349952" name="inst_C883DF61" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="960" y="880" w="16" h="16" xo="16" yo="16" id="11349953" name="inst_065F562C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="640" w="16" h="16" xo="48" yo="192" id="11349955" name="inst_B470F4AA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="656" w="16" h="16" xo="48" yo="192" id="11349956" name="inst_4361F281" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="672" w="16" h="16" xo="48" yo="192" id="11349957" name="inst_6AEBCB87" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="688" w="16" h="16" xo="48" yo="192" id="11349958" name="inst_DD623DD2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="800" y="640" w="16" h="16" xo="0" yo="16" id="11349959" name="inst_8D416796" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="640" w="16" h="16" xo="32" yo="16" id="11349960" name="inst_797D3FBF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="816" y="640" w="16" h="16" xo="16" yo="16" id="11349961" name="inst_D6B8975B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="832" y="640" w="16" h="16" xo="16" yo="16" id="11349962" name="inst_5E22D699" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="848" y="640" w="16" h="16" xo="16" yo="16" id="11349963" name="inst_F2F981C4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="864" y="640" w="16" h="16" xo="16" yo="16" id="11349964" name="inst_9F253CAA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="880" y="640" w="16" h="16" xo="16" yo="16" id="11349965" name="inst_67FB7682" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="896" y="640" w="16" h="16" xo="16" yo="16" id="11349966" name="inst_391962D3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="912" y="640" w="16" h="16" xo="16" yo="16" id="11349967" name="inst_DA77B5B6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="928" y="640" w="16" h="16" xo="16" yo="16" id="11349968" name="inst_42AD27E9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="944" y="640" w="16" h="16" xo="16" yo="16" id="11349969" name="inst_1DA8F7AD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="960" y="640" w="16" h="16" xo="16" yo="16" id="11349970" name="inst_499B9DBC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="976" y="640" w="16" h="16" xo="16" yo="16" id="11349971" name="inst_4FF75910" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="608" w="32" h="32" xo="0" yo="144" id="11349972" name="inst_2908C31B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="960" y="592" w="16" h="16" xo="0" yo="16" id="11349973" name="inst_A8A1443A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1008" y="592" w="16" h="16" xo="16" yo="16" id="11349974" name="inst_A684C12A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1024" y="592" w="16" h="16" xo="16" yo="16" id="11349975" name="inst_0F150823" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1072" y="592" w="16" h="16" xo="32" yo="16" id="11349976" name="inst_B4D750BB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1040" y="592" w="16" h="16" xo="16" yo="16" id="11349977" name="inst_21E62998" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1056" y="592" w="16" h="16" xo="16" yo="16" id="11349978" name="inst_E078A900" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="976" y="592" w="16" h="16" xo="16" yo="16" id="11349979" name="inst_799A295A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="592" w="16" h="16" xo="16" yo="16" id="11349980" name="inst_744F1C95" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="896" w="16" h="16" xo="0" yo="16" id="11349981" name="inst_2F95C80B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="976" y="896" w="16" h="16" xo="32" yo="16" id="11349982" name="inst_6A216CD4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="800" y="896" w="16" h="16" xo="16" yo="16" id="11349983" name="inst_5D48DDF9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="816" y="896" w="16" h="16" xo="16" yo="16" id="11349984" name="inst_1AC1E0DA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="832" y="896" w="16" h="16" xo="16" yo="16" id="11349985" name="inst_E0D04630" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="848" y="896" w="16" h="16" xo="16" yo="16" id="11349986" name="inst_8CEAF149" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="864" y="896" w="16" h="16" xo="16" yo="16" id="11349987" name="inst_4AF4CC83" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="880" y="896" w="16" h="16" xo="16" yo="16" id="11349988" name="inst_96105F73" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="896" y="896" w="16" h="16" xo="16" yo="16" id="11349989" name="inst_989205A6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="912" y="896" w="16" h="16" xo="16" yo="16" id="11349990" name="inst_85F2A0DE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="928" y="896" w="16" h="16" xo="16" yo="16" id="11349991" name="inst_B3943B44" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="944" y="896" w="16" h="16" xo="16" yo="16" id="11349992" name="inst_1D3FA428" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="960" y="896" w="16" h="16" xo="16" yo="16" id="11349993" name="inst_9B4DA126" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="832" y="800" w="16" h="16" xo="16" yo="16" id="11350009" name="inst_0C50D438" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="848" y="800" w="16" h="16" xo="16" yo="16" id="11350010" name="inst_E1241F03" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="864" y="800" w="16" h="16" xo="16" yo="16" id="11350011" name="inst_12289E60" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="880" y="800" w="16" h="16" xo="16" yo="16" id="11350012" name="inst_CFA5BDE9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="800" y="720" w="16" h="16" xo="16" yo="16" id="11350014" name="inst_7D3F8C8F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="816" y="720" w="16" h="16" xo="16" yo="16" id="11350015" name="inst_C3CE34A9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="832" y="720" w="16" h="16" xo="16" yo="16" id="11350016" name="inst_E8311C5B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="848" y="720" w="16" h="16" xo="16" yo="16" id="11350017" name="inst_B3CB69DF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="864" y="720" w="16" h="16" xo="16" yo="16" id="11350018" name="inst_45DDE350" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="880" y="720" w="16" h="16" xo="16" yo="16" id="11350019" name="inst_3E4622C4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="896" y="720" w="16" h="16" xo="16" yo="16" id="11350020" name="inst_245941C2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="912" y="720" w="16" h="16" xo="16" yo="16" id="11350021" name="inst_1A7510B5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="928" y="720" w="16" h="16" xo="16" yo="16" id="11350022" name="inst_88F6567D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="976" y="720" w="16" h="16" xo="32" yo="16" id="11350023" name="inst_E4C6974B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="800" w="16" h="16" xo="32" yo="16" id="11350024" name="inst_FDF667DC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="720" w="16" h="16" xo="0" yo="16" id="11350025" name="inst_4EF1312E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="800" y="800" w="16" h="16" xo="0" yo="16" id="11350026" name="inst_A0D8F0C8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="944" y="720" w="16" h="16" xo="16" yo="16" id="11350027" name="inst_8AEE9387" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="896" y="800" w="16" h="16" xo="16" yo="16" id="11350028" name="inst_6C07F258" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="912" y="800" w="16" h="16" xo="16" yo="16" id="11350029" name="inst_1E889A58" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="928" y="800" w="16" h="16" xo="16" yo="16" id="11350030" name="inst_D4617B79" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="944" y="800" w="16" h="16" xo="16" yo="16" id="11350031" name="inst_A327B78B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="960" y="800" w="16" h="16" xo="16" yo="16" id="11350032" name="inst_FF5CA096" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="976" y="800" w="16" h="16" xo="16" yo="16" id="11350033" name="inst_F44F0AD8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="816" y="800" w="16" h="16" xo="16" yo="16" id="11350034" name="inst_175592E7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="960" y="720" w="16" h="16" xo="16" yo="16" id="11350035" name="inst_1D8A88A0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="800" w="16" h="16" xo="48" yo="192" id="11350036" name="inst_49423808" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="816" w="16" h="16" xo="48" yo="192" id="11350037" name="inst_6A39539D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="784" y="832" w="16" h="16" xo="48" yo="192" id="11350038" name="inst_2196BDE2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="720" w="16" h="16" xo="48" yo="192" id="11350039" name="inst_41F9A661" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="736" w="16" h="16" xo="48" yo="192" id="11350040" name="inst_83CFB330" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="992" y="752" w="16" h="16" xo="48" yo="192" id="11350041" name="inst_4B97D46A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1040" y="640" w="16" h="16" xo="0" yo="16" id="11350042" name="inst_2413769B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1056" y="640" w="16" h="16" xo="16" yo="16" id="11350043" name="inst_860E1C10" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1072" y="576" w="16" h="16" xo="0" yo="16" id="11350044" name="inst_74A5A840" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1088" y="560" w="16" h="16" xo="0" yo="16" id="11350045" name="inst_9FA9538C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1088" y="576" w="16" h="16" xo="32" yo="16" id="11350046" name="inst_F0309F2C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1104" y="560" w="16" h="16" xo="16" yo="16" id="11350047" name="inst_3A082D47" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1120" y="560" w="16" h="16" xo="16" yo="16" id="11350048" name="inst_A84CF443" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1072" y="640" w="16" h="16" xo="16" yo="16" id="11350050" name="inst_A3AE3AB2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1088" y="640" w="16" h="16" xo="16" yo="16" id="11350051" name="inst_BFDFBA14" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1104" y="640" w="16" h="16" xo="16" yo="16" id="11350052" name="inst_25CE530B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1120" y="640" w="16" h="16" xo="16" yo="16" id="11350053" name="inst_68563B07" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1136" y="640" w="16" h="16" xo="16" yo="16" id="11350054" name="inst_06749579" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1152" y="640" w="16" h="16" xo="16" yo="16" id="11350055" name="inst_C7E83E7A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1168" y="640" w="16" h="16" xo="16" yo="16" id="11350056" name="inst_7A4B00D3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1184" y="640" w="16" h="16" xo="16" yo="16" id="11350057" name="inst_160D9CC1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1200" y="640" w="16" h="16" xo="16" yo="16" id="11350058" name="inst_4177A4F9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1216" y="640" w="16" h="16" xo="16" yo="16" id="11350059" name="inst_8DEB7D89" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1232" y="640" w="16" h="16" xo="16" yo="16" id="11350060" name="inst_FB90BDA5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1248" y="640" w="16" h="16" xo="16" yo="16" id="11350061" name="inst_D9BC448B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1264" y="640" w="16" h="16" xo="16" yo="16" id="11350062" name="inst_0E874944" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1136" y="560" w="16" h="16" xo="32" yo="16" id="11350063" name="inst_EAFEC483" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstTomahawkMan" x="1056" y="1280" w="32" h="64" xo="0" yo="144" id="11350067" name="inst_E99BDE14" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>
