@@ -281,33 +281,20 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight &a
                 // start music
                 if (music != "" &amp;&amp; global.aliveBosses == 1)
                 {
-                    musicStore = global.levelSong;
-                    musicTypeStore = global.levelSongType;
-                    musicLoopStartStore = global.levelLoopStart;
-                    musicLoopEndStore = global.levelLoopEnd;
-                    musicLoopStore = global.levelLoop;
-                    musicVolumeStore = global.levelVolume;
-                    musicTrackNumberStore = global.levelTrackNumber;
+                    with (prtBoss)
+                    {
+                        musicStore = global.levelSong;
+                        musicTypeStore = global.levelSongType;
+                        musicLoopStartStore = global.levelLoopStart;
+                        musicLoopEndStore = global.levelLoopEnd;
+                        musicLoopStore = global.levelLoop;
+                        musicVolumeStore = global.levelVolume;
+                        musicTrackNumberStore = global.levelTrackNumber;
+                    }
                     
                     stopMusic();
                     playMusic(music, musicType, musicTrackNumber, musicLoopSecondsStart, musicLoopSecondsEnd, musicLoop, musicVolume);
-                }
-                else if (music != "")
-                {
-                    with (prtBoss)
-                    {
-                        if (id != other.id &amp;&amp; !dead)
-                        {
-                            other.musicStore = musicStore;
-                            other.musicTypeStore = musicTypeStore;
-                            other.musicLoopStartStore = musicLoopStartStore;
-                            other.musicLoopEndStore = musicLoopEndStore;
-                            other.musicLoopStore = musicLoopStore;
-                            other.musicVolumeStore = musicVolumeStore;
-                            other.musicTrackNumberStore = musicTrackNumberStore;
-                            break;
-                        }
-                    }
+
                 }
             }
             
