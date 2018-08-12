@@ -32,6 +32,42 @@ else if (fname == "make_color_hsv" || fname == "make_colour_hsv")
     global.gml_fn_retval = make_colour_hsv(a0, a1, a2);
 else if (fname == "abs")
     global.gml_fn_retval = abs(a0);
+else if (fname == "action_another_room")
+    global.gml_fn_retval = action_another_room(a0);
+else if (fname == "action_bounce")
+    global.gml_fn_retval = action_bounce(a0, a1);
+else if (fname == "action_change_object")
+    global.gml_fn_retval = action_change_object(a0, a1);
+else if (fname == "action_color")
+    global.gml_fn_retval = action_color(a0);
+else if (fname == "action_create_object")
+    global.gml_fn_retval = action_create_object(a0, a1, a2);
+else if (fname == "action_create_object_motion")
+    global.gml_fn_retval = action_create_object_motion(a0, a1, a2, a3, a4);
+else if (fname == "action_create_object_random")
+    global.gml_fn_retval = action_create_object_random(a0, a1, a2, a3 ,a4 ,a5);
+else if (fname == "action_current_room")
+    action_current_room();
+else if (fname == "action_draw_arrow")
+    global.gml_fn_retval = action_draw_arrow(a0, a1, a2, a3, a4);
+else if (fname == "action_draw_background")
+    global.gml_fn_retval = action_draw_background(a0, a1, a2, a3);
+else if (fname == "action_draw_ellipse")
+    global.gml_fn_retval = action_draw_ellipse(a0, a1, a2, a3, a4);
+else if (fname == "action_draw_ellipse_gradient")
+    global.gml_fn_retval = action_draw_ellipse_gradient(a0, a1, a2, a3, a4, a5);   
+else if (fname == "action_draw_gradient_hor")
+    global.gml_fn_retval = action_draw_gradient_hor(a0, a1, a2, a3, a4, a5);
+else if (fname == "action_draw_gradient_vert")
+    global.gml_fn_retval = action_draw_gradient_vert(a0, a1, a2, a3, a4, a5);
+else if (fname == "action_draw_health")
+    global.gml_fn_retval = action_draw_health(a0, a1, a2, a3, a4, a5);
+else if (fname == "action_draw_life")
+    global.gml_fn_retval = action_draw_life(a0, a1, a2);   
+else if (fname == "action_draw_life_images")
+    global.gml_fn_retval = action_draw_life_images(a0, a1, a2);
+else if (fname == "action_draw_line")
+    global.gml_fn_retval = action_draw_line(a0, a1, a2, a3)      
 else if (fname == "sign")
     global.gml_fn_retval = sign(a0);
 else if (fname == "point_distance")
@@ -92,6 +128,10 @@ else if (fname == "tile_add")
     global.gml_fn_retval = tile_add(a0,a1,a2,a3,a4,a5,a6,a7);
 else if (fname == "collision_rectangle")
     global.gml_fn_retval = collision_rectangle(a0, a1, a2, a3, a4, a5, a6);
+else if (fname == "event_perform")
+    global.gml_fn_retval = event_perform(a0, a1);
+else if (fname == "event_perform_object")
+    global.gml_fn_retval = event_perform_object(a0, a1, a2);
 else
     global.execute_gml_function_ERR = true;
 return 0;
