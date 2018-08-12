@@ -10,7 +10,7 @@
   <persistent>0</persistent>
   <colour>8388672</colour>
   <showcolour>-1</showcolour>
-  <code></code>
+  <code>playMusic("Mega_Man_5.nsf", "VGM", 6, 0, 0, 0, 1);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
