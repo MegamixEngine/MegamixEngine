@@ -182,6 +182,7 @@ ds_grid_add(airShoot[3], (5.5) * 2, (8) * 2, 1);
             <string>ds_grid_destroy(airShoot[0]);
 ds_grid_destroy(airShoot[1]);
 ds_grid_destroy(airShoot[2]);
+ds_grid_destroy(airShoot[3]);
 </string>
           </argument>
         </arguments>
@@ -352,6 +353,7 @@ specialDamageValue(objPharaohShot, max(2, floor(global.damage / 3)));
             <string>ds_grid_destroy(airShoot[0]);
 ds_grid_destroy(airShoot[1]);
 ds_grid_destroy(airShoot[2]);
+ds_grid_destroy(airShoot[3]);
 </string>
           </argument>
         </arguments>
