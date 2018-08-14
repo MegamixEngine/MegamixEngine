@@ -46,6 +46,7 @@ hasFired = false;
 getAngle = 0;
 storeY = -1;
 horVer = "h";
+partnerItemDrop = -1; //this can be set to anything in creation code but -1 makes sure that it doesn't drop any items by default
 
 // Health Bar
 healthBarPrimaryColor[1] = 35;
@@ -207,6 +208,7 @@ if (entityCanStep())
                     if (!instance_exists(clone))
                         clone = instance_create(x, y, objHunterBPartner);
                     clone.clone = id;
+                    clone.itemDrop = partnerItemDrop;
                     clone.healthParent = id;//Share health bars
                 }
                 else if (object_index == objHunterBPartner &amp;&amp; xspeed == 0)
