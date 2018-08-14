@@ -10,9 +10,21 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>playMusic("Mega_Man_1.nsf","VGM", 11, 0, 0, 0, 1);
-with objBoobeam
-enemyDamageValue(objLaserTrident, 99);</code>
+  <code>playMusic("Mega_Man_9.nsf", "VGM", 34, 0, 0, 0, 1);
+//Damage Values for boobeam dont really matter, they just need to be greater than 0. These can also be set in the creation code of them individually but room code allows for all to be set at once
+with (objBoobeam)
+{
+    enemyDamageValue(objMagneticShockwave, 4);
+    enemyDamageValue(objBusterShot, 4);
+    enemyDamageValue(objBusterShotHalfCharged, 4);
+    enemyDamageValue(objBusterShotCharged, 4);
+    enemyDamageValue(objLaserTrident, 4);
+}
+//Don't want Hunter B to go offscreen by it shifting the hunter platforms too low
+with (objHunterPlatform)
+{
+     maxY = 0;
+}</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -53,6 +65,7 @@ enemyDamageValue(objLaserTrident, 99);</code>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
+    <instance objName="objBoobeam" x="32" y="32" name="inst_DBC580CB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGiantSuzy" x="64" y="32" name="inst_F4D408C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHunterB" x="96" y="48" name="inst_8EB65286" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoor" x="496" y="112" name="inst_40391E4A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -79,7 +92,7 @@ enemyDamageValue(objLaserTrident, 99);</code>
     <instance objName="objBossBarrier" x="640" y="176" name="inst_037F5DA8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="656" y="176" name="inst_B7B60475" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="656" y="192" name="inst_835702F5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objGiantSuzy" x="736" y="160" name="inst_D74F5926" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objGiantSuzy" x="736" y="160" name="inst_D74F5926" locked="0" code="//The Giant Suzi's color can be changed by setting col to 1 for it to be the official colors, but it isn't showcased here due to there being no actual changes to the boss fight&#xA;useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="256" y="224" name="inst_A07F259A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="256" y="0" name="inst_D02DB581" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDefaultSpawn" x="384" y="160" name="inst_5EB26E1E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -111,7 +124,7 @@ enemyDamageValue(objLaserTrident, 99);</code>
     <instance objName="objBossDoor" x="768" y="592" name="inst_3899904B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoor" x="768" y="608" name="inst_3CC02214" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoor" x="752" y="640" name="inst_8618D8E8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterB" x="720" y="640" name="inst_CF656E8E" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterB" x="720" y="656" name="inst_CF656E8E" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="592" y="416" name="inst_D78921E3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="672" y="416" name="inst_BDFEE685" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="416" y="640" name="inst_D00C33DB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -119,8 +132,8 @@ enemyDamageValue(objLaserTrident, 99);</code>
     <instance objName="objBoobeamControl" x="328" y="352" name="inst_868C91DF" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDarkMan4" x="128" y="32" name="inst_48B42F2F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSharkSubmarineHead" x="208" y="112" name="inst_D79D1EED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objGreyDevil" x="816" y="832" name="inst_2DDF1964" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMusicChanger" x="896" y="896" name="inst_E488B920" locked="0" code="fileName = &quot;&quot;&#xA;" scaleX="31.375" scaleY="0.857142865657806" colour="4294967295" rotation="0"/>
+    <instance objName="objGreyDevil" x="816" y="832" name="inst_2DDF1964" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMusicChanger" x="896" y="880" name="inst_E488B920" locked="0" code="fileName = &quot;&quot;&#xA;" scaleX="27.25" scaleY="0.214285716414452" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="784" y="864" name="inst_A8ECB647" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="800" y="864" name="inst_E8726D5D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="816" y="864" name="inst_BED927C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -173,17 +186,17 @@ enemyDamageValue(objLaserTrident, 99);</code>
     <instance objName="objWeaponEnergyBig" x="864" y="576" name="inst_59C01D59" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="896" y="576" name="inst_E26F8C33" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHunterPlatform" x="528" y="688" name="inst_6A0153F0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="560" y="672" name="inst_03916FD4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="560" y="688" name="inst_03916FD4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHunterPlatform" x="592" y="672" name="inst_ADFAFF32" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHunterPlatform" x="624" y="672" name="inst_C3666BF5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="656" y="688" name="inst_3D1E524E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="656" y="672" name="inst_3D1E524E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHunterPlatform" x="688" y="688" name="inst_01074B24" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHunterPlatform" x="720" y="672" name="inst_81DB526A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHunterPlatform" x="720" y="688" name="inst_81DB526A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objYashichi" x="888" y="1072" name="inst_AF0179AB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="896" y="1008" name="inst_2F32C49F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSharkSubmarineTail" x="240" y="976" name="inst_869F76AA" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSharkSubmarineBody" x="496" y="976" name="inst_EDFB2CDA" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSharkSubmarineHead" x="528" y="976" name="inst_A2AD6209" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSharkSubmarineTail" x="240" y="976" name="inst_869F76AA" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSharkSubmarineBody" x="496" y="976" name="inst_EDFB2CDA" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSharkSubmarineHead" x="528" y="976" name="inst_A2AD6209" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeftScrolling" x="512" y="896" name="inst_040B95F6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeftScrolling" x="256" y="896" name="inst_2A6D91C6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeftScrolling" x="768" y="896" name="inst_2A0D2F2D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -291,12 +304,12 @@ enemyDamageValue(objLaserTrident, 99);</code>
     <instance objName="objDamageSpike" x="48" y="288" name="inst_85519306" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objYashichi" x="120" y="1216" name="inst_AC9CF6ED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="128" y="1280" name="inst_4D250F2D" locked="0" code="light = 1;&#xA;myRoom = lvlShowcaseHUB;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objObjectSetter" x="0" y="224" name="inst_6E2F6BD8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBoobeam" x="272" y="304" name="inst_C24127B8" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objLifeEnergyBig" x="544" y="416" name="inst_8D41DE6C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objLifeEnergyBig" x="448" y="640" name="inst_C9241120" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="768" y="672" name="inst_5D8562DD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="256" y="448" name="inst_B9615CAA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="112" y="1296" name="inst_D03CF1FF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="128" y="1296" name="inst_5C0DE590" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objObjectSetter" x="0" y="224" name="inst_D86EDC93" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingHorizontal" x="256" y="448" name="inst_695B5A3B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingHorizontal" x="768" y="672" name="inst_37707EEA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDownScrolling" x="0" y="1120" name="inst_2BF2E071" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMM9Wily3" x="272" y="64" w="32" h="32" xo="80" yo="80" id="11356523" name="inst_B3564CE9" depth="1200000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
