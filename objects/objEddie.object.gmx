@@ -73,10 +73,10 @@ stopOnFlash = false;
 
 if (entityCanStep())
 {
-    if (ycoll * sign(image_yscale) &gt; 0)
+    /*if (ycoll * sign(image_yscale) &gt; 0)
     {
         playSFX(sfxLand);
-    }
+    }*/
     
     if (phase == 0)
     {

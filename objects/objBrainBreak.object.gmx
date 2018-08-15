@@ -240,15 +240,19 @@ if (spawned)
             <kind>1</kind>
             <string>event_inherited();
 
-phase = 2;
-imgIndex = 3;
-animBack = false;
-
-calibrateDirection();
-
-with (instance_create(x, y, objBrainBreakGlasses))
+if phase != 2
 {
-    image_xscale = other.image_xscale;
+    phase = 2;
+    imgIndex = 3;
+    animBack = false;
+
+    calibrateDirection();
+
+    with (instance_create(x, y, objBrainBreakGlasses))
+    {
+        image_xscale = other.image_xscale;
+        xspeed = -other.image_xscale;
+    }
 }
 </string>
           </argument>
