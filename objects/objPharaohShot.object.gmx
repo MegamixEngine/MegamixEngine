@@ -251,6 +251,13 @@ if (sprite_index == sprPharaohShotCharging)
 else
 {
     cost = 3;
+    
+    // Charged Pharaoh Shots only do two extra points of damage to bosses unless specified
+    // in their User Event 11 code
+    if (other.object_index == prtBoss)
+    {
+        extraDamage = 2;
+    }
 }
 
 if (charging)
@@ -260,6 +267,7 @@ if (charging)
         global.ammo[playerID, global.weapon[playerID]] -= (cost / (global.energySaver + 1));
     }
 }
+
 global.damage += extraDamage;
 </string>
           </argument>
