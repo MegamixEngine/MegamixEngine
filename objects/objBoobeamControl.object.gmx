@@ -36,7 +36,7 @@ doPlayerExplosion = false;
 healthpointsStart = 28; // sets its starting health to 28
 healthpoints = healthpointsStart; // sets the health of the controller to the starting health
 canHit = false; // isn't hittable
-boobeamCount = instance_number(objBoobeam); // checks the amount of boobeams onscreen.
+
 sprite_index = sprNothing; // prevents visibility by making it a blank sprite
 pose = sprNothing; // here to prevent errors
 poseImgSpeed = 0; //^
@@ -53,6 +53,8 @@ healthBarSecondaryColor[1] = 40;
 music = "Mega_Man_2.nsf";
 musicType = "VGM";
 musicTrackNumber = 17;
+
+boobeamCount = 0; //This is set in the spawn event, don't touch it
 </string>
           </argument>
         </arguments>
@@ -79,6 +81,32 @@ musicTrackNumber = 17;
 if (healthpoints &lt;= 0)
 {
     event_user(EV_DEATH);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (spawned)
+{
+    boobeamCount = instance_number(objBoobeam); // this can't be set in the create event due to objects not being deactivated yet
 }
 </string>
           </argument>
