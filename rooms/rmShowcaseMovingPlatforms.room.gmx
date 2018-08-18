@@ -55,20 +55,16 @@
     <instance objName="objGutsLift" x="1024" y="16" name="inst_92EB441C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM2CloudPlatform" x="1264" y="144" name="inst_8B17663D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCrashLift" x="1248" y="64" name="inst_CB89891F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objNeedleManNeedle" x="1232" y="208" name="inst_54BF3A00" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSparkmanPlatform" x="1184" y="16" name="inst_6351B90F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBrightmanPlatform" x="1040" y="64" name="inst_0BCC661D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRailHorizontal" x="1024" y="32" name="inst_1B7743AC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLiftRail" x="1040" y="32" name="inst_A64CF0C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeckyun" x="1264" y="192" name="inst_757E9A83" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlockTrain" x="1248" y="32" name="inst_7BB97B7E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFlipPlatform" x="1152" y="80" name="inst_8426EBA1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTomahawkPlatform" x="1216" y="64" name="inst_D91F0E2B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objXPlatform" x="1216" y="0" name="inst_14F524D3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCopterPlatform" x="1136" y="16" name="inst_8871D2A3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objJewelPlatform" x="1184" y="128" name="inst_10433C28" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTornadoPlatform" x="1056" y="208" name="inst_7E6E713B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHanabiranClockArm" x="1128" y="176" name="inst_AA0DEC15" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBladeManSeeSaw" x="1216" y="32" name="inst_520A83D9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStrikeManSoccerBall" x="1040" y="144" name="inst_1232D0F0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStrikeManSpikeySoccerBall" x="1040" y="176" name="inst_0221F1CB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -93,9 +89,13 @@
     <instance objName="objTwinShooterS" x="1040" y="208" name="inst_8E735ABA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDrillun" x="1088" y="32" name="inst_F900BCC3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objByouz" x="1232" y="112" name="inst_5F423887" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSnakeBody" x="1200" y="128" name="inst_EA6C467C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objAnglePlatform" x="1168" y="176" name="inst_1B26B93F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objControllableLift" x="1296" y="192" name="inst_6079E5DF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objShift" x="1344" y="208" name="inst_836B39E8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTileScrollBG" x="1352" y="144" name="inst_7D9A7D43" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTileScrollSolid" x="1368" y="144" name="inst_A449613C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTileScrollSpike" x="1384" y="144" name="inst_25029F6F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTopLift" x="1304" y="144" name="inst_DDEB2429" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM5SpinningPlatform" x="1296" y="192" name="inst_E41F0ED0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
