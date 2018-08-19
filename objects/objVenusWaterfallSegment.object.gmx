@@ -145,7 +145,7 @@ if (entityCanStep())
         instance_destroy();
     }
 }
-else if (dead)
+else if (dead || instance_exists(objSectionSwitcher))
 {
     with (objMegaman)
     {
@@ -153,6 +153,9 @@ else if (dead)
         blockCollision = true;
     }
     myLock = lockPoolRelease(myLock);
+    
+    // force despawn
+    instance_destroy();
 }
 </string>
           </argument>
