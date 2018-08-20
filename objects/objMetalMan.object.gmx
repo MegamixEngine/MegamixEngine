@@ -58,7 +58,7 @@ musicTrackNumber = 17;
 
 // Damage Table
 enemyDamageValue(objBusterShot, 1);
-enemyDamageValue(objBusterShotHalfCharged, 2);
+enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
 
 // MaGMML3
