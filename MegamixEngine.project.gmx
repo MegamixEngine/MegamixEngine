@@ -4983,6 +4983,9 @@
           <object>objects\objOctobossBullet</object>
           <object>objects\objOctoperOABullet1</object>
         </objects>
+        <objects name="Don't Use">
+          <object>objects\objOctoperDetector</object>
+        </objects>
       </objects>
       <objects name="MM6">
         <object>objects\objGamarnAndGamadayu</object>

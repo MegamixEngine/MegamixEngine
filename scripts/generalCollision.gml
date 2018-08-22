@@ -82,7 +82,7 @@ if (dieToSpikes) // Handle dying to spikes
 if (xspeed != 0)
 {
     var slp = (ceil(abs(xspeed)) * MAX_SLOPE * cgrav) * (yspeed * cgrav <= 0);
-    
+
     // make semisolids solid if they can be used as a slope
     if (slp != 0)
     {
@@ -97,7 +97,7 @@ if (xspeed != 0)
                 }
             }
         }
-        
+
         with (prtEntity)
         {
             if (!dead)
@@ -127,15 +127,15 @@ if (xspeed != 0)
             }
         }
     }
-    
+
     x += xspeed;
-    
+
     // check for collision
     if (!place_free(x, y))
     {
         // horizontal collision clears fractional component of x position
         x = round(x);
-        
+
         // move back outsie of the object while overlapping.
         xcoll = sign(xspeed) * -0.5;
         repeat (max(32, abs(xspeed) * 4))
@@ -149,14 +149,14 @@ if (xspeed != 0)
                 break;
             }
         }
-        
-        
+
+
         // this value can be read by object logic later.
         xcoll = xspeed;
-        
+
         // cancel x velocity.
         xspeed = 0;
-        
+
         // Slope code
         if (!noSlopeEffect)
         {
@@ -211,7 +211,7 @@ if (yspeed != 0)
                 }
             }
         }
-        
+
         with (prtEntity)
         {
             if (!dead)
@@ -219,7 +219,9 @@ if (yspeed != 0)
                 if (isSolid == 2)
                 {
                     solid = 0;
-                    if (!place_meeting(x, y, myid))
+                    for (var i = 0; i <= abs(ceil(other.yspeed));i++)
+                    {
+                    if (!place_meeting(x, y + i * cgrav, myid))
                     {
                         if (!fnsolid)
                         {
@@ -234,19 +236,20 @@ if (yspeed != 0)
                             }
                         }
                     }
+                    }
                 }
             }
         }
     }
-    
+
     y += yspeed;
-    
+
     // check for collision
     if (!place_free(x, y))
     {
         // clear fractional component of y (for floating point stability)
         y = round(y);
-        
+
         // move back until no longer overlapping with the solid.
         ycoll = sign(yspeed) * -1;
         repeat (max(32, abs(yspeed) * 4))
@@ -260,14 +263,14 @@ if (yspeed != 0)
                 break;
             }
         }
-        
+
         // these values can be read by object logic later
         ycoll = yspeed;
         if (yspeed * cgrav > 0)
         {
             ground = true;
         }
-        
+
         // cancel out y-velocity
         yspeed = 0;
     }
@@ -297,7 +300,7 @@ if (dieToSpikes)
             exit;
         }
     }
-    
+
     if (!spSolid) // spikes caused death
     {
         spSolid = instance_place(x, y, objSpike);
@@ -305,7 +308,7 @@ if (dieToSpikes)
         {
             global.damage = spSolid.contactDamage;
             healthpoints -= global.damage;
-            
+
             if (healthpoints <= 0)
             {
                 event_user(EV_DEATH);

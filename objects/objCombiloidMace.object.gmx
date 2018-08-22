@@ -74,47 +74,47 @@ spd = 0;
 
 if (entityCanStep())
 {
-    attackTimer++;
-    if (instance_exists(target))
+    if (instance_exists(parent))
     {
-        strMMX = target.x;
-    }
-    
-    if (image_index &lt; 2)
-    {
-        image_index += 0.25;
-        attackTimer = 0;
-    }
-    else
-    {
-        if (attackTimer &gt;= 40 &amp;&amp; shotsFired == 0)
+        attackTimer++;
+        if (instance_exists(target))
         {
-            shotsFired = 1;
-            spd = clamp((strMMX - x) / 8, -4, 4);
-            xspeed = spd;
-            yspeed = 4 * image_yscale;
+            strMMX = target.x;
         }
         
-        if (ycoll != 0 &amp;&amp; shotsFired == 1)
+        if (image_index &lt; 2)
         {
-            aimAtPoint(4, parent.x, parent.y + 8 * parent.image_yscale);
-            shotsFired = 2;
-            playSFX(sfxLargeClamp);
+            image_index += 0.25;
+            attackTimer = 0;
         }
-        if ((image_yscale == 1 &amp;&amp; y &lt;= parent.y + 8 * parent.image_yscale || image_yscale == -1 &amp;&amp; y &gt;= parent.y + 8 * parent.image_yscale)
-            &amp;&amp; ((sign(spd) == 1 &amp;&amp; x &lt;= parent.x || sign(spd) == -1 &amp;&amp; x &gt;= parent.x) || sign(spd) == 0) &amp;&amp; shotsFired == 2)
+        else
         {
-            with (parent)
+            if (attackTimer &gt;= 40 &amp;&amp; shotsFired == 0)
             {
-                phase = 4;
+                shotsFired = 1;
+                spd = clamp((strMMX - x) / 8, -4, 4);
+                xspeed = spd;
+                yspeed = 4 * image_yscale;
             }
-            event_user(EV_DEATH);
-        }
+            
+            if (ycoll != 0 &amp;&amp; shotsFired == 1)
+            {
+                aimAtPoint(4, parent.x, parent.y + 8 * parent.image_yscale);
+                shotsFired = 2;
+                playSFX(sfxLargeClamp);
+            }
+            if ((image_yscale == 1 &amp;&amp; y &lt;= parent.y + 8 * parent.image_yscale || image_yscale == -1 &amp;&amp; y &gt;= parent.y + 8 * parent.image_yscale)
+                &amp;&amp; ((sign(spd) == 1 &amp;&amp; x &lt;= parent.x || sign(spd) == -1 &amp;&amp; x &gt;= parent.x) || sign(spd) == 0) &amp;&amp; shotsFired == 2)
+            {
+                with (parent)
+                {
+                    phase = 4;
+                }
+                event_user(EV_DEATH);
+            }
+        } 
     }
-    
-    
-    
-    if (!instance_exists(parent))
+    else
     {
         event_user(EV_DEATH);
     }
