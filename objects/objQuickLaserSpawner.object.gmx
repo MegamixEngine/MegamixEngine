@@ -181,10 +181,10 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
             sy = y;
             
             // find the top left position of the laser spawner so we can spawn at it (basically remove the sprite x and y origin of the spawner)
-            sx += sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle + 90));
-            sy -= sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle + 90)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
-            sx += sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle + 180));
-            sy -= sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle + 180));
+            sx -= sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle));
+            sy += sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
+            sx -= sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle + 270));
+            sy += sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle + 270));
             if (visible)
             {
                 // if spawning on the outside of the block
@@ -320,10 +320,10 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
             ly = y;
             
             // find the top left position of the laser spawner (basically remove the sprite x and y origin of the spawner)
-            lx += sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle + 90));
-            ly -= sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle + 90));
-            lx += sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle + 180));
-            ly -= sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle + 180));
+            lx -= sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle));
+            ly += sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle));
+            lx -= sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle + 270));
+            ly += sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle + 270));
             if (visible)
             {
                 // if on the outside of the block
@@ -446,14 +446,13 @@ if (spawned)
 
 /* if we have a custom sprite with a different sprite origin, shift our position so
 we are in the same place we appeared in in the editor */
-if (sprite_get_xoffset(sprite_index) != 0 &amp;&amp; sprite_get_yoffset(sprite_index) != 0)
+if (sprite_get_xoffset(sprite_index) != 0 || sprite_get_yoffset(sprite_index) != 0)
 {
     // find the top left position of the laser spawner so we can spawn at it (basically remove the sprite x and y origin of the spawner)
-    xstart += sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle - 90));
-    ystart -= sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle - 90)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
-    
-    xstart += sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle));
-    ystart -= sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle));
+    xstart += sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle));
+    ystart -= sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
+    xstart += sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle + 270));
+    ystart -= sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle + 270));
     
     x = xstart;
     y = ystart;
