@@ -219,18 +219,21 @@ if (yspeed != 0)
                 if (isSolid == 2)
                 {
                     solid = 0;
-                    if (!place_meeting(x, y, myid))
+                    for (var i = 0; i < abs(ceil(other.yspeed));i++)
                     {
-                        if (!fnsolid)
+                        if (!place_meeting(x, y, myid))
                         {
-                            solid = 1;
-                        }
-                        else
-                        {
-                            solid = !global.factionStance[faction, other.faction];
-                            if (fnsolid == 2)
+                            if (!fnsolid)
                             {
-                                solid = !solid;
+                                solid = 1;
+                            }
+                            else
+                            {
+                                solid = !global.factionStance[faction, other.faction];
+                                if (fnsolid == 2)
+                                {
+                                    solid = !solid;
+                                }
                             }
                         }
                     }
