@@ -104,8 +104,13 @@ if (entityCanStep())
     }
     else // otherwise Glooper cannot fire.
     {
-        shotTimer = 0;
-        
+        if (image_index == 0)
+        {
+            shotTimer = 0; 
+            shooting = false;  
+            hasFired = false;  
+            animMax = 12;          
+        }     
         // image_index = 0;
     }
     
