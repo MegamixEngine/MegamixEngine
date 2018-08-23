@@ -5647,7 +5647,6 @@
         <object>objects\objMagmaBeamSource</object>
         <object>objects\objSplashWomanWaterPlatform</object>
         <object>objects\objTornadoPlatform</object>
-        <object>objects\objTornadoPlatformStop</object>
         <object>objects\objWily4Laser</object>
         <objects name="Don't Use">
           <object>objects\objMagmaBeam</object>

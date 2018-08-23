@@ -130,7 +130,10 @@ enemyDamageValue(objIceSlasher, 4);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>var xscl = image_xscale;
+image_xscale=1;
+event_inherited();
+image_xscale=xscl;
 
 if (entityCanStep())
 {
