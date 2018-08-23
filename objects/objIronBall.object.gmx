@@ -47,7 +47,7 @@ laserSpeed = 2;
 yStore = choose(1, -1);
 
 // Music
-music = "18 Boss Battle.spc"; // THIS IS JUST A PLACEHOLDER UNTIL WILY WARS BOSS THEME IS FOUND
+music = "WilyTowerBossTheme.vgm";
 musicType = "VGM";
 musicTrackNumber = 0;
 

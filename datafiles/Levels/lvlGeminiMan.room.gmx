@@ -126,24 +126,7 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objBossBarrier" x="2432" y="464" name="inst_1DB9D0F4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="2416" y="464" name="inst_03D954CF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="2400" y="464" name="inst_DB934707" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDefaultSpawn" x="128" y="384" name="inst_6294751C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objProtomanEncounter" x="2431" y="400" name="inst_B0F07B0C" locked="0" code="if (global.difficulty &gt;= DIFF_HARD)&#xA;    instance_destroy();&#xA;    &#xA;instantLeave = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5360" y="128" name="inst_13D25177" locked="0" code="isTile=true;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5360" y="144" name="inst_27A2CBB6" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5360" y="160" name="inst_C376A3BE" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5360" y="176" name="inst_673962EC" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5616" y="128" name="inst_B6CF7004" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5616" y="144" name="inst_974305EA" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5616" y="160" name="inst_E27A29BC" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5616" y="176" name="inst_D3813570" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5632" y="128" name="inst_1C3866C4" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5632" y="144" name="inst_E64D1828" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5632" y="160" name="inst_878C5283" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5632" y="176" name="inst_698277A7" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5376" y="128" name="inst_6A70791C" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5376" y="144" name="inst_F221AC18" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5376" y="160" name="inst_D73AF5DA" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="5376" y="176" name="inst_F7562DF2" locked="0" code="isTile=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="5504" y="176" name="inst_83CA4E26" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="3968" y="624" name="inst_406C8533" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGeminiEgg" x="2704" y="624" name="inst_D786E250" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -378,7 +361,7 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objSpine" x="1392" y="400" name="inst_2A6A3D3A" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBikky" x="3936" y="432" name="inst_B20AA6FA" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSpine" x="3424" y="224" name="inst_CFE826E9" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSingleTilesetAnimation" x="112" y="560" name="inst_39DAB2B6" locked="0" code="animBackgrounds[0]=tstGeminiman;&#xA;animBackgrounds[1]=tstGeminiman;&#xA;animBackgrounds[2]=tstGeminiman;&#xA;&#xA;animSpeeds[0] = 0.1;&#xA;animSpeeds[1] = 0.1;&#xA;animSpeeds[2] = 0.1;&#xA;&#xA;//Animation&#xA;&#xA;//Big blocks&#xA;regionTop[0]=0;&#xA;regionLeft[0]=0;&#xA;regionWidth[0]=32;&#xA;regionHeight[0]=32;&#xA;animLengths[0]=3;&#xA;animType[0]=1;//Horizontal strip&#xA;&#xA;//Small blocks&#xA;regionTop[1]=0;&#xA;regionLeft[1]=96;&#xA;regionWidth[1]=16;&#xA;regionHeight[1]=16;&#xA;animLengths[1]=3;&#xA;animType[1]=1;//Horizontal strip&#xA;&#xA;//Water&#xA;regionTop[2]=32;&#xA;regionLeft[2]=0;&#xA;regionWidth[2]=64;&#xA;regionHeight[2]=32;&#xA;animLengths[2]=3;&#xA;animType[2]=1;//Horizontal strip" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSingleTilesetAnimation" x="112" y="560" name="inst_39DAB2B6" locked="0" code="animBackgrounds[0]=tstGeminiman;&#xA;animBackgrounds[1]=tstGeminiman;&#xA;animBackgrounds[2]=tstGeminiman;&#xA;//animBackgrounds[3]=tstGeminiman;&#xA;&#xA;animSpeeds[0] = 0.1;&#xA;animSpeeds[1] = 0.1;&#xA;animSpeeds[2] = 0.1;&#xA;//animSpeeds[3] = 0.1;&#xA;&#xA;//Animation&#xA;&#xA;//Big blocks&#xA;regionTop[0]=0;&#xA;regionLeft[0]=0;&#xA;regionWidth[0]=32;&#xA;regionHeight[0]=32;&#xA;animLengths[0]=3;&#xA;animType[0]=1;//Horizontal strip&#xA;&#xA;//Small blocks&#xA;regionTop[1]=0;&#xA;regionLeft[1]=96;&#xA;regionWidth[1]=16;&#xA;regionHeight[1]=16;&#xA;animLengths[1]=3;&#xA;animType[1]=1;//Horizontal strip&#xA;&#xA;//Water&#xA;regionTop[2]=32;&#xA;regionLeft[2]=0;&#xA;regionWidth[2]=64;&#xA;regionHeight[2]=32;&#xA;animLengths[2]=3;&#xA;animType[2]=1;//Horizontal strip&#xA;&#xA;//Boss door - UNCOMMENT WHEN ANIMATED BOSS DOORS ACTUALLY H'ING WORK&#xA;/*regionTop[3]=16;&#xA;regionLeft[3]=96;&#xA;regionWidth[3]=16;&#xA;regionHeight[3]=16;&#xA;animLengths[3]=3;&#xA;animType[3]=1;//Horizontal strip&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="224" y="560" name="inst_8B133D05" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="240" y="560" name="inst_8BD86759" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="256" y="560" name="inst_EAF84983" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -441,6 +424,8 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objYambow" x="4320" y="496" name="inst_4AD7AA5F" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objShadowClone" x="4016" y="144" name="inst_DDE76D70" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="2384" y="624" name="inst_5AF54E92" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoor" x="224" y="576" name="inst_3BF65C71" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDefaultSpawn" x="128" y="384" name="inst_0265247C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstGeminiman" x="5632" y="128" w="16" h="16" xo="112" yo="64" id="11311032" name="inst_60D1BEA0" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -5245,7 +5230,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="4576" y="704" w="32" h="16" xo="32" yo="0" id="11225687" name="inst_39F3D58D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="4320" y="688" w="32" h="16" xo="32" yo="48" id="11225688" name="inst_5C6D70B5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="4576" y="688" w="32" h="16" xo="32" yo="48" id="11225689" name="inst_58926C97" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="128" y="560" w="144" h="96" xo="0" yo="0" id="11225690" name="inst_84F9078E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="128" y="400" w="16" h="16" xo="0" yo="64" id="11225691" name="inst_82F2592D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="240" y="432" w="16" h="16" xo="16" yo="64" id="11225693" name="inst_C75314C1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="496" y="432" w="16" h="16" xo="16" yo="64" id="11225694" name="inst_756F5DE4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -5314,22 +5298,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2384" y="448" w="16" h="16" xo="16" yo="80" id="11233677" name="inst_8117AB1C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2384" y="464" w="16" h="16" xo="16" yo="80" id="11233678" name="inst_4504769D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3904" y="304" w="16" h="16" xo="0" yo="32" id="11233681" name="inst_BFE451D7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5360" y="128" w="16" h="16" xo="160" yo="16" id="11250133" name="inst_AE865A57" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5360" y="144" w="16" h="16" xo="160" yo="16" id="11250134" name="inst_DAA383BA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5360" y="176" w="16" h="16" xo="160" yo="16" id="11250135" name="inst_3904BDF2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5360" y="160" w="16" h="16" xo="160" yo="16" id="11250136" name="inst_F1567E9A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5376" y="176" w="16" h="16" xo="160" yo="16" id="11250137" name="inst_D802D273" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5376" y="160" w="16" h="16" xo="160" yo="16" id="11250138" name="inst_DF5E096E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5376" y="144" w="16" h="16" xo="160" yo="16" id="11250139" name="inst_3EC6430F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5376" y="128" w="16" h="16" xo="160" yo="16" id="11250140" name="inst_C591363C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5616" y="128" w="16" h="16" xo="160" yo="16" id="11250142" name="inst_3A93FDFD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5616" y="144" w="16" h="16" xo="160" yo="16" id="11250143" name="inst_827C561C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5616" y="160" w="16" h="16" xo="160" yo="16" id="11250144" name="inst_CDA1D44B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5616" y="176" w="16" h="16" xo="160" yo="16" id="11250145" name="inst_D459BBA6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5632" y="128" w="16" h="16" xo="160" yo="16" id="11250146" name="inst_B12C6EE2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5632" y="144" w="16" h="16" xo="160" yo="16" id="11250147" name="inst_62D4002E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5632" y="160" w="16" h="16" xo="160" yo="16" id="11250148" name="inst_F2FC1D0C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstTopman" x="5632" y="176" w="16" h="16" xo="160" yo="16" id="11250149" name="inst_640B2E43" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="16" y="400" w="16" h="16" xo="16" yo="64" id="11250151" name="inst_2D1879C9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="32" y="400" w="16" h="16" xo="0" yo="64" id="11250153" name="inst_EF90BB2D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="32" y="416" w="16" h="16" xo="0" yo="80" id="11250154" name="inst_DF1B760E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -5624,6 +5592,23 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="48" y="432" w="16" h="16" xo="16" yo="80" id="11310322" name="inst_D6B7B047" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="48" y="448" w="16" h="16" xo="16" yo="80" id="11310326" name="inst_A5DCEEC7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="48" y="464" w="16" h="16" xo="0" yo="64" id="11310698" name="inst_0E2F09BF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5360" y="128" w="16" h="16" xo="96" yo="16" id="11311088" name="inst_BAB2DD61" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5360" y="144" w="16" h="16" xo="96" yo="16" id="11311089" name="inst_CC16D213" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5360" y="160" w="16" h="16" xo="96" yo="16" id="11311090" name="inst_58D01D71" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5360" y="176" w="16" h="16" xo="96" yo="16" id="11311091" name="inst_FF6BF487" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5376" y="176" w="16" h="16" xo="96" yo="16" id="11311092" name="inst_DD033DC7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5376" y="160" w="16" h="16" xo="96" yo="16" id="11311093" name="inst_FB36E11E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5376" y="144" w="16" h="16" xo="96" yo="16" id="11311094" name="inst_67F00A1C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5376" y="128" w="16" h="16" xo="96" yo="16" id="11311095" name="inst_BA4532D7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5616" y="128" w="16" h="16" xo="96" yo="16" id="11311096" name="inst_3D8F5835" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5616" y="144" w="16" h="16" xo="96" yo="16" id="11311097" name="inst_86343C43" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5616" y="160" w="16" h="16" xo="96" yo="16" id="11311098" name="inst_120D660D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5616" y="176" w="16" h="16" xo="96" yo="16" id="11311099" name="inst_1B177BA1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5632" y="176" w="16" h="16" xo="96" yo="16" id="11311100" name="inst_EEA6847E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5632" y="160" w="16" h="16" xo="96" yo="16" id="11311101" name="inst_F82DBEDF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5632" y="144" w="16" h="16" xo="96" yo="16" id="11311102" name="inst_2558BCFC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5632" y="128" w="16" h="16" xo="96" yo="16" id="11311103" name="inst_3904CCEA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="128" y="560" w="144" h="112" xo="0" yo="0" id="11311104" name="inst_72390DA1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3840" y="480" w="16" h="16" xo="96" yo="80" id="11308119" name="inst_CE364E0E" depth="900000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="4016" y="624" w="32" h="32" xo="64" yo="0" id="11308120" name="inst_FE5CF79B" depth="900000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="4080" y="592" w="32" h="32" xo="0" yo="0" id="11308121" name="inst_91B23BE5" depth="900000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

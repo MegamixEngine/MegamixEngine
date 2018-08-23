@@ -82,7 +82,7 @@ enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 1);
 
 // MaGMML2
-enemyDamageValue(objHornetChaser, 1);
+enemyDamageValue(objHornetChaser, 4); //This is primarily for the Example Game
 enemyDamageValue(objJewelSatellite, 2);
 enemyDamageValue(objGrabBuster, 2);
 enemyDamageValue(objTripleBlade, 1);
