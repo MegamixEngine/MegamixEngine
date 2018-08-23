@@ -219,23 +219,24 @@ if (yspeed != 0)
                 if (isSolid == 2)
                 {
                     solid = 0;
-                    for (var i = 0; i <= abs(ceil(other.yspeed));i++)
+                    for (var i = 0; i <= abs(ceil(other.yspeed));i+=abs(other.yspeed))
                     {
-                    if (!place_meeting(x, y + i * cgrav, myid))
-                    {
-                        if (!fnsolid)
+                        if (!place_meeting(x, y + i * cgrav, myid))
                         {
-                            solid = 1;
-                        }
-                        else
-                        {
-                            solid = !global.factionStance[faction, other.faction];
-                            if (fnsolid == 2)
+                            if (!fnsolid)
                             {
-                                solid = !solid;
+                                solid = 1;
                             }
+                            else
+                            {
+                                solid = !global.factionStance[faction, other.faction];
+                                if (fnsolid == 2)
+                                {
+                                    solid = !solid;
+                                }
+                            }
+                            break;
                         }
-                    }
                     }
                 }
             }
