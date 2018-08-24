@@ -42,9 +42,10 @@ myDir = -1;
 calibrateDirection();
 radius = 1.5 * 16; // 1.5 tiles; the radius that MM needs to enter to trigger the jumping of the Joe
 resetDir = 0;
+waitCount = 0;
 shootCount = 0;
 jumpCount = 0;
-yspeedJump = -4; // change this to alter the yspeed when the Joe jumps
+yspeedJump = -6; // change this to alter the yspeed when the Joe jumps
 shootCountMax = 2;
 jumpCountMax = 3;
 </string>
@@ -90,20 +91,25 @@ if (entityCanStep())
         }
         if (shootCount &gt;= shootCountMax)
         {
-            yspeed = yspeedJump;
-            ground = false;
-            jumpCount++;
-            if (!instance_exists(target))
+            waitCount += 1
+            if waitCount &gt;=60
             {
-                shootCount = 0;
-                jumpCount = 0;
-            }
-            else if (instance_exists(target))
-            {
-                if (point_distance(x, 0, target.x, 0) &gt; radius || jumpCount &gt;= jumpCountMax)
+                yspeed = yspeedJump;
+                ground = false;
+                jumpCount++;
+                waitCount = 0;
+                if (!instance_exists(target))
                 {
                     shootCount = 0;
-                    jumpCount = 0; // Stops Jumping if you are too far away or the Joe has reached the maximum amount of consecutive jumps
+                    jumpCount = 0;
+                }
+                else if (instance_exists(target))
+                {
+                    if (point_distance(x, 0, target.x, 0) &gt; radius || jumpCount &gt;= jumpCountMax)
+                    {
+                        shootCount = 0;
+                        jumpCount = 0; // Stops Jumping if you are too far away or the Joe has reached the maximum amount of consecutive jumps
+                    }
                 }
             }
         }
@@ -132,35 +138,43 @@ if (entityCanStep())
         }
         else
         {
-            shootTimer += 1;
-            if (shootTimer &gt;= 6)
+            if waitCount &lt; 3
             {
-                if (shootAmount &lt; 7)
+                waitCount += 1
+            }
+            else
+            {
+                shootTimer += 1;
+                if (shootTimer &gt;= 6)
                 {
-                    shootTimer = 0;
-                    var shootID, box;
-                    
-                    // set spawn point for bullet based on xscale
-                    if (image_xscale == 1)
+                    if (shootAmount &lt; 7)
                     {
-                        box = bbox_right;
+                        shootTimer = 0;
+                        var shootID, box;
+                        
+                        // set spawn point for bullet based on xscale
+                        if (image_xscale == 1)
+                        {
+                            box = bbox_right;
+                        }
+                        else
+                        {
+                            box = bbox_left;
+                        }
+                        shootID = instance_create(box, y - 8, objEnemyBullet);
+                        shootID.xspeed = image_xscale * 4;
+                        shootID.image_xscale = image_xscale;
+                        shootID.sprite_index = sprMM9MachineGunJoeBullet;
+                        shootAmount++;
                     }
-                    else
+                    if (shootAmount &gt;= 7)
                     {
-                        box = bbox_left;
+                        shootTimer = 0;
+                        shootAmount = 0;
+                        shooting = false;
+                        shootCount++;
+                        waitCount = 0;
                     }
-                    shootID = instance_create(box, y - 8, objEnemyBullet);
-                    shootID.xspeed = image_xscale * 4;
-                    shootID.image_xscale = image_xscale;
-                    shootID.sprite_index = sprMM9MachineGunJoeBullet;
-                    shootAmount++;
-                }
-                if (shootAmount &gt;= 7)
-                {
-                    shootTimer = 0;
-                    shootAmount = 0;
-                    shooting = false;
-                    shootCount++;
                 }
             }
         }
@@ -235,7 +249,7 @@ else if (dead)
           <argument>
             <kind>1</kind>
             <string>// if image_index is shield up, and you're not shooting sniper joe in the back or whatever, reflect bullets
-if (image_index == 0)
+if (sprite_index != sprMM9MachineGunJoeJump &amp;&amp; image_index == 0)
 {
     if (collision_rectangle(x + 12 * image_xscale, y - 3,
         x + 14 * image_xscale, y - 20, other.id, false, false))
