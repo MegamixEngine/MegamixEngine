@@ -52,12 +52,8 @@ else
     dir = 1;
 }
 
-while (checkSolid(0, 0, 1, 1))
-{
-    x += dir * 4;
-}
 
-image_speed = 0.15; // Using this variable is not recommended, please avoid it
+image_speed = 0.15;
 </string>
           </argument>
         </arguments>
@@ -80,7 +76,7 @@ image_speed = 0.15; // Using this variable is not recommended, please avoid it
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>    event_inherited();
 
 if (entityCanStep())
 {
@@ -138,6 +134,12 @@ else
             <kind>1</kind>
             <string>/// On spawn
 event_inherited();
+if(spawned){
+    while (checkSolid(0, 0, 1, 1))
+    {
+        x += dir * 4;
+    }
+}
 bounce = 0;
 yspeed = 1.5;
 </string>
