@@ -44,6 +44,9 @@ radius[0] = 32;
 sectionSurface = noone;
 sectionSurfaceMask = noone;
 scanned = false;
+skipDraw=false;
+
+prevWeather = global.telTelWeather;
 </string>
           </argument>
         </arguments>
@@ -70,7 +73,47 @@ scanned = false;
 {
     instance_deactivate_object(id);
 }
+skipDraw=false;
+if(instance_exists(objTelTelWeatherControl))
+{
+    if(prevWeather!=global.telTelWeather&amp;&amp;global.telTelWeather==2)
+    {
+        tiles = tile_get_ids_at_depth(layer);
+        tile_layer_show(layer);
+        for(var i=array_length_1d(tiles)-1;i&gt;=0;--i)
+        {
+            var tile = tiles[i];
+            var tx = tile_get_x(tile);
+            var ty = tile_get_y(tile);
+            var st = instance_create(tx,ty,objTelTelSnowTile);
+            st.tileTop = tile_get_top(tile);
+            st.tileLeft = tile_get_left(tile);
+            st.tileBG = tile_get_background(tile);
+            st.tileWidth = tile_get_width(tile);
+            st.tileHeight = tile_get_height(tile);
+            st.depth = layer-1;
+            st.tile = tile;
+            
+            if(!tile_exists(tile_layer_find(layer,tx,ty-8)))
+            {
+                st.isGround=true;
+            }
+            
+        }
+        skipDraw=true;
+    }
+    else if(prevWeather!=global.telTelWeather)
+    {
+        scanned=false;
+    }
     
+}
+prevWeather = global.telTelWeather;
+if(global.telTelWeather==2)
+{
+    skipDraw=true;
+    exit;
+}
 if (!scanned)
 {
     tiles = tile_get_ids_at_depth(layer);
@@ -171,6 +214,8 @@ surface_free(sectionSurfaceMask);
           <argument>
             <kind>1</kind>
             <string>// surface (tiles)
+if(skipDraw)
+    exit;
 surface_set_target(sectionSurface);
 draw_clear_alpha(c_white, 0);
 for (var i = 0; i &lt; array_length_1d(tiles); i++)

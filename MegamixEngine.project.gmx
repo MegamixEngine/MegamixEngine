@@ -3358,6 +3358,7 @@
         <sprite>sprites\sprJunkMagDebris</sprite>
         <sprite>sprites\sprJunkDust</sprite>
         <sprite>sprites\sprControllableElevator</sprite>
+        <sprite>sprites\sprRevealingTilesSnow</sprite>
       </sprites>
       <sprites name="MM8">
         <sprite>sprites\sprJumpSign</sprite>
@@ -4679,6 +4680,7 @@
           <object>objects\objStegorusSpike</object>
           <object>objects\objStegorusMissile</object>
           <object>objects\objTelTelWeatherControl</object>
+          <object>objects\objTelTelSnowTile</object>
         </objects>
       </objects>
       <objects name="MM8">
