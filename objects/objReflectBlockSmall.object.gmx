@@ -29,6 +29,7 @@
 
 weakness = -1;
 dieToSpikes = false;
+faction=5;
 </string>
           </argument>
         </arguments>

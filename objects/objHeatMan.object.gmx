@@ -255,7 +255,7 @@ if (entityCanStep())
                     {
                         y -= 8;
                         grav = 0;
-                        blockCollision = false;
+                    
                         if (instance_exists(target))
                             targetX = target.x;
                         else
@@ -292,16 +292,14 @@ if (entityCanStep())
                     {
                         image_index = 10 + (phaseTimer div 4) mod 3;
                         xspeed = 5 * image_xscale;
-                        blockCollision = false;
                         grav = 0;
                     }
-                    if ((x - targetX) * image_xscale &gt;= 0)
+                    if (((x - targetX) * image_xscale &gt;= 0) || xcoll!=0)
                     {
                         // reached destination; stop
                         xspeed = 0;
                         
                         // grav = 0.25;
-                        blockCollision = true;
                         deTimer += 1;
                         image_index = 9 - (deTimer div 5); // 9 - (phaseTimer div 5);
                         if (image_index &lt; 7)
