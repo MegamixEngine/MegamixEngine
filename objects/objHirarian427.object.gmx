@@ -93,7 +93,7 @@ if (entityCanStep())
     }
     
     // if Hirarian has hit wall, explode.
-    if (xcoll != 0)
+    if (activated&amp;&amp;xcoll != 0)
     {
         instance_create(x, spriteGetYCenter(), objHarmfulExplosion);
         playSFX(sfxExplosion2);
@@ -173,12 +173,20 @@ image_index = (5 * col) + imageOffset;
 
 image_index = 0;
 
-activated = false;
-imageOffset = 0;
-imageTimer = 0;
-
-blockCollision = 0;
-grav = 0;
+if(spawned)
+{
+    
+    activated = false;
+    onFloor = false;
+    imageOffset = 0;
+    imageTimer = 0;
+    
+    blockCollision = 0;
+    grav = 0;
+    yspeed=0;
+    xspeed=0;
+    xcoll=0;
+}
 </string>
           </argument>
         </arguments>

@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="123" name="datafiles">
+  <datafiles number="126" name="datafiles">
     <datafile>
       <name>CleanMem.dll</name>
       <exists>-1</exists>
@@ -55,7 +55,7 @@
       </ConfigOptions>
       <filename>GMFMODSimple.dll</filename>
     </datafile>
-    <datafiles number="123" name="Music">
+    <datafiles number="126" name="Music">
       <datafile>
         <name>14 Tenguman.spc</name>
         <exists>-1</exists>
@@ -515,8 +515,25 @@
         </ConfigOptions>
         <filename>WilyIntro.ogg</filename>
       </datafile>
+      <datafile>
+        <name>WilyTowerBossTheme.vgm</name>
+        <exists>-1</exists>
+        <size>94289</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>WilyTowerBossTheme.vgm</filename>
+      </datafile>
     </datafiles>
-    <datafiles number="123" name="Recordings">
+    <datafiles number="126" name="Recordings">
       <datafile>
         <name>demoHoneyWoman.mrc</name>
         <exists>-1</exists>
@@ -569,8 +586,8 @@
         <filename>demoPico.mrc</filename>
       </datafile>
     </datafiles>
-    <datafiles number="123" name="UnitTests">
-      <datafiles number="123" name="Rooms">
+    <datafiles number="126" name="UnitTests">
+      <datafiles number="126" name="Rooms">
         <datafile>
           <name>lvlRecordingTest.room.gmx</name>
           <exists>-1</exists>
@@ -691,7 +708,7 @@
           <filename>lvlUnitTestBossDoors.room.gmx</filename>
         </datafile>
       </datafiles>
-      <datafiles number="123" name="Recordings">
+      <datafiles number="126" name="Recordings">
         <datafile>
           <name>RecordingObjectSet.mrc</name>
           <exists>-1</exists>
@@ -830,7 +847,7 @@
         </datafile>
       </datafiles>
     </datafiles>
-    <datafiles number="123" name="Levels">
+    <datafiles number="126" name="Levels">
       <datafile>
         <name>lvlChillMan.room.gmx</name>
         <exists>-1</exists>
@@ -1070,23 +1087,6 @@
         <filename>lvlPharaohMan.room.gmx</filename>
       </datafile>
     </datafiles>
-    <datafile>
-      <name>lvlPharaohMan.room.gmx</name>
-      <exists>-1</exists>
-      <size>886218</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>lvlPharaohMan.room.gmx</filename>
-    </datafile>
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\GameMusicEmu</extension>
@@ -4983,6 +4983,9 @@
           <object>objects\objOctobossBullet</object>
           <object>objects\objOctoperOABullet1</object>
         </objects>
+        <objects name="Don't Use">
+          <object>objects\objOctoperDetector</object>
+        </objects>
       </objects>
       <objects name="MM6">
         <object>objects\objGamarnAndGamadayu</object>
@@ -5644,7 +5647,6 @@
         <object>objects\objMagmaBeamSource</object>
         <object>objects\objSplashWomanWaterPlatform</object>
         <object>objects\objTornadoPlatform</object>
-        <object>objects\objTornadoPlatformStop</object>
         <object>objects\objWily4Laser</object>
         <objects name="Don't Use">
           <object>objects\objMagmaBeam</object>

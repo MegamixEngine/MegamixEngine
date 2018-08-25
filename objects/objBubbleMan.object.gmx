@@ -85,6 +85,8 @@ enemyDamageValue(objTripleBlade, 4);
 enemyDamageValue(objSlashClaw, 2);
 enemyDamageValue(objWheelCutter, 4);
 enemyDamageValue(objSakugarne, 0);
+enemyDamageValue(objSuperArrow, 2);
+enemyDamageValue(objWireAdapter, 1);
 
 // MaGMML1
 enemyDamageValue(objMetalBlade, 4);
@@ -409,7 +411,6 @@ with (objEnemyBullet)
 {
     if (parent == other.id)
     {
-        // instance_create(x,y,objExplosion);
         instance_destroy();
     }
 }

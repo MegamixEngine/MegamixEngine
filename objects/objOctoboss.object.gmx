@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>100</depth>
   <persistent>0</persistent>
-  <parentName>prtMiniBoss</parentName>
+  <parentName>objOctoperOA</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -36,27 +36,19 @@ healthpointsStart = 20;
 healthpoints = healthpointsStart;
 contactDamage = 6;
 
-blockCollision = 0;
-grav = 0;
-
-// Enemy specific code
-dir = image_xscale;
-init = 1;
-
-moveDelay = 0;
 yspeed = -0.5;
 yOffset = 36;
 yOffsetMax = 36;
 
-// AI and animation variables
-turnRoundLeft = 0;
-turnRoundRight = 0;
-delay = 0;
-xscaleStorage = 0;
-imageTimer = 1;
-
-leftStuck = false;
-rightStuck = false;
+detectorXOffset = 40;
+detectorYOffset = 32;
+detectorMOffset = 24;
+detectorMXOffset = 24
+spdY = 0.5;
+detectorMXScale = 3;
+detectorMYScale = 3.5;
+turnRoundLong = 80;
+turnRoundShort = 24;
 </string>
           </argument>
         </arguments>
@@ -80,112 +72,6 @@ rightStuck = false;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
-if (entityCanStep())
-{
-    // move y.
-    if (healthpoints &gt; 10)
-        yOffset += yspeed;
-    else
-        yOffset += yspeed * 2;
-    
-    y = floor(ystart + yOffset);
-    
-    // activate octoboss.
-    if (xscaleStorage == 0)
-    {
-        yspeed = -0.5;
-        if (instance_exists(target))
-        {
-            xscaleStorage = target.x - x;
-        }
-        xspeed = image_xscale;
-    }
-    
-    // set reflection properties.
-    if (instance_exists(target))
-    {
-        if (target.x &lt; x)
-        {
-            turnRoundLeft = 80;
-            turnRoundRight = 24;
-        }
-        else
-        {
-            turnRoundLeft = 24;
-            turnRoundRight = 80;
-        }
-    }
-    
-    // if boss hits a background block, turn around.
-    mySolid = instance_place(x + xspeed, y - yOffset, objSolid);
-    if (mySolid &gt;= 0 &amp;&amp; xspeed != 0)
-    {
-        if (xspeed &lt; 0)
-        {
-            x = mySolid.x + (16 * mySolid.image_xscale) + (x - (bbox_left - 1));
-        }
-        else
-        {
-            x = mySolid.x - (bbox_right + 1 - x) - 1;
-        }
-        
-        xspeed = -xspeed;
-    }
-    
-    
-    // check whether or not octoboss would move off a platform. if so turn around.
-    if (!position_meeting(x + 24 + xspeed, y + 33 - ceil(yOffset), objSolid)
-        &amp;&amp; xspeed &gt; 0 &amp;&amp; !position_meeting(x + 24 + xspeed,
-        y + 33 - ceil(yOffset), objWater))
-        xspeed = -1;
-    
-    if (!position_meeting(x - 24 + xspeed, y + 33 - ceil(yOffset), objSolid)
-        &amp;&amp; xspeed &lt; 0 &amp;&amp; !position_meeting(x - 24 + xspeed,
-        y + 33 - ceil(yOffset), objWater))
-        xspeed = 1;
-    
-    
-    // if boss reaches a screen edge, turn round.
-    if (x &gt;= view_xview[0] + view_wview[0] - turnRoundRight &amp;&amp; delay == 0)
-    {
-        xspeed = -1;
-        delay = 2;
-    } // see above
-    else if (x &lt;= view_xview[0] + turnRoundLeft &amp;&amp; delay == 0)
-    {
-        xspeed = 1;
-        delay = 2;
-    }
-    else
-        delay = 0;
-    
-    
-    // bob up and down
-    if (yOffset &gt;= yOffsetMax)
-        yspeed = -0.5;
-    
-    if (yOffset &lt;= 0)
-    {
-        yOffset = 0;
-        yspeed = 0.5;
-        instance_create(x + 16 * image_xscale, y + 20, objOctobossBullet);
-    }
-    
-    // move timer.
-    if (xspeed != 0)
-        moveDelay += 1;
-    
-    // in mega man game gear, octoboss moves 1 pxiel every 3 frames. this replicates that.  the game gear version that this is based off speeds up when it reaches half health.
-    if (moveDelay != 0)
-    {
-        x -= xspeed;
-    }
-    if (moveDelay == 3 &amp;&amp; healthpoints &gt; 10)
-        moveDelay = -1;
-    if (moveDelay &gt;= 1 &amp;&amp; healthpoints &lt;= 10)
-        moveDelay = -1;
-}
 </string>
           </argument>
         </arguments>
@@ -308,27 +194,16 @@ if (iFrames == 1 || iFrames == 3)
     d3d_set_fog(true, c_white, 0, 0);
 }
 
-// makes octoper face its spawned direction, regardless of other scripts.
-drawSelf();
+// makes octoboss face its spawned direction, regardless of other scripts.
 
-if (instance_exists(target))
+
+if (xscaleStorage &lt;= 0)
 {
-    if (target.x &lt; x)
-    {
-        image_xscale = 1;
-        draw_sprite_part_ext(sprite_index, image_index, 0 - sprite_width, 0,
-            sprite_width, ceil(sprite_height - yOffset),
-            round(x - 24) + sprite_width, round(y - 24), -image_xscale,
-            image_yscale, image_blend, image_alpha);
-        image_xscale = -1;
-    }
-    else
-    {
-        image_xscale = 1;
-        draw_sprite_part_ext(sprite_index, image_index, 0, 0, sprite_width,
-            ceil(sprite_height - yOffset), round(x - 24), round(y - 24),
-            image_xscale, image_yscale, image_blend, image_alpha);
-    }
+    image_xscale = 1;
+    draw_sprite_part_ext(sprite_index, image_index, 0, 0, sprite_width,
+        sprite_height - yOffset, round(x - 24) + sprite_width, round(y - 24),
+        -image_xscale, image_yscale, image_blend, image_alpha);
+    image_xscale = -1;
 }
 else
 {
@@ -337,6 +212,8 @@ else
         ceil(sprite_height - yOffset), round(x - 24), round(y - 24),
         image_xscale, image_yscale, image_blend, image_alpha);
 }
+
+
 
 if (imageTimer == 1)
 {

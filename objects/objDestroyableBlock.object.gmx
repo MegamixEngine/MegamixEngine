@@ -127,11 +127,14 @@ with (other)
 {
     guardCancel = 4;
     
-    if (instance_exists(parent))
+    if(object_is_ancestor(id,prtPlayerProjectile))
     {
-        if (global.weapon[parent.playerID] == other.weakness &amp;&amp; (global.weapon[parent.playerID] == 0 || object_index != objBusterShot))
+        if (instance_exists(parent))
         {
-            guardCancel = 0;
+            if (global.weapon[parent.playerID] == other.weakness &amp;&amp; (global.weapon[parent.playerID] == 0 || object_index != objBusterShot))
+            {
+                guardCancel = 0;
+            }
         }
     }
 }

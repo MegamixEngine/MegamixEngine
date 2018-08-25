@@ -84,6 +84,7 @@ enemyDamageValue(objSlashClaw, 2);
 enemyDamageValue(objWheelCutter, 1);
 enemyDamageValue(objSakugarne, 4);
 enemyDamageValue(objSuperArrow, 2);
+enemyDamageValue(objWireAdapter, 2);
 
 // MaGMML1
 enemyDamageValue(objMetalBlade, 1);
@@ -130,7 +131,10 @@ enemyDamageValue(objIceSlasher, 4);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>var xscl = image_xscale;
+image_xscale=1;
+event_inherited();
+image_xscale=xscl;
 
 if (entityCanStep())
 {
@@ -251,7 +255,7 @@ if (entityCanStep())
                     {
                         y -= 8;
                         grav = 0;
-                        blockCollision = false;
+                    
                         if (instance_exists(target))
                             targetX = target.x;
                         else
@@ -288,16 +292,14 @@ if (entityCanStep())
                     {
                         image_index = 10 + (phaseTimer div 4) mod 3;
                         xspeed = 5 * image_xscale;
-                        blockCollision = false;
                         grav = 0;
                     }
-                    if ((x - targetX) * image_xscale &gt;= 0)
+                    if (((x - targetX) * image_xscale &gt;= 0) || xcoll!=0)
                     {
                         // reached destination; stop
                         xspeed = 0;
                         
                         // grav = 0.25;
-                        blockCollision = true;
                         deTimer += 1;
                         image_index = 9 - (deTimer div 5); // 9 - (phaseTimer div 5);
                         if (image_index &lt; 7)

@@ -114,7 +114,7 @@ if (!global.frozen)
             {
                 with (prtEntity)
                 {
-                    if (global.factionStance[other.faction, faction] &amp;&amp; canHit &amp;&amp; !dead &amp;&amp; !iFrames)
+                    if (insideView()&amp;&amp;global.factionStance[other.faction, faction] &amp;&amp; canHit &amp;&amp; !dead &amp;&amp; !iFrames)
                     {
                         with (other)
                         {

@@ -109,7 +109,7 @@ enemyDamageValue(objWheelCutter, 1);
 enemyDamageValue(objSlashClaw, 1);
 enemyDamageValue(objSakugarne, 3);
 enemyDamageValue(objSuperArrow, 2);
-enemyDamageValue(objWireAdapter, 6);
+enemyDamageValue(objWireAdapter, 3);
 
 // MaGMML1
 enemyDamageValue(objMetalBlade, 2);

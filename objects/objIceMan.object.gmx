@@ -80,6 +80,7 @@ enemyDamageValue(objTripleBlade, 2);
 enemyDamageValue(objSlashClaw, 2);
 enemyDamageValue(objWheelCutter, 2);
 enemyDamageValue(objSakugarne, 4);
+enemyDamageValue(objWireAdapter, 2);
 
 // MaGMML1
 enemyDamageValue(objMetalBlade, 2);
@@ -102,6 +103,18 @@ enemyDamageValue(objTenguDisk, 2);
 enemyDamageValue(objSaltWater, 1);
 enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 2);
+
+// MaG24HMML
+enemyDamageValue(objSuperArmBlockProjectile, 1);
+enemyDamageValue(objSuperArmDebris, 1);
+enemyDamageValue(objChillShot, 0);
+enemyDamageValue(objChillSpikeLanded, 0);
+
+// Misc.
+enemyDamageValue(objPowerStone, 1);
+enemyDamageValue(objPlantBarrier, 1);
+enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objIceSlasher, 0);
 </string>
           </argument>
         </arguments>

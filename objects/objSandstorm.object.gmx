@@ -71,6 +71,7 @@ imgTimer = 0;
 
 if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
+    
     imgTimer += 1;
     if (imgTimer == 5)
     {
@@ -104,10 +105,17 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             {
                 if (!climbing &amp;&amp; !sandstormed)
                 {
-                    shiftObject(other.dir * 0.5, 0, 1);
+                    shiftObject(other.dir *abs(other.mySpeed*0.5), 0, 1);
                     sandstormed = 1;
                 }
             }
+        }
+        with(objFuraibon)
+        {
+            if(!dead&amp;&amp;collision_rectangle(other.xs + other.i * 16 * -other.dir, view_yview + other.i * 32,
+                other.xs + other.i * 16 * -other.dir + (other.size * 16), view_yview + other.i * 32 + 32,
+                id, false, false))
+                event_user(EV_DEATH);
         }
     }
     if (instance_exists(target))

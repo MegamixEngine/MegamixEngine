@@ -46,7 +46,7 @@ blockCollision = 0;
 isSolid = 1;
 
 // Entity specific variables
-type = '';
+type = 'h';
 
 //@cc -1 = opened from the left (default); 1 = opened from the right); 0 = opened both ways;
 dir = 0;
@@ -289,7 +289,8 @@ if (place_meeting(x, y - 4, object_index)
 // Set vertical (horizontal door)
 while (place_meeting(x, y + 4, object_index))
 {
-    while (place_meeting(x, y + 4, object_index))
+    
+   while (place_meeting(x, y + 4, object_index))
     {
         with (instance_place(x, y + 4, object_index))
         {

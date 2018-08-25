@@ -97,12 +97,15 @@ else if (dead == true)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (other)
+            <string>if (!dead)
 {
+    with (other)
+    {
     if (!instance_exists(objGloop))
         instance_create(x, y, objGloop);
+    }
+    instance_destroy();
 }
-instance_destroy();
 </string>
           </argument>
         </arguments>

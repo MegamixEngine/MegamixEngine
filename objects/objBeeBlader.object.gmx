@@ -109,13 +109,10 @@ if (entityCanStep()
         grav = 0.325;
         for (var i = 32; i &lt; 256; i += 1)
         {
-            if (checkSolid(i * image_xscale, 0) || x + i &gt;= (view_xview + view_wview) - 16 || x + i &lt;= view_xview + 16)
+            if (checkSolid(i*image_xscale, -8) || x + i &gt;= view_xview + view_wview - 16 &amp;&amp; image_xscale == 1 || x - i &lt;= view_xview + 16 &amp;&amp; image_xscale == -1  )
             {
+                setSide = i;
                 break;
-            }
-            else
-            {
-                setSide += 1;
             }
         }
         aimDir = 1;
@@ -128,7 +125,7 @@ if (entityCanStep()
             aimDir = 1;
         }
         
-        xspeed = xSpeedAim(x, y, x + setSide * aimDir + 8 * aimDir, y, yspeed, grav);
+        xspeed = xSpeedAim(x, y, x + setSide * aimDir, y, yspeed, grav);
         phase = 1;
     }
     if (phase == 1 &amp;&amp; y &gt;= ystart &amp;&amp; yspeed &gt;= 0)
@@ -139,6 +136,7 @@ if (entityCanStep()
         grav = 0;
         attackTimer = 0;
         phase = 0;
+        setSide = 32;
     }
 }
 else if (!insideView())

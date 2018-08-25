@@ -204,17 +204,22 @@ if (entityCanStep())
     if (!place_free(x, y))
     {
         image_xscale = floor(image_xscale);
-        while (!place_free(x, y) &amp;&amp; (image_xscale - 32) &gt;= 0)
+        while (!place_free(x, y) &amp;&amp; (image_xscale - 16) &gt;= 0)
         {
-            image_xscale -= 32;
+            image_xscale -= 16;
         }
+        
         while (!place_free(x, y) &amp;&amp; (image_xscale - 1) &gt;= 0)
         {
             image_xscale -= 1;
         }
-        while (place_free(x, y))
+        image_xscale +=1;
+        if(place_free(x,y))
         {
-            image_xscale += 1;
+            while (place_free(x, y))
+            {
+                image_xscale += 1;
+            }
         }
         image_xscale -=1;
     }
