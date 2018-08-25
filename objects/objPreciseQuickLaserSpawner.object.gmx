@@ -142,14 +142,13 @@ if (init)
     if (variation == 0)
         contactDamage = damage;
     startAngle = image_angle;
-    if (sprite_get_xoffset(sprite_index) != 0 &amp;&amp; sprite_get_yoffset(sprite_index) != 0)
+    if (sprite_get_xoffset(sprite_index) != 0 || sprite_get_yoffset(sprite_index) != 0)
     {
         // find the top left position of the laser spawner so we can spawn at it (basically remove the sprite x and y origin of the spawner)
-        xstart += sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle - 90));
-        ystart -= sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle - 90)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
-        
-        xstart += sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle));
-        ystart -= sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle));
+        xstart += sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle));
+        ystart -= sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
+        xstart += sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle + 270));
+        ystart -= sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle + 270));
         
         x = xstart;
         y = ystart;
@@ -325,11 +324,10 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped &amp;&amp; ph
         var ly = y;
         
         // find the top left position of the laser spawner (basically remove the sprite x and y origin of the spawner)
-        lx += spriteXOffset * cos(degtorad(image_angle + 90));
-        ly -= spriteXOffset * sin(degtorad(image_angle + 90));
-        
-        lx += spriteYOffset * cos(degtorad(image_angle + 180));
-        ly -= spriteYOffset * sin(degtorad(image_angle + 180));
+        lx -= spriteXOffset * cos(degtorad(image_angle));
+        ly += spriteXOffset * sin(degtorad(image_angle));
+        lx -= spriteYOffset * cos(degtorad(image_angle + 270));
+        ly += spriteYOffset * sin(degtorad(image_angle + 270));
         
         if (visible)
         {
@@ -400,11 +398,10 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         var sy = y;
         
         // find the top left position of the laser spawner so we can spawn at it (basically remove the sprite x and y origin of the spawner)
-        sx += spriteXOffset * cos(degtorad(image_angle + 90));
-        sy -= spriteXOffset * sin(degtorad(image_angle + 90)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
-        
-        sx += spriteYOffset * cos(degtorad(image_angle + 180));
-        sy -= spriteYOffset * sin(degtorad(image_angle + 180));
+        sx -= spriteXOffset * cos(degtorad(image_angle));
+        sy += spriteXOffset * sin(degtorad(image_angle)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
+        sx -= spriteYOffset * cos(degtorad(image_angle + 270));
+        sy += spriteYOffset * sin(degtorad(image_angle + 270));
         
         
         if (visible)
