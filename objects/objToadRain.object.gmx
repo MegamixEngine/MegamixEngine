@@ -26,61 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = 0;
-
+parent=noone;
 alarm[0] = 1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (place_meeting(x, y - 4, object_index))
-{
-    if (instance_place(x, y - 4,
-        object_index).object_index == object_index &amp;&amp; instance_place(x,
-        y - 4, object_index).image_xscale == image_xscale)
-    {
-        exit;
-    }
-}
-
-while (place_meeting(x, y + 4, object_index))
-{
-    var nextobjSolid;
-    nextobjSolid = instance_place(x, y + 4, object_index);
-    if (nextobjSolid.object_index != object_index)
-    {
-        exit;
-    }
-    if (nextobjSolid.x == x &amp;&amp; nextobjSolid.image_xscale == image_xscale)
-    {
-        with (nextobjSolid)
-        {
-            instance_destroy();
-        }
-    }
-    else
-    {
-        exit;
-    }
-    image_yscale += 1;
-}
 </string>
           </argument>
         </arguments>
@@ -103,34 +50,30 @@ while (place_meeting(x, y + 4, object_index))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[1] = 1;
-
-if (place_meeting(x - 4, y, object_index))
+            <string>var inst;
+inst = instance_place(x - 4, y, object_index);
+if (inst!=noone&amp;&amp;inst.object_index==object_index&amp;&amp;inst.parent==parent)
 {
-    if (instance_place(x - 4, y, object_index).object_index == object_index)
-    {
-        exit;
-    }
+    exit
 }
-
-while (instance_place(x + 4, y, object_index))
+inst = instance_place(x + 4, y, object_index);
+while (inst!=noone &amp;&amp; inst.parent==parent)
 {
-    var nextobjSolid;
-    nextobjSolid = instance_place(x + 4, y, object_index);
-    if (nextobjSolid.object_index != object_index)
+    if (inst.object_index != object_index)
     {
         exit;
     }
-    with (nextobjSolid)
+    with (inst)
     {
         instance_destroy();
     }
     image_xscale += 1;
-    while (place_meeting(x, y, object_index))
+    inst  = instance_place(x,y,object_index);
+    while (inst!=noone)
     {
-        if (instance_place(x, y, object_index).object_index == object_index)
+        if (inst.parent==parent&amp;&amp;inst.object_index == object_index)
         {
-            with (instance_place(x, y, object_index))
+            with (inst)
             {
                 instance_destroy();
             }
@@ -139,8 +82,79 @@ while (instance_place(x + 4, y, object_index))
         {
             break;
         }
+        inst  = instance_place(x,y,object_index);
     }
 }
+
+inst = instance_place(x, y-4, object_index);
+if (inst!=noone&amp;&amp;inst.object_index==object_index&amp;&amp;inst.parent==parent)
+{
+    exit
+}
+inst = instance_place(x, y+4, object_index);
+while (inst!=noone &amp;&amp; inst.parent==parent)
+{
+    if (inst.object_index != object_index)
+    {
+        exit;
+    }
+    with (inst)
+    {
+        instance_destroy();
+    }
+    image_yscale += 1;
+    inst  = instance_place(x,y,object_index);
+    while (inst!=noone)
+    {
+        if (inst.parent==parent&amp;&amp;inst.object_index == object_index)
+        {
+            with (inst)
+            {
+                instance_destroy();
+            }
+        }
+        else
+        {
+            break;
+        }
+        inst  = instance_place(x,y,object_index);
+    }
+}
+
+
+if (place_meeting(x, y - 4, object_index))
+{
+    if (instance_place(x, y - 4,
+        object_index).object_index == object_index &amp;&amp; instance_place(x,
+        y - 4, object_index).image_xscale == image_xscale)
+    {
+        exit;
+    }
+}
+
+/*
+while (place_meeting(x, y + 4, object_index))
+{
+    var nextobjSolid;
+    nextobjSolid = instance_place(x, y + 4, object_index);
+    if (nextobjSolid.object_index != object_index)
+    {
+        exit;
+    }
+    if (nextobjSolid.x == x &amp;&amp; nextobjSolid.image_xscale == image_xscale)
+    {
+        with (nextobjSolid)
+        {
+            instance_destroy();
+        }
+    }
+    else
+    {
+        exit;
+    }
+    image_yscale += 1;
+}
+*/
 </string>
           </argument>
         </arguments>

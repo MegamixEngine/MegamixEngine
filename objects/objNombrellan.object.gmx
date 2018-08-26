@@ -90,19 +90,19 @@ if (entityCanStep())
     {
         if (dir == "right")
         {
-            other.xspeed = spd;
+            other.xspeed = mySpeed;
         }
         else if (dir == "left")
         {
-            other.xspeed = -spd;
+            other.xspeed = -mySpeed;
         }
         else if (dir == "up")
         {
-            other.yspeed = 1.2 - spd;
+            other.yspeed = 1.2 - mySpeed;
         }
-        else if (dir == "right")
+        else if (dir == "down")
         {
-            other.yspeed = 1 + spd;
+            other.yspeed = 1 + mySpeed;
         }
     }
     
@@ -110,8 +110,10 @@ if (entityCanStep())
     {
         oyher.xspeed = dir * 0.5;
     }
-    
-    image_speed = abs(0.05 * (xspeed+1*sign(xspeed)));
+    var sgn = sign(xspeed);
+	if(sgn==0)
+		sgn=1;
+    image_speed = abs(0.05 * (xspeed+1*sign(sgn)));
     if(sign(xspeed)!=0)
         image_xscale = sign(xspeed);
 }
