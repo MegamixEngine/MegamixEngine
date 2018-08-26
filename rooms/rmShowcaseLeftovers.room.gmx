@@ -207,7 +207,7 @@
     <instance objName="objWanderBell" x="1152" y="576" name="inst_4A1AED82" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSprinklan" x="1616" y="368" name="inst_2F991767" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="800" y="512" name="inst_1FE167ED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objGagabyoall" x="1440" y="608" name="inst_8B169CDB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objGagabyoall" x="1440" y="608" name="inst_8B169CDB" locked="0" code="col = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCyberGabyoall" x="1696" y="560" name="inst_7E9C7044" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1536" y="448" name="inst_EB2451B8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1792" y="448" name="inst_0F9C5176" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -236,7 +236,7 @@
     <instance objName="objStopScrollingHorizontal" x="2816" y="448" name="inst_CEBF3EE0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="3072" y="448" name="inst_EAF3747D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="2872" y="752" name="inst_C14D3892" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSubeil" x="3312" y="768" name="inst_5D378212" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSubeil" x="3312" y="768" name="inst_5D378212" locked="0" code="col = 2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWanaan" x="3360" y="848" name="inst_30D0ECDE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWanaan" x="3392" y="848" name="inst_6852B752" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWanaan" x="3456" y="800" name="inst_7197046D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -287,6 +287,41 @@
     <instance objName="objSolid" x="4304" y="864" name="inst_845DDB38" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="1504" y="544" name="inst_592E23B3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="1336" y="592" name="inst_7661873D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="736" y="512" name="inst_5EC5E936" locked="0" code="text = &quot;objHover. Mega Man 4. Platform that moves following the ground after Mega Man steps on it. Will go over spikes. Speed and direction is controlled by the creation code travelSpeed.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="912" y="560" name="inst_6AD71955" locked="0" code="text = &quot;objTomBoy. Mega Man 4. A weaponized Slinky, moves back and forth and can descend stairs.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1024" y="544" name="inst_E41F66D3" locked="0" code="text = &quot;objWanderBell. Rockman and Forte 2: Challenge From the Future. A simple enemy that walks back and forth along the ground. Has low health.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1488" y="544" name="inst_C7557B7A" locked="0" code="text = &quot;objSpine and objGagabyoall. Mega Man 1 and Mega Man 9. Moves back and forth on the ground, becoming faster when on the same horizontal plane as Mega Man. While not shown here the speeds it moves in both states are editable with the creation codes slowSpeed and fastSpeed. They are immune to most weapons. Both have recolor options with the creation code col.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCyberGabyoall" x="1696" y="592" name="inst_CBB565CE" locked="0" code="dir = -1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1632" y="608" name="inst_8FECFCEB" locked="0" code="text = &quot;objCyberGabyoall. Mega Man 6. Behaves similarly to the previous two enemies but has rocket jets to move faster and can be stunned with certain weapons. Can be placed on the ceiling.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1552" y="288" name="inst_11942FD9" locked="0" code="text = &quot;objSprinklan. Mega Man 10. Behaves like a Spine but shoots projectiles erratically when shot.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1776" y="368" name="inst_23CB436D" locked="0" code="text = &quot;objXBlock. Mega Man 6. A normal looking block at first, can be pushed with Break Dash. Can be used to block Peat dispensers.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1840" y="368" name="inst_717635EB" locked="0" code="text = &quot;objPeterchy. Mega Man 3. Walks towards Mega Man. That's about it really.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2160" y="304" name="inst_731D31FF" locked="0" code="text = &quot;objCamon. Mega Man 5. Drives towards Mega Man. Really exciting stuff.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2400" y="320" name="inst_9866BDBD" locked="0" code="text = &quot;objTwinRoader. Mega Man 6. Also drives towards Mega Man. Has color swap options using the creation code col.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1904" y="336" name="inst_5019AC30" locked="0" code="text = &quot;objTrainShake. Mega Man 5. Visual effect object that gives the shaking effect of Charge Man's stage from Mega Man 5.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTwinRoader" x="2400" y="240" name="inst_71E909B9" locked="0" code="col = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTwinRoader" x="2480" y="240" name="inst_31E1105E" locked="0" code="col = 2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="2352" y="192" name="inst_8B83A7FF" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="2496" y="192" name="inst_3BA03960" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>
+    <instance objName="objMonoRoader" x="2624" y="256" name="inst_C80913C8" locked="0" code="col = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMonoRoader" x="2688" y="256" name="inst_0E3C3A13" locked="0" code="col = 2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMonoRoader" x="2752" y="256" name="inst_A593F73D" locked="0" code="col = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="2592" y="192" name="inst_BE9112A8" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="2768" y="192" name="inst_58861128" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2624" y="336" name="inst_250C2968" locked="0" code="text = &quot;objMonoRoader. Mega Man 4. Moves forward and upon getting close to Mega Man will retract into its shell and spin at him, at which point it becomes immune to most weapons. Has color variants using the creation code col.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2880" y="352" name="inst_33644C2F" locked="0" code="text = &quot;objTurboRoader. Mega Man 7. Drives in place for a moment before charging towards Mega Man.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2976" y="624" name="inst_A643D89A" locked="0" code="text = &quot;objBiree, objGiree, and objSmaplar. Mega Man 4, Mega Man 5, and Mega Man 9. Various enemies that track the ground and are immune to most weapons. Smaplar's have color options with the creation code col.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2912" y="736" name="inst_D13F0D00" locked="0" code="text = &quot;objGaryoby. The Mega Man 4 variant of Spine.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="3024" y="832" name="inst_8EA9E0BB" locked="0" code="text = &quot;objSpringHead. Mega Man 2. AKA Springer. The Mega Man 2 Spine variant, will turn into a spring after hitting Mega Man. Has a color swap option with the creation code col.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="3120" y="848" name="inst_6636457B" locked="0" code="text = &quot;objSubeil. Mega Man 5. Retracts into the ground when Mega Man gets close and charge at him. Has color options with the creation code col.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSubeil" x="3280" y="800" name="inst_E189E713" locked="0" code="col = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="3440" y="800" name="inst_0BC6B17A" locked="0" code="text = &quot;objWanann. Mega Man 3. A trap that springs out of the ground when Mega Man walks over it. This is located in the gimmicks folder, not enemies.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="3776" y="848" name="inst_E99E632C" locked="0" code="text = &quot;objMousubeil. Mega Man 5. Walks back and forth on solid surfaces. As it is low to the ground it's hard to hit with normal shots.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="3872" y="800" name="inst_5E413796" locked="0" code="text = &quot;objQuickSand and objQuickSandB. Mega Man 4. This should be pretty self explanatory, but pulls Mega Man downwards while in it, you can jump back up through it.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="3936" y="800" name="inst_69C76C5C" locked="0" code="text = &quot;Ok. Look I didn't have a lot of space left for this sign. objSasoreenu. Mega Man 4. Drills out of quick sand and rushes towards Mega Man.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingHorizontal" x="4352" y="672" name="inst_DBC32A87" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objGagabyoall" x="1472" y="480" name="inst_C16D10E7" locked="0" code="col = 2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSpine" x="1424" y="480" name="inst_FDB2A2D8" locked="0" code="col = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstChargeman" x="768" y="448" w="32" h="16" xo="288" yo="128" id="11353175" name="inst_8E9FCA7A" depth="1200000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1837,6 +1872,52 @@
     <tile bgName="tstChargeman" x="3744" y="880" w="16" h="16" xo="192" yo="0" id="11352846" name="inst_E7AEF3F5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstChargeman" x="3792" y="880" w="16" h="16" xo="192" yo="0" id="11352847" name="inst_47BD1A88" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstChargeman" x="3840" y="880" w="16" h="16" xo="192" yo="0" id="11352848" name="inst_2DA4A7DF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2352" y="224" w="16" h="16" xo="96" yo="48" id="11361450" name="inst_023FF14F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2352" y="256" w="16" h="16" xo="96" yo="64" id="11361452" name="inst_BC122D82" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2368" y="256" w="16" h="16" xo="112" yo="64" id="11361453" name="inst_113D732A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2384" y="256" w="16" h="16" xo="112" yo="64" id="11361454" name="inst_36830C38" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2352" y="240" w="16" h="16" xo="96" yo="48" id="11361455" name="inst_20ABADAB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2496" y="224" w="16" h="16" xo="96" yo="48" id="11361456" name="inst_0CF705A7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2496" y="240" w="16" h="16" xo="96" yo="48" id="11361457" name="inst_E851295D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2496" y="256" w="16" h="16" xo="128" yo="64" id="11361458" name="inst_773D7845" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2448" y="256" w="16" h="16" xo="112" yo="64" id="11361462" name="inst_6F8107D3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2464" y="256" w="16" h="16" xo="112" yo="64" id="11361463" name="inst_FF051432" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2592" y="224" w="16" h="16" xo="96" yo="48" id="11361464" name="inst_68729EFC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2592" y="240" w="16" h="16" xo="96" yo="48" id="11361465" name="inst_3C642139" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2592" y="256" w="16" h="16" xo="96" yo="64" id="11361466" name="inst_23CD603E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2608" y="256" w="16" h="16" xo="112" yo="64" id="11361467" name="inst_056F0E4E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2624" y="256" w="16" h="16" xo="112" yo="64" id="11361468" name="inst_4C2936F8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2640" y="256" w="16" h="16" xo="128" yo="64" id="11361469" name="inst_C06EC9BD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2640" y="240" w="16" h="16" xo="96" yo="48" id="11361470" name="inst_1F327924" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2640" y="224" w="16" h="16" xo="96" yo="48" id="11361471" name="inst_F56A7AA8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2704" y="224" w="16" h="16" xo="96" yo="48" id="11361472" name="inst_63571760" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2704" y="240" w="16" h="16" xo="96" yo="48" id="11361473" name="inst_028AE662" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2720" y="224" w="16" h="16" xo="96" yo="48" id="11361474" name="inst_CB19FF38" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2656" y="224" w="16" h="16" xo="96" yo="48" id="11361475" name="inst_815C79B4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2656" y="240" w="16" h="16" xo="96" yo="48" id="11361476" name="inst_FF9965A7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2720" y="240" w="16" h="16" xo="96" yo="48" id="11361477" name="inst_5919BA5D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2768" y="224" w="16" h="16" xo="96" yo="48" id="11361478" name="inst_406E3795" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2768" y="240" w="16" h="16" xo="96" yo="48" id="11361479" name="inst_9B612C53" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2672" y="256" w="16" h="16" xo="112" yo="64" id="11361480" name="inst_FD75D20B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2688" y="256" w="16" h="16" xo="112" yo="64" id="11361481" name="inst_52FA1D51" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2736" y="256" w="16" h="16" xo="112" yo="64" id="11361482" name="inst_58A4FAB0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2752" y="256" w="16" h="16" xo="112" yo="64" id="11361483" name="inst_E8EDBE42" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2704" y="256" w="16" h="16" xo="128" yo="64" id="11361484" name="inst_3DC8C27D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2768" y="256" w="16" h="16" xo="128" yo="64" id="11361485" name="inst_C9B6AB4A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2656" y="256" w="16" h="16" xo="96" yo="64" id="11361486" name="inst_02D00CB1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2720" y="256" w="16" h="16" xo="96" yo="64" id="11361487" name="inst_CD2742C2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2480" y="256" w="16" h="16" xo="112" yo="64" id="11361489" name="inst_D1E5B0AD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2400" y="256" w="16" h="16" xo="112" yo="64" id="11361490" name="inst_2D022ED3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2416" y="256" w="16" h="16" xo="128" yo="64" id="11361492" name="inst_BC1BBCBA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2432" y="256" w="16" h="16" xo="96" yo="64" id="11361493" name="inst_927A17D0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2416" y="224" w="16" h="16" xo="96" yo="48" id="11361495" name="inst_21A55580" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2416" y="240" w="16" h="16" xo="96" yo="48" id="11361496" name="inst_C0D23B7A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2432" y="224" w="16" h="16" xo="96" yo="48" id="11361497" name="inst_B76F89F8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="2432" y="240" w="16" h="16" xo="96" yo="48" id="11361498" name="inst_BBD1D629" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="1408" y="480" w="16" h="16" xo="112" yo="64" id="11361499" name="inst_5E604B1E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="1424" y="480" w="16" h="16" xo="112" yo="64" id="11361500" name="inst_C8296811" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="1472" y="480" w="16" h="16" xo="112" yo="64" id="11361501" name="inst_87E45C06" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstChargeman" x="1456" y="480" w="16" h="16" xo="112" yo="64" id="11361502" name="inst_AD20E054" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstChargeman" x="3008" y="384" w="32" h="32" xo="288" yo="64" id="11351025" name="inst_29A6608B" depth="-5" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstChargeman" x="3008" y="416" w="32" h="32" xo="0" yo="176" id="11352021" name="inst_07966305" depth="-5" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstChargeman" x="3008" y="448" w="32" h="32" xo="0" yo="176" id="11352022" name="inst_7A2AD681" depth="-5" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
