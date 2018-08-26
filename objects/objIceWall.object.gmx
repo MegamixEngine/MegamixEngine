@@ -83,7 +83,7 @@ if (!global.frozen)
 {
     if(!isFree)
     {
-        isFree = !checkSolid(0, 0,1,1);
+        isFree = !checkSolid(0,0,1,1);
     }
     
     if (!isFree)
@@ -128,6 +128,7 @@ if (!global.frozen)
                     {
                         xspeed += 0.04 * dir;
                     }
+                    print("moving");
                 }
                 else
                 {
@@ -135,12 +136,13 @@ if (!global.frozen)
                     
                     with (objMegaman)
                     {
-                        if (xcoll != 0)
-                        {
-                            if (place_meeting(x + sign(xcoll), y, other))
+                        if (xDir != 0 )
+                        {       
+                            if (!place_meeting(x,y,other)&amp;&amp;place_meeting(x + sign(xDir), y, other))
                             {
                                 other.pushed += 1;
-                                other.dir = sign(xcoll);
+                                other.dir = sign(xDir);
+                                print("pushed");
                             }
                         }
                     }

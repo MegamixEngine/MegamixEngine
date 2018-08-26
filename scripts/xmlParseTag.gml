@@ -8,7 +8,7 @@ var dsm, tag = stringTrim(argument0);
 dsm = ds_map_create();
 // seek to end of tag
 tag = stringSubstring(tag, string_pos(" ", tag) + 1);
-while (string_pos(" ", tag) != 0)
+while (tag!=">")
 {
     var attr, value;
     

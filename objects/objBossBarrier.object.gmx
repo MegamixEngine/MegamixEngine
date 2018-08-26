@@ -133,12 +133,11 @@ if (!global.frozen &amp;&amp; !instance_exists(objSectionSwitcher))
             tile_layer_delete_at(1000000, x + i * 16, y + j * 16);
             instance_create(x + 8 + i * 16, y + 8 + j * 16, objExplosion);
         }
-        
-        while (collision_rectangle(bbox_left + 8, bbox_top + 8, bbox_right - 8,
-            bbox_bottom - 8, objSolid, 1, 1)) // Now delete it
+        var sld = collision_rectangle(bbox_left + 8, bbox_top + 8, bbox_right - 8,
+            bbox_bottom - 8, objSolid, 1, 1);
+        while (sld!=noone) // Now delete it
         {
-            with (collision_rectangle(bbox_left + 8, bbox_top + 8,
-                bbox_right - 8, bbox_bottom - 8, objSolid, 1, 1))
+            with (sld)
             {
                 if (image_xscale &gt; 1 || image_yscale &gt; 1)
                 {
@@ -149,16 +148,19 @@ if (!global.frozen &amp;&amp; !instance_exists(objSectionSwitcher))
                     instance_destroy();
                 }
             }
+            sld = collision_rectangle(bbox_left + 8, bbox_top + 8, bbox_right - 8,
+            bbox_bottom - 8, objSolid, 1, 1);
         }
-        
-        while (collision_rectangle(bbox_left + 8, bbox_top + 8, bbox_right - 8,
-            bbox_bottom - 8, objBossDoor, 1, 1)) // Now delete the boss door
+        var bd = collision_rectangle(bbox_left + 8, bbox_top + 8, bbox_right - 8,
+            bbox_bottom - 8, prtBossDoor, 1, 1);
+        while (bd!=noone) // Now delete the boss door
         {
-            with (collision_rectangle(bbox_left + 8, bbox_top + 8,
-                bbox_right - 8, bbox_bottom - 8, objBossDoor, 1, 1))
+            with (bd)
             {
                 instance_destroy();
             }
+            bd = collision_rectangle(bbox_left + 8, bbox_top + 8, bbox_right - 8,
+            bbox_bottom - 8, prtBossDoor, 1, 1);
         }
     }
 }
