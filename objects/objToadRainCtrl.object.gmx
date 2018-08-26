@@ -85,6 +85,7 @@ for (x = sectionLeft; x &lt; sectionRight; x += 16)
         {
             t = instance_create(x, y, objToadRain);
             t.blowSpeed = blowSpeed;
+            t.parent=id;
             
             if (place_meeting(x, y + 8, objSolid)
                 || place_meeting(x, y + 16, objTopSolid))
