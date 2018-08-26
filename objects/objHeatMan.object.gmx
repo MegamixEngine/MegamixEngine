@@ -31,7 +31,7 @@ healthpoints = healthpointsStart;
 
 customPose = true;
 hasTriggeredFall = false;
-introType = 1;
+introType = 0;
 contactDamage = 8;
 
 ground = false;
@@ -144,6 +144,7 @@ if (entityCanStep())
         y -= view_hview;
         canFillHealthBar = false;
         sprite_index = sprHeatmanPose;
+        image_index = 0;
         startIntro = false;
         isIntro = true;
         visible = true;
