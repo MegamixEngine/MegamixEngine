@@ -67,13 +67,6 @@ if (entityCanStep())
         instance_destroy();
     }
 }
-
-// Die if Bubble Man is dead
-if (!instance_exists(parent))
-{
-    instance_create(x, y, objExplosion);
-    instance_destroy();
-}
 </string>
           </argument>
         </arguments>

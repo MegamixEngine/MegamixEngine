@@ -26,17 +26,19 @@
           <argument>
             <kind>1</kind>
             <string>/*
-New Instructions:
+    Instructions:
     Change its xscale from the editor to set its direction and stretch it to the sides 
     until it has the size you want
-Old Instructions:
-    Basically lay multiple of these objects where you want the conveyor belt to be, and then set the creation code of only
-    the very leftmost object in a given line to what you want. The one conveyor belt will set the creation code for all of the
-    ones directly to the right as far as you set the size variable. See the MM2 gimmick showcase in the GimmickShowcase level
-    for an example.
 */
-
 event_inherited();
+
+//@cc The sprite of the conveyor, its divided in three groups of sub images
+sprite = sprMM2Conveyor;
+
+//@cc Total amount of frames per sub image group, 2 by default
+animFrames = 2;
+
+animTime = 5;
 
 canHit = false;
 isSolid = 1;
@@ -106,6 +108,17 @@ if (dir == 1)
             <kind>1</kind>
             <string>event_inherited();
 
+if ((!global.frozen &amp;&amp; !global.timeStopped) || instance_exists(objSectionSwitcher))
+{
+    imgalarm += 1;
+    if (imgalarm &gt;= animTime)
+    {
+        imgalarm = 0;
+        img = (img+1) mod animFrames;
+    }
+}
+
+
 if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
     var exspd = spd * dir;
@@ -152,17 +165,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if ((!global.frozen &amp;&amp; !global.timeStopped) || instance_exists(objSectionSwitcher))
-{
-    imgalarm += 1;
-    if (imgalarm &gt;= 5)
-    {
-        imgalarm = 0;
-        img = !img;
-    }
-}
-
-var imgadd;
+            <string>var imgadd;
 
 for (i = 0; i &lt; image_xscale; i += 1)
 {
@@ -171,11 +174,11 @@ for (i = 0; i &lt; image_xscale; i += 1)
     {
         if (dir &lt; 0)
         {
-            imgadd = 2;
+            imgadd = animFrames;
         }
         else
         {
-            imgadd = 4;
+            imgadd = 2*animFrames;
         }
     }
     draw_sprite(sprMM2Conveyor, img + imgadd, x + i * 16, y);

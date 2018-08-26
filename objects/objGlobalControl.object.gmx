@@ -1142,7 +1142,7 @@ if (global.inGame)
     combineObjects(objStandSolid);
     combineObjects(objTopSolid, true, false);
     combineObjects(objLadder, false, true);
-    with (objBossDoor)
+    with (prtBossDoor)
         event_user(3);
     
     setSection(spawn_x, spawn_y, 1);

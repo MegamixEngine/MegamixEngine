@@ -73,7 +73,7 @@ if (!pop)
         setMega = true;
     with (target)
     {
-        if (place_meeting(x, y, other) &amp;&amp; other.capture == noone)
+        if (place_meeting(x, y, other) &amp;&amp; other.capture == noone &amp;&amp; !other.dead)
         {
             with (other)
             {

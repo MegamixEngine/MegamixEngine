@@ -143,7 +143,11 @@ enemyDamageValue(objIceSlasher, 1);
           <argument>
             <kind>1</kind>
             <string>// leave this. this is needed.
+
+ixs = image_xscale;
+image_xscale=1;
 event_inherited();
+image_xscale=ixs;
 
 // all of uranus' events trigger when the game isn't frozen.
 if (!global.frozen)

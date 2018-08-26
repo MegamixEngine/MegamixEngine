@@ -77,6 +77,7 @@ enemyDamageValue(objSlashClaw, 2);
 enemyDamageValue(objWheelCutter, 2);
 enemyDamageValue(objSakugarne, 2);
 enemyDamageValue(objSuperArrow, 1);
+enemyDamageValue(objWireAdapter, 1);
 
 // MaGMML1
 enemyDamageValue(objMetalBlade, 1);
@@ -108,7 +109,7 @@ enemyDamageValue(objChillSpikeLanded, 1);
 
 // Misc.
 enemyDamageValue(objPowerStone, 3);
-enemyDamageValue(objPlantBarrier, 0);
+enemyDamageValue(objPlantBarrier, 1);
 enemyDamageValue(objBrickWeapon, 1);
 enemyDamageValue(objIceSlasher, 1);
 </string>

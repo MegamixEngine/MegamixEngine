@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+isLine=false;
+if(object_index==objPreciseQuickLaser)
+    isLine=true;
 
 /// A Quick Laser made out of 16 1 pixel wide lasers that can be stopped individually
 // Important Note: more than two or three on screen could potentially lag the game
@@ -100,9 +103,13 @@ hacks = true; // don't change
             <kind>1</kind>
             <string>if (onlyDamagePlayer)
 {
+    var col;
+    var rad=degtorad(image_angle);
     with (objMegaman)
     {
-        if (iFrames == 0 &amp;&amp; canHit &amp;&amp; place_meeting(x, y, other))
+        //This is slower than per pixel collision checking for some reason col = collision_line(other.x,other.y,x+(other.image_xscale*cos(rad)),y-(other.image_xscale*sin(rad)),id,false,false);
+        col = place_meeting(x,y,other);
+        if (iFrames == 0 &amp;&amp; canHit &amp;&amp; col)
         {
             with (other)
             {
@@ -145,6 +152,7 @@ if (entityCanStep())
     // Solidify objects
     with (prtEntity)
     {
+        solid=0;
         if (!dead &amp;&amp; object_index != objPreciseQuickLaserSpawner)
         {
             for (var i = array_length_1d(other.obstacleList) - 1; i &gt;= 0; i--)
@@ -175,13 +183,14 @@ if (entityCanStep())
     }
     with (objSolid)
     {
+        solid=0;
         if (isSolid)
             solid = 1;
     }
     var ang = image_angle;
     if (hacks &amp;&amp; image_angle &gt;= 177 &amp;&amp; image_angle &lt;= 187) // These messed up with place_free so we handle them as 180(there are still some more but thats ok)
         image_angle = 180;
-    else if(hacks&amp;&amp;image_angle&gt;=265 &amp;&amp; image_angle&lt;280)
+    else if(hacks&amp;&amp;image_angle&gt;=265 &amp;&amp; image_angle&lt;=280)
         image_angle=270;
     if (image_angle == 0 || image_angle == 180 || image_angle == 270 || image_angle == 90) // Thse also messed up with place free, but in this case is faster to use a bounding box anyway
     {
@@ -204,25 +213,21 @@ if (entityCanStep())
     if (!place_free(x, y))
     {
         image_xscale = floor(image_xscale);
-        while (!place_free(x, y) &amp;&amp; (image_xscale - 32) &gt;= 0)
+        var moveAmmount = 8 + 8*(image_xscale&gt;64) + 32*(image_xscale&gt;128);
+        image_xscale = max(0, image_xscale - moveAmmount);
+        while (!place_free(x, y) &amp;&amp; image_xscale&gt;0)
         {
-            image_xscale -= 32;
-        }
-        while (!place_free(x, y) &amp;&amp; (image_xscale - 1) &gt;= 0)
-        {
-            image_xscale -= 1;
+            image_xscale = max(0, image_xscale - moveAmmount);
         }
         while (place_free(x, y))
         {
             image_xscale += 1;
         }
-        image_xscale -=1;
+        if(!place_free(x,y))
+            image_xscale -=1;
     }
     image_angle = ang;
-    with (prtEntity)
-        solid = 0;
-    with (objSolid)
-        solid = 0;
+
 }
 </string>
           </argument>

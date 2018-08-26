@@ -10,8 +10,8 @@ var _____val_____ = argument1;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4452 variables
-/// from 1632 source files
+/// 4483 variables
+/// from 1635 source files
 
 if (_____vs_____ == "") return false;
 else if (stringStartsWith(_____vs_____, 'a'))
@@ -255,6 +255,7 @@ else if (stringStartsWith(_____vs_____, 'b'))
     else if (_____vs_____ == "baseCol") baseCol = _____val_____;
     else if (_____vs_____ == "bboxHeight") bboxHeight = _____val_____;
     else if (_____vs_____ == "bboxWidth") bboxWidth = _____val_____;
+    else if (_____vs_____ == "bd") bd = _____val_____;
     else if (_____vs_____ == "bee") bee = _____val_____;
     else if (_____vs_____ == "beenOutsideView") beenOutsideView = _____val_____;
     else if (_____vs_____ == "beginAttackTimer") beginAttackTimer = _____val_____;
@@ -845,6 +846,15 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "detach") detach = _____val_____;
     else if (_____vs_____ == "detectAnimation") detectAnimation = _____val_____;
     else if (_____vs_____ == "detectRoof") detectRoof = _____val_____;
+    else if (_____vs_____ == "detectorL") detectorL = _____val_____;
+    else if (_____vs_____ == "detectorM") detectorM = _____val_____;
+    else if (_____vs_____ == "detectorMOffset") detectorMOffset = _____val_____;
+    else if (_____vs_____ == "detectorMXOffset") detectorMXOffset = _____val_____;
+    else if (_____vs_____ == "detectorMXScale") detectorMXScale = _____val_____;
+    else if (_____vs_____ == "detectorMYScale") detectorMYScale = _____val_____;
+    else if (_____vs_____ == "detectorR") detectorR = _____val_____;
+    else if (_____vs_____ == "detectorXOffset") detectorXOffset = _____val_____;
+    else if (_____vs_____ == "detectorYOffset") detectorYOffset = _____val_____;
     else if (_____vs_____ == "detectsShot") detectsShot = _____val_____;
     else if (_____vs_____ == "dev_split_frac") dev_split_frac = _____val_____;
     else if (_____vs_____ == "df") df = _____val_____;
@@ -977,6 +987,7 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "dropTimerMax") dropTimerMax = _____val_____;
     else if (_____vs_____ == "dropWait") dropWait = _____val_____;
     else if (_____vs_____ == "dropXspeed") dropXspeed = _____val_____;
+    else if (_____vs_____ == "dropY") dropY = _____val_____;
     else if (_____vs_____ == "dropYspeed") dropYspeed = _____val_____;
     else if (_____vs_____ == "dropped") dropped = _____val_____;
     else if (_____vs_____ == "droptimer") droptimer = _____val_____;
@@ -1061,6 +1072,7 @@ else if (stringStartsWith(_____vs_____, 'e'))
     else if (_____vs_____ == "enx") enx = _____val_____;
     else if (_____vs_____ == "eny") eny = _____val_____;
     else if (_____vs_____ == "ep") ep = _____val_____;
+    else if (_____vs_____ == "eqPos") eqPos = _____val_____;
     else if (_____vs_____ == "error") error = _____val_____;
     else if (_____vs_____ == "errors") errors = _____val_____;
     else if (_____vs_____ == "etankPositionX") etankPositionX = _____val_____;
@@ -1967,7 +1979,6 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "imheight") imheight = _____val_____;
     else if (_____vs_____ == "imwidth") imwidth = _____val_____;
     else if (_____vs_____ == "inAir") inAir = _____val_____;
-    else if (_____vs_____ == "instantLeave") instantLeave = _____val_____;
     else if (_____vs_____ == "inArr") inArr = _____val_____;
     else if (_____vs_____ == "inQuicksand") inQuicksand = _____val_____;
     else if (_____vs_____ == "inShell") inShell = _____val_____;
@@ -2055,12 +2066,14 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "isFrozen") isFrozen = _____val_____;
     else if (_____vs_____ == "isGlobalLocked") isGlobalLocked = _____val_____;
     else if (_____vs_____ == "isGonnaHurt") isGonnaHurt = _____val_____;
+    else if (_____vs_____ == "isGround") isGround = _____val_____;
     else if (_____vs_____ == "isHard") isHard = _____val_____;
     else if (_____vs_____ == "isHit") isHit = _____val_____;
     else if (_____vs_____ == "isHoming") isHoming = _____val_____;
     else if (_____vs_____ == "isIntro") isIntro = _____val_____;
     else if (_____vs_____ == "isJumping") isJumping = _____val_____;
     else if (_____vs_____ == "isLightning") isLightning = _____val_____;
+    else if (_____vs_____ == "isLine") isLine = _____val_____;
     else if (_____vs_____ == "isMaster") isMaster = _____val_____;
     else if (_____vs_____ == "isOnGround") isOnGround = _____val_____;
     else if (_____vs_____ == "isPhaseDifferent") isPhaseDifferent = _____val_____;
@@ -2100,6 +2113,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "itemUnavailable") itemUnavailable = _____val_____;
     else if (_____vs_____ == "itext") itext = _____val_____;
     else if (_____vs_____ == "ix") ix = _____val_____;
+    else if (_____vs_____ == "ixs") ixs = _____val_____;
     else if (_____vs_____ == "iy") iy = _____val_____;
     else return false;
 }
@@ -2271,6 +2285,7 @@ else if (stringStartsWith(_____vs_____, 'l'))
     else if (_____vs_____ == "leaving") leaving = _____val_____;
     else if (_____vs_____ == "left") left = _____val_____;
     else if (_____vs_____ == "leftBound") leftBound = _____val_____;
+    else if (_____vs_____ == "leftD") leftD = _____val_____;
     else if (_____vs_____ == "leftHand") leftHand = _____val_____;
     else if (_____vs_____ == "leftLimit") leftLimit = _____val_____;
     else if (_____vs_____ == "leftReturn") leftReturn = _____val_____;
@@ -2424,6 +2439,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "met3") met3 = _____val_____;
     else if (_____vs_____ == "met4") met4 = _____val_____;
     else if (_____vs_____ == "metallTimer") metallTimer = _____val_____;
+    else if (_____vs_____ == "midD") midD = _____val_____;
     else if (_____vs_____ == "mid_1") mid_1 = _____val_____;
     else if (_____vs_____ == "mid_2") mid_2 = _____val_____;
     else if (_____vs_____ == "mid_3") mid_3 = _____val_____;
@@ -2462,6 +2478,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "molelimit") molelimit = _____val_____;
     else if (_____vs_____ == "mountID") mountID = _____val_____;
     else if (_____vs_____ == "mouthOpen") mouthOpen = _____val_____;
+    else if (_____vs_____ == "moveAmmount") moveAmmount = _____val_____;
     else if (_____vs_____ == "moveAmount") moveAmount = _____val_____;
     else if (_____vs_____ == "moveAtSpeed") moveAtSpeed = _____val_____;
     else if (_____vs_____ == "moveCount") moveCount = _____val_____;
@@ -2833,6 +2850,7 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "partY") partY = _____val_____;
     else if (_____vs_____ == "particleSprite") particleSprite = _____val_____;
     else if (_____vs_____ == "partner") partner = _____val_____;
+    else if (_____vs_____ == "partnerItemDrop") partnerItemDrop = _____val_____;
     else if (_____vs_____ == "passedTarget") passedTarget = _____val_____;
     else if (_____vs_____ == "path") path = _____val_____;
     else if (_____vs_____ == "path_position") path_position = _____val_____;
@@ -3012,6 +3030,7 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "prevVelx") prevVelx = _____val_____;
     else if (_____vs_____ == "prevVely") prevVely = _____val_____;
     else if (_____vs_____ == "prevWaitTime") prevWaitTime = _____val_____;
+    else if (_____vs_____ == "prevWeather") prevWeather = _____val_____;
     else if (_____vs_____ == "prevX") prevX = _____val_____;
     else if (_____vs_____ == "prevXScale") prevXScale = _____val_____;
     else if (_____vs_____ == "prevXSpeed") prevXSpeed = _____val_____;
@@ -3089,6 +3108,8 @@ else if (stringStartsWith(_____vs_____, 'q'))
 {
     if (_____vs_____ == "") return false;
     else if (_____vs_____ == "q") q = _____val_____;
+    else if (_____vs_____ == "q1Pos") q1Pos = _____val_____;
+    else if (_____vs_____ == "q2Pos") q2Pos = _____val_____;
     else if (_____vs_____ == "quarterAttack") quarterAttack = _____val_____;
     else if (_____vs_____ == "quickScrollStutter") quickScrollStutter = _____val_____;
     else if (_____vs_____ == "quickScrollTimer") quickScrollTimer = _____val_____;
@@ -3105,6 +3126,7 @@ else if (stringStartsWith(_____vs_____, 'r'))
     else if (_____vs_____ == "r") r = _____val_____;
     else if (_____vs_____ == "rAng") rAng = _____val_____;
     else if (_____vs_____ == "r_side") r_side = _____val_____;
+    else if (_____vs_____ == "rad") rad = _____val_____;
     else if (_____vs_____ == "radical") radical = _____val_____;
     else if (_____vs_____ == "radius") radius = _____val_____;
     else if (_____vs_____ == "radiusSquare") radiusSquare = _____val_____;
@@ -3216,6 +3238,7 @@ else if (stringStartsWith(_____vs_____, 'r'))
     else if (_____vs_____ == "riderPhysicsAllowed") riderPhysicsAllowed = _____val_____;
     else if (_____vs_____ == "right") right = _____val_____;
     else if (_____vs_____ == "rightBound") rightBound = _____val_____;
+    else if (_____vs_____ == "rightD") rightD = _____val_____;
     else if (_____vs_____ == "rightHand") rightHand = _____val_____;
     else if (_____vs_____ == "rightLimit") rightLimit = _____val_____;
     else if (_____vs_____ == "rightShark") rightShark = _____val_____;
@@ -3490,6 +3513,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "skewerPhase") skewerPhase = _____val_____;
     else if (_____vs_____ == "skip") skip = _____val_____;
     else if (_____vs_____ == "skipCount") skipCount = _____val_____;
+    else if (_____vs_____ == "skipDraw") skipDraw = _____val_____;
     else if (_____vs_____ == "skipStop") skipStop = _____val_____;
     else if (_____vs_____ == "skipbuffer") skipbuffer = _____val_____;
     else if (_____vs_____ == "skipped") skipped = _____val_____;
@@ -3587,6 +3611,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "spd") spd = _____val_____;
     else if (_____vs_____ == "spdB") spdB = _____val_____;
     else if (_____vs_____ == "spdF") spdF = _____val_____;
+    else if (_____vs_____ == "spdY") spdY = _____val_____;
     else if (_____vs_____ == "spear") spear = _____val_____;
     else if (_____vs_____ == "specialDamageValues") specialDamageValues = _____val_____;
     else if (_____vs_____ == "specialDamageValuesTotal") specialDamageValuesTotal = _____val_____;
@@ -3664,6 +3689,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "sr") sr = _____val_____;
     else if (_____vs_____ == "srcX") srcX = _____val_____;
     else if (_____vs_____ == "srcY") srcY = _____val_____;
+    else if (_____vs_____ == "st") st = _____val_____;
     else if (_____vs_____ == "stackRetValExprVal") stackRetValExprVal = _____val_____;
     else if (_____vs_____ == "stackRetValExprlen") stackRetValExprlen = _____val_____;
     else if (_____vs_____ == "stageBeaten") stageBeaten = _____val_____;
@@ -4071,7 +4097,9 @@ else if (stringStartsWith(_____vs_____, 't'))
     else if (_____vs_____ == "turnOffset") turnOffset = _____val_____;
     else if (_____vs_____ == "turnRange") turnRange = _____val_____;
     else if (_____vs_____ == "turnRoundLeft") turnRoundLeft = _____val_____;
+    else if (_____vs_____ == "turnRoundLong") turnRoundLong = _____val_____;
     else if (_____vs_____ == "turnRoundRight") turnRoundRight = _____val_____;
+    else if (_____vs_____ == "turnRoundShort") turnRoundShort = _____val_____;
     else if (_____vs_____ == "turnSet") turnSet = _____val_____;
     else if (_____vs_____ == "turnSpeed") turnSpeed = _____val_____;
     else if (_____vs_____ == "turnSprite") turnSprite = _____val_____;
@@ -4171,6 +4199,7 @@ else if (stringStartsWith(_____vs_____, 'w'))
     else if (_____vs_____ == "wSep") wSep = _____val_____;
     else if (_____vs_____ == "wac") wac = _____val_____;
     else if (_____vs_____ == "wait") wait = _____val_____;
+    else if (_____vs_____ == "waitCount") waitCount = _____val_____;
     else if (_____vs_____ == "waitDiff") waitDiff = _____val_____;
     else if (_____vs_____ == "waitFrames") waitFrames = _____val_____;
     else if (_____vs_____ == "waitLength") waitLength = _____val_____;
@@ -4308,9 +4337,9 @@ else if (stringStartsWith(_____vs_____, 'x'))
     else if (_____vs_____ == "xs") xs = _____val_____;
     else if (_____vs_____ == "xsc") xsc = _____val_____;
     else if (_____vs_____ == "xscale") xscale = _____val_____;
-    else if (_____vs_____ == "xScale") xScale = _____val_____;
     else if (_____vs_____ == "xscaleStart") xscaleStart = _____val_____;
     else if (_____vs_____ == "xscaleStorage") xscaleStorage = _____val_____;
+    else if (_____vs_____ == "xscl") xscl = _____val_____;
     else if (_____vs_____ == "xshift") xshift = _____val_____;
     else if (_____vs_____ == "xsize") xsize = _____val_____;
     else if (_____vs_____ == "xsl") xsl = _____val_____;

@@ -55,13 +55,6 @@ stopOnFlash = false;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
-// Die if Ice Man is dead
-if (!instance_exists(parent))
-{
-    instance_create(x, y, objExplosion);
-    instance_destroy();
-}
 </string>
           </argument>
         </arguments>

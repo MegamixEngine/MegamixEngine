@@ -30,7 +30,7 @@ event_inherited();
 
 bulletLimitCost = 0;
 
-contactDamage = 1;
+contactDamage = 0;
 
 penetrate = 0;
 pierces = 0;
@@ -119,7 +119,7 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_user(EV_DEATH);
+            <string>//
 </string>
           </argument>
         </arguments>
