@@ -56,8 +56,8 @@
     <instance objName="objWindRight" x="1632" y="896" name="inst_9A59E6B8" locked="0" code="" scaleX="9.60000038146973" scaleY="12.8000001907349" colour="4294967295" rotation="0"/>
     <instance objName="objGravityFlipUp" x="384" y="480" name="inst_5E00ACC5" locked="0" code="" scaleX="2" scaleY="10" colour="4294967295" rotation="0"/>
     <instance objName="objJumpSign" x="1920" y="112" name="inst_02A2CA8F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMegaman8Sled" x="2512" y="1536" name="inst_8BC3CA7D" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMegaman8SledSpeedTrigger" x="2368" y="1360" name="inst_EC50285F" locked="0" code="maxSpeed = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMegaman8Sled" x="2416" y="1536" name="inst_8BC3CA7D" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMegaman8SledSpeedTrigger" x="2320" y="1360" name="inst_EC50285F" locked="0" code="maxSpeed = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGravLift" x="2176" y="992" name="inst_CE6ADAD1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSandstormSpawner" x="848" y="768" name="inst_9B10719C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGravityChangeHigh" x="1024" y="224" name="inst_1C87A08B" locked="0" code="" scaleX="1" scaleY="14" colour="4294967295" rotation="0"/>
@@ -144,12 +144,11 @@
     <instance objName="objLadder" x="32" y="0" name="inst_05A495D0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLadder" x="48" y="0" name="inst_DEC87722" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWaveManJetSki" x="496" y="176" name="inst_96604810" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objRightScrolling" x="512" y="0" name="inst_467786F1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWater" x="480" y="192" name="inst_480F1C63" locked="0" code="" scaleX="20" scaleY="2" colour="4294967295" rotation="0"/>
     <instance objName="objObjectSetter" x="0" y="0" name="inst_2FAB6EC4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWater" x="1072" y="192" name="inst_FB4E5DDF" locked="0" code="" scaleX="69" scaleY="2" colour="4294967295" rotation="0"/>
     <instance objName="objWaveManJetSkiStopper" x="912" y="80" name="inst_EC62D9E2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objWaveManJetSki" x="1088" y="176" name="inst_4DA5F8E0" locked="0" code="maxSpeed = 12;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWaveManJetSki" x="1088" y="176" name="inst_4DA5F8E0" locked="0" code="maxSpeed = 12;&#xA;scroll = false;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1024" y="0" name="inst_DF33AB5D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="2304" y="224" name="inst_FF3E0CDF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWaveManJetSkiStopper" x="2464" y="176" name="inst_27B6B480" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -265,7 +264,7 @@
     <instance objName="objCheckpoint" x="1920" y="400" name="inst_34A08C5C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="2544" y="400" name="inst_9E930931" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFanFiend" x="2448" y="1312" name="inst_29E24E1B" locked="0" code="blowSpeed = -1.5;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="2544" y="1424" name="inst_E7FD1E25" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="2544" y="1520" name="inst_E7FD1E25" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="2304" y="1344" name="inst_21B88747" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="16" y="304" name="inst_E19BA85E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSlopeR" x="48" y="304" name="inst_166DEEA2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -282,7 +281,6 @@
     <instance objName="objMegaman8SledSpeedTrigger" x="1952" y="1344" name="inst_A5CF395D" locked="0" code="maxSpeed = 3;&#xA;" scaleX="1" scaleY="14" colour="4294967295" rotation="0"/>
     <instance objName="objRabbiton" x="1040" y="1488" name="inst_8AC4C108" locked="0" code="back = true;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMegaman8SledStopper" x="112" y="1360" name="inst_649D1A43" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objJumpSign" x="2304" y="1360" name="inst_9AEA70AD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objJumpSign" x="2064" y="1360" name="inst_77141CF0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objJumpSign" x="1824" y="1360" name="inst_EEE4C9C2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objJumpSign" x="1520" y="1360" name="inst_C589BE51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -296,8 +294,8 @@
     <instance objName="objNombrellan" x="368" y="1152" name="inst_9A7A9AC3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="0" y="1344" name="inst_D8A1D2B9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="768" y="1120" name="inst_AD90CF39" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objToadRainCtrl" x="864" y="1200" name="inst_A9A581E6" locked="0" code="blowSpeed = 2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objNombrellan" x="848" y="1152" name="inst_C02C86D1" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objToadRainCtrl" x="864" y="1200" name="inst_A9A581E6" locked="0" code="blowSpeed = 2;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNombrellan" x="848" y="1152" name="inst_C02C86D1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1280" y="1120" name="inst_FBD13F9E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSpring" x="1312" y="1296" name="inst_C3C323D9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSpring" x="1360" y="1296" name="inst_F471E298" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -313,7 +311,7 @@
     <instance objName="objGenericStopper" x="1584" y="1120" name="inst_19D32D5E" locked="0" code="objectToStop = objBatabattan;&#xA;" scaleX="1" scaleY="3.5" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="1696" y="1296" name="inst_21AF58E6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="1536" y="1120" name="inst_166C79EB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objWindLeft" x="1392" y="896" name="inst_858D678B" locked="0" code="mySpeed = 2;&#xA;" scaleX="13" scaleY="14" colour="4294967295" rotation="0"/>
+    <instance objName="objWindLeft" x="1392" y="896" name="inst_858D678B" locked="0" code="mySpeed = 2;" scaleX="15" scaleY="14" colour="4294967295" rotation="0"/>
     <instance objName="objWindDown" x="1312" y="896" name="inst_88444CBF" locked="0" code="" scaleX="3" scaleY="13" colour="4294967295" rotation="0"/>
     <instance objName="objWindUp" x="1232" y="896" name="inst_99367A0E" locked="0" code="" scaleX="3.20000004768372" scaleY="13" colour="4294967295" rotation="0"/>
     <instance objName="objFanDown" x="1168" y="912" name="inst_E02BBD72" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -360,14 +358,13 @@
     <instance objName="objSectionFreeVerticalScrolling" x="0" y="1792" name="inst_213DB584" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1536" y="224" name="inst_B9041248" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1536" y="1568" name="inst_2EC1899C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objAutoScroller" x="352" y="1648" name="inst_EB5BF47A" locked="0" code="mySpeed = 5;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objAutoScroller" x="352" y="1648" name="inst_EB5BF47A" locked="0" code="mySpeed = 10;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="1456" y="1760" name="inst_83A08484" locked="0" code="" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="1456" y="1712" name="inst_3347895E" locked="0" code="" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="1744" y="400" name="inst_FA2A7536" locked="0" code="" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="1744" y="352" name="inst_391C9587" locked="0" code="" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="1760" y="384" name="inst_247917BC" locked="0" code="X = 96;&#xA;Y = 2208;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="1472" y="1744" name="inst_1B6A946A" locked="0" code="myRoom = lvlShowcaseHUB;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDefaultSpawn" x="368" y="176" name="inst_B1B5EA15" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="112" y="2208" name="inst_0F3D5563" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="128" y="1504" name="inst_E5527E25" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="128" y="832" name="inst_8E99217C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -377,7 +374,7 @@
     <instance objName="objLifeEnergyBig" x="160" y="832" name="inst_6C91A6F3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergyBig" x="1952" y="1296" name="inst_30985176" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="1936" y="1296" name="inst_549C2ECD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objLifeEnergyBig" x="2528" y="1520" name="inst_D81CA6E9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="2496" y="1520" name="inst_D81CA6E9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergyBig" x="160" y="1504" name="inst_741FAB58" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergyBig" x="1648" y="1296" name="inst_E3C1019C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergyBig" x="944" y="1088" name="inst_2ABA452F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -390,9 +387,55 @@
     <instance objName="objWeaponEnergyBig" x="176" y="832" name="inst_CC303C6B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="960" y="1088" name="inst_F00E4E1A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="1984" y="1296" name="inst_D6D7540F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objWeaponEnergyBig" x="2544" y="1520" name="inst_DE713E8E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWeaponEnergyBig" x="2512" y="1520" name="inst_DE713E8E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="144" y="1504" name="inst_273FF36E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="1664" y="1296" name="inst_0D467C34" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNombrellan" x="880" y="928" name="inst_4D815DB4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNombrellan" x="384" y="928" name="inst_2CAABA4C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNombrellan" x="1664" y="928" name="inst_284D6293" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNombrellan" x="1584" y="928" name="inst_F67416D7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNombrellan" x="1328" y="912" name="inst_BA17FB7E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNombrellan" x="1248" y="1024" name="inst_C170761B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="432" y="176" name="inst_C0F90946" locked="0" code="text = &quot;objWaveManJetSki. Mega Man 5. Mega Man can ride on top of water with Jet Ski but loses his special weapons.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1056" y="80" name="inst_BACAD354" locked="0" code="text = &quot;The speed of the jet ski can be edited with the creation code maxSpeed, this one for example will gun it.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2512" y="368" name="inst_B5F86DC1" locked="0" code="text = &quot;Wave Man Warps. Mega Man 5. These objects cause Mega Man to fly in the direction specified by the object until he either reaches another Wave Man warp object or the stopper object. These are located in a folder in Mega Man gimmicks. The tiling effect here was acheived with a layer of -1. Note these currently do not work through screen transitions.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2512" y="576" name="inst_2A13D028" locked="0" code="text = &quot;objGalaxyManPortal. Mega Man 9. Sends Mega Man to the X and Y coordinates specified in creation code and then shoots him upwards. If none are specified it will instead shoot him back up the same portal.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2400" y="736" name="inst_5953F7AD" locked="0" code="text = &quot;objUranusPlatform. Mega Man V (Game Boy). Gradually pulls Mega Man down through it. These are not top solids so you can't jump back up through them. The speed they rotate can be changed with the creation code animSpeed.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2528" y="1072" name="inst_AA52FA7B" locked="0" code="text = &quot;objBouncyTile. Mega Man 6. Bounces Mega Man off of it. Woo.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2336" y="1072" name="inst_A8C89CB6" locked="0" code="text = &quot;objGravLift. Mega Man 9. Causes Mega Man to be either pulled upwards or downwards at a constant rate, Mega Man can move left and right by shooting.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1840" y="400" name="inst_AD4F44FA" locked="0" code="text = &quot;The speed and acceleration GravLift's pull in can be edited with creation code.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2096" y="1296" name="inst_1EABF6B8" locked="0" code="text = &quot;objFanFiend. Mega Man 2. AKA Matasaburo. Blows Mega Man in one direction, can also pull Mega Man by changing the blowSpeed creation code.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDefaultSpawn" x="368" y="176" name="inst_C59F21F5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="480" y="192" name="inst_14A48F64" locked="0" code="" scaleX="20" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2480" y="1520" name="inst_7CAD3F88" locked="0" code="text = &quot;objMegaMan8Sled. Mega Man 8. The infamous sled from Frost Man's stage, when Mega Man hops on it the screen will start to scroll automatically. The speed can be adjusted by putting in speed trigger objects with maxSpeed values. Jump and Slide sides are place manually and play the sound effect once they scroll on screen.&quot; &#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2448" y="1520" name="inst_D170F26B" locked="0" code="text = &quot;One important thing to know about Mega Man 8 slides is how the lock the screen, at the time of this writing they lock the screen transition a few blocks in front of them. Due to this, if I had put that slide under the block to the right the screen wouldn't lock. This is a hard coded issue with slides so it can't be fixed with creation code.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="192" y="1504" name="inst_91CC4C95" locked="0" code="text = &quot;objBigTelly and objRabbiton. Mega Man 8. The two enemies in the preceeding section. While these two can be used whenever, they have special properties when used with frost sleds in that they will both chase Mega Man. The Rabbiton also has the creation code back = true to cause it spawn behind Mega Man.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBigTelly" x="1280" y="1376" name="inst_1E186163" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="128" y="1312" name="inst_B6574490" locked="0" code="text = &quot;objNombrellan. Mega Man 9. Falls down slowly, but in the presence of other objects its movement will be effected by them as will be shown in a few more areas of this showcase.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="352" y="1312" name="inst_E6965988" locked="0" code="text = &quot;objToadRainCtrl. Mega Man 4. Spawns Toad Man rain in the section it is placed which pushes Mega Man when jumping. The speed and direction is determined by the creation code blowSpeed.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1296" y="1264" name="inst_0DB534C0" locked="0" code="text = &quot;objSpring. Mega Man 6. Bounces Mega Man and other entities. When Mega Man holds down A while jumping on one he will jump farther.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1456" y="1216" name="inst_C1786524" locked="0" code="text = &quot;objBatabattan. Mega Man 6. A hoping enemy that carries its forward momentum when jumping on springs instead of just being launched straight back up.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1712" y="1072" name="inst_91566C52" locked="0" code="text = &quot;Wind. Various. These wind objects will push Mega Man in the direction of the wind. The creation code mySpeed determines how fast they are.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1216" y="944" name="inst_3B40849D" locked="0" code="text = &quot;Fans. Mega Man 6. These fans will push Mega Man in the direction they are spawned in.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="896" y="1088" name="inst_7371847D" locked="0" code="text = &quot;objTenguWind. Mega Man 8. Another wind object but this one has leaves. The creation code windSpeed determines the speed and direction.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="720" y="1072" name="inst_4C65F5D4" locked="0" code="text = &quot;Where this really breaks off from wind, is with Tengu Wind Speed Triggers you can change the speed of the wind on the fly in the same section by giving it a new windSpeed and windAccel. Get ready to go fast.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="288" y="832" name="inst_B08DBE23" locked="0" code="text = &quot;objYaffu. Mega Man 6. Alternates between blowing Mega Man forward and pulling Mega Man towards him.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="528" y="832" name="inst_F9AB729A" locked="0" code="text = &quot;objFankurow. Mega Man V (Game Boy). Yaffu if Yaffu was an owl.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="784" y="832" name="inst_47879036" locked="0" code="text = &quot;objSandstorm Spawner. Mega Man 10. Spawns a sandstorm which pushes Mega Man back and obscures tiles. Causes Furaibons to be blown around, but right now they just explode instead.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1136" y="832" name="inst_E6B97176" locked="0" code="text = &quot;The size, speed and delay of sandstorms can be edited with creation code. Editing speed can also change the direction.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1328" y="832" name="inst_4E9575DF" locked="0" code="text = &quot;objPikashu. Mega Man V (Game Boy). Changes the gravity to send Mega Man upward, when hit it will stop.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1616" y="832" name="inst_A12300E4" locked="0" code="text = &quot;I modified a spawner object here to spawn Pikashus which you can use to go up.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1600" y="640" name="inst_C4BD4771" locked="0" code="text = &quot;objBunbyCatcher. Mega Man 9. Grabs Mega Man and pulls him in the direction the catcher is facing. Stops after hitting a wall or a defined x coordinate in creation code.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1504" y="640" name="inst_776763BF" locked="0" code="text = &quot;In addition to a stopping point, the speed can be edited with creation code. It also has an alterate color you can use with the creation code col.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="464" y="624" name="inst_E748FEDE" locked="0" code="text = &quot;objGravityFlipUp. Mega Man 5. Reverses the gravity.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="368" y="496" name="inst_42218820" locked="0" code="text = &quot;objSuzyG. Mega Man 5. Flips its gravity when Mega Man does. With the creation code gravityFlip = true it can be set to spawn on the ceiling if Mega Man is on the ground however. It will occasionally shoot regardless of where it is.&quot;&#xA;" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="592" y="416" name="inst_E63B7898" locked="0" code="text = &quot;objGravityFlipDown. Mega Man 5. Reverts gravity back to its normal state.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="688" y="416" name="inst_0D9B945E" locked="0" code="text = &quot;objGravityChangeLow. Mega Man V (Game Boy). Halves gravity.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="928" y="336" name="inst_D43FD66D" locked="0" code="text = &quot;objGravityChangeHigh. Mega Man V (Game Boy). Doubles gravity.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1344" y="400" name="inst_EAAA197E" locked="0" code="text = &quot;objRoomLowGravSetter. Mega Man V (Game Boy). Lowers the gravity for the immediate section of the level it is placed in. If you want to lower gravity for the entire stage you can use objLowGravitySetter instead.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="208" y="2160" name="inst_9A088250" locked="0" code="text = &quot;objAutoScroller. Mega Man 4. Causes the screen to automatically scroll after a set period of time determined by the creation code waitFrames. The dir creation code determines whether it is horizontal or vertical auto-scrolling and the mySpeed determines the speed and direction of the auto-scroll. The unlockBounds creation code can be used to unlock the camera after auto-scrolling is done.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="336" y="1760" name="inst_F900EC54" locked="0" code="text = &quot;Don't blink.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1184" y="368" name="inst_4C6B4819" locked="0" code="text = &quot;There's another object with the previous two to revert gravity back to normal as well.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstGravityman" x="384" y="528" w="16" h="16" xo="208" yo="192" id="11359545" name="inst_DBDDB8AD" depth="1000012" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -2235,7 +2278,6 @@
     <tile bgName="tstGravityman" x="320" y="432" w="16" h="16" xo="48" yo="0" id="11359048" name="inst_D518B64B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGravityman" x="320" y="448" w="16" h="16" xo="48" yo="0" id="11359049" name="inst_CCB0D915" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGravityman" x="320" y="464" w="16" h="16" xo="48" yo="0" id="11359050" name="inst_F56C8B8D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGravityman" x="320" y="480" w="16" h="16" xo="48" yo="0" id="11359051" name="inst_439FE214" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGravityman" x="256" y="432" w="16" h="16" xo="128" yo="16" id="11359383" name="inst_B4AE7379" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGravityman" x="256" y="416" w="16" h="16" xo="128" yo="16" id="11359384" name="inst_7028018A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGravityman" x="256" y="400" w="16" h="16" xo="128" yo="16" id="11359385" name="inst_C29B2DCB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -2649,6 +2691,8 @@
     <tile bgName="tstGravityman" x="2368" y="1552" w="64" h="16" xo="176" yo="0" id="11360136" name="inst_6F73D482" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGravityman" x="2432" y="1552" w="64" h="16" xo="176" yo="0" id="11360137" name="inst_250F2CF6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGravityman" x="2496" y="1552" w="64" h="16" xo="176" yo="0" id="11360138" name="inst_D4944A5B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGravityman" x="2240" y="1536" w="64" h="16" xo="112" yo="0" id="11368046" name="inst_19DFD245" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGravityman" x="2240" y="1552" w="64" h="16" xo="176" yo="0" id="11368047" name="inst_1EA067FA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstWavePipe" x="2496" y="384" w="32" h="32" xo="96" yo="64" id="11356000" name="inst_67093A52" depth="-1" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstWavePipe" x="2464" y="384" w="32" h="32" xo="0" yo="32" id="11356001" name="inst_854EBB84" depth="-1" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstWavePipe" x="2464" y="352" w="32" h="32" xo="32" yo="64" id="11356002" name="inst_6DA397F3" depth="-1" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
