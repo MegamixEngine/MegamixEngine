@@ -4231,13 +4231,13 @@
         <script>scripts\stringExecutePartial.gml</script>
         <script>scripts\parseExpression.gml</script>
         <script>scripts\stringPeekBlock.gml</script>
-        <script>scripts\setInstanceVariable.gml</script>
         <script>scripts\setInstanceVariableArray.gml</script>
         <script>scripts\getInstanceVariable.gml</script>
         <script>scripts\getInstanceVariableArray.gml</script>
         <script>scripts\stringPeekToken.gml</script>
         <script>scripts\scriptExecuteNargs.gml</script>
         <script>scripts\executeGMLFunction.gml</script>
+        <script>scripts\setInstanceVariable.gml</script>
       </scripts>
       <scripts name="Unit Tests">
         <scripts name="Framework">
@@ -4323,6 +4323,7 @@
         <object>objects\objSlopeLLong</object>
       </objects>
       <objects name="Don't Use">
+        <object>objects\prtBossDoor</object>
         <object>objects\objStandSolid</object>
       </objects>
     </objects>

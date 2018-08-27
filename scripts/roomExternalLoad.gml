@@ -169,10 +169,12 @@ for (var i = 0; i < prop_inst_n; i++)
     
     // copy over additional attributes to the room loader map:
     exgrid[# i + 1, 0] = inst_id;
-    for (var j = 0; j < prop_copy_n; j++)
+    for (var j = 0; j < prop_copy_n; ++j)
     {
         exgrid[# i + 1, j + 1] = map[? prop_copy[j]];
+        
     }
+    
     
     ds_map_destroy(map);
 }

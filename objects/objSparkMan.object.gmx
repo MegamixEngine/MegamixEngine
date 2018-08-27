@@ -270,14 +270,11 @@ if (entityCanStep())
                             }
                             if (place_meeting(x, y, objSolid) || y &lt;= view_yview + 16)
                             {
-                                with (other)
-                                {
-                                    if (x &lt; view_xview + view_wview / 2)
-                                        storeDirection = 1;
-                                    else
-                                        storeDirection = -1;
-                                    image_xscale = storeDirection;
-                                }
+                                if (x &lt; view_xview + view_wview / 2)
+                                    storeDirection = 1;
+                                else
+                                    storeDirection = -1;
+                                image_xscale = storeDirection;
                             }
                         }
                     }
