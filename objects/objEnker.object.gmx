@@ -319,6 +319,19 @@ if (entityCanStep())
                                 shiftObject(0, (succy - y) / (abs(x - succx) / abs(xspeed + hspeed)), blockCollision);
                             }
                         }
+                        
+                        // Destroy bullets when Enker is invincible
+                        if (other.iFrames &gt; 0)
+                        {
+                            if (x &gt;= succx - 10) &amp;&amp; (other.image_xscale == -1)
+                                || (x &lt;= succx + 10) &amp;&amp; (other.image_xscale == 1)
+                            {
+                                if (pierces &lt; 2) || (object_index == objPharaohShot)
+                                {
+                                    event_user(EV_DEATH);
+                                }
+                            }
+                        }
                     }
                 }
                 
@@ -432,7 +445,7 @@ mask_index = sprEnker;
             <string>/// absorb shots when charging up
 if (image_index &gt;= 7 &amp;&amp; image_index &lt;= 12)
 {
-    if (other.y &lt;= y)
+    if (other.y &lt;= y) || (other.object_index == objMagneticShockwave)
     {
         charge += global.damage;
         charge += 6 * (other.object_index == objBusterShotCharged);
@@ -445,17 +458,10 @@ if (image_index &gt;= 7 &amp;&amp; image_index &lt;= 12)
         }
         
         if ((other.object_index == objPharaohShot) &amp;&amp; (other.sprite_index == sprPharaohShotCharged)
-            || (other.object_index == objHomingSniper))
+            || (other.object_index == objHomingSniper)) || (other.object_index == objMagneticShockwave)
         {
-            charge = 10;
-            phase = 5;
-            if (other.object_index == objPharaohShot)
-            {
-                with (objPharaohShot)
-                {
-                    extraDamage = 4;
-                }
-            }
+            charge = 9;
+            phaseTimer = 110;
         }
         
         with (other)
@@ -466,6 +472,12 @@ if (image_index &gt;= 7 &amp;&amp; image_index &lt;= 12)
             }
         }
     }
+}
+
+with (objPharaohShot)
+{
+    extraDamage = 4;
+    event_user(EV_DEATH);
 }
 </string>
           </argument>
