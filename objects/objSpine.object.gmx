@@ -214,6 +214,7 @@ specialDamageValue(objBreakDash, 3);
 specialDamageValue(objThunderBeam, 3);
 specialDamageValue(objTornadoBlow, 3);
 specialDamageValue(objIceWall, 3);
+specialDamageValue(objChillSpikeLanded, 3);
 specialDamageValue(objConcreteShot, 3);
 specialDamageValue(objSearchSnake, 3);
 specialDamageValue(objRainFlush, 3);

@@ -199,9 +199,12 @@ else if (dead)
 global.damage = 0;
 
 // certain weapons will only stop it - these kill it
+specialDamageValue(objTopSpin, 3);
+specialDamageValue(objBlackHoleBomb, 3);
 specialDamageValue(objThunderBeam, 3);
 specialDamageValue(objBreakDash, 3);
-specialDamageValue(objChillSpikeSpike, 3);
+specialDamageValue(objChillSpikeLanded, 3);
+specialDamageValue(objTenguDash, 3);
 specialDamageValue(objSkeletuppinPakkajoe, 3);
 </string>
           </argument>
