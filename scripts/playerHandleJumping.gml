@@ -2,8 +2,13 @@
 
 if (!playerIsLocked(PL_LOCK_JUMP))
 {
-    if (ground)
+    if (ground || jumpCounter < jumpCounterMax)
     {
+        if (ground)
+        {
+            jumpCounter = 0;
+            dashJumped = false;
+        }
         if (global.keyJumpPressed[playerID] && yDir != gravDir)
         {
             playerJump();
