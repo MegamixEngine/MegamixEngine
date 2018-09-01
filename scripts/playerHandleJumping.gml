@@ -2,16 +2,16 @@
 
 if (!playerIsLocked(PL_LOCK_JUMP))
 {
-    if (ground || jumpCounter < jumpCounterMax)
+    if (ground)
     {
-        if (ground)
+        jumpCounter = 0;
+        dashJumped = false;
+    }
+    if (global.keyJumpPressed[playerID] && yDir != gravDir)
+    {
+        if (ground || jumpCounter < jumpCounterMax)
         {
-            jumpCounter = 0;
-            dashJumped = false;
-        }
-        if (global.keyJumpPressed[playerID] && yDir != gravDir)
-        {
-            playerJump();
+                playerJump();
         }
     }
     else if (!global.keyJump[playerID]) // Minjumping (lowering jump when the jump button is released)
