@@ -190,6 +190,8 @@ for (i = 0; i &lt;= 99; i += 1)
 }
 animSpinOffset = 0;
 animSpinTurn = 1;
+
+paletteRefresh = 0;
 </string>
           </argument>
         </arguments>
@@ -213,6 +215,49 @@ animSpinTurn = 1;
           <argument>
             <kind>1</kind>
             <string>playerEndStep();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>switch (global.characterSelected[playerID])
+{ 
+    default: //costumeID needs to be set here or it won't display correctly.
+        break;
+    case "Mega Man":
+        costumeID = 0;
+        break;
+    case "Proto Man":
+        costumeID = 1;
+        break;
+    case "Bass":
+        costumeID = 2;
+        break;
+    case "Roll":
+        costumeID = 3;
+        break;
+}
+if paletteRefresh == 0
+{
+    playerPalette(); // corrects palette
+}
 </string>
           </argument>
         </arguments>
@@ -303,7 +348,7 @@ if (spawned)
         {
             costumeID = 3;
             break;
-        }     
+        }
     }
     switch (global.characterSelected[0])
     {

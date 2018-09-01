@@ -5995,6 +5995,7 @@
     <rooms name="Engine">
       <room>rooms\rmDisclaimer</room>
       <room>rooms\rmTitleScreen</room>
+      <room>rooms\rmCharacterSelect</room>
       <room>rooms\rmRoomSelect</room>
       <room>rooms\rmFileSelect</room>
       <room>rooms\rmNewFile</room>

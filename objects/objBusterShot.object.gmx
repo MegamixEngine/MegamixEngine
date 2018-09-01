@@ -29,7 +29,7 @@
 
 if object_index == objNormalBusterShot
     scrBusterDefault_Create();
-else 
+else if instance_exists(parent) 
 {
     switch (global.characterSelected[parent.playerID])
     {
@@ -75,7 +75,7 @@ else
             <string>//This is only needed for bass currently. But this can be added to for any character.
 event_inherited();
 
-if (!global.frozen &amp;&amp; object_index != objNormalBusterShot)
+if (!global.frozen &amp;&amp; object_index != objNormalBusterShot &amp;&amp; instance_exists(parent))
 {
     switch (global.characterSelected[parent.playerID])
     {

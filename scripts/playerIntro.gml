@@ -14,8 +14,8 @@ else
 // Initialization of the spawning animation (after READY)
 if (init)
 {
-    if costumeID == 1
-        resumeMusic();
+    //if costumeID == 1
+        //resumeMusic();
     switch (global.respawnAnimation)
     {
         case 1: // teleport 

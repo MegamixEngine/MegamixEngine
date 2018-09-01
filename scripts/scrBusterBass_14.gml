@@ -15,7 +15,7 @@ if yDir == -1 && xDir == 0
 else if yDir == -1 && xDir != 0
 { 
     action = 4;
-    xOffset = 15;
+    xOffset = 13;
     yOffset = -6;
 }
 else if yDir 

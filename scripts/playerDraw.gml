@@ -1,5 +1,5 @@
 /// playerDraw()
-
+var restoreMusic = 0;
 // Don't draw if the game is fading in
 if (teleporting || showReady)
 {
@@ -8,7 +8,6 @@ if (teleporting || showReady)
         exit;
     }
 }
-var restoreMusic = 0
 
 if ((teleporting || showDuringReady) && !instance_exists(objSectionSwitcher))
 {
@@ -18,18 +17,14 @@ if ((teleporting || showDuringReady) && !instance_exists(objSectionSwitcher))
 if (showReady)
 {
     depth = -1000000; // make sure the ready text isn't hidden behind stuff
-    
-    if readyTimer == 0 && !global.hasTeleported
-    {
-        playerPalette(); //Need to correct the palette
-        if costumeID == 1 && restoreMusic == 0 && !audio_is_playing(sfxWhistle)
-        {
-            playSFX(sfxWhistle);
-            stopMusic();
-            restoreMusic = 1;
-        }
-    }
     // Draw the READY text
+    if costumeID == 1 && restoreMusic == 0 && !audio_is_playing(sfxWhistle) && readyTimer == 0 && !global.hasTeleported 
+    {
+        playSFX(sfxWhistle);
+        stopMusic();
+        restoreMusic = 1;
+    }
+    
     if (!global.frozen)
     {
         readyTimer += 1;
@@ -75,6 +70,7 @@ else
     col[1] = global.primaryCol[playerID];
     col[2] = global.secondaryCol[playerID];
     col[3] = global.outlineCol[playerID];
+    
     
     if ((iFrames mod 4) < 2 || iFrames < 0)
     {
