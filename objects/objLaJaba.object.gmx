@@ -34,10 +34,17 @@ contactDamage = 4;
 facePlayerOnSpawn = true;
 phase = 0;
 
+// @cc - use this to change how fast La Jaba's horizontal movement is.
+moveSpeed = 1;
+
+// @cc - use this to set how high La Jaba jumps.
+jumpSpeed = -3;
+
 image_index = 2;
 imgSpd = 0.1;
 moveTimer = 0;
 tauntCount = 0;
+mask_index = sprLaJabaSmallMask;
 </string>
           </argument>
         </arguments>
@@ -64,6 +71,15 @@ tauntCount = 0;
 
 if (entityCanStep())
 {
+    if (image_index &lt; 2)
+    {
+        mask_index = sprLaJabaSmallMask;
+    }
+    else
+    {
+        mask_index = sprLaJaba;
+    }
+
     switch (phase)
     {
         // Do Small Jump
@@ -76,8 +92,8 @@ if (entityCanStep())
                 {
                     image_index = 2;
                     phase = 1;
-                    yspeed = -3;
-                    xspeed = 1 * image_xscale;
+                    yspeed = jumpSpeed;
+                    xspeed = moveSpeed * image_xscale;
                     moveTimer = 4;
                 }
             }
@@ -143,8 +159,8 @@ if (entityCanStep())
                 {
                     image_index = 1;
                     phase = 3;
-                    yspeed = -4;
-                    xspeed = 1 * image_xscale;
+                    yspeed = jumpSpeed - 1;
+                    xspeed = moveSpeed * image_xscale;
                 }
             }
             break;

@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A fat bird from Uranus. It spits Chuncos out the nest on its head and fires three shots at a time.
+
+event_inherited();
 
 healthpointsStart = 9;
 healthpoints = healthpointsStart;

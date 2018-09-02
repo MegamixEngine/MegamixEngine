@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>objMM4ShieldAttacker</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// The Shield Attacker from Powered Up. It's slower and can have its shield knocked off with Charge Shots + other weapons
+            <string>// The Shield Attacker from Powered Up. It's slower and can have its shield knocked off with Charge Shots + other weapons.
 
 event_inherited();
 
@@ -47,7 +47,7 @@ turnSprite = sprShieldGuardTurn;
 
 moveSpeed = 1;
 imgSpeed = 0.2;
-turnSpeed = 0.2;
+turnSpeed = 0.05;
 hasShield = true;
 </string>
           </argument>
@@ -76,13 +76,15 @@ event_inherited();
 
 if (entityCanStep())
 {
+    print (phase);
     if (hasShield == false)
     {
         turnSprite = sprShieldGuardNoShieldTurn;
         moveSprite = sprShieldGuardNoShield;
     }
     
-    if (phase == 1)
+    //Keeping this in case stuff breaks
+    /*if (phase == 1)
     {
         if (xcoll != 0)
         {
@@ -108,7 +110,7 @@ if (entityCanStep())
             sprite_index = moveSprite;
             image_xscale *= -1;
         }
-    }
+    }*/
 }
 else if (dead)
 {

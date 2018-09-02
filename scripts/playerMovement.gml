@@ -57,7 +57,7 @@ else if (dieToPit)
 }
 
 // Handling of masks to make sure nothing breaks
-if (!isSlide && (mask_index == mskMegamanSlide || mask_index == mskMegamanSlide2))
+if (!isSlide && (mask_index == firstSlideMask || mask_index == secondSlideMask))
 {
     mask_index = mskMegaman;
 }
