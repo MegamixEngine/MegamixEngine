@@ -1098,6 +1098,7 @@
       <sound>sound\sfxHit</sound>
       <sound>sound\sfxCharging</sound>
       <sound>sound\sfxCharged</sound>
+      <sound>sound\sfxProtoCharging</sound>
       <sound>sound\sfxDeath</sound>
       <sound>sound\sfxDeathClassic</sound>
       <sound>sound\sfxAbsorb</sound>
@@ -1333,6 +1334,7 @@
       <sound>sound\sfxBuster</sound>
       <sound>sound\sfxBusterHalfCharged</sound>
       <sound>sound\sfxBusterCharged</sound>
+      <sound>sound\sfxBusterProtoCharged</sound>
       <sound>sound\sfxReflect</sound>
       <sound>sound\sfxSparkChaser</sound>
       <sound>sound\sfxLaserTrident</sound>
@@ -1421,6 +1423,7 @@
       <sprite>sprites\mskMegaman</sprite>
       <sprite>sprites\mskMegamanSlide</sprite>
       <sprite>sprites\mskMegamanSlide2</sprite>
+      <sprite>sprites\mskProtoShield</sprite>
       <sprite>sprites\sprMegamanTeleport</sprite>
       <sprite>sprites\sprMegamanTeleportPrimary</sprite>
       <sprite>sprites\sprMegamanTeleportSecondary</sprite>
@@ -1432,6 +1435,9 @@
         <sprite>sprites\sprBusterShotChargedColourMask</sprite>
         <sprite>sprites\sprBusterShotChargedPlus</sprite>
         <sprite>sprites\sprBusterShotChargedPlusColourMask</sprite>
+        <sprite>sprites\sprBusterShotHalfChargedProto</sprite>
+        <sprite>sprites\sprBusterShotChargedProto</sprite>
+        <sprite>sprites\sprBusterShotChargedProtoColourMask</sprite>
         <sprite>sprites\sprSparkChaser</sprite>
         <sprite>sprites\sprLaserTrident</sprite>
         <sprite>sprites\sprTornadoBlow</sprite>
@@ -1524,6 +1530,7 @@
         </sprites>
         <sprites name="WeaponIcons">
           <sprite>sprites\sprWeaponIconsMegaBuster</sprite>
+          <sprite>sprites\sprWeaponIconsBassBuster</sprite>
           <sprite>sprites\sprWeaponIconsSparkChaser</sprite>
           <sprite>sprites\sprWeaponIconsLaserTrident</sprite>
           <sprite>sprites\sprWeaponIconsTornadoBlow</sprite>
@@ -2422,6 +2429,7 @@
         <sprite>sprites\sprSnippscissor</sprite>
       </sprites>
       <sprite>sprites\sprEnemyBullet</sprite>
+      <sprite>sprites\sprBassBullet</sprite>
       <sprite>sprites\sprCustomSpawner</sprite>
     </sprites>
     <sprites name="Minibosses">
@@ -3926,6 +3934,7 @@
   </paths>
   <scripts name="scripts">
     <scripts name="Player">
+      <script>scripts\playerStepEventDefault.gml</script>
       <script>scripts\playerStep.gml</script>
       <script>scripts\playerEndStep.gml</script>
       <script>scripts\playerIntro.gml</script>
@@ -3961,6 +3970,10 @@
         <script>scripts\playerGetShocked.gml</script>
         <script>scripts\playerFanOut.gml</script>
         <script>scripts\playerBlow.gml</script>
+      </scripts>
+      <scripts name="Proto">
+        <script>scripts\playerStepEventProto.gml</script>
+        <script>scripts\playerHandleSpritesProto.gml</script>
       </scripts>
     </scripts>
     <scripts name="Collision/Gravity">
@@ -4019,6 +4032,20 @@
       <script>scripts\getWeaponDamage.gml</script>
       <script>scripts\getWeaponID.gml</script>
       <script>scripts\weaponReward.gml</script>
+      <scripts name="Buster Replacements">
+        <scripts name="Default">
+          <script>scripts\scrBusterDefault_Create.gml</script>
+          <script>scripts\scrBusterDefault_14.gml</script>
+        </scripts>
+        <scripts name="Proto">
+          <script>scripts\scrBusterProto_14.gml</script>
+        </scripts>
+        <scripts name="Bass">
+          <script>scripts\scrBusterBass_Create.gml</script>
+          <script>scripts\scrBusterBass_Step.gml</script>
+          <script>scripts\scrBusterBass_14.gml</script>
+        </scripts>
+      </scripts>
     </scripts>
     <scripts name="Views/Section">
       <script>scripts\insideView.gml</script>
@@ -5432,8 +5459,10 @@
         </objects>
       </objects>
       <objects name="MM1">
-        <object>objects\objElecBlock</object>
+        <object>objects\objElecBlockRotatable</object>
+        <object>objects\objFireBlockRotatable</object>
         <object>objects\objFireBlock</object>
+        <object>objects\objElecBlock</object>
         <object>objects\objFirePillar</object>
         <objects name="Fire Waves">
           <object>objects\objFireWaveGoDirector</object>
@@ -5815,6 +5844,8 @@
           <object>objects\objBusterShot</object>
           <object>objects\objBusterShotHalfCharged</object>
           <object>objects\objBusterShotCharged</object>
+          <object>objects\objBusterShotHalfChargedProto</object>
+          <object>objects\objBusterShotChargedProto</object>
           <object>objects\objSparkChaser</object>
           <object>objects\objLaserTrident</object>
           <object>objects\objWaterShield</object>
@@ -5828,11 +5859,13 @@
           <object>objects\objRushCycle</object>
           <object>objects\objMagnetBeam</object>
           <objects name="Misc.">
+            <object>objects\objNormalBusterShot</object>
             <object>objects\objTornadoEffect</object>
             <object>objects\objBubblePopEffect</object>
             <object>objects\objRushTeleport</object>
             <object>objects\objRushTeleportBlock</object>
             <object>objects\objWeaponExplosion</object>
+            <object>objects\objProtoShield</object>
           </objects>
           <objects name="MaGMML1">
             <object>objects\objMetalBlade</object>
@@ -5931,6 +5964,7 @@
         <object>objects\objColoredTextOverlaysMenu</object>
         <object>objects\objNewFile</object>
         <object>objects\objFileSelector</object>
+        <object>objects\objCharacterSelector</object>
         <object>objects\objStageSelect</object>
         <object>objects\objWeaponGet</object>
         <object>objects\objShopControl</object>
@@ -5962,6 +5996,7 @@
     <rooms name="Engine">
       <room>rooms\rmDisclaimer</room>
       <room>rooms\rmTitleScreen</room>
+      <room>rooms\rmCharacterSelect</room>
       <room>rooms\rmRoomSelect</room>
       <room>rooms\rmFileSelect</room>
       <room>rooms\rmNewFile</room>

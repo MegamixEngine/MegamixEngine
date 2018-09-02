@@ -47,6 +47,10 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
                 localPlayerLock[PL_LOCK_GRAVITY],
                 localPlayerLock[PL_LOCK_TURN]);
             ground = false;
+            if jumpCounter == 0
+            {
+                jumpCounter += 1;
+            }
             yspeed = 0;
             ladderXScale = image_xscale;
             climbShootXscale = ladderXScale;
