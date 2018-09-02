@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// An electric enemy that electrifies the ground beneath it and fires out five electric shots.
+
+event_inherited();
 
 healthpointsStart = 6;
 healthpoints = healthpointsStart;

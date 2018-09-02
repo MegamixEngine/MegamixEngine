@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A bulky trash-spitting robot. What does G.S.Q. even stand for? "Garbage Squashing Queen"? :thinking:
+
+event_inherited();
 
 healthpointsStart = 9;
 healthpoints = healthpointsStart;

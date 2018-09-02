@@ -2347,6 +2347,7 @@
         <sprite>sprites\sprHellMetallDXTreads</sprite>
         <sprite>sprites\sprJupibul</sprite>
         <sprite>sprites\sprLaJaba</sprite>
+        <sprite>sprites\sprLaJabaSmallMask</sprite>
         <sprite>sprites\sprMalmet</sprite>
         <sprite>sprites\sprMetSniper</sprite>
         <sprite>sprites\sprMonkikki</sprite>

@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// Yes, that's really his name. Don't make fun of it; he had a rough childhood. :( Mama Birdy
+// had other Chuncos to feed, and now he takes his aggression out on Mega Man via
+// shooting projectiles and chasing him.
+
+event_inherited();
 
 healthpointsStart = 1;
 
