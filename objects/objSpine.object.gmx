@@ -204,9 +204,21 @@ global.damage = 0;
 
 // Now set the weaknesses
 specialDamageValue(objSolarBlaze, 2);
+specialDamageValue(objThunderWool, 3);
+specialDamageValue(objTopSpin, 3);
+specialDamageValue(objBlackHoleBomb, 3);
 specialDamageValue(objWheelCutter, 3);
+specialDamageValue(objSakugarne, 3);
+specialDamageValue(objGrabBuster, 3); //Literally an endless health source otherwise
 specialDamageValue(objBreakDash, 3);
 specialDamageValue(objThunderBeam, 3);
+specialDamageValue(objTornadoBlow, 3);
+specialDamageValue(objIceWall, 3);
+specialDamageValue(objChillSpikeLanded, 3);
+specialDamageValue(objConcreteShot, 3);
+specialDamageValue(objSearchSnake, 3);
+specialDamageValue(objRainFlush, 3);
+specialDamageValue(objTenguDash, 3);
 specialDamageValue(objSkeletuppinPakkajoe, 3);
 </string>
           </argument>
@@ -240,7 +252,7 @@ else
     alarmStop = 60;
     stopped = true;
     xspeed = 0;
-    playSFX(sfxEnemyHitOld);
+    playSFX(sfxEnemyHit);
     if (other.penetrate &lt; 1)
     {
         other.dead = true;

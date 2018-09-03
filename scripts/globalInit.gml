@@ -133,6 +133,11 @@ global.inkSurface[0] = -1; // used for octone ink
 global.keyCoinTotal = 0;
 global.keyCoinCollected = 0;
 
+// The default player used
+for (i = 0; i < 5; i++)
+{
+    global.characterSelected[i] = "NONE";
+}
 // Weapon inventory
 weaponSetup();
 

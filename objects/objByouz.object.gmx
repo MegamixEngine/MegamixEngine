@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A springy boi that walks on ceilings and jumps up (down?) to stab Mega Man when above him.
+
+event_inherited();
 
 healthpointsStart = 4;
 healthpoints = healthpointsStart;

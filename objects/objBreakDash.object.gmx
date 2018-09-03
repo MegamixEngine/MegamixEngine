@@ -222,7 +222,7 @@ var initChargeTime = 20;
 // Shooting buster shots if not charged.
 if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; !instance_exists(objBreakDash))
 {
-    i = fireWeapon(16, 0, objBusterShot, 3, 0, 1, 0);
+    i = fireWeapon(16, 0, objNormalBusterShot, 3, 0, 1, 0);
     if (i)
     {
         i.xspeed = image_xscale * 5; // zoom

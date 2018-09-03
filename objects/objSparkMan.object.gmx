@@ -182,7 +182,7 @@ if (entityCanStep())
             if (attackTimer == 28 || attackTimer == 36)
                 image_index = 6;
             if (attackTimer == 40)
-                image_index = 0;
+                image_index = 1;
             if (attackTimer == 50)
             {
                 canFillHealthBar = true;

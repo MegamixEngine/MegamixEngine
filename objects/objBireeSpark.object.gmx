@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A flying enemy that drops sparks that, on impact with the ground, become waves that charge
+// across surfaces.
+
+event_inherited();
 
 healthpointsStart = 3;
 contactDamage = 4;

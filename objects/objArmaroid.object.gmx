@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A robot armadillo from Mars's stage that fires homing missiles and slides around in a
+// hard, nigh impervious shell. Also Armored Armadillo's ancestor?! :connection_to_the_x_series:
+
+event_inherited();
 
 healthpointsStart = 8;
 contactDamage = 4;
