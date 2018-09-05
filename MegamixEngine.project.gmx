@@ -3580,6 +3580,7 @@
       <sprite>sprites\sprKeyGate</sprite>
       <sprite>sprites\sprKeyCoin</sprite>
       <sprite>sprites\sprKeyCoinHUD</sprite>
+      <sprite>sprites\sprTricksterToken</sprite>
     </sprites>
     <sprites name="Menu">
       <sprites name="Pause">
@@ -5867,70 +5868,8 @@
             <object>objects\objWeaponExplosion</object>
             <object>objects\objProtoShield</object>
           </objects>
-          <objects name="MaGMML1">
-            <object>objects\objMetalBlade</object>
-            <object>objects\objGeminiLaser</object>
-            <object>objects\objSolarBlaze</object>
-            <object>objects\objTopSpin</object>
-            <object>objects\objThunderWool</object>
-            <object>objects\objPharaohShot</object>
-            <object>objects\objBlackHoleBomb</object>
-            <object>objects\objMagicCard</object>
-            <objects name="Misc.">
-              <object>objects\objBHBEffect</object>
-            </objects>
-          </objects>
-          <objects name="MaGMML2">
-            <object>objects\objHornetChaser</object>
-            <object>objects\objJewelSatellite</object>
-            <object>objects\objGrabBuster</object>
-            <object>objects\objTripleBlade</object>
-            <object>objects\objFlashStopper</object>
-            <object>objects\objSlashClaw</object>
-            <object>objects\objWheelCutter</object>
-            <object>objects\objSakugarne</object>
-            <object>objects\objWireAdapter</object>
-            <object>objects\objSuperArrow</object>
-            <objects name="Misc.">
-              <object>objects\objGrabBusterPickup</object>
-              <object>objects\objSlashEffect</object>
-            </objects>
-          </objects>
-          <objects name="MaG24HMML">
-            <object>objects\objSuperArm</object>
-            <object>objects\objChillShot</object>
-            <objects name="Misc.">
-              <object>objects\objChillSpikeLanded</object>
-              <object>objects\objChillDebris</object>
-              <object>objects\objSuperArmBlockProjectile</object>
-              <object>objects\objSuperArmDebris</object>
-            </objects>
-          </objects>
-          <objects name="MaG48HMML">
-            <object>objects\objFlameMixer</object>
-            <object>objects\objRainFlush</object>
-            <object>objects\objSparkShock</object>
-            <object>objects\objSearchSnake</object>
-            <object>objects\objTenguBlade</object>
-            <object>objects\objSaltWater</object>
-            <object>objects\objConcreteShot</object>
-            <object>objects\objHomingSniper</object>
-            <objects name="Misc.">
-              <object>objects\objSparkShockParalyze</object>
-              <object>objects\objTenguDash</object>
-              <object>objects\objTenguDisk</object>
-            </objects>
-          </objects>
           <objects name="Other Examples">
-            <object>objects\objTimeStopper</object>
-            <object>objects\objPowerStone</object>
-            <object>objects\objPlantBarrier</object>
-            <object>objects\objBrickWeapon</object>
-            <object>objects\objIceSlasher</object>
             <object>objects\objSkeletuppinPakkajoe</object>
-            <objects name="Misc.">
-              <object>objects\objBrickWeaponDebris</object>
-            </objects>
           </objects>
         </objects>
       </objects>
@@ -6019,7 +5958,7 @@
       <room>rooms\lvlTestHallBoss</room>
     </rooms>
   </rooms>
-  <constants number="36">
+  <constants number="80">
     <constant name="PL_LOCK_MAX">14</constant>
     <constant name="PL_LOCK_AERIAL">13</constant>
     <constant name="PL_LOCK_GROUND">12</constant>
@@ -6056,6 +5995,50 @@
     <constant name="gravAccel">0.25</constant>
     <constant name="waterAccelMod">0.57</constant>
     <constant name="MAX_SLOPE">2</constant>
+    <constant name="objFlameMixer">-4</constant>
+    <constant name="objRainFlush">-4</constant>
+    <constant name="objSparkShock">-4</constant>
+    <constant name="objSearchSnake">-4</constant>
+    <constant name="objTenguBlade">-4</constant>
+    <constant name="objSaltWater">-4</constant>
+    <constant name="objConcreteShot">-4</constant>
+    <constant name="objHomingSniper">-4</constant>
+    <constant name="objSparkShockParalyze">-4</constant>
+    <constant name="objTenguDash">-4</constant>
+    <constant name="objTenguDisk">-4</constant>
+    <constant name="objMetalBlade">-4</constant>
+    <constant name="objGeminiLaser">-4</constant>
+    <constant name="objSolarBlaze">-4</constant>
+    <constant name="objTopSpin">-4</constant>
+    <constant name="objThunderWool">-4</constant>
+    <constant name="objPharaohShot">-4</constant>
+    <constant name="objBlackHoleBomb">-4</constant>
+    <constant name="objMagicCard">-4</constant>
+    <constant name="objBHBEffect">-4</constant>
+    <constant name="objHornetChaser">-4</constant>
+    <constant name="objJewelSatellite">-4</constant>
+    <constant name="objGrabBuster">-4</constant>
+    <constant name="objTripleBlade">-4</constant>
+    <constant name="objFlashStopper">-4</constant>
+    <constant name="objSlashClaw">-4</constant>
+    <constant name="objWheelCutter">-4</constant>
+    <constant name="objSakugarne">-4</constant>
+    <constant name="objWireAdapter">-4</constant>
+    <constant name="objSuperArrow">-4</constant>
+    <constant name="objGrabBusterPickup">-4</constant>
+    <constant name="objSlashEffect">-4</constant>
+    <constant name="objSuperArm">-4</constant>
+    <constant name="objChillShot">-4</constant>
+    <constant name="objChillSpikeLanded">-4</constant>
+    <constant name="objChillDebris">-4</constant>
+    <constant name="objSuperArmBlockProjectile">-4</constant>
+    <constant name="objSuperArmDebris">-4</constant>
+    <constant name="objTimeStopper">-4</constant>
+    <constant name="objPowerStone">-4</constant>
+    <constant name="objPlantBarrier">-4</constant>
+    <constant name="objBrickWeapon">-4</constant>
+    <constant name="objIceSlasher">-4</constant>
+    <constant name="objBrickWeaponDebris">-4</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

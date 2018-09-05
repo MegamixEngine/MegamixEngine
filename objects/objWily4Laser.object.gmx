@@ -42,9 +42,8 @@ variation = 0; // cc 1: drain laser
 image_speed = 0.25;
 mySpeed = 32;
 
-obstacleList[0] = objConcreteShot;
-obstacleList[1] = objIceWall;
-obstacleList[2] = objPlantBarrier;
+obstacleList[0] = objIceWall;
+
 </string>
           </argument>
         </arguments>

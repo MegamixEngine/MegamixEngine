@@ -32,6 +32,7 @@ healthpoints = healthpointsStart;
 contactDamage = 6;
 blockCollision = true;
 grav = 0;
+isTargetable = false;
 
 // Enemy specific code
 image_speed = 0.25;
@@ -161,9 +162,8 @@ if (spawned)
 event_inherited();
 global.damage = 0;
 specialDamageValue(objBreakDash, 4);
-specialDamageValue(objSakugarne, 4);
-specialDamageValue(objBlackHoleBomb, 4);
-isTargetable = false;
+
+
 if (global.damage == 0)
 {
     other.guardCancel = 3;

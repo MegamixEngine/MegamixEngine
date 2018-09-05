@@ -167,7 +167,7 @@ switch (AnimID)
         {
             initxoffset = 4;
         }
-        
+        /*
         if (instance_exists(objSlashClaw))
         {
             var sprx;
@@ -178,6 +178,7 @@ switch (AnimID)
             }
             spriteX = initxoffset + sprx;
         }
+        */
         break;
     case "Sakugarne0":
         spriteX = 13;
@@ -191,7 +192,7 @@ switch (AnimID)
         if (!climbing)
         {
             spriteY = 7;
-            
+            /*
             if (instance_exists(objWireAdapter))
             {
                 if (ground || other.phase == 1)
@@ -203,6 +204,7 @@ switch (AnimID)
                     spriteX = 16 + isShoot;
                 }
             }
+            */
         }
         break;
     case "Top":
@@ -234,7 +236,7 @@ switch (AnimID)
         {
             initxoffset = 4;
         }
-        
+        /*
         if (instance_exists(objTenguBlade))
         {
             var sprx;
@@ -245,6 +247,7 @@ switch (AnimID)
             }
             spriteX = initxoffset + sprx;
         }
+        */
         break;
     case "Tengu2":
         spriteX = 12 + other.animFrame;

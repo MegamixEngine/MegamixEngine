@@ -41,7 +41,6 @@ contactDamage = 2;
 facePlayerOnSpawn = true;
 
 // Enemy specific code
-enemyDamageValue(objThunderBeam, 1);
 image_speed = 0.2;
 ground = 1;
 
