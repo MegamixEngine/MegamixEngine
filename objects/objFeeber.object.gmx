@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A crab from Venus's stage that shoots large bubbles. If they touch Mega Man, he'll get
+// trapped inside and must break out as the bubble carries him along.
+
+event_inherited();
 
 healthpointsStart = 6;
 healthpoints = healthpointsStart;

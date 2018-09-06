@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// Whatever this freaky thing from Venus is, it flies around and splits into two smaller
+// variants when destroyed. This is the medium sized variant.
+
+event_inherited();
 
 healthpointsStart = 2;
 healthpoints = healthpointsStart;

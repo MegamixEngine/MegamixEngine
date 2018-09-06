@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// An enemy that rolls back and forth, deflecting shots to the front with its buzzsaw.
+// Killing it releases the buzzsaw, which charges straight forwards after a small delay.
+
+event_inherited();
 
 respawn = true;
 

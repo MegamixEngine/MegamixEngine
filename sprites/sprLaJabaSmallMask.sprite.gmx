@@ -6,10 +6,10 @@
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
-  <bboxmode>2</bboxmode>
+  <bboxmode>0</bboxmode>
   <bbox_left>2</bbox_left>
   <bbox_right>16</bbox_right>
-  <bbox_top>0</bbox_top>
+  <bbox_top>13</bbox_top>
   <bbox_bottom>31</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
@@ -20,11 +20,6 @@
   <width>20</width>
   <height>32</height>
   <frames>
-    <frame index="0">images\sprLaJaba_0.png</frame>
-    <frame index="1">images\sprLaJaba_1.png</frame>
-    <frame index="2">images\sprLaJaba_2.png</frame>
-    <frame index="3">images\sprLaJaba_3.png</frame>
-    <frame index="4">images\sprLaJaba_4.png</frame>
-    <frame index="5">images\sprLaJaba_5.png</frame>
+    <frame index="0">images\sprLaJabaSmallMask_0.png</frame>
   </frames>
 </sprite>
