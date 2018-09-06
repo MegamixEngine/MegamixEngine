@@ -23,6 +23,8 @@ global.mTanks = 0;
 
 global.energyElements = 0;
 global.elementsCollected = makeArray("");
+global.tricksterTokens = 0;
+global.tTokensCollected = makeArray("");
 global.chargeUpgrade = 0;
 global.shotUpgrade = 0;
 global.dropUpgrade = 0;

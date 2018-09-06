@@ -71,6 +71,19 @@ hotBarArrangeMode = false;
 playerID = 0;
 costumeID = 0;
 
+//Trickster Token Stuff
+tokensCollected = makeArray(false,false,false,false,false);
+maxTTokens = global.levelTTokensTotal;
+drawTokenIndex = 0;
+for(var i=0;i&lt;5;++i)
+{
+    if(indexOf(global.tTokensCollected,room_get_name(room)+string(i)))
+    {
+        tokensCollected[i]=true;
+    }
+}
+
+
 // Stop charging
 with (objMegaman)
 {
@@ -157,7 +170,14 @@ switch (phase)
     // Idle
     case 2:
         event_user(0); // Moving the selection
-        
+        if(maxTTokens&gt;0)
+        {
+            drawTokenIndex+=0.1;
+            if(floor(drawTokenIndex)&gt;=maxTTokens)
+            {
+                drawTokenIndex=0;
+            }
+        }
         // Select the weapon/tank
         if (global.keyJumpPressed[playerID] || global.keyPausePressed[playerID])
         {
@@ -806,9 +826,9 @@ if (phase != 0)
     draw_text(x + 148 + 8, y + 92 + 18, zeroPad(global.energyElements, 3));
     
     // Side Collectible
-    draw_sprite_ext(sprKey, 0, x + 178, y + 92, 1, 1, 0, c_white, 1);
+    draw_sprite_ext(sprTricksterToken, 0, x + 178+8, y + 92+8, 1, 1, 0, c_white, 1);
     
-    draw_text(x + 178 + 8, y + 92 + 18, zeroPad(0, 3));
+    draw_text(x + 178 + 8, y + 92 + 18, zeroPad(global.tricksterTokens, 3));
 
     with (objMegaman)
     {

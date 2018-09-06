@@ -5834,6 +5834,7 @@
       <object>objects\objKeyCoin</object>
       <object>objects\objKeyBarrier</object>
       <object>objects\objEddie</object>
+      <object>objects\objTricksterToken</object>
     </objects>
     <objects name="Don't Use">
       <objects name="Player">
@@ -5957,6 +5958,7 @@
       <room>rooms\lvlTestHall5</room>
       <room>rooms\lvlTestHallBoss</room>
     </rooms>
+    <room>rooms\lvlGutsMan</room>
   </rooms>
   <constants number="80">
     <constant name="PL_LOCK_MAX">14</constant>
