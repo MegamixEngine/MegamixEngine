@@ -2,6 +2,8 @@
 // these are global variables and constants that aren't really meant to be configured.
 global.newLine = "
 ";
+global.nextRoom = -1;
+global.previousRoom=-1;
 
 // subsystem initialization
 mathTableSetup();
