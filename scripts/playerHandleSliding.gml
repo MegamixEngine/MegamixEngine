@@ -68,10 +68,13 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
         var prepremask = mask_index;
         
         // mask_index = premask;
+        var preDSpikes = dieToSpikes;
+        dieToSpikes = false;
         if (checkSolid(0, -gravDir * 8))
         {
             isfree = false;
         }
+        dieToSpikes = preDSpikes;
         
         // mask_index = prepremask;
         

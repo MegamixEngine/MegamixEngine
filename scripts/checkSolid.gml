@@ -41,12 +41,15 @@ with (objGenericStopper)
 
 if (dieToSpikes)
 {
-    var spSolid = (canHit && iFrames != 0);
-    with (objSpike)
+    if(!alwaysCheckSolids)
     {
-        solid = spSolid;
+        var spSolid = (canHit && iFrames != 0);
+        with (objSpike)
+        {
+            solid = spSolid;
+        }
     }
-}
+} 
 
 // jumpthrough objects
 with (objTopSolid)
