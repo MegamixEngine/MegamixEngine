@@ -285,7 +285,7 @@ else if (other.bbox_top &lt; bbox_top + 12 &amp;&amp; !(other.bbox_right &gt; bb
             <kind>1</kind>
             <string>event_inherited();
 instance_create(bbox_left + abs(bbox_left - bbox_right) / 2, bbox_top + abs(bbox_top - bbox_bottom) / 2, objBigExplosion);
-playSFX(sfxExplosion);
+playSFX(sfxMM9Explosion);
 </string>
           </argument>
         </arguments>

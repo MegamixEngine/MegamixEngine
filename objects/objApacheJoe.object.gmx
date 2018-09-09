@@ -33,7 +33,7 @@ healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 6;
 
-category = "joes";
+category = "flying, joes";
 
 facePlayer = true;
 

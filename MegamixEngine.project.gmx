@@ -1229,9 +1229,10 @@
         <sound>sound\sfxJetEggLaunch</sound>
         <sound>sound\sfxHonk</sound>
         <sound>sound\sfxHaikerNShoot</sound>
-        <sound>sound\sfxNumetallShoot</sound>
+        <sound>sound\sfxKaonaToss</sound>
         <sound>sound\sfxMechaPitchanDrop</sound>
         <sound>sound\sfxMerserker</sound>
+        <sound>sound\sfxNumetallShoot</sound>
         <sound>sound\sfxOctobulbEnergy</sound>
         <sound>sound\sfxOctobulbShoot</sound>
         <sound>sound\sfxPiledan</sound>
@@ -1253,6 +1254,7 @@
         <sound>sound\sfxTackleFireDispenser</sound>
         <sound>sound\sfxTheKeeperFistClash</sound>
         <sound>sound\sfxTheKeeperShockwave</sound>
+        <sound>sound\sfxTsurareStamp</sound>
         <sound>sound\sfxYonbain</sound>
       </sounds>
       <sounds name="CFTF">
@@ -4734,7 +4736,6 @@
         <object>objects\objClassicalCannon</object>
         <object>objects\objCamouflametall</object>
         <object>objects\objCaricarry</object>
-        <object>objects\objKakinbatank</object>
         <object>objects\objDeispider</object>
         <object>objects\objDetarnayappaSpawner</object>
         <object>objects\objDiarn</object>
@@ -4745,6 +4746,7 @@
         <object>objects\objIllusian</object>
         <object>objects\objJumpRoller</object>
         <object>objects\objJumpRollerFlameField</object>
+        <object>objects\objKakinbatank</object>
         <object>objects\objMetallB</object>
         <object>objects\objMM9MachineGunJoe</object>
         <object>objects\objNombrellan</object>
