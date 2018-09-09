@@ -67,6 +67,12 @@
 
 event_inherited();
 
+//Default weaknesses
+for(var i=0; i&lt;global.totalWeapons ; i++)
+{
+    enemyDamageValue(global.weaponObject[i], 1);
+}
+
 // used for some prtEntity control stuff
 boss = 1;
 behaviourType = 2;

@@ -5946,6 +5946,7 @@
           <object>objects\prtPickup</object>
           <object>objects\prtEffect</object>
           <object>objects\prtAlwaysActive</object>
+          <object>objects\prtLevelCallbacks</object>
         </objects>
         <object>objects\objGlobalControl</object>
         <object>objects\objMusicControl</object>
