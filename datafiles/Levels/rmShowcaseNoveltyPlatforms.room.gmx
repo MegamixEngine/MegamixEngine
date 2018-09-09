@@ -54,8 +54,6 @@
     <instance objName="objMM2FallingPlatform" x="432" y="144" name="inst_86F2C51E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCloudPlatform" x="304" y="80" name="inst_CDB27548" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDropPlatform" x="368" y="112" name="inst_AA5145F2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTileScrollSolid" x="432" y="48" name="inst_DA74B607" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTopLift" x="448" y="192" name="inst_25591FB1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBuildingPlatform" x="256" y="80" name="inst_CFCD82D8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCossackPlatform" x="272" y="128" name="inst_5AE1D55D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objForkBlock" x="400" y="144" name="inst_0C0DC43F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -88,6 +86,11 @@
     <instance objName="objBoostun" x="368" y="176" name="inst_8D30C1BD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBatton" x="272" y="192" name="inst_B2F73DB0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWanderingHead" x="304" y="208" name="inst_A9A0AB86" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objControllableLift" x="512" y="192" name="inst_530AF314" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCopterPlatform" x="528" y="128" name="inst_6A0CBEB2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objNeedleManNeedle" x="432" y="176" name="inst_76CC1EEE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objAirTiki" x="528" y="32" name="inst_C51D914C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeckyun" x="624" y="224" name="inst_56163034" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
