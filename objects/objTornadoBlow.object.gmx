@@ -308,6 +308,7 @@ specialDamageValue("floating", 5);
           <argument>
             <kind>1</kind>
             <string>// Nothing
+playSFX(sfxReflect);
 </string>
           </argument>
         </arguments>
