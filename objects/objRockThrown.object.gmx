@@ -98,6 +98,7 @@ if (entityCanStep())
         {
             ID.xscale = image_xscale;
             ID.col = col;
+            ID.respawn=false;
         }
     }
 }
