@@ -176,6 +176,7 @@ if (entityCanStep())
                         xspeed = xSpeedAim(x, y, target.x, target.y, yspeed, grav, other.throwRange / (2 * abs(yspeed) / abs(grav)));
                         target.y = prevy;
                     }
+                    playSFX(sfxKaonaToss);
                 }
             }
             else if (throwTimer &lt; 40)
