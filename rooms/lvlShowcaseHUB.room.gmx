@@ -96,31 +96,27 @@ with (objTeleporter)
     <instance objName="objSign" x="944" y="1200" name="inst_502490B9" locked="0" code="text = &quot;Invite Your Fiends&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="848" y="1280" name="inst_FC1F72DD" locked="0" code="text = &quot;Water You Doing&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="944" y="1280" name="inst_8DDC56E5" locked="0" code="text = &quot;Submerged Scuffle&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="848" y="1072" name="inst_F6A13776" locked="0" code="text = &quot;Respect the Unexpected&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="848" y="976" name="inst_47E947A9" locked="0" code="text = &quot;A Slog of Ice and Fire&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="944" y="976" name="inst_573E20D1" locked="0" code="text = &quot;Ground Control&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="944" y="1072" name="inst_2328D778" locked="0" code="text = &quot;Landlocked Leftovers&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="1040" y="832" name="inst_E2FE4E7C" locked="0" code="text = &quot;Pleased to Met You&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="848" y="976" name="inst_47E947A9" locked="0" code="text = &quot;A Slog of Ice and Fire&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="944" y="976" name="inst_573E20D1" locked="0" code="text = &quot;Ground Control&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="944" y="576" name="inst_2328D778" locked="0" code="text = &quot;Landlocked Leftovers&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1040" y="832" name="inst_E2FE4E7C" locked="0" code="text = &quot;Pleased to Met You&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="1184" y="832" name="inst_86BCC2EA" locked="0" code="text = &quot;A Torrent of Turrets&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="1328" y="832" name="inst_45F28A74" locked="0" code="text = &quot;Thug Zappers&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="1408" y="736" name="inst_44751CAB" locked="0" code="text = &quot;Misfit Minibosses&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="1264" y="736" name="inst_651FAE41" locked="0" code="text = &quot;Brawl of the Wild&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="1120" y="736" name="inst_BD5DD175" locked="0" code="text = &quot;Razor-Sharp Rivals&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="1472" y="832" name="inst_C8A69518" locked="0" code="text = &quot;Castle Castoffs&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1264" y="736" name="inst_651FAE41" locked="0" code="text = &quot;Brawl of the Wild&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1120" y="736" name="inst_BD5DD175" locked="0" code="text = &quot;Razor-Sharp Rivals&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="960" y="480" name="inst_C8A69518" locked="0" code="text = &quot;Castle Castoffs&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="848" y="576" name="inst_58DC3F2C" locked="0" code="text = &quot;Might As Well Jump&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="944" y="576" name="inst_AF7A3C07" locked="0" code="text = &quot;Platform Swarm&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="832" y="480" name="inst_A015E505" locked="0" code="text = &quot;Fan the Flame&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="960" y="480" name="inst_16C069D2" locked="0" code="text = &quot;Modified Mobility&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="944" y="368" name="inst_A13A1EDB" locked="0" code="text = &quot;Airborne Assailants&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="944" y="368" name="inst_16C069D2" locked="0" code="text = &quot;Modified Mobility&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="896" y="320" name="inst_AA412938" locked="0" code="text = &quot;Maniacal Manipulators&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="848" y="368" name="inst_1B9FE210" locked="0" code="text = &quot;Perilous Patrol&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="432" y="832" name="inst_1AAB2AF5" locked="0" code="text = &quot;Never Gonna Let You Joe&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="576" y="736" name="inst_26A5B831" locked="0" code="text = &quot;Demolition Mission&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="672" y="736" name="inst_9C533916" locked="0" code="text = &quot;Extraordinary Ordinance&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="352" y="736" name="inst_BFE3505A" locked="0" code="text = &quot;Spectacular Spawners&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="448" y="736" name="inst_43F61AA4" locked="0" code="text = &quot;Circuit Breaker&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="544" y="832" name="inst_E2C40FE3" locked="0" code="text = &quot;Factory Fisticuffs&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="656" y="832" name="inst_1A209A72" locked="0" code="text = &quot;Industrial Intrigue&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="432" y="832" name="inst_1AAB2AF5" locked="0" code="text = &quot;Never Gonna Let You Joe&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="576" y="736" name="inst_26A5B831" locked="0" code="text = &quot;Demolition Mission&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="672" y="736" name="inst_9C533916" locked="0" code="text = &quot;Extraordinary Ordinance&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="448" y="736" name="inst_43F61AA4" locked="0" code="text = &quot;Circuit Breaker&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="544" y="832" name="inst_E2C40FE3" locked="0" code="text = &quot;Factory Fisticuffs&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="656" y="832" name="inst_1A209A72" locked="0" code="text = &quot;Industrial Intrigue&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="256" y="672" name="inst_DB6AAF3E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="768" y="896" name="inst_D6576B2D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="768" y="1120" name="inst_E44991FD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -135,35 +131,31 @@ with (objTeleporter)
     <instance objName="objSectionFreeVerticalScrolling" x="768" y="1120" name="inst_FCC5E738" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="768" y="896" name="inst_820D767F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="768" y="672" name="inst_1BAE9F27" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="704" y="736" name="inst_BD6B34A4" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseBossOrdinance;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="544" y="736" name="inst_F8CC5EFF" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseExplosions;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="480" y="736" name="inst_10BA9023" locked="0" code="X = 48;&#xA;Y = 400;&#xA;myRoom = rmShowcaseSwitches;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="320" y="736" name="inst_7EFB7CC7" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseSpawners;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="400" y="832" name="inst_60569388" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseJoes;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="512" y="832" name="inst_D3E667A5" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseMinibossIndustrial;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="624" y="832" name="inst_4F5F4B04" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseIndustrial;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="1072" y="832" name="inst_ED403F5E" locked="0" code="X = 848;&#xA;Y = 1072;&#xA;myRoom = rmShowcaseMets;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="1152" y="736" name="inst_C85883EA" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseBossSharp;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="1216" y="832" name="inst_A3869847" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseTurrets;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="1296" y="736" name="inst_D56E2AD2" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseMinibossAnimals;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="1360" y="832" name="inst_71089DDD" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseBossElectric;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="1440" y="736" name="inst_5F1D9130" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseMinibossMisc;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="1504" y="832" name="inst_503B908A" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseBossMisc;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="816" y="576" name="inst_46EB55C5" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseJumping;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="976" y="576" name="inst_EC918305" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseNoveltyPlatforms;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="864" y="480" name="inst_DF0F6D9F" locked="0" code="X = 128;&#xA;Y = 144;&#xA;myRoom = rmShowcaseBossFanFlame;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="928" y="480" name="inst_0AE12F84" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseMovement;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="816" y="368" name="inst_7417EAF8" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseMovingPlatforms;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="976" y="368" name="inst_AB35A4E7" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseFlying;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="896" y="272" name="inst_E421ED59" locked="0" code="X = 880;&#xA;Y = 336;&#xA;myRoom = rmShowcaseBossFlashGravity;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="976" y="976" name="inst_7220C08E" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseBossEarth;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="816" y="976" name="inst_98E8FCB3" locked="0" code="X = 576;&#xA;Y = 400;&#xA;myRoom = rmShowcaseIceFire;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="976" y="1072" name="inst_32190559" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseLeftovers;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="816" y="1072" name="inst_509F8ADD" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseSurprise;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="816" y="1200" name="inst_DAF00AD0" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseBossFluidic;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="976" y="1200" name="inst_7C0C736D" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseBossSummoner;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="816" y="1280" name="inst_4EC6337A" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseWater;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="976" y="1280" name="inst_B045106A" locked="0" code="X = 0;&#xA;Y = 0;&#xA;myRoom = rmShowcaseMinibossWater;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="704" y="736" name="inst_BD6B34A4" locked="0" code="X = 0;&#xA;Y = 0;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossOrdinance&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="544" y="736" name="inst_F8CC5EFF" locked="0" code="X = 0;&#xA;Y = 0;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseExplosions&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="480" y="736" name="inst_10BA9023" locked="0" code="X = 48;&#xA;Y = 400;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseSwitches&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="400" y="832" name="inst_60569388" locked="0" code="X = 0;&#xA;Y = 0;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseJoes&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="512" y="832" name="inst_D3E667A5" locked="0" code="X = 0;&#xA;Y = 0;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseMinibossIndustrial&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="624" y="832" name="inst_4F5F4B04" locked="0" code="X = 0;&#xA;Y = 0;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseIndustrial&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="1072" y="832" name="inst_ED403F5E" locked="0" code="X = 848;&#xA;Y = 1072;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseMets&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="1152" y="736" name="inst_C85883EA" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossSharp&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="1216" y="832" name="inst_A3869847" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseTurrets&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="1296" y="736" name="inst_D56E2AD2" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseMinibossAnimals&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="1360" y="832" name="inst_71089DDD" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossElectric&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="1440" y="736" name="inst_5F1D9130" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseMinibossMisc&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="928" y="480" name="inst_503B908A" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossMisc&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="816" y="576" name="inst_46EB55C5" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseJumping&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="864" y="480" name="inst_DF0F6D9F" locked="0" code="X = 128;&#xA;Y = 144;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossFanFlame&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="976" y="368" name="inst_0AE12F84" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseMovement&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="816" y="368" name="inst_7417EAF8" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseMovingPlatforms&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="896" y="272" name="inst_E421ED59" locked="0" code="X = 880;&#xA;Y = 336;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossFlashGravity&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="976" y="976" name="inst_7220C08E" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossEarth&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="816" y="976" name="inst_98E8FCB3" locked="0" code="X = 576;&#xA;Y = 400;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseIceFire&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="976" y="576" name="inst_32190559" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseLeftovers&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="816" y="1200" name="inst_DAF00AD0" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossFluidic&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="976" y="1200" name="inst_7C0C736D" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossSummoner&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="816" y="1280" name="inst_4EC6337A" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseWater&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="976" y="1280" name="inst_B045106A" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseMinibossWater&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergyBig" x="960" y="816" name="inst_D6DA43F6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="816" y="816" name="inst_B80CA551" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWater" x="48" y="32" name="inst_E384D971" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -518,8 +510,6 @@ with (objTeleporter)
     <tile bgName="bgBasic" x="816" y="1152" w="16" h="16" xo="64" yo="32" id="11281206" name="inst_2C59B5D5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="976" y="1152" w="16" h="16" xo="64" yo="32" id="11281207" name="inst_2B5FAF20" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="960" y="1152" w="16" h="16" xo="64" yo="32" id="11281208" name="inst_A4D9458C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="800" y="1088" w="32" h="16" xo="96" yo="48" id="11281303" name="inst_A0711674" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="960" y="1088" w="32" h="16" xo="96" yo="48" id="11281304" name="inst_93408948" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="864" y="1152" w="16" h="16" xo="48" yo="0" id="11281305" name="inst_A74E2191" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="864" y="1136" w="16" h="16" xo="48" yo="0" id="11281306" name="inst_5E34DDC3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="864" y="1168" w="16" h="16" xo="48" yo="0" id="11281308" name="inst_F9795CD3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -534,8 +524,6 @@ with (objTeleporter)
     <tile bgName="bgBasic" x="928" y="1120" w="16" h="16" xo="64" yo="32" id="11281321" name="inst_B22E3FBE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="864" y="1120" w="16" h="16" xo="48" yo="0" id="11281322" name="inst_1441A543" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="912" y="1120" w="16" h="16" xo="48" yo="0" id="11281323" name="inst_666B3742" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="800" y="1040" w="32" h="16" xo="96" yo="64" id="11281324" name="inst_C3167FAC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="960" y="1040" w="32" h="16" xo="96" yo="64" id="11281325" name="inst_00680D5D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="848" y="832" w="16" h="16" xo="48" yo="0" id="11281369" name="inst_467B93ED" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="848" y="848" w="16" h="16" xo="48" yo="0" id="11281370" name="inst_9A7519A9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="848" y="864" w="16" h="16" xo="48" yo="0" id="11281371" name="inst_4326365E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -586,8 +574,6 @@ with (objTeleporter)
     <tile bgName="bgBasic" x="976" y="1104" w="16" h="16" xo="64" yo="32" id="11281460" name="inst_AEEBDFFA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="864" y="1088" w="16" h="16" xo="48" yo="0" id="11281461" name="inst_6A499E9D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="912" y="1088" w="16" h="16" xo="48" yo="0" id="11281462" name="inst_525BCF87" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="976" y="1024" w="16" h="16" xo="64" yo="32" id="11281486" name="inst_E7AAF496" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="960" y="1024" w="16" h="16" xo="64" yo="32" id="11281487" name="inst_6018AAA5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="816" y="1024" w="16" h="16" xo="64" yo="32" id="11281488" name="inst_DFBCA2A0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="800" y="1024" w="16" h="16" xo="64" yo="32" id="11281489" name="inst_84E28806" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="832" y="992" w="16" h="16" xo="64" yo="32" id="11281490" name="inst_B8FDB57D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -777,9 +763,7 @@ with (objTeleporter)
     <tile bgName="bgBasic" x="1376" y="848" w="16" h="16" xo="64" yo="32" id="11282003" name="inst_683D979D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1392" y="848" w="16" h="16" xo="64" yo="32" id="11282004" name="inst_264168FB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1408" y="848" w="16" h="16" xo="64" yo="32" id="11282005" name="inst_D4F65126" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="1488" y="848" w="32" h="16" xo="96" yo="48" id="11282007" name="inst_1901365E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1472" y="848" w="16" h="16" xo="64" yo="32" id="11282008" name="inst_7F4F7079" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="1488" y="800" w="32" h="16" xo="96" yo="64" id="11282009" name="inst_3F49A7B1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1232" y="832" w="16" h="16" xo="48" yo="0" id="11282010" name="inst_D9030AE5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1232" y="816" w="16" h="16" xo="48" yo="0" id="11282011" name="inst_E7A2B4C1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1232" y="800" w="16" h="16" xo="48" yo="0" id="11282012" name="inst_8E84F51A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1157,7 +1141,6 @@ with (objTeleporter)
     <tile bgName="bgBasic" x="960" y="288" w="16" h="16" xo="64" yo="32" id="11282794" name="inst_578807C6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="960" y="272" w="16" h="16" xo="64" yo="32" id="11282795" name="inst_F7DCF0ED" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="960" y="256" w="16" h="16" xo="64" yo="32" id="11282796" name="inst_53EEC1D6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="304" y="752" w="32" h="16" xo="96" yo="48" id="11282799" name="inst_B40E7A9A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="528" y="752" w="32" h="16" xo="96" yo="48" id="11282804" name="inst_6AF947EA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="688" y="752" w="32" h="16" xo="96" yo="48" id="11282805" name="inst_E65250F2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="384" y="848" w="32" h="16" xo="96" yo="48" id="11282807" name="inst_1D03EB9C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1166,7 +1149,6 @@ with (objTeleporter)
     <tile bgName="bgBasic" x="496" y="848" w="32" h="16" xo="96" yo="48" id="11282817" name="inst_75F0CAD4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="688" y="704" w="32" h="16" xo="96" yo="64" id="11282820" name="inst_5240AE89" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="528" y="704" w="32" h="16" xo="96" yo="64" id="11282821" name="inst_6E080051" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="304" y="704" w="32" h="16" xo="96" yo="64" id="11282822" name="inst_92FFE8F2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="464" y="704" w="32" h="16" xo="96" yo="64" id="11282823" name="inst_2A5799AB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="496" y="800" w="32" h="16" xo="96" yo="64" id="11282824" name="inst_AF245A2F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="608" y="800" w="32" h="16" xo="96" yo="64" id="11282825" name="inst_05C8BFF8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1240,10 +1222,8 @@ with (objTeleporter)
     <tile bgName="bgBasic" x="720" y="720" w="16" h="16" xo="64" yo="32" id="11283232" name="inst_E4B0A1DD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="720" y="736" w="16" h="16" xo="64" yo="32" id="11283233" name="inst_E0F88DD3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="720" y="752" w="16" h="16" xo="64" yo="32" id="11283234" name="inst_0BBB0797" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="336" y="752" w="16" h="16" xo="64" yo="32" id="11283236" name="inst_124D7C4D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="432" y="752" w="16" h="16" xo="64" yo="32" id="11283237" name="inst_6FBAD0E5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="448" y="752" w="16" h="16" xo="64" yo="32" id="11283238" name="inst_18D367FC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="352" y="752" w="16" h="16" xo="64" yo="32" id="11283254" name="inst_407AEF6E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="368" y="800" w="16" h="16" xo="64" yo="32" id="11283258" name="inst_6505D4ED" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="416" y="800" w="16" h="16" xo="64" yo="32" id="11283291" name="inst_00EBA2BA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="528" y="800" w="16" h="16" xo="64" yo="32" id="11283294" name="inst_CADD444B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1306,6 +1286,37 @@ with (objTeleporter)
     <tile bgName="bgBasic" x="864" y="1248" w="16" h="16" xo="48" yo="32" id="11343783" name="inst_AA446C36" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="848" y="1248" w="16" h="16" xo="48" yo="32" id="11343784" name="inst_DD443E91" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="832" y="1248" w="16" h="16" xo="48" yo="32" id="11343785" name="inst_19CE1953" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="320" y="720" w="16" h="16" xo="64" yo="32" id="11349568" name="inst_A9FABBD2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="304" y="720" w="16" h="16" xo="64" yo="32" id="11349569" name="inst_21E469B3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="304" y="704" w="16" h="16" xo="64" yo="32" id="11349570" name="inst_6F16444A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="320" y="704" w="16" h="16" xo="64" yo="32" id="11349571" name="inst_B1B3303A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="320" y="752" w="16" h="16" xo="64" yo="32" id="11349572" name="inst_8564AC8E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="304" y="752" w="16" h="16" xo="64" yo="32" id="11349573" name="inst_345191BF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="304" y="736" w="16" h="16" xo="64" yo="32" id="11349574" name="inst_6984B53C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="320" y="736" w="16" h="16" xo="64" yo="32" id="11349575" name="inst_E68E7832" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="816" y="1040" w="16" h="16" xo="64" yo="32" id="11349576" name="inst_DE449C9B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="800" y="1088" w="16" h="16" xo="64" yo="32" id="11349577" name="inst_809623D0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="816" y="1088" w="16" h="16" xo="64" yo="32" id="11349578" name="inst_D0DC418D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="800" y="1040" w="16" h="16" xo="64" yo="32" id="11349579" name="inst_FE5B0467" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="800" y="1056" w="16" h="16" xo="64" yo="32" id="11349580" name="inst_007B9B8E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="800" y="1072" w="16" h="16" xo="64" yo="32" id="11349581" name="inst_6A93F51C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="816" y="1072" w="16" h="16" xo="64" yo="32" id="11349582" name="inst_ACA3062D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="816" y="1056" w="16" h="16" xo="64" yo="32" id="11349583" name="inst_002955BC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="1504" y="800" w="16" h="16" xo="64" yo="32" id="11349586" name="inst_6953F70E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="1504" y="816" w="16" h="16" xo="64" yo="32" id="11349587" name="inst_381E519E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="1504" y="832" w="16" h="16" xo="64" yo="32" id="11349588" name="inst_5EEBC0EE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="1504" y="848" w="16" h="16" xo="64" yo="32" id="11349589" name="inst_42F1CA81" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="1488" y="848" w="16" h="16" xo="64" yo="32" id="11349590" name="inst_086AF45A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="960" y="1088" w="16" h="16" xo="64" yo="32" id="11349593" name="inst_0FA1CBC3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="976" y="1056" w="16" h="16" xo="64" yo="32" id="11349595" name="inst_4DDE9F12" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="976" y="1040" w="16" h="16" xo="64" yo="32" id="11349596" name="inst_7529D028" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="976" y="1024" w="16" h="16" xo="64" yo="32" id="11349597" name="inst_B30725E4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="960" y="1024" w="16" h="16" xo="64" yo="32" id="11349598" name="inst_59F6A313" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="960" y="1040" w="16" h="16" xo="64" yo="32" id="11349599" name="inst_B9AD558F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="960" y="1056" w="16" h="16" xo="64" yo="32" id="11349600" name="inst_D27E1E1D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="960" y="1072" w="16" h="16" xo="64" yo="32" id="11349601" name="inst_4DE7DECF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="976" y="1088" w="16" h="16" xo="64" yo="32" id="11349603" name="inst_E5766A72" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="976" y="1072" w="16" h="16" xo="64" yo="32" id="11349604" name="inst_D6F9F894" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>
