@@ -216,6 +216,8 @@ if (collision_rectangle(x + 16 * image_xscale, _y + 6 * image_yscale, x, _y2, ot
             <kind>1</kind>
             <string>event_inherited();
 myPiledan = noone;
+instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
+playSFX(sfxMM9Explosion);
 </string>
           </argument>
         </arguments>

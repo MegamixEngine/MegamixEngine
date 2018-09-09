@@ -157,30 +157,29 @@ if (entityCanStep())
                 
                 break;
         }
-        
-        // Jet Animation
-        jetTimer += 1;
-        if (jetTimer &gt;= 4)
+    }
+    // Jet Animation
+    jetTimer += 1;
+    if (jetTimer &gt;= 4)
+    {
+        // &lt;-- jet animation speed here
+        if (sprite_index == sprHyoeyMissile)
         {
-            // &lt;-- jet animation speed here
-            if (sprite_index == sprHyoeyMissile)
-            {
-                sprite_index = sprHyoeyMissile2;
-            }
-            else if (sprite_index == sprHyoeyMissile2)
-            {
-                sprite_index = sprHyoeyMissile3;
-            }
-            else
-            {
-                sprite_index = sprHyoeyMissile;
-            }
-            
-            jetTimer = 0;
+            sprite_index = sprHyoeyMissile2;
+        }
+        else if (sprite_index == sprHyoeyMissile2)
+        {
+            sprite_index = sprHyoeyMissile3;
+        }
+        else
+        {
+            sprite_index = sprHyoeyMissile;
         }
         
-        image_index = round((direction) / 45);
+        jetTimer = 0;
     }
+        
+    image_index = round((direction) / 45);
     
     if (instance_exists(parent))
     {

@@ -126,7 +126,7 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objBossBarrier" x="2432" y="464" name="inst_1DB9D0F4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="2416" y="464" name="inst_03D954CF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="2400" y="464" name="inst_DB934707" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objProtomanEncounter" x="2431" y="400" name="inst_B0F07B0C" locked="0" code="if (global.difficulty &gt;= DIFF_HARD)&#xA;    instance_destroy();&#xA;    &#xA;instantLeave = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objProtomanEncounter" x="2432" y="394" name="inst_B0F07B0C" locked="0" code="if (global.difficulty &gt;= DIFF_HARD)&#xA;    instance_destroy();&#xA;    &#xA;instantLeave = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="5504" y="176" name="inst_83CA4E26" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="3968" y="624" name="inst_406C8533" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGeminiEgg" x="2704" y="624" name="inst_D786E250" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -361,7 +361,7 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objSpine" x="1392" y="400" name="inst_2A6A3D3A" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBikky" x="3936" y="432" name="inst_B20AA6FA" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSpine" x="3424" y="224" name="inst_CFE826E9" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSingleTilesetAnimation" x="112" y="560" name="inst_39DAB2B6" locked="0" code="animBackgrounds[0]=tstGeminiman;&#xA;animBackgrounds[1]=tstGeminiman;&#xA;animBackgrounds[2]=tstGeminiman;&#xA;//animBackgrounds[3]=tstGeminiman;&#xA;&#xA;animSpeeds[0] = 0.1;&#xA;animSpeeds[1] = 0.1;&#xA;animSpeeds[2] = 0.1;&#xA;//animSpeeds[3] = 0.1;&#xA;&#xA;//Animation&#xA;&#xA;//Big blocks&#xA;regionTop[0]=0;&#xA;regionLeft[0]=0;&#xA;regionWidth[0]=32;&#xA;regionHeight[0]=32;&#xA;animLengths[0]=3;&#xA;animType[0]=1;//Horizontal strip&#xA;&#xA;//Small blocks&#xA;regionTop[1]=0;&#xA;regionLeft[1]=96;&#xA;regionWidth[1]=16;&#xA;regionHeight[1]=16;&#xA;animLengths[1]=3;&#xA;animType[1]=1;//Horizontal strip&#xA;&#xA;//Water&#xA;regionTop[2]=32;&#xA;regionLeft[2]=0;&#xA;regionWidth[2]=64;&#xA;regionHeight[2]=32;&#xA;animLengths[2]=3;&#xA;animType[2]=1;//Horizontal strip&#xA;&#xA;//Boss door - UNCOMMENT WHEN ANIMATED BOSS DOORS ACTUALLY H'ING WORK&#xA;/*regionTop[3]=16;&#xA;regionLeft[3]=96;&#xA;regionWidth[3]=16;&#xA;regionHeight[3]=16;&#xA;animLengths[3]=3;&#xA;animType[3]=1;//Horizontal strip&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSingleTilesetAnimation" x="112" y="560" name="inst_39DAB2B6" locked="0" code="animBackgrounds[0]=tstGeminiman; //Big Blocks&#xA;animBackgrounds[1]=tstGeminiman; //Small Blocks&#xA;animBackgrounds[2]=tstGeminiman; //Water + Background Coral&#xA;animBackgrounds[3]=tstGeminiman; //Foreground Coral&#xA;//animBackgrounds[4]=tstGeminiman; //Red Lights (Left)&#xA;//animBackgrounds[5]=tstGeminiman; //Red Lights (Right)&#xA;&#xA;animSpeeds[0] = 0.1;&#xA;animSpeeds[1] = 0.1;&#xA;animSpeeds[2] = 0.1;&#xA;animSpeeds[3] = 0.1;&#xA;//animSpeeds[4] = 0.1;&#xA;//animSpeeds[5] = 0.1;&#xA;&#xA;//Animation&#xA;&#xA;//Big blocks&#xA;regionTop[0]=0;&#xA;regionLeft[0]=0;&#xA;regionWidth[0]=32;&#xA;regionHeight[0]=32;&#xA;animLengths[0]=3;&#xA;animType[0]=1;//Horizontal strip&#xA;&#xA;//Small blocks&#xA;regionTop[1]=0;&#xA;regionLeft[1]=96;&#xA;regionWidth[1]=16;&#xA;regionHeight[1]=16;&#xA;animLengths[1]=3;&#xA;animType[1]=1;//Horizontal strip&#xA;&#xA;//Water&#xA;regionTop[2]=32;&#xA;regionLeft[2]=0;&#xA;regionWidth[2]=64;&#xA;regionHeight[2]=32;&#xA;animLengths[2]=3;&#xA;animType[2]=1;//Horizontal strip&#xA;&#xA;//Foreground Coral&#xA;regionTop[3]=0;&#xA;regionLeft[3]=144;&#xA;regionWidth[3]=32;&#xA;regionHeight[3]=32;&#xA;animLengths[3]=3;&#xA;animType[3]=1;//Horizontal strip&#xA;&#xA;// UNCOMMENT THE FOLLOWNG WHEN ANIMATED TILES CAN ACTUALLY H'ING BE DELETED&#xA;/*&#xA;//Red Lights (left)&#xA;regionTop[4]=64;&#xA;regionLeft[4]=144;&#xA;regionWidth[4]=16;&#xA;regionHeight[4]=16;&#xA;animLengths[4]=6;&#xA;animType[4]=1;//Horizontal strip&#xA;&#xA;//Red Lights (right)&#xA;regionTop[5]=80;&#xA;regionLeft[5]=144;&#xA;regionWidth[5]=16;&#xA;regionHeight[5]=16;&#xA;animLengths[5]=6;&#xA;animType[5]=1;//Horizontal strip&#xA;&#xA;//Boss door - &#xA;/*regionTop[x]=16;&#xA;regionLeft[x]=96;&#xA;regionWidth[x]=16;&#xA;regionHeight[x]=16;&#xA;animLengths[x]=3;&#xA;animType[x]=1;//Horizontal strip" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="224" y="560" name="inst_8B133D05" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="240" y="560" name="inst_8BD86759" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="256" y="560" name="inst_EAF84983" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -426,6 +426,9 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objCheckpoint" x="2384" y="624" name="inst_5AF54E92" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoor" x="224" y="576" name="inst_3BF65C71" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDefaultSpawn" x="128" y="384" name="inst_0265247C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossBarrier" x="2432" y="400" name="inst_5F8DF2E1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossBarrier" x="2416" y="400" name="inst_324306A9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSingleTilesetAnimation" x="112" y="592" name="inst_9172B36B" locked="0" code="animLayer = -100;&#xA;animBackgrounds[0]=tstGeminiman; //Foreground Coral&#xA;animSpeeds[0] = 0.1;&#xA;&#xA;//Animation&#xA;regionTop[0]=0;&#xA;regionLeft[0]=144;&#xA;regionWidth[0]=32;&#xA;regionHeight[0]=32;&#xA;animLengths[0]=3;&#xA;animType[0]=1;//Horizontal strip&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstGeminiman" x="5632" y="128" w="16" h="16" xo="112" yo="64" id="11311032" name="inst_60D1BEA0" depth="1000100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -961,7 +964,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2368" y="464" w="16" h="16" xo="0" yo="80" id="10012056" name="tile_MFMF6JLX" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2368" y="480" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_R942ZY5W" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2368" y="496" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_I4B74NZS" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2368" y="512" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_C59QD5XY" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2368" y="560" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_C0F3FK2F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2368" y="576" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_JJF817UE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2368" y="592" w="16" h="16" xo="32" yo="16" id="10012056" name="tile_LDKQ6ULY" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -972,8 +974,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2368" y="672" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_NZE0Y5PV" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2368" y="688" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_H3CK1EM4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2368" y="704" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_ELVTGLLN" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2384" y="512" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_WNJIYRCT" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2384" y="528" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_HPSB4MM7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2384" y="576" w="16" h="16" xo="48" yo="0" id="10012056" name="tile_T0WBFMEY" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2384" y="592" w="16" h="16" xo="48" yo="16" id="10012056" name="tile_SKISOJ9D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2384" y="608" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_0OUVSFIU" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -987,11 +987,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2400" y="432" w="16" h="16" xo="48" yo="80" id="10012056" name="tile_YP1MUJXU" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2400" y="448" w="16" h="16" xo="48" yo="80" id="10012056" name="tile_WCVSCY9R" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2400" y="464" w="16" h="16" xo="48" yo="80" id="10012056" name="tile_FMOVSJ51" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2400" y="480" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_26M6CVK1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2400" y="496" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_8IX8REA5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2400" y="512" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_0YK9BQ5G" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2400" y="528" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_78F26A9T" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2400" y="544" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_362S4YTB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2400" y="560" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_QLEJWV61" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2400" y="576" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_V6BJ0DV3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2400" y="592" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_S4MGV0OP" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1006,12 +1001,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2416" y="432" w="16" h="16" xo="64" yo="80" id="10012056" name="tile_GT3AFUQJ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2416" y="448" w="16" h="16" xo="64" yo="80" id="10012056" name="tile_5M2CAJKF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2416" y="464" w="16" h="16" xo="64" yo="80" id="10012056" name="tile_WA5EQANC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2416" y="480" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_OQO1AR0I" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2416" y="496" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_5M3LFV7B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2416" y="512" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_SSSPB8TI" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2416" y="528" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_M29LVEPI" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2416" y="544" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_8ETPZ47S" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2416" y="560" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_24JVQY21" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2416" y="576" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_6NBECS06" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2416" y="592" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_L6FS329G" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2416" y="608" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_P628V9W6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1025,18 +1014,10 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2432" y="432" w="16" h="16" xo="80" yo="80" id="10012056" name="tile_FXLHMFB5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2432" y="448" w="16" h="16" xo="80" yo="80" id="10012056" name="tile_96WIYRXY" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2432" y="464" w="16" h="16" xo="80" yo="80" id="10012056" name="tile_QMRRQKQ7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2432" y="480" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_L8JT5YVT" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2432" y="496" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_1MUJIPF1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2432" y="512" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_4JN2TT9T" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2432" y="528" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_5UBIEOEL" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2432" y="544" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_ESI0RX1F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2432" y="560" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_URTJT06O" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2432" y="576" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_R1YSXT7S" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2432" y="592" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_LBLA02JG" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2432" y="608" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_IVWZON25" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2432" y="624" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_S7CPEFUU" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2432" y="640" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_6IMHE24M" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2432" y="656" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_5ZEGSU1C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2432" y="672" w="16" h="16" xo="48" yo="0" id="10012056" name="tile_CUWOITPZ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2432" y="688" w="16" h="16" xo="48" yo="16" id="10012056" name="tile_7N778I4E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2432" y="704" w="16" h="16" xo="0" yo="0" id="10012056" name="tile_5NQIQUZF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1044,18 +1025,7 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2448" y="432" w="16" h="16" xo="96" yo="80" id="10012056" name="tile_LSTS73RR" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2448" y="448" w="16" h="16" xo="96" yo="80" id="10012056" name="tile_04RSVHPQ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2448" y="464" w="16" h="16" xo="96" yo="80" id="10012056" name="tile_TOFE8CRM" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2448" y="480" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_JZV5SL60" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2448" y="496" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_NOU3072M" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2448" y="512" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_RHLZJKP0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2448" y="528" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_412L3BNI" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2448" y="544" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_K7349F8C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2448" y="560" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_Y6RO9DWK" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2448" y="576" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_XQX4GNRV" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2448" y="592" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_T5KQKT9W" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2448" y="608" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_9TMYHWMS" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2448" y="624" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_0PA6RC6E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2448" y="640" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_DVC9F3C6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2448" y="656" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_AOFHWKZH" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2448" y="672" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_OWAPQ4OC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2448" y="688" w="16" h="16" xo="64" yo="16" id="10012056" name="tile_70EU7VIX" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2448" y="704" w="16" h="16" xo="16" yo="0" id="10012056" name="tile_24MWI744" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1064,14 +1034,8 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2464" y="464" w="16" h="16" xo="0" yo="80" id="10012056" name="tile_5VJGYKT1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2464" y="512" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_75FR1EEG" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2464" y="528" w="16" h="16" xo="32" yo="16" id="10012056" name="tile_TGVCF2T2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2464" y="544" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_K19NLN6Q" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2464" y="560" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_647LQ6PW" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2464" y="576" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_19GQVZ79" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2464" y="592" w="16" h="16" xo="32" yo="16" id="10012056" name="tile_X73LIOVT" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2464" y="608" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_5Z5R3EOT" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2464" y="624" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_OD4JCEEL" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2464" y="640" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_EFTNYEE1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2464" y="656" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_3WDBG049" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2464" y="672" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_X4LT5ARD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2464" y="688" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_JY2MWDVT" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2464" y="704" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_SGP03KO1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1082,12 +1046,7 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2480" y="496" w="16" h="16" xo="0" yo="16" id="10012056" name="tile_H05ZOE59" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2480" y="512" w="16" h="16" xo="48" yo="0" id="10012056" name="tile_NBVNC1SH" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2480" y="528" w="16" h="16" xo="48" yo="16" id="10012056" name="tile_10SVXUSU" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2480" y="544" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_YG92MWFE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2480" y="592" w="16" h="16" xo="48" yo="16" id="10012056" name="tile_O1MX6288" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2480" y="608" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_3PA9G30O" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2480" y="624" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_71DD9FIO" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2480" y="640" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_IM35ZR9R" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2480" y="656" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_SRZOPSKN" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2480" y="672" w="16" h="16" xo="0" yo="0" id="10012056" name="tile_KXB0P5BG" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2480" y="688" w="16" h="16" xo="0" yo="16" id="10012056" name="tile_PJJGQ6VS" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2480" y="704" w="16" h="16" xo="48" yo="0" id="10012056" name="tile_5LFTN3KL" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1100,10 +1059,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2496" y="528" w="16" h="16" xo="64" yo="16" id="10012056" name="tile_JXTD8G0Y" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2496" y="576" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_2IP2Q8DA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2496" y="592" w="16" h="16" xo="64" yo="16" id="10012056" name="tile_M5R9BSPH" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2496" y="608" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_X5Z7X0CX" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2496" y="624" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_SZL0F3DQ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2496" y="640" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_FO2B1VN1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2496" y="656" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_WVMD15WU" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2496" y="672" w="16" h="16" xo="16" yo="0" id="10012056" name="tile_C664CVJN" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2496" y="688" w="16" h="16" xo="16" yo="16" id="10012056" name="tile_VW64O2Q6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2496" y="704" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_HOUNBJQO" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1116,9 +1071,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2512" y="576" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_GWLEOOO5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2512" y="592" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_3BZRDRXQ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2512" y="608" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_N96FEHRX" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2512" y="624" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_JTIFDDN5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2512" y="640" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_BMI8GLJT" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2512" y="656" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_LTF2H8GN" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2512" y="672" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_MRNZV6U4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2512" y="688" w="16" h="16" xo="32" yo="16" id="10012056" name="tile_QI52U5JS" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2512" y="704" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_6252H04O" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1134,9 +1086,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2528" y="576" w="16" h="16" xo="0" yo="0" id="10012056" name="tile_S000GUEC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2528" y="592" w="16" h="16" xo="0" yo="16" id="10012056" name="tile_SZT7E7UZ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2528" y="608" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_8QP32KMC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2528" y="624" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_Z002S5IG" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2528" y="640" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_8GX9Z4AX" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2528" y="656" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_5KRRHL57" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2528" y="672" w="16" h="16" xo="48" yo="0" id="10012056" name="tile_ILCKOB6C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2528" y="688" w="16" h="16" xo="48" yo="16" id="10012056" name="tile_O1SUGPEQ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2528" y="704" w="16" h="16" xo="0" yo="0" id="10012056" name="tile_BUEX1PA5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1149,9 +1098,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2544" y="576" w="16" h="16" xo="16" yo="0" id="10012056" name="tile_5BF3HABT" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2544" y="592" w="16" h="16" xo="16" yo="16" id="10012056" name="tile_28GFBM32" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2544" y="608" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_QWGWQVOW" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2544" y="624" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_5NA1BNT8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2544" y="640" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_TVZEN8R5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2544" y="656" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_ZYVF0PND" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2544" y="672" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_3O6JHSR9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2544" y="688" w="16" h="16" xo="64" yo="16" id="10012056" name="tile_6PJ7A8AN" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2544" y="704" w="16" h="16" xo="16" yo="0" id="10012056" name="tile_V0H0XXM6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1163,10 +1109,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2560" y="560" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_2DS03S7G" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2560" y="576" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_YSXO0ELT" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2560" y="592" w="16" h="16" xo="32" yo="16" id="10012056" name="tile_SZUXBF5S" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2560" y="608" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_JIRR9FG9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2560" y="624" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_4NJTX2YC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2560" y="640" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_B78EUS5B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2560" y="656" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_Z57U3482" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2560" y="672" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_Q2EFN7OM" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2560" y="688" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_GF9IN0Y9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2560" y="704" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_AEMK4P7A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1178,10 +1120,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2576" y="560" w="16" h="16" xo="0" yo="16" id="10012056" name="tile_3VAND0YR" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2576" y="576" w="16" h="16" xo="48" yo="0" id="10012056" name="tile_SFGL7HPE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2576" y="592" w="16" h="16" xo="48" yo="16" id="10012056" name="tile_54TO9EXI" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2576" y="608" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_YKV58RE5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2576" y="624" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_BP5GKFT9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2576" y="640" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_WXS035AC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2576" y="656" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_QQHB36US" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2576" y="672" w="16" h="16" xo="0" yo="0" id="10012056" name="tile_2YC1XNHF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2576" y="688" w="16" h="16" xo="0" yo="16" id="10012056" name="tile_KJUD1RWN" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2576" y="704" w="16" h="16" xo="48" yo="0" id="10012056" name="tile_RWNJOQ8E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1193,10 +1131,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2592" y="560" w="16" h="16" xo="16" yo="16" id="10012056" name="tile_73D1S0L0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2592" y="576" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_IHYJB4HA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2592" y="592" w="16" h="16" xo="64" yo="16" id="10012056" name="tile_BKBWNK4A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2592" y="608" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_8AIFCIN7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2592" y="624" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_72EIAUFO" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2592" y="640" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_UWV33WYF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2592" y="656" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_9K19IX0E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2592" y="672" w="16" h="16" xo="16" yo="0" id="10012056" name="tile_GEBKYTK6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2592" y="688" w="16" h="16" xo="16" yo="16" id="10012056" name="tile_2N7IPFZL" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2592" y="704" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_1AI3TK5C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1206,10 +1140,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2608" y="528" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_MM48RXI8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2608" y="576" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_KOWRXYMF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2608" y="592" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_B58V42RN" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2608" y="608" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_8NBL1Q3Q" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2608" y="624" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_2LWJ6L61" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2608" y="640" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_JSBC87O9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2608" y="656" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_V54B8YI4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2608" y="672" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_LDFY64HS" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2608" y="688" w="16" h="16" xo="32" yo="16" id="10012056" name="tile_DHTCZZZC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2608" y="704" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_BAEOR9WF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1217,14 +1147,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2624" y="496" w="16" h="16" xo="48" yo="16" id="10012056" name="tile_RFXT6EEC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2624" y="512" w="16" h="16" xo="0" yo="0" id="10012056" name="tile_LF3PCNCJ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2624" y="528" w="16" h="16" xo="0" yo="16" id="10012056" name="tile_F3DCKKNB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2624" y="544" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_15DV0YOK" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2624" y="560" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_651AP947" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2624" y="576" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_ZLO2UTGK" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2624" y="592" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_RZO86KJO" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2624" y="608" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_IBJCN5U4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2624" y="624" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_3V4BWMAI" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2624" y="640" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_29TS9UZJ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2624" y="656" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_5CMUA9JG" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2624" y="672" w="16" h="16" xo="48" yo="0" id="10012056" name="tile_3JYLUDC9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2624" y="688" w="16" h="16" xo="48" yo="16" id="10012056" name="tile_XFL72CYE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2624" y="704" w="16" h="16" xo="0" yo="0" id="10012056" name="tile_VUVC3KBV" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1232,14 +1154,9 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2640" y="496" w="16" h="16" xo="64" yo="16" id="10012056" name="tile_OSHGSMG9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2640" y="512" w="16" h="16" xo="16" yo="0" id="10012056" name="tile_MK77T66U" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2640" y="528" w="16" h="16" xo="16" yo="16" id="10012056" name="tile_XQRXFUF6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2640" y="544" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_D0ROOVUU" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2640" y="560" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_8Y7T1W4A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2640" y="576" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_VX8VVR1W" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2640" y="592" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_WBSPEP24" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2640" y="608" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_W3SX0VQK" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2640" y="624" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_YES5GJJV" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2640" y="640" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_XXER8LA3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2640" y="656" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_EYUYI1DB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2640" y="672" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_CF565WTI" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2640" y="688" w="16" h="16" xo="64" yo="16" id="10012056" name="tile_0HVQ5CH8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2640" y="704" w="16" h="16" xo="16" yo="0" id="10012056" name="tile_2PV01H1M" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1266,8 +1183,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2672" y="704" w="16" h="16" xo="48" yo="0" id="10012056" name="tile_4K9K63Y8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2688" y="480" w="16" h="16" xo="16" yo="0" id="10012056" name="tile_UZ30NKA9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2688" y="496" w="16" h="16" xo="16" yo="16" id="10012056" name="tile_QHST5TBP" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2688" y="512" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_LXBSJLJ5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2688" y="528" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_ZDAQGAQF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2688" y="640" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_8IOAIW55" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2688" y="656" w="16" h="16" xo="64" yo="16" id="10012056" name="tile_1LOBKL60" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2688" y="672" w="16" h="16" xo="16" yo="0" id="10012056" name="tile_ABG6SLT0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1275,8 +1190,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2688" y="704" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_XBJOVRY3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2704" y="480" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_V0II6ZDO" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2704" y="496" w="16" h="16" xo="32" yo="16" id="10012056" name="tile_HSP4J086" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2704" y="512" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_S25DCT24" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2704" y="528" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_Z1056FXL" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2704" y="640" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_IGRRXTQ1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2704" y="656" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_50B5UD3Y" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2704" y="672" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_YS9WWTQI" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1284,7 +1197,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2704" y="704" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_9AJ430GQ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2720" y="480" w="16" h="16" xo="48" yo="0" id="10012056" name="tile_XUN6F9I9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2720" y="496" w="16" h="16" xo="48" yo="16" id="10012056" name="tile_LX7KULQ8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2720" y="512" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_EUOA77UG" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2720" y="528" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_45K9NPUE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2720" y="640" w="16" h="16" xo="0" yo="0" id="10012056" name="tile_AOOPPO4C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2720" y="656" w="16" h="16" xo="0" yo="16" id="10012056" name="tile_GQTTUE49" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1293,7 +1205,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2720" y="704" w="16" h="16" xo="0" yo="0" id="10012056" name="tile_5ZG0NZQD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2736" y="480" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_6BJKK8UK" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2736" y="496" w="16" h="16" xo="64" yo="16" id="10012056" name="tile_88JLJ16P" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2736" y="512" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_SRWDXYA6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2736" y="528" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_C3X09SY9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2736" y="544" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_Y4D8G7D2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2736" y="560" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_GTKKQDK1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1717,7 +1628,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2976" y="576" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_QWI3DLFP" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2976" y="592" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_5AMXY3XV" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2976" y="608" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_ZUUQWLUU" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2976" y="624" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_TK3QNRR1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2976" y="640" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_ZJ3XPUUK" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2976" y="656" w="16" h="16" xo="64" yo="16" id="10012056" name="tile_SAQMAD3S" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2976" y="672" w="16" h="16" xo="16" yo="0" id="10012056" name="tile_2THRBO6T" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1754,7 +1664,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="2992" y="576" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_KA7RDD9Q" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2992" y="592" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_WIHZVOKU" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2992" y="608" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_LJCNCPOT" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="2992" y="624" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_CKVKRL7B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2992" y="640" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_1GD1SCK7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2992" y="656" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_05JBL1B2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="2992" y="672" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_S8Q50TH2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1774,7 +1683,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="3008" y="256" w="16" h="16" xo="48" yo="16" id="10012056" name="tile_3V5H1FDJ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3008" y="272" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_UZ9RUDNA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3008" y="288" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_6JE0L6O6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="3008" y="304" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_3IT1DALF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3008" y="320" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_0568H7HJ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3008" y="336" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_EVH08ETG" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3008" y="352" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_0PA9J5SE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1792,8 +1700,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="3008" y="560" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_NT979OLI" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3008" y="576" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_WFLMHV85" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3008" y="592" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_EAO0BBSD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="3008" y="608" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_RH7ZHZGK" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="3008" y="624" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_L32TQ5ZN" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3008" y="640" w="16" h="16" xo="0" yo="0" id="10012056" name="tile_88JWEAFZ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3008" y="656" w="16" h="16" xo="0" yo="16" id="10012056" name="tile_C209IQOD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3008" y="672" w="16" h="16" xo="48" yo="0" id="10012056" name="tile_W8Q3363Z" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1832,9 +1738,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="3024" y="544" w="16" h="16" xo="112" yo="80" id="10012056" name="tile_XS4P0O0D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3024" y="560" w="16" h="16" xo="112" yo="80" id="10012056" name="tile_01NHSZG0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3024" y="576" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_WN514ITI" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="3024" y="592" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_KQ2JG3MX" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="3024" y="608" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_BU9RHYZB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="3024" y="624" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_PHX2N2U9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3024" y="640" w="16" h="16" xo="16" yo="0" id="10012056" name="tile_TKCAZYOC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3024" y="656" w="16" h="16" xo="16" yo="16" id="10012056" name="tile_AWSZDVUO" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="3024" y="672" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_FG7UE54Q" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -4415,7 +4318,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="5232" y="96" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_DDYUCVBD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5232" y="112" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_7D9FP6FC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5232" y="128" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_IDBX7RLZ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="5232" y="144" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_WP7MTOAV" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5232" y="160" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_S1Q7E7Q3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5232" y="176" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_B3M0J2UQ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5232" y="192" w="16" h="16" xo="64" yo="0" id="10012056" name="tile_4ZAXHNXO" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -4458,7 +4360,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="5248" y="112" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_UBC8UW5P" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5248" y="128" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_W27KHG3I" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5248" y="144" w="16" h="16" xo="0" yo="48" id="10012056" name="tile_064D2C4W" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="5248" y="160" w="16" h="16" xo="0" yo="32" id="10012056" name="tile_TBAXBZ00" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5248" y="176" w="16" h="16" xo="128" yo="80" id="10012056" name="tile_V53FGQYJ" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5248" y="192" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_QD0NFXJF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5248" y="208" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_TZ2VF5X5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -4502,7 +4403,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="5264" y="128" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_6NOAA91X" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5264" y="144" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_932CL57R" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5264" y="160" w="16" h="16" xo="16" yo="32" id="10012056" name="tile_YF2D7PYN" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="5264" y="176" w="16" h="16" xo="16" yo="48" id="10012056" name="tile_Q7E1IQAF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5264" y="192" w="16" h="16" xo="0" yo="0" id="10012056" name="tile_3A6XXAZR" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5264" y="208" w="16" h="16" xo="0" yo="16" id="10012056" name="tile_PN0C6P7C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5264" y="240" w="16" h="16" xo="0" yo="0" id="10012056" name="tile_R4PL6L11" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -4718,8 +4618,6 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="5344" y="320" w="16" h="16" xo="80" yo="16" id="10012056" name="tile_KC2BEKRN" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5344" y="336" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_1I3HPSIR" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5344" y="352" w="16" h="16" xo="32" yo="16" id="10012056" name="tile_A1M3V257" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="5344" y="368" w="16" h="16" xo="80" yo="48" id="10012056" name="tile_FLUSDYRN" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="5344" y="384" w="16" h="16" xo="80" yo="48" id="10012056" name="tile_6N2GEBRM" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5344" y="400" w="16" h="16" xo="32" yo="0" id="10012056" name="tile_ZJB7OXJU" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5344" y="416" w="16" h="16" xo="32" yo="16" id="10012056" name="tile_7MI0GN88" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5344" y="432" w="16" h="16" xo="80" yo="0" id="10012056" name="tile_BJXZ2FEN" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -5593,12 +5491,11 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="48" y="448" w="16" h="16" xo="16" yo="80" id="11310326" name="inst_A5DCEEC7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="48" y="464" w="16" h="16" xo="0" yo="64" id="11310698" name="inst_0E2F09BF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5360" y="128" w="16" h="16" xo="96" yo="16" id="11311088" name="inst_BAB2DD61" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="5360" y="144" w="16" h="16" xo="96" yo="16" id="11311089" name="inst_CC16D213" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5360" y="160" w="16" h="16" xo="96" yo="16" id="11311090" name="inst_58D01D71" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5360" y="176" w="16" h="16" xo="96" yo="16" id="11311091" name="inst_FF6BF487" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5376" y="176" w="16" h="16" xo="96" yo="16" id="11311092" name="inst_DD033DC7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5376" y="160" w="16" h="16" xo="96" yo="16" id="11311093" name="inst_FB36E11E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="5376" y="144" w="16" h="16" xo="96" yo="16" id="11311094" name="inst_67F00A1C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5360" y="144" w="16" h="16" xo="96" yo="16" id="11311094" name="inst_67F00A1C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5376" y="128" w="16" h="16" xo="96" yo="16" id="11311095" name="inst_BA4532D7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5616" y="128" w="16" h="16" xo="96" yo="16" id="11311096" name="inst_3D8F5835" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5616" y="144" w="16" h="16" xo="96" yo="16" id="11311097" name="inst_86343C43" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -5608,8 +5505,16 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="5632" y="160" w="16" h="16" xo="96" yo="16" id="11311101" name="inst_F82DBEDF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5632" y="144" w="16" h="16" xo="96" yo="16" id="11311102" name="inst_2558BCFC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5632" y="128" w="16" h="16" xo="96" yo="16" id="11311103" name="inst_3904CCEA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="128" y="560" w="144" h="112" xo="0" yo="0" id="11311104" name="inst_72390DA1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGeminiman" x="3840" y="480" w="16" h="16" xo="96" yo="80" id="11308119" name="inst_CE364E0E" depth="900000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="128" y="560" w="304" h="112" xo="0" yo="0" id="11311006" name="inst_59A31E91" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2416" y="400" w="16" h="16" xo="144" yo="64" id="11311007" name="inst_3C3AA6C6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2432" y="400" w="16" h="16" xo="144" yo="80" id="11311008" name="inst_1929EAB7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5376" y="144" w="16" h="16" xo="96" yo="16" id="11311104" name="inst_3F471489" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5344" y="368" w="16" h="16" xo="128" yo="0" id="11311440" name="inst_BBB06B5B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5344" y="384" w="16" h="16" xo="128" yo="0" id="11311441" name="inst_4AFF027B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5392" y="176" w="16" h="16" xo="16" yo="48" id="11311455" name="inst_00BD46C5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5232" y="144" w="16" h="16" xo="16" yo="48" id="11311456" name="inst_8D534D77" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5248" y="160" w="16" h="16" xo="0" yo="32" id="11311457" name="inst_F47DF0D9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5264" y="176" w="16" h="16" xo="16" yo="48" id="11311458" name="inst_046A068B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="4016" y="624" w="32" h="32" xo="64" yo="0" id="11308120" name="inst_FE5CF79B" depth="900000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="4080" y="592" w="32" h="32" xo="0" yo="0" id="11308121" name="inst_91B23BE5" depth="900000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="4112" y="544" w="48" h="16" xo="96" yo="0" id="11308122" name="inst_21D0E43F" depth="900000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -5657,6 +5562,332 @@ if global.difficulty &lt; DIFF_HARD
     <tile bgName="tstGeminiman" x="4640" y="528" w="16" h="16" xo="128" yo="0" id="11310325" name="inst_75533C17" depth="900000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="4976" y="544" w="16" h="16" xo="112" yo="0" id="11310696" name="inst_45D584A8" depth="900000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGeminiman" x="5232" y="592" w="16" h="16" xo="128" yo="0" id="11310697" name="inst_3B94EACA" depth="900000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2400" y="480" w="32" h="32" xo="144" yo="0" id="11311105" name="inst_35E0DA80" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2400" y="512" w="32" h="32" xo="144" yo="0" id="11311106" name="inst_9ED4146E" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2432" y="480" w="32" h="32" xo="144" yo="0" id="11311107" name="inst_67BCEAE5" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2432" y="512" w="32" h="32" xo="144" yo="0" id="11311108" name="inst_93430CC1" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2432" y="544" w="32" h="32" xo="144" yo="0" id="11311109" name="inst_B8665F58" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2464" y="608" w="32" h="32" xo="144" yo="0" id="11311110" name="inst_B5C6DF4E" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2464" y="640" w="32" h="32" xo="144" yo="0" id="11311111" name="inst_87644751" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2496" y="640" w="32" h="32" xo="144" yo="0" id="11311112" name="inst_6DF75189" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2528" y="640" w="32" h="32" xo="144" yo="0" id="11311113" name="inst_3EA13260" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2560" y="640" w="32" h="32" xo="144" yo="0" id="11311114" name="inst_5CCEDCBF" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2592" y="640" w="32" h="32" xo="144" yo="0" id="11311115" name="inst_8E4F7523" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2624" y="544" w="32" h="32" xo="144" yo="0" id="11311116" name="inst_7AF5B7BB" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2688" y="512" w="32" h="32" xo="144" yo="0" id="11311117" name="inst_460F69C9" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3008" y="608" w="32" h="32" xo="144" yo="0" id="11311118" name="inst_D3CCB323" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2912" y="272" w="32" h="32" xo="144" yo="0" id="11311119" name="inst_306677CA" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2944" y="304" w="32" h="32" xo="144" yo="0" id="11311120" name="inst_F8BD0E54" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2944" y="336" w="32" h="32" xo="144" yo="0" id="11311121" name="inst_E502693F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2944" y="368" w="32" h="32" xo="144" yo="0" id="11311122" name="inst_8EAE7BC9" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2560" y="608" w="32" h="32" xo="144" yo="0" id="11311123" name="inst_AFE62454" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2592" y="608" w="32" h="32" xo="144" yo="0" id="11311124" name="inst_689177F0" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2976" y="368" w="32" h="32" xo="144" yo="0" id="11311125" name="inst_B3E88695" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2976" y="336" w="32" h="32" xo="144" yo="0" id="11311126" name="inst_0585B085" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3008" y="336" w="32" h="32" xo="144" yo="0" id="11311127" name="inst_1BD24D04" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3008" y="272" w="32" h="32" xo="144" yo="0" id="11311128" name="inst_3FE5F633" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2912" y="160" w="32" h="32" xo="144" yo="0" id="11311129" name="inst_12BBD089" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2880" y="128" w="32" h="32" xo="144" yo="0" id="11311130" name="inst_BE52FF74" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2880" y="96" w="32" h="32" xo="144" yo="0" id="11311131" name="inst_1396BC7F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2848" y="96" w="32" h="32" xo="144" yo="0" id="11311132" name="inst_3A71AFEC" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2880" y="64" w="32" h="32" xo="144" yo="0" id="11311133" name="inst_AF008045" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2880" y="32" w="32" h="32" xo="144" yo="0" id="11311134" name="inst_E79AF14F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3168" y="0" w="32" h="32" xo="144" yo="0" id="11311135" name="inst_15540A68" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3200" y="32" w="32" h="32" xo="144" yo="0" id="11311136" name="inst_179DE247" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3200" y="64" w="32" h="32" xo="144" yo="0" id="11311137" name="inst_AA172447" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3200" y="96" w="32" h="32" xo="144" yo="0" id="11311138" name="inst_6E5ACE96" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3168" y="128" w="32" h="32" xo="144" yo="0" id="11311139" name="inst_0F2F46AE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3264" y="160" w="32" h="32" xo="144" yo="0" id="11311140" name="inst_E3B39350" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3232" y="160" w="32" h="32" xo="144" yo="0" id="11311141" name="inst_31E172CD" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3232" y="128" w="32" h="32" xo="144" yo="0" id="11311142" name="inst_3DE72C53" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3264" y="128" w="32" h="32" xo="144" yo="0" id="11311143" name="inst_8B72F41D" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3232" y="32" w="32" h="32" xo="144" yo="0" id="11311144" name="inst_FD4D6043" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3232" y="64" w="32" h="32" xo="144" yo="0" id="11311145" name="inst_C84438C1" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3232" y="96" w="32" h="32" xo="144" yo="0" id="11311146" name="inst_6AD563FC" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3264" y="64" w="32" h="32" xo="144" yo="0" id="11311147" name="inst_80BA6F04" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3264" y="96" w="32" h="32" xo="144" yo="0" id="11311148" name="inst_88FC6109" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3296" y="96" w="32" h="32" xo="144" yo="0" id="11311150" name="inst_3DCB51DF" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3296" y="64" w="32" h="32" xo="144" yo="0" id="11311151" name="inst_685C9B58" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3296" y="32" w="32" h="32" xo="144" yo="0" id="11311152" name="inst_328B2A1C" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3328" y="32" w="32" h="32" xo="144" yo="0" id="11311153" name="inst_DBB01479" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3328" y="0" w="32" h="32" xo="144" yo="0" id="11311154" name="inst_A308D449" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3360" y="0" w="32" h="32" xo="144" yo="0" id="11311155" name="inst_6FFC8DBE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3552" y="0" w="32" h="32" xo="144" yo="0" id="11311156" name="inst_9FF64E72" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3584" y="0" w="32" h="32" xo="144" yo="0" id="11311157" name="inst_4655BF59" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3648" y="64" w="32" h="32" xo="144" yo="0" id="11311158" name="inst_F0FD78B1" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3680" y="64" w="32" h="32" xo="144" yo="0" id="11311159" name="inst_50E5A331" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3680" y="32" w="32" h="32" xo="144" yo="0" id="11311160" name="inst_628DA541" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3712" y="32" w="32" h="32" xo="144" yo="0" id="11311161" name="inst_68722873" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3712" y="0" w="32" h="32" xo="144" yo="0" id="11311162" name="inst_17B6B364" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3744" y="0" w="32" h="32" xo="144" yo="0" id="11311163" name="inst_D37AF6FE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3776" y="0" w="32" h="32" xo="144" yo="0" id="11311164" name="inst_EC9CADB6" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3136" y="160" w="32" h="32" xo="144" yo="0" id="11311165" name="inst_199DED80" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3936" y="32" w="32" h="32" xo="144" yo="0" id="11311166" name="inst_9C4F84CE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3968" y="32" w="32" h="32" xo="144" yo="0" id="11311167" name="inst_5BC71228" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4000" y="32" w="32" h="32" xo="144" yo="0" id="11311168" name="inst_5A56DED0" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4032" y="96" w="32" h="32" xo="144" yo="0" id="11311169" name="inst_52D5CE21" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4000" y="96" w="32" h="32" xo="144" yo="0" id="11311170" name="inst_6F7EC468" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3936" y="272" w="32" h="32" xo="144" yo="0" id="11311171" name="inst_B6BD7B42" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3936" y="336" w="32" h="32" xo="144" yo="0" id="11311172" name="inst_C6E69D9D" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3904" y="336" w="32" h="32" xo="144" yo="0" id="11311173" name="inst_90D0C591" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3968" y="512" w="32" h="32" xo="144" yo="0" id="11311174" name="inst_56DF70DB" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3872" y="608" w="32" h="32" xo="144" yo="0" id="11311175" name="inst_C641F82B" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4000" y="128" w="32" h="32" xo="144" yo="0" id="11311176" name="inst_2AE83B24" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3968" y="64" w="32" h="32" xo="144" yo="0" id="11311177" name="inst_FE057CAA" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4000" y="512" w="32" h="32" xo="144" yo="0" id="11311178" name="inst_BB5544A1" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4192" y="480" w="32" h="32" xo="144" yo="0" id="11311180" name="inst_9D59D59A" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4288" y="480" w="32" h="32" xo="144" yo="0" id="11311181" name="inst_938F0689" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4384" y="480" w="32" h="32" xo="144" yo="0" id="11311182" name="inst_7FFE1D68" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4352" y="480" w="32" h="32" xo="144" yo="0" id="11311183" name="inst_34D72123" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4416" y="480" w="32" h="32" xo="144" yo="0" id="11311184" name="inst_95983DF1" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4448" y="480" w="32" h="32" xo="144" yo="0" id="11311185" name="inst_F9884620" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4480" y="480" w="32" h="32" xo="144" yo="0" id="11311186" name="inst_7D773552" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4640" y="480" w="32" h="32" xo="144" yo="0" id="11311187" name="inst_9D1A0AC7" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4608" y="480" w="32" h="32" xo="144" yo="0" id="11311188" name="inst_4F05D488" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4736" y="512" w="32" h="32" xo="144" yo="0" id="11311189" name="inst_879CC3F8" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5056" y="512" w="32" h="32" xo="144" yo="0" id="11311190" name="inst_7D38D7D5" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5056" y="544" w="32" h="32" xo="144" yo="0" id="11311191" name="inst_59F4E109" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4992" y="512" w="32" h="32" xo="144" yo="0" id="11311192" name="inst_23B8FBCF" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4960" y="512" w="32" h="32" xo="144" yo="0" id="11311193" name="inst_38AC3299" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5088" y="512" w="32" h="32" xo="144" yo="0" id="11311194" name="inst_B316A19B" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5088" y="544" w="32" h="32" xo="144" yo="0" id="11311195" name="inst_EAD7E49C" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5120" y="544" w="32" h="32" xo="144" yo="0" id="11311196" name="inst_8CDB3C4A" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5120" y="512" w="32" h="32" xo="144" yo="0" id="11311197" name="inst_72EBC44F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5152" y="512" w="32" h="32" xo="144" yo="0" id="11311198" name="inst_1C5FE3A9" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5184" y="512" w="32" h="32" xo="144" yo="0" id="11311199" name="inst_F931445A" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5312" y="368" w="32" h="32" xo="144" yo="0" id="11311200" name="inst_468E2C8A" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5280" y="336" w="32" h="32" xo="144" yo="0" id="11311201" name="inst_57C78E22" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5248" y="336" w="32" h="32" xo="144" yo="0" id="11311202" name="inst_899019DA" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5216" y="336" w="32" h="32" xo="144" yo="0" id="11311203" name="inst_CC1F8352" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5216" y="272" w="32" h="32" xo="144" yo="0" id="11311204" name="inst_31EBAB87" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5440" y="128" w="32" h="32" xo="144" yo="0" id="11311205" name="inst_03E891A0" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5536" y="160" w="32" h="32" xo="144" yo="0" id="11311206" name="inst_DB0B3ABE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5248" y="96" w="32" h="32" xo="144" yo="0" id="11311207" name="inst_8446BCAE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5248" y="128" w="32" h="32" xo="144" yo="0" id="11311208" name="inst_F29B689D" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5216" y="368" w="32" h="32" xo="144" yo="0" id="11311209" name="inst_643A4AB8" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5248" y="304" w="32" h="32" xo="144" yo="0" id="11311210" name="inst_A2093D99" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5504" y="128" w="32" h="32" xo="144" yo="0" id="11311211" name="inst_9F758D22" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5248" y="64" w="32" h="32" xo="144" yo="0" id="11311213" name="inst_CF6E0144" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5280" y="64" w="32" h="32" xo="144" yo="0" id="11311214" name="inst_463FF101" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5216" y="64" w="32" h="32" xo="144" yo="0" id="11311215" name="inst_960F9AE4" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5152" y="32" w="32" h="32" xo="144" yo="0" id="11311216" name="inst_3440894D" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5280" y="160" w="32" h="32" xo="144" yo="0" id="11311217" name="inst_E6810CA5" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5504" y="160" w="32" h="32" xo="144" yo="0" id="11311218" name="inst_5A4D36A6" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5184" y="64" w="32" h="16" xo="144" yo="0" id="11311221" name="inst_F87DCE7F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5248" y="32" w="32" h="16" xo="144" yo="0" id="11311222" name="inst_6CFF7945" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5408" y="160" w="32" h="16" xo="144" yo="0" id="11311223" name="inst_0D121B0D" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5408" y="176" w="32" h="16" xo="144" yo="16" id="11311224" name="inst_32DA0883" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5392" y="176" w="16" h="16" xo="160" yo="16" id="11311225" name="inst_D2300200" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5408" y="144" w="32" h="16" xo="144" yo="16" id="11311226" name="inst_ED777164" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5312" y="176" w="32" h="16" xo="144" yo="16" id="11311227" name="inst_26619438" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5184" y="48" w="32" h="16" xo="144" yo="16" id="11311228" name="inst_8B15A421" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5280" y="368" w="32" h="16" xo="144" yo="0" id="11311230" name="inst_8B24FCBE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5248" y="368" w="32" h="16" xo="144" yo="0" id="11311231" name="inst_4FC007A5" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5216" y="304" w="32" h="16" xo="144" yo="0" id="11311232" name="inst_80A18179" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5184" y="272" w="32" h="16" xo="144" yo="0" id="11311233" name="inst_DA8B7767" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4992" y="544" w="32" h="16" xo="144" yo="0" id="11311234" name="inst_C843762F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4928" y="512" w="32" h="16" xo="144" yo="0" id="11311235" name="inst_64998987" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4768" y="512" w="32" h="16" xo="144" yo="0" id="11311236" name="inst_33CA66FE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4800" y="512" w="32" h="16" xo="144" yo="0" id="11311237" name="inst_CD11C917" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4640" y="512" w="32" h="16" xo="144" yo="0" id="11311238" name="inst_6C973818" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4576" y="480" w="32" h="16" xo="144" yo="0" id="11311239" name="inst_B8CD5954" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4544" y="480" w="32" h="16" xo="144" yo="0" id="11311240" name="inst_0C6E1008" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4512" y="480" w="32" h="16" xo="144" yo="0" id="11311241" name="inst_C9CDFFDE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4320" y="480" w="32" h="16" xo="144" yo="0" id="11311242" name="inst_B750CD9A" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4416" y="512" w="32" h="32" xo="144" yo="0" id="11311243" name="inst_E21BAF13" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4240" y="512" w="16" h="32" xo="160" yo="0" id="11311244" name="inst_08865DC9" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4400" y="512" w="16" h="32" xo="160" yo="0" id="11311245" name="inst_E8F60A5B" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3936" y="512" w="32" h="32" xo="144" yo="0" id="11311246" name="inst_26B34D50" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3936" y="304" w="16" h="32" xo="144" yo="0" id="11311247" name="inst_D72820D8" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4672" y="480" w="16" h="32" xo="144" yo="0" id="11311248" name="inst_371298AC" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4672" y="512" w="16" h="32" xo="144" yo="0" id="11311249" name="inst_653703DD" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4224" y="480" w="16" h="32" xo="144" yo="0" id="11311250" name="inst_E9ADA7AE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3904" y="608" w="16" h="32" xo="144" yo="0" id="11311251" name="inst_3030A087" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3872" y="576" w="16" h="32" xo="144" yo="0" id="11311252" name="inst_B3E60BA7" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3904" y="368" w="16" h="32" xo="144" yo="0" id="11311253" name="inst_BF81569A" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4000" y="272" w="16" h="32" xo="144" yo="0" id="11311254" name="inst_EB4E8283" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3872" y="272" w="16" h="32" xo="144" yo="0" id="11311255" name="inst_268A6158" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3680" y="96" w="32" h="32" xo="144" yo="0" id="11311256" name="inst_4AB68F21" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3904" y="0" w="32" h="32" xo="144" yo="0" id="11311257" name="inst_D24246D0" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4000" y="0" w="32" h="32" xo="144" yo="0" id="11311258" name="inst_AC7E270E" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4032" y="0" w="32" h="32" xo="144" yo="0" id="11311259" name="inst_CB1EF382" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3712" y="64" w="16" h="32" xo="144" yo="0" id="11311260" name="inst_770EE3F5" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3744" y="32" w="16" h="32" xo="144" yo="0" id="11311261" name="inst_83C17B31" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3616" y="32" w="16" h="32" xo="144" yo="0" id="11311262" name="inst_4CE55E7F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3392" y="0" w="16" h="32" xo="144" yo="0" id="11311263" name="inst_A87BB7D1" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3328" y="64" w="16" h="32" xo="144" yo="0" id="11311264" name="inst_F1113C82" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3296" y="128" w="16" h="32" xo="144" yo="0" id="11311265" name="inst_D88DB199" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4000" y="64" w="16" h="32" xo="144" yo="0" id="11311266" name="inst_DA8441B3" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3200" y="128" w="16" h="32" xo="144" yo="0" id="11311268" name="inst_19FD66C5" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3168" y="160" w="16" h="32" xo="144" yo="0" id="11311269" name="inst_1C63D0D6" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3200" y="0" w="16" h="32" xo="144" yo="0" id="11311270" name="inst_16CAB9F4" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2976" y="304" w="16" h="32" xo="144" yo="0" id="11311271" name="inst_EEE53427" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2976" y="400" w="16" h="32" xo="144" yo="0" id="11311272" name="inst_02D03FDD" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2944" y="272" w="16" h="32" xo="144" yo="0" id="11311273" name="inst_E0E1ED95" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2624" y="576" w="16" h="32" xo="144" yo="0" id="11311274" name="inst_D9D06C50" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2368" y="512" w="32" h="16" xo="144" yo="0" id="11311275" name="inst_812E3ECE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2464" y="544" w="32" h="16" xo="144" yo="0" id="11311276" name="inst_68AAC210" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2432" y="576" w="32" h="16" xo="144" yo="0" id="11311277" name="inst_14558537" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2720" y="512" w="32" h="16" xo="144" yo="0" id="11311278" name="inst_C266A525" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2976" y="272" w="32" h="16" xo="144" yo="0" id="11311279" name="inst_9D5088F1" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2912" y="64" w="32" h="16" xo="144" yo="0" id="11311280" name="inst_4DCA72A7" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3168" y="32" w="32" h="16" xo="144" yo="0" id="11311281" name="inst_921E6BDB" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3136" y="0" w="32" h="16" xo="144" yo="0" id="11311282" name="inst_D10F2966" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3184" y="160" w="16" h="16" xo="160" yo="0" id="11311283" name="inst_EF30D6B5" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3520" y="0" w="32" h="16" xo="144" yo="0" id="11311285" name="inst_B8C39C37" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3584" y="32" w="32" h="16" xo="144" yo="0" id="11311286" name="inst_4029D3DF" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3968" y="272" w="32" h="16" xo="144" yo="0" id="11311287" name="inst_21A3FF9C" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3904" y="272" w="32" h="16" xo="144" yo="0" id="11311288" name="inst_EFCF2970" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3968" y="544" w="32" h="16" xo="144" yo="0" id="11311289" name="inst_1B1D2F91" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4192" y="512" w="32" h="16" xo="144" yo="0" id="11311290" name="inst_14CD154B" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4448" y="512" w="32" h="16" xo="144" yo="0" id="11311291" name="inst_DA3DC612" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4480" y="512" w="32" h="16" xo="144" yo="0" id="11311292" name="inst_022D700A" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5280" y="96" w="32" h="16" xo="144" yo="0" id="11311293" name="inst_8DAE24BC" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5536" y="128" w="16" h="32" xo="144" yo="0" id="11311294" name="inst_E14DBE2A" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4032" y="128" w="16" h="16" xo="144" yo="0" id="11311296" name="inst_8FCA155F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3968" y="336" w="16" h="16" xo="144" yo="0" id="11311297" name="inst_B5D22BFA" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3872" y="336" w="32" h="16" xo="144" yo="0" id="11311298" name="inst_9E187C66" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3888" y="352" w="16" h="16" xo="160" yo="16" id="11311299" name="inst_C949D965" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3888" y="368" w="16" h="16" xo="160" yo="0" id="11311300" name="inst_B7A31827" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3920" y="368" w="16" h="16" xo="160" yo="0" id="11311301" name="inst_E20ED74D" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3952" y="320" w="16" h="16" xo="160" yo="16" id="11311302" name="inst_B12F3BE4" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3920" y="320" w="16" h="16" xo="160" yo="16" id="11311303" name="inst_688AC524" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3984" y="288" w="16" h="16" xo="160" yo="16" id="11311304" name="inst_3FE088C8" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3920" y="288" w="16" h="16" xo="160" yo="16" id="11311305" name="inst_59DF4914" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3888" y="592" w="16" h="16" xo="160" yo="16" id="11311306" name="inst_716F0AF6" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4176" y="480" w="16" h="32" xo="160" yo="0" id="11311307" name="inst_580458C9" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4176" y="512" w="16" h="16" xo="160" yo="0" id="11311308" name="inst_7D079463" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4032" y="512" w="16" h="32" xo="144" yo="0" id="11311309" name="inst_F7E7703F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4064" y="480" w="16" h="32" xo="144" yo="0" id="11311310" name="inst_8F51C919" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4048" y="480" w="16" h="32" xo="160" yo="0" id="11311311" name="inst_A7F1EBF4" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4256" y="512" w="16" h="32" xo="144" yo="0" id="11311312" name="inst_DE02FF0D" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4272" y="512" w="16" h="16" xo="160" yo="0" id="11311313" name="inst_E663DEEA" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4288" y="512" w="16" h="16" xo="144" yo="0" id="11311314" name="inst_2F2AE12F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4272" y="496" w="16" h="16" xo="160" yo="16" id="11311315" name="inst_8974A99B" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4240" y="496" w="16" h="16" xo="160" yo="16" id="11311316" name="inst_C987568F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4224" y="512" w="16" h="16" xo="144" yo="0" id="11311317" name="inst_9E77D57C" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4224" y="544" w="16" h="16" xo="144" yo="0" id="11311318" name="inst_D23741E5" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4384" y="512" w="16" h="16" xo="144" yo="0" id="11311319" name="inst_138EAAB6" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4512" y="512" w="16" h="16" xo="144" yo="0" id="11311320" name="inst_A8312DFD" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4512" y="496" w="16" h="16" xo="144" yo="16" id="11311321" name="inst_65CE3874" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4544" y="496" w="16" h="16" xo="144" yo="16" id="11311322" name="inst_B85BFD83" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4048" y="512" w="16" h="16" xo="160" yo="0" id="11311323" name="inst_A7BC5DEB" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4080" y="480" w="16" h="16" xo="160" yo="0" id="11311324" name="inst_791410FB" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4160" y="480" w="16" h="16" xo="144" yo="0" id="11311325" name="inst_E9B8762E" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4768" y="528" w="16" h="16" xo="144" yo="16" id="11311326" name="inst_6B7BC416" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4800" y="528" w="16" h="16" xo="144" yo="16" id="11311327" name="inst_5D915C59" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4320" y="496" w="16" h="16" xo="144" yo="16" id="11311328" name="inst_58145EE4" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3904" y="512" w="32" h="16" xo="144" yo="0" id="11311329" name="inst_F1252967" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3920" y="304" w="16" h="16" xo="160" yo="0" id="11311330" name="inst_06278B22" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3904" y="304" w="16" h="16" xo="144" yo="0" id="11311331" name="inst_DAE0B99B" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3872" y="320" w="16" h="16" xo="144" yo="16" id="11311333" name="inst_A133DFE8" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3888" y="272" w="16" h="16" xo="160" yo="0" id="11311334" name="inst_F7AB1AFA" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3984" y="144" w="16" h="16" xo="160" yo="16" id="11311335" name="inst_E224210C" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3984" y="160" w="16" h="32" xo="160" yo="0" id="11311336" name="inst_060ADA1B" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3952" y="176" w="16" h="16" xo="160" yo="16" id="11311337" name="inst_1D3782A4" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3680" y="128" w="16" h="16" xo="144" yo="0" id="11311338" name="inst_0BA61CD5" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5152" y="544" w="16" h="16" xo="144" yo="0" id="11311339" name="inst_81BDD450" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5168" y="560" w="16" h="16" xo="160" yo="16" id="11311340" name="inst_36ACBB87" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5216" y="528" w="16" h="16" xo="144" yo="16" id="11311341" name="inst_1A0B6420" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5088" y="576" w="16" h="16" xo="144" yo="0" id="11311342" name="inst_296C2C14" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5008" y="560" w="16" h="16" xo="160" yo="16" id="11311343" name="inst_DCAB32ED" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5232" y="320" w="16" h="16" xo="160" yo="16" id="11311344" name="inst_13B96ADD" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5200" y="288" w="16" h="16" xo="160" yo="16" id="11311345" name="inst_E59BF104" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5184" y="352" w="32" h="16" xo="144" yo="16" id="11311346" name="inst_54C94D88" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5184" y="32" w="16" h="16" xo="144" yo="0" id="11311348" name="inst_D7B45FF3" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5264" y="48" w="16" h="16" xo="160" yo="16" id="11311349" name="inst_CFDFEF58" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5280" y="48" w="16" h="16" xo="144" yo="16" id="11311350" name="inst_0F026B93" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5424" y="128" w="16" h="16" xo="160" yo="0" id="11311351" name="inst_D7609D3D" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5440" y="160" w="16" h="16" xo="144" yo="0" id="11311352" name="inst_22CE61CF" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5488" y="160" w="16" h="16" xo="160" yo="0" id="11311353" name="inst_92CFC2A1" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5568" y="160" w="16" h="16" xo="144" yo="0" id="11311354" name="inst_FDF5248D" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5568" y="144" w="16" h="16" xo="144" yo="16" id="11311355" name="inst_AC2D4B53" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5584" y="128" w="16" h="16" xo="160" yo="0" id="11311356" name="inst_27A0BF8F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5392" y="160" w="16" h="16" xo="160" yo="0" id="11311357" name="inst_A8B799A8" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5312" y="160" w="16" h="16" xo="144" yo="0" id="11311358" name="inst_F9760C17" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5296" y="144" w="16" h="16" xo="160" yo="16" id="11311359" name="inst_F19222DA" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5280" y="112" w="16" h="16" xo="144" yo="16" id="11311360" name="inst_BB3252C1" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5280" y="128" w="16" h="16" xo="144" yo="0" id="11311361" name="inst_71368C73" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5216" y="48" w="16" h="16" xo="144" yo="16" id="11311362" name="inst_DEDF6101" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5280" y="144" w="16" h="16" xo="144" yo="16" id="11311365" name="inst_A7FCDAAE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5248" y="384" w="16" h="16" xo="144" yo="16" id="11311366" name="inst_FED02ADB" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4016" y="272" w="16" h="16" xo="160" yo="0" id="11311367" name="inst_C4252A02" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3968" y="96" w="32" h="16" xo="144" yo="0" id="11311368" name="inst_CC89CFB4" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4032" y="32" w="32" h="16" xo="144" yo="0" id="11311369" name="inst_31F400EE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3920" y="32" w="16" h="32" xo="160" yo="0" id="11311370" name="inst_DB5A9793" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4048" y="48" w="16" h="16" xo="160" yo="16" id="11311371" name="inst_3108A537" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4016" y="80" w="16" h="16" xo="160" yo="16" id="11311372" name="inst_596DC239" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="4032" y="80" w="16" h="16" xo="144" yo="16" id="11311373" name="inst_4E9020BD" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3952" y="64" w="16" h="16" xo="160" yo="0" id="11311374" name="inst_65C22437" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3968" y="16" w="32" h="16" xo="144" yo="16" id="11311375" name="inst_AA4413FA" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3984" y="0" w="16" h="16" xo="160" yo="0" id="11311376" name="inst_104780C7" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3936" y="16" w="16" h="16" xo="144" yo="16" id="11311377" name="inst_AA149CC5" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3872" y="0" w="32" h="16" xo="144" yo="0" id="11311378" name="inst_8DD7A216" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3808" y="0" w="16" h="16" xo="144" yo="0" id="11311379" name="inst_94F0D19A" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3760" y="32" w="16" h="16" xo="160" yo="0" id="11311380" name="inst_5765AFCD" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3600" y="64" w="16" h="16" xo="160" yo="0" id="11311381" name="inst_07F6A5D9" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3616" y="64" w="16" h="16" xo="144" yo="0" id="11311382" name="inst_4E4E3C30" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3600" y="48" w="16" h="16" xo="160" yo="16" id="11311383" name="inst_C284A238" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3568" y="32" w="16" h="16" xo="160" yo="0" id="11311384" name="inst_ADF1B8D3" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3536" y="16" w="16" h="16" xo="160" yo="16" id="11311385" name="inst_FDBCC6ED" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3408" y="0" w="16" h="16" xo="160" yo="0" id="11311386" name="inst_B0DF6C21" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3360" y="32" w="16" h="16" xo="144" yo="0" id="11311388" name="inst_E71E990E" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3072" y="32" w="32" h="16" xo="144" yo="0" id="11311389" name="inst_21EF56D7" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3072" y="48" w="16" h="16" xo="144" yo="16" id="11311390" name="inst_17085E69" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2912" y="48" w="32" h="16" xo="144" yo="16" id="11311391" name="inst_B5F9BC3D" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2912" y="32" w="16" h="16" xo="144" yo="0" id="11311392" name="inst_E8B1A97A" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2912" y="80" w="16" h="16" xo="144" yo="16" id="11311393" name="inst_7B0B4BB8" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2912" y="128" w="16" h="32" xo="144" yo="0" id="11311394" name="inst_F5E3A376" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2864" y="128" w="16" h="16" xo="160" yo="0" id="11311395" name="inst_DFBC453C" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2864" y="32" w="16" h="16" xo="160" yo="0" id="11311396" name="inst_D0B14A9B" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2896" y="160" w="16" h="32" xo="160" yo="0" id="11311397" name="inst_8532BD48" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2960" y="288" w="16" h="16" xo="160" yo="16" id="11311399" name="inst_D54FE2EA" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2928" y="304" w="16" h="32" xo="160" yo="0" id="11311400" name="inst_C31D43B8" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2928" y="336" w="16" h="16" xo="160" yo="0" id="11311401" name="inst_85797BF8" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3008" y="320" w="32" h="16" xo="144" yo="16" id="11311402" name="inst_0EFB55DD" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2992" y="320" w="16" h="16" xo="160" yo="16" id="11311403" name="inst_E328BE23" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3024" y="304" w="16" h="16" xo="160" yo="0" id="11311404" name="inst_B06FCD35" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3008" y="368" w="16" h="16" xo="144" yo="0" id="11311406" name="inst_D3FCD15E" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2960" y="400" w="16" h="16" xo="160" yo="0" id="11311407" name="inst_B5F9A789" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2992" y="400" w="16" h="16" xo="160" yo="0" id="11311408" name="inst_8C9AC0DE" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2960" y="416" w="16" h="16" xo="160" yo="16" id="11311409" name="inst_861CC1AD" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3024" y="592" w="16" h="16" xo="160" yo="16" id="11311410" name="inst_5EEB7227" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2992" y="624" w="16" h="16" xo="160" yo="16" id="11311411" name="inst_40FC6611" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2976" y="624" w="16" h="16" xo="144" yo="16" id="11311412" name="inst_E4760F37" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3152" y="128" w="16" h="32" xo="160" yo="0" id="11311413" name="inst_07288205" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3216" y="160" w="16" h="32" xo="160" yo="0" id="11311414" name="inst_57FAF67D" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3312" y="0" w="16" h="32" xo="160" yo="0" id="11311415" name="inst_2E876635" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3184" y="96" w="16" h="32" xo="160" yo="0" id="11311416" name="inst_E0D3F91A" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3184" y="48" w="16" h="16" xo="160" yo="16" id="11311417" name="inst_0E557225" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3184" y="64" w="16" h="16" xo="160" yo="0" id="11311418" name="inst_1B1AB625" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3168" y="112" w="16" h="16" xo="144" yo="16" id="11311419" name="inst_E7EE000D" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3216" y="128" w="16" h="16" xo="160" yo="0" id="11311420" name="inst_1111CC40" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3280" y="48" w="16" h="16" xo="160" yo="16" id="11311421" name="inst_3405F7C6" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3296" y="16" w="16" h="16" xo="144" yo="16" id="11311422" name="inst_07FEC006" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3632" y="80" w="16" h="16" xo="160" yo="16" id="11311423" name="inst_AE326033" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2624" y="624" w="16" h="16" xo="144" yo="16" id="11311424" name="inst_459820D7" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2624" y="640" w="16" h="32" xo="144" yo="0" id="11311425" name="inst_138F6EF7" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2640" y="656" w="16" h="16" xo="160" yo="16" id="11311426" name="inst_3516EA5A" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2544" y="624" w="16" h="16" xo="160" yo="16" id="11311427" name="inst_05BBBEE0" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2496" y="624" w="32" h="16" xo="144" yo="16" id="11311428" name="inst_4A12FC9E" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2496" y="608" w="16" h="16" xo="144" yo="0" id="11311429" name="inst_A98EB610" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2448" y="608" w="16" h="16" xo="160" yo="0" id="11311430" name="inst_837138C2" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2448" y="640" w="16" h="32" xo="160" yo="0" id="11311431" name="inst_937494F4" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2432" y="656" w="16" h="16" xo="144" yo="16" id="11311432" name="inst_9DEA56F8" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2416" y="544" w="16" h="32" xo="160" yo="0" id="11311433" name="inst_F426D977" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2400" y="544" w="16" h="16" xo="144" yo="0" id="11311434" name="inst_A77092D0" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2384" y="528" w="16" h="16" xo="160" yo="16" id="11311435" name="inst_D01837E1" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="2448" y="592" w="16" h="16" xo="160" yo="16" id="11311436" name="inst_DB78EBCC" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3984" y="112" w="16" h="16" xo="160" yo="16" id="11311437" name="inst_2FDAC9A1" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="3968" y="176" w="16" h="16" xo="144" yo="16" id="11311438" name="inst_90F26EEC" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5472" y="128" w="32" h="16" xo="144" yo="0" id="11311442" name="inst_26103F8E" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5488" y="144" w="16" h="16" xo="160" yo="16" id="11311443" name="inst_D050FBB2" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5264" y="160" w="16" h="16" xo="160" yo="0" id="11311445" name="inst_D6146354" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5216" y="96" w="32" h="32" xo="144" yo="0" id="11311449" name="inst_9D2AEE8E" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5216" y="128" w="32" h="16" xo="144" yo="0" id="11311451" name="inst_BF8CBCB7" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5232" y="144" w="16" h="16" xo="160" yo="16" id="11311452" name="inst_070AA585" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5248" y="160" w="16" h="16" xo="144" yo="0" id="11311453" name="inst_C06D9126" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGeminiman" x="5264" y="176" w="16" h="16" xo="160" yo="16" id="11311454" name="inst_2ECCBE2F" depth="-100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>
