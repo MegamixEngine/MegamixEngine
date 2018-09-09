@@ -220,9 +220,9 @@
     <instance objName="objStopScrollingHorizontal" x="1024" y="2464" name="inst_5A836801" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeftScrolling" x="768" y="2464" name="inst_AA106682" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEscaroo" x="816" y="2576" name="inst_A5E72CF0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objWindDown" x="928" y="2480" name="inst_0818659F" locked="0" code="" scaleX="1" scaleY="9" colour="4294967295" rotation="0"/>
-    <instance objName="objWindRight" x="944" y="2624" name="inst_9D0843AF" locked="0" code="" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objWindLeft" x="880" y="2624" name="inst_F79D6C28" locked="0" code="" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWindDown" x="928" y="2480" name="inst_0818659F" locked="0" code="mySpeed = 0.5;&#xA;" scaleX="1" scaleY="9" colour="4294967295" rotation="0"/>
+    <instance objName="objWindRight" x="944" y="2624" name="inst_9D0843AF" locked="0" code="mySpeed = 0.5;&#xA;" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWindLeft" x="880" y="2624" name="inst_F79D6C28" locked="0" code="mySpeed = 0.5;&#xA;" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="944" y="2400" name="inst_10D7C137" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="960" y="2400" name="inst_837A6281" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="944" y="2416" name="inst_5E99BFA9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -303,6 +303,8 @@
     <instance objName="objSolid" x="1232" y="2880" name="inst_3BBC8E64" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="1248" y="2880" name="inst_C050A95F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="1248" y="2864" name="inst_E1F99BA2" locked="0" code="light = 2;&#xA;myRoom = lvlShowcaseHUB;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="864" y="2672" name="inst_9DBEDD51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="992" y="2672" name="inst_57050485" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstWoodman" x="928" y="384" w="16" h="16" xo="0" yo="32" id="11325039" name="inst_EA536A70" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -4381,14 +4383,6 @@
     <tile bgName="tstWoodman" x="832" y="2672" w="32" h="16" xo="96" yo="0" id="11324546" name="inst_59A413D3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstWoodman" x="752" y="2624" w="16" h="16" xo="112" yo="0" id="11324547" name="inst_ACB2B722" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstWoodman" x="752" y="2640" w="16" h="16" xo="112" yo="0" id="11324548" name="inst_FD498FEF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstWoodman" x="880" y="2672" w="32" h="16" xo="96" yo="0" id="11324549" name="inst_E95EFF4C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstWoodman" x="880" y="2656" w="32" h="16" xo="96" yo="0" id="11324550" name="inst_C874B180" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstWoodman" x="912" y="2656" w="32" h="16" xo="96" yo="0" id="11324551" name="inst_D90B2695" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstWoodman" x="912" y="2672" w="32" h="16" xo="96" yo="0" id="11324552" name="inst_9372980E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstWoodman" x="944" y="2656" w="32" h="16" xo="96" yo="0" id="11324553" name="inst_6049088C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstWoodman" x="944" y="2672" w="32" h="16" xo="96" yo="0" id="11324554" name="inst_A9815BCA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstWoodman" x="976" y="2656" w="16" h="16" xo="96" yo="0" id="11324555" name="inst_93323C40" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstWoodman" x="976" y="2672" w="16" h="16" xo="96" yo="0" id="11324556" name="inst_3C71FE4D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstWoodman" x="592" y="400" w="16" h="16" xo="32" yo="48" id="11324557" name="inst_73355724" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstWoodman" x="592" y="384" w="16" h="16" xo="32" yo="48" id="11324558" name="inst_2DB1C8D0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstWoodman" x="528" y="384" w="16" h="16" xo="48" yo="32" id="11324615" name="inst_97355759" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -5000,6 +4994,14 @@
     <tile bgName="bgNESPalette" x="1232" y="2864" w="16" h="16" xo="208" yo="0" id="11332714" name="inst_878D64D3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgNESPalette" x="1248" y="2864" w="16" h="16" xo="208" yo="0" id="11332715" name="inst_153FA94A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgNESPalette" x="1248" y="2848" w="16" h="16" xo="208" yo="0" id="11332716" name="inst_18F20CD2" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstWoodman" x="880" y="2672" w="16" h="16" xo="112" yo="0" id="11360157" name="inst_C91FB736" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstWoodman" x="880" y="2656" w="16" h="16" xo="112" yo="0" id="11360158" name="inst_A3D5B236" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstWoodman" x="896" y="2672" w="32" h="16" xo="96" yo="0" id="11360159" name="inst_AE12CA05" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstWoodman" x="928" y="2672" w="32" h="16" xo="96" yo="0" id="11360160" name="inst_BD3B4A97" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstWoodman" x="960" y="2672" w="32" h="16" xo="96" yo="0" id="11360161" name="inst_A1AFBAEF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstWoodman" x="896" y="2656" w="32" h="16" xo="96" yo="0" id="11360162" name="inst_4ED2E070" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstWoodman" x="928" y="2656" w="32" h="16" xo="96" yo="0" id="11360163" name="inst_AD619114" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstWoodman" x="960" y="2656" w="32" h="16" xo="96" yo="0" id="11360164" name="inst_D6104B60" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstNapalmmanAnimated1" x="864" y="2624" w="32" h="16" xo="112" yo="0" id="11281676" name="inst_2F4C56FF" depth="800000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstNapalmmanAnimated1" x="928" y="2480" w="16" h="16" xo="144" yo="16" id="11281679" name="inst_4AD0D5DC" depth="800000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstNapalmmanAnimated1" x="928" y="2496" w="16" h="16" xo="144" yo="16" id="11281680" name="inst_A397E188" depth="800000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -5022,6 +5024,8 @@
     <tile bgName="tstNapalmmanAnimated1" x="912" y="2624" w="16" h="16" xo="128" yo="0" id="11281721" name="inst_4C646FFE" depth="800000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstNapalmmanAnimated1" x="944" y="2624" w="16" h="16" xo="144" yo="0" id="11281722" name="inst_92103506" depth="800000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstNapalmmanAnimated1" x="960" y="2624" w="16" h="16" xo="144" yo="0" id="11281723" name="inst_B7F50035" depth="800000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstWoodman" x="864" y="2672" w="16" h="16" xo="96" yo="0" id="11360156" name="inst_CE2B2237" depth="700000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstWoodman" x="992" y="2672" w="16" h="16" xo="96" yo="0" id="11360165" name="inst_E924D1A1" depth="700000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>
