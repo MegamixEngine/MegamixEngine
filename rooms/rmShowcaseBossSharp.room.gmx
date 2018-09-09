@@ -10,7 +10,7 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code></code>
+  <code>playMusic("Mega_Man_3.nsf", "VGM", 10, 0, 0, 0, 1);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -136,20 +136,6 @@
     <instance objName="objSlopeRLong" x="144" y="64" name="inst_142C9DB5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSlopeLLong" x="160" y="48" name="inst_E370F852" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objObjectSetter" x="0" y="0" name="inst_66217395" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1040" y="192" name="inst_89D92060" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1056" y="192" name="inst_445D0862" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1072" y="192" name="inst_420A4C76" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1088" y="192" name="inst_F5EF91A1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1104" y="192" name="inst_DB7E16EE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1120" y="192" name="inst_476343B0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1136" y="192" name="inst_00D39878" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1152" y="192" name="inst_546BA526" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1168" y="192" name="inst_60DDABCA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1184" y="192" name="inst_A6DA29BD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1200" y="192" name="inst_6A92D0D2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1216" y="192" name="inst_14FA94F4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1232" y="192" name="inst_7D6D46EE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM2Conveyor" x="1248" y="192" name="inst_B3C96BDA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="1920" y="176" name="inst_BA218EBC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergyBig" x="1888" y="176" name="inst_540589ED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="1856" y="176" name="inst_B29BE022" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -180,7 +166,12 @@
     <instance objName="objCheckpoint" x="1840" y="176" name="inst_180897CE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="704" y="400" name="inst_E1D7BAF5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeftScrolling" x="256" y="224" name="inst_4CA61229" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="48" y="400" name="inst_03C433F9" locked="0" code="myRoom = lvlShowcaseHUB;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="48" y="400" name="inst_03C433F9" locked="0" code="myRoom = lvlShowcaseHUB;&#xA;light = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="32" y="368" name="inst_BE6F3138" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="48" y="368" name="inst_418AD181" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="32" y="416" name="inst_8850F876" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="48" y="416" name="inst_218F44E8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM2Conveyor" x="1264" y="192" name="inst_F48D8BAE" locked="0" code="" scaleX="-14" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstGyroman" x="768" y="352" w="16" h="16" xo="16" yo="0" id="11324178" name="inst_CCEFFDDF" depth="1001000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -375,6 +366,8 @@
     <tile bgName="tstGyroman" x="992" y="240" w="16" h="16" xo="16" yo="0" id="11324398" name="inst_00BC6D14" depth="1001000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGyroman" x="992" y="256" w="16" h="16" xo="16" yo="0" id="11324399" name="inst_BF7CA050" depth="1001000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGyroman" x="992" y="272" w="16" h="16" xo="16" yo="0" id="11324400" name="inst_10A204C2" depth="1001000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM4Wily3" x="32" y="416" w="32" h="16" xo="32" yo="16" id="11360139" name="inst_3FE3B121" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM4Wily3" x="32" y="368" w="32" h="16" xo="32" yo="32" id="11360140" name="inst_2AC0F1DE" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM3Wily4" x="0" y="0" w="192" h="96" xo="0" yo="0" id="11322042" name="inst_D1775620" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM3Wily4" x="272" y="192" w="16" h="16" xo="48" yo="16" id="11322044" name="inst_2D3ABE9C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM3Wily4" x="288" y="192" w="16" h="16" xo="64" yo="16" id="11322045" name="inst_C65D3CA1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -2112,7 +2105,6 @@
     <tile bgName="tstMM3Wily4" x="16" y="384" w="16" h="16" xo="48" yo="48" id="11347660" name="inst_40D9A7E5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM3Wily4" x="16" y="400" w="16" h="16" xo="48" yo="48" id="11347661" name="inst_74EF9AC7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM3Wily4" x="16" y="368" w="16" h="16" xo="48" yo="48" id="11347662" name="inst_1F40E8C9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstMM3Wily4" x="32" y="368" w="32" h="64" xo="192" yo="0" id="11347672" name="inst_DD1451E7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM3Wily4" x="256" y="352" w="16" h="16" xo="176" yo="0" id="11347673" name="inst_BD0EA15C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM3Wily4" x="256" y="368" w="16" h="16" xo="176" yo="0" id="11347674" name="inst_8DD76CD3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM3Wily4" x="256" y="384" w="16" h="16" xo="176" yo="0" id="11347675" name="inst_A9425A68" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

@@ -52,7 +52,7 @@
   </views>
   <instances>
     <instance objName="objTheKeeper" x="784" y="720" name="inst_196411F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBeeBlader" x="1120" y="1488" name="inst_DC675E18" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBeeBlader" x="1120" y="1472" name="inst_DC675E18" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTKhamen" x="1280" y="2336" name="inst_15753E64" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objObjectSetter" x="32" y="192" name="inst_87C95549" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objYashichi" x="976" y="544" name="inst_D1A7351C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -214,7 +214,7 @@
     <instance objName="objTyhorn" x="1504" y="2544" name="inst_CB850164" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTyhornPlatformSpawn" x="1360" y="2480" name="inst_18728638" locked="0" code="initialDelay = 60;&#xA;waitTime = 150;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTyhornPlatformSpawn" x="1424" y="2480" name="inst_495A67E2" locked="0" code="waitTime = 150;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTyhornPlatformSpawn" x="1088" y="2480" name="inst_211561B4" locked="0" code="waitTime = 120;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTyhornPlatformSpawn" x="1664" y="2160" name="inst_211561B4" locked="0" code="waitTime = 120;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1024" y="2464" name="inst_2C67E3EE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1792" y="2464" name="inst_2EF24504" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="1024" y="2240" name="inst_D0940FFE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -224,14 +224,14 @@
     <instance objName="objCheckpoint" x="1216" y="1920" name="inst_71892571" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="1088" y="2160" name="inst_A161F41E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="1152" y="2640" name="inst_0FED817A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="1264" y="1504" name="inst_FE968A42" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="1264" y="1488" name="inst_E3ACC0A8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="1264" y="1472" name="inst_03DDEEA1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="1264" y="1456" name="inst_1FB00BE3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="1280" y="1504" name="inst_DF4A794A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="1280" y="1488" name="inst_79D504BD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="1280" y="1472" name="inst_8C3D0FF8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="1280" y="1456" name="inst_B1F103C1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoor" x="1264" y="1440" name="inst_FE968A42" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoor" x="1264" y="1424" name="inst_E3ACC0A8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoor" x="1264" y="1408" name="inst_03DDEEA1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoor" x="1264" y="1392" name="inst_1FB00BE3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoor" x="1280" y="1440" name="inst_DF4A794A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoor" x="1280" y="1424" name="inst_79D504BD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoor" x="1280" y="1408" name="inst_8C3D0FF8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoor" x="1280" y="1392" name="inst_B1F103C1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTricastle" x="832" y="1888" name="inst_C8BFF794" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="784" y="2000" name="inst_F9640E5C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="800" y="2000" name="inst_8A03B513" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -279,6 +279,19 @@
     <instance objName="objSolid" x="1696" y="2544" name="inst_2390525C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="1712" y="2544" name="inst_28CAFC4E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="1712" y="2576" name="inst_44A95126" locked="0" code="myRoom = lvlShowcaseHUB;&#xA;light = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="896" y="528" name="inst_50897800" locked="0" code="text = &quot;This showcase goes over some of the mini bosses that really didn't fit anywhere else, and some of the variations you can do with them.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="992" y="848" name="inst_25747F78" locked="0" code="text = &quot;objTheKeeper. Mega Man 10. Mid boss of Strike Man's stage, summons a ball that bounces across screen and then slams his hands into the ground. The hands can be ridden as a platform.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1008" y="1088" name="inst_8A8C9865" locked="0" code="text = &quot;You don't need to put The Keeper in a standard setup, you can use custom setups. This one uses a special backsprite and enables a harder attack with creation code.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1248" y="1296" name="inst_BA158787" locked="0" code="text = &quot;objStoneHead. Mega Man 9. Miniboss of Jewel Man's stage, drops boulders from the boulders on the ceiling before falling and then rolling back up to the ceiling.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1504" y="1312" name="inst_0D4A9934" locked="0" code="text = &quot;Using the special template objects in the setup folder for Stone Head and some creation code you can create customized setups like these. Be sure to check the example so you don't cause an infinite loop error. You can also use creation code to edit what Stone Head throws...&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1344" y="1472" name="inst_F8586C9C" locked="0" code="text = &quot;objBeeBlader. From Rockman and Forte: Challenger from the Future, shoots three projectiles and will jump across screen once they are all destroyed.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1072" y="1744" name="inst_426308D0" locked="0" code="text = &quot;objWhooper. Mega Man 4. One of the minibosses of Ring Man's stage. Throws 6 rings, four diagonally, 1 up and 1 down and become vulnuerable when doing so.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="992" y="1968" name="inst_3C1E4704" locked="0" code="text = &quot;objTriCastle. Mega Man 10. Miniboss of Blade Man's stage. The cannons shoot at Mega Man while the door spawns platforms that Mega Man can jump to hit the eyes.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="896" y="2128" name="inst_14FC28C4" locked="0" code="text = &quot;objDocKumo. Another miniboss from Challenger from the Future. This miniboss throws bones which slowly home towards Mega Man, when destroyed it will jump straight up. You can either place him on the floor or flip his Y-Scale to have him on the ceiling.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1120" y="2160" name="inst_BD79305D" locked="0" code="text = &quot;objTKhamen. Mega Man V (Game Boy). Miniboss of Uranus. Is fought on platforms that move back and forth. It shoots rocks from its chest to try and push Mega Man off and drops more for damage from the spawner objects above.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1120" y="2640" name="inst_E51CB400" locked="0" code="text = &quot;objTyhornPlatformSpawn. Mega Man V (Game Boy). Spawns Tyhorn platforms which fall from the ceiling repeatedly after a set delay specified with creation code.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1248" y="2640" name="inst_BC746F28" locked="0" code="text = &quot;objTyhorn. Mega Man V (Game Boy). Miniboss of Mars' stage. Shoots balls that bounce on platforms. Traditionally fought on Tyhorn platforms, though you could use other setups...&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTyhornPlatformSpawn" x="1088" y="2480" name="inst_63E409F4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMM10Endless" x="784" y="464" w="16" h="16" xo="176" yo="368" id="11341824" name="inst_F4BAE23D" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -2061,6 +2074,14 @@
     <tile bgName="tstMM10Endless" x="1648" y="2528" w="16" h="16" xo="176" yo="384" id="11343735" name="inst_75BC2CDF" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM10Endless" x="1648" y="2544" w="16" h="16" xo="176" yo="384" id="11343736" name="inst_9A2A562C" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM10Endless" x="1664" y="2512" w="16" h="16" xo="176" yo="384" id="11343737" name="inst_C9F43E46" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1264" y="1392" w="16" h="16" xo="176" yo="368" id="11360143" name="inst_D1288598" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1280" y="1392" w="16" h="16" xo="176" yo="368" id="11360144" name="inst_768CE689" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1264" y="1408" w="16" h="16" xo="176" yo="384" id="11360145" name="inst_E43628D4" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1264" y="1424" w="16" h="16" xo="176" yo="384" id="11360146" name="inst_70CF1674" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1264" y="1440" w="16" h="16" xo="176" yo="384" id="11360147" name="inst_61E0837A" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1280" y="1440" w="16" h="16" xo="176" yo="384" id="11360148" name="inst_58E7B1D6" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1280" y="1424" w="16" h="16" xo="176" yo="384" id="11360149" name="inst_B4D7F271" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1280" y="1408" w="16" h="16" xo="176" yo="384" id="11360150" name="inst_CD37B885" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstStrikeMan" x="848" y="720" w="16" h="16" xo="224" yo="128" id="11272254" name="inst_4020464F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstStrikeMan" x="832" y="720" w="16" h="16" xo="224" yo="96" id="11272255" name="inst_1B14E14F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstStrikeMan" x="800" y="720" w="16" h="16" xo="224" yo="96" id="11272257" name="inst_C4F8C6E4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -2337,8 +2358,6 @@
     <tile bgName="tstMM10Endless" x="1520" y="1440" w="16" h="48" xo="128" yo="304" id="11341451" name="inst_FB2A8DB7" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM10Endless" x="1520" y="1488" w="16" h="48" xo="128" yo="304" id="11341452" name="inst_6CDDBBF6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM10Endless" x="1520" y="1536" w="16" h="32" xo="128" yo="304" id="11341453" name="inst_DB6EA5B3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstMM10Endless" x="1264" y="1424" w="32" h="32" xo="96" yo="304" id="11341454" name="inst_16209B7B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstMM10Endless" x="1264" y="1392" w="32" h="32" xo="96" yo="304" id="11341455" name="inst_B0D25187" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM10Endless" x="1264" y="1360" w="32" h="32" xo="96" yo="304" id="11341456" name="inst_020B6999" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM10Endless" x="1280" y="1328" w="16" h="32" xo="128" yo="320" id="11341457" name="inst_2E6FF4DD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM10Endless" x="1264" y="1344" w="16" h="16" xo="128" yo="336" id="11341458" name="inst_4B348B4C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -2696,6 +2715,11 @@
     <tile bgName="tstMM10Wily2" x="1264" y="2448" w="16" h="16" xo="112" yo="0" id="11341823" name="inst_B3E08114" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM3Wily4" x="1696" y="2592" w="32" h="16" xo="192" yo="48" id="11343741" name="inst_E84DD9A8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM3Wily4" x="1696" y="2544" w="32" h="16" xo="192" yo="0" id="11343742" name="inst_1ED70D6A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1264" y="1456" w="32" h="32" xo="96" yo="304" id="11360141" name="inst_2D81FC20" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1264" y="1488" w="32" h="32" xo="96" yo="304" id="11360142" name="inst_DDCB816F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1296" y="1488" w="32" h="32" xo="96" yo="304" id="11360151" name="inst_D2CC032B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1328" y="1488" w="32" h="32" xo="96" yo="304" id="11360152" name="inst_60582B46" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM10Endless" x="1296" y="1456" w="32" h="32" xo="96" yo="304" id="11360153" name="inst_42643D8B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM3Wily4" x="1696" y="2560" w="32" h="32" xo="192" yo="16" id="11343743" name="inst_32A5B93D" depth="-1" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
