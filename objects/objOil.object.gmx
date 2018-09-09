@@ -97,11 +97,19 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
 {
     if (!fire)
     {
-        // manual exception, since these share an object.
+        // manual exceptions, since these share objects.
         if (instance_place(x, y, objPicket))
         {
             a = instance_place(x, y, objPicket);
             if (a.sprite_index == sprTackleFire &amp;&amp; a.yspeed &gt; 0)
+            {
+                fire = true;
+            }
+        }
+        if (instance_place(x, y, objEnemyBullet))
+        {
+            a = instance_place(x, y, objEnemyBullet);
+            if (a.sprite_index == sprFireTotemFlame &amp;&amp; a.yspeed &gt; 0)
             {
                 fire = true;
             }
@@ -142,7 +150,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
     {
         sprite_index = sprOilfire;
         image_index += 1 / 5;
-        if (place_meeting(x, y, objMegaman) &amp;&amp; target.canHit)
+        if (place_meeting(x, y, target) &amp;&amp; target.canHit &amp;&amp; target.iFrames == 0)
         {
             with (target)
             {

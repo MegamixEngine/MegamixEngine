@@ -64,7 +64,7 @@ rise = true;
             <kind>1</kind>
             <string>event_inherited();
 
-if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
+if (entityCanStep())//(!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
     healthpoints = 1;
     
@@ -126,7 +126,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     }
 }
 
-// only rain flush can stop fire....
+// only Rain Flush can stop fire....
 if (other.object_index != objRainFlush)
 {
     other.guardCancel = 2;

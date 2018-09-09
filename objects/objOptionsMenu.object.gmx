@@ -587,7 +587,7 @@ if (!newControls)
 key = -1;
 
 // control configuration
-var skip = newControlls &amp;&amp; (keyboard_key == vk_delete);
+var skip = newControls &amp;&amp; (keyboard_key == vk_delete);
 
 if (newControls == 1)
 {
@@ -626,6 +626,8 @@ if (newControls == 1)
     
     if (key != -1 &amp;&amp; !press)
     {
+        if(skip)
+            key=-1;
         currentKeys[keyID + pID*10]=key;
         keyID++;
         // assign key
@@ -633,43 +635,53 @@ if (newControls == 1)
         switch (current)
         {
             case 'LEFT':
-                global.leftKey[pID] = key;
+                if(!skip)
+                    global.leftKey[pID] = key;
                 current = 'RIGHT';
                 break;
             case 'RIGHT':
-                global.rightKey[pID] = key;
+                if(!skip)
+                    global.rightKey[pID] = key;
                 current = 'UP';
                 break;
             case 'UP':
-                global.upKey[pID] = key;
+                if(!skip)
+                    global.upKey[pID] = key;
                 current = 'DOWN';
                 break;
             case 'DOWN':
-                global.downKey[pID] = key;
+                if(!skip)
+                    global.downKey[pID] = key;
                 current = 'JUMP';
                 break;
             case 'JUMP':
-                global.jumpKey[pID] = key;
+                if(!skip)
+                    global.jumpKey[pID] = key;
                 current = 'SHOOT';
                 break;
             case 'SHOOT':
-                global.shootKey[pID] = key;
+                if(!skip)
+                    global.shootKey[pID] = key;
                 current = 'SLIDE';
                 break;
             case 'SLIDE':
-                global.slideKey[pID] = key;
+                if(!skip)
+                    global.slideKey[pID] = key;
                 current = 'PREV WPN';
                 break;
             case 'PREV WPN':
-                global.weaponSwitchLeftKey[pID] = key;
+                if(!skip)
+                    global.weaponSwitchLeftKey[pID] = key;
                 current = 'NEXT WPN';
                 break;
             case 'NEXT WPN':
-                global.weaponSwitchRightKey[pID] = key;
+                if(!skip)
+                    global.weaponSwitchRightKey[pID] = key;
                 current = 'PAUSE';
                 break;
             case 'PAUSE':
-                global.pauseKey[pID] = key;
+                if(!skip)
+                    global.pauseKey[pID] = key;
                 current = 'LEFT';
                 pID += 1;
                 if (pID &gt;= global.playerCount)
@@ -690,18 +702,17 @@ if (newControls == 1)
 // gamepad configuration
 if (newControls == 2)
 {
-    if(!(skip&amp;&amp;press==0))
+    if (!objGlobalControl.joystick_connected)
     {
-        if (!objGlobalControl.joystick_connected)
-        {
-            newControls = 0;
-            selected = 0;
-            press = 1;
-            buffer = 1;
-            alarm[0] = 10;
-            exit;
-        }
-        
+        newControls = 0;
+        selected = 0;
+        press = 1;
+        buffer = 1;
+        alarm[0] = 10;
+        exit;
+    }
+    if(!skip)
+    {
         var i, b;
         var jID = pID;
         if (!gamepad_is_connected(jID))
@@ -716,46 +727,55 @@ if (newControls == 2)
                 break;
             }
         }
-        if (key == -1)
-        {
-            press = 0;
-        }
+    }
+    else
+    {
+        key=vk_delete;
+    }
+    if (key == -1)
+    {
+        press = 0;
+    }
+    else{
         event_user(0);
-    }  
-    if ((key != -1 &amp;&amp; !press) || (skip &amp;&amp; !press))
+    }
+    if (key != -1 &amp;&amp; !press)
     {
         if(skip)
-        {
-            key = -1;
-        }
-        
+            key=-1;
         currentKeys[keyID + pID*10]=key;
         keyID++;
         press = 1;
         switch (current)
         {
             case 'JUMP':
-                global.joystick_jumpKey[pID] = key;
+                if(!skip)
+                    global.joystick_jumpKey[pID] = key;
                 current = 'SHOOT';
                 break;
             case 'SHOOT':
-                global.joystick_shootKey[pID] = key;
+                if(!skip)
+                    global.joystick_shootKey[pID] = key;
                 current = 'SLIDE';
                 break;
             case 'SLIDE':
-                global.joystick_slideKey[pID] = key;
+                if(!skip)
+                    global.joystick_slideKey[pID] = key;
                 current = 'PREV WPN';
                 break;
             case 'PREV WPN':
-                global.joystick_weaponSwitchLeftKey[pID] = key;
+                if(!skip)
+                    global.joystick_weaponSwitchLeftKey[pID] = key;
                 current = 'NEXT WPN';
                 break;
             case 'NEXT WPN':
-                global.joystick_weaponSwitchRightKey[pID] = key;
+                if(!skip)
+                    global.joystick_weaponSwitchRightKey[pID] = key;
                 current = 'PAUSE';
                 break;
             case 'PAUSE':
-                global.joystick_pauseKey[pID] = key;
+                 if(!skip)
+                    global.joystick_pauseKey[pID] = key;
                 current = 'JUMP';
                 pID += 1;
                 if (pID &gt;= 1 &amp;&amp; gamepad_get_device_count() &gt; pID) // global.playerCount

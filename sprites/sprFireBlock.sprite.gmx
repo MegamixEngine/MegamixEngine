@@ -3,9 +3,9 @@
   <type>0</type>
   <xorig>0</xorig>
   <yorigin>0</yorigin>
-  <colkind>1</colkind>
+  <colkind>0</colkind>
   <coltolerance>0</coltolerance>
-  <sepmasks>0</sepmasks>
+  <sepmasks>-1</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>0</bbox_left>
   <bbox_right>15</bbox_right>

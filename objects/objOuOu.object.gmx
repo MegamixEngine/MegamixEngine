@@ -212,6 +212,7 @@ if (entityCanStep())
             if ((xcoll != 0) || (!positionCollision(x + 11 * image_xscale, bbox_bottom + 2)))
             {
                 image_xscale *= -1;
+                xspeed = 1 * image_xscale;
             }
             break;
     }

@@ -29,6 +29,7 @@
 canHit = false;
 
 isSolid = 1;
+blockCollision=false;
 
 respawnRange = -1;
 despawnRange = -1;

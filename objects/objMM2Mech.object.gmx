@@ -102,7 +102,7 @@ if (entityCanStep())
                 shoot = true;
                 if (instance_exists(target))
                 {
-                    if ((target.bbox_bottom != bbox_bottom) || (distance_to_point(target.x, y) &gt; 48))
+                    if (target.bbox_bottom != bbox_bottom)
                     {
                         shoot = false;
                     }

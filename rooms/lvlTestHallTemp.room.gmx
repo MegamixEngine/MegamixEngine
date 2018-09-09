@@ -51,7 +51,7 @@
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="objDefaultSpawn" x="368" y="624" name="inst_D3E2D883" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDefaultSpawn" x="368" y="624" name="inst_D3E2D883" locked="0" code="" scaleX="1" scaleY="1" colour="4290822336" rotation="0"/>
     <instance objName="objSolid" x="32" y="480" name="inst_5A8165B9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="32" y="464" name="inst_A85BE2DD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="32" y="448" name="inst_51E3362F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -214,6 +214,7 @@
     <instance objName="objNumetall" x="480" y="640" name="inst_3D952D5C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="432" y="624" name="inst_99BAA40C" locked="0" code="objectToStop=objNumetall;&#xA;" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="512" y="624" name="inst_38ACAFA4" locked="0" code="objectToStop=objNumetall;&#xA;" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
+    <instance objName="prtLevelCallbacks" x="32" y="240" name="inst_CA6BD6EF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgBasic" x="96" y="176" w="16" h="16" xo="16" yo="48" id="11300187" name="inst_B8EA5CF3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

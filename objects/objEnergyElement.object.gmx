@@ -101,7 +101,7 @@ if (entityCanStep())
         }
         
         // move to player if inside solid object
-        if (checkSolid(0, 0))
+        if (checkSolid(0, 0,1,1))
         {
             aimAtPoint(4, view_xview + (view_wview/2), view_yview + (view_hview/2));
             /*var cy = y - target.y;

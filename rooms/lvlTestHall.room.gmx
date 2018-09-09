@@ -297,7 +297,6 @@
     <instance objName="objSolid" x="512" y="32" name="inst_B730BCB6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="512" y="16" name="inst_1C58C1C8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="512" y="0" name="inst_709F2B48" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossDoor" x="128" y="272" name="inst_1B7F21F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objObjectSetter" x="0" y="224" name="inst_FB5B3D2B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="256" y="16" name="inst_5CCB07D9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="256" y="0" name="inst_65F7D9E9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

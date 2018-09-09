@@ -47,12 +47,11 @@ weakToRain[6] = objChangkeyDragonFire;
 weakToRain[7] = objHotDogFire;
 weakToRain[8] = objSFFire;
 weakToRain[9] = objFireFlame;
-weakToRain[10] = objFireStorm;
-weakToRain[11] = objHeatManFire;
-weakToRain[12] = objMechaDragonFire;
-weakToRain[13] = objHeatMan;
-weakToRain[14] = objPUOilFire;
-weakToRain[15] = objFireBlockFire;
+weakToRain[10] = objHeatManFire;
+weakToRain[11] = objMechaDragonFire;
+weakToRain[12] = objHeatMan;
+weakToRain[13] = objPUOilFire;
+weakToRain[14] = objFireBlockFire;
 </string>
           </argument>
         </arguments>

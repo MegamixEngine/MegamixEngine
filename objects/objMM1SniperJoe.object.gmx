@@ -220,7 +220,7 @@ jumpCount = 0;
           <argument>
             <kind>1</kind>
             <string>// if image_index is shield up, and you're not shooting sniper joe in the back or whatever, reflect bullets
-if (image_index == 0)
+if (sprite_index != sprMM1SniperJoeJump &amp;&amp; image_index == 0)
 {
     if (collision_rectangle(x + 12 * image_xscale, y - 3, x + 14 * image_xscale, y - 20, other.id, false, false))
     {

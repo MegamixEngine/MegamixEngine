@@ -67,6 +67,12 @@
 
 event_inherited();
 
+//Default weaknesses
+for(var i=0; i&lt;global.totalWeapons ; i++)
+{
+    enemyDamageValue(global.weaponObject[i], 1);
+}
+
 // used for some prtEntity control stuff
 boss = 1;
 behaviourType = 2;
@@ -281,33 +287,20 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight &a
                 // start music
                 if (music != "" &amp;&amp; global.aliveBosses == 1)
                 {
-                    musicStore = global.levelSong;
-                    musicTypeStore = global.levelSongType;
-                    musicLoopStartStore = global.levelLoopStart;
-                    musicLoopEndStore = global.levelLoopEnd;
-                    musicLoopStore = global.levelLoop;
-                    musicVolumeStore = global.levelVolume;
-                    musicTrackNumberStore = global.levelTrackNumber;
+                    with (prtBoss)
+                    {
+                        musicStore = global.levelSong;
+                        musicTypeStore = global.levelSongType;
+                        musicLoopStartStore = global.levelLoopStart;
+                        musicLoopEndStore = global.levelLoopEnd;
+                        musicLoopStore = global.levelLoop;
+                        musicVolumeStore = global.levelVolume;
+                        musicTrackNumberStore = global.levelTrackNumber;
+                    }
                     
                     stopMusic();
                     playMusic(music, musicType, musicTrackNumber, musicLoopSecondsStart, musicLoopSecondsEnd, musicLoop, musicVolume);
-                }
-                else if (music != "")
-                {
-                    with (prtBoss)
-                    {
-                        if (id != other.id &amp;&amp; !dead)
-                        {
-                            other.musicStore = musicStore;
-                            other.musicTypeStore = musicTypeStore;
-                            other.musicLoopStartStore = musicLoopStartStore;
-                            other.musicLoopEndStore = musicLoopEndStore;
-                            other.musicLoopStore = musicLoopStore;
-                            other.musicVolumeStore = musicVolumeStore;
-                            other.musicTrackNumberStore = musicTrackNumberStore;
-                            break;
-                        }
-                    }
+
                 }
             }
             
@@ -413,7 +406,7 @@ if (instance_exists(objMegaman) &amp;&amp; !global.frozen &amp;&amp; !isFight &a
             <string>event_inherited();
 if (_init)
 {
-    healthpointsStart = healthpoints; // Update this cuz creation code.
+    healthpointsStart = healthpoints;
     _init = 0;
     if (quickSpawn)
     {
@@ -615,41 +608,6 @@ if (spawned)
     {
         visible = 1;
         wasKilled=false;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="21">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>// Charged Pharaoh Shots only do two extra points of damage to bosses unless specified
-// in their User Event 11 code
-
-if (other.object_index == objPharaohShot)
-{
-    with (objPharaohShot)
-    {
-        if (sprite_index = sprPharaohShotCharged)
-        {
-            extraDamage = 2;
-        }
     }
 }
 </string>

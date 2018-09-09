@@ -78,7 +78,7 @@ if (entityCanStep())
         shooting = true;
         animTimer = 0;
         image_index = 2;
-        bulletID = instance_create(x + 16 * image_xscale, y,
+        bulletID = instance_create(x + 21 * image_xscale, y,
             objCrystalJoeBullet);
         bulletID.image_xscale = image_xscale;
     }

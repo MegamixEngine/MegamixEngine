@@ -88,6 +88,7 @@ enemyDamageValue(objSlashClaw, 1);
 enemyDamageValue(objWheelCutter, 4);
 enemyDamageValue(objSakugarne, 3);
 enemyDamageValue(objSuperArrow, 1);
+enemyDamageValue(objWireAdapter, 2);
 
 // MaGMML1
 enemyDamageValue(objMetalBlade, 1);
@@ -185,8 +186,9 @@ if (!global.frozen)
             {
                 if (attackTimer == 10)
                 {
-                    instance_create(x, y, objBigExplosion);
-                    playSFX(sfxExplosion);
+                    var i = instance_create(x, y, objBigExplosion);
+                    with (i)
+                        playSFX(sfxExplosion);
                 }
                 if (attackTimer == 20)
                 {

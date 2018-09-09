@@ -42,7 +42,10 @@ for the laser. Good for making diagonal lasers feel natural from where they spaw
         appears to be at in the editor */
 
 event_inherited();
-
+event_perform_object(prtRailPlatform,ev_create,0);
+isSolid=0;
+xOffset = 0;
+yOffset = 0;
 canHit = false;
 contactDamage = 0;
 
@@ -50,6 +53,9 @@ grav = 0;
 
 respawnRange = -1;
 despawnRange = -1;
+
+//@cc if true it the spawner will detect rails
+useRails = false;
 
 //@cc sets the sprite for the laser that's fired.
 sprite = -1;
@@ -103,7 +109,7 @@ timer = 0;
 
 startingRotateSpeed = 0;
 currentRotateSpeed = 0;
-rotateDir = 0;
+rotateDir = 1;
 startAngle = 0;
 rotateStartRangeTurn = 0;
 rotateEndRangeTurn = 0;
@@ -155,7 +161,10 @@ myLasers = ds_list_create();
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+if(useRails)
+{
+    event_perform_object(prtRailPlatform,ev_step,ev_step_normal);
+}
 if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
 {
     switch (phase)
@@ -181,10 +190,10 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
             sy = y;
             
             // find the top left position of the laser spawner so we can spawn at it (basically remove the sprite x and y origin of the spawner)
-            sx += sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle + 90));
-            sy -= sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle + 90)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
-            sx += sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle + 180));
-            sy -= sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle + 180));
+            sx -= sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle));
+            sy += sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
+            sx -= sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle + 270));
+            sy += sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle + 270));
             if (visible)
             {
                 // if spawning on the outside of the block
@@ -260,18 +269,22 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         
         // laser rotation
         case 2: // don't do rotation 
-            if (ds_list_size(myLasers) &lt; 1 || rotateSpeed == 0 || rotateDir == 0)
+            if (ds_list_size(myLasers) &lt; 1 || (!useRails &amp;&amp; (rotateSpeed == 0 || rotateDir == 0)))
             {
-                break;
-            }
-            if (timer &gt; 0)
-            {
-                timer--;
                 break;
             }
             
             // rotate spawner
-            image_angle += currentRotateSpeed * rotateDir;
+            if(timer&gt;0)
+            {
+                --timer;
+                if(!useRails)
+                    break;
+            }
+            else
+            {
+                image_angle += currentRotateSpeed * rotateDir;
+            }
             
             // restrict to the 0 - 359 range
             image_angle = loopDegrees(image_angle);
@@ -320,10 +333,10 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
             ly = y;
             
             // find the top left position of the laser spawner (basically remove the sprite x and y origin of the spawner)
-            lx += sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle + 90));
-            ly -= sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle + 90));
-            lx += sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle + 180));
-            ly -= sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle + 180));
+            lx -= sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle));
+            ly += sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle));
+            lx -= sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle + 270));
+            ly += sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle + 270));
             if (visible)
             {
                 // if on the outside of the block
@@ -402,6 +415,29 @@ if (spawned)
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_perform_object(prtRailPlatform,ev_other,ev_user0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="5">
       <action>
         <libid>1</libid>
@@ -446,14 +482,13 @@ if (spawned)
 
 /* if we have a custom sprite with a different sprite origin, shift our position so
 we are in the same place we appeared in in the editor */
-if (sprite_get_xoffset(sprite_index) != 0 &amp;&amp; sprite_get_yoffset(sprite_index) != 0)
+if (sprite_get_xoffset(sprite_index) != 0 || sprite_get_yoffset(sprite_index) != 0)
 {
     // find the top left position of the laser spawner so we can spawn at it (basically remove the sprite x and y origin of the spawner)
-    xstart += sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle - 90));
-    ystart -= sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle - 90)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
-    
-    xstart += sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle));
-    ystart -= sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle));
+    xstart += sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle));
+    ystart -= sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
+    xstart += sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle + 270));
+    ystart -= sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle + 270));
     
     x = xstart;
     y = ystart;

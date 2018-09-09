@@ -203,7 +203,7 @@ if (spawned)
             <string>dead = 1;
 instance_create(x + 8, y, objHarmfulExplosion);
 
-playSFX(sfxMM3Explode);
+playSFX(sfxMM9Explosion);
 
 with (instance_create(round(x / 16) * 16, round(y / 16) * 16, objCommandoMineTiler))
 {

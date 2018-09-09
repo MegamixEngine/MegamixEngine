@@ -32,6 +32,7 @@ respawn = false;
 healthpointsStart = 10;
 healthpoints = healthpointsStart;
 contactDamage = 0;
+shiftVisible = 3;
 
 image_xscale = 1;
 
@@ -49,6 +50,8 @@ pop = false;
 setMega = false;
 gloopLock = false;
 movementLock = false;
+
+category = "gloop";
 </string>
           </argument>
         </arguments>
@@ -185,6 +188,8 @@ if (!pop)
         }
         other.image_xscale = image_xscale;
         
+
+        
         // if breaking free, stop mega man's movement entirely
         if (other.fire &gt; 0)
         {
@@ -216,7 +221,27 @@ if (!pop)
     }
 }
 if ((entityCanStep()) &amp;&amp; !pop)
-{ }
+{         
+    if (instance_exists(objGloopBreaker))
+    {
+        with(objGloopBreaker)
+        {
+        with (other)
+            {
+            iFrames = 4;
+            playSFX(sfxEnemyHit); 
+            healthpoints --;
+            }
+        
+        instance_destroy();
+        }
+    }
+    
+    if (healthpoints &lt;= 0)
+    {
+        pop = true;
+    }
+}
 else if (pop)
 {
     with (capture)
@@ -235,7 +260,7 @@ else if (pop)
     }
     instance_destroy();
 }
-if (dead)
+if (dead || instance_exists(objSectionSwitcher))
 {
     gloopLock = lockPoolRelease(gloopLock);
     with (capture)
@@ -252,6 +277,7 @@ if (dead)
         }
         climbLock = lockPoolRelease(climbLock);
     }
+    dead = true;
 }
 </string>
           </argument>

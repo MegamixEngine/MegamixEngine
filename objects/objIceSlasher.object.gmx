@@ -105,7 +105,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weaponSetup("ICE SLASHER", make_color_rgb(80, 53, 240), make_color_rgb(255, 255, 255), sprWeaponIconsIceSlasher);
+            <string>weaponSetup("ICE SLASHER", global.nesPalette[15], global.nesPalette[26], sprWeaponIconsIceSlasher);
 </string>
           </argument>
         </arguments>

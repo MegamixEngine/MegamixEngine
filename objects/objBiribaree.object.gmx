@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A pseudo Joe robot that uses electricity for a shield. For Piriparee (which does the
+// same thing but actually looks like a Joe), set col to 1 in creation code.
+
+event_inherited();
 
 healthpointsStart = 3;
 healthpoints = healthpointsStart;
@@ -40,7 +43,7 @@ shooting = false;
 animTimer = 0;
 bulletID = -10;
 
-col = 0; // 0 = Blue; 1 = Joe;
+col = 0; // 0 = Biribareee; 1 = Piriparee;
 init = 1;
 </string>
           </argument>

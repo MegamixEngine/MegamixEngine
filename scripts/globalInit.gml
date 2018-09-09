@@ -2,6 +2,8 @@
 // these are global variables and constants that aren't really meant to be configured.
 global.newLine = "
 ";
+global.nextRoom = -1;
+global.previousRoom=-1;
 
 // subsystem initialization
 mathTableSetup();
@@ -133,6 +135,11 @@ global.inkSurface[0] = -1; // used for octone ink
 global.keyCoinTotal = 0;
 global.keyCoinCollected = 0;
 
+// The default player used
+for (i = 0; i < 5; i++)
+{
+    global.characterSelected[i] = "NONE";
+}
 // Weapon inventory
 weaponSetup();
 

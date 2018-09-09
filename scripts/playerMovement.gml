@@ -17,8 +17,8 @@ if (!instance_exists(vehicle))
 }
 
 // Stop movement at section borders (horizontal)
-var xdis = x - (view_xview + (view_wview * 0.5));
-var xpos = (view_wview * 0.5) - 6;
+var xdis = x - (view_xview + ((view_wview * 0.5)));
+var xpos = (view_wview * 0.5)-8;
 
 if (abs(xdis) > xpos)
 {
@@ -27,7 +27,7 @@ if (abs(xdis) > xpos)
     {
         x = view_xview + (view_wview * 0.5) + xpos * sign(xdis);
         xspeed = 0;
-        if (checkSolid(0, -gravDir,1) && blockCollision)
+        if (positionCollision(xprevious, yprevious,0) && blockCollision)
         {
             global.playerHealth[playerID] = 0;
         }
@@ -57,7 +57,7 @@ else if (dieToPit)
 }
 
 // Handling of masks to make sure nothing breaks
-if (!isSlide && (mask_index == mskMegamanSlide || mask_index == mskMegamanSlide2))
+if (!isSlide && (mask_index == firstSlideMask || mask_index == secondSlideMask))
 {
     mask_index = mskMegaman;
 }

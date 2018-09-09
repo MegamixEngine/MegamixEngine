@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A rocket-powered Roader that charges at Mega Man and explodes on death.
+
+event_inherited();
 
 healthpointsStart = 2;
 healthpoints = healthpointsStart;

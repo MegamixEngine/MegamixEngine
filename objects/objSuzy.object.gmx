@@ -130,13 +130,15 @@ if (entityCanStep())
                     }
                     else
                     {
-                        if (target.x &lt; x)
-                        {
-                            startDir = -1;
-                        }
-                        else
-                        {
-                            startDir = 1;
+                        if(instance_exists(target)){
+                            if (target.x &lt; x)
+                            {
+                                startDir = -1;
+                            }
+                            else
+                            {
+                                startDir = 1;
+                            }
                         }
                     }
                 }
@@ -152,13 +154,15 @@ if (entityCanStep())
                     }
                     else
                     {
-                        if (target.y &lt; y)
-                        {
-                            startDir = -1;
-                        }
-                        else
-                        {
-                            startDir = 1;
+                        if(instance_exists(target)){
+                            if (target.y &lt; y)
+                            {
+                                startDir = -1;
+                            }
+                            else
+                            {
+                                startDir = 1;
+                            }
                         }
                     }
                 }

@@ -240,6 +240,7 @@
     <instance objName="objMM6Conveyor" x="1008" y="624" name="inst_C4CAE3CC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM6Conveyor" x="1024" y="624" name="inst_EF82E23A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSW525" x="1200" y="400" name="inst_46D84553" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMagmaBeamSource" x="64" y="80" name="inst_224562BB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="-45"/>
   </instances>
   <tiles>
     <tile bgName="bgBasic" x="16" y="176" w="16" h="16" xo="16" yo="48" id="11300185" name="inst_D1C4DCC9" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

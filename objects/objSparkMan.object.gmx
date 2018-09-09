@@ -113,7 +113,7 @@ enemyDamageValue(objChillSpikeLanded, 2);
 // Misc.
 enemyDamageValue(objPowerStone, 4);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBrickWeapon, 4);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -182,7 +182,7 @@ if (entityCanStep())
             if (attackTimer == 28 || attackTimer == 36)
                 image_index = 6;
             if (attackTimer == 40)
-                image_index = 0;
+                image_index = 1;
             if (attackTimer == 50)
             {
                 canFillHealthBar = true;
@@ -253,6 +253,7 @@ if (entityCanStep())
                     sd.contactDamage = 0;
                     sd.reflectable = false;
                     sd.trigWall = false;
+                    sd.despawnRange=-1;
                     sd.image_alpha = 0;
                     if (sd.x &gt; view_xview + 26 &amp;&amp; sd.x &lt; (view_xview + view_wview) - 26)
                     {
@@ -270,14 +271,11 @@ if (entityCanStep())
                             }
                             if (place_meeting(x, y, objSolid) || y &lt;= view_yview + 16)
                             {
-                                with (other)
-                                {
-                                    if (x &lt; view_xview + view_wview / 2)
-                                        storeDirection = 1;
-                                    else
-                                        storeDirection = -1;
-                                    image_xscale = storeDirection;
-                                }
+                                if (x &lt; view_xview + view_wview / 2)
+                                    storeDirection = 1;
+                                else
+                                    storeDirection = -1;
+                                image_xscale = storeDirection;
                             }
                         }
                     }
@@ -297,7 +295,7 @@ if (entityCanStep())
                         attackTimer = -4;
                     }
                 }
-                if (attackTimer == 5)
+                else if (attackTimer == 5)
                 {
                     image_index = 7;
                     if (sd.trigWall)
@@ -314,7 +312,15 @@ if (entityCanStep())
                 }
                 if (attackTimer &gt;= 6 &amp;&amp; xspeed == 0)
                 {
-                    xspeed = xSpeedAim(x, y, sd.x, sd.y, yspeed, grav);
+                    var sx=view_xview;
+                    var sy=view_yview;
+                    if(instance_exists(sd))
+                    {
+                        sx=sd.x;
+                        sy=sd.y;
+                    }
+                    xspeed = xSpeedAim(x, y, sx, sy, yspeed, grav);
+                    
                 }
                 if (attackTimer &gt; 6 &amp;&amp; yspeed &gt;= 0 &amp;&amp; ground)
                 {
@@ -375,9 +381,13 @@ if (entityCanStep())
                             dir = 0;
                     }
                 }
-                if (attackTimer == 124)
+                if (attackTimer == 128)
                 {
-                    image_index = 0;
+                    image_index = 6;
+                }
+                if (attackTimer == 136)
+                {
+                    image_index = 2;
                     hasFired = true;
                     attackTimer = -24;
                     phase = 0;

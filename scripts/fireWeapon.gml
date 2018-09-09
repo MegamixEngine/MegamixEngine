@@ -69,6 +69,10 @@ if (!ground && (isShoot < 3))
 
 // Bullet position
 ys += 4;
+if (costumeID == 1 || costumeID == 3) //if the costumeID is equal to Proto Man or Roll's then increase it.
+{
+    ys += 2;
+}
 if (climbing)
 {
     image_xscale = climbShootXscale;
@@ -83,7 +87,6 @@ if (instance_exists(vehicle))
 {
     ys = vehicle.shootYOffset;
 }
-
 // Spawn the bullet
 i = instance_create(x + (xs * image_xscale), y + (ys * image_yscale), wobj);
 

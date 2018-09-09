@@ -545,6 +545,10 @@ if (itemDrop == objKey)
     _ex.homingTimer = 90;
     playSFX(sfxKeySpawn);
 }
+else if(itemDrop == objEnergyElement)
+{
+    _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objEnergyElement);
+}
 else
 {
     _ex.myItem = itemDrop;

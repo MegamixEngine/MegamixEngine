@@ -97,8 +97,6 @@ if (entityCanStep())
             {
                 dead = true;
                 event_user(EV_DEATH);
-                
-                // lockPoolRelease(myLock);
             }
         }
     }

@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A robot owl that pulls Mega Man towards it with its fan, before pushing him back with its wings.
+
+event_inherited();
 
 healthpointsStart = 5;
 healthpoints = healthpointsStart;

@@ -89,7 +89,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         {
             if (place_meeting(x, y, powerSource[i]))
             {
-                elecDirec = powerSource[i].image_xscale;
+                elecDirec = instance_place(x, y, powerSource[i]).image_xscale;
                 playSFX(sfxElectricShot);
                 phase = 1;
             }

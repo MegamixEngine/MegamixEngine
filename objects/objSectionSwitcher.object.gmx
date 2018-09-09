@@ -60,7 +60,7 @@ if (instance_exists(triggerPlayer))
         other.pxs = x;
         other.pys = y;
         
-        other.mydoor = instance_place(x, y, objBossDoor);
+        other.mydoor = instance_place(x, y, prtBossDoor);
         if (other.mydoor)
         {
             playerSwitchSections();

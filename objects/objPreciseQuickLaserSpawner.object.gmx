@@ -42,9 +42,13 @@ Good for making diagonal lasers feel natural from where they spawn. */
         appears to be at in the editor */
 
 event_inherited();
+event_perform_object(prtRailPlatform,ev_create,0);
+isSolid=0;
 
 canHit = false;
 contactDamage = 1;
+xOffset = 0;
+yOffset = 0;
 
 blockCollision = false;
 grav = 0;
@@ -52,6 +56,8 @@ grav = 0;
 respawnRange = -1;
 despawnRange = -1;
 
+//@cc if true it the spawner will detect rails
+useRails = false;
 
 //@cc sets wheater the laser can damage enemies or only the player, set to true for better performance
 onlyDamagePlayer = true;
@@ -135,22 +141,20 @@ realAngle = image_angle;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
-if (init)
+            <string>if (init)
 {
     init = 0;
     if (variation == 0)
         contactDamage = damage;
     startAngle = image_angle;
-    if (sprite_get_xoffset(sprite_index) != 0 &amp;&amp; sprite_get_yoffset(sprite_index) != 0)
+    if (sprite_get_xoffset(sprite_index) != 0 || sprite_get_yoffset(sprite_index) != 0)
     {
         // find the top left position of the laser spawner so we can spawn at it (basically remove the sprite x and y origin of the spawner)
-        xstart += sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle - 90));
-        ystart -= sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle - 90)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
-        
-        xstart += sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle));
-        ystart -= sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle));
-        
+        xstart += sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle));
+        ystart -= sprite_get_xoffset(sprite_index) * sin(degtorad(image_angle)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
+        xstart += sprite_get_yoffset(sprite_index) * cos(degtorad(image_angle + 270));
+        ystart -= sprite_get_yoffset(sprite_index) * sin(degtorad(image_angle + 270));
+
         x = xstart;
         y = ystart;
     }
@@ -271,89 +275,6 @@ if (init)
     spriteYOffset = sprite_get_yoffset(sprite_index);
     realAngle = image_angle;
 }
-if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped &amp;&amp; phase == 2 &amp;&amp; rotateSpeed != 0) // Rotation
-{
-    if (timer &gt; 0)
-    {
-        timer--;
-    }
-    else
-    {
-        // rotate spawner  // restrict to the 0 - 359 range
-        realAngle = wrapAngle(realAngle + currentRotateSpeed * rotateDir);
-        
-        // non integer values mess up with collision detection
-        image_angle = floor(realAngle);
-        
-        // slow down / speed up when nearing the end of the range
-        if (rotateStartRange != rotateEndRange
-            &amp;&amp; ((rotateDir &lt; 0 &amp;&amp; !withinDegreeRange(rotateStartRangeTurn, false, rotateEndRange, true, realAngle))
-            || (rotateDir &gt; 0 &amp;&amp; !withinDegreeRange(rotateStartRange, true, rotateEndRangeTurn, false, realAngle))))
-        {
-            currentRotateSpeed -= rotateAccel;
-        }
-        else if (currentRotateSpeed &lt; rotateSpeed)
-        {
-            currentRotateSpeed = min(rotateSpeed, currentRotateSpeed + rotateAccel);
-        }
-        
-        // stop at the end of the range
-        if (rotateStartRange != rotateEndRange)
-        {
-            if (!withinDegreeRange(rotateStartRange, true, rotateEndRange, true, realAngle) || currentRotateSpeed &lt; 0)
-            {
-                if (rotateDir &lt; 0)
-                {
-                    realAngle = rotateStartRange;
-                    rotateDir = 1;
-                    timer = rotatePause;
-                }
-                else if (rotateDir &gt; 0)
-                {
-                    realAngle = rotateEndRange;
-                    rotateDir = -1;
-                    timer = rotatePause;
-                }
-                
-                image_angle = floor(realAngle);
-                currentRotateSpeed = 0;
-            }
-        }
-        
-        // rotate + reposition the laser(s) to fit with the spawner
-        var lx = x;
-        var ly = y;
-        
-        // find the top left position of the laser spawner (basically remove the sprite x and y origin of the spawner)
-        lx += spriteXOffset * cos(degtorad(image_angle + 90));
-        ly -= spriteXOffset * sin(degtorad(image_angle + 90));
-        
-        lx += spriteYOffset * cos(degtorad(image_angle + 180));
-        ly -= spriteYOffset * sin(degtorad(image_angle + 180));
-        
-        if (visible)
-        {
-            // if on the outside of the block
-            lx += sprite_get_width(sprite_index) * cos(degtorad(image_angle));
-            ly -= sprite_get_width(sprite_index) * sin(degtorad(image_angle));
-        }
-        
-        // rotate
-        for (var i = 0; i &lt; laserCount; i++)
-        {
-            myLasers[i].image_angle = image_angle;
-            myLasers[i].x = lx;
-            myLasers[i].y = ly;
-            
-            // move down to the position of the next laser
-            if (i &lt; laserCount - 1)
-            {
-                lx += cos(degtorad(image_angle - 90));
-                ly -= sin(degtorad(image_angle - 90));
-            }
-        }
-    }
-}
 </string>
           </argument>
         </arguments>
@@ -377,7 +298,10 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped &amp;&amp; ph
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+if(useRails)
+{
+    event_perform_object(prtRailPlatform,ev_step,ev_step_normal);
+}
 if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
 {
     if (!phase)
@@ -400,11 +324,10 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         var sy = y;
         
         // find the top left position of the laser spawner so we can spawn at it (basically remove the sprite x and y origin of the spawner)
-        sx += spriteXOffset * cos(degtorad(image_angle + 90));
-        sy -= spriteXOffset * sin(degtorad(image_angle + 90)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
-        
-        sx += spriteYOffset * cos(degtorad(image_angle + 180));
-        sy -= spriteYOffset * sin(degtorad(image_angle + 180));
+        sx -= spriteXOffset * cos(degtorad(image_angle));
+        sy += spriteXOffset * sin(degtorad(image_angle)); // -= cause the polar coordinate and cartesian coordinate systems of GMS are misaligned
+        sx -= spriteYOffset * cos(degtorad(image_angle + 270));
+        sy += spriteYOffset * sin(degtorad(image_angle + 270));
         
         
         if (visible)
@@ -431,6 +354,10 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
             laser.drainCooldown = drainCooldown;
             laser.onlyDamagePlayer = onlyDamagePlayer;
             laser.parent = id;
+            laser.respawn=false;
+            laser.despawnRange=-1;
+            laser.respawnRange=-1;
+            
             
             if (sprite != -1)
             {
@@ -458,6 +385,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         }
     }
 }
+event_user(1);
 </string>
           </argument>
         </arguments>
@@ -483,6 +411,10 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
             <string>/// EV_SPAWN
 if (spawned)
 {
+    grav = 0;
+    dir = startDir;
+    prevRail = noone;
+    lastRail = noone;
     phase = 0;
     timer = 0;
     image_angle = startAngle;
@@ -550,6 +482,135 @@ if (variation == 1)
     
     global.damage = 0; // Overriding normal damage collision so there's no knockback
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+
+if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped &amp;&amp; phase == 2 &amp;&amp; (rotateSpeed != 0 || useRails)) // Rotation
+{
+    if (timer &gt; 0)
+    {
+        timer--;
+    }
+    else
+    {
+        // rotate spawner  // restrict to the 0 - 359 range
+        realAngle = wrapAngle(realAngle + currentRotateSpeed * rotateDir);
+        
+        // non integer values mess up with collision detection
+        image_angle = floor(realAngle);
+        
+        // slow down / speed up when nearing the end of the range
+        if (rotateStartRange != rotateEndRange
+            &amp;&amp; ((rotateDir &lt; 0 &amp;&amp; !withinDegreeRange(rotateStartRangeTurn, false, rotateEndRange, true, realAngle))
+            || (rotateDir &gt; 0 &amp;&amp; !withinDegreeRange(rotateStartRange, true, rotateEndRangeTurn, false, realAngle))))
+        {
+            currentRotateSpeed -= rotateAccel;
+        }
+        else if (currentRotateSpeed &lt; rotateSpeed)
+        {
+            currentRotateSpeed = min(rotateSpeed, currentRotateSpeed + rotateAccel);
+        }
+        
+        // stop at the end of the range
+        if (rotateStartRange != rotateEndRange)
+        {
+            if (!withinDegreeRange(rotateStartRange, true, rotateEndRange, true, realAngle) || currentRotateSpeed &lt; 0)
+            {
+                if (rotateDir &lt; 0)
+                {
+                    realAngle = rotateStartRange;
+                    rotateDir = 1;
+                    timer = rotatePause;
+                }
+                else if (rotateDir &gt; 0)
+                {
+                    realAngle = rotateEndRange;
+                    rotateDir = -1;
+                    timer = rotatePause;
+                }
+                
+                image_angle = floor(realAngle);
+                currentRotateSpeed = 0;
+            }
+        }
+        
+        // rotate + reposition the laser(s) to fit with the spawner
+        var lx = x;
+        var ly = y;
+        
+        // find the top left position of the laser spawner (basically remove the sprite x and y origin of the spawner)
+        lx -= spriteXOffset * cos(degtorad(image_angle));
+        ly += spriteXOffset * sin(degtorad(image_angle));
+        lx -= spriteYOffset * cos(degtorad(image_angle + 270));
+        ly += spriteYOffset * sin(degtorad(image_angle + 270));
+        
+        if (visible)
+        {
+            // if on the outside of the block
+            lx += sprite_get_width(sprite_index) * cos(degtorad(image_angle));
+            ly -= sprite_get_width(sprite_index) * sin(degtorad(image_angle));
+        }
+        
+        // rotate
+        for (var i = 0; i &lt; laserCount; i++)
+        {
+            myLasers[i].image_angle = image_angle;
+            myLasers[i].x = lx;
+            myLasers[i].y = ly;
+            
+            // move down to the position of the next laser
+            if (i &lt; laserCount - 1)
+            {
+                lx += cos(degtorad(image_angle - 90));
+                ly -= sin(degtorad(image_angle - 90));
+            }
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_perform_object(prtRailPlatform,ev_other,ev_user0);
 </string>
           </argument>
         </arguments>

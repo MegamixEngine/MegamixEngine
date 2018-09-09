@@ -18,14 +18,14 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
         
         // check to see that the place is free for sliding
         premask = mask_index;
-        mask_index = mskMegamanSlide;
+        mask_index = firstSlideMask;
         var goForth = !checkSolid(image_xscale, 0);
         mask_index = premask;
         
         if (goForth)
         {
             premask = mask_index;
-            mask_index = mskMegamanSlide;
+            mask_index = firstSlideMask;
             
             isSlide = true;
             slideTimer = 0;
@@ -68,10 +68,13 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
         var prepremask = mask_index;
         
         // mask_index = premask;
+        var preDSpikes = dieToSpikes;
+        dieToSpikes = false;
         if (checkSolid(0, -gravDir * 8))
         {
             isfree = false;
         }
+        dieToSpikes = preDSpikes;
         
         // mask_index = prepremask;
         
@@ -96,7 +99,7 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
                 yspeed = 0;
             }
             
-            mask_index = mskMegamanSlide2;
+            mask_index = secondSlideMask;
             ground = true;
             checkGround();
             
@@ -135,6 +138,10 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
             if (jump)
             {
                 playerJump();
+                if dashSlide
+                {
+                    dashJumped = true;
+                }
             }
         }
         else // forced to slide because not free

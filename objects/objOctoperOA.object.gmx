@@ -39,7 +39,7 @@ grav = 0;
 
 // Enemy specific code
 dir = image_xscale;
-
+xspeed = 0;
 moveDelay = 0;
 yOffset = 80;
 yOffsetMax = 80;
@@ -56,6 +56,20 @@ rightStuck = true;
 
 turnerTimerL = 0;
 turnerTimerR = 0;
+detectorL = noone;
+detectorR = noone;
+detectorM = noone;
+
+//store variable differences between octoper and octoboss, and any custom octoper parented off this one
+detectorXOffset = 56;
+detectorYOffset = 56;
+detectorMOffset = 72;
+detectorMXOffset = 56;
+spdY = 1;
+detectorMXScale = 7;
+detectorMYScale = 8;
+turnRoundLong = 128;
+turnRoundShort = 64;
 </string>
           </argument>
         </arguments>
@@ -83,67 +97,138 @@ turnerTimerR = 0;
 if (entityCanStep())
 {
     // move y.
-    yOffset += yspeed;
+    if (healthpoints &gt; 10 || object_index != objOctoboss)
+        yOffset += yspeed;
+    else if (healthpoints &lt;= 10)
+        yOffset += yspeed * 2;
     y = ystart + yOffset;
+    
+    if (!instance_exists(detectorL)) // since octoper likes to spend its time embedded in the ground, standard collision detection won't work, so we create a batch of other objects to go with it.
+    {
+        detectorL = instance_create(x-56,y+64-yOffset,objOctoperDetector);
+        detectorL.parent = id;
+    }
+    else
+    {
+        detectorL.x = x-detectorXOffset;
+        detectorL.y = y+detectorYOffset-yOffset;       
+         
+    }
+    if (!instance_exists(detectorR))
+    {
+        detectorR = instance_create(x+40,y+64-yOffset,objOctoperDetector);
+        detectorR.parent = id;
+    }
+    else
+    {
+        detectorR.x = x+(detectorXOffset-16);
+        detectorR.y = y+detectorYOffset-yOffset;        
+    }
+    if (!instance_exists(detectorM))
+    {
+        detectorM = instance_create(x-56,ystart,objOctoperDetector);
+        detectorM.parent = id;
+        detectorM.image_xscale = detectorMXScale;
+        detectorM.image_yscale = detectorMYScale;
+    }
+    else
+    {
+        detectorM.x = x-detectorMXOffset;
+        detectorM.y = ystart-detectorMOffset;        
+    }
+    
     
     // activate octoper.
     if (xscaleStorage == 0)
     {
+        xspeed = 0;
         if (instance_exists(target))
+        {
             xscaleStorage = target.x - x;
-        xspeed = image_xscale;
+            
+        }
+        if (xscaleStorage != 0)
+            xspeed = image_xscale;
     }
+        
     
     // set reflection properties.
     if (xscaleStorage &lt; 0)
     {
-        turnRoundLeft = 128;
-        turnRoundRight = 64;
+        turnRoundLeft = turnRoundLong;
+        turnRoundRight = turnRoundShort;
     }
     else
     {
-        turnRoundLeft = 64;
-        turnRoundRight = 128;
+        turnRoundLeft = turnRoundShort;
+        turnRoundRight = turnRoundLong;
     }
     
     // if boss hits a background block, turn around.
-    mySolid = instance_place(x + xspeed, y - yOffset, objSolid);
-    if (mySolid &gt;= 0 &amp;&amp; xspeed != 0)
+    with (detectorM)
     {
-        if (xspeed &lt; 0)
+        if (checkSolid(other.xspeed,0))
+        {
+            var midD = true;
+        }
+        else
+            var midD = false;
+    }
+    if (midD &amp;&amp; xspeed != 0)
+    {
+        /*if (xspeed &lt; 0)
             x = mySolid.x + (16 * mySolid.image_xscale) + (x - (bbox_left - 1));
         else
-            x = mySolid.x - (bbox_right + 1 - x) - 1;
+            x = mySolid.x - (bbox_right + 1 - x) - 1;*/
         
         xspeed = -xspeed;
     }
     
     // check whether or not octoper would move off a platform. if so turn around.
-    if ((!position_meeting(x + 56 + xspeed, y + 65 - yOffset,
-        objSolid) &amp;&amp; xspeed &gt; 0) &amp;&amp; (!position_meeting(x + 56 + xspeed,
-        y + 65 - yOffset, objWater) &amp;&amp; xspeed &gt; 0))
+    with (detectorR)
+    {
+        if (!checkSolid(0,0)  &amp;&amp; !place_meeting(x,y,objWater))
+        {
+            var rightD = true;
+        }
+        else
+            var rightD = false;
+    }
+    
+    if ((rightD &amp;&amp; xspeed &gt; 0))
     {
         xspeed = -1;
         delay = 2;
         rightStuck = true;
+        
     }
-    if ((!position_meeting(x - 56 + xspeed, y + 65 - yOffset,
-        objSolid) &amp;&amp; xspeed &lt; 0) &amp;&amp; (!position_meeting(x - 56 + xspeed,
-        y + 65 - yOffset, objWater) &amp;&amp; xspeed &lt; 0))
+    
+    with (detectorL)
+    {
+        if (!checkSolid(0,0)  &amp;&amp; !place_meeting(x,y,objWater))
+        {
+            var leftD = true;
+        }
+        else
+            var leftD = false;
+    }
+    
+    if ((leftD &amp;&amp; xspeed &lt; 0))
     {
         xspeed = 1;
         delay = 2;
         leftStuck = true;
+        
     }
     
     // if octoper reaches a screen edge, turn round.
-    if (x &gt;= view_xview[0] + view_wview[0] - turnRoundRight &amp;&amp; delay == 0)
+    if (x &gt;= view_xview + view_wview - turnRoundRight &amp;&amp; delay == 0 &amp;&amp; xscaleStorage != 0)
     {
         xspeed = -1;
         delay = 1;
         rightStuck = true;
     } // see above
-    else if (x &lt;= view_xview[0] + turnRoundLeft &amp;&amp; delay == 0)
+    else if (x &lt;= view_xview + turnRoundLeft &amp;&amp; delay == 0 &amp;&amp; xscaleStorage != 0)
     {
         xspeed = 1;
         delay = 1;
@@ -154,14 +239,17 @@ if (entityCanStep())
     
     // bob up and down
     if (yOffset &gt;= yOffsetMax)
-        yspeed = -1;
+        yspeed = -spdY;
     
     if (yOffset &lt;= 0)
     {
-        yspeed = 1;
+        yspeed = spdY;
         if (instance_exists(target))
         {
-            instance_create(x + 37 * image_xscale, y + 40, objOctoperOABullet1);
+            if (object_index != objOctoboss)
+                instance_create(x + 37 * image_xscale, y + 40, objOctoperOABullet1);
+            else
+                instance_create(x + 16 * image_xscale, y + 20, objOctobossBullet);
         }
     }
     
@@ -174,8 +262,20 @@ if (entityCanStep())
     {
         x -= xspeed;
     }
-    if (moveDelay == 3)
-        moveDelay = -1;
+    
+    
+    if (object_index != objOctoboss)
+    {
+        if (moveDelay == 3)
+            moveDelay = -1;
+    }
+    else
+    {
+        if (moveDelay == 3 &amp;&amp; healthpoints &gt; 10)
+            moveDelay = -1;
+        if (moveDelay &gt;= 1 &amp;&amp; healthpoints &lt;= 10)
+            moveDelay = -1;
+    }
 }
 </string>
           </argument>

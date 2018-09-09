@@ -39,6 +39,7 @@ isSolid = 1;
 
 spd = 0.5;
 
+bossID=noone;
 enemyObject = objKabatoncue; //@cc the object index of the object over the platform, if its not kabatoncue
 </string>
           </argument>
@@ -99,21 +100,15 @@ if (entityCanStep())
     }
     
     // attach the miniboss
-    if (place_meeting(x, yprevious - 8, enemyObject))
+    if(bossID!=noone)
     {
-        enemy = instance_place(x, yprevious - 8, enemyObject);
-        if (bossID != noone)
+        if(instance_exists(bossID) &amp;&amp; !bossID.dead)
         {
-            if (enemy.id == bossID &amp;&amp; enemy.dead)
-            {
-                instance_create(x, y, objBigExplosion);
-                instance_destroy();
-            }
+            bossID.y += (bbox_top - 1) - bossID.bbox_bottom;
         }
-        else
-        {
-            if (y != yprevious)
-                enemy.y += enemy.bbox_bottom - (bbox_top - 1);
+        else{
+            instance_create(x, y, objBigExplosion);
+                instance_destroy();
         }
     }
 }
