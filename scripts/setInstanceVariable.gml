@@ -10,8 +10,8 @@ var _____val_____ = argument1;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4483 variables
-/// from 1635 source files
+/// 4501 variables
+/// from 1652 source files
 
 if (_____vs_____ == "") return false;
 else if (stringStartsWith(_____vs_____, 'a'))
@@ -642,6 +642,7 @@ else if (stringStartsWith(_____vs_____, 'c'))
     else if (_____vs_____ == "conditionScriptArgV") conditionScriptArgV = _____val_____;
     else if (_____vs_____ == "const") const = _____val_____;
     else if (_____vs_____ == "contactDamage") contactDamage = _____val_____;
+    else if (_____vs_____ == "contactDamageMultiplier") contactDamageMultiplier = _____val_____;
     else if (_____vs_____ == "contactStart") contactStart = _____val_____;
     else if (_____vs_____ == "container") container = _____val_____;
     else if (_____vs_____ == "continues") continues = _____val_____;
@@ -748,6 +749,8 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "darken") darken = _____val_____;
     else if (_____vs_____ == "darkenAlpha") darkenAlpha = _____val_____;
     else if (_____vs_____ == "darksp") darksp = _____val_____;
+    else if (_____vs_____ == "dashJumped") dashJumped = _____val_____;
+    else if (_____vs_____ == "dashSlide") dashSlide = _____val_____;
     else if (_____vs_____ == "dashSpeed") dashSpeed = _____val_____;
     else if (_____vs_____ == "dashTimer") dashTimer = _____val_____;
     else if (_____vs_____ == "dashspeed") dashspeed = _____val_____;
@@ -1181,6 +1184,7 @@ else if (stringStartsWith(_____vs_____, 'f'))
     else if (_____vs_____ == "first") first = _____val_____;
     else if (_____vs_____ == "firstFrame") firstFrame = _____val_____;
     else if (_____vs_____ == "firstPlatform") firstPlatform = _____val_____;
+    else if (_____vs_____ == "firstSlideMask") firstSlideMask = _____val_____;
     else if (_____vs_____ == "firstStep") firstStep = _____val_____;
     else if (_____vs_____ == "firsttime") firsttime = _____val_____;
     else if (_____vs_____ == "fish") fish = _____val_____;
@@ -1303,6 +1307,7 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "global.cachedXView") global.cachedXView = _____val_____;
     else if (_____vs_____ == "global.cachedYView") global.cachedYView = _____val_____;
     else if (_____vs_____ == "global.castleStagesBeaten") global.castleStagesBeaten = _____val_____;
+    else if (_____vs_____ == "global.characterSelected") global.characterSelected = _____val_____;
     else if (_____vs_____ == "global.chargeBar") global.chargeBar = _____val_____;
     else if (_____vs_____ == "global.chargeUpgrade") global.chargeUpgrade = _____val_____;
     else if (_____vs_____ == "global.checkpoint") global.checkpoint = _____val_____;
@@ -2147,6 +2152,7 @@ else if (stringStartsWith(_____vs_____, 'j'))
     else if (_____vs_____ == "jumpCount") jumpCount = _____val_____;
     else if (_____vs_____ == "jumpCountMax") jumpCountMax = _____val_____;
     else if (_____vs_____ == "jumpCounter") jumpCounter = _____val_____;
+    else if (_____vs_____ == "jumpCounterMax") jumpCounterMax = _____val_____;
     else if (_____vs_____ == "jumpDist") jumpDist = _____val_____;
     else if (_____vs_____ == "jumpDistance") jumpDistance = _____val_____;
     else if (_____vs_____ == "jumpHeight") jumpHeight = _____val_____;
@@ -2298,7 +2304,9 @@ else if (stringStartsWith(_____vs_____, 'l'))
     else if (_____vs_____ == "lenght") lenght = _____val_____;
     else if (_____vs_____ == "length") length = _____val_____;
     else if (_____vs_____ == "level") level = _____val_____;
+    else if (_____vs_____ == "levelEndScript") levelEndScript = _____val_____;
     else if (_____vs_____ == "levelReward") levelReward = _____val_____;
+    else if (_____vs_____ == "levelStartScript") levelStartScript = _____val_____;
     else if (_____vs_____ == "lhand") lhand = _____val_____;
     else if (_____vs_____ == "lifeTime") lifeTime = _____val_____;
     else if (_____vs_____ == "liftAccel") liftAccel = _____val_____;
@@ -2527,6 +2535,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "mugshot_speed") mugshot_speed = _____val_____;
     else if (_____vs_____ == "mugshot_sprite") mugshot_sprite = _____val_____;
     else if (_____vs_____ == "mugshot_start") mugshot_start = _____val_____;
+    else if (_____vs_____ == "multiJumpDashCancel") multiJumpDashCancel = _____val_____;
     else if (_____vs_____ == "mus") mus = _____val_____;
     else if (_____vs_____ == "music") music = _____val_____;
     else if (_____vs_____ == "musicLoop") musicLoop = _____val_____;
@@ -2760,6 +2769,7 @@ else if (stringStartsWith(_____vs_____, 'o'))
     else if (_____vs_____ == "onlyDamageMines") onlyDamageMines = _____val_____;
     else if (_____vs_____ == "onlyDamagePlayer") onlyDamagePlayer = _____val_____;
     else if (_____vs_____ == "onlyShiftTiles") onlyShiftTiles = _____val_____;
+    else if (_____vs_____ == "onlyUnlockOnLevelEnd") onlyUnlockOnLevelEnd = _____val_____;
     else if (_____vs_____ == "only_jumps") only_jumps = _____val_____;
     else if (_____vs_____ == "ontop") ontop = _____val_____;
     else if (_____vs_____ == "op") op = _____val_____;
@@ -2835,6 +2845,7 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "pDst") pDst = _____val_____;
     else if (_____vs_____ == "pID") pID = _____val_____;
     else if (_____vs_____ == "pSrc") pSrc = _____val_____;
+    else if (_____vs_____ == "paletteRefresh") paletteRefresh = _____val_____;
     else if (_____vs_____ == "pangle") pangle = _____val_____;
     else if (_____vs_____ == "panicTimer") panicTimer = _____val_____;
     else if (_____vs_____ == "pao") pao = _____val_____;
@@ -2980,6 +2991,7 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "powerSource") powerSource = _____val_____;
     else if (_____vs_____ == "prc") prc = _____val_____;
     else if (_____vs_____ == "pre") pre = _____val_____;
+    else if (_____vs_____ == "preDSpikes") preDSpikes = _____val_____;
     else if (_____vs_____ == "preDir") preDir = _____val_____;
     else if (_____vs_____ == "preDirection") preDirection = _____val_____;
     else if (_____vs_____ == "preGround") preGround = _____val_____;
@@ -3081,6 +3093,8 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "propellerStatus") propellerStatus = _____val_____;
     else if (_____vs_____ == "propellerTimer") propellerTimer = _____val_____;
     else if (_____vs_____ == "protoLock") protoLock = _____val_____;
+    else if (_____vs_____ == "protoShieldCreate") protoShieldCreate = _____val_____;
+    else if (_____vs_____ == "protoShieldCreated") protoShieldCreated = _____val_____;
     else if (_____vs_____ == "prvY") prvY = _____val_____;
     else if (_____vs_____ == "psign") psign = _____val_____;
     else if (_____vs_____ == "pt") pt = _____val_____;
@@ -3209,6 +3223,7 @@ else if (stringStartsWith(_____vs_____, 'r'))
     else if (_____vs_____ == "rest") rest = _____val_____;
     else if (_____vs_____ == "restX") restX = _____val_____;
     else if (_____vs_____ == "restore") restore = _____val_____;
+    else if (_____vs_____ == "restoreMusic") restoreMusic = _____val_____;
     else if (_____vs_____ == "restoreObjects") restoreObjects = _____val_____;
     else if (_____vs_____ == "restore_tile") restore_tile = _____val_____;
     else if (_____vs_____ == "restore_tile_n") restore_tile_n = _____val_____;
@@ -3360,6 +3375,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "sec_left") sec_left = _____val_____;
     else if (_____vs_____ == "sec_right") sec_right = _____val_____;
     else if (_____vs_____ == "secondPlatform") secondPlatform = _____val_____;
+    else if (_____vs_____ == "secondSlideMask") secondSlideMask = _____val_____;
     else if (_____vs_____ == "secondarycol") secondarycol = _____val_____;
     else if (_____vs_____ == "sectionArea") sectionArea = _____val_____;
     else if (_____vs_____ == "sectionBottom") sectionBottom = _____val_____;
@@ -3377,6 +3393,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "selectFlash") selectFlash = _____val_____;
     else if (_____vs_____ == "selectTime") selectTime = _____val_____;
     else if (_____vs_____ == "selected") selected = _____val_____;
+    else if (_____vs_____ == "selectedCharacter") selectedCharacter = _____val_____;
     else if (_____vs_____ == "selection") selection = _____val_____;
     else if (_____vs_____ == "selectionCount") selectionCount = _____val_____;
     else if (_____vs_____ == "setCamera") setCamera = _____val_____;
@@ -3394,6 +3411,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "sfx") sfx = _____val_____;
     else if (_____vs_____ == "sfxloop") sfxloop = _____val_____;
     else if (_____vs_____ == "sg") sg = _____val_____;
+    else if (_____vs_____ == "sgn") sgn = _____val_____;
     else if (_____vs_____ == "shImg") shImg = _____val_____;
     else if (_____vs_____ == "shT") shT = _____val_____;
     else if (_____vs_____ == "shadowClones") shadowClones = _____val_____;
