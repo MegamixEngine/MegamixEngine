@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="159" name="datafiles">
+  <datafiles number="163" name="datafiles">
     <datafile>
       <name>CleanMem.dll</name>
       <exists>-1</exists>
@@ -55,7 +55,7 @@
       </ConfigOptions>
       <filename>GMFMODSimple.dll</filename>
     </datafile>
-    <datafiles number="159" name="Music">
+    <datafiles number="163" name="Music">
       <datafile>
         <name>14 Tenguman.spc</name>
         <exists>-1</exists>
@@ -516,6 +516,23 @@
         <filename>WilyIntro.ogg</filename>
       </datafile>
       <datafile>
+        <name>Rockboard.nsf</name>
+        <exists>-1</exists>
+        <size>16512</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Rockboard.nsf</filename>
+      </datafile>
+      <datafile>
         <name>WilyTowerBossTheme.vgm</name>
         <exists>-1</exists>
         <size>94289</size>
@@ -533,7 +550,7 @@
         <filename>WilyTowerBossTheme.vgm</filename>
       </datafile>
     </datafiles>
-    <datafiles number="159" name="Recordings">
+    <datafiles number="163" name="Recordings">
       <datafile>
         <name>demoHoneyWoman.mrc</name>
         <exists>-1</exists>
@@ -586,8 +603,8 @@
         <filename>demoPico.mrc</filename>
       </datafile>
     </datafiles>
-    <datafiles number="159" name="UnitTests">
-      <datafiles number="159" name="Rooms">
+    <datafiles number="163" name="UnitTests">
+      <datafiles number="163" name="Rooms">
         <datafile>
           <name>lvlRecordingTest.room.gmx</name>
           <exists>-1</exists>
@@ -708,7 +725,7 @@
           <filename>lvlUnitTestBossDoors.room.gmx</filename>
         </datafile>
       </datafiles>
-      <datafiles number="159" name="Recordings">
+      <datafiles number="163" name="Recordings">
         <datafile>
           <name>RecordingObjectSet.mrc</name>
           <exists>-1</exists>
@@ -847,7 +864,7 @@
         </datafile>
       </datafiles>
     </datafiles>
-    <datafiles number="159" name="Levels">
+    <datafiles number="163" name="Levels">
       <datafile>
         <name>lvlChillMan.room.gmx</name>
         <exists>-1</exists>
@@ -1582,7 +1599,7 @@
       <datafile>
         <name>rmShowcaseExplosions.room.gmx</name>
         <exists>-1</exists>
-        <size>1396487</size>
+        <size>1399000</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
