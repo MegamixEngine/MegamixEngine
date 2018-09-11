@@ -68,7 +68,7 @@
 event_inherited();
 
 //Default weaknesses
-for(var i=0; i<global.totalWeapons ; i++)
+for(var i=0; i&lt;global.totalWeapons ; i++)
 {
     enemyDamageValue(global.weaponObject[i], 1);
 }

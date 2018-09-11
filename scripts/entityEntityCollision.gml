@@ -2,7 +2,6 @@
 // invoked when two entities collide.
 
 guardCancel = 0; // the way the bullet is ignored.
-var _penetrate = penetrate;
 // optional specification of damage for manual hitting
 if (argument_count > 0)
 {
@@ -32,12 +31,6 @@ with (other) // damage table stuff goes here
     event_user(EV_WEAPON_SETDAMAGE);
 }
 
-if (global.damage == 0)
-{
-    _penetrate = 0;
-}
-    
-
 // 0 = hits.
 // 1 = ricochet / can be pierced
 // 2 = simply passes through the enemy.
@@ -49,9 +42,12 @@ with (other) // trigger on hit event. guardCancel set here!
     event_user(EV_GUARD);
 }
 
-if (global.damage == 0 && _penetrate==penetrate)
+if (global.damage == 0)
 {
-    guardCancel = max(1, guardCancel);
+    if(guardCancel==0)
+        guardCancel=4;
+    else
+        guardCancel = max(1, guardCancel);
 }
 
 switch (guardCancel)
@@ -59,16 +55,16 @@ switch (guardCancel)
     case 0:
         break;
     case 1: // Regular reflecting 
-        if (_penetrate == 0) // Reflected by shield
+        if (penetrate == 0) // Reflected by shield
         {
             event_user(EV_REFLECTED);
             exit;
         }
-        if (_penetrate == 1) // Not getting reflected (no damage)
+        if (penetrate == 1) // Not getting reflected (no damage)
         {
             exit;
         }
-        if (_penetrate == 2) // Not getting reflected (no damage) on top of disabling collision with that enemy
+        if (penetrate == 2) // Not getting reflected (no damage) on top of disabling collision with that enemy
         {
             other.ignoreBullet = id;
             playSFX(sfxReflect);

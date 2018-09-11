@@ -33,6 +33,8 @@ healthpointsStart = 4;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
+category = "grounded";
+
 grav = -grav;
 facePlayerOnSpawn = true;
 mask_index = sprByouzMask;

@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// Space: the final frontier. These are the voyages of the starship Gunner Joe.
+// Its constant mission: to destroy Mega Man. To use homing missiles and diving attacks.
+// To boldly go where no Joe has gone before!
+
+event_inherited();
 
 healthpointsStart = 5;
 healthpoints = healthpointsStart;
@@ -35,16 +39,22 @@ grav = 0;
 blockCollision = false;
 facePlayerOnSpawn = true;
 
-category = "flying, floating";
+category = "flying, joes";
 
 image_speed = 0.3;
+
+// @cc - how close does Mega Man need to be before Gunner Joe swoops
+radius = 64;
+// @cc - how fast Gunner Joe moves horizontally
+moveSpeed = 1;
+// @cc - how fast Gunner Joe moves vetrivally
+flySpeed = 1;
 
 moveTimer = 120;
 missile = noone;
 
-swoop = false;
-rise = false;
-canFlip = true;
+phase = 0;
+goHere = 0;
 </string>
           </argument>
         </arguments>
@@ -71,84 +81,98 @@ canFlip = true;
 
 if (entityCanStep())
 {
+    moveTimer--;
     if (instance_exists(target))
     {
-        moveTimer--;
-        if (moveTimer == 60)
-        {
-            if (!instance_exists(missile))
+        goHere = target.y;
+    }
+    
+    switch (phase)
+    {
+        case 0:
+            if (moveTimer == 60)
             {
-                var i = instance_create(x, y, objGunnerJoeMissile);
-                if (image_index == -1)
+                if (instance_exists(target))
                 {
-                    i.image_index = 5;
-                }
-                else
-                {
-                    i.image_index = 7;
-                }
-                missile = i.id;
-                i.parent = id;
-                i.direction = point_direction(x, y, target.x, target.y);
-                playSFX(sfxMissileLaunch);
-            }
-        }
-        if (moveTimer == 0)
-        {
-            moveTimer = 120;
-        }
-        if ((moveTimer &lt;= 60) &amp;&amp; (swoop == false))
-        {
-            if ((target.x &lt;= x - 50) &amp;&amp; (image_xscale == -1) || (target.x &lt;= x + 50) &amp;&amp; (image_xscale == 1))
-            {
-                swoop = true;
-                if (canFlip == true)
-                {
-                    if ((target.x &gt; x) &amp;&amp; (image_xscale == -1) || (target.x &lt;= x) &amp;&amp; (image_xscale == 1))
+                    if (!instance_exists(missile))
                     {
-                        image_index *= -1;
-                        canFlip = false;
+                        var i = instance_create(x-4, y+10, objGunnerJoeMissile);
+                        if (image_index == -1)
+                        {
+                            i.image_index = 5;
+                        }
+                        else
+                        {
+                            i.image_index = 7;
+                        }
+                        missile = i.id;
+                        i.parent = id;
+                        i.direction = point_direction(x, y, target.x, target.y);
+                        playSFX(sfxMissileLaunch);
                     }
                 }
             }
-        }
-        
-        // Swoop down
-        if (swoop == true)
-        {
-            if (target.y &gt; y)
+            if (moveTimer &lt;= 60)
             {
-                xspeed = 1 * image_xscale;
-                yspeed = 1;
+                if (instance_exists(target))
+                {
+                    if (abs(target.x - x) &lt;= radius)
+                    {
+                        phase = 1;
+                        calibrateDirection();
+                        xspeed = moveSpeed * image_xscale;
+                        yspeed = flySpeed;
+                    }
+                }
+            }
+            if (moveTimer == 0)
+                moveTimer = 120;
+            break;
+        
+        case 1:
+            // Swoop down
+            if (goHere &gt; y)
+            {
+                if (instance_exists(target))
+                {
+                    calibrateDirection();
+                    if (floor(target.x) == x)
+                        xspeed = 0;
+                    else
+                        xspeed = moveSpeed * image_xscale;
+                }
+                yspeed = flySpeed;
             }
             else
             {
-                rise = true;
-                swoop = false;
-                moveTimer = 60;
+                phase = 2;
+                moveTimer = 15;
+                yspeed = -flySpeed;
             }
-        }
-        
-        // Rise
-        if (rise == true)
-        {
-            moveTimer--;
-            if (moveTimer != 0)
+            break;
+        //Rise
+        case 2:
+            if (instance_exists(target))
             {
-                xspeed = 1 * image_xscale;
-                yspeed = -1;
+                if (floor(target.x) == x)
+                    xspeed = 0;
+                else
+                    xspeed = moveSpeed * image_xscale;
             }
-            else
+                
+            if (moveTimer == 0)
+            {
+                calibrateDirection();
+                moveTimer = 30;
+            }
+            if (y &lt;= view_yview + sprite_height)
             {
                 moveTimer = 120;
                 xspeed = 0;
                 yspeed = 0;
-                rise = false;
-                canFlip = true;
-                
-                // facePlayer = true;
+                phase = 0;
             }
-        }
+            break;
     }
 }
 else if (dead)
@@ -157,9 +181,8 @@ else if (dead)
     healthpoints = healthpointsStart;
     xspeed = 0;
     yspeed = 0;
-    swoop = false;
-    rise = false;
-    canFlip = true;
+    phase = 0;
+    goHere = 0;
     moveTimer = 120;
 }
 </string>

@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="126" name="datafiles">
+  <datafiles number="159" name="datafiles">
     <datafile>
       <name>CleanMem.dll</name>
       <exists>-1</exists>
@@ -55,7 +55,7 @@
       </ConfigOptions>
       <filename>GMFMODSimple.dll</filename>
     </datafile>
-    <datafiles number="126" name="Music">
+    <datafiles number="159" name="Music">
       <datafile>
         <name>14 Tenguman.spc</name>
         <exists>-1</exists>
@@ -533,7 +533,7 @@
         <filename>WilyTowerBossTheme.vgm</filename>
       </datafile>
     </datafiles>
-    <datafiles number="126" name="Recordings">
+    <datafiles number="159" name="Recordings">
       <datafile>
         <name>demoHoneyWoman.mrc</name>
         <exists>-1</exists>
@@ -586,8 +586,8 @@
         <filename>demoPico.mrc</filename>
       </datafile>
     </datafiles>
-    <datafiles number="126" name="UnitTests">
-      <datafiles number="126" name="Rooms">
+    <datafiles number="159" name="UnitTests">
+      <datafiles number="159" name="Rooms">
         <datafile>
           <name>lvlRecordingTest.room.gmx</name>
           <exists>-1</exists>
@@ -708,7 +708,7 @@
           <filename>lvlUnitTestBossDoors.room.gmx</filename>
         </datafile>
       </datafiles>
-      <datafiles number="126" name="Recordings">
+      <datafiles number="159" name="Recordings">
         <datafile>
           <name>RecordingObjectSet.mrc</name>
           <exists>-1</exists>
@@ -847,7 +847,7 @@
         </datafile>
       </datafiles>
     </datafiles>
-    <datafiles number="126" name="Levels">
+    <datafiles number="159" name="Levels">
       <datafile>
         <name>lvlChillMan.room.gmx</name>
         <exists>-1</exists>
@@ -1086,6 +1086,533 @@
         </ConfigOptions>
         <filename>lvlPharaohMan.room.gmx</filename>
       </datafile>
+      <datafile>
+        <name>rmShowcaseBossEarth.room.gmx</name>
+        <exists>-1</exists>
+        <size>476303</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossEarth.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossElectric.room.gmx</name>
+        <exists>-1</exists>
+        <size>183857</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossElectric.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBosses.room.gmx</name>
+        <exists>-1</exists>
+        <size>4164</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBosses.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossFanFlame.room.gmx</name>
+        <exists>-1</exists>
+        <size>124922</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossFanFlame.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossFlashGravity.room.gmx</name>
+        <exists>-1</exists>
+        <size>205264</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossFlashGravity.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossFluidic.room.gmx</name>
+        <exists>-1</exists>
+        <size>691993</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossFluidic.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossMisc.room.gmx</name>
+        <exists>-1</exists>
+        <size>125584</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossMisc.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossOrdinance.room.gmx</name>
+        <exists>-1</exists>
+        <size>585576</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossOrdinance.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossSharp.room.gmx</name>
+        <exists>-1</exists>
+        <size>397991</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossSharp.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossSummoner.room.gmx</name>
+        <exists>-1</exists>
+        <size>149832</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossSummoner.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseFlying.room.gmx</name>
+        <exists>-1</exists>
+        <size>81158</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseFlying.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseIceFire.room.gmx</name>
+        <exists>-1</exists>
+        <size>2100014</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseIceFire.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseIndustrial.room.gmx</name>
+        <exists>-1</exists>
+        <size>301172</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseIndustrial.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseJoes.room.gmx</name>
+        <exists>-1</exists>
+        <size>284612</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseJoes.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseJumping.room.gmx</name>
+        <exists>-1</exists>
+        <size>260479</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseJumping.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseLeftovers.room.gmx</name>
+        <exists>-1</exists>
+        <size>241832</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseLeftovers.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMets.room.gmx</name>
+        <exists>-1</exists>
+        <size>1835930</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMets.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMinibossAnimals.room.gmx</name>
+        <exists>-1</exists>
+        <size>910902</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMinibossAnimals.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMinibossIndustrial.room.gmx</name>
+        <exists>-1</exists>
+        <size>911017</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMinibossIndustrial.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMinibossMisc.room.gmx</name>
+        <exists>-1</exists>
+        <size>500401</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMinibossMisc.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMinibossWater.room.gmx</name>
+        <exists>-1</exists>
+        <size>259567</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMinibossWater.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMovement.room.gmx</name>
+        <exists>-1</exists>
+        <size>8616</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMovement.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMovingPlatforms.room.gmx</name>
+        <exists>-1</exists>
+        <size>10989</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMovingPlatforms.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseNoveltyPlatforms.room.gmx</name>
+        <exists>-1</exists>
+        <size>9724</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseNoveltyPlatforms.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcasePlanning.room.gmx</name>
+        <exists>-1</exists>
+        <size>86660</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcasePlanning.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseSpawners.room.gmx</name>
+        <exists>-1</exists>
+        <size>7976</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseSpawners.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseSurprise.room.gmx</name>
+        <exists>-1</exists>
+        <size>12089</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseSurprise.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseSwitches.room.gmx</name>
+        <exists>-1</exists>
+        <size>380165</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseSwitches.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseWater.room.gmx</name>
+        <exists>-1</exists>
+        <size>10781</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseWater.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseExplosions.room.gmx</name>
+        <exists>-1</exists>
+        <size>1396487</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseExplosions.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseTurrets.room.gmx</name>
+        <exists>-1</exists>
+        <size>1417379</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseTurrets.room.gmx</filename>
+      </datafile>
     </datafiles>
   </datafiles>
   <NewExtensions>
@@ -1229,9 +1756,10 @@
         <sound>sound\sfxJetEggLaunch</sound>
         <sound>sound\sfxHonk</sound>
         <sound>sound\sfxHaikerNShoot</sound>
-        <sound>sound\sfxNumetallShoot</sound>
+        <sound>sound\sfxKaonaToss</sound>
         <sound>sound\sfxMechaPitchanDrop</sound>
         <sound>sound\sfxMerserker</sound>
+        <sound>sound\sfxNumetallShoot</sound>
         <sound>sound\sfxOctobulbEnergy</sound>
         <sound>sound\sfxOctobulbShoot</sound>
         <sound>sound\sfxPiledan</sound>
@@ -1253,6 +1781,7 @@
         <sound>sound\sfxTackleFireDispenser</sound>
         <sound>sound\sfxTheKeeperFistClash</sound>
         <sound>sound\sfxTheKeeperShockwave</sound>
+        <sound>sound\sfxTsurareStamp</sound>
         <sound>sound\sfxYonbain</sound>
       </sounds>
       <sounds name="CFTF">
@@ -4734,7 +5263,6 @@
         <object>objects\objClassicalCannon</object>
         <object>objects\objCamouflametall</object>
         <object>objects\objCaricarry</object>
-        <object>objects\objKakinbatank</object>
         <object>objects\objDeispider</object>
         <object>objects\objDetarnayappaSpawner</object>
         <object>objects\objDiarn</object>
@@ -4745,6 +5273,7 @@
         <object>objects\objIllusian</object>
         <object>objects\objJumpRoller</object>
         <object>objects\objJumpRollerFlameField</object>
+        <object>objects\objKakinbatank</object>
         <object>objects\objMetallB</object>
         <object>objects\objMM9MachineGunJoe</object>
         <object>objects\objNombrellan</object>
@@ -5944,6 +6473,7 @@
           <object>objects\prtPickup</object>
           <object>objects\prtEffect</object>
           <object>objects\prtAlwaysActive</object>
+          <object>objects\prtLevelCallbacks</object>
         </objects>
         <object>objects\objGlobalControl</object>
         <object>objects\objMusicControl</object>
@@ -5993,6 +6523,7 @@
   <rooms name="rooms">
     <room>rooms\rmInit</room>
     <room>rooms\lvlCopyThisRoom</room>
+    <room>rooms\lvlShowcaseHUB</room>
     <rooms name="Engine">
       <room>rooms\rmDisclaimer</room>
       <room>rooms\rmTitleScreen</room>

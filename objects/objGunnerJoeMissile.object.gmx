@@ -34,6 +34,7 @@ contactDamage = 3;
 respawn = false;
 grav = 0;
 blockCollision = false;
+itemDrop = -1;
 
 parent = noone;
 phase = 0;
@@ -155,26 +156,25 @@ if (entityCanStep())
                 
                 break;
         }
-        
-        // Jet Animation
-        jetTimer += 1;
-        if (jetTimer &gt;= 4)
-        {
-            // &lt;-- jet animation speed here
-            if (sprite_index == sprGunnerJoeMissile2)
-            {
-                sprite_index = sprGunnerJoeMissile;
-            }
-            else
-            {
-                sprite_index = sprGunnerJoeMissile2;
-            }
-            
-            jetTimer = 0;
-        }
-        
-        image_index = round((direction) / 45);
     }
+    // Jet Animation
+    jetTimer += 1;
+    if (jetTimer &gt;= 4)
+    {
+        // &lt;-- jet animation speed here
+        if (sprite_index == sprGunnerJoeMissile2)
+        {
+            sprite_index = sprGunnerJoeMissile;
+        }
+        else
+        {
+            sprite_index = sprGunnerJoeMissile2;
+        }
+            
+        jetTimer = 0;
+    }
+        
+    image_index = round((direction) / 45);
 }
 else
 {

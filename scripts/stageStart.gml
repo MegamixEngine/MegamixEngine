@@ -20,3 +20,7 @@ for (var i = 0; i < global.playerCount; i++)
 }
 
 print("Beginning Stage");
+with(prtLevelCallbacks)
+{
+    event_user(0);
+}

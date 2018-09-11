@@ -36,6 +36,8 @@ contactDamage = 4;
 facePlayerOnSpawn = true;
 image_index = 1;
 
+category = "rocky";
+
 imageTimerEndpoint = 9; // 6;
 
 // @cc - use this to change how fast Doncatch walks
