@@ -137,7 +137,9 @@ else if (fname == "action_draw_life")
 else if (fname == "action_draw_life_images")
     global.gml_fn_retval = action_draw_life_images(a0, a1, a2);
 else if (fname == "action_draw_line")
-    global.gml_fn_retval = action_draw_line(a0, a1, a2, a3)    
+    global.gml_fn_retval = action_draw_line(a0, a1, a2, a3) 
+else if (fname == "choose")
+    global.gml_fn_retval = choose(a0,a1,a2,a3,a4,a5,a6,a7);   
 else
     global.execute_gml_function_ERR = true;
 return 0;

@@ -1438,6 +1438,7 @@
         <sprite>sprites\sprBusterShotHalfChargedProto</sprite>
         <sprite>sprites\sprBusterShotChargedProto</sprite>
         <sprite>sprites\sprBusterShotChargedProtoColourMask</sprite>
+        <sprite>sprites\sprBassBullet</sprite>
         <sprite>sprites\sprSparkChaser</sprite>
         <sprite>sprites\sprLaserTrident</sprite>
         <sprite>sprites\sprTornadoBlow</sprite>
@@ -2429,7 +2430,6 @@
         <sprite>sprites\sprSnippscissor</sprite>
       </sprites>
       <sprite>sprites\sprEnemyBullet</sprite>
-      <sprite>sprites\sprBassBullet</sprite>
       <sprite>sprites\sprCustomSpawner</sprite>
     </sprites>
     <sprites name="Minibosses">
