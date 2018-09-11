@@ -115,7 +115,7 @@ else if (fname == "action_create_object")
 else if (fname == "action_create_object_motion")
     global.gml_fn_retval = action_create_object_motion(a0, a1, a2, a3, a4);
 else if (fname == "action_create_object_random")
-    global.gml_fn_retval = action_create_object_random(a0, a1, a2, a3 ,a4 ,a5);
+    global.gml_fn_retval = action_create_object_random(a0, a1, a2, a3 ,a4 , a5);
 else if (fname == "action_current_room")
     action_current_room();
 else if (fname == "action_draw_arrow")
@@ -137,9 +137,42 @@ else if (fname == "action_draw_life")
 else if (fname == "action_draw_life_images")
     global.gml_fn_retval = action_draw_life_images(a0, a1, a2);
 else if (fname == "action_draw_line")
-    global.gml_fn_retval = action_draw_line(a0, a1, a2, a3) 
-else if (fname == "choose")
-    global.gml_fn_retval = choose(a0,a1,a2,a3,a4,a5,a6,a7);   
+    global.gml_fn_retval = action_draw_line(a0, a1, a2, a3);
+else if (fname == "choose") //need to do this so it accepts varying argument counts
+{
+    if (argument_count == 2)
+    {
+        global.gml_fn_retval = choose(a0);
+    }
+    else if (argument_count == 3)
+    {
+        global.gml_fn_retval = choose(a0, a1);
+    }
+    else if (argument_count == 4)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2);
+    }
+    else if (argument_count == 5)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3);
+    }  
+    else if (argument_count == 6)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3, a4);
+    }
+    else if (argument_count == 7)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5);
+    } 
+    else if (argument_count == 8)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5, a6);
+    }
+    else if (argument_count == 9)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5, a6, a7);
+    }
+}    
 else
     global.execute_gml_function_ERR = true;
 return 0;
