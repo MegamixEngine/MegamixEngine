@@ -63,9 +63,11 @@ ds_list_add(roomnames, "@Load External...");
 ds_list_add(roomlist, -2);
 ds_list_add(roomnames, "@Play Recording...");
 
+/*
 ds_list_add(roomnames, "Character Select...");
 ds_list_add(roomlist, rmCharacterSelect);
 arrayAppend(nonLevels, rmCharacterSelect);
+*/
 
 // Get lvl-rooms
 for (i = 0; i &lt;= lr; i += 1)

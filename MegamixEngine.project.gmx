@@ -6014,8 +6014,6 @@
         <object>objects\objPUOil</object>
         <object>objects\objSuperCutterSpawner</object>
         <object>objects\objWaterJet</object>
-        <object>objects\objSuperArmBlock</object>
-        <object>objects\objSuperArmBlock2x2</object>
         <objects name="Don't Use">
           <object>objects\objFireBlockFire</object>
           <object>objects\objPUOilFire</object>
@@ -6089,7 +6087,7 @@
         <object>objects\objForkBlock</object>
         <object>objects\objHover</object>
         <object>objects\objLever</object>
-        <object>objects\objLeverField</object>
+        <object>objects\objLeverfield</object>
         <object>objects\objQuickSand</object>
         <object>objects\objQuickSandB</object>
         <object>objects\objRingmanPlatform</object>
@@ -6397,9 +6395,6 @@
             <object>objects\objRushTeleportBlock</object>
             <object>objects\objWeaponExplosion</object>
             <object>objects\objProtoShield</object>
-          </objects>
-          <objects name="Other Examples">
-            <object>objects\objSkeletuppinPakkajoe</object>
           </objects>
         </objects>
       </objects>
