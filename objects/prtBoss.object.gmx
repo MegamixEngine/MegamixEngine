@@ -635,7 +635,7 @@ if (spawned)
             <string>global.bossTextShown = false;
 if (!quickSpawn)
 {
-    global.aliveBosses -= 1;
+    global.aliveBosses = max(0,global.aliveBosses- 1);
 }
 wasKilled = true;
 
