@@ -43,9 +43,13 @@ hasFired = false;
 
 // Difficulty options
 if (global.difficulty == DIFF_HARD)
+{
     canWave = true;
+}
 else
+{
     canWave = false;
+}
 
 // Health Bar
 manualColors = true;
@@ -147,7 +151,6 @@ if (!global.frozen)
     {
         y -= view_hview;
         canFillHealthBar = false;
-        image_index = 1;
         startIntro = false;
         isIntro = true;
         visible = true;
@@ -159,6 +162,10 @@ if (!global.frozen)
         // custom intro:
         /* if (y &lt;= ystart &amp;&amp; !hasTriggeredFall)
             y += 4 ;*/
+        if (attackTimer == 0) &amp;&amp; (introType == 1)
+        {
+            image_index = 1;
+        }
         if (y &gt;= ystart || hasTriggeredFall)
         {
             // since bosses do not have gravity during intros, we need to reuse this here.
@@ -166,20 +173,28 @@ if (!global.frozen)
             y = ystart; //+ 1;
             image_speed = 0;
             attackTimer += 1;
+            if (introType == 1)
+            {
             if (attackTimer == 1)
+            {
                 playSFX(sfxCommandoQuake);
-            screenShake(10, 1, 1);
+                screenShake(10, 1, 1);
+            }
             if (attackTimer &lt; 8)
                 image_index = 2;
             if (attackTimer == 8)
                 image_index = 3;
-            if (attackTimer == 30)
+            }
+            if (attackTimer == 16)//30
                 image_index = 4;
-            if (attackTimer == 38)
+            if (attackTimer == 24)//38
                 image_index = 5;
-            if (attackTimer == 60)
+            if (attackTimer == 46)//60
             {
                 image_index = 0;
+            }
+            if (attackTimer == 60)
+            {
                 canFillHealthBar = true;
                 isIntro = false;
                 grav = gravStart;

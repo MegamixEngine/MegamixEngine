@@ -29,21 +29,17 @@
 
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
-spriteIndexReset = sprite_index;
 pose = sprWoodIntro;
 poseImgSpeed = 7 / 60;
 contactDamage = 4;
 attackTimer = 0;
 phase = 0;
-phaseWaitTimer = 5;
 phaseShieldTimer = 90;
 shield = 0;
 leafTimer = 0;
-phaseWaitTimerStart = phaseWaitTimer;
 phaseShieldTimerStart = phaseShieldTimer;
 
-// required for animationLoop()
-_im = 0;
+_im = 0; // required for animationLoop()
 stopOnFlash = true;
 category = "nature";
 
@@ -159,11 +155,6 @@ if (entityCanStep())
                 xspeed = 0;
                 if (ground)
                 {
-                    phaseWaitTimer -= 1;
-                }
-                if (phaseWaitTimer &lt;= 0)
-                {
-                    phaseWaitTimer = phaseWaitTimerStart;
                     phase = 1;
                 }
                 break;
@@ -203,17 +194,6 @@ if (entityCanStep())
                     phaseShieldTimer = phaseShieldTimerStart;
                     phase = 2;
                     leafTimer = 15; // reusing this variable for the shield throw
-                    for (i = 1; i &lt; 5; i += 1)
-                    {
-                        if (image_xscale &lt; 0)
-                        {
-                            instance_create(view_xview[0] + 48 * i, view_yview[0] + 16, objWoodFallingLeaves);
-                        }
-                        else
-                        {
-                            instance_create(view_xview[0] + view_wview[0] - 48 * i, view_yview[0] + 16, objWoodFallingLeaves);
-                        }
-                    }
                 }
                 break;
             case 2: // shield throw + leaves 
@@ -229,10 +209,21 @@ if (entityCanStep())
                         image_index = 4;
                         if instance_exists(objWoodLeafShield)
                         {
-                            objWoodLeafShield.xspeed = 4 * image_xscale;
+                            objWoodLeafShield.xspeed = 3.5 * image_xscale;
                             objWoodLeafShield.yspeed = 0;
                             objWoodLeafShield.followWood = false;
                             objWoodLeafShield.despawnRange = 4;
+                        }
+                        for (i = 1; i &lt; 5; i += 1)
+                        {
+                            if (image_xscale &lt; 0)
+                            {
+                                instance_create(view_xview[0] + 48 * i, view_yview[0] + 16, objWoodFallingLeaves);
+                            }
+                            else
+                            {
+                                instance_create(view_xview[0] + view_wview[0] - 48 * i, view_yview[0] + 16, objWoodFallingLeaves);
+                            }
                         }
                         phase = 3;
                         leafTimer = 15; // reusing this again
