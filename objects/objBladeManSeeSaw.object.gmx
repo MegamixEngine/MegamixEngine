@@ -62,6 +62,16 @@ image_speed = 0;
 
 canDraw = true;
 animImage = 0;
+
+startLeftPos = 0;
+startRightPos = 1;
+
+if(image_xscale==-1)
+{
+    startLeftPos = 1;
+    startRightPos = 0;
+}
+image_xscale=1;
 </string>
           </argument>
         </arguments>
@@ -119,8 +129,23 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     }
     if (sprite_index == sprBladeManSeeSawPlace)
     {
-        firstPlatform = instance_create(x - pdx + 7, y + pdy, objBladeManSeeSawPlatform);
-        secondPlatform = instance_create(x + pux + 8, y - puy, objBladeManSeeSawPlatform);
+        if(startLeftPos)
+        {
+            firstPlatform = instance_create(x - pdx + 7, y - puy, objBladeManSeeSawPlatform);
+        }
+        else
+        {
+            firstPlatform = instance_create(x - pdx + 7, y + pdy, objBladeManSeeSawPlatform);
+        }
+        if(startRightPos)
+        {
+            secondPlatform = instance_create(x + pux + 8, y - puy, objBladeManSeeSawPlatform);
+        }
+        else
+        {
+            secondPlatform = instance_create(x + pux + 8, y + pdy, objBladeManSeeSawPlatform);
+        }
+        
         firstPlatform.parent = id;
         secondPlatform.parent = id;
         

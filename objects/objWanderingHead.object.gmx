@@ -34,11 +34,16 @@ contactDamage = 6;
 facePlayerOnSpawn = true;
 grav = 0;
 category = "bird";
+despawnRange=8;
+
+// @cc - Determines how fast Wandering Head moves
+moveSpeed = 2;
 
 animTimer = 4;
 
 xPrev = 0;
 yPrev = 0;
+xScaleStart = image_xscale;
 </string>
           </argument>
         </arguments>
@@ -65,41 +70,30 @@ yPrev = 0;
 
 if (entityCanStep())
 {
-    if (xcoll != 0 &amp;&amp; image_index != 2)
+    if(xcoll!=0)
     {
-        image_index = 2;
-        xPrev = -xcoll;
-        yPrev = yspeed;
+        xspeed = xcoll;
     }
-    
-    if (image_index == 2)
+    if(ycoll!=0)
     {
-        xspeed = 0;
-        yspeed = 0;
-        animTimer--;
-        if (animTimer == 0)
+        yspeed = ycoll;
+    }
+    if(image_index==0)
+    {
+        if (xcoll != 0)
         {
-            xspeed = xPrev;
-            image_xscale *= -1;
-            if (sign(yPrev) == -1)
-            {
-                image_index = 4;
-                yspeed = -2;
-            }
-            else
-            {
-                image_index = 3;
-                yspeed = 2;
-            }
-            animTimer = 4;
+            image_index = 2;
+            xPrev = xcoll;
+            yPrev = yspeed;
+            xspeed=xcoll;
         }
-    }
-    
-    if (ycoll != 0 &amp;&amp; image_index != 1)
-    {
-        image_index = 1;
-        xPrev = xspeed;
-        yPrev = ycoll;
+        if (ycoll != 0)
+        {
+            image_index = 1;
+            xPrev = xspeed;
+            yPrev = ycoll;
+            yspeed=ycoll;
+        }
     }
     
     if (image_index == 1)
@@ -109,16 +103,36 @@ if (entityCanStep())
         animTimer--;
         if (animTimer == 0)
         {
+            yspeed = -yPrev;
             xspeed = xPrev;
-            if (yPrev == -2)
+            if (sign(yPrev)&lt;0)
             {
                 image_index = 3;
-                yspeed = 2;
             }
             else
             {
                 image_index = 4;
-                yspeed = -2;
+            }
+            animTimer = 4;
+        }
+    }
+    else if (image_index == 2)
+    {
+        xspeed = 0;
+        yspeed = 0;
+        animTimer--;
+        if (animTimer == 0)
+        {
+            xspeed = -xPrev;
+            yspeed = yPrev;
+            image_xscale *= -1;
+            if (sign(xPrev)&lt;0)
+            {
+                image_index = 4;
+            }
+            else
+            {
+                image_index = 3;
             }
             animTimer = 4;
         }
@@ -133,16 +147,6 @@ if (entityCanStep())
             animTimer = 4;
         }
     }
-}
-else if (dead)
-{
-    healthpoints = healthpointsStart;
-    image_index = 0;
-    animTimer = 4;
-    xspeed = 2 * image_xscale;
-    yspeed = -2;
-    xPrev = 0;
-    yPrev = 0;
 }
 </string>
           </argument>
@@ -167,8 +171,17 @@ else if (dead)
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-xspeed = 2 * image_xscale;
-yspeed = -2;
+if(spawned)
+{
+    image_xscale = xScaleStart;
+    xspeed = moveSpeed * image_xscale;
+    yspeed = -moveSpeed;
+    xPrev = xspeed;
+    yPrev = yspeed;
+    image_index = 0;
+    animTimer = 4;
+    despawnRange=8+abs(moveSpeed);
+}
 </string>
           </argument>
         </arguments>

@@ -55,13 +55,16 @@ image_speed = 0.2;
             <kind>1</kind>
             <string>event_inherited();
 
-if (inWater)
+if (entityCanStep())
 {
-    sprite_index = sprBubbleManShot;
-}
-else
-{
-    sprite_index = sprBubbleManShotLand;
+    if (place_meeting(x,y,objWater))//(inWater)
+    {
+        sprite_index = sprBubbleManShot;
+    }
+    else
+    {
+        sprite_index = sprBubbleManShotLand;
+    }
 }
 </string>
           </argument>

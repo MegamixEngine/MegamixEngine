@@ -70,7 +70,7 @@ sprite_index = sprBrownHead;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+    
 // needs to be done even if this is frozen
 if (container != noone &amp;&amp; !global.frozen &amp;&amp; !dead &amp;&amp; instance_exists(target))
 {
@@ -80,18 +80,19 @@ if (container != noone &amp;&amp; !global.frozen &amp;&amp; !dead &amp;&amp; ins
     }
 }
 
+if (image_index == 0)
+{
+    canDamage = false;
+    canHit = false;
+}
+else
+{
+    canDamage = true;
+    canHit = true;
+}
+
 if (entityCanStep())
 {
-    // thanks obagamemakerstudio for breaking this enemy
-    if (image_index == 0)
-    {
-        canHit = false;
-    }
-    else
-    {
-        canHit = true;
-    }
-    
     switch (phase)
     {
         // start facing the player

@@ -28,9 +28,7 @@
             <string>event_inherited();
 stopOnFlash = true;
 range = 24;
-mySpeed = 7.5;
 canHit = true;
-direction += sign(mySpeed) * 10;
 reflectable = 0;
 followWood = true;
 
@@ -41,55 +39,11 @@ ys = y;
 
 contactDamage = 4;
 blockCollision = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/* dirphase += 1;
+rotationTimer = 0;
+grav = 0;
 
-if (dirphase == 2)
-{
-    alarm[0] = 1;
-    dirdir = 0;
-    exit;
-}
-if (dirphase == 3)
-{
-    alarm[0] = 8;
-    dirdir = -0.5;
-    exit;
-}
-if (dirphase == 4)
-{
-    alarm[0] = 1;
-    dirdir = 0;
-    exit;
-}
-if (dirphase == 5)
-{
-    alarm[0] = 8;
-    dirdir = 0.5;
-    dirphase = 1;
-    exit;
-}
+x = round(xs + 24 * cos(direction / 57));
+y = round(ys + 24 * sin((direction + 180) / 57));
 </string>
           </argument>
         </arguments>
@@ -121,8 +75,8 @@ if (entityCanStep())
     {
         if (followWood)
         {
-            xs = spriteGetXCenterObject(objWoodMan) + 1 * -image_xscale;
-            ys = spriteGetYCenterObject(objWoodMan);
+            xs = bboxGetXCenterObject(objWoodMan);
+            ys = bboxGetYCenterObject(objWoodMan);
             image_xscale = other.image_xscale;
         }
     }
@@ -134,9 +88,17 @@ if (entityCanStep())
     xs += xspeed;
     if (followWood)
         ys += yspeed;
-    rotationMovement(xs, ys, range, mySpeed);
-    x = round(x);
-    y = round(y);
+    x = round(xs + 21 * cos(direction / 57));
+    y = round(ys + 21 * sin((direction + 180) / 57));
+    if rotationTimer &gt;= 3
+    {
+        direction += 22.5;
+        rotationTimer = 0;
+    }
+    else
+    {
+        rotationTimer++
+    }
 }
 </string>
           </argument>

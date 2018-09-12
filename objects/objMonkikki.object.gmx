@@ -133,6 +133,7 @@ if (entityCanStep())
         {
             image_xscale = other.image_xscale;
             contactDamage = 2;
+            canHit = true;
             sprite_index = sprBanana;
             target = other.target;
             if (instance_exists(other.target))

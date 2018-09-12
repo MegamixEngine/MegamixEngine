@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A robot seal that blows a ball on its nose, bounces it, then throws it at Mega Man.
+// Don't get close, or it'll run after you.
+
+event_inherited();
 
 healthpointsStart = 9;
 contactDamage = 3;
@@ -33,6 +36,10 @@ facePlayerOnSpawn = true;
 
 category = "aquatic, bulky";
 
+// @cc - How fast Ou-Ou's ball moves when thrown
+ballSpeed = 3
+
+// Enemy specific code
 imgIndex = 0;
 imgSpd = 0.2;
 radius = 4 * 16;
@@ -124,7 +131,7 @@ if (entityCanStep())
                                         ball.y = y - 6;
                                         ball.yspeed = 0;
                                         ball.grav = 0;
-                                        ball.xspeed = 3 * image_xscale;
+                                        ball.xspeed = ballSpeed * image_xscale;
                                         hasAttacked = true;
                                         attackTimer = 10;
                                         playSFX(sfxBallBounce);

@@ -12,8 +12,8 @@ var _____j_____ = argument3;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4514 variables
-/// from 1599 source files
+/// 4508 variables
+/// from 1652 source files
 
 if (_____vs_____ == "") return false;
 else if (stringStartsWith(_____vs_____, 'a'))
@@ -960,7 +960,6 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "drawMe") drawMe[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "drawString") drawString[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "drawTimer") drawTimer[_____i_____, _____j_____] = _____val_____;
-    else if (_____vs_____ == "drawTokenIndex") drawTokenIndex[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "drawWeaponIcon") drawWeaponIcon[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "drawX") drawX[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "drawXPosition") drawXPosition[_____i_____, _____j_____] = _____val_____;
@@ -1033,7 +1032,6 @@ else if (stringStartsWith(_____vs_____, 'e'))
     else if (_____vs_____ == "elecDirec") elecDirec[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "electricityList") electricityList[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "elementCode") elementCode[_____i_____, _____j_____] = _____val_____;
-    else if (_____vs_____ == "elementIndex") elementIndex[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "elementName") elementName[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "elementScript") elementScript[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "elt") elt[_____i_____, _____j_____] = _____val_____;
@@ -1568,7 +1566,6 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "global.levelRunValid") global.levelRunValid[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.levelSong") global.levelSong[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.levelSongType") global.levelSongType[_____i_____, _____j_____] = _____val_____;
-    else if (_____vs_____ == "global.levelTTokensTotal") global.levelTTokensTotal[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.levelTrackNumber") global.levelTrackNumber[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.levelVolume") global.levelVolume[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.leverPropagated") global.leverPropagated[_____i_____, _____j_____] = _____val_____;
@@ -1698,7 +1695,6 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "global.sturdyHelmet") global.sturdyHelmet[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.superArmInterface") global.superArmInterface[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.switchingSections") global.switchingSections[_____i_____, _____j_____] = _____val_____;
-    else if (_____vs_____ == "global.tTokensCollected") global.tTokensCollected[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.telTelWeather") global.telTelWeather[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.teleportSound") global.teleportSound[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.teleportX") global.teleportX[_____i_____, _____j_____] = _____val_____;
@@ -1708,7 +1704,6 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "global.tileLayersN") global.tileLayersN[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.timeStopped") global.timeStopped[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.totalWeapons") global.totalWeapons[_____i_____, _____j_____] = _____val_____;
-    else if (_____vs_____ == "global.tricksterTokens") global.tricksterTokens[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.unitSuiteName") global.unitSuiteName[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.unitSuiteScript") global.unitSuiteScript[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.unitTestAbortAll") global.unitTestAbortAll[_____i_____, _____j_____] = _____val_____;
@@ -1742,7 +1737,6 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "global.weaponSwitchLeftKey") global.weaponSwitchLeftKey[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "global.weaponSwitchRightKey") global.weaponSwitchRightKey[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "globalDir") globalDir[_____i_____, _____j_____] = _____val_____;
-    else if (_____vs_____ == "globalElementIndex") globalElementIndex[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "globalYHighOffset") globalYHighOffset[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "globalYLowOffset") globalYLowOffset[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "globalescapeBehavior") globalescapeBehavior[_____i_____, _____j_____] = _____val_____;
@@ -2108,6 +2102,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "isTile") isTile[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "isVisible") isVisible[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "isWave") isWave[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "iscl") iscl[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "isfree") isfree[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "ispushed") ispushed[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "item") item[_____i_____, _____j_____] = _____val_____;
@@ -2427,7 +2422,6 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "maxSize") maxSize[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "maxSpd") maxSpd[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "maxSpeed") maxSpeed[_____i_____, _____j_____] = _____val_____;
-    else if (_____vs_____ == "maxTTokens") maxTTokens[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "maxTarget") maxTarget[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "maxTellies") maxTellies[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "maxTimer") maxTimer[_____i_____, _____j_____] = _____val_____;
@@ -3166,6 +3160,7 @@ else if (stringStartsWith(_____vs_____, 'r'))
     else if (_____vs_____ == "randList") randList[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "randitem") randitem[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "randomList") randomList[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "randomMissiles") randomMissiles[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "randomOffset") randomOffset[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "randomSpawn") randomSpawn[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "randomiser") randomiser[_____i_____, _____j_____] = _____val_____;
@@ -4069,8 +4064,6 @@ else if (stringStartsWith(_____vs_____, 't'))
     else if (_____vs_____ == "toggle") toggle[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "tokElse") tokElse[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "token") token[_____i_____, _____j_____] = _____val_____;
-    else if (_____vs_____ == "tokenIndex") tokenIndex[_____i_____, _____j_____] = _____val_____;
-    else if (_____vs_____ == "tokensCollected") tokensCollected[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "top") top[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "topLock") topLock[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "topSolid") topSolid[_____i_____, _____j_____] = _____val_____;
@@ -4341,6 +4334,7 @@ else if (stringStartsWith(_____vs_____, 'x'))
     else if (_____vs_____ == "xPrev") xPrev[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "xProvLength") xProvLength[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "xSOffset") xSOffset[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "xScaleStart") xScaleStart[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "xSpd") xSpd[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "xSpdConst") xSpdConst[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "xSpeed") xSpeed[_____i_____, _____j_____] = _____val_____;

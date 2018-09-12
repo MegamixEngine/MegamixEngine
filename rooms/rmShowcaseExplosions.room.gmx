@@ -291,7 +291,7 @@
     <instance objName="objKeyBarrier" x="944" y="800" name="inst_12168" locked="0" code="depth=1000100;&#xA;blockCollision=false;&#xA;grav=0;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBoubouThick" x="816" y="896" name="inst_12170" locked="0" code="itemDrop=objKey;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBoubouThick" x="944" y="896" name="inst_12171" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCustomSpawner" x="808" y="776" name="inst_12182" locked="0" code="object = objAlabell;&#xA;code = &quot;time=2;&quot;;&#xA;limit = 1;&#xA;spawnWait = 10;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCustomSpawner" x="808" y="776" name="inst_12182" locked="0" code="object = objAlabell;&#xA;code = &quot;time=2;&quot;;&#xA;limit = 1;&#xA;spawnWait = 10;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDustmanBlock" x="784" y="832" name="inst_12184" locked="0" code="respawnRange=-1;&#xA;despawnRange=-1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objReflectBlockSmall" x="832" y="896" name="inst_12188" locked="0" code="respawnRange=-1;&#xA;despawnRange=-1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objReflectBlockSmall" x="832" y="880" name="inst_12189" locked="0" code="respawnRange=-1;&#xA;despawnRange=-1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -307,11 +307,11 @@
     <instance objName="objRightScrolling" x="1024" y="896" name="inst_14707" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFallingTower" x="1040" y="1024" name="inst_17403" locked="0" code="myTile=120;&#xA;spd = 2;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBombombStopper" x="1336" y="576" name="inst_17407" locked="0" code="" scaleX="0.842105984687805" scaleY="0.842105984687805" colour="4294967295" rotation="0"/>
-    <instance objName="objBombombSpawner" x="1336" y="624" name="inst_17408" locked="0" code="" scaleX="0.842105984687805" scaleY="0.842108011245728" colour="4294967295" rotation="0"/>
+    <instance objName="objBombombSpawner" x="1336" y="624" name="inst_17408" locked="0" code="" scaleX="0.842105984687805" scaleY="0.842108011245727" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1280" y="896" name="inst_17409" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1280" y="672" name="inst_17411" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1280" y="448" name="inst_17412" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBombombSpawner" x="1432" y="624" name="inst_17413" locked="0" code="" scaleX="0.842105984687805" scaleY="0.842108011245728" colour="4294967295" rotation="0"/>
+    <instance objName="objBombombSpawner" x="1432" y="624" name="inst_17413" locked="0" code="" scaleX="0.842105984687805" scaleY="0.842108011245727" colour="4294967295" rotation="0"/>
     <instance objName="objBombombStopper" x="1432" y="528" name="inst_17414" locked="0" code="" scaleX="0.842105984687805" scaleY="0.842105984687805" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="896" y="608" name="inst_17415" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objKillerBullet" x="1600" y="576" name="inst_17416" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -1654,6 +1654,40 @@
     <instance objName="objDustmanBlock" x="832" y="816" name="inst_20188" locked="0" code="respawnRange=-1;&#xA;despawnRange=-1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDustmanBlock" x="832" y="800" name="inst_20189" locked="0" code="respawnRange=-1;&#xA;despawnRange=-1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLayerAnimation" x="0" y="0" name="LayerAnimationInst0" locked="0" code="animLength = 2;&#xA;animateOnTransition = true;&#xA;animationLayer = 2000001;&#xA;animTime[0] = 9;&#xA;animTime[1] = 9;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="48" y="496" name="inst_AAD2B12F" locked="0" code="text = &quot;objCommandoMine. Mega Man 10. Destroys a section of tiles specified by creation code.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="112" y="816" name="inst_F6B02F98" locked="0" code="text = &quot;objWalkingBomb. Mega Man 3. Walks forward jumping up when it hits a solid object. Exlodes on defeat which can damage Mega Man.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="368" y="816" name="inst_EBD4B2E5" locked="0" code="text = &quot;objPalmHopper. Mega Man V (Game Boy). Jumps and occasionally shoots rockets.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="576" y="832" name="inst_B1270063" locked="0" code="text = &quot;objKomusoMine. Rockman and Forte 2: Challenger from the Future. Exlodes shortly after Mega Man steps on it.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="688" y="832" name="inst_F486FAA6" locked="0" code="text = &quot;objDarkmanBlock and objFallingTower. Mega Man 5. Falling towers create a section similar to Dark Man stage 4 from Mega Man 5. By default the tower scroll is stopped by Dark Man blocks but can be changed in creation code. Please refer to the room file to see how this is set up.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="704" y="752" name="inst_8F01CDA4" locked="0" code="text = &quot;objBokazurah and platform. Mega Man 9. Bokazurah's shoot projectiles when shot which can destroy their associated platforms.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="848" y="608" name="inst_AE4B9270" locked="0" code="text = &quot;objCountBomb. Mega Man 6. No really Blizzard Man's stage is the first time they show up. A plaftorm Mega Man can step on but will start a timer and then explode. The time can be specified by creation code. There are also sub-objects for the other 3 cardinal directions.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="880" y="816" name="inst_C4A20ABD" locked="0" code="text = &quot;objAlabell. A walking bomb alarm clock, capable of destroying gods in older builds. Can be pushed back when shot. Timer can be customized with creation code.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="992" y="896" name="inst_3F81C274" locked="0" code="text = &quot;Ok. So there was a bit to digest here. objKey and objKeyBarrier are self explanatory, but keep in mind you can make enemies drop keys with the creation code itemDrop = objKey. Just make sure they don't respawn. objBoubouThick from Mega Man 8 is just a barrier that stops Mega Man but can be shot.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1168" y="608" name="inst_32FCDEC2" locked="0" code="text = &quot;You make elevators with Dark Man towers neat huh.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1392" y="608" name="inst_A46E815A" locked="0" code="text = &quot;objBombomb. Mega Man 1. The original Up N' Down, spawns from a set point and rises up until it hits a stopper object and then spreads into more bombs.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1552" y="608" name="inst_3FA6AE05" locked="0" code="text = &quot;objKillerBullet. Mega Man 1. Flies forward in a sine wave pattern, explodes on defeat.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1632" y="608" name="inst_E1EE754D" locked="0" code="text = &quot;objSpringFaceBomb. Mega Man 6. Jumps forward when destroyed its head will fly off towards Mega Man.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1744" y="608" name="inst_373C242E" locked="0" code="text = &quot;objRembakun. Mega Man 5. Flies forward dropping mines.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1952" y="608" name="inst_E802DB71" locked="0" code="text = &quot;objBombPotton. Mega Man 10. Flies forward dropping explosions that spread on the ground until it hits a stopper object. It's explosions can detonate Commando Mines.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2272" y="608" name="inst_0B2E776D" locked="0" code="text = &quot;objParocket. Mega Man V (Game Boy). Flies straight up off screen and then parachutes back down and explodes.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2144" y="832" name="inst_44781E79" locked="0" code="text = &quot;objCannonRoader. Mega Man V (Game Boy). Travels very fast and then explodes on a wall.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2384" y="832" name="inst_4B5A549A" locked="0" code="text = &quot;objSonicBill. Rockman and Forte 2. Challenger from the Future. Similar to Cannon Roader.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2448" y="832" name="inst_70691676" locked="0" code="text = &quot;objBombThrown. Mega Man 5. Throws bombs at Mega Man that explode, but can be shot down. However this one has been customized with creation code to throw objBombier from Mega Man 5 which flies straight and drops bombs.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2576" y="832" name="inst_66EDD474" locked="0" code="text = &quot;objMizzle. Mega Man 5. The Mega Man 5 variant of Up N' Down, is however invincible.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2608" y="832" name="inst_77F360D9" locked="0" code="text = &quot;objLandMine. Mega Man V (Game Boy). Explodes after a RANDOM period of time after Mega Man steps on it. Be wary using this in timing puzzles.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2720" y="832" name="inst_040DC6C9" locked="0" code="text = &quot;objBikkyBomb. Mega Man V (Game Boy). Throws bouncing projectiles. Is invincible when it's head is spinning.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2880" y="832" name="inst_F6B4B7A6" locked="0" code="text = &quot;objKatonbyon. Mega Man 6. Flies on screen and tries to drop a bomb on Mega Man.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="3040" y="800" name="inst_8334FFC6" locked="0" code="text = &quot;objFusePlatform. Mega Man IV (Game Boy). Explodes in a set pattern defined by how the objects are placed in the editor.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="3168" y="800" name="inst_7519B36D" locked="0" code="text = &quot;You can also ride Kabatoncue Plaftorms through screen transitions.&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="3184" y="576" name="inst_A6E95BFA" locked="0" code="text = &quot;objDustmanBlock. Traditionally used to destroy Mega Man via crushing, these blocks are simple blocks that can be destroyed with most weapons. Maybe there's another showcase that shows you can use them like they were originall used in Mega Man 4....&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="3104" y="592" name="inst_0FE10C48" locked="0" code="text = &quot;objBarill. Mega Man 10. A strange totem pole enemy that grows when left alone, you can shoot its sections to drop it down or even jump on it to crush it into the ground or use as a platform. Left alone it will shoot bouncing projectiles.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2672" y="384" name="inst_096DD999" locked="0" code="text = &quot;objSW525. Mega Man 6. Walks towards Mega Man and eventually explodes after a long period. Can be placed on ceilings.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2752" y="384" name="inst_98C59C9C" locked="0" code="text = &quot;objBalladeMissle. Mega Man IV (Game Boy). A platform that you can shoot, but doing so causes a damaging explosion.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2896" y="384" name="inst_5ADBC4EB" locked="0" code="text = &quot;objJetBomb. Mega Man 5. Flies straight forward until it hits a wall and then turns into shrapnel. Will also turn into shrapnel when shot. Has many built in color options.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2960" y="336" name="inst_E1FA855D" locked="0" code="text = &quot;objHirarian427. Mega Man 5. Falls from ceilings and walks toward Mega Man and explodes on walls. Will eventually explode automatically. Also has a few color options built in.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="3216" y="352" name="inst_9539A386" locked="0" code="text = &quot;The Bomb Thrown was killed here by changing the faction of the reflect blocks. Try it out some time.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="928" y="608" name="inst_38B9126F" locked="0" code="text = &quot;You can make upside down Dark Man towers.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2176" y="832" name="inst_C60CF8DA" locked="0" code="text = &quot;Kabatoncue Platforms can be customized to be used for more than Kabatoncue with creation code.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstTeleporter" x="0" y="448" w="16" h="16" xo="0" yo="0" id="431" name="tile_431" depth="2000002" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3071,13 +3105,11 @@
     <tile bgName="tstHardman" x="1616" y="448" w="16" h="16" xo="208" yo="32" id="2978" name="tile_2978" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1728" y="448" w="16" h="16" xo="192" yo="32" id="2979" name="tile_2979" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1744" y="448" w="16" h="16" xo="208" yo="32" id="2980" name="tile_2980" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="1776" y="448" w="16" h="16" xo="160" yo="32" id="2981" name="tile_2981" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1792" y="448" w="16" h="16" xo="176" yo="32" id="2982" name="tile_2982" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1856" y="448" w="16" h="16" xo="192" yo="32" id="2983" name="tile_2983" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1872" y="448" w="16" h="16" xo="208" yo="32" id="2984" name="tile_2984" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1984" y="448" w="16" h="16" xo="192" yo="32" id="2985" name="tile_2985" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2000" y="448" w="16" h="16" xo="208" yo="32" id="2986" name="tile_2986" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2032" y="448" w="16" h="16" xo="160" yo="32" id="2987" name="tile_2987" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2048" y="448" w="16" h="16" xo="176" yo="32" id="2988" name="tile_2988" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2112" y="448" w="16" h="16" xo="192" yo="32" id="2989" name="tile_2989" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2128" y="448" w="16" h="16" xo="208" yo="32" id="2990" name="tile_2990" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3089,7 +3121,6 @@
     <tile bgName="tstHardman" x="2384" y="448" w="16" h="16" xo="208" yo="32" id="2996" name="tile_2996" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2496" y="448" w="16" h="16" xo="192" yo="32" id="2997" name="tile_2997" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2512" y="448" w="16" h="16" xo="208" yo="32" id="2998" name="tile_2998" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2544" y="448" w="16" h="16" xo="160" yo="32" id="2999" name="tile_2999" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2624" y="448" w="16" h="16" xo="192" yo="32" id="3000" name="tile_3000" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2640" y="448" w="16" h="16" xo="208" yo="32" id="3001" name="tile_3001" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2816" y="448" w="16" h="16" xo="176" yo="32" id="3002" name="tile_3002" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3097,13 +3128,11 @@
     <tile bgName="tstHardman" x="2896" y="448" w="16" h="16" xo="208" yo="32" id="3004" name="tile_3004" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3008" y="448" w="16" h="16" xo="192" yo="32" id="3005" name="tile_3005" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3024" y="448" w="16" h="16" xo="208" yo="32" id="3006" name="tile_3006" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3056" y="448" w="16" h="16" xo="160" yo="32" id="3007" name="tile_3007" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3072" y="448" w="16" h="16" xo="176" yo="32" id="3008" name="tile_3008" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3136" y="448" w="16" h="16" xo="192" yo="32" id="3009" name="tile_3009" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3152" y="448" w="16" h="16" xo="208" yo="32" id="3010" name="tile_3010" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3264" y="448" w="16" h="16" xo="192" yo="32" id="3011" name="tile_3011" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3280" y="448" w="16" h="16" xo="208" yo="32" id="3012" name="tile_3012" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3312" y="448" w="16" h="16" xo="160" yo="32" id="3013" name="tile_3013" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="0" y="464" w="16" h="16" xo="16" yo="32" id="3014" name="tile_3014" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="16" y="464" w="16" h="16" xo="32" yo="32" id="3015" name="tile_3015" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="32" y="464" w="16" h="16" xo="48" yo="32" id="3016" name="tile_3016" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3121,8 +3150,6 @@
     <tile bgName="tstHardman" x="224" y="464" w="16" h="16" xo="80" yo="32" id="3028" name="tile_3028" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="240" y="464" w="16" h="16" xo="96" yo="32" id="3029" name="tile_3029" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="256" y="464" w="16" h="16" xo="112" yo="32" id="3030" name="tile_3030" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="288" y="464" w="16" h="16" xo="144" yo="32" id="3031" name="tile_3031" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="304" y="464" w="16" h="16" xo="160" yo="32" id="3032" name="tile_3032" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="320" y="464" w="16" h="16" xo="176" yo="32" id="3033" name="tile_3033" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="448" y="464" w="16" h="16" xo="128" yo="16" id="3034" name="tile_3034" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="464" y="464" w="16" h="16" xo="144" yo="16" id="3035" name="tile_3035" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3152,11 +3179,9 @@
     <tile bgName="tstHardman" x="1536" y="464" w="16" h="16" xo="176" yo="32" id="3059" name="tile_3059" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1552" y="464" w="16" h="16" xo="192" yo="32" id="3060" name="tile_3060" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1568" y="464" w="16" h="16" xo="208" yo="32" id="3061" name="tile_3061" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="1776" y="464" w="16" h="16" xo="160" yo="32" id="3062" name="tile_3062" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1792" y="464" w="16" h="16" xo="176" yo="32" id="3063" name="tile_3063" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1808" y="464" w="16" h="16" xo="192" yo="32" id="3064" name="tile_3064" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1824" y="464" w="16" h="16" xo="208" yo="32" id="3065" name="tile_3065" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2032" y="464" w="16" h="16" xo="160" yo="32" id="3066" name="tile_3066" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2048" y="464" w="16" h="16" xo="176" yo="32" id="3067" name="tile_3067" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2064" y="464" w="16" h="16" xo="192" yo="32" id="3068" name="tile_3068" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2080" y="464" w="16" h="16" xo="208" yo="32" id="3069" name="tile_3069" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3164,19 +3189,15 @@
     <tile bgName="tstHardman" x="2304" y="464" w="16" h="16" xo="176" yo="32" id="3071" name="tile_3071" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2320" y="464" w="16" h="16" xo="192" yo="32" id="3072" name="tile_3072" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2336" y="464" w="16" h="16" xo="208" yo="32" id="3073" name="tile_3073" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2544" y="464" w="16" h="16" xo="160" yo="32" id="3074" name="tile_3074" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2560" y="464" w="16" h="16" xo="176" yo="32" id="3075" name="tile_3075" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2576" y="464" w="16" h="16" xo="192" yo="32" id="3076" name="tile_3076" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2592" y="464" w="16" h="16" xo="208" yo="32" id="3077" name="tile_3077" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2800" y="464" w="16" h="16" xo="160" yo="32" id="3078" name="tile_3078" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2816" y="464" w="16" h="16" xo="176" yo="32" id="3079" name="tile_3079" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2832" y="464" w="16" h="16" xo="192" yo="32" id="3080" name="tile_3080" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2848" y="464" w="16" h="16" xo="208" yo="32" id="3081" name="tile_3081" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3056" y="464" w="16" h="16" xo="160" yo="32" id="3082" name="tile_3082" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3072" y="464" w="16" h="16" xo="176" yo="32" id="3083" name="tile_3083" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3088" y="464" w="16" h="16" xo="192" yo="32" id="3084" name="tile_3084" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3104" y="464" w="16" h="16" xo="208" yo="32" id="3085" name="tile_3085" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3312" y="464" w="16" h="16" xo="160" yo="32" id="3086" name="tile_3086" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="0" y="480" w="16" h="16" xo="16" yo="48" id="3087" name="tile_3087" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="16" y="480" w="16" h="16" xo="32" yo="48" id="3088" name="tile_3088" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="32" y="480" w="16" h="16" xo="48" yo="48" id="3089" name="tile_3089" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3216,13 +3237,11 @@
     <tile bgName="tstHardman" x="1728" y="480" w="16" h="16" xo="48" yo="16" id="3123" name="tile_3123" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1744" y="480" w="16" h="16" xo="64" yo="16" id="3124" name="tile_3124" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1760" y="480" w="16" h="16" xo="80" yo="16" id="3125" name="tile_3125" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="1776" y="480" w="16" h="16" xo="160" yo="32" id="3126" name="tile_3126" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1792" y="480" w="16" h="16" xo="176" yo="32" id="3127" name="tile_3127" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1968" y="480" w="16" h="16" xo="32" yo="16" id="3128" name="tile_3128" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1984" y="480" w="16" h="16" xo="48" yo="16" id="3129" name="tile_3129" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2000" y="480" w="16" h="16" xo="64" yo="16" id="3130" name="tile_3130" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2016" y="480" w="16" h="16" xo="80" yo="16" id="3131" name="tile_3131" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2032" y="480" w="16" h="16" xo="160" yo="32" id="3132" name="tile_3132" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2048" y="480" w="16" h="16" xo="176" yo="32" id="3133" name="tile_3133" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2224" y="480" w="16" h="16" xo="32" yo="16" id="3134" name="tile_3134" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2240" y="480" w="16" h="16" xo="48" yo="16" id="3135" name="tile_3135" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3234,25 +3253,21 @@
     <tile bgName="tstHardman" x="2496" y="480" w="16" h="16" xo="48" yo="16" id="3141" name="tile_3141" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2512" y="480" w="16" h="16" xo="64" yo="16" id="3142" name="tile_3142" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2528" y="480" w="16" h="16" xo="80" yo="16" id="3143" name="tile_3143" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2544" y="480" w="16" h="16" xo="160" yo="32" id="3144" name="tile_3144" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2560" y="480" w="16" h="16" xo="176" yo="32" id="3145" name="tile_3145" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2736" y="480" w="16" h="16" xo="32" yo="16" id="3146" name="tile_3146" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2752" y="480" w="16" h="16" xo="48" yo="16" id="3147" name="tile_3147" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2768" y="480" w="16" h="16" xo="64" yo="16" id="3148" name="tile_3148" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2784" y="480" w="16" h="16" xo="80" yo="16" id="3149" name="tile_3149" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2800" y="480" w="16" h="16" xo="160" yo="32" id="3150" name="tile_3150" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2816" y="480" w="16" h="16" xo="176" yo="32" id="3151" name="tile_3151" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2992" y="480" w="16" h="16" xo="32" yo="16" id="3152" name="tile_3152" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3008" y="480" w="16" h="16" xo="48" yo="16" id="3153" name="tile_3153" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3024" y="480" w="16" h="16" xo="64" yo="16" id="3154" name="tile_3154" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3040" y="480" w="16" h="16" xo="80" yo="16" id="3155" name="tile_3155" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3056" y="480" w="16" h="16" xo="160" yo="32" id="3156" name="tile_3156" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3072" y="480" w="16" h="16" xo="176" yo="32" id="3157" name="tile_3157" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3248" y="480" w="16" h="16" xo="32" yo="16" id="3158" name="tile_3158" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3264" y="480" w="16" h="16" xo="48" yo="16" id="3159" name="tile_3159" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3280" y="480" w="16" h="16" xo="64" yo="16" id="3160" name="tile_3160" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3296" y="480" w="16" h="16" xo="80" yo="16" id="3161" name="tile_3161" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3312" y="480" w="16" h="16" xo="160" yo="32" id="3162" name="tile_3162" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="0" y="496" w="16" h="16" xo="16" yo="64" id="3163" name="tile_3163" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="16" y="496" w="16" h="16" xo="32" yo="64" id="3164" name="tile_3164" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="32" y="496" w="16" h="16" xo="48" yo="64" id="3165" name="tile_3165" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3303,7 +3318,6 @@
     <tile bgName="tstHardman" x="1616" y="496" w="16" h="16" xo="80" yo="16" id="3210" name="tile_3210" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1648" y="496" w="16" h="16" xo="192" yo="32" id="3211" name="tile_3211" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1664" y="496" w="16" h="16" xo="208" yo="32" id="3212" name="tile_3212" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="1776" y="496" w="16" h="16" xo="160" yo="32" id="3213" name="tile_3213" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1792" y="496" w="16" h="16" xo="176" yo="32" id="3214" name="tile_3214" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1824" y="496" w="16" h="16" xo="32" yo="16" id="3215" name="tile_3215" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1840" y="496" w="16" h="16" xo="48" yo="16" id="3216" name="tile_3216" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3311,7 +3325,6 @@
     <tile bgName="tstHardman" x="1872" y="496" w="16" h="16" xo="80" yo="16" id="3218" name="tile_3218" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1904" y="496" w="16" h="16" xo="192" yo="32" id="3219" name="tile_3219" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1920" y="496" w="16" h="16" xo="208" yo="32" id="3220" name="tile_3220" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2032" y="496" w="16" h="16" xo="160" yo="32" id="3221" name="tile_3221" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2048" y="496" w="16" h="16" xo="176" yo="32" id="3222" name="tile_3222" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2080" y="496" w="16" h="16" xo="32" yo="16" id="3223" name="tile_3223" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2096" y="496" w="16" h="16" xo="48" yo="16" id="3224" name="tile_3224" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3327,7 +3340,6 @@
     <tile bgName="tstHardman" x="2384" y="496" w="16" h="16" xo="80" yo="16" id="3234" name="tile_3234" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2416" y="496" w="16" h="16" xo="192" yo="32" id="3235" name="tile_3235" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2432" y="496" w="16" h="16" xo="208" yo="32" id="3236" name="tile_3236" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2544" y="496" w="16" h="16" xo="160" yo="32" id="3237" name="tile_3237" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2560" y="496" w="16" h="16" xo="176" yo="32" id="3238" name="tile_3238" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2592" y="496" w="16" h="16" xo="32" yo="16" id="3239" name="tile_3239" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2608" y="496" w="16" h="16" xo="48" yo="16" id="3240" name="tile_3240" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3335,7 +3347,6 @@
     <tile bgName="tstHardman" x="2640" y="496" w="16" h="16" xo="80" yo="16" id="3242" name="tile_3242" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2672" y="496" w="16" h="16" xo="192" yo="32" id="3243" name="tile_3243" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2688" y="496" w="16" h="16" xo="208" yo="32" id="3244" name="tile_3244" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2800" y="496" w="16" h="16" xo="160" yo="32" id="3245" name="tile_3245" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2816" y="496" w="16" h="16" xo="176" yo="32" id="3246" name="tile_3246" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2848" y="496" w="16" h="16" xo="32" yo="16" id="3247" name="tile_3247" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2864" y="496" w="16" h="16" xo="48" yo="16" id="3248" name="tile_3248" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3343,7 +3354,6 @@
     <tile bgName="tstHardman" x="2896" y="496" w="16" h="16" xo="80" yo="16" id="3250" name="tile_3250" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2928" y="496" w="16" h="16" xo="192" yo="32" id="3251" name="tile_3251" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2944" y="496" w="16" h="16" xo="208" yo="32" id="3252" name="tile_3252" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3056" y="496" w="16" h="16" xo="160" yo="32" id="3253" name="tile_3253" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3072" y="496" w="16" h="16" xo="176" yo="32" id="3254" name="tile_3254" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3104" y="496" w="16" h="16" xo="32" yo="16" id="3255" name="tile_3255" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3120" y="496" w="16" h="16" xo="48" yo="16" id="3256" name="tile_3256" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3351,7 +3361,6 @@
     <tile bgName="tstHardman" x="3152" y="496" w="16" h="16" xo="80" yo="16" id="3258" name="tile_3258" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3184" y="496" w="16" h="16" xo="192" yo="32" id="3259" name="tile_3259" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3200" y="496" w="16" h="16" xo="208" yo="32" id="3260" name="tile_3260" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3312" y="496" w="16" h="16" xo="160" yo="32" id="3261" name="tile_3261" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="16" y="512" w="16" h="16" xo="224" yo="80" id="3262" name="tile_3262" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="32" y="512" w="16" h="16" xo="224" yo="80" id="3263" name="tile_3263" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="48" y="512" w="16" h="16" xo="224" yo="80" id="3264" name="tile_3264" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3402,13 +3411,11 @@
     <tile bgName="tstHardman" x="1712" y="512" w="16" h="16" xo="208" yo="32" id="3309" name="tile_3309" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1744" y="512" w="16" h="16" xo="192" yo="32" id="3310" name="tile_3310" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1760" y="512" w="16" h="16" xo="208" yo="32" id="3311" name="tile_3311" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="1776" y="512" w="16" h="16" xo="160" yo="32" id="3312" name="tile_3312" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1792" y="512" w="16" h="16" xo="176" yo="32" id="3313" name="tile_3313" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1952" y="512" w="16" h="16" xo="192" yo="32" id="3314" name="tile_3314" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1968" y="512" w="16" h="16" xo="208" yo="32" id="3315" name="tile_3315" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2000" y="512" w="16" h="16" xo="192" yo="32" id="3316" name="tile_3316" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2016" y="512" w="16" h="16" xo="208" yo="32" id="3317" name="tile_3317" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2032" y="512" w="16" h="16" xo="160" yo="32" id="3318" name="tile_3318" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2048" y="512" w="16" h="16" xo="176" yo="32" id="3319" name="tile_3319" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2208" y="512" w="16" h="16" xo="192" yo="32" id="3320" name="tile_3320" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2224" y="512" w="16" h="16" xo="208" yo="32" id="3321" name="tile_3321" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3420,25 +3427,21 @@
     <tile bgName="tstHardman" x="2480" y="512" w="16" h="16" xo="208" yo="32" id="3327" name="tile_3327" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2512" y="512" w="16" h="16" xo="192" yo="32" id="3328" name="tile_3328" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2528" y="512" w="16" h="16" xo="208" yo="32" id="3329" name="tile_3329" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2544" y="512" w="16" h="16" xo="160" yo="32" id="3330" name="tile_3330" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2560" y="512" w="16" h="16" xo="176" yo="32" id="3331" name="tile_3331" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2720" y="512" w="16" h="16" xo="192" yo="32" id="3332" name="tile_3332" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2736" y="512" w="16" h="16" xo="208" yo="32" id="3333" name="tile_3333" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2768" y="512" w="16" h="16" xo="192" yo="32" id="3334" name="tile_3334" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2784" y="512" w="16" h="16" xo="208" yo="32" id="3335" name="tile_3335" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2800" y="512" w="16" h="16" xo="160" yo="32" id="3336" name="tile_3336" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2816" y="512" w="16" h="16" xo="176" yo="32" id="3337" name="tile_3337" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2976" y="512" w="16" h="16" xo="192" yo="32" id="3338" name="tile_3338" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2992" y="512" w="16" h="16" xo="208" yo="32" id="3339" name="tile_3339" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3024" y="512" w="16" h="16" xo="192" yo="32" id="3340" name="tile_3340" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3040" y="512" w="16" h="16" xo="208" yo="32" id="3341" name="tile_3341" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3056" y="512" w="16" h="16" xo="160" yo="32" id="3342" name="tile_3342" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3072" y="512" w="16" h="16" xo="176" yo="32" id="3343" name="tile_3343" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3232" y="512" w="16" h="16" xo="192" yo="32" id="3344" name="tile_3344" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3248" y="512" w="16" h="16" xo="208" yo="32" id="3345" name="tile_3345" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3280" y="512" w="16" h="16" xo="192" yo="32" id="3346" name="tile_3346" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3296" y="512" w="16" h="16" xo="208" yo="32" id="3347" name="tile_3347" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3312" y="512" w="16" h="16" xo="160" yo="32" id="3348" name="tile_3348" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="16" y="528" w="16" h="16" xo="224" yo="64" id="3349" name="tile_3349" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="32" y="528" w="16" h="16" xo="192" yo="64" id="3350" name="tile_3350" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="48" y="528" w="16" h="16" xo="192" yo="64" id="3351" name="tile_3351" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3522,11 +3525,9 @@
     <tile bgName="tstHardman" x="1536" y="528" w="16" h="16" xo="176" yo="32" id="3429" name="tile_3429" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1568" y="528" w="16" h="16" xo="192" yo="32" id="3430" name="tile_3430" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1584" y="528" w="16" h="16" xo="208" yo="32" id="3431" name="tile_3431" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="1776" y="528" w="16" h="16" xo="160" yo="32" id="3432" name="tile_3432" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1792" y="528" w="16" h="16" xo="176" yo="32" id="3433" name="tile_3433" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1824" y="528" w="16" h="16" xo="192" yo="32" id="3434" name="tile_3434" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1840" y="528" w="16" h="16" xo="208" yo="32" id="3435" name="tile_3435" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2032" y="528" w="16" h="16" xo="160" yo="32" id="3436" name="tile_3436" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2048" y="528" w="16" h="16" xo="176" yo="32" id="3437" name="tile_3437" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2080" y="528" w="16" h="16" xo="192" yo="32" id="3438" name="tile_3438" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2096" y="528" w="16" h="16" xo="208" yo="32" id="3439" name="tile_3439" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3534,19 +3535,15 @@
     <tile bgName="tstHardman" x="2304" y="528" w="16" h="16" xo="176" yo="32" id="3441" name="tile_3441" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2336" y="528" w="16" h="16" xo="192" yo="32" id="3442" name="tile_3442" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2352" y="528" w="16" h="16" xo="208" yo="32" id="3443" name="tile_3443" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2544" y="528" w="16" h="16" xo="160" yo="32" id="3444" name="tile_3444" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2560" y="528" w="16" h="16" xo="176" yo="32" id="3445" name="tile_3445" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2592" y="528" w="16" h="16" xo="192" yo="32" id="3446" name="tile_3446" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2608" y="528" w="16" h="16" xo="208" yo="32" id="3447" name="tile_3447" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2800" y="528" w="16" h="16" xo="160" yo="32" id="3448" name="tile_3448" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2816" y="528" w="16" h="16" xo="176" yo="32" id="3449" name="tile_3449" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2848" y="528" w="16" h="16" xo="192" yo="32" id="3450" name="tile_3450" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2864" y="528" w="16" h="16" xo="208" yo="32" id="3451" name="tile_3451" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3056" y="528" w="16" h="16" xo="160" yo="32" id="3452" name="tile_3452" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3072" y="528" w="16" h="16" xo="176" yo="32" id="3453" name="tile_3453" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3104" y="528" w="16" h="16" xo="192" yo="32" id="3454" name="tile_3454" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3120" y="528" w="16" h="16" xo="208" yo="32" id="3455" name="tile_3455" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3312" y="528" w="16" h="16" xo="160" yo="32" id="3456" name="tile_3456" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="16" y="544" w="16" h="16" xo="224" yo="112" id="3457" name="tile_3457" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="32" y="544" w="16" h="16" xo="224" yo="112" id="3458" name="tile_3458" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="48" y="544" w="16" h="16" xo="224" yo="112" id="3459" name="tile_3459" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3644,12 +3641,10 @@
     <tile bgName="tstHardman" x="1648" y="544" w="16" h="16" xo="48" yo="16" id="3551" name="tile_3551" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1664" y="544" w="16" h="16" xo="64" yo="16" id="3552" name="tile_3552" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1680" y="544" w="16" h="16" xo="80" yo="16" id="3553" name="tile_3553" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="1776" y="544" w="16" h="16" xo="160" yo="32" id="3554" name="tile_3554" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1888" y="544" w="16" h="16" xo="32" yo="16" id="3555" name="tile_3555" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1904" y="544" w="16" h="16" xo="48" yo="16" id="3556" name="tile_3556" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1920" y="544" w="16" h="16" xo="64" yo="16" id="3557" name="tile_3557" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1936" y="544" w="16" h="16" xo="80" yo="16" id="3558" name="tile_3558" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2032" y="544" w="16" h="16" xo="160" yo="32" id="3559" name="tile_3559" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2144" y="544" w="16" h="16" xo="32" yo="16" id="3560" name="tile_3560" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2160" y="544" w="16" h="16" xo="48" yo="16" id="3561" name="tile_3561" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2176" y="544" w="16" h="16" xo="64" yo="16" id="3562" name="tile_3562" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3659,20 +3654,16 @@
     <tile bgName="tstHardman" x="2416" y="544" w="16" h="16" xo="48" yo="16" id="3566" name="tile_3566" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2432" y="544" w="16" h="16" xo="64" yo="16" id="3567" name="tile_3567" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2448" y="544" w="16" h="16" xo="80" yo="16" id="3568" name="tile_3568" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2544" y="544" w="16" h="16" xo="160" yo="32" id="3569" name="tile_3569" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2656" y="544" w="16" h="16" xo="32" yo="16" id="3570" name="tile_3570" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2672" y="544" w="16" h="16" xo="48" yo="16" id="3571" name="tile_3571" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2688" y="544" w="16" h="16" xo="64" yo="16" id="3572" name="tile_3572" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2704" y="544" w="16" h="16" xo="80" yo="16" id="3573" name="tile_3573" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="2800" y="544" w="16" h="16" xo="160" yo="32" id="3574" name="tile_3574" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2912" y="544" w="16" h="16" xo="32" yo="16" id="3575" name="tile_3575" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="2928" y="544" w="16" h="16" xo="48" yo="16" id="3576" name="tile_3576" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3056" y="544" w="16" h="16" xo="160" yo="32" id="3577" name="tile_3577" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3168" y="544" w="16" h="16" xo="32" yo="16" id="3578" name="tile_3578" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3184" y="544" w="16" h="16" xo="48" yo="16" id="3579" name="tile_3579" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3200" y="544" w="16" h="16" xo="64" yo="16" id="3580" name="tile_3580" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="3216" y="544" w="16" h="16" xo="80" yo="16" id="3581" name="tile_3581" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="3312" y="544" w="16" h="16" xo="160" yo="32" id="3582" name="tile_3582" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="16" y="560" w="16" h="16" xo="224" yo="112" id="3583" name="tile_3583" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="32" y="560" w="16" h="16" xo="224" yo="112" id="3584" name="tile_3584" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="48" y="560" w="16" h="16" xo="224" yo="112" id="3585" name="tile_3585" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3768,7 +3759,6 @@
     <tile bgName="tstHardman" x="1520" y="560" w="16" h="16" xo="96" yo="48" id="3675" name="tile_3675" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1536" y="560" w="16" h="16" xo="144" yo="48" id="3676" name="tile_3676" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1552" y="560" w="16" h="16" xo="160" yo="48" id="3677" name="tile_3677" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstHardman" x="1776" y="560" w="16" h="16" xo="160" yo="32" id="3678" name="tile_3678" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="16" y="576" w="16" h="16" xo="224" yo="112" id="3679" name="tile_3679" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="32" y="576" w="16" h="16" xo="224" yo="112" id="3680" name="tile_3680" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="48" y="576" w="16" h="16" xo="224" yo="112" id="3681" name="tile_3681" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
