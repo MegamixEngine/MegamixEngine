@@ -7,7 +7,7 @@
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>6</bbox_left>
+  <bbox_left>4</bbox_left>
   <bbox_right>39</bbox_right>
   <bbox_top>4</bbox_top>
   <bbox_bottom>39</bbox_bottom>
@@ -32,9 +32,5 @@
     <frame index="9">images\sprPlantIntro_9.png</frame>
     <frame index="10">images\sprPlantIntro_10.png</frame>
     <frame index="11">images\sprPlantIntro_11.png</frame>
-    <frame index="12">images\sprPlantIntro_12.png</frame>
-    <frame index="13">images\sprPlantIntro_13.png</frame>
-    <frame index="14">images\sprPlantIntro_14.png</frame>
-    <frame index="15">images\sprPlantIntro_15.png</frame>
   </frames>
 </sprite>

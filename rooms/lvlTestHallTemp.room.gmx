@@ -214,13 +214,6 @@
     <instance objName="objNumetall" x="480" y="640" name="inst_3D952D5C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="432" y="624" name="inst_99BAA40C" locked="0" code="objectToStop=objNumetall;&#xA;" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="512" y="624" name="inst_38ACAFA4" locked="0" code="objectToStop=objNumetall;&#xA;" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="384" y="592" name="inst_77ECB21F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="592" y="576" name="inst_FBF3F985" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="1616" y="608" name="inst_2CAA8014" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="1488" y="384" name="inst_88F1C1F1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="1216" y="368" name="inst_F6F89489" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="240" y="368" name="inst_68368374" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="128" y="320" name="inst_A3502571" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBubbleFloor" x="1024" y="624" name="inst_BE02BC70" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBubbleFloor" x="1056" y="624" name="inst_8C514AD4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBubbleFloor" x="1088" y="624" name="inst_6BD9FAC4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

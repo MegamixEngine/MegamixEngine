@@ -33,7 +33,7 @@ healthpointsStart = 28;
 healthpoints = healthpointsStart;
 
 pose = sprCentaurIntro;
-poseImgSpeed = 6 / 60;
+poseImgSpeed = 12 / 60;
 contactDamage = 4;
 
 ground = false;
@@ -435,6 +435,7 @@ if (entityCanStep())
                 {
                     attackTimer = 0;
                     sprite_index = sprCentaurTeleport;
+                    playSFX(sfxCentaurTeleport);
                     imageTimerMax = 2;
                     hasFired = true;
                 }
