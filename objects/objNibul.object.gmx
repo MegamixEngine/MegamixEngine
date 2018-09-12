@@ -41,7 +41,10 @@ facePlayerOnSpawn = true;
 moveTimer = 120;
 phase = 0;
 init = 1;
-col = 0; // 0 = Nibul, 1 = Jupibul
+
+// @cc - Sets Nibul's sprite: 0 = Nibul, 1 = Jupibul
+col = 0;
+
 targX = 0;
 targY = 0;
 toxin = false;
