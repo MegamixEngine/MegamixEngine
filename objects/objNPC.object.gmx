@@ -145,7 +145,7 @@ option_spoken = false;
 _im = 0;
 
 showarrow = 0;
-canExecute = false;
+arrowDraw = false;
 </string>
           </argument>
         </arguments>
@@ -206,7 +206,7 @@ if (!global.frozen &amp;&amp; !dead)
                     
                     if (talkable)
                     {
-                        drawArrow = true;
+                        arrowDraw = true;
                         if (global.keyUpPressed[other.playerID] &amp;&amp; !other.climbing)
                         {
                             spawnTextBoxSingleString(name, name_color, text);
@@ -217,7 +217,6 @@ if (!global.frozen &amp;&amp; !dead)
                                 addChoice(i, option[i]);
                                 i += 1;
                             }
-                            
                             active = true;
                             option_spoken = false;
                             _prev_direction = image_xscale;
@@ -230,6 +229,10 @@ if (!global.frozen &amp;&amp; !dead)
                             event_user(1); // start dialogue
                             global.frozen = 1;
                         }
+                    }
+                    else
+                    {
+                        arrowDraw = false;
                     }
                 }
             }
@@ -271,8 +274,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (active)
-    exit;
+            <string>active = 0;
 global.frozen = 0;
     
 // return to previous orientation, whether it was the same or not -- unless face_player is true
@@ -283,14 +285,14 @@ if (!face_player)
     
 if (script_on_talk_end != 0 &amp;&amp; option_chosen == -1)
     script_execute(script_on_talk_end);
-else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_script_on_talk_end[option_chosen] != 0 &amp;&amp; canExecute == true)
+else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_script_on_talk_end[option_chosen] != 0)
 {
     script_execute(option_script_on_talk_end[option_chosen]);
 }
         
 if (code_on_talk_end != "" &amp;&amp; option_chosen == -1)
     stringExecutePartial(code_on_talk_end);
-else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_code_on_talk_end[option_chosen] != "" &amp;&amp; canExecute == true)
+else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_code_on_talk_end[option_chosen] != "")
 {
     stringExecutePartial(option_code_on_talk_end[option_chosen]);
 }
@@ -451,7 +453,7 @@ if (idle_sprite != sprVoltIdle)
             <kind>1</kind>
             <string>event_inherited();
 
-if (place_meeting(x + (other.talk_distance * image_xscale), y, target) &amp;&amp; drawArrow)
+if (arrowDraw)
 {
     draw_sprite(sprPressUp, 0, bboxGetXCenter(), bbox_top - 12);
 }
