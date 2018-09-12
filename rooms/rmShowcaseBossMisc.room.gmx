@@ -194,7 +194,7 @@ with (objHunterPlatform)
     <instance objName="objHunterPlatform" x="720" y="688" name="inst_81DB526A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objYashichi" x="888" y="1072" name="inst_AF0179AB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="896" y="1008" name="inst_2F32C49F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSharkSubmarineTail" x="240" y="976" name="inst_869F76AA" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSharkSubmarineTail" x="240" y="976" name="inst_869F76AA" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objEnergyElement;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSharkSubmarineBody" x="496" y="976" name="inst_EDFB2CDA" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSharkSubmarineHead" x="528" y="976" name="inst_A2AD6209" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeftScrolling" x="512" y="896" name="inst_040B95F6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -238,34 +238,6 @@ with (objHunterPlatform)
     <instance objName="objBossBarrier" x="688" y="192" name="inst_98A7E224" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="704" y="192" name="inst_FD0A8B7E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="720" y="192" name="inst_30449C98" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="160" y="1088" name="inst_9CD3FF31" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="224" y="1088" name="inst_898F819C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="208" y="1088" name="inst_EFAFBB6E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="192" y="1088" name="inst_DA8C6DDB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="176" y="1088" name="inst_F461648D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="224" y="1104" name="inst_D1165B8E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="208" y="1104" name="inst_24B9E7AB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="192" y="1104" name="inst_791EFAE2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="176" y="1104" name="inst_43496D2D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="160" y="1104" name="inst_0B736DF9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="144" y="1104" name="inst_AAB8BAEC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="128" y="1104" name="inst_6A5D7A3A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="144" y="1088" name="inst_EF55DB94" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="128" y="1088" name="inst_BC1F2EF1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="112" y="1088" name="inst_F82E90DF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="96" y="1088" name="inst_E1CFF827" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="80" y="1088" name="inst_791BEE2D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="64" y="1088" name="inst_4243F184" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="48" y="1088" name="inst_33F575E7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="32" y="1088" name="inst_91CE480B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="16" y="1088" name="inst_6D01DAA8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="112" y="1104" name="inst_E6AC131E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="96" y="1104" name="inst_A40BCD23" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="80" y="1104" name="inst_E088D87D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="64" y="1104" name="inst_08F5F0EA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="48" y="1104" name="inst_AE193E4A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="32" y="1104" name="inst_37B9CF69" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBossBarrier" x="16" y="1104" name="inst_81C2EF90" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="368" y="176" name="inst_7CA5F646" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="384" y="176" name="inst_64EEAE2C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="0" y="224" name="inst_CCD46DDC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -1050,6 +1022,13 @@ with (objHunterPlatform)
     <tile bgName="tstMM9Endless" x="112" y="1296" w="32" h="16" xo="32" yo="32" id="11356805" name="inst_8CBCCC8B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM9Endless" x="112" y="1248" w="32" h="16" xo="32" yo="0" id="11356806" name="inst_79B334F4" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM9Wily3" x="112" y="1312" w="32" h="32" xo="0" yo="16" id="11356807" name="inst_4084E4BF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM9Wily3" x="16" y="1088" w="32" h="32" xo="0" yo="0" id="11356970" name="inst_F017BFBF" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM9Wily3" x="48" y="1088" w="32" h="32" xo="0" yo="0" id="11356971" name="inst_A2B3342F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM9Wily3" x="80" y="1088" w="32" h="32" xo="0" yo="0" id="11356972" name="inst_DD93C174" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM9Wily3" x="112" y="1088" w="32" h="32" xo="0" yo="0" id="11356973" name="inst_EFF5823D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM9Wily3" x="144" y="1088" w="32" h="32" xo="0" yo="0" id="11356974" name="inst_446F5271" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM9Wily3" x="176" y="1088" w="32" h="32" xo="0" yo="0" id="11356975" name="inst_C6027CAC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstMM9Wily3" x="208" y="1088" w="32" h="32" xo="0" yo="0" id="11356976" name="inst_EC0C7382" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>
