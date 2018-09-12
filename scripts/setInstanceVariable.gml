@@ -10,8 +10,8 @@ var _____val_____ = argument1;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4501 variables
-/// from 1652 source files
+/// 4514 variables
+/// from 1599 source files
 
 if (_____vs_____ == "") return false;
 else if (stringStartsWith(_____vs_____, 'a'))
@@ -958,6 +958,7 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "drawMe") drawMe = _____val_____;
     else if (_____vs_____ == "drawString") drawString = _____val_____;
     else if (_____vs_____ == "drawTimer") drawTimer = _____val_____;
+    else if (_____vs_____ == "drawTokenIndex") drawTokenIndex = _____val_____;
     else if (_____vs_____ == "drawWeaponIcon") drawWeaponIcon = _____val_____;
     else if (_____vs_____ == "drawX") drawX = _____val_____;
     else if (_____vs_____ == "drawXPosition") drawXPosition = _____val_____;
@@ -1030,6 +1031,7 @@ else if (stringStartsWith(_____vs_____, 'e'))
     else if (_____vs_____ == "elecDirec") elecDirec = _____val_____;
     else if (_____vs_____ == "electricityList") electricityList = _____val_____;
     else if (_____vs_____ == "elementCode") elementCode = _____val_____;
+    else if (_____vs_____ == "elementIndex") elementIndex = _____val_____;
     else if (_____vs_____ == "elementName") elementName = _____val_____;
     else if (_____vs_____ == "elementScript") elementScript = _____val_____;
     else if (_____vs_____ == "elt") elt = _____val_____;
@@ -1116,6 +1118,7 @@ else if (stringStartsWith(_____vs_____, 'e'))
     else if (_____vs_____ == "extendSpeed") extendSpeed = _____val_____;
     else if (_____vs_____ == "extendX") extendX = _____val_____;
     else if (_____vs_____ == "extended") extended = _____val_____;
+    else if (_____vs_____ == "externalRoomFilename") externalRoomFilename = _____val_____;
     else if (_____vs_____ == "extraBirdTurn") extraBirdTurn = _____val_____;
     else if (_____vs_____ == "extraBirds") extraBirds = _____val_____;
     else if (_____vs_____ == "extraChoice") extraChoice = _____val_____;
@@ -1228,6 +1231,7 @@ else if (stringStartsWith(_____vs_____, 'f'))
     else if (_____vs_____ == "flr") flr = _____val_____;
     else if (_____vs_____ == "fluffytheironicallynamedfish") fluffytheironicallynamedfish = _____val_____;
     else if (_____vs_____ == "flyAwayTimer") flyAwayTimer = _____val_____;
+    else if (_____vs_____ == "flySpeed") flySpeed = _____val_____;
     else if (_____vs_____ == "flyTimer") flyTimer = _____val_____;
     else if (_____vs_____ == "fn") fn = _____val_____;
     else if (_____vs_____ == "fn_id") fn_id = _____val_____;
@@ -1562,6 +1566,7 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "global.levelRunValid") global.levelRunValid = _____val_____;
     else if (_____vs_____ == "global.levelSong") global.levelSong = _____val_____;
     else if (_____vs_____ == "global.levelSongType") global.levelSongType = _____val_____;
+    else if (_____vs_____ == "global.levelTTokensTotal") global.levelTTokensTotal = _____val_____;
     else if (_____vs_____ == "global.levelTrackNumber") global.levelTrackNumber = _____val_____;
     else if (_____vs_____ == "global.levelVolume") global.levelVolume = _____val_____;
     else if (_____vs_____ == "global.leverPropagated") global.leverPropagated = _____val_____;
@@ -1691,6 +1696,7 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "global.sturdyHelmet") global.sturdyHelmet = _____val_____;
     else if (_____vs_____ == "global.superArmInterface") global.superArmInterface = _____val_____;
     else if (_____vs_____ == "global.switchingSections") global.switchingSections = _____val_____;
+    else if (_____vs_____ == "global.tTokensCollected") global.tTokensCollected = _____val_____;
     else if (_____vs_____ == "global.telTelWeather") global.telTelWeather = _____val_____;
     else if (_____vs_____ == "global.teleportSound") global.teleportSound = _____val_____;
     else if (_____vs_____ == "global.teleportX") global.teleportX = _____val_____;
@@ -1700,6 +1706,7 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "global.tileLayersN") global.tileLayersN = _____val_____;
     else if (_____vs_____ == "global.timeStopped") global.timeStopped = _____val_____;
     else if (_____vs_____ == "global.totalWeapons") global.totalWeapons = _____val_____;
+    else if (_____vs_____ == "global.tricksterTokens") global.tricksterTokens = _____val_____;
     else if (_____vs_____ == "global.unitSuiteName") global.unitSuiteName = _____val_____;
     else if (_____vs_____ == "global.unitSuiteScript") global.unitSuiteScript = _____val_____;
     else if (_____vs_____ == "global.unitTestAbortAll") global.unitTestAbortAll = _____val_____;
@@ -1733,12 +1740,14 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "global.weaponSwitchLeftKey") global.weaponSwitchLeftKey = _____val_____;
     else if (_____vs_____ == "global.weaponSwitchRightKey") global.weaponSwitchRightKey = _____val_____;
     else if (_____vs_____ == "globalDir") globalDir = _____val_____;
+    else if (_____vs_____ == "globalElementIndex") globalElementIndex = _____val_____;
     else if (_____vs_____ == "globalYHighOffset") globalYHighOffset = _____val_____;
     else if (_____vs_____ == "globalYLowOffset") globalYLowOffset = _____val_____;
     else if (_____vs_____ == "globalescapeBehavior") globalescapeBehavior = _____val_____;
     else if (_____vs_____ == "gloopLock") gloopLock = _____val_____;
     else if (_____vs_____ == "go") go = _____val_____;
     else if (_____vs_____ == "goForth") goForth = _____val_____;
+    else if (_____vs_____ == "goHere") goHere = _____val_____;
     else if (_____vs_____ == "goToMercury") goToMercury = _____val_____;
     else if (_____vs_____ == "goToX") goToX = _____val_____;
     else if (_____vs_____ == "goingDown") goingDown = _____val_____;
@@ -2063,6 +2072,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "isDrop") isDrop = _____val_____;
     else if (_____vs_____ == "isDropTimer") isDropTimer = _____val_____;
     else if (_____vs_____ == "isEnd") isEnd = _____val_____;
+    else if (_____vs_____ == "isExternal") isExternal = _____val_____;
     else if (_____vs_____ == "isFalling") isFalling = _____val_____;
     else if (_____vs_____ == "isFight") isFight = _____val_____;
     else if (_____vs_____ == "isFlying") isFlying = _____val_____;
@@ -2415,6 +2425,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "maxSize") maxSize = _____val_____;
     else if (_____vs_____ == "maxSpd") maxSpd = _____val_____;
     else if (_____vs_____ == "maxSpeed") maxSpeed = _____val_____;
+    else if (_____vs_____ == "maxTTokens") maxTTokens = _____val_____;
     else if (_____vs_____ == "maxTarget") maxTarget = _____val_____;
     else if (_____vs_____ == "maxTellies") maxTellies = _____val_____;
     else if (_____vs_____ == "maxTimer") maxTimer = _____val_____;
@@ -4056,6 +4067,8 @@ else if (stringStartsWith(_____vs_____, 't'))
     else if (_____vs_____ == "toggle") toggle = _____val_____;
     else if (_____vs_____ == "tokElse") tokElse = _____val_____;
     else if (_____vs_____ == "token") token = _____val_____;
+    else if (_____vs_____ == "tokenIndex") tokenIndex = _____val_____;
+    else if (_____vs_____ == "tokensCollected") tokensCollected = _____val_____;
     else if (_____vs_____ == "top") top = _____val_____;
     else if (_____vs_____ == "topLock") topLock = _____val_____;
     else if (_____vs_____ == "topSolid") topSolid = _____val_____;
