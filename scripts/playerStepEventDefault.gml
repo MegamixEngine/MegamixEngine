@@ -5,7 +5,10 @@ if (!global.frozen && !frozen)
     
     if (!playerIsLocked(PL_LOCK_PHYSICS))
     {
+        var iscl = image_xscale;
+        image_xscale=1;
         event_inherited(); // General prtEntity code
+        image_xscale=iscl;
         playerMovement();
     }
     

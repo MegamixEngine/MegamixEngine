@@ -9,7 +9,7 @@ var _____vs_____ = argument0;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4501 variables
+/// 4519 variables
 /// from 1652 source files
 
 if (_____vs_____ == "") return false;
@@ -254,6 +254,10 @@ else if (stringStartsWith(_____vs_____, 'b'))
     else if (_____vs_____ == "baseCol") global.retval = baseCol;
     else if (_____vs_____ == "bboxHeight") global.retval = bboxHeight;
     else if (_____vs_____ == "bboxWidth") global.retval = bboxWidth;
+    else if (_____vs_____ == "bbox_bottom") global.retval = bbox_bottom;
+    else if (_____vs_____ == "bbox_left") global.retval = bbox_left;
+    else if (_____vs_____ == "bbox_right") global.retval = bbox_right;
+    else if (_____vs_____ == "bbox_top") global.retval = bbox_top;
     else if (_____vs_____ == "bd") global.retval = bd;
     else if (_____vs_____ == "bee") global.retval = bee;
     else if (_____vs_____ == "beenOutsideView") global.retval = beenOutsideView;
@@ -1115,6 +1119,7 @@ else if (stringStartsWith(_____vs_____, 'e'))
     else if (_____vs_____ == "extendSpeed") global.retval = extendSpeed;
     else if (_____vs_____ == "extendX") global.retval = extendX;
     else if (_____vs_____ == "extended") global.retval = extended;
+    else if (_____vs_____ == "externalRoomFilename") global.retval = externalRoomFilename;
     else if (_____vs_____ == "extraBirdTurn") global.retval = extraBirdTurn;
     else if (_____vs_____ == "extraBirds") global.retval = extraBirds;
     else if (_____vs_____ == "extraChoice") global.retval = extraChoice;
@@ -1156,6 +1161,7 @@ else if (stringStartsWith(_____vs_____, 'f'))
     else if (_____vs_____ == "fallTimer") global.retval = fallTimer;
     else if (_____vs_____ == "fallen") global.retval = fallen;
     else if (_____vs_____ == "falling") global.retval = falling;
+    else if (_____vs_____ == "false") global.retval = false;
     else if (_____vs_____ == "fanoutDistance") global.retval = fanoutDistance;
     else if (_____vs_____ == "fastSpeed") global.retval = fastSpeed;
     else if (_____vs_____ == "fc") global.retval = fc;
@@ -1227,6 +1233,7 @@ else if (stringStartsWith(_____vs_____, 'f'))
     else if (_____vs_____ == "flr") global.retval = flr;
     else if (_____vs_____ == "fluffytheironicallynamedfish") global.retval = fluffytheironicallynamedfish;
     else if (_____vs_____ == "flyAwayTimer") global.retval = flyAwayTimer;
+    else if (_____vs_____ == "flySpeed") global.retval = flySpeed;
     else if (_____vs_____ == "flyTimer") global.retval = flyTimer;
     else if (_____vs_____ == "fn") global.retval = fn;
     else if (_____vs_____ == "fn_id") global.retval = fn_id;
@@ -1738,6 +1745,7 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "gloopLock") global.retval = gloopLock;
     else if (_____vs_____ == "go") global.retval = go;
     else if (_____vs_____ == "goForth") global.retval = goForth;
+    else if (_____vs_____ == "goHere") global.retval = goHere;
     else if (_____vs_____ == "goToMercury") global.retval = goToMercury;
     else if (_____vs_____ == "goToX") global.retval = goToX;
     else if (_____vs_____ == "goingDown") global.retval = goingDown;
@@ -1930,6 +1938,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "iconsYOffset") global.retval = iconsYOffset;
     else if (_____vs_____ == "iconsYSpacing") global.retval = iconsYSpacing;
     else if (_____vs_____ == "iconx") global.retval = iconx;
+    else if (_____vs_____ == "id") global.retval = id;
     else if (_____vs_____ == "idleSprite") global.retval = idleSprite;
     else if (_____vs_____ == "idle_end") global.retval = idle_end;
     else if (_____vs_____ == "idle_speed") global.retval = idle_speed;
@@ -2062,6 +2071,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "isDrop") global.retval = isDrop;
     else if (_____vs_____ == "isDropTimer") global.retval = isDropTimer;
     else if (_____vs_____ == "isEnd") global.retval = isEnd;
+    else if (_____vs_____ == "isExternal") global.retval = isExternal;
     else if (_____vs_____ == "isFalling") global.retval = isFalling;
     else if (_____vs_____ == "isFight") global.retval = isFight;
     else if (_____vs_____ == "isFlying") global.retval = isFlying;
@@ -2095,6 +2105,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "isTile") global.retval = isTile;
     else if (_____vs_____ == "isVisible") global.retval = isVisible;
     else if (_____vs_____ == "isWave") global.retval = isWave;
+    else if (_____vs_____ == "iscl") global.retval = iscl;
     else if (_____vs_____ == "isfree") global.retval = isfree;
     else if (_____vs_____ == "ispushed") global.retval = ispushed;
     else if (_____vs_____ == "item") global.retval = item;
@@ -2725,6 +2736,7 @@ else if (stringStartsWith(_____vs_____, 'o'))
     else if (_____vs_____ == "objectThrown") global.retval = objectThrown;
     else if (_____vs_____ == "objectToDrop") global.retval = objectToDrop;
     else if (_____vs_____ == "objectToStop") global.retval = objectToStop;
+    else if (_____vs_____ == "object_index") global.retval = object_index;
     else if (_____vs_____ == "objects") global.retval = objects;
     else if (_____vs_____ == "obstacleList") global.retval = obstacleList;
     else if (_____vs_____ == "of") global.retval = of;
@@ -3152,6 +3164,7 @@ else if (stringStartsWith(_____vs_____, 'r'))
     else if (_____vs_____ == "randList") global.retval = randList;
     else if (_____vs_____ == "randitem") global.retval = randitem;
     else if (_____vs_____ == "randomList") global.retval = randomList;
+    else if (_____vs_____ == "randomMissiles") global.retval = randomMissiles;
     else if (_____vs_____ == "randomOffset") global.retval = randomOffset;
     else if (_____vs_____ == "randomSpawn") global.retval = randomSpawn;
     else if (_____vs_____ == "randomiser") global.retval = randomiser;
@@ -4089,6 +4102,7 @@ else if (stringStartsWith(_____vs_____, 't'))
     else if (_____vs_____ == "triggered") global.retval = triggered;
     else if (_____vs_____ == "trim") global.retval = trim;
     else if (_____vs_____ == "truckSpeed") global.retval = truckSpeed;
+    else if (_____vs_____ == "true") global.retval = true;
     else if (_____vs_____ == "trueBottom") global.retval = trueBottom;
     else if (_____vs_____ == "trueGrav") global.retval = trueGrav;
     else if (_____vs_____ == "trueHeight") global.retval = trueHeight;
@@ -4325,6 +4339,7 @@ else if (stringStartsWith(_____vs_____, 'x'))
     else if (_____vs_____ == "xPrev") global.retval = xPrev;
     else if (_____vs_____ == "xProvLength") global.retval = xProvLength;
     else if (_____vs_____ == "xSOffset") global.retval = xSOffset;
+    else if (_____vs_____ == "xScaleStart") global.retval = xScaleStart;
     else if (_____vs_____ == "xSpd") global.retval = xSpd;
     else if (_____vs_____ == "xSpdConst") global.retval = xSpdConst;
     else if (_____vs_____ == "xSpeed") global.retval = xSpeed;
@@ -4506,6 +4521,9 @@ else if (stringStartsWith(_____vs_____, 'D'))
 {
     if (_____vs_____ == "") return false;
     else if (_____vs_____ == "DEFAULT_SPAWN_LIST") global.retval = DEFAULT_SPAWN_LIST;
+    else if (_____vs_____ == "DIFF_EASY") global.retval = DIFF_EASY;
+    else if (_____vs_____ == "DIFF_HARD") global.retval = DIFF_HARD;
+    else if (_____vs_____ == "DIFF_NORMAL") global.retval = DIFF_NORMAL;
     else return false;
 }
 else if (stringStartsWith(_____vs_____, 'E'))

@@ -10,7 +10,7 @@ var _____val_____ = argument1;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4501 variables
+/// 4508 variables
 /// from 1652 source files
 
 if (_____vs_____ == "") return false;
@@ -1116,6 +1116,7 @@ else if (stringStartsWith(_____vs_____, 'e'))
     else if (_____vs_____ == "extendSpeed") extendSpeed = _____val_____;
     else if (_____vs_____ == "extendX") extendX = _____val_____;
     else if (_____vs_____ == "extended") extended = _____val_____;
+    else if (_____vs_____ == "externalRoomFilename") externalRoomFilename = _____val_____;
     else if (_____vs_____ == "extraBirdTurn") extraBirdTurn = _____val_____;
     else if (_____vs_____ == "extraBirds") extraBirds = _____val_____;
     else if (_____vs_____ == "extraChoice") extraChoice = _____val_____;
@@ -1228,6 +1229,7 @@ else if (stringStartsWith(_____vs_____, 'f'))
     else if (_____vs_____ == "flr") flr = _____val_____;
     else if (_____vs_____ == "fluffytheironicallynamedfish") fluffytheironicallynamedfish = _____val_____;
     else if (_____vs_____ == "flyAwayTimer") flyAwayTimer = _____val_____;
+    else if (_____vs_____ == "flySpeed") flySpeed = _____val_____;
     else if (_____vs_____ == "flyTimer") flyTimer = _____val_____;
     else if (_____vs_____ == "fn") fn = _____val_____;
     else if (_____vs_____ == "fn_id") fn_id = _____val_____;
@@ -1739,6 +1741,7 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "gloopLock") gloopLock = _____val_____;
     else if (_____vs_____ == "go") go = _____val_____;
     else if (_____vs_____ == "goForth") goForth = _____val_____;
+    else if (_____vs_____ == "goHere") goHere = _____val_____;
     else if (_____vs_____ == "goToMercury") goToMercury = _____val_____;
     else if (_____vs_____ == "goToX") goToX = _____val_____;
     else if (_____vs_____ == "goingDown") goingDown = _____val_____;
@@ -2063,6 +2066,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "isDrop") isDrop = _____val_____;
     else if (_____vs_____ == "isDropTimer") isDropTimer = _____val_____;
     else if (_____vs_____ == "isEnd") isEnd = _____val_____;
+    else if (_____vs_____ == "isExternal") isExternal = _____val_____;
     else if (_____vs_____ == "isFalling") isFalling = _____val_____;
     else if (_____vs_____ == "isFight") isFight = _____val_____;
     else if (_____vs_____ == "isFlying") isFlying = _____val_____;
@@ -2096,6 +2100,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "isTile") isTile = _____val_____;
     else if (_____vs_____ == "isVisible") isVisible = _____val_____;
     else if (_____vs_____ == "isWave") isWave = _____val_____;
+    else if (_____vs_____ == "iscl") iscl = _____val_____;
     else if (_____vs_____ == "isfree") isfree = _____val_____;
     else if (_____vs_____ == "ispushed") ispushed = _____val_____;
     else if (_____vs_____ == "item") item = _____val_____;
@@ -3153,6 +3158,7 @@ else if (stringStartsWith(_____vs_____, 'r'))
     else if (_____vs_____ == "randList") randList = _____val_____;
     else if (_____vs_____ == "randitem") randitem = _____val_____;
     else if (_____vs_____ == "randomList") randomList = _____val_____;
+    else if (_____vs_____ == "randomMissiles") randomMissiles = _____val_____;
     else if (_____vs_____ == "randomOffset") randomOffset = _____val_____;
     else if (_____vs_____ == "randomSpawn") randomSpawn = _____val_____;
     else if (_____vs_____ == "randomiser") randomiser = _____val_____;
@@ -4326,6 +4332,7 @@ else if (stringStartsWith(_____vs_____, 'x'))
     else if (_____vs_____ == "xPrev") xPrev = _____val_____;
     else if (_____vs_____ == "xProvLength") xProvLength = _____val_____;
     else if (_____vs_____ == "xSOffset") xSOffset = _____val_____;
+    else if (_____vs_____ == "xScaleStart") xScaleStart = _____val_____;
     else if (_____vs_____ == "xSpd") xSpd = _____val_____;
     else if (_____vs_____ == "xSpdConst") xSpdConst = _____val_____;
     else if (_____vs_____ == "xSpeed") xSpeed = _____val_____;

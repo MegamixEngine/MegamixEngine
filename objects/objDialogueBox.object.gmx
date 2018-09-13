@@ -106,10 +106,7 @@ with (origin)
 ds_list_destroy(text);
 with (objNPC)
 {
-    if (!active)
-    {
-        event_user(2);
-    }
+    event_user(2);
 }
 </string>
           </argument>
@@ -216,7 +213,6 @@ with (objNPC)
                                         prev_index = d.image_index;
                                         with (d)
                                             instance_destroy();
-                                        canExecute = true;
                                         event_user(0);
                                         active = false;
                                     }
