@@ -274,7 +274,14 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>active = 0;
+            <string>var canExecute = false;
+var executeLocked = false;
+if (option_text[0] != "" &amp;&amp; option_spoken == true &amp;&amp; !global.frozen &amp;&amp; !executeLocked &amp;&amp; !active)
+{
+    executeLocked = true;
+    canExecute = true;
+}
+active = 0;
 global.frozen = 0;
     
 // return to previous orientation, whether it was the same or not -- unless face_player is true
@@ -285,14 +292,14 @@ if (!face_player)
     
 if (script_on_talk_end != 0 &amp;&amp; option_chosen == -1)
     script_execute(script_on_talk_end);
-else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_script_on_talk_end[option_chosen] != 0)
+else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_script_on_talk_end[option_chosen] != 0 &amp;&amp; canExecute)
 {
     script_execute(option_script_on_talk_end[option_chosen]);
 }
         
 if (code_on_talk_end != "" &amp;&amp; option_chosen == -1)
     stringExecutePartial(code_on_talk_end);
-else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_code_on_talk_end[option_chosen] != "")
+else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_code_on_talk_end[option_chosen] != "" &amp;&amp; canExecute)
 {
     stringExecutePartial(option_code_on_talk_end[option_chosen]);
 }

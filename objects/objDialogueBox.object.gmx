@@ -106,7 +106,6 @@ with (origin)
 ds_list_destroy(text);
 with (objNPC)
 {
-    active = 0;
     event_user(2);
 }
 </string>
