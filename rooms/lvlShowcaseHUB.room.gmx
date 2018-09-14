@@ -149,7 +149,7 @@ with (objTeleporter)
     <instance objName="objTeleporter" x="816" y="368" name="inst_7417EAF8" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseMovingPlatforms&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="896" y="272" name="inst_E421ED59" locked="0" code="X = 880;&#xA;Y = 336;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossFlashGravity&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="976" y="976" name="inst_7220C08E" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossEarth&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="816" y="976" name="inst_98E8FCB3" locked="0" code="X = 576;&#xA;Y = 400;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseIceFire&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="816" y="976" name="inst_98E8FCB3" locked="0" code="X = 576;&#xA;Y = 400;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseIceFire&quot;;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="976" y="576" name="inst_32190559" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseLeftovers&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="816" y="1200" name="inst_DAF00AD0" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossFluidic&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="976" y="1200" name="inst_7C0C736D" locked="0" code="X = 0;&#xA;Y = 0;&#xA;&#xA;isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseBossSummoner&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -159,6 +159,8 @@ with (objTeleporter)
     <instance objName="objWeaponEnergyBig" x="816" y="816" name="inst_B80CA551" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWater" x="48" y="32" name="inst_E384D971" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="768" y="448" name="inst_8BC3058B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="816" y="1072" name="inst_E71AE8BB" locked="0" code="isExternal = true;&#xA;externalRoomFilename = &quot;Levels/rmShowcaseSurprise&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="848" y="1072" name="inst_BD4FEBD1" locked="0" code="text = &quot;Respect the Unexpected&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgBasic" x="0" y="0" w="128" h="128" xo="0" yo="0" id="11193335" name="inst_7FF64624" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1256,8 +1258,6 @@ with (objTeleporter)
     <tile bgName="bgBasic" x="832" y="1248" w="16" h="16" xo="48" yo="32" id="11343785" name="inst_19CE1953" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="304" y="704" w="16" h="16" xo="64" yo="32" id="11349570" name="inst_6F16444A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="320" y="704" w="16" h="16" xo="64" yo="32" id="11349571" name="inst_B1B3303A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="800" y="1088" w="16" h="16" xo="64" yo="32" id="11349577" name="inst_809623D0" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="816" y="1088" w="16" h="16" xo="64" yo="32" id="11349578" name="inst_D0DC418D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1504" y="800" w="16" h="16" xo="64" yo="32" id="11349586" name="inst_6953F70E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1504" y="816" w="16" h="16" xo="64" yo="32" id="11349587" name="inst_381E519E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1504" y="832" w="16" h="16" xo="64" yo="32" id="11349588" name="inst_5EEBC0EE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -1285,6 +1285,10 @@ with (objTeleporter)
     <tile bgName="bgBasic" x="800" y="464" w="16" h="16" xo="48" yo="0" id="11349876" name="inst_BED6BECD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="800" y="448" w="16" h="16" xo="48" yo="0" id="11349877" name="inst_7251D224" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="800" y="432" w="16" h="16" xo="48" yo="0" id="11349878" name="inst_49CFE73B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="800" y="1040" w="32" h="16" xo="96" yo="64" id="11351523" name="inst_28176A2C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="800" y="1088" w="32" h="16" xo="96" yo="48" id="11351524" name="inst_BE1990C6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="800" y="1024" w="16" h="16" xo="64" yo="32" id="11351525" name="inst_4201C1F8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="816" y="1024" w="16" h="16" xo="64" yo="32" id="11351526" name="inst_1745B82C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>
