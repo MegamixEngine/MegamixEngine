@@ -221,7 +221,7 @@
     <instance objName="objStopScrollingHorizontal" x="2560" y="896" name="inst_57C36ED1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="1120" y="1296" name="inst_E7E8C7A8" locked="0" code="text = &quot;objYambow, flies above, then behind Mega Man, and attempts to ram him.&quot;;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeverField" x="1728" y="1280" name="inst_22DDBCE8" locked="0" code="tag = &quot;floor1&quot;;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objLever" x="1648" y="1232" name="inst_F46F1CD9" locked="0" code="state = 0; //@cc 0: up, 1: down&#xA;uptag = &quot;floor1&quot;; //@cc tag for the leverfield to activate when up&#xA;downtag = &quot;floor2&quot;; //@cc tag for the leverfield to activate when down&#xA;oneShot = false; //@cc if set to true, lever can only be flipped once, then is stuck." scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLever" x="1648" y="1232" name="inst_F46F1CD9" locked="0" code="state = 0;&#xA;uptag = &quot;floor1&quot;;&#xA;downtag = &quot;floor2&quot;;&#xA;oneShot = false;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1792" y="1120" name="inst_7D19BA50" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="256" y="1120" name="inst_5959EEA3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeverField" x="1744" y="1280" name="inst_67ED7A84" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

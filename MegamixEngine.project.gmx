@@ -1563,7 +1563,7 @@
         <filename>rmShowcaseSurprise.room.gmx</filename>
       </datafile>
       <datafile>
-        <name>lvlShowcaseSurprise2.room.gmx</name>
+        <name>rmShowcaseSurprise2.room.gmx</name>
         <exists>-1</exists>
         <size>307128</size>
         <exportAction>2</exportAction>
@@ -1577,7 +1577,7 @@
             <CopyToMask>9223372036854775807</CopyToMask>
           </Config>
         </ConfigOptions>
-        <filename>lvlShowcaseSurprise2.room.gmx</filename>
+        <filename>rmShowcaseSurprise2.room.gmx</filename>
       </datafile>
       <datafile>
         <name>rmShowcaseSwitches.room.gmx</name>
@@ -6583,6 +6583,7 @@
       <room>rooms\lvlTestHall5</room>
       <room>rooms\lvlTestHallBoss</room>
     </rooms>
+    <room>rooms\lvlShowcaseSurprise</room>
   </rooms>
   <constants number="36">
     <constant name="PL_LOCK_MAX">14</constant>
