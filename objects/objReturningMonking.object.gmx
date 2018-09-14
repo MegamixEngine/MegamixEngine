@@ -32,7 +32,7 @@ healthpointsStart = 8;
 healthpoints = healthpointsStart;
 contactDamage = 3;
 
-category = "nature, monking";
+category = "nature, primate";
 
 facePlayerOnSpawn = true;
 

@@ -259,9 +259,8 @@ if (entityCanStep())
                     sprite_index = sprAirShoot;
                 else
                 {
-                    if (instance_exists(target))
-                        with (target)
-                            shiftObject((min(other.attackTimer - 60, other.maxBlowSpeed * 15) * other.image_xscale) / 15, 0, true);
+                    with (objMegaman)
+                        playerBlow((min(other.attackTimer - 60, other.maxBlowSpeed*20) * other.image_xscale)/15);
                     sprite_index = sprAirBlow;
                     image_index += 0.3;
                 }
