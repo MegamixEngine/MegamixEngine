@@ -71,9 +71,16 @@ spd = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
 if (entityCanStep())
 {
+    if(ycoll!=0)
+    {
+        yspeed=ycoll;
+    }
+    if(xcoll!=0)
+    {
+        xspeed=xcoll;
+    }
     if (instance_exists(parent))
     {
         attackTimer++;
