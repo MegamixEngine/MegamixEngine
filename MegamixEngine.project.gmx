@@ -3745,6 +3745,7 @@
         <sprite>sprites\sprFireBeam</sprite>
         <sprite>sprites\sprFireBeamOff</sprite>
         <sprite>sprites\sprFirePillar</sprite>
+        <sprite>sprites\sprFirePillarMask</sprite>
         <sprite>sprites\sprFireWaveHorizontal</sprite>
         <sprite>sprites\sprFireWaveVertical</sprite>
         <sprite>sprites\sprFireWaveSpawner</sprite>
