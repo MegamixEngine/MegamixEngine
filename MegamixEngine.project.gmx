@@ -1563,6 +1563,23 @@
         <filename>rmShowcaseSurprise.room.gmx</filename>
       </datafile>
       <datafile>
+        <name>lvlShowcaseSurprise2.room.gmx</name>
+        <exists>-1</exists>
+        <size>307128</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlShowcaseSurprise2.room.gmx</filename>
+      </datafile>
+      <datafile>
         <name>rmShowcaseSwitches.room.gmx</name>
         <exists>-1</exists>
         <size>380165</size>
@@ -6293,6 +6310,7 @@
         <object>objects\objGravityChangeNormal</object>
         <object>objects\objKamapotSpawner</object>
         <object>objects\objMercuryBlockSpawner</object>
+        <object>objects\objMercuryBlock</object>
         <object>objects\objLandmine</object>
         <object>objects\objRoomLowGravSetter</object>
         <object>objects\objTyhornPlatformSpawn</object>
@@ -6300,7 +6318,6 @@
         <object>objects\objVenusWaterfallSpawner</object>
         <objects name="Don't Use">
           <object>objects\objKamapot</object>
-          <object>objects\objMercuryBlock</object>
           <object>objects\objTyhornPlatform</object>
           <object>objects\objUranusPlatformSegment</object>
           <object>objects\objVenusWaterfallDrop</object>
@@ -6566,7 +6583,6 @@
       <room>rooms\lvlTestHall5</room>
       <room>rooms\lvlTestHallBoss</room>
     </rooms>
-    <room>rooms\rmShowcaseFlying</room>
   </rooms>
   <constants number="36">
     <constant name="PL_LOCK_MAX">14</constant>

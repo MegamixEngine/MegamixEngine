@@ -27,7 +27,6 @@
             <kind>1</kind>
             <string>// A block that drops from the ceiling, landing on the ground. If it hits Mega Man while falling, it will damage him.
 event_inherited();
-respawn = false;
 healthpointsStart = 3;
 isSolid = 1;
 
