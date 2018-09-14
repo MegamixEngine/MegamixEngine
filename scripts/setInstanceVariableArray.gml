@@ -12,7 +12,7 @@ var _____j_____ = argument3;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4508 variables
+/// 4526 variables
 /// from 1652 source files
 
 if (_____vs_____ == "") return false;
@@ -194,6 +194,7 @@ else if (stringStartsWith(_____vs_____, 'a'))
     else if (_____vs_____ == "array") array[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "arrayLength") arrayLength[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "arrowBlinkTimer") arrowBlinkTimer[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "arrowDraw") arrowDraw[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "arrowTimer") arrowTimer[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "as") as[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "asObject") asObject[_____i_____, _____j_____] = _____val_____;
@@ -251,6 +252,7 @@ else if (stringStartsWith(_____vs_____, 'b'))
     else if (_____vs_____ == "ballImage") ballImage[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "ballPosX") ballPosX[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "ballPosY") ballPosY[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "ballSpeed") ballSpeed[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "barrier1") barrier1[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "barrier2") barrier2[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "base") base[_____i_____, _____j_____] = _____val_____;
@@ -476,6 +478,7 @@ else if (stringStartsWith(_____vs_____, 'c'))
     else if (_____vs_____ == "canDamage") canDamage[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "canDraw") canDraw[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "canDrop") canDrop[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "canExecute") canExecute[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "canFall") canFall[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "canFillHealthBar") canFillHealthBar[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "canFlip") canFlip[_____i_____, _____j_____] = _____val_____;
@@ -585,6 +588,7 @@ else if (stringStartsWith(_____vs_____, 'c'))
     else if (_____vs_____ == "chooseJumpY") chooseJumpY[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "choosePhase") choosePhase[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "chosenPipe") chosenPipe[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "chunco") chunco[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "cid") cid[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "circle") circle[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "cl") cl[_____i_____, _____j_____] = _____val_____;
@@ -611,6 +615,8 @@ else if (stringStartsWith(_____vs_____, 'c'))
     else if (_____vs_____ == "clst") clst[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "cmp") cmp[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "code") code[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "code_on_talk_end") code_on_talk_end[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "code_on_talk_start") code_on_talk_start[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "code_str") code_str[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "col") col[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "col1") col1[_____i_____, _____j_____] = _____val_____;
@@ -1086,6 +1092,7 @@ else if (stringStartsWith(_____vs_____, 'e'))
     else if (_____vs_____ == "eventtype") eventtype[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "ex") ex[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "exception") exception[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "executeLocked") executeLocked[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "exgrid") exgrid[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "exitConfirm") exitConfirm[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "exitPositionX") exitPositionX[_____i_____, _____j_____] = _____val_____;
@@ -2024,6 +2031,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "initialAttack") initialAttack[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "initialDelay") initialDelay[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "initialPattern") initialPattern[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "initp") initp[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "initxoffset") initxoffset[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "inked") inked[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "inst") inst[_____i_____, _____j_____] = _____val_____;
@@ -2700,6 +2708,7 @@ else if (stringStartsWith(_____vs_____, 'n'))
     else if (_____vs_____ == "notDashing") notDashing[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "nothingStruck") nothingStruck[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "notme") notme[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "npcID") npcID[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "nrm") nrm[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "ns") ns[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "nsteps") nsteps[_____i_____, _____j_____] = _____val_____;
@@ -2732,6 +2741,7 @@ else if (stringStartsWith(_____vs_____, 'o'))
     else if (_____vs_____ == "objectPlace") objectPlace[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "objectThrown") objectThrown[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "objectToDrop") objectToDrop[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "objectToSpawn") objectToSpawn[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "objectToStop") objectToStop[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "objects") objects[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "obstacleList") obstacleList[_____i_____, _____j_____] = _____val_____;
@@ -2803,6 +2813,8 @@ else if (stringStartsWith(_____vs_____, 'o'))
     else if (_____vs_____ == "optionYDist") optionYDist[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "optionYOrigin") optionYOrigin[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "option_chosen") option_chosen[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "option_code_on_talk_end") option_code_on_talk_end[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "option_code_on_talk_start") option_code_on_talk_start[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "option_script_on_talk_end") option_script_on_talk_end[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "option_script_on_talk_start") option_script_on_talk_start[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "option_spoken") option_spoken[_____i_____, _____j_____] = _____val_____;
@@ -3460,6 +3472,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "shootCount") shootCount[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "shootCountMax") shootCountMax[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "shootCounter") shootCounter[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "shootDelay") shootDelay[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "shootEnd") shootEnd[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "shootFrame") shootFrame[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "shootID") shootID[_____i_____, _____j_____] = _____val_____;
@@ -3750,11 +3763,13 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "startHigh") startHigh[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startHops") startHops[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startIntro") startIntro[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "startLeftPos") startLeftPos[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startLen") startLen[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startMode") startMode[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startMoving") startMoving[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startPhase") startPhase[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startRef") startRef[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "startRightPos") startRightPos[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startSpeed") startSpeed[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startTime") startTime[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startTimer") startTimer[_____i_____, _____j_____] = _____val_____;
@@ -3762,6 +3777,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "startWaitTimer") startWaitTimer[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startWindAccel") startWindAccel[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startWindSpeed") startWindSpeed[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "startXDir") startXDir[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startXScale") startXScale[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startXscale") startXscale[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "startXspeed") startXspeed[_____i_____, _____j_____] = _____val_____;
@@ -4075,6 +4091,7 @@ else if (stringStartsWith(_____vs_____, 't'))
     else if (_____vs_____ == "totalPickups") totalPickups[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "totalTimer") totalTimer[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "touchblock") touchblock[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "touched") touched[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "touching") touching[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "touchingPlayer") touchingPlayer[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "towerBlock") towerBlock[_____i_____, _____j_____] = _____val_____;
@@ -4169,6 +4186,7 @@ else if (stringStartsWith(_____vs_____, 'u'))
     else if (_____vs_____ == "usePlayerColor") usePlayerColor[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "usePositionCollision") usePositionCollision[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "useRails") useRails[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "useTileAsTileset") useTileAsTileset[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "usesRng") usesRng[_____i_____, _____j_____] = _____val_____;
     else return false;
 }

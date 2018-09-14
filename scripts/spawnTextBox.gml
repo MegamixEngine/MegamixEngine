@@ -7,7 +7,7 @@
 
 // spawn textbox
 var i = instance_create(x, y, objDialogueBox);
-if (npcID != 0)
+if (object_is_ancestor(object_index,objNPC)&&npcID != 0)
 {
     i.parent = npcID;
 }
@@ -18,7 +18,7 @@ i.name = argument[2];
 i.nameCol = argument[3];
 
 // insert text
-for (var ca = 4; ca <= 15; ca += 1)
+for (var ca = 4; ca <= 15 && ca < argument_count; ca += 1)
 {
     if (!is_string(argument[ca]))
     {
