@@ -71,6 +71,8 @@ with (objMegaman)
 dialogueLock = playerLockMovement();
 
 offset = 0; // This is a constantly growing variable you can reference in text events, e.g. a constantly waving text.
+
+parent = 0; //need to prevent interaction with npcs besides the one being talked to.
 </string>
           </argument>
         </arguments>
@@ -106,7 +108,10 @@ with (origin)
 ds_list_destroy(text);
 with (objNPC)
 {
-    event_user(2);
+    if (npcID == other.parent)
+    {
+        event_user(2);
+    }
 }
 </string>
           </argument>
@@ -203,7 +208,7 @@ with (objNPC)
                         {
                             with (objNPC)
                             {
-                                if (active)
+                                if (active &amp;&amp; npcID == other.parent)
                                 {
                                     option_chosen = objDialogueBox.optionPos;
                                     if (option_text[option_chosen] != "")
