@@ -7,6 +7,10 @@
 
 // spawn textbox
 var i = instance_create(x, y, objDialogueBox);
+if (npcID != 0)
+{
+    i.parent = npcID;
+}
 i.pos = argument[0];
 i.origin = id;
 i.o_event = argument[1];
