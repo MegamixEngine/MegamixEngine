@@ -271,7 +271,7 @@
     <instance objName="objRailHorizontal" x="424" y="384" name="inst_286AE4FF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRailHorizontal" x="440" y="384" name="inst_E51314E8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="560" y="416" name="inst_AB73A600" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBladeManSeeSaw" x="672" y="384" name="inst_4FDC6F1F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBladeManSeeSaw" x="672" y="368" name="inst_4FDC6F1F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRailBumper" x="656" y="384" name="inst_7E596D5E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRailHorizontal" x="672" y="384" name="inst_7D9FBCD4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRailHorizontal" x="688" y="384" name="inst_A9C6DDCB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
