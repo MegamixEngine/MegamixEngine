@@ -6293,6 +6293,7 @@
         <object>objects\objGravityChangeNormal</object>
         <object>objects\objKamapotSpawner</object>
         <object>objects\objMercuryBlockSpawner</object>
+        <object>objects\objMercuryBlock</object>
         <object>objects\objLandmine</object>
         <object>objects\objRoomLowGravSetter</object>
         <object>objects\objTyhornPlatformSpawn</object>
@@ -6300,7 +6301,6 @@
         <object>objects\objVenusWaterfallSpawner</object>
         <objects name="Don't Use">
           <object>objects\objKamapot</object>
-          <object>objects\objMercuryBlock</object>
           <object>objects\objTyhornPlatform</object>
           <object>objects\objUranusPlatformSegment</object>
           <object>objects\objVenusWaterfallDrop</object>
