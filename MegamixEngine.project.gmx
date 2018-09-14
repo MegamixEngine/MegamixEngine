@@ -6583,7 +6583,6 @@
       <room>rooms\lvlTestHall5</room>
       <room>rooms\lvlTestHallBoss</room>
     </rooms>
-    <room>rooms\lvlShowcaseSurprise</room>
   </rooms>
   <constants number="36">
     <constant name="PL_LOCK_MAX">14</constant>
