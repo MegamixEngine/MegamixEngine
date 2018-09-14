@@ -75,6 +75,7 @@ if (entityCanStep())
         case 0:
             visible = false;
             canHit = false;
+            canDamage = false;
             
             if (instance_exists(target) &amp;&amp; !place_meeting(x, y, objXBlock))
             {
@@ -82,6 +83,7 @@ if (entityCanStep())
                 breakY = target.y - 16;
                 
                 canHit = true;
+                canDamage=true;
             }
             
             break;
