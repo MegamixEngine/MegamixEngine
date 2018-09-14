@@ -51,11 +51,11 @@ ds_list_add(roomnames, "@#Difficulty: ");
 ds_list_add(roomlist, rmFileSelect);
 ds_list_add(roomnames, "@Example Game");
 arrayAppend(nonLevels, rmFileSelect);
-*/
 
 ds_list_add(roomlist, rmUnitTest);
 arrayAppend(nonLevels, rmUnitTest);
 ds_list_add(roomnames, "@Unit Tests");
+*/
 
 ds_list_add(roomlist, -1);
 ds_list_add(roomnames, "@Load External...");

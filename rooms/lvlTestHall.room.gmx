@@ -265,8 +265,6 @@
     <instance objName="objSwitchHandler" x="3728" y="384" name="inst_BA403C07" locked="0" code="myFlag = 999;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM8Switch" x="3728" y="416" name="inst_0458713E" locked="0" code="myFlag = 999;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSuperCutterSpawner" x="3536" y="400" name="inst_CBCF5186" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="3232" y="400" name="inst_C5A80C6E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="3184" y="416" name="inst_DDDDC953" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSuperCutterSpawner" x="3392" y="400" name="inst_87E2B520" locked="0" code="delay = 20;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWaterJet" x="2976" y="416" name="inst_F3D7D842" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWaterJet" x="2896" y="416" name="inst_CE39746D" locked="0" code="startTimer = 120;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>

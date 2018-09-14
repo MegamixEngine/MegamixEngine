@@ -575,16 +575,6 @@ with (objTeleporter)
     <instance objName="objLever" x="2592" y="1488" name="inst_DDC6F380" locked="0" code="downtag = &quot;objLeverField_lagless&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="2816" y="1344" name="inst_4E70AD47" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWhopper" x="2752" y="1520" name="inst_78D0F1CA" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="2784" y="1440" name="inst_B52CECD8" locked="0" code="" scaleX="1" scaleY="1.06666672229767" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="2784" y="1456" name="inst_6A946C2D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="2784" y="1472" name="inst_05DD9905" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="2784" y="1488" name="inst_145640B7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="2784" y="1504" name="inst_0683B42C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="2784" y="1520" name="inst_6810DB93" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="2784" y="1536" name="inst_B17A3C53" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="2576" y="1360" name="inst_0EC7E47E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="2592" y="1360" name="inst_6EE1C6F2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="2608" y="1360" name="inst_60089F4B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRingmanPlatform" x="2848" y="1456" name="inst_DD5F94B4" locked="0" code="" scaleX="11" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRingmanPlatform" x="3024" y="1504" name="inst_C9558CE8" locked="0" code="" scaleX="-11" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEscaroo" x="3264" y="1488" name="inst_A58827A9" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
