@@ -32,7 +32,7 @@ contactDamage = 5;
 
 customPose = sprIcePose;
 hasTriggeredFall = false;
-introType = 1;
+introType = 0;
 
 phase = 0;
 
