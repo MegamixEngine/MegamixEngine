@@ -42,8 +42,8 @@ blockCollision = 0;
 rotationTimer = 0;
 grav = 0;
 
-x = round(xs + 24 * cos(direction / 57));
-y = round(ys + 24 * sin((direction + 180) / 57));
+x = round(xs + 22 * cos(direction / 57));
+y = round(ys + 22 * sin((direction + 180) / 57));
 </string>
           </argument>
         </arguments>
@@ -88,8 +88,8 @@ if (entityCanStep())
     xs += xspeed;
     if (followWood)
         ys += yspeed;
-    x = round(xs + 21 * cos(direction / 57));
-    y = round(ys + 21 * sin((direction + 180) / 57));
+    x = round(xs + 22 * cos(direction / 57));
+    y = round(ys + 22 * sin((direction + 180) / 57));
     if rotationTimer &gt;= 3
     {
         direction += 22.5;
