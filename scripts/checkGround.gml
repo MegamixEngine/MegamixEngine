@@ -38,6 +38,17 @@ with (objSolid)
     }
 }
 
+// Stoppers are only solid for the object_index they have stored
+with (objGenericStopper)
+{
+    if(isGround)
+    {
+        if (other.object_index == objectToStop || object_is_ancestor(other.object_index, objectToStop))
+        {
+            solid = 1;
+        }
+    }
+}
 if (dieToSpikes) // entities with this variable set to "true" die when coming in contact with spikes
 {
     // spikes become solid when hitstunned
