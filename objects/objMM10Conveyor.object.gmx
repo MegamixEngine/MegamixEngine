@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 
-sprite = sprSolarManConveyor;
+sprite_index = sprSolarManConveyor;
 animFrames = 3;
 hasBelt=true;
 </string>

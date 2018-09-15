@@ -10,8 +10,8 @@ var _____val_____ = argument1;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4526 variables
-/// from 1652 source files
+/// 4545 variables
+/// from 1655 source files
 
 if (_____vs_____ == "") return false;
 else if (stringStartsWith(_____vs_____, 'a'))
@@ -48,6 +48,7 @@ else if (stringStartsWith(_____vs_____, 'a'))
     else if (_____vs_____ == "activationDistance") activationDistance = _____val_____;
     else if (_____vs_____ == "active") active = _____val_____;
     else if (_____vs_____ == "activeDisk") activeDisk = _____val_____;
+    else if (_____vs_____ == "activeTime") activeTime = _____val_____;
     else if (_____vs_____ == "activeTimer") activeTimer = _____val_____;
     else if (_____vs_____ == "addAngle") addAngle = _____val_____;
     else if (_____vs_____ == "addAngleX") addAngleX = _____val_____;
@@ -309,6 +310,7 @@ else if (stringStartsWith(_____vs_____, 'b'))
     else if (_____vs_____ == "block_string") block_string = _____val_____;
     else if (_____vs_____ == "blowSpeed") blowSpeed = _____val_____;
     else if (_____vs_____ == "blownUp") blownUp = _____val_____;
+    else if (_____vs_____ == "blueSprite") blueSprite = _____val_____;
     else if (_____vs_____ == "bobAround") bobAround = _____val_____;
     else if (_____vs_____ == "bod") bod = _____val_____;
     else if (_____vs_____ == "body") body = _____val_____;
@@ -660,6 +662,7 @@ else if (stringStartsWith(_____vs_____, 'c'))
     else if (_____vs_____ == "convertObject") convertObject = _____val_____;
     else if (_____vs_____ == "converted") converted = _____val_____;
     else if (_____vs_____ == "coolDown") coolDown = _____val_____;
+    else if (_____vs_____ == "coolDownTime") coolDownTime = _____val_____;
     else if (_____vs_____ == "cooldown") cooldown = _____val_____;
     else if (_____vs_____ == "cooldownImageMax") cooldownImageMax = _____val_____;
     else if (_____vs_____ == "cooldownImageTimer") cooldownImageTimer = _____val_____;
@@ -956,6 +959,7 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "draw") draw = _____val_____;
     else if (_____vs_____ == "drawBoss") drawBoss = _____val_____;
     else if (_____vs_____ == "drawChar") drawChar = _____val_____;
+    else if (_____vs_____ == "drawDir") drawDir = _____val_____;
     else if (_____vs_____ == "drawFlame") drawFlame = _____val_____;
     else if (_____vs_____ == "drawHealthBar") drawHealthBar = _____val_____;
     else if (_____vs_____ == "drawInit") drawInit = _____val_____;
@@ -1770,6 +1774,7 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "gravityDir") gravityDir = _____val_____;
     else if (_____vs_____ == "gravityFlip") gravityFlip = _____val_____;
     else if (_____vs_____ == "gravitySet") gravitySet = _____val_____;
+    else if (_____vs_____ == "greenSprite") greenSprite = _____val_____;
     else if (_____vs_____ == "gremlinArray") gremlinArray = _____val_____;
     else if (_____vs_____ == "gremlinDir") gremlinDir = _____val_____;
     else if (_____vs_____ == "gremlinSpawn") gremlinSpawn = _____val_____;
@@ -1853,6 +1858,7 @@ else if (stringStartsWith(_____vs_____, 'h'))
     else if (_____vs_____ == "hatchIndex") hatchIndex = _____val_____;
     else if (_____vs_____ == "headID") headID = _____val_____;
     else if (_____vs_____ == "headShark") headShark = _____val_____;
+    else if (_____vs_____ == "headSprite") headSprite = _____val_____;
     else if (_____vs_____ == "headUp") headUp = _____val_____;
     else if (_____vs_____ == "headX") headX = _____val_____;
     else if (_____vs_____ == "headerEnd") headerEnd = _____val_____;
@@ -2466,6 +2472,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "mid_3") mid_3 = _____val_____;
     else if (_____vs_____ == "mid_4") mid_4 = _____val_____;
     else if (_____vs_____ == "middlePlatform") middlePlatform = _____val_____;
+    else if (_____vs_____ == "middleSprite") middleSprite = _____val_____;
     else if (_____vs_____ == "minDist") minDist = _____val_____;
     else if (_____vs_____ == "minDistReject") minDistReject = _____val_____;
     else if (_____vs_____ == "minId") minId = _____val_____;
@@ -2892,6 +2899,7 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "pausePressed") pausePressed = _____val_____;
     else if (_____vs_____ == "pauseStep") pauseStep = _____val_____;
     else if (_____vs_____ == "pauseY") pauseY = _____val_____;
+    else if (_____vs_____ == "pc") pc = _____val_____;
     else if (_____vs_____ == "pcol") pcol = _____val_____;
     else if (_____vs_____ == "pd") pd = _____val_____;
     else if (_____vs_____ == "pdA") pdA = _____val_____;
@@ -2947,6 +2955,7 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "platTarget") platTarget = _____val_____;
     else if (_____vs_____ == "platformCalc") platformCalc = _____val_____;
     else if (_____vs_____ == "platformOffset") platformOffset = _____val_____;
+    else if (_____vs_____ == "platformSpeed") platformSpeed = _____val_____;
     else if (_____vs_____ == "platformSprite") platformSprite = _____val_____;
     else if (_____vs_____ == "platv") platv = _____val_____;
     else if (_____vs_____ == "platx") platx = _____val_____;
@@ -3194,6 +3203,7 @@ else if (stringStartsWith(_____vs_____, 'r'))
     else if (_____vs_____ == "rebuildTimerMax") rebuildTimerMax = _____val_____;
     else if (_____vs_____ == "recoil") recoil = _____val_____;
     else if (_____vs_____ == "recurseDepth") recurseDepth = _____val_____;
+    else if (_____vs_____ == "redSprite") redSprite = _____val_____;
     else if (_____vs_____ == "redetectRoof") redetectRoof = _____val_____;
     else if (_____vs_____ == "redetectWall") redetectWall = _____val_____;
     else if (_____vs_____ == "redo") redo = _____val_____;
@@ -3699,6 +3709,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "spriteAlt") spriteAlt = _____val_____;
     else if (_____vs_____ == "spriteBack") spriteBack = _____val_____;
     else if (_____vs_____ == "spriteFrame") spriteFrame = _____val_____;
+    else if (_____vs_____ == "spriteHeight") spriteHeight = _____val_____;
     else if (_____vs_____ == "spriteIDX") spriteIDX = _____val_____;
     else if (_____vs_____ == "spriteIDY") spriteIDY = _____val_____;
     else if (_____vs_____ == "spriteIndexReset") spriteIndexReset = _____val_____;
@@ -3713,6 +3724,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "spriteShoot") spriteShoot = _____val_____;
     else if (_____vs_____ == "spriteStand") spriteStand = _____val_____;
     else if (_____vs_____ == "spriteTimer") spriteTimer = _____val_____;
+    else if (_____vs_____ == "spriteWidth") spriteWidth = _____val_____;
     else if (_____vs_____ == "spriteX") spriteX = _____val_____;
     else if (_____vs_____ == "spriteXOffset") spriteXOffset = _____val_____;
     else if (_____vs_____ == "spriteY") spriteY = _____val_____;
@@ -3791,6 +3803,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "startingRotateSpeed") startingRotateSpeed = _____val_____;
     else if (_____vs_____ == "startingY") startingY = _____val_____;
     else if (_____vs_____ == "startup") startup = _____val_____;
+    else if (_____vs_____ == "startupTime") startupTime = _____val_____;
     else if (_____vs_____ == "starty") starty = _____val_____;
     else if (_____vs_____ == "state") state = _____val_____;
     else if (_____vs_____ == "stateTimer") stateTimer = _____val_____;
@@ -4090,6 +4103,7 @@ else if (stringStartsWith(_____vs_____, 't'))
     else if (_____vs_____ == "totalTimer") totalTimer = _____val_____;
     else if (_____vs_____ == "touchblock") touchblock = _____val_____;
     else if (_____vs_____ == "touched") touched = _____val_____;
+    else if (_____vs_____ == "touchedStopper") touchedStopper = _____val_____;
     else if (_____vs_____ == "touching") touching = _____val_____;
     else if (_____vs_____ == "touchingPlayer") touchingPlayer = _____val_____;
     else if (_____vs_____ == "towerBlock") towerBlock = _____val_____;
@@ -4461,6 +4475,7 @@ else if (stringStartsWith(_____vs_____, 'y'))
     else if (_____vs_____ == "ydir") ydir = _____val_____;
     else if (_____vs_____ == "ydis") ydis = _____val_____;
     else if (_____vs_____ == "ydiv") ydiv = _____val_____;
+    else if (_____vs_____ == "yellowSprite") yellowSprite = _____val_____;
     else if (_____vs_____ == "yend") yend = _____val_____;
     else if (_____vs_____ == "yh") yh = _____val_____;
     else if (_____vs_____ == "yimg") yimg = _____val_____;
@@ -4639,6 +4654,8 @@ else if (stringStartsWith(_____vs_____, '_'))
     else if (_____vs_____ == "_IgnoreGround") _IgnoreGround = _____val_____;
     else if (_____vs_____ == "_X") _X = _____val_____;
     else if (_____vs_____ == "_Y") _Y = _____val_____;
+    else if (_____vs_____ == "__x") __x = _____val_____;
+    else if (_____vs_____ == "__y") __y = _____val_____;
     else if (_____vs_____ == "_a") _a = _____val_____;
     else if (_____vs_____ == "_accel") _accel = _____val_____;
     else if (_____vs_____ == "_angle") _angle = _____val_____;
@@ -4695,6 +4712,7 @@ else if (stringStartsWith(_____vs_____, '_'))
     else if (_____vs_____ == "_originY") _originY = _____val_____;
     else if (_____vs_____ == "_overlappingEntity") _overlappingEntity = _____val_____;
     else if (_____vs_____ == "_pause") _pause = _____val_____;
+    else if (_____vs_____ == "_pch") _pch = _____val_____;
     else if (_____vs_____ == "_penetrate") _penetrate = _____val_____;
     else if (_____vs_____ == "_physics") _physics = _____val_____;
     else if (_____vs_____ == "_pid") _pid = _____val_____;
@@ -4714,6 +4732,7 @@ else if (stringStartsWith(_____vs_____, '_'))
     else if (_____vs_____ == "_regPosY") _regPosY = _____val_____;
     else if (_____vs_____ == "_regT") _regT = _____val_____;
     else if (_____vs_____ == "_return") _return = _____val_____;
+    else if (_____vs_____ == "_rr") _rr = _____val_____;
     else if (_____vs_____ == "_rrl") _rrl = _____val_____;
     else if (_____vs_____ == "_s") _s = _____val_____;
     else if (_____vs_____ == "_sb") _sb = _____val_____;

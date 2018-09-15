@@ -52,29 +52,6 @@ yspeed_map = ds_map_create();
         </arguments>
       </action>
     </event>
-    <event eventtype="1" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>ds_map_destroy(yspeed_map);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -94,7 +71,7 @@ yspeed_map = ds_map_create();
             <kind>1</kind>
             <string>event_inherited();
 
-if (entityCanStep())
+if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
     spriteTimer += .1;
     if (spriteTimer &gt;= 1)
@@ -119,17 +96,15 @@ if (entityCanStep())
     
     with (objMegaman)
     {
-        if (place_meeting(x, y + (2 * gravDir), other.id) &amp;&amp; (yspeed*gravDir)&lt;=0)
+        if (place_meeting(x, y + 2 * gravDir, other.id) &amp;&amp; !yspeed)
         {
             var bounciness, jumpPower;
-            jumpPower=1;
-            bounciness=0;
+            
             with (other)
                 other.prevYspeed = yspeed_map[? other.id];
             
-            
-            if (!(ground &amp;&amp; abs(prevYspeed)&lt;1) &amp;&amp; ((other.image_xscale &gt; 0 &amp;&amp; (x &gt; other.x + 16 * other.image_xscale)) ||
-                (other.image_xscale &lt; 0 &amp;&amp; (x &lt; other.x - 16 * -other.image_xscale))))
+            if ((other.image_xscale &gt; 0 &amp;&amp; (x &gt; other.x + 16 * other.image_xscale)) ||
+                (other.image_xscale &lt; 0 &amp;&amp; (x &lt; other.x - 16 * -other.image_xscale)))
             {
                 bounciness = .5;
                 jumpPower = 1.0;
@@ -140,28 +115,20 @@ if (entityCanStep())
                 jumpPower = 3.0;
             }
             
-            if(prevYspeed==0)
-            {
-                jumpPower = 3.0;
-                bounciness=2;
-            }
-            
             if (prevYspeed &gt; 1.75 || prevYspeed &lt; -1.75)
             {
                 ground = 0;
-                yspeed = (-prevYspeed * bounciness) - ((ground &amp;&amp; global.keyJumpPressed[playerID]) * jumpPower * gravDir);
+                yspeed = (-prevYspeed * bounciness) - (global.keyJump[playerID] * jumpPower * gravDir);
             }
         }
         
         with (other)
-        {
             yspeed_map[? other.id] = other.yspeed;
-        }
     }
     
     with (prtEntity)
     {
-        if (object_index!=objMegaman&amp;&amp;!dead &amp;&amp; blockCollision &amp;&amp; place_meeting(x, y + 2, other.id) &amp;&amp; ycoll  &amp;&amp; !object_is_ancestor(object_index,prtPlayerProjectile))
+        if (place_meeting(x, y + 2, other.id) &amp;&amp; !yspeed &amp;&amp; !dead &amp;&amp; object_get_parent(object_index) != prtPlayerProjectile)
         {
             var bounciness;
             

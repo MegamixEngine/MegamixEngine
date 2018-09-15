@@ -47,13 +47,13 @@ if (isSolid)
                         cel = floor(y);
                     }
                     
-                    if (place_meeting(x, flr, other.id))
+                    if(place_meeting(x, flr, other.id))
                     {
                         continue;
                     }
                     
                     if (place_meeting(x, flr + sign(grav), other.id)
-                        || place_meeting(x, cel - myyspeed, other.id))
+                        || place_meeting(x, cel - myyspeed - (dir<0&&(myyspeed*grav>0)&&(abs(myyspeed)<1)), other.id))
                     {
                         other.y += myyspeed;
                         

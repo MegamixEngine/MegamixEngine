@@ -37,7 +37,7 @@ with (prtEntity)
     {
         if (isSolid == 1)
         {
-            if (object_index == objBossDoor || object_index == objBossDoorVertical || !place_meeting(x, y, myid))
+            if (object_index == objBossDoor || object_index == objBossDoorVertical || !place_meeting(x, y, myid) || !place_meeting(x-xspeed, y-yspeed, myid) )
             {
                 if (!fnsolid)
                 {
@@ -211,31 +211,27 @@ if (yspeed != 0)
                 }
             }
         }
+    }
 
-        with (prtEntity)
+    with (prtEntity)
+    {
+        if (!dead)
         {
-            if (!dead)
+            if (isSolid == 2)
             {
-                if (isSolid == 2)
+                solid = 0;
+                if (sign(yprevious-other.y) == cgrav && place_meeting(x,yprevious-other.yspeed,myid)&&!place_meeting(x, yprevious,myid))
                 {
-                    solid = 0;
-                    for (var i = 0; i <= abs(ceil(other.yspeed));i+=abs(other.yspeed))
+                    if (!fnsolid)
                     {
-                        if (!place_meeting(x, y + i * cgrav, myid))
+                        solid = 1;
+                    }
+                    else
+                    {
+                        solid = !global.factionStance[faction, other.faction];
+                        if (fnsolid == 2)
                         {
-                            if (!fnsolid)
-                            {
-                                solid = 1;
-                            }
-                            else
-                            {
-                                solid = !global.factionStance[faction, other.faction];
-                                if (fnsolid == 2)
-                                {
-                                    solid = !solid;
-                                }
-                            }
-                            break;
+                            solid = !solid;
                         }
                     }
                 }
@@ -322,4 +318,8 @@ if (dieToSpikes)
             }
         }
     }
+}
+with(all)
+{
+    solid=0;
 }
