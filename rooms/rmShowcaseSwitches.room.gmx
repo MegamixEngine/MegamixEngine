@@ -101,7 +101,7 @@
     <instance objName="objMM8Switch" x="768" y="304" name="inst_DE39EDF2" locked="0" code="myFlag = 1;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM8Switch" x="1152" y="368" name="inst_F494C9D7" locked="0" code="myFlag = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSwitchHandler" x="1152" y="336" name="inst_DD2FE507" locked="0" code="myFlag = 4;&#xA;visible = false;&#xA;flagOnLength = 260;&#xA;flagOffLength = 30;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1216" y="256" name="inst_72F0C980" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1216" y="256" name="inst_72F0C980" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM8Door" x="1504" y="208" name="inst_59064A25" locked="0" code="myFlag = 4;&#xA;travel = -2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM8Door" x="1520" y="208" name="inst_DA3F990F" locked="0" code="myFlag = 4;&#xA;travel = -2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1792" y="224" name="inst_DFDCE828" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -561,15 +561,15 @@
     <instance objName="objTopSolid" x="1072" y="1872" name="inst_51BE178B" locked="0" code="" scaleX="9" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objYashichi" x="1048" y="1856" name="inst_702E525C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWily4Laser" x="1136" y="1760" name="inst_FE730115" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
-    <instance objName="objWily4Laser" x="1076" y="1904" name="inst_E3D50D2B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="objWily4Laser" x="1092" y="1904" name="inst_B0A91A68" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="objWily4Laser" x="1108" y="1904" name="inst_04F47E85" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="objWily4Laser" x="1124" y="1904" name="inst_5FA359CE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="objWily4Laser" x="1140" y="1904" name="inst_67573177" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="objWily4Laser" x="1156" y="1904" name="inst_A62295CF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="objWily4Laser" x="1172" y="1904" name="inst_9DBF483C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="objWily4Laser" x="1188" y="1904" name="inst_9F25285D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="objWily4Laser" x="1204" y="1904" name="inst_DB778A3C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
+    <instance objName="objWily4Laser" x="1076" y="1904" name="inst_E3D50D2B" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="90"/>
+    <instance objName="objWily4Laser" x="1092" y="1904" name="inst_B0A91A68" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="90"/>
+    <instance objName="objWily4Laser" x="1108" y="1904" name="inst_04F47E85" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="90"/>
+    <instance objName="objWily4Laser" x="1124" y="1904" name="inst_5FA359CE" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="90"/>
+    <instance objName="objWily4Laser" x="1140" y="1904" name="inst_67573177" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="90"/>
+    <instance objName="objWily4Laser" x="1156" y="1904" name="inst_A62295CF" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="90"/>
+    <instance objName="objWily4Laser" x="1172" y="1904" name="inst_9DBF483C" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="90"/>
+    <instance objName="objWily4Laser" x="1188" y="1904" name="inst_9F25285D" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="90"/>
+    <instance objName="objWily4Laser" x="1204" y="1904" name="inst_DB778A3C" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="90"/>
     <instance objName="objSolid" x="464" y="1760" name="inst_8F9DBD29" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="480" y="1760" name="inst_433EE8FD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="496" y="1760" name="inst_892F5635" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -577,7 +577,7 @@
     <instance objName="objSign" x="1312" y="1600" name="inst_D97CEEC8" locked="0" code="text = &quot;Here we see a rotating laser, but this one isn't precise as you can see the laser gets cut off bluntly instead of having part of it continue.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="1168" y="1984" name="inst_ACF35A47" locked="0" code="text = &quot;Like Quick Man lasers these can be rotated in any direction and have a variation that inflicts constant damage instead of one hit with the varation creation code.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="1152" y="1712" name="inst_F8C02D30" locked="0" code="text = &quot;Also like junk machinery Wily 4 Lasers can be customized to be stopped by ANY object of your choice with creation code. As demonstrated above.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objWily4Laser" x="1184" y="1648" name="inst_40AD1685" locked="0" code="obstacleList[0] = objElectricGabyoallCurrent;" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
+    <instance objName="objWily4Laser" x="1184" y="1648" name="inst_40AD1685" locked="0" code="obstacleList[0] = objElectricGabyoallCurrent;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
     <instance objName="objElectricGabyoall" x="1088" y="1600" name="inst_1356A739" locked="0" code="height = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDefaultSpawn" x="48" y="400" name="inst_0B169881" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="1216" y="1520" name="inst_B5BF2DC6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -585,24 +585,25 @@
     <instance objName="objSolid" x="1216" y="1472" name="inst_03AE12BB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="1232" y="1472" name="inst_1E00342B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="1232" y="1504" name="inst_4F662BCD" locked="0" code="light = 6;&#xA;myRoom = lvlShowcaseHUB;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1232" y="256" name="inst_84F32C24" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1248" y="256" name="inst_46A20AED" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1264" y="256" name="inst_2689D93A" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1280" y="256" name="inst_128F70F2" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1296" y="256" name="inst_24CCB866" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1312" y="256" name="inst_34DEC5F6" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1328" y="256" name="inst_2B2FA316" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1344" y="256" name="inst_26F35FBB" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1360" y="256" name="inst_7EB78EFA" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1376" y="256" name="inst_117478DB" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1392" y="256" name="inst_CC9A6213" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1408" y="256" name="inst_4BAC7475" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1424" y="256" name="inst_3903E5FA" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1440" y="256" name="inst_EBB161DD" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1456" y="256" name="inst_1ED91AD0" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1472" y="256" name="inst_29C5D9DB" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMM8Door" x="1488" y="256" name="inst_4094148B" locked="0" code="myFlag = 4;&#xA;travel = 2&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLadder" x="1520" y="272" name="inst_F78F9121" locked="0" code="" scaleX="1" scaleY="6" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1248" y="256" name="inst_522022F7" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1232" y="256" name="inst_9F66C7AB" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1264" y="256" name="inst_50205D0A" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1280" y="256" name="inst_08A38194" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1296" y="256" name="inst_768914D8" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1312" y="256" name="inst_98D4EB54" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1328" y="256" name="inst_A62760ED" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1344" y="256" name="inst_9A5F2B70" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1360" y="256" name="inst_92312E61" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1376" y="256" name="inst_AB717217" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1392" y="256" name="inst_22086413" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1408" y="256" name="inst_88F38BFC" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1424" y="256" name="inst_4DACE520" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1440" y="256" name="inst_F0400197" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1456" y="256" name="inst_FF5994A6" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1472" y="256" name="inst_1603421F" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="1488" y="256" name="inst_6C0FFC59" locked="0" code="myFlag = 4;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM8Door" x="880" y="192" name="inst_025AC290" locked="0" code="sprite_index = sprMM8DoorG;&#xA;myFlag = 2;&#xA;travel = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMrX3" x="168" y="1056" w="16" h="16" xo="16" yo="48" id="11264265" name="inst_E95D0681" depth="1500000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
