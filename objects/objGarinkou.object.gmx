@@ -30,6 +30,11 @@ healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 image_speed = 0;
+
+// @cc - Change colour: 0 (default) = blue, 1 = purple
+col = 0;
+
+init = 1;
 landTimer = 16;
 jumpType = 0;
 jumpHeight[0] = 80;
@@ -124,6 +129,20 @@ landTimer = 16;
 jumpType = 0;
 jumpXSpeed = 0;
 calibrateDirection();
+
+if (init)
+{
+    switch (col)
+    {
+        case 1:
+            sprite_index = sprGarinkouPurple;
+            break;
+        default:
+            sprite_index = sprGarinkou;
+            break;
+    }
+    init = 0;
+}
 </string>
           </argument>
         </arguments>

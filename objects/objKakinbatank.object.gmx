@@ -33,6 +33,9 @@ healthpoints = 10;
 facePlayerOnSpawn = false;
 category = "grounded, bulky, shielded";
 
+// @cc - Change colour: 0 (default) = red, 1 = green
+col = 0;
+
 // Enemy specific code
 // Constants
 speed1 = 0.75;
@@ -48,6 +51,7 @@ mask_index = sprKakinbatank;
 animFrame = 0;
 prevX = x;
 xscaleStart = image_xscale;
+init = 1;
 </string>
           </argument>
         </arguments>
@@ -71,6 +75,21 @@ xscaleStart = image_xscale;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+//Change colours
+if (init)
+{
+    switch(col)
+    {
+        case 1:
+            sprite_index = sprKakinbatankGreen;
+            break;
+        default:
+            sprite_index = sprKakinbatank;
+            break;
+    }
+    init = 0;
+}
 
 if (entityCanStep())
 {
@@ -230,6 +249,15 @@ if (entityCanStep())
                             var i = instance_create(x, y, objEnemyBullet);
                             i.contactDamage = 3;
                             i.sprite_index = sprKakinbatankBullet;
+                            i.image_speed = 0;
+                            if (col == 1)
+                            {
+                                i.image_index = 1; // Green bullets
+                            }
+                            else
+                            {
+                                i.image_index = 0; // Red bullets
+                            }
                             i.x = x + 4 * image_xscale;
                             i.y = y - 36;
                             i.target = target;

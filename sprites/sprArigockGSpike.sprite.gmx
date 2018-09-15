@@ -21,5 +21,7 @@
   <height>12</height>
   <frames>
     <frame index="0">images\sprArigockGSpike_0.png</frame>
+    <frame index="1">images\sprArigockGSpike_1.png</frame>
+    <frame index="2">images\sprArigockGSpike_2.png</frame>
   </frames>
 </sprite>

@@ -2690,6 +2690,8 @@
         <sprite>sprites\sprBallonboo</sprite>
         <sprite>sprites\sprBallonbooBalloon</sprite>
         <sprite>sprites\sprBigStomper</sprite>
+        <sprite>sprites\sprBigStomperBlue</sprite>
+        <sprite>sprites\sprBigStomperGreen</sprite>
         <sprite>sprites\mskBigStomper</sprite>
         <sprite>sprites\mskBigStomperSmall</sprite>
         <sprite>sprites\sprBokazurah</sprite>
@@ -2697,24 +2699,34 @@
         <sprite>sprites\sprBunbyCatcher</sprite>
         <sprite>sprites\sprCaricarry</sprite>
         <sprite>sprites\sprClassicalCannon</sprite>
+        <sprite>sprites\sprClassicalCannonBlue</sprite>
+        <sprite>sprites\sprClassicalCannonYellow</sprite>
+        <sprite>sprites\sprClassicalCannonRed</sprite>
         <sprite>sprites\sprCamouflametall</sprite>
         <sprite>sprites\sprDiarn</sprite>
         <sprite>sprites\sprDeispider</sprite>
         <sprite>sprites\sprDeispiderPreview</sprite>
         <sprite>sprites\sprDetarnayappa</sprite>
+        <sprite>sprites\sprDetarnayappaRed</sprite>
         <sprite>sprites\sprDetarnayappaSpawner</sprite>
         <sprite>sprites\sprFlowerPresenter</sprite>
         <sprite>sprites\sprFireTotemHead</sprite>
+        <sprite>sprites\sprFireTotemHeadGreen</sprite>
         <sprite>sprites\sprFireTotemMiddle</sprite>
+        <sprite>sprites\sprFireTotemMiddleGreen</sprite>
         <sprite>sprites\sprFireTotemBase</sprite>
+        <sprite>sprites\sprFireTotemBaseGreen</sprite>
         <sprite>sprites\sprGagabyoall</sprite>
         <sprite>sprites\sprHoohoo</sprite>
+        <sprite>sprites\sprHoohooWhite</sprite>
         <sprite>sprites\sprIllusian</sprite>
         <sprite>sprites\sprJumpRoller</sprite>
         <sprite>sprites\sprJumpRollerHeatField</sprite>
         <sprite>sprites\sprKakinbatank</sprite>
+        <sprite>sprites\sprKakinbatankGreen</sprite>
         <sprite>sprites\mskKakinbatank</sprite>
         <sprite>sprites\sprLifeCamouPreview</sprite>
+        <sprite>sprites\sprMegamanShadow</sprite>
         <sprite>sprites\sprMetallB</sprite>
         <sprite>sprites\sprMM9MachineGunJoe</sprite>
         <sprite>sprites\sprMM9MachineGunJoeJump</sprite>
@@ -2743,10 +2755,12 @@
           <sprite>sprites\sprCaricarryRock</sprite>
           <sprite>sprites\sprClassicalCannonBullet</sprite>
           <sprite>sprites\sprFireTotemFlame</sprite>
+          <sprite>sprites\sprFireTotemFlameGreen</sprite>
           <sprite>sprites\sprFlowerPresenterFlowerOn</sprite>
           <sprite>sprites\sprFlowerPresenterFlowerOff</sprite>
           <sprite>sprites\sprJumpRollerFlame</sprite>
           <sprite>sprites\sprHoohooRock</sprite>
+          <sprite>sprites\sprHoohooRockWhite</sprite>
           <sprite>sprites\sprKakinbatankBullet</sprite>
           <sprite>sprites\sprMM9MachineGunJoeBullet</sprite>
           <sprite>sprites\sprOctoneInkball</sprite>
@@ -2758,74 +2772,25 @@
         </sprites>
       </sprites>
       <sprites name="MM10">
+        <sprite>sprites\sprArigockG</sprite>
         <sprite>sprites\sprBariIIIHead</sprite>
         <sprite>sprites\sprBariIIIBody</sprite>
+        <sprite>sprites\sprBariIIIBodyOrange</sprite>
         <sprite>sprites\mskBariIIIBody2</sprite>
         <sprite>sprites\mskBariIIIBody1</sprite>
         <sprite>sprites\mskBariIIIBody0</sprite>
         <sprite>sprites\sprBombPotton</sprite>
+        <sprite>sprites\sprBombPottonBlue</sprite>
         <sprite>sprites\sprBombPottonStopper</sprite>
-        <sprite>sprites\sprFuraibonBlue</sprite>
-        <sprite>sprites\sprFuraibonRed</sprite>
-        <sprite>sprites\sprFuraibonPurple</sprite>
-        <sprite>sprites\sprFuraibonYellow</sprite>
-        <sprite>sprites\sprFuraibonSpawner</sprite>
-        <sprite>sprites\sprNewClassicalCannon</sprite>
-        <sprite>sprites\sprYonbain</sprite>
-        <sprite>sprites\sprYonbainVertical</sprite>
-        <sprite>sprites\sprYonbainHorizontal</sprite>
-        <sprite>sprites\sprCommandoMine</sprite>
-        <sprite>sprites\sprMegamanShadow</sprite>
-        <sprite>sprites\sprMM10NeoHeliMetall</sprite>
-        <sprite>sprites\sprNitroTruckSpawner</sprite>
-        <sprite>sprites\sprNitroTruck</sprite>
-        <sprite>sprites\sprNitroTruckLarge</sprite>
-        <sprite>sprites\mskNitroTruckLarge</sprite>
-        <sprite>sprites\sprOshitsuOsarettsu</sprite>
-        <sprite>sprites\sprTsurareStamp</sprite>
-        <sprite>sprites\mskTsurareStamp</sprite>
-        <sprite>sprites\sprSola0</sprite>
-        <sprite>sprites\sprDarspider</sprite>
-        <sprite>sprites\sprDarspiderPreview</sprite>
-        <sprite>sprites\sprGarinkou</sprite>
-        <sprite>sprites\mskGarinkou</sprite>
-        <sprite>sprites\sprRSuzy</sprite>
-        <sprite>sprites\sprMerserker</sprite>
-        <sprite>sprites\sprKaonaGeeno</sprite>
-        <sprite>sprites\sprKaona</sprite>
-        <sprite>sprites\sprRMechaPitchan</sprite>
-        <sprite>sprites\sprBMechaPitchan</sprite>
-        <sprite>sprites\sprArigockG</sprite>
         <sprite>sprites\sprRCargoQ</sprite>
         <sprite>sprites\sprBCargoQ</sprite>
-        <sprite>sprites\sprSprinklan</sprite>
-        <sprite>sprites\mskSprinklanBig</sprite>
-        <sprite>sprites\sprPiledan</sprite>
-        <sprite>sprites\sprPiledanBomber</sprite>
-        <sprite>sprites\sprPiledanTurret</sprite>
-        <sprite>sprites\sprShotom</sprite>
-        <sprite>sprites\sprWaltriot</sprite>
+        <sprite>sprites\sprCommandoMine</sprite>
+        <sprite>sprites\sprDarspider</sprite>
+        <sprite>sprites\sprDarspiderPreview</sprite>
         <sprite>sprites\sprDarspiderWeb</sprite>
-        <sprite>sprites\sprPointan</sprite>
-        <sprite>sprites\sprHaikerN</sprite>
-        <sprite>sprites\sprHaikerNPreview</sprite>
-        <sprite>sprites\sprSepaRoader</sprite>
-        <sprite>sprites\sprSepaRoaderTop</sprite>
-        <sprite>sprites\sprNumetallGlob</sprite>
-        <sprite>sprites\sprNumetall</sprite>
-        <sprite>sprites\sprMM10Suzy</sprite>
-        <sprite>sprites\sprMolmole</sprite>
-        <sprite>sprites\sprMolmoleDown</sprite>
-        <sprite>sprites\sprMoleSpark</sprite>
-        <sprite>sprites\sprMolmoleSpawner</sprite>
-        <sprite>sprites\sprSearchy</sprite>
-        <sprite>sprites\sprSearchyLight</sprite>
-        <sprite>sprites\sprSwallowegg</sprite>
-        <sprite>sprites\sprSwalloweggSpawner</sprite>
-        <sprite>sprites\sprReturningMachinegunJoe</sprite>
-        <sprite>sprites\sprShrimparge91</sprite>
         <sprites name="Dockalocker">
           <sprite>sprites\sprDockaLocker</sprite>
+          <sprite>sprites\sprDockaLockerPurple</sprite>
           <sprite>sprites\sprDockalockerTemplate0</sprite>
           <sprite>sprites\sprDockalockerTemplate1</sprite>
           <sprite>sprites\sprDockalockerTemplate2</sprite>
@@ -2836,33 +2801,101 @@
           <sprite>sprites\sprDockalockerTemplate7</sprite>
           <sprite>sprites\sprDockalockerBack</sprite>
         </sprites>
+        <sprite>sprites\sprFuraibonBlue</sprite>
+        <sprite>sprites\sprFuraibonRed</sprite>
+        <sprite>sprites\sprFuraibonPurple</sprite>
+        <sprite>sprites\sprFuraibonYellow</sprite>
+        <sprite>sprites\sprFuraibonSpawner</sprite>
+        <sprite>sprites\sprGarinkou</sprite>
+        <sprite>sprites\sprGarinkouPurple</sprite>
+        <sprite>sprites\mskGarinkou</sprite>
+        <sprite>sprites\sprHaikerN</sprite>
+        <sprite>sprites\sprHaikerNPreview</sprite>
+        <sprite>sprites\sprKaonaGeeno</sprite>
+        <sprite>sprites\sprKaona</sprite>
+        <sprite>sprites\sprMM10NeoHeliMetall</sprite>
+        <sprite>sprites\sprRMechaPitchan</sprite>
+        <sprite>sprites\sprBMechaPitchan</sprite>
+        <sprite>sprites\sprMerserker</sprite>
+        <sprite>sprites\sprMM10Suzy</sprite>
+        <sprite>sprites\sprMolmole</sprite>
+        <sprite>sprites\sprMolmoleDown</sprite>
+        <sprite>sprites\sprMoleSpark</sprite>
+        <sprite>sprites\sprMolmoleSpawner</sprite>
+        <sprite>sprites\sprNewClassicalCannon</sprite>
+        <sprite>sprites\sprNewClassicalCannonBlue</sprite>
+        <sprite>sprites\sprNewClassicalCannonYellow</sprite>
+        <sprite>sprites\sprNewClassicalCannonRed</sprite>
+        <sprite>sprites\sprNitroTruckSpawner</sprite>
+        <sprite>sprites\sprNitroTruck</sprite>
+        <sprite>sprites\sprNitroTruckLarge</sprite>
+        <sprite>sprites\mskNitroTruckLarge</sprite>
+        <sprite>sprites\sprNumetall</sprite>
+        <sprite>sprites\sprOshitsuOsarettsu</sprite>
+        <sprite>sprites\sprPiledan</sprite>
+        <sprite>sprites\sprPiledanBomber</sprite>
+        <sprite>sprites\sprPiledanTurret</sprite>
+        <sprite>sprites\sprPointan</sprite>
+        <sprite>sprites\sprReturningMachinegunJoe</sprite>
+        <sprite>sprites\sprRSuzy</sprite>
+        <sprite>sprites\sprSearchy</sprite>
+        <sprite>sprites\sprSearchyLight</sprite>
+        <sprite>sprites\sprSepaRoader</sprite>
+        <sprite>sprites\sprSepaRoaderTop</sprite>
+        <sprites name="Shield Attacker TRL">
+          <sprite>sprites\sprShieldAttackerTRL</sprite>
+          <sprite>sprites\sprShieldAttackerTRLBlue</sprite>
+          <sprite>sprites\sprShieldAttackerTRLTurn</sprite>
+          <sprite>sprites\sprShieldAttackerTRLTurnBlue</sprite>
+          <sprite>sprites\sprShieldAttackerTRLSad</sprite>
+          <sprite>sprites\sprShieldAttackerTRLSadBlue</sprite>
+          <sprite>sprites\sprShieldAttackerTRLTurnSad</sprite>
+          <sprite>sprites\sprShieldAttackerTRLTurnSadBlue</sprite>
+          <sprite>sprites\sprShieldAttackerTRLShock</sprite>
+          <sprite>sprites\sprShieldAttackerTRLShockBlue</sprite>
+        </sprites>
+        <sprite>sprites\sprShotom</sprite>
+        <sprite>sprites\sprShrimparge91</sprite>
+        <sprite>sprites\sprSola0</sprite>
+        <sprite>sprites\sprSprinklan</sprite>
+        <sprite>sprites\mskSprinklanBig</sprite>
+        <sprite>sprites\sprSwallowegg</sprite>
+        <sprite>sprites\sprSwalloweggSpawner</sprite>
+        <sprite>sprites\sprTsurareStamp</sprite>
+        <sprite>sprites\sprTsurareStampRed</sprite>
+        <sprite>sprites\sprTsurareStampGreen</sprite>
+        <sprite>sprites\sprTsurareStampBlue</sprite>
+        <sprite>sprites\mskTsurareStamp</sprite>
+        <sprite>sprites\sprWaltriot</sprite>
+        <sprite>sprites\sprYonbain</sprite>
+        <sprite>sprites\sprYonbainPurple</sprite>
+        <sprite>sprites\sprYonbainBlue</sprite>
+        <sprite>sprites\sprYonbainHorizontal</sprite>
+        <sprite>sprites\sprYonbainVertical</sprite>
         <sprites name="Projectiles">
           <sprite>sprites\sprArigockGSpike</sprite>
-          <sprite>sprites\sprMechaPitchanBall</sprite>
+          <sprite>sprites\sprBariIIIWave</sprite>
+          <sprite>sprites\sprBombPottonBomb</sprite>
+          <sprite>sprites\sprBombPottonExplosion</sprite>
+          <sprite>sprites\sprBombPottonExplosionBlue</sprite>
           <sprite>sprites\sprBCargoQBall</sprite>
           <sprite>sprites\sprRCargoQBall</sprite>
-          <sprite>sprites\sprSola0Beam</sprite>
-          <sprite>sprites\sprReturningMachinegunJoeBullet</sprite>
-          <sprite>sprites\sprBariIIIWave</sprite>
+          <sprite>sprites\sprEggFlame</sprite>
+          <sprite>sprites\sprHaikerNGlob</sprite>
+          <sprite>sprites\sprJetEgg</sprite>
+          <sprite>sprites\sprMechaPitchanBall</sprite>
+          <sprite>sprites\sprNumetallGlob</sprite>
           <sprite>sprites\sprNewClassicalCannonBullet</sprite>
           <sprite>sprites\sprPiledanBomb</sprite>
-          <sprite>sprites\sprShotomBullet</sprite>
-          <sprite>sprites\sprWalriotMissile</sprite>
-          <sprite>sprites\sprBombPottonBomb</sprite>
           <sprite>sprites\sprPointanWindow</sprite>
           <sprite>sprites\sprPointanSelectionSquare</sprite>
-          <sprite>sprites\sprHaikerNGlob</sprite>
-          <sprite>sprites\sprBombPottonExplosion</sprite>
+          <sprite>sprites\sprReturningMachinegunJoeBullet</sprite>
           <sprite>sprites\sprReturningMachinegunJoeShield</sprite>
-          <sprite>sprites\sprJetEgg</sprite>
-          <sprite>sprites\sprEggFlame</sprite>
+          <sprite>sprites\sprShotomBullet</sprite>
           <sprite>sprites\sprShieldAttackerTRLShield</sprite>
+          <sprite>sprites\sprSola0Beam</sprite>
+          <sprite>sprites\sprWalriotMissile</sprite>
         </sprites>
-        <sprite>sprites\sprShieldAttackerTRL</sprite>
-        <sprite>sprites\sprShieldAttackerTRLTurn</sprite>
-        <sprite>sprites\sprShieldAttackerTRLSad</sprite>
-        <sprite>sprites\sprShieldAttackerTRLTurnSad</sprite>
-        <sprite>sprites\sprShieldAttackerTRLShock</sprite>
       </sprites>
       <sprites name="GB I-IV">
         <sprite>sprites\sprBubukanMkII</sprite>

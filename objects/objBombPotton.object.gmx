@@ -39,6 +39,9 @@ explosionLenght = 3;
 //@cc if false the explision will damage other enemies
 onlyDamageMines=true;
 
+//@cc Change colours: 0 (default) = green, 1 = blue
+col = 0;
+
 phase = 0;
 timer = 0;
 deccel = 0;
@@ -46,6 +49,8 @@ newX = -9999;
 
 animFrame = 0;
 animOffset = 0;
+
+init = 1;
 </string>
           </argument>
         </arguments>
@@ -69,6 +74,20 @@ animOffset = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+if (init)
+{
+    switch (col)
+    {
+        case 1:
+            sprite_index = sprBombPottonBlue;
+            break;
+        default:
+            sprite_index = sprBombPotton;
+            break;
+    }
+    init = 0;
+}
 
 if (entityCanStep())
 {
@@ -161,6 +180,10 @@ if (entityCanStep())
             animOffset = 1.99999;
             i.onlyDamageMines=onlyDamageMines;
             i.remaining = explosionLenght - 1;
+            if (col == 1)
+            {
+                i.image_index = 1;
+            }
         }
         timer += 1;
         if (timer &gt; 30)

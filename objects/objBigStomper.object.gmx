@@ -29,6 +29,10 @@
 healthpointsStart = 12;
 healthpoints = healthpointsStart;
 contactDamage = 8;
+
+//@cc - Change colour: 0 (default) = orange, 1 = blue, 2 = green
+col = 0;
+
 image_speed = 0;
 rotationTimer = 0;
 animTable = makeArray(3, 2, 1, 0, 0, 1, 2, 3, 3, 0);
@@ -42,6 +46,7 @@ jumpDistance[1] = 32;
 msk = mskBigStomper;
 category = "big eye, bulky";
 dieToSpikes = false;
+init = 1;
 </string>
           </argument>
         </arguments>
@@ -67,6 +72,25 @@ dieToSpikes = false;
             <string>mask_index = msk;
 event_inherited();
 mask_index = sprite_index;
+
+//Change colours
+if (init)
+{
+    switch(col)
+    {
+        case 1:
+            sprite_index = sprBigStomperBlue;
+            break;
+        case 2:
+            sprite_index = sprBigStomperGreen;
+            break;
+        default:
+            sprite_index = sprBigStomper;
+            break;
+    }
+    init = 0;
+}
+
 if (entityCanStep())
 {
     if (!ground)
