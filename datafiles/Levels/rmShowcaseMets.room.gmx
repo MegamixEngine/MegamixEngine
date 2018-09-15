@@ -10,12 +10,7 @@
   <persistent>0</persistent>
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
-  <code>playMusic("Mega_Man_3.nsf","VGM", 9, 0, 0, 0, 1);
-
-with objBossDoor
-{
-isTile = true;
-}</code>
+  <code>playMusic("Mega_Man_3.nsf","VGM", 9, 0, 0, 0, 1);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -645,6 +640,7 @@ isTile = true;
     <instance objName="objSolid" x="3584" y="832" name="inst_64DA1524" locked="0" code="" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3584" y="784" name="inst_08BBA6DE" locked="0" code="" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="3584" y="672" name="inst_A8F075DC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBossDoorVertical" x="16" y="1104" name="inst_A18471F0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstGutsman" x="1264" y="1264" w="16" h="16" xo="80" yo="32" id="11321521" name="inst_F710B588" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -823,8 +819,6 @@ isTile = true;
     <tile bgName="tstGutsman" x="2560" y="1712" w="16" h="16" xo="80" yo="32" id="11332682" name="inst_AC0C8595" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="2560" y="1696" w="16" h="16" xo="80" yo="32" id="11332683" name="inst_E602670D" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="2048" y="1744" w="16" h="16" xo="80" yo="32" id="11332684" name="inst_4911D587" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGutsman" x="2048" y="1712" w="16" h="16" xo="80" yo="32" id="11332686" name="inst_8FD9CD61" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGutsman" x="2048" y="1728" w="16" h="16" xo="80" yo="32" id="11332687" name="inst_6D4158F1" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="1792" y="1712" w="16" h="16" xo="80" yo="32" id="11332688" name="inst_2E7E9FBD" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="1792" y="1696" w="16" h="16" xo="80" yo="32" id="11332689" name="inst_F61325E3" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="1792" y="1680" w="16" h="16" xo="80" yo="32" id="11332690" name="inst_BC59E078" depth="1100000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3073,9 +3067,6 @@ isTile = true;
     <tile bgName="tstGutsman" x="2624" y="1760" w="16" h="16" xo="64" yo="16" id="11323801" name="inst_15A23427" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="2640" y="1760" w="16" h="16" xo="64" yo="16" id="11323802" name="inst_94F1D74D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="2656" y="1760" w="16" h="16" xo="64" yo="16" id="11323803" name="inst_376C721F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGutsman" x="2560" y="1696" w="16" h="16" xo="0" yo="112" id="11323804" name="inst_5E56E5BA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGutsman" x="2560" y="1712" w="16" h="16" xo="0" yo="112" id="11323805" name="inst_C67B9767" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGutsman" x="2560" y="1728" w="16" h="16" xo="0" yo="112" id="11323806" name="inst_BA0623B8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="2512" y="1728" w="16" h="16" xo="32" yo="0" id="11323807" name="inst_2EDD96F5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="2512" y="1744" w="16" h="16" xo="32" yo="0" id="11323808" name="inst_90177BE1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="2512" y="1712" w="16" h="16" xo="64" yo="16" id="11323809" name="inst_C8B58454" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3127,9 +3118,6 @@ isTile = true;
     <tile bgName="tstGutsman" x="2064" y="1760" w="16" h="16" xo="64" yo="16" id="11323880" name="inst_B86C6D30" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="2080" y="1760" w="16" h="16" xo="64" yo="16" id="11323881" name="inst_79461D74" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="2096" y="1760" w="16" h="16" xo="64" yo="16" id="11323882" name="inst_B18B24AD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGutsman" x="2048" y="1712" w="16" h="16" xo="0" yo="112" id="11323883" name="inst_3996A818" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGutsman" x="2048" y="1728" w="16" h="16" xo="0" yo="112" id="11323884" name="inst_A88EDFCA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstGutsman" x="2048" y="1744" w="16" h="16" xo="0" yo="112" id="11323885" name="inst_66B9BBBB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="2112" y="1744" w="32" h="32" xo="32" yo="80" id="11323886" name="inst_BF338135" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="2144" y="1744" w="32" h="32" xo="32" yo="80" id="11323887" name="inst_0553E3F6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="2048" y="1776" w="32" h="16" xo="32" yo="80" id="11323888" name="inst_708BE3F3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -10041,6 +10029,8 @@ isTile = true;
     <tile bgName="tstGutsman" x="3824" y="976" w="16" h="16" xo="0" yo="16" id="11354470" name="inst_51DD8378" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="3824" y="992" w="16" h="16" xo="0" yo="16" id="11354471" name="inst_A7A11F4E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstGutsman" x="3824" y="1008" w="16" h="16" xo="0" yo="16" id="11354472" name="inst_A9AA4AF3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGutsman" x="2048" y="1712" w="16" h="16" xo="80" yo="32" id="11359207" name="inst_2FAC7F07" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstGutsman" x="2048" y="1728" w="16" h="16" xo="80" yo="32" id="11359208" name="inst_187FFDAD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>
