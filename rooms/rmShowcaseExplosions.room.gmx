@@ -112,7 +112,7 @@
     <instance objName="objWalkingBomb" x="240" y="832" name="inst_219" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionFreeVerticalScrolling" x="512" y="672" name="inst_222" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="512" y="448" name="inst_224" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objFallingTowerStop" x="528" y="592" name="inst_381" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objFallingTowerStop" x="528" y="608" name="inst_381" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFallingTower" x="528" y="848" name="inst_388" locked="0" code="myTile=100;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBokazurah" x="560" y="736" name="inst_390" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBokazurahPlatform" x="592" y="704" name="inst_391" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -242,15 +242,14 @@
     <instance objName="objSW525" x="2736" y="272" name="inst_3253" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
     <instance objName="objJetBomb" x="3040" y="352" name="inst_3254" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objJetBomb" x="2912" y="320" name="inst_3256" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objReflectBlockSmall" x="3184" y="320" name="inst_3261" locked="0" code="faction=5;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objReflectBlockSmall" x="3152" y="320" name="inst_3261" locked="0" code="faction=5;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objJetBomb" x="3072" y="256" name="inst_5220" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objReflectBlockSmall" x="3184" y="304" name="inst_5225" locked="0" code="faction=5;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objReflectBlockSmall" x="3152" y="304" name="inst_5225" locked="0" code="faction=5;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objReflectBlockSmall" x="3168" y="320" name="inst_5227" locked="0" code="faction=5;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objReflectBlockSmall" x="3168" y="304" name="inst_5228" locked="0" code="faction=5;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDestroyableBlock" x="3168" y="336" name="inst_5234" locked="0" code="grav=0;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objReflectBlockLarge" x="3136" y="368" name="inst_5251" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objReflectBlockLarge" x="3200" y="368" name="inst_5252" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objKeyBarrier" x="3248" y="352" name="inst_5253" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDestroyableBlock" x="3152" y="336" name="inst_5234" locked="0" code="grav=0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objReflectBlockLarge" x="3120" y="368" name="inst_5251" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objReflectBlockLarge" x="3184" y="368" name="inst_5252" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEnergyElement" x="3296" y="384" name="inst_5254" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBalladeMissile" x="2816" y="368" name="inst_5256" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBalladeMissile" x="2816" y="336" name="inst_5257" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -260,7 +259,7 @@
     <instance objName="objBalladeMissile" x="2816" y="304" name="inst_5261" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBalladeMissile" x="2816" y="272" name="inst_5262" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBalladeMissile" x="2816" y="256" name="inst_5263" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBombThrown" x="3184" y="384" name="inst_5272" locked="0" code="itemDrop = objKey;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBombThrown" x="3168" y="384" name="inst_5272" locked="0" code="itemDrop = objKey;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSonicBill" x="2448" y="832" name="inst_6322" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDarkmanBlock" x="736" y="800" name="inst_6323" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDarkmanBlock" x="736" y="816" name="inst_6324" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -307,11 +306,11 @@
     <instance objName="objRightScrolling" x="1024" y="896" name="inst_14707" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFallingTower" x="1040" y="1024" name="inst_17403" locked="0" code="myTile=120;&#xA;spd = 2;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBombombStopper" x="1336" y="576" name="inst_17407" locked="0" code="" scaleX="0.842105984687805" scaleY="0.842105984687805" colour="4294967295" rotation="0"/>
-    <instance objName="objBombombSpawner" x="1336" y="624" name="inst_17408" locked="0" code="" scaleX="0.842105984687805" scaleY="0.842108011245728" colour="4294967295" rotation="0"/>
+    <instance objName="objBombombSpawner" x="1336" y="624" name="inst_17408" locked="0" code="" scaleX="0.842105984687805" scaleY="0.842108011245727" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1280" y="896" name="inst_17409" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1280" y="672" name="inst_17411" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1280" y="448" name="inst_17412" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBombombSpawner" x="1432" y="624" name="inst_17413" locked="0" code="" scaleX="0.842105984687805" scaleY="0.842108011245728" colour="4294967295" rotation="0"/>
+    <instance objName="objBombombSpawner" x="1432" y="624" name="inst_17413" locked="0" code="" scaleX="0.842105984687805" scaleY="0.842108011245727" colour="4294967295" rotation="0"/>
     <instance objName="objBombombStopper" x="1432" y="528" name="inst_17414" locked="0" code="" scaleX="0.842105984687805" scaleY="0.842105984687805" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="896" y="608" name="inst_17415" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objKillerBullet" x="1600" y="576" name="inst_17416" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -329,7 +328,6 @@
     <instance objName="objSolid" x="1440" y="624" name="inst_20198" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="2624" y="384" name="inst_20199" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="3008" y="800" name="inst_20200" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDefaultSpawn" x="16" y="480" name="inst_20201" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3248" y="320" name="inst_18823" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3184" y="416" name="inst_18824" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3248" y="416" name="inst_18825" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -354,7 +352,6 @@
     <instance objName="objSolid" x="2800" y="224" name="inst_18844" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3264" y="224" name="inst_18845" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3296" y="224" name="inst_18846" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSolid" x="3264" y="272" name="inst_18847" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3296" y="272" name="inst_18848" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2592" y="224" name="inst_18849" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2624" y="224" name="inst_18850" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -366,7 +363,6 @@
     <instance objName="objSolid" x="2816" y="224" name="inst_18856" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3280" y="224" name="inst_18857" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3312" y="224" name="inst_18858" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSolid" x="3280" y="272" name="inst_18859" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3312" y="272" name="inst_18860" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2608" y="400" name="inst_18861" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2656" y="400" name="inst_18862" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -399,11 +395,9 @@
     <instance objName="objSolid" x="992" y="912" name="inst_18898" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3264" y="240" name="inst_18899" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3296" y="240" name="inst_18900" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSolid" x="3264" y="288" name="inst_18901" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3296" y="288" name="inst_18902" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3280" y="240" name="inst_18903" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3312" y="240" name="inst_18904" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSolid" x="3280" y="288" name="inst_18905" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3312" y="288" name="inst_18906" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2560" y="224" name="inst_18907" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2560" y="240" name="inst_18908" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -426,7 +420,6 @@
     <instance objName="objSolid" x="2800" y="240" name="inst_18925" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3264" y="256" name="inst_18926" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3296" y="256" name="inst_18927" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSolid" x="3264" y="304" name="inst_18928" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3296" y="304" name="inst_18929" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2592" y="240" name="inst_18930" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2624" y="240" name="inst_18931" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -438,7 +431,6 @@
     <instance objName="objSolid" x="2816" y="240" name="inst_18937" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3280" y="256" name="inst_18938" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3312" y="256" name="inst_18939" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSolid" x="3280" y="304" name="inst_18940" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="3312" y="304" name="inst_18941" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2560" y="208" name="inst_18942" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2608" y="464" name="inst_18943" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -1685,10 +1677,13 @@
     <instance objName="objSign" x="2752" y="384" name="inst_98C59C9C" locked="0" code="text = &quot;objBalladeMissle. Mega Man IV (Game Boy). A platform that you can shoot, but doing so causes a damaging explosion.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="2896" y="384" name="inst_5ADBC4EB" locked="0" code="text = &quot;objJetBomb. Mega Man 5. Flies straight forward until it hits a wall and then turns into shrapnel. Will also turn into shrapnel when shot. Has many built in color options.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="2960" y="336" name="inst_E1FA855D" locked="0" code="text = &quot;objHirarian427. Mega Man 5. Falls from ceilings and walks toward Mega Man and explodes on walls. Will eventually explode automatically. Also has a few color options built in.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="3216" y="352" name="inst_9539A386" locked="0" code="text = &quot;The Bomb Thrown was killed here by changing the faction of the reflect blocks. Try it out some time.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="3136" y="352" name="inst_9539A386" locked="0" code="text = &quot;The Bomb Thrown was killed here by changing the faction of the reflect blocks. Try it out some time. Destroyable blocks can be customized to be destroyed by whatever weapon of your choice with creation code weakness = global.weaponID[? objWeaponNameGoesHere].&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="928" y="608" name="inst_38B9126F" locked="0" code="text = &quot;You can make upside down Dark Man towers.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="2176" y="832" name="inst_C60CF8DA" locked="0" code="text = &quot;Kabatoncue Platforms can be customized to be used for more than Kabatoncue with creation code.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingVertical" x="512" y="448" name="inst_09C7CE15" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objKeyBarrier" x="3264" y="272" name="inst_B7C52CEE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objETank" x="3280" y="304" name="inst_205C0B65" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="3232" y="336" name="inst_DA918994" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDefaultSpawn" x="16" y="480" name="inst_E81DAF90" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstTeleporter" x="0" y="448" w="16" h="16" xo="0" yo="0" id="431" name="tile_431" depth="2000002" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -6750,18 +6745,12 @@
     <tile bgName="tstFlameMan" x="3296" y="256" w="16" h="16" xo="96" yo="32" id="233" name="tile_233" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="3312" y="256" w="16" h="16" xo="112" yo="32" id="234" name="tile_234" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="2560" y="272" w="16" h="16" xo="144" yo="16" id="235" name="tile_235" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstFlameMan" x="3264" y="272" w="16" h="16" xo="96" yo="0" id="236" name="tile_236" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstFlameMan" x="3280" y="272" w="16" h="16" xo="112" yo="0" id="237" name="tile_237" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="3296" y="272" w="16" h="16" xo="96" yo="0" id="238" name="tile_238" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="3312" y="272" w="16" h="16" xo="112" yo="0" id="239" name="tile_239" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="2560" y="288" w="16" h="16" xo="144" yo="16" id="240" name="tile_240" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstFlameMan" x="3264" y="288" w="16" h="16" xo="96" yo="16" id="241" name="tile_241" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstFlameMan" x="3280" y="288" w="16" h="16" xo="112" yo="16" id="242" name="tile_242" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="3296" y="288" w="16" h="16" xo="96" yo="16" id="243" name="tile_243" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="3312" y="288" w="16" h="16" xo="112" yo="16" id="244" name="tile_244" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="2560" y="304" w="16" h="16" xo="144" yo="16" id="245" name="tile_245" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstFlameMan" x="3264" y="304" w="16" h="16" xo="96" yo="32" id="246" name="tile_246" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="tstFlameMan" x="3280" y="304" w="16" h="16" xo="112" yo="32" id="247" name="tile_247" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="3296" y="304" w="16" h="16" xo="96" yo="32" id="248" name="tile_248" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="3312" y="304" w="16" h="16" xo="112" yo="32" id="249" name="tile_249" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="2560" y="320" w="16" h="16" xo="144" yo="16" id="250" name="tile_250" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -8080,6 +8069,7 @@
     <tile bgName="tstHardman" x="1008" y="1104" w="16" h="16" xo="176" yo="96" id="1567" name="tile_1567" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1024" y="1104" w="16" h="16" xo="32" yo="96" id="1568" name="tile_1568" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstHardman" x="1264" y="1104" w="16" h="16" xo="32" yo="96" id="1569" name="tile_1569" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstConcreteman" x="3232" y="336" w="16" h="16" xo="80" yo="80" id="11368063" name="inst_723816E5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="1040" y="1024" w="16" h="16" xo="192" yo="0" id="1" name="tile_1" depth="120" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="1056" y="1024" w="16" h="16" xo="208" yo="0" id="2" name="tile_2" depth="120" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstFlameMan" x="1072" y="1024" w="16" h="16" xo="208" yo="0" id="3" name="tile_3" depth="120" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
