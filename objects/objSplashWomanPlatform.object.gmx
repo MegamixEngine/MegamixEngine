@@ -31,30 +31,18 @@
 
 event_inherited();
 canHit = false;
-
+canDamage=0;
 isSolid = 1;
-
 blockCollision = 0;
 grav = 0;
 
-respawnRange = -1;
-despawnRange = -1;
+activeTime = 0;
+startupTime=30;
 
-startup = 60;
-active = 60;
-parent = noone;
-ID = noone;
-spd = 2;
-getX = x;
-dir = 1;
+timer=0;
 
-totalTimer = startup + active;
+spd=2;
 
-timer = 0;
-
-init = 1;
-
-shiftVisible = 1;
 </string>
           </argument>
         </arguments>
@@ -77,105 +65,70 @@ shiftVisible = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (init)
-{
-    init = 0;
-    totalTimer = startup + active;
-}
+            <string>event_inherited();
 
-event_inherited();
-
-if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
+if (entityCanStep())
 {
-    if ((x &lt; view_xview + view_wview / 2 &amp;&amp; dir == 1)
-        || (x &gt; view_xview + view_wview / 2 &amp;&amp; dir == -1) || xspeed != 0)
+    timer+=1;
+    if(timer&gt;startupTime)
     {
-        visible = true;
-        if (!instance_exists(parent))
+        xspeed = spd;
+        var pc = floor(((timer-startupTime)/activeTime)*100);
+        image_index = clamp(round(pc/16.66667),1,6)-1;
+        if(timer&gt;startupTime+activeTime)
         {
-            timer += 1;
-            
-            // startup
-            if (timer == startup)
-            {
-                xspeed = spd * dir;
-                ID = instance_create(x - 32 * sign(xspeed), y, object_index);
-                ID.parent = id;
-                ID.getX = x;
-                ID.startup = startup;
-                ID.spd = spd;
-                ID.active = active;
-                ID.dir = dir;
-                ID.totalTimer = totalTimer;
-                getX = x;
-            }
-            if (instance_exists(ID))
-            {
-                ID.visible = true;
-                if (timer &gt; startup)
-                {
-                    if (ID.x &lt; getX - spd)
-                    {
-                        ID.x += spd;
-                    }
-                    else if (ID.x &gt; getX + spd)
-                    {
-                        ID.x -= spd;
-                    }
-                    else
-                    {
-                        ID.x = getX;
-                    }
-                }
-            }
-            if (x != getX)
-                image_index = (max(0,
-                    timer - startup) / (startup + active)) * image_number;
-            else
-                image_index = 0;
-            
-            if (timer == startup + active)
-                instance_create(x, y + 8, objExplosion);
-            
-            if (timer &gt;= startup + active)
-            {
-                x = getX;
-                xspeed = 0;
-                visible = false;
-                if (timer &gt; totalTimer)
-                    instance_destroy();
-            }
-        }
-    }
-    else
-    {
-        if (!instance_exists(parent))
-            visible = false;
-        
-        //        if !insideView()
-        if (instance_exists(target))
-            if (x &gt; global.sectionRight + 32 || x &lt; global.sectionLeft - 32)
-            {
-                //            if timer &gt; totalTimer
-                //                timer = 0;
-                x = getX;
-                xspeed = 0;
-            }
-    }
-}
-else if (!global.timeStopped &amp;&amp; !global.frozen)
-{
-    timer = 0;
-    x = getX;
-    xspeed = 0;
-    if (instance_exists(ID))
-    {
-        with (ID)
-        {
-            instance_destroy();
+            event_user(EV_DEATH);
         }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>timer=0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_create(bboxGetXCenter(),bboxGetYCenter(),objExplosion);
+dead=true;
+
 </string>
           </argument>
         </arguments>
@@ -198,14 +151,9 @@ else if (!global.timeStopped &amp;&amp; !global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(objSectionSwitcher))
-{
-    exit;
-}
+            <string>ys = 0;
 
-ys = 0;
-
-switch (startup - timer)
+switch (timer)
 {
     case 1:
     case 2:

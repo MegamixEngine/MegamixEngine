@@ -32,7 +32,7 @@
 */
 event_inherited();
 
-//@cc The sprite of the conveyor, its divided in three groups of sub images
+//@cc The sprite of the conveyor, its divided in 8 groups of sub images: left block(moving left), middle block(moving left
 sprite = sprMM2Conveyor;
 
 //@cc Total amount of frames per sub image group, 2 by default
@@ -61,6 +61,12 @@ if (image_xscale &lt; 0)
     x -= sprite_width;
     xstart = x;
 }
+if(image_yscale&lt;0)
+{
+    image_yscale=abs(image_yscale);
+    y -= sprite_height;
+    ystart = y;
+}
 
 spd = 1; // The speed the player moves at when standing on the conveyor belt
 
@@ -84,6 +90,31 @@ if (dir == 1)
         }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if(sprite_index!=sprite)
+    sprite_index=sprite;
 </string>
           </argument>
         </arguments>
@@ -169,19 +200,23 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 
 for (i = 0; i &lt; image_xscale; i += 1)
 {
-    imgadd = 0;
-    if (i == 0 || i == image_xscale - 1)
+    if(i==0&amp;&amp;image_xscale==1)//single block
     {
-        if (dir &lt; 0)
-        {
-            imgadd = animFrames;
-        }
-        else
-        {
-            imgadd = 2*animFrames;
-        }
+        imgadd = 6*animFrames + animFrames*(dir&lt;0);
     }
-    draw_sprite(sprMM2Conveyor, img + imgadd, x + i * 16, y);
+    else if (i == 0)//left block
+    {
+        imgadd = animFrames*(dir&lt;0);
+    }
+    else if(i==image_xscale-1)//right block
+    {
+        imgadd = 4*animFrames + animFrames*(dir&lt;0);
+    }
+    else // Middle block
+    {
+        imgadd = 2*animFrames + animFrames*(dir&lt;0);
+    }
+    draw_sprite(sprite, img + imgadd, x + i * 16, y);
 }
 </string>
           </argument>

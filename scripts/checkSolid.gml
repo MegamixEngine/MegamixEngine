@@ -23,16 +23,14 @@ cgrav += (cgrav == 0);
 
 with (objSolid)
 {
-    if (isSolid == 1)
-    {
-        solid = 1;
-    }
+    solid = (isSolid == 1);
 }
 
 // Stoppers are only solid for the object_index they have stored
 
 with (objGenericStopper)
 {
+    solid=0;
     if (other.object_index == objectToStop || object_is_ancestor(other.object_index, objectToStop))
     {
         solid = 1;
@@ -54,6 +52,7 @@ if (dieToSpikes)
 // jumpthrough objects
 with (objTopSolid)
 {
+    solid=0;
     if (isSolid)
     {
         if (!place_meeting(x, y + cgrav, myid))
@@ -68,6 +67,7 @@ with (objTopSolid)
 
 with (prtEntity)
 {
+    solid=0;
     if (!dead && id != myid)
     {
         if (isSolid)
@@ -110,9 +110,5 @@ else if (!noSlopeConditions && _xs != 0 && _ys == 0)
     }
 }
 
-with (all)
-{
-    solid = 0;
-}
 
 return (ret);

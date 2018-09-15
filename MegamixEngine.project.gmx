@@ -3961,6 +3961,7 @@
         <sprite>sprites\sprGalaxyManPortal</sprite>
         <sprite>sprites\sprGalaxyManPortalReverse</sprite>
         <sprite>sprites\sprSplashWomanWaterPlatform</sprite>
+        <sprite>sprites\sprSplashWomanWaterPlatfomSpawner</sprite>
         <sprite>sprites\sprConcretePlatformUp</sprite>
         <sprite>sprites\sprConcretePlatformDown</sprite>
         <sprite>sprites\sprCopterPlatform</sprite>
@@ -4016,6 +4017,7 @@
         <sprite>sprites\sprBladeManSeeSawPlatform</sprite>
         <sprite>sprites\sprBladeManSeeSawTether</sprite>
         <sprite>sprites\sprBladeManSeeSawMiddle</sprite>
+        <sprite>sprites\sprSolarManConveyor</sprite>
       </sprites>
       <sprites name="MM&amp;B">
         <sprite>sprites\sprAstroWallRipple</sprite>
@@ -6240,8 +6242,9 @@
         <object>objects\objHanabiranClockArm</object>
         <object>objects\objHornetRoll</object>
         <object>objects\objJewelPlatform</object>
+        <object>objects\objSplashWomanPlatformSpawner</object>
+        <object>objects\objSplashWomanPlatform</object>
         <object>objects\objMagmaBeamSource</object>
-        <object>objects\objSplashWomanWaterPlatform</object>
         <object>objects\objTornadoPlatform</object>
         <object>objects\objWily4Laser</object>
         <objects name="Don't Use">
@@ -6254,6 +6257,7 @@
         <object>objects\objChillManBlock</object>
         <object>objects\objCommandoMine</object>
         <object>objects\objCompactor</object>
+        <object>objects\objMM10Conveyor</object>
         <object>objects\objSandstormSpawner</object>
         <object>objects\objSheepBlockB</object>
         <object>objects\objSheepBlockG</object>
