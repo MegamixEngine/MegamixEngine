@@ -31,6 +31,7 @@ healthpointsStart = 28;
 healthpoints = healthpointsStart;
 pose = sprWoodIntro;
 poseImgSpeed = 7 / 60;
+image_index = 6;
 contactDamage = 4;
 attackTimer = 0;
 phase = 0;
@@ -237,7 +238,16 @@ if (entityCanStep())
                     leafTimer -= 1;
                     if (leafTimer &lt;= 0)
                     {
-                        leafTimer = 2; // reusing this again
+                        leafTimer = 8; // reusing this again
+                        image_index = 0;
+                    }
+                }
+                else if (image_index == 0)
+                {
+                    leafTimer -= 1;
+                    if (leafTimer &lt;= 0)
+                    {
+                        leafTimer = 8; // reusing this again
                         image_index = 5;
                     }
                 }
@@ -261,9 +271,13 @@ if (entityCanStep())
                         image_index = 0;
                         xspeed = 0;
                         yspeed = 0;
+                        phase = 4
                     }
                 }
-                else if (image_index == 0)
+                break;
+            // Wait for next phase
+            case 4:
+                if (image_index == 0)
                 {
                     if (!instance_exists(objWoodFallingLeaves) &amp;&amp; !instance_exists(objWoodLeafShield))
                         phase = 0;
