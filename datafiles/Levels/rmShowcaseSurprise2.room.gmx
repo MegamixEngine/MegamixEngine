@@ -110,14 +110,10 @@
     <instance objName="objVerticalScrolling" x="256" y="448" name="inst_A3BBDAFB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPetitDevilYellow" x="1408" y="384" name="inst_678611F9" locked="0" code="angle = 90;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPetitDevilGreen" x="1472" y="400" name="inst_077B6222" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objScissascissor" x="368" y="32" name="inst_86973A89" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCaricarry" x="960" y="576" name="inst_5CEB4B2E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBallonboo" x="2160" y="384" name="inst_CBD53F20" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objIllusian" x="1520" y="592" name="inst_8EC2AA4D" locked="0" code="tile_layer = 5100;&#xA;move_speed = 10;&#xA;lay_time = 25;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objNitroTruckSignal" x="1408" y="144" name="inst_F900A05A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objYokuBlockTemplate1" x="400" y="192" name="inst_D6FED98B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objYokuSpikeTemplate1" x="416" y="192" name="inst_887ECFFC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSurpriseCan" x="384" y="128" name="inst_BA55A42A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="768" y="448" name="inst_11AA7824" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objKaminariKogoro" x="624" y="656" name="inst_50B68081" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRevealingTiles" x="800" y="464" name="inst_19774AFA" locked="0" code="layer = 5000;&#xA;revealersN = 3;&#xA;revealers[1] = objCaricarry;&#xA;revealers[2] = objTelTel;&#xA;radius[0] = 48;&#xA;radius[1] = 32;&#xA;radius[2] = 24;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -291,6 +287,18 @@
     <instance objName="objSign" x="1456" y="1312" name="inst_C459475C" locked="0" code="text = &quot;Yoku Spikes work on the same principle as the blocks.&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="1856" y="1296" name="inst_D16D7B12" locked="0" code="text = &quot;Surprise Can's drop a random item by default. But random items are boring so you can customize them with the creation code myItem to drop whatever you want.&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDefaultSpawn" x="304" y="400" name="inst_041F385F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="320" y="400" name="inst_63A422D2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWeaponEnergyBig" x="336" y="400" name="inst_36727BD0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWeaponEnergyBig" x="2224" y="80" name="inst_003B35F2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="2208" y="80" name="inst_D7B7956C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="2192" y="80" name="inst_B56B25CB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="1344" y="624" name="inst_39843CB9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWeaponEnergyBig" x="1360" y="624" name="inst_3FB335E9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWeaponEnergyBig" x="2128" y="1072" name="inst_40E322B1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="2096" y="1072" name="inst_1EDDC318" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="64" y="1296" name="inst_FC365ED0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLifeEnergyBig" x="80" y="1296" name="inst_C51A6E89" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWeaponEnergyBig" x="96" y="1296" name="inst_B26D8024" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMM9Endless" x="0" y="0" w="224" h="368" xo="0" yo="0" id="11357022" name="inst_55A826BE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
