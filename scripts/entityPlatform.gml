@@ -52,7 +52,7 @@ if (isSolid)
                         continue;
                     }
                     
-                    if (place_meeting(x, flr + sign(grav), other.id)
+                    if ((abs(myyspeed)<1&&place_meeting(x, flr - myyspeed + 2*sign(grav),other.id))|| place_meeting(x, flr + sign(grav), other.id)
                         || place_meeting(x, cel - myyspeed - (dir<0&&(myyspeed*grav>0)&&(abs(myyspeed)<1)), other.id))
                     {
                         other.y += myyspeed;

@@ -6467,6 +6467,7 @@
             <object>objects\objRushTeleportBlock</object>
             <object>objects\objWeaponExplosion</object>
             <object>objects\objProtoShield</object>
+            <object>objects\objSlashEffect</object>
           </objects>
         </objects>
       </objects>

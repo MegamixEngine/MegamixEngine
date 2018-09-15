@@ -728,7 +728,7 @@
     <instance objName="objSign" x="1920" y="2432" name="inst_2796A3E7" locked="0" code="text = &quot;objLightningLord. Mega Man 2. You've seen him throughout this showcase. Throws thunderbolts, but has no movement capabilites by himself. Can be placed on MM2 Clouds with the creation code attachedToCloud = true.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="1864" y="2432" name="inst_1022388D" locked="0" code="text = &quot;If this isn't enough moving platform action for you there's some more moving platform scattered among the other showcases you should take a look at.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="2320" y="1968" name="inst_E90D4184" locked="0" code="" scaleX="14" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDefaultSpawn" x="288" y="1088" name="inst_3536CAE9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objDefaultSpawn" x="296" y="1504" name="inst_3536CAE9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstTornadoman" x="2320" y="1968" w="16" h="16" xo="32" yo="64" id="11370288" name="inst_6A3EE606" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
