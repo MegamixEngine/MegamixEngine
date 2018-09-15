@@ -220,7 +220,7 @@ if (yspeed != 0)
             if (isSolid == 2)
             {
                 solid = 0;
-                if (sign(yprevious-other.y) == cgrav && place_meeting(x,yprevious-other.yspeed,myid)&&!place_meeting(x, yprevious,myid))
+                if ((sign(y-other.y) == cgrav) && (place_meeting(x,y-other.yspeed-cgrav,myid) || place_meeting(x,y-2*cgrav,myid))&&(!place_meeting(x,y,myid)))
                 {
                     if (!fnsolid)
                     {
