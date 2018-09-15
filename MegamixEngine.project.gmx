@@ -6558,7 +6558,7 @@
       <room>rooms\lvlTestHallBoss</room>
     </rooms>
   </rooms>
-  <constants number="80">
+  <constants number="79">
     <constant name="PL_LOCK_MAX">14</constant>
     <constant name="PL_LOCK_AERIAL">13</constant>
     <constant name="PL_LOCK_GROUND">12</constant>
@@ -6626,7 +6626,6 @@
     <constant name="objWireAdapter">-4</constant>
     <constant name="objSuperArrow">-4</constant>
     <constant name="objGrabBusterPickup">-4</constant>
-    <constant name="objSlashEffect">-4</constant>
     <constant name="objSuperArm">-4</constant>
     <constant name="objChillShot">-4</constant>
     <constant name="objChillSpikeLanded">-4</constant>
