@@ -31,7 +31,10 @@ facePlayerOnSpawn = false;
 healthpointsStart = 6;
 contactDamage = 4;
 
-// Enemy specfic code
+// Enemy specific code
+// @cc - Change colours - 0 (default) = green, 1 = blue, 2 = yellow, 3 = red
+col = 0;
+
 angle = 0 + 8 * (image_xscale == -1);
 newAngle = angle;
 timer = 0;
@@ -46,6 +49,56 @@ animOffset = 0;
 gravDir = 0;
 
 old = false;
+init = 1;
+
+// Sprites
+greenSprite = sprNewClassicalCannon;
+blueSprite = sprNewClassicalCannonBlue;
+yellowSprite = sprNewClassicalCannonYellow;
+redSprite = sprNewClassicalCannonRed;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Change colours based on sprite
+event_inherited();
+if (init)
+{
+    switch (col)
+    {
+        case 1:
+            sprite_index = blueSprite;
+            break;
+        case 2:
+            sprite_index = yellowSprite;
+            break;
+        case 3:
+            sprite_index = redSprite;
+            break;
+        default:
+            sprite_index = greenSprite;
+            break;
+    }
+    init = 0;
+}
 </string>
           </argument>
         </arguments>
@@ -181,6 +234,7 @@ if (entityCanStep())
             i.contactDamage = 4;
             animOffset = 1;
             i.canHit = true;
+            i.image_speed = 0;
             i.healthpoints = 1;
             i.healthpointsStart = 1;
             var animFrame = angle;
@@ -215,11 +269,26 @@ if (entityCanStep())
             {
                 i.sprite_index = sprClassicalCannonBullet;
                 i.mask_index = sprClassicalCannonBullet;
+                if (col == 2)
+                {
+                    i.image_index = 1;
+                }
             }
             else
             {
                 i.sprite_index = sprNewClassicalCannonBullet;
                 i.mask_index = sprNewClassicalCannonBullet;
+                switch (col)
+                {
+                    // Blue Cannon, orange shots
+                    case 1:
+                        i.image_index = 2;
+                        break;
+                    // Red Cannon, yellow shots
+                    case 3:
+                        i.image_index = 1;
+                        break;
+                }
             }
             i.x = x + image_xscale * 16 * abs(cos(degtorad(angle * 20)));
             i.y = y - 9 * image_yscale - image_yscale * 16 * abs(sin(degtorad(angle * 20)));

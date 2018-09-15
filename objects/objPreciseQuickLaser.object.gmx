@@ -26,12 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-isLine=false;
-if(object_index==objPreciseQuickLaser)
-    isLine=true;
-
 /// A Quick Laser made out of 16 1 pixel wide lasers that can be stopped individually
 // Important Note: more than two or three on screen could potentially lag the game
+
+
+if(image_yscale!=1)
+{
+    image_yscale=1;
+}
+if(image_xscale!=1)
+{
+    image_xscale=1;
+}
 
 canHit = 0;
 canIce = false;
@@ -152,14 +158,16 @@ else
             <string>event_inherited();
 if (entityCanStep())
 {
-
     image_index += imgSpeed;
     
     // Solidify objects
-    solid=0;
-    with (prtEntity)
+    with(all)
     {
         solid=0;
+    }
+    with (prtEntity)
+    {
+        solid=false;
         if (!dead &amp;&amp; object_index != objPreciseQuickLaserSpawner)
         {
             for (var i = array_length_1d(other.obstacleList) - 1; i &gt;= 0; i--)
@@ -190,7 +198,7 @@ if (entityCanStep())
     }
     with (objSolid)
     {
-        solid=(isSolid==1);
+        solid=(isSolid==true);
     }
     var ang = image_angle;
     image_angle = round(image_angle);

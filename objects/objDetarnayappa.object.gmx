@@ -43,6 +43,8 @@ yspd = random_range(2.5, 3.15);
 timer = -1;
 phase = 0;
 shotCount = 0;
+col = 0;
+init = 1;
 </string>
           </argument>
         </arguments>
@@ -66,6 +68,22 @@ shotCount = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+//Change colours
+if (init)
+{
+    switch(col)
+    {
+        case 1:
+            sprite_index = sprDetarnayappaRed;
+            break;
+        default:
+            sprite_index = sprDetarnayappa;
+            break;
+    }
+    init = 0;
+}
+
 if (entityCanStep())
 {
     if (endY == -1)

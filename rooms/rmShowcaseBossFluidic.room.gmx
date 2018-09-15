@@ -160,6 +160,7 @@
     <instance objName="objSolid" x="4320" y="400" name="inst_0F7EB0B1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="4304" y="352" name="inst_BF2701E7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="4320" y="352" name="inst_15B3EF0C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSolid" x="1456" y="192" name="inst_193F1902" locked="0" code="" scaleX="5" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstSplashwoman" x="496" y="336" w="16" h="16" xo="80" yo="16" id="11337778" name="inst_08D4C744" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3779,6 +3780,10 @@
     <tile bgName="tstSplashwoman" x="4096" y="128" w="16" h="16" xo="144" yo="80" id="11338676" name="inst_87FD2AAC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM1Wily4" x="4304" y="400" w="32" h="16" xo="32" yo="32" id="11341276" name="inst_82BE6022" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM1Wily4" x="4304" y="352" w="32" h="16" xo="32" yo="16" id="11341277" name="inst_CEB10B2F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstSplashwoman" x="1456" y="192" w="16" h="16" xo="64" yo="48" id="11354461" name="inst_C6996CE1" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstSplashwoman" x="1472" y="192" w="16" h="16" xo="64" yo="48" id="11354462" name="inst_38AA9248" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstSplashwoman" x="1488" y="192" w="16" h="16" xo="64" yo="48" id="11354463" name="inst_ED25F400" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="tstSplashwoman" x="1504" y="192" w="16" h="16" xo="64" yo="48" id="11354464" name="inst_266DF57C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>

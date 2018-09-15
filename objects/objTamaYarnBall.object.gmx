@@ -74,7 +74,7 @@ if (entityCanStep())
         yspeed = -3;
     }
     
-    if (dir != sign(xspeed))
+    if (xspeed!=0&amp;&amp;dir != sign(xspeed))
     {
         dir = sign(xspeed);
     }

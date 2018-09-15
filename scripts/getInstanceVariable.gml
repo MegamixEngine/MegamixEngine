@@ -9,8 +9,8 @@ var _____vs_____ = argument0;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4537 variables
-/// from 1652 source files
+/// 4556 variables
+/// from 1655 source files
 
 if (_____vs_____ == "") return false;
 else if (stringStartsWith(_____vs_____, 'a'))
@@ -47,6 +47,7 @@ else if (stringStartsWith(_____vs_____, 'a'))
     else if (_____vs_____ == "activationDistance") global.retval = activationDistance;
     else if (_____vs_____ == "active") global.retval = active;
     else if (_____vs_____ == "activeDisk") global.retval = activeDisk;
+    else if (_____vs_____ == "activeTime") global.retval = activeTime;
     else if (_____vs_____ == "activeTimer") global.retval = activeTimer;
     else if (_____vs_____ == "addAngle") global.retval = addAngle;
     else if (_____vs_____ == "addAngleX") global.retval = addAngleX;
@@ -312,6 +313,7 @@ else if (stringStartsWith(_____vs_____, 'b'))
     else if (_____vs_____ == "block_string") global.retval = block_string;
     else if (_____vs_____ == "blowSpeed") global.retval = blowSpeed;
     else if (_____vs_____ == "blownUp") global.retval = blownUp;
+    else if (_____vs_____ == "blueSprite") global.retval = blueSprite;
     else if (_____vs_____ == "bobAround") global.retval = bobAround;
     else if (_____vs_____ == "bod") global.retval = bod;
     else if (_____vs_____ == "body") global.retval = body;
@@ -663,6 +665,7 @@ else if (stringStartsWith(_____vs_____, 'c'))
     else if (_____vs_____ == "convertObject") global.retval = convertObject;
     else if (_____vs_____ == "converted") global.retval = converted;
     else if (_____vs_____ == "coolDown") global.retval = coolDown;
+    else if (_____vs_____ == "coolDownTime") global.retval = coolDownTime;
     else if (_____vs_____ == "cooldown") global.retval = cooldown;
     else if (_____vs_____ == "cooldownImageMax") global.retval = cooldownImageMax;
     else if (_____vs_____ == "cooldownImageTimer") global.retval = cooldownImageTimer;
@@ -959,6 +962,7 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "draw") global.retval = draw;
     else if (_____vs_____ == "drawBoss") global.retval = drawBoss;
     else if (_____vs_____ == "drawChar") global.retval = drawChar;
+    else if (_____vs_____ == "drawDir") global.retval = drawDir;
     else if (_____vs_____ == "drawFlame") global.retval = drawFlame;
     else if (_____vs_____ == "drawHealthBar") global.retval = drawHealthBar;
     else if (_____vs_____ == "drawInit") global.retval = drawInit;
@@ -1774,6 +1778,7 @@ else if (stringStartsWith(_____vs_____, 'g'))
     else if (_____vs_____ == "gravityDir") global.retval = gravityDir;
     else if (_____vs_____ == "gravityFlip") global.retval = gravityFlip;
     else if (_____vs_____ == "gravitySet") global.retval = gravitySet;
+    else if (_____vs_____ == "greenSprite") global.retval = greenSprite;
     else if (_____vs_____ == "gremlinArray") global.retval = gremlinArray;
     else if (_____vs_____ == "gremlinDir") global.retval = gremlinDir;
     else if (_____vs_____ == "gremlinSpawn") global.retval = gremlinSpawn;
@@ -1857,6 +1862,7 @@ else if (stringStartsWith(_____vs_____, 'h'))
     else if (_____vs_____ == "hatchIndex") global.retval = hatchIndex;
     else if (_____vs_____ == "headID") global.retval = headID;
     else if (_____vs_____ == "headShark") global.retval = headShark;
+    else if (_____vs_____ == "headSprite") global.retval = headSprite;
     else if (_____vs_____ == "headUp") global.retval = headUp;
     else if (_____vs_____ == "headX") global.retval = headX;
     else if (_____vs_____ == "headerEnd") global.retval = headerEnd;
@@ -2471,6 +2477,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "mid_3") global.retval = mid_3;
     else if (_____vs_____ == "mid_4") global.retval = mid_4;
     else if (_____vs_____ == "middlePlatform") global.retval = middlePlatform;
+    else if (_____vs_____ == "middleSprite") global.retval = middleSprite;
     else if (_____vs_____ == "minDist") global.retval = minDist;
     else if (_____vs_____ == "minDistReject") global.retval = minDistReject;
     else if (_____vs_____ == "minId") global.retval = minId;
@@ -2898,6 +2905,7 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "pausePressed") global.retval = pausePressed;
     else if (_____vs_____ == "pauseStep") global.retval = pauseStep;
     else if (_____vs_____ == "pauseY") global.retval = pauseY;
+    else if (_____vs_____ == "pc") global.retval = pc;
     else if (_____vs_____ == "pcol") global.retval = pcol;
     else if (_____vs_____ == "pd") global.retval = pd;
     else if (_____vs_____ == "pdA") global.retval = pdA;
@@ -2953,6 +2961,7 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "platTarget") global.retval = platTarget;
     else if (_____vs_____ == "platformCalc") global.retval = platformCalc;
     else if (_____vs_____ == "platformOffset") global.retval = platformOffset;
+    else if (_____vs_____ == "platformSpeed") global.retval = platformSpeed;
     else if (_____vs_____ == "platformSprite") global.retval = platformSprite;
     else if (_____vs_____ == "platv") global.retval = platv;
     else if (_____vs_____ == "platx") global.retval = platx;
@@ -3200,6 +3209,7 @@ else if (stringStartsWith(_____vs_____, 'r'))
     else if (_____vs_____ == "rebuildTimerMax") global.retval = rebuildTimerMax;
     else if (_____vs_____ == "recoil") global.retval = recoil;
     else if (_____vs_____ == "recurseDepth") global.retval = recurseDepth;
+    else if (_____vs_____ == "redSprite") global.retval = redSprite;
     else if (_____vs_____ == "redetectRoof") global.retval = redetectRoof;
     else if (_____vs_____ == "redetectWall") global.retval = redetectWall;
     else if (_____vs_____ == "redo") global.retval = redo;
@@ -3705,6 +3715,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "spriteAlt") global.retval = spriteAlt;
     else if (_____vs_____ == "spriteBack") global.retval = spriteBack;
     else if (_____vs_____ == "spriteFrame") global.retval = spriteFrame;
+    else if (_____vs_____ == "spriteHeight") global.retval = spriteHeight;
     else if (_____vs_____ == "spriteIDX") global.retval = spriteIDX;
     else if (_____vs_____ == "spriteIDY") global.retval = spriteIDY;
     else if (_____vs_____ == "spriteIndexReset") global.retval = spriteIndexReset;
@@ -3719,6 +3730,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "spriteShoot") global.retval = spriteShoot;
     else if (_____vs_____ == "spriteStand") global.retval = spriteStand;
     else if (_____vs_____ == "spriteTimer") global.retval = spriteTimer;
+    else if (_____vs_____ == "spriteWidth") global.retval = spriteWidth;
     else if (_____vs_____ == "spriteX") global.retval = spriteX;
     else if (_____vs_____ == "spriteXOffset") global.retval = spriteXOffset;
     else if (_____vs_____ == "spriteY") global.retval = spriteY;
@@ -3797,6 +3809,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "startingRotateSpeed") global.retval = startingRotateSpeed;
     else if (_____vs_____ == "startingY") global.retval = startingY;
     else if (_____vs_____ == "startup") global.retval = startup;
+    else if (_____vs_____ == "startupTime") global.retval = startupTime;
     else if (_____vs_____ == "starty") global.retval = starty;
     else if (_____vs_____ == "state") global.retval = state;
     else if (_____vs_____ == "stateTimer") global.retval = stateTimer;
@@ -4096,6 +4109,7 @@ else if (stringStartsWith(_____vs_____, 't'))
     else if (_____vs_____ == "totalTimer") global.retval = totalTimer;
     else if (_____vs_____ == "touchblock") global.retval = touchblock;
     else if (_____vs_____ == "touched") global.retval = touched;
+    else if (_____vs_____ == "touchedStopper") global.retval = touchedStopper;
     else if (_____vs_____ == "touching") global.retval = touching;
     else if (_____vs_____ == "touchingPlayer") global.retval = touchingPlayer;
     else if (_____vs_____ == "towerBlock") global.retval = towerBlock;
@@ -4468,6 +4482,7 @@ else if (stringStartsWith(_____vs_____, 'y'))
     else if (_____vs_____ == "ydir") global.retval = ydir;
     else if (_____vs_____ == "ydis") global.retval = ydis;
     else if (_____vs_____ == "ydiv") global.retval = ydiv;
+    else if (_____vs_____ == "yellowSprite") global.retval = yellowSprite;
     else if (_____vs_____ == "yend") global.retval = yend;
     else if (_____vs_____ == "yh") global.retval = yh;
     else if (_____vs_____ == "yimg") global.retval = yimg;
@@ -4649,6 +4664,8 @@ else if (stringStartsWith(_____vs_____, '_'))
     else if (_____vs_____ == "_IgnoreGround") global.retval = _IgnoreGround;
     else if (_____vs_____ == "_X") global.retval = _X;
     else if (_____vs_____ == "_Y") global.retval = _Y;
+    else if (_____vs_____ == "__x") global.retval = __x;
+    else if (_____vs_____ == "__y") global.retval = __y;
     else if (_____vs_____ == "_a") global.retval = _a;
     else if (_____vs_____ == "_accel") global.retval = _accel;
     else if (_____vs_____ == "_angle") global.retval = _angle;
@@ -4705,6 +4722,7 @@ else if (stringStartsWith(_____vs_____, '_'))
     else if (_____vs_____ == "_originY") global.retval = _originY;
     else if (_____vs_____ == "_overlappingEntity") global.retval = _overlappingEntity;
     else if (_____vs_____ == "_pause") global.retval = _pause;
+    else if (_____vs_____ == "_pch") global.retval = _pch;
     else if (_____vs_____ == "_penetrate") global.retval = _penetrate;
     else if (_____vs_____ == "_physics") global.retval = _physics;
     else if (_____vs_____ == "_pid") global.retval = _pid;
@@ -4724,6 +4742,7 @@ else if (stringStartsWith(_____vs_____, '_'))
     else if (_____vs_____ == "_regPosY") global.retval = _regPosY;
     else if (_____vs_____ == "_regT") global.retval = _regT;
     else if (_____vs_____ == "_return") global.retval = _return;
+    else if (_____vs_____ == "_rr") global.retval = _rr;
     else if (_____vs_____ == "_rrl") global.retval = _rrl;
     else if (_____vs_____ == "_s") global.retval = _s;
     else if (_____vs_____ == "_sb") global.retval = _sb;

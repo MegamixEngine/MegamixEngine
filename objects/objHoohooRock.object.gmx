@@ -37,6 +37,10 @@ xspeed = 0;
 respawn = false;
 
 image_speed = 0;
+
+// @cc - Change colour: 0 (default) = brown, 1 = white
+col = 0;
+init = 1;
 </string>
           </argument>
         </arguments>
@@ -60,6 +64,21 @@ image_speed = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+//Change colours
+if (init)
+{
+    switch(col)
+    {
+        case 1:
+            sprite_index = sprHoohooRockWhite;
+            break;
+        default:
+            sprite_index = sprHoohooRock;
+            break;
+    }
+    init = 0;
+}
 
 if (entityCanStep())
 {

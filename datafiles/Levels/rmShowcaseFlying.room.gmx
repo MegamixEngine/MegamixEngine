@@ -10,7 +10,7 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code></code>
+  <code>playMusic("Mega_Man_5.nsf","VGM",8,0,1,1,1);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -42,13 +42,13 @@
   </backgrounds>
   <views>
     <view visible="-1" objName="&lt;undefined&gt;" xview="0" yview="0" wview="256" hview="224" xport="0" yport="0" wport="256" hport="224" hborder="9999" vborder="9999" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
-    <view visible="0" objName="" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+    <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
     <instance objName="objParallax" x="256" y="224" name="inst_40" locked="0" code="myBG = tstYamatoMan;&#xA;bgT = 160;&#xA;bgL = 96;&#xA;bgW = 16*7;&#xA;bgH = 48;&#xA;xspeed = -5;&#xA;yspeed = 0;&#xA;parallaxX = 0;&#xA;parallaxY = 0;&#xA;areaTop = 224;&#xA;areaBottom = 224 + 48;&#xA;depth = 1000004&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -73,11 +73,11 @@
     <instance objName="objLyric" x="1664" y="272" name="inst_1112" locked="0" code="col=2;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLyric" x="1696" y="272" name="inst_1113" locked="0" code="col=3;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHoohoo" x="1440" y="288" name="inst_1550" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="480" y="384" name="inst_1551" locked="0" code="text = &quot;Bladers&quot;;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="480" y="384" name="inst_1551" locked="0" code="text = &quot;Bladers, they swoop at Mega Man.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="896" y="400" name="inst_1552" locked="0" code="text = &quot;The amount of bullets these enemies shoot is customizable&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="1088" y="400" name="inst_1553" locked="0" code="text = &quot;These enemies drop things when they're over the player&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="1584" y="400" name="inst_1554" locked="0" code="text = &quot;These are homing enemies that move at a constant speed&quot;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSign" x="1872" y="400" name="inst_1555" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1872" y="400" name="inst_1555" locked="0" code="text = &quot;These enemies all move towards Mega Man in a staggered manner.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTellyX" x="1696" y="240" name="inst_1556" locked="0" code="col = 1;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objKoukerQ" x="1376" y="320" name="inst_1557" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHorizontalScrolling" x="768" y="224" name="inst_1558" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -199,6 +199,14 @@
     <instance objName="objSolid" x="176" y="80" name="inst_CB286C42" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objObjectSetter" x="0" y="16" name="inst_F1BE4283" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
     <instance objName="objLadder" x="128" y="32" name="inst_27BC7C05" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2208" y="400" name="inst_C1AB92F4" locked="0" code="text = &quot;These enemies all move towards Mega Man but not always in a straight forward manner.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="912" y="624" name="inst_4F73AB64" locked="0" code="text = &quot;These enemies all move forward, although some move sine waves while doing so. Some have creation code options as shown here.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1648" y="624" name="inst_98F1BE99" locked="0" code="text = &quot;Kemumakin fly around creating smoke trails to obscure your path. Their smoke color is randomly chose, though you can force it manually with the creation code col.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1920" y="624" name="inst_4CAD433B" locked="0" code="text = &quot;Hornet Racers will abruptly charge at Mega Man.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="2176" y="624" name="inst_3D355A4F" locked="0" code="text = &quot;Fooley can slow time while dropping projectiles.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="352" y="848" name="inst_F10B09CA" locked="0" code="text = &quot;Parasyu drop down from their position in the editor and then slowly fall down.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="768" y="848" name="inst_391B1E06" locked="0" code="text = &quot;These enemies fly around while dropping projectiles.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSign" x="1024" y="848" name="inst_FC478D47" locked="0" code="text = &quot;These enemies approach Mega Man in a circular pattern.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgNESPalette" x="256" y="224" w="16" h="16" xo="16" yo="32" id="1043" name="tile_1043" depth="1000005" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

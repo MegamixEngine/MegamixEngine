@@ -41,6 +41,8 @@ jumpDistance[1] = 96;
 jumpXSpeed = 0;
 category = "big eye, bulky";
 dieToSpikes = false;
+// @cc - Change colours: 0 (default) = orange, 1 = red, 2 = green, 3 = blue
+col = 0;
 </string>
           </argument>
         </arguments>
@@ -154,6 +156,21 @@ jumpTimer = 0;
 jumpType = 0;
 spinTimer = 0;
 jumpXSpeed = 0;
+switch (col)
+{
+    case 1:
+        sprite_index = sprTsurareStampRed;
+        break;
+    case 2:
+        sprite_index = sprTsurareStampGreen;
+        break;
+    case 3:
+        sprite_index = sprTsurareStampBlue;
+        break;
+    default:
+        sprite_index = sprTsurareStamp;
+        break;
+}
 </string>
           </argument>
         </arguments>

@@ -51,7 +51,7 @@
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="objDefaultSpawn" x="96" y="272" name="inst_D3E2D883" locked="0" code="" scaleX="1" scaleY="1" colour="4290822336" rotation="0"/>
+    <instance objName="objDefaultSpawn" x="928" y="624" name="inst_D3E2D883" locked="0" code="" scaleX="1" scaleY="1" colour="4290822336" rotation="0"/>
     <instance objName="objSolid" x="32" y="480" name="inst_5A8165B9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="32" y="464" name="inst_A85BE2DD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="32" y="448" name="inst_51E3362F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -119,17 +119,6 @@
     <instance objName="objGiree" x="480" y="576" name="inst_AC94D889" locked="0" code="sp=8;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBombier" x="640" y="512" name="inst_F1B5717C" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCocco" x="720" y="576" name="inst_5B4ADF41" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCrystalJoe" x="896" y="608" name="inst_F82281E2" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objFoojeen" x="816" y="640" name="inst_D9A6D6B8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objGravitron" x="928" y="528" name="inst_C58E3EC5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objGravitron" x="960" y="528" name="inst_987D7E45" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBBitter" x="992" y="624" name="inst_3F7667DB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDachone" x="1088" y="592" name="inst_20F5C495" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHirarian427" x="1160" y="528" name="inst_844179E8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objApacheJoe" x="1280" y="576" name="inst_3F883925" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objIrucan" x="1392" y="624" name="inst_AD6A0150" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objJetBomb" x="1456" y="608" name="inst_E2FB6F1F" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objJetBomb" x="1504" y="592" name="inst_45ED2281" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objKoukerQ" x="1360" y="320" name="inst_72D5C92F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objKoukerQ" x="1312" y="320" name="inst_7E400C57" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFallingPlatform" x="1440" y="384" name="inst_26D9FB78" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -193,10 +182,6 @@
     <instance objName="objPukapelly" x="672" y="304" name="inst_5BBD59C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTatepakkan" x="1248" y="400" name="inst_B7303AC1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTondeall" x="1104" y="304" name="inst_C1B80A8C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTaban" x="1168" y="544" name="inst_2CF791F7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTwinCannon" x="1200" y="608" name="inst_E9DB9C66" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTossMachine" x="1152" y="496" name="inst_5D89D9B3" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objV" x="1424" y="624" name="inst_55B84885" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWaveManJetSki" x="1680" y="160" name="inst_03B9B520" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWaveManJetSkiStopper" x="1440" y="64" name="inst_671386D6" locked="0" code="" scaleX="0.5" scaleY="7.69999980926514" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1792" y="0" name="inst_F22C79D5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -242,9 +227,38 @@
     <instance objName="objMM10Conveyor" x="416" y="272" name="inst_A087F183" locked="0" code="" scaleX="-4" scaleY="-1" colour="4294967295" rotation="0"/>
     <instance objName="objMM10Conveyor" x="416" y="288" name="inst_CA0F782A" locked="0" code="" scaleX="-2" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM10Conveyor" x="304" y="256" name="inst_5CB0F172" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+<<<<<<< HEAD
     <instance objName="objSplashWomanPlatformSpawner" x="32" y="320" name="inst_04AE67EB" locked="0" code="waitTime=0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSplashWomanPlatformSpawner" x="208" y="288" name="inst_F941C2AB" locked="0" code="waitTime=16;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSplashWomanPlatformSpawner" x="32" y="272" name="inst_58BDF1F5" locked="0" code="activeTime=25;&#xA;waitTime=32;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+=======
+    <instance objName="objSplashWomanPlatformSpawner" x="208" y="288" name="inst_F941C2AB" locked="0" code="waitTime=16;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSplashWomanPlatformSpawner" x="32" y="272" name="inst_58BDF1F5" locked="0" code="activeTime=25;&#xA;waitTime=32;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCossackPlatform" x="128" y="368" name="inst_51921F95" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTomahawkPlatform" x="80" y="352" name="inst_308400C0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objUranusPlatform" x="176" y="384" name="inst_23689492" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objUranusPlatform" x="192" y="384" name="inst_E9B51FD7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objUranusPlatform" x="208" y="384" name="inst_1FB3F6A1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTomahawkPlatformStop" x="64" y="336" name="inst_E03D15D7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTomahawkPlatformStop" x="80" y="336" name="inst_8FDBE25F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTomahawkPlatformStop" x="80" y="384" name="inst_E89E596A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTomahawkPlatformStop" x="64" y="384" name="inst_0FD0271A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM5WheelConveyor" x="192" y="320" name="inst_729787BF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM5WheelConveyor" x="176" y="320" name="inst_926CC878" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM5WheelConveyor" x="208" y="320" name="inst_78FB9EE4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM6Conveyor" x="144" y="320" name="inst_CB74D1C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM6Conveyor" x="128" y="320" name="inst_35449F32" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMM6Conveyor" x="112" y="320" name="inst_E4A390CD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSheepConveyor" x="80" y="304" name="inst_0C134524" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSheepConveyor" x="96" y="304" name="inst_197BDB7E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCFTFConveyor" x="0" y="336" name="inst_B209716F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCFTFConveyor" x="32" y="336" name="inst_EAF3DAD2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTomahawkPlatform" x="976" y="592" name="inst_EB4DDBA3" locked="0" code="isSolid=1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTomahawkPlatformStop" x="960" y="544" name="inst_0C6045BD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTomahawkPlatformStop" x="976" y="544" name="inst_688CBCA4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTomahawkPlatformStop" x="960" y="624" name="inst_E79B7EFA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTomahawkPlatformStop" x="976" y="624" name="inst_9811CAF4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+>>>>>>> dev
   </instances>
   <tiles>
     <tile bgName="bgBasic" x="96" y="176" w="16" h="16" xo="16" yo="48" id="11300187" name="inst_B8EA5CF3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -451,7 +465,6 @@
     <tile bgName="bgBasic" x="1776" y="432" w="16" h="16" xo="64" yo="64" id="11301011" name="inst_9C570DBD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="64" y="384" w="16" h="16" xo="128" yo="64" id="11301067" name="inst_05BD5159" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="32" y="384" w="16" h="16" xo="128" yo="64" id="11301068" name="inst_B15C5291" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="32" y="320" w="16" h="16" xo="128" yo="64" id="11301069" name="inst_D661644B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="0" y="336" w="16" h="16" xo="128" yo="48" id="11301070" name="inst_FD837425" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="48" y="352" w="16" h="16" xo="128" yo="48" id="11301071" name="inst_5063789A" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="16" y="416" w="32" h="16" xo="96" yo="48" id="11301073" name="inst_78F547AC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -606,7 +619,6 @@
     <tile bgName="bgBasic" x="672" y="608" w="16" h="16" xo="80" yo="16" id="11301725" name="inst_7A519F12" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="880" y="624" w="16" h="16" xo="0" yo="48" id="11301731" name="inst_F9A91557" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="896" y="624" w="16" h="16" xo="32" yo="48" id="11301732" name="inst_B2FB0A8D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-    <tile bgName="bgBasic" x="1136" y="512" w="48" h="16" xo="0" yo="48" id="11301733" name="inst_C5DFA60B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1392" y="416" w="16" h="16" xo="16" yo="48" id="11301734" name="inst_5C39B238" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1376" y="416" w="16" h="16" xo="16" yo="48" id="11301735" name="inst_B72AA192" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1360" y="416" w="16" h="16" xo="16" yo="48" id="11301736" name="inst_FBF642BE" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -711,7 +723,10 @@
     <tile bgName="bgBasic" x="336" y="352" w="16" h="16" xo="64" yo="32" id="11351542" name="inst_C2A66ED5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="368" y="352" w="16" h="16" xo="64" yo="32" id="11351543" name="inst_D4502C89" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="352" y="352" w="16" h="16" xo="64" yo="32" id="11351544" name="inst_123222A8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+<<<<<<< HEAD
     <tile bgName="tstSplashwoman" x="16" y="320" w="32" h="16" xo="128" yo="64" id="11351545" name="inst_2EE36907" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+=======
+>>>>>>> dev
     <tile bgName="tstSplashwoman" x="192" y="288" w="32" h="16" xo="128" yo="64" id="11351546" name="inst_ADA80C2E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstSplashwoman" x="16" y="272" w="32" h="16" xo="128" yo="64" id="11351547" name="inst_CC54FD9C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1552" y="640" w="16" h="16" xo="0" yo="48" id="11301871" name="inst_F6362B1F" depth="100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

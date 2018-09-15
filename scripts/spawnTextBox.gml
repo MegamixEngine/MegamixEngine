@@ -7,7 +7,7 @@
 
 // spawn textbox
 var i = instance_create(x, y, objDialogueBox);
-if (object_is_ancestor(object_index,objNPC)&&npcID != 0)
+if ((object_index==objNPC||object_is_ancestor(object_index,objNPC))&&npcID != 0)
 {
     i.parent = npcID;
 }

@@ -35,6 +35,7 @@
 // sprite = &lt;sprite name&gt; (to set the enemy to have a custom graphics)
 // spriteBack = &lt;sprite name&gt; (what would be seen behind him once it's open or it's dead)
 // neverDespawn = &lt;boolean&gt; (true = will reappear after disappearing for the first time (default); false = only appears once) (setting this to false will eliminate the need to set the wait variable)
+// col = Change colours: 0 (default) = blue, 1 = purple
 
 // Note: Dockalocker appear and disappear regardless of whether they are on-screen or off-screen
 
@@ -58,6 +59,7 @@ active = 120;
 neverDespawn = true;
 wait = 120;
 sprite = noone;
+col = 0;
 spriteBack = sprDockalockerBack;
 doSFX = true;
 
@@ -327,6 +329,18 @@ playSFX(sfxEnemyShootClassic);
 if (sprite != noone)
 {
     sprite_index = sprite;
+}
+else
+{
+    switch (col)
+    {
+        case 1:
+            sprite_index = sprDockaLockerPurple;
+            break;
+        default:
+            sprite_index = sprDockaLocker;
+            break;
+    }
 }
 back = instance_create(x + 16, y, prtAlwaysActive);
 back.depth = 3;

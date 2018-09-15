@@ -267,7 +267,7 @@
     <instance objName="objQuickSandB" x="4304" y="720" name="inst_FBA1435C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objQuickSandB" x="4288" y="720" name="inst_69E575AD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objQuickSandB" x="4272" y="720" name="inst_E036FE12" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="4304" y="848" name="inst_C7CB92E3" locked="0" code="X = 976;&#xA;Y = 1072;&#xA;myRoom = lvlShowcaseHUB;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="4304" y="848" name="inst_C7CB92E3" locked="0" code="myRoom = lvlShowcaseHUB;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objQuickSandB" x="4176" y="720" name="inst_FBD5DDBF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objQuickSandB" x="4176" y="736" name="inst_83288C24" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objQuickSandB" x="4192" y="720" name="inst_3606D6A2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
