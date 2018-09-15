@@ -227,11 +227,6 @@
     <instance objName="objMM10Conveyor" x="416" y="272" name="inst_A087F183" locked="0" code="" scaleX="-4" scaleY="-1" colour="4294967295" rotation="0"/>
     <instance objName="objMM10Conveyor" x="416" y="288" name="inst_CA0F782A" locked="0" code="" scaleX="-2" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM10Conveyor" x="304" y="256" name="inst_5CB0F172" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-<<<<<<< HEAD
-    <instance objName="objSplashWomanPlatformSpawner" x="32" y="320" name="inst_04AE67EB" locked="0" code="waitTime=0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSplashWomanPlatformSpawner" x="208" y="288" name="inst_F941C2AB" locked="0" code="waitTime=16;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSplashWomanPlatformSpawner" x="32" y="272" name="inst_58BDF1F5" locked="0" code="activeTime=25;&#xA;waitTime=32;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-=======
     <instance objName="objSplashWomanPlatformSpawner" x="208" y="288" name="inst_F941C2AB" locked="0" code="waitTime=16;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSplashWomanPlatformSpawner" x="32" y="272" name="inst_58BDF1F5" locked="0" code="activeTime=25;&#xA;waitTime=32;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCossackPlatform" x="128" y="368" name="inst_51921F95" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -258,7 +253,6 @@
     <instance objName="objTomahawkPlatformStop" x="976" y="544" name="inst_688CBCA4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTomahawkPlatformStop" x="960" y="624" name="inst_E79B7EFA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTomahawkPlatformStop" x="976" y="624" name="inst_9811CAF4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
->>>>>>> dev
   </instances>
   <tiles>
     <tile bgName="bgBasic" x="96" y="176" w="16" h="16" xo="16" yo="48" id="11300187" name="inst_B8EA5CF3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -723,10 +717,6 @@
     <tile bgName="bgBasic" x="336" y="352" w="16" h="16" xo="64" yo="32" id="11351542" name="inst_C2A66ED5" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="368" y="352" w="16" h="16" xo="64" yo="32" id="11351543" name="inst_D4502C89" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="352" y="352" w="16" h="16" xo="64" yo="32" id="11351544" name="inst_123222A8" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-<<<<<<< HEAD
-    <tile bgName="tstSplashwoman" x="16" y="320" w="32" h="16" xo="128" yo="64" id="11351545" name="inst_2EE36907" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
-=======
->>>>>>> dev
     <tile bgName="tstSplashwoman" x="192" y="288" w="32" h="16" xo="128" yo="64" id="11351546" name="inst_ADA80C2E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstSplashwoman" x="16" y="272" w="32" h="16" xo="128" yo="64" id="11351547" name="inst_CC54FD9C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="1552" y="640" w="16" h="16" xo="0" yo="48" id="11301871" name="inst_F6362B1F" depth="100" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
