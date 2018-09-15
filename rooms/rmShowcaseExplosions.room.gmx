@@ -112,7 +112,7 @@
     <instance objName="objWalkingBomb" x="240" y="832" name="inst_219" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionFreeVerticalScrolling" x="512" y="672" name="inst_222" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="512" y="448" name="inst_224" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objFallingTowerStop" x="528" y="608" name="inst_381" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objFallingTowerStop" x="528" y="592" name="inst_381" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFallingTower" x="528" y="848" name="inst_388" locked="0" code="myTile=100;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBokazurah" x="560" y="736" name="inst_390" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBokazurahPlatform" x="592" y="704" name="inst_391" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -1688,6 +1688,7 @@
     <instance objName="objSign" x="3216" y="352" name="inst_9539A386" locked="0" code="text = &quot;The Bomb Thrown was killed here by changing the faction of the reflect blocks. Try it out some time.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="928" y="608" name="inst_38B9126F" locked="0" code="text = &quot;You can make upside down Dark Man towers.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSign" x="2176" y="832" name="inst_C60CF8DA" locked="0" code="text = &quot;Kabatoncue Platforms can be customized to be used for more than Kabatoncue with creation code.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingVertical" x="512" y="448" name="inst_09C7CE15" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstTeleporter" x="0" y="448" w="16" h="16" xo="0" yo="0" id="431" name="tile_431" depth="2000002" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

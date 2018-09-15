@@ -211,31 +211,27 @@ if (yspeed != 0)
                 }
             }
         }
+    }
 
-        with (prtEntity)
+    with (prtEntity)
+    {
+        if (!dead)
         {
-            if (!dead)
+            if (isSolid == 2)
             {
-                if (isSolid == 2)
+                solid = 0;
+                if (sign(yprevious-other.y) == cgrav && place_meeting(x,yprevious-other.yspeed,myid)&&!place_meeting(x, yprevious,myid))
                 {
-                    solid = 0;
-                    for (var i = 0; i <= abs(ceil(other.yspeed));i+=abs(other.yspeed))
+                    if (!fnsolid)
                     {
-                        if (!place_meeting(x, y + i * cgrav, myid))
+                        solid = 1;
+                    }
+                    else
+                    {
+                        solid = !global.factionStance[faction, other.faction];
+                        if (fnsolid == 2)
                         {
-                            if (!fnsolid)
-                            {
-                                solid = 1;
-                            }
-                            else
-                            {
-                                solid = !global.factionStance[faction, other.faction];
-                                if (fnsolid == 2)
-                                {
-                                    solid = !solid;
-                                }
-                            }
-                            break;
+                            solid = !solid;
                         }
                     }
                 }
