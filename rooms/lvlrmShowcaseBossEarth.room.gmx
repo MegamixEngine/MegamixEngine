@@ -182,6 +182,7 @@
     <instance objName="objCheckpoint" x="2832" y="176" name="inst_007F3A9D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="3360" y="176" name="inst_902D8F32" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="4064" y="160" name="inst_8EBD22D1" locked="0" code="light = 5;&#xA;myRoom = lvlShowcaseHUB;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objRightScrolling" x="1536" y="224" name="inst_FDB028CD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstStoneman" x="3584" y="96" w="16" h="16" xo="48" yo="208" id="11328640" name="inst_1D1D8E6F" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

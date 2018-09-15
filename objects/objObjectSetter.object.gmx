@@ -30,14 +30,6 @@
 // If the object is flipped vertically the object setter will use the tile asociated to it as a chunk of tiles with the whole tileset
 //preventing any weird behavior caused by using the object setter on an incomplete chunk of tiles
 
-useTileAsTileset = image_yscale&lt;0;
-
-if(useTileAsTileset)
-{
-    image_yscale=1;
-    y-=16;
-}
-
 // only one autotiler runs this code:
 if (id == object_index.id)
 {
@@ -204,7 +196,15 @@ if (id == object_index.id)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// parse key
+            <string>var useTileAsTileset = (image_yscale&lt;0);
+
+if(useTileAsTileset)
+{
+    image_yscale=1;
+    y-=16;
+}
+
+/// parse key
 var key = -1;
 
 print("Parsing legend (instance " + string(id) + ")", WL_VERBOSE);

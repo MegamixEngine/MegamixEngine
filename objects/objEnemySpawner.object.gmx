@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// gravityFlip = true;   -  determine the direction of where this sits. if true, it starts on the cieling.)
+            <string>/// Use objCustomSpawner 
+// gravityFlip = true;   -  determine the direction of where this sits. if true, it starts on the cieling.)
 
 event_inherited();
 

@@ -408,9 +408,9 @@
     <instance objName="objMagmaBeamSource" x="4576" y="1104" name="inst_37B8D2FA" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
     <instance objName="objMagmaBeamSource" x="4752" y="912" name="inst_CBEBFD9E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
     <instance objName="objMagmaBeamSource" x="4704" y="1088" name="inst_D1AB9BFC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="200"/>
-    <instance objName="objSplashWomanWaterPlatform" x="4848" y="1072" name="inst_09345C53" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSplashWomanWaterPlatform" x="4848" y="1040" name="inst_59B3F79E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSplashWomanWaterPlatform" x="4752" y="1088" name="inst_B6851949" locked="0" code="startup = 222;&#xA;active = 10000;&#xA;spd = 2;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSplashWomanPlatform" x="4848" y="1072" name="inst_09345C53" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSplashWomanPlatform" x="4848" y="1040" name="inst_59B3F79E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSplashWomanPlatform" x="4752" y="1088" name="inst_B6851949" locked="0" code="startup = 222;&#xA;active = 10000;&#xA;spd = 2;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTornadoPlatform" x="4992" y="1056" name="inst_D493F54A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRailBottomRight" x="5072" y="1056" name="inst_75C628FE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRailTopLeft" x="4976" y="960" name="inst_C8BF906D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

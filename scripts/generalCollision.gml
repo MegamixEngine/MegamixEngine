@@ -27,14 +27,12 @@ cgrav += (cgrav == 0);
 // Set stuff solid according to the isSolid variable
 with (objSolid)
 {
-    if (isSolid)
-    {
-        solid = 1;
-    }
+    solid = (isSolid>0);
 }
 
 with (prtEntity)
 {
+    solid=0;
     if (!dead && id != myid)
     {
         if (isSolid == 1)
@@ -61,6 +59,7 @@ with (prtEntity)
 // Stoppers are only solid for the object_index they have stored
 with (objGenericStopper)
 {
+    solid=0;
     if (other.object_index == objectToStop || object_is_ancestor(other.object_index, objectToStop))
     {
         solid = 1;
@@ -88,6 +87,7 @@ if (xspeed != 0)
     {
         with (objTopSolid)
         {
+            solid=0;
             if (place_meeting(x - other.xspeed, y, myid))
             {
                 if (!place_meeting(x - other.xspeed, y + slp, myid)
@@ -322,9 +322,4 @@ if (dieToSpikes)
             }
         }
     }
-}
-
-with (all)
-{
-    solid = 0;
 }
