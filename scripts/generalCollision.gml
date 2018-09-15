@@ -37,7 +37,7 @@ with (prtEntity)
     {
         if (isSolid == 1)
         {
-            if (object_index == objBossDoor || object_index == objBossDoorVertical || !place_meeting(x, y, myid))
+            if (object_index == objBossDoor || object_index == objBossDoorVertical || !place_meeting(xprevious, yprevious, myid) || !place_meeting(x, y, myid))
             {
                 if (!fnsolid)
                 {
@@ -318,4 +318,8 @@ if (dieToSpikes)
             }
         }
     }
+}
+with(all)
+{
+    solid=0;
 }
