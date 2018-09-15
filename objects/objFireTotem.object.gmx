@@ -39,11 +39,12 @@ healthpoints = 4;
 
 category = "fire";
 
-// Enemy Specific code
 // @cc - size -&gt; how tall Fire Totem is
 size = 2;
+
 // @cc - col -&gt; Fire Totem color: 0 (default) = red, 1 = green;
 col = 0;
+
 sz = 0;
 phase = 0;
 timer = -1;

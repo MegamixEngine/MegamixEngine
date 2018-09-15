@@ -81,13 +81,10 @@ if (entityCanStep() &amp;&amp; introTimer &lt;= 0)
     if (!instance_exists(objMobbyBomb))
         shootTimer += 1;
     else
-    {
-        if (instance_exists(target))
+    {   
+        with (objMegaman)
         {
-            with (target)
-            {
-                shiftObject((1 / 4), 0, 1);
-            }
+            playerBlow((1 / 4)*sign(-other.image_xscale));
         }
     }
     blinkTimer += 1;

@@ -3,7 +3,7 @@
   <spriteName>sprObjectSetter</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>99999</depth>
+  <depth>9999999</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,9 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>/// Autotiler for tilesets, place the whole tileset image somewhere in the level and place this
-// object on the top left tile of the tileset, then place whatever object you want over the tiles.
-// Once the level starts all the tiles of the tileset in the level that are in the same layer as the object setter will have
-// an instance of the object you placed over it before.
+// object on the top left tile of the tileset, then place one of the supported objects of your choice over the tiles.
+// If the object is flipped vertically the object setter will use the tile asociated to it as a chunk of tiles with the whole tileset
+//preventing any weird behavior caused by using the object setter on an incomplete chunk of tiles
 
 // only one autotiler runs this code:
 if (id == object_index.id)
@@ -196,7 +196,15 @@ if (id == object_index.id)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// parse key
+            <string>var useTileAsTileset = (image_yscale&lt;0);
+
+if(useTileAsTileset)
+{
+    image_yscale=1;
+    y-=16;
+}
+
+/// parse key
 var key = -1;
 
 print("Parsing legend (instance " + string(id) + ")", WL_VERBOSE);
@@ -226,13 +234,27 @@ if (key == -1)
 
 grid = 16;
 
+
 key_bg = tile_get_background(key);
-key_width = tile_get_width(key);
-key_height = tile_get_height(key);
-key_left = round(tile_get_left(key) / grid);
-key_top = round(tile_get_top(key) / grid);
-key_x = tile_get_x(key) + grid / 2;
-key_y = tile_get_y(key) + grid / 2;
+
+if(!useTileAsTileset)
+{
+    key_width = tile_get_width(key);
+    key_height = tile_get_height(key);
+    key_left = round(tile_get_left(key) / grid);
+    key_top = round(tile_get_top(key) / grid);
+    key_x = tile_get_x(key) + grid / 2;
+    key_y = tile_get_y(key) + grid / 2;
+}
+else
+{
+    key_width = background_get_width(key_bg);
+    key_height = background_get_height(key_bg);
+    key_left = 0;
+    key_top = 0;
+    key_x = tile_get_x(key) + grid / 2;
+    key_y = tile_get_y(key) + grid / 2;
+}
 
 tile_delete(key);
 

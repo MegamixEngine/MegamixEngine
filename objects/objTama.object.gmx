@@ -113,7 +113,7 @@ if (entityCanStep()
         for (i = 0; i &lt;= 2; i += 1)
         {
             flea = instance_create(x - 8 * image_xscale, y, objTamaFlea);
-            flea.xspeed = image_xscale + (i / 5);
+            flea.xspeed = image_xscale + (sign(image_xscale)*((i+5) / 5));
             flea.yspeed = -(3 + i);
         }
     }

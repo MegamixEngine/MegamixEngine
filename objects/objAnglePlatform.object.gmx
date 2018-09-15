@@ -37,6 +37,7 @@ canDrop = true;
 phase = 0;
 timer = 0;
 timeri = 0;
+touched=false;
 
 respawnRange = -1;
 despawnRange = -1;
@@ -88,20 +89,28 @@ init = 1;
 
 event_inherited();
 
-if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
+if (entityCanStep())
 {
+    with(objMegaman)
+    {
+        if(!place_meeting(x, y + gravDir, other.id))
+        {
+           other.touched = false;
+        }
+    }
+
     switch (phase)
     {
         case 0: // Idle 
-            with (target)
+            with (objMegaman)
             {
                 if (ground)
                 {
-                    if (place_meeting(x, y + gravDir, other.id)
-                        &amp;&amp; !place_meeting(x, y, other.id))
+                    if (!other.touched &amp;&amp; (place_meeting(x, y + gravDir, other.id)&amp;&amp; !place_meeting(x, y, other.id)))
                     {
                         with (other)
                         {
+                            touched = true;
                             phase = 1;
                             timer = 0;
                             
@@ -133,7 +142,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             {
                 if (image_index == 2)
                 {
-                    with (target)
+                    with (objMegaman)
                     {
                         if (ground)
                         {
@@ -163,7 +172,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             {
                 if (image_index == 2)
                 {
-                    with (target)
+                    with (objMegaman)
                     {
                         if (ground)
                         {
@@ -189,14 +198,40 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             break;
     }
 }
-else if (dead)
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if(spawned)
 {
     isSolid = 1;
     image_index = 0;
     canDrop = true;
     phase = 0;
     timer = 0;
+    spawned = false;
     timeri = 0;
+    touched = false;
 }
 </string>
           </argument>

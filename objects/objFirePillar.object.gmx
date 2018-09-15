@@ -34,12 +34,14 @@ contactDamage = 3;
 grav = 0;
 blockCollision = 0;
 
+init=1;
 image_speed = 0.25;
-
-y += sprite_height;
+y+=sprite_height;
 
 alarmRise = 0;
 rise = true;
+init = true;
+
 </string>
           </argument>
         </arguments>
@@ -63,7 +65,13 @@ rise = true;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+if(init)
+{
+    init=false;
+    y += sprite_height;
+    spriteWidth=sprite_get_width(sprite_index);
+    spriteHeight=sprite_get_height(sprite_index);
+}
 if (entityCanStep())//(!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
     healthpoints = 1;
@@ -84,7 +92,7 @@ if (entityCanStep())//(!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeSt
         else
         {
             y += 2;
-            if (y &gt;= ystart + sprite_height &amp;&amp; !rise)
+            if (y &gt;= ystart + spriteHeight &amp;&amp; !rise)
             {
                 rise = !rise;
                 alarmRise = 0;
@@ -155,7 +163,9 @@ if (other.object_index != objRainFlush)
             <kind>1</kind>
             <string>if (!dead)
 {
-    draw_sprite_part(sprite_index, image_index, 0, 0, sprite_width, max(0, sprite_height + (ystart - y)), x, y);
+    draw_sprite_part(sprite_index, image_index, 0, 0, sprite_get_width(sprite_index), max(0, sprite_get_height(sprite_index) + (ystart - y)), x, y);
+    image_yscale = 1/spriteHeight;
+    image_yscale*=max(0, sprite_get_height(sprite_index) + (ystart - y));
 }
 </string>
           </argument>

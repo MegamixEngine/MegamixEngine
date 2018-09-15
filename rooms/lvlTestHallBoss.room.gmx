@@ -109,7 +109,7 @@ with(prtBoss)
     <instance objName="objRightScrolling" x="2048" y="0" name="inst_4683042A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="1856" y="176" name="inst_22546618" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="2112" y="176" name="inst_70201773" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="272" y="176" name="inst_1E5412F8" locked="0" code="X = 2064;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="272" y="176" name="inst_1E5412F8" locked="0" code="X = 2064+16;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="2304" y="0" name="inst_2F7FE55A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="2352" y="176" name="inst_9BAD0C60" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="3840" y="0" name="inst_CA9D2181" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -142,7 +142,7 @@ with(prtBoss)
     <instance objName="objSectionArrowUp" x="4416" y="176" name="inst_CA47D927" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="4672" y="176" name="inst_7B94A902" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
     <instance objName="objDustMan" x="5344" y="176" name="inst_D32CB278" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="304" y="176" name="inst_6503C68F" locked="0" code="X = 4624;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="304" y="176" name="inst_6503C68F" locked="0" code="X = 4624+16;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="4944" y="176" name="inst_BD876236" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="5200" y="176" name="inst_5EDF48B7" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
     <instance objName="objSectionArrowUp" x="5456" y="176" name="inst_EE11888C" locked="0" code="" scaleX="1" scaleY="4.26666688919067" colour="4294967295" rotation="0"/>
@@ -230,19 +230,20 @@ with(prtBoss)
     <instance objName="objSonicMan" x="12240" y="160" name="inst_990CA68F" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVoltMan" x="12496" y="176" name="inst_458F983E" locked="0" code="itemDrop = objEnergyElement;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWater" x="12032" y="0" name="inst_AC635FFE" locked="0" code="" scaleX="16" scaleY="14" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="336" y="176" name="inst_8692D3C7" locked="0" code="X = 10000;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="368" y="176" name="inst_3A9033D2" locked="0" code="X = 11024;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="400" y="176" name="inst_FA6CA6B1" locked="0" code="X = 11792;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="336" y="176" name="inst_8692D3C7" locked="0" code="X = 10000+16;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="368" y="176" name="inst_3A9033D2" locked="0" code="X = 11024+16;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="400" y="176" name="inst_FA6CA6B1" locked="0" code="X = 11792+16;&#xA;Y = 176;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objIronBall" x="11984" y="160" name="inst_5E980A8D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMetallDaddy" x="960" y="160" name="inst_5D587717" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDarkMan4" x="1232" y="176" name="inst_DC1F0CDA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHornetMan" x="1488" y="176" name="inst_55B16C44" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objQuint" x="1744" y="176" name="inst_3E978CC4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEnker" x="2000" y="176" name="inst_8CBFAAC9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDanganMan" x="2256" y="160" name="inst_035A9BDB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVoltMan" x="2512" y="176" name="inst_7CEAB7FF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHoneyWoman" x="720" y="176" name="inst_055FAA67" locked="0" code="itemDrop=-1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoor" x="0" y="80" name="inst_19C8C633" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objAirMan" x="2256" y="176" name="inst_4E97A35C" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objLadder" x="2176" y="144" name="inst_0FAF0CA3" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMM9Wily3" x="0" y="0" w="128" h="128" xo="0" yo="0" id="11304282" name="inst_F7C9C6FB" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
@@ -3423,6 +3424,9 @@ with(prtBoss)
     <tile bgName="bgBasic" x="352" y="144" w="32" h="48" xo="96" yo="0" id="11308115" name="inst_EAE02815" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bgBasic" x="384" y="144" w="32" h="48" xo="96" yo="0" id="11308116" name="inst_72AA2A87" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="tstMM9Wily3" x="752" y="0" w="16" h="16" xo="0" yo="80" id="11311003" name="inst_432DA3D6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="2176" y="144" w="16" h="16" xo="48" yo="0" id="11349898" name="inst_C730C630" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="2176" y="160" w="16" h="16" xo="48" yo="0" id="11349899" name="inst_A7A5C03D" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="2176" y="176" w="16" h="16" xo="48" yo="0" id="11349900" name="inst_8DFE18AC" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>

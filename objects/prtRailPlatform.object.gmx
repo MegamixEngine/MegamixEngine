@@ -119,8 +119,6 @@ if (entityCanStep())
     if (dir == "none")
     {
         dir = "fall";
-        startDir = dir;
-        init = false;
     }
     
     if (dir != "fall")
@@ -400,7 +398,7 @@ with (prtRail)
     var quit = false;
     with (other)
     {
-        if (place_meeting(x + xOffset, y + yOffset, other) || place_meeting(xprevious + xOffset, yprevious + yOffset, other))
+        if (place_meeting(round(x + xOffset), round(y + yOffset), other) || place_meeting(round(xprevious + xOffset), round(yprevious + yOffset), other))
         {
             lastRail = other.id;
             quit = true;

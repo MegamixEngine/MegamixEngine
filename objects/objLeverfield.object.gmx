@@ -3,7 +3,7 @@
   <spriteName>sprLeverHide</spriteName>
   <solid>0</solid>
   <visible>0</visible>
-  <depth>-100000000</depth>
+  <depth>-100000</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -371,6 +371,7 @@ event_user(2);
           <argument>
             <kind>1</kind>
             <string>// propagate tags
+print("leverfield");
 if (id == object_index.id)
 {
     while (true)
