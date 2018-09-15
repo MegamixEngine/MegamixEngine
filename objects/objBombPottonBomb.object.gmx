@@ -33,6 +33,7 @@ grav = 0.25;
 yspeed = 0.25;
 attackDelay = 4;
 remaining = 2;
+image_speed = 0;
 </string>
           </argument>
         </arguments>
@@ -87,11 +88,21 @@ if (entityCanStep())
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
 var i = instance_create(x + 16, y, objBombPottonExplosion);
 i.image_xscale = 1;
+if (image_index == 1)
+{
+    i.sprite_index = sprBombPottonExplosionBlue;
+}
 i.remaining = remaining;
+
 i = instance_create(x - 16, y, objBombPottonExplosion);
 i.image_xscale = -1;
+if (image_index == 1)
+{
+    i.sprite_index = sprBombPottonExplosionBlue;
+}
 i.remaining = remaining;
 </string>
           </argument>

@@ -89,6 +89,10 @@ if (entityCanStep())
             i.remaining = remaining - 1;
             i.image_xscale = image_xscale;
             remaining = 0;
+            if (sprite_index == sprBombPottonExplosionBlue)
+            {
+                i.sprite_index = sprBombPottonExplosionBlue
+            }
         }
     }
     var obj;

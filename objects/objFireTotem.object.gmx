@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Fire Totem
-// Cration code: size -&gt; how tall the totem is
+// Creation code: size -&gt; how tall the totem is
 
 // Initialize
 event_inherited();
@@ -39,8 +39,11 @@ healthpoints = 4;
 
 category = "fire";
 
-// Enemy Spcecific code
+// Enemy Specific code
+// @cc - size -&gt; how tall Fire Totem is
 size = 2;
+// @cc - col -&gt; Fire Totem color: 0 (default) = red, 1 = green;
+col = 0;
 sz = 0;
 phase = 0;
 timer = -1;
@@ -48,6 +51,8 @@ animFrameBase = 0;
 animFrameMiddle = 0;
 animFrameHead = 0;
 animFrame = 0;
+headSprite = sprFireTotemHead;
+middleSprite = sprFireTotemMiddle;
 shootCooldown = 0;
 shotIndex = 0;
 
@@ -142,6 +147,21 @@ if (init)
     
     surface_reset_target();
     surface_free(surf);
+    
+    //Change sprite colour
+    switch (col)
+    {
+        case 1:
+            headSprite = sprFireTotemHeadGreen;
+            middleSprite = sprFireTotemMiddleGreen;
+            sprite_index = sprFireTotemBaseGreen;
+            break;
+        default:
+            headSprite = sprFireTotemHead;
+            middleSprite = sprFireTotemMiddle;
+            sprite_index = sprFireTotemBase;
+            break;
+    }
 }
 </string>
           </argument>
@@ -450,7 +470,14 @@ var i = instance_create(x, bbox_top + 4, objEnemyBullet);
 i.blockCollision = 0;
 i.yspeed = -3;
 i.grav = 0.16;
-i.sprite_index = sprFireTotemFlame;
+if (col == 1)
+{
+    i.sprite_index = sprFireTotemFlameGreen;
+}
+else
+{
+    i.sprite_index = sprFireTotemFlame;
+}
 i.image_speed = 0.15;
 i.x = x;
 i.y = bbox_top;
@@ -551,19 +578,19 @@ if (!dead)
         d3d_set_fog(true, color, 0, 0);
     }
     for (i = 0; i &lt; sz; i++)
-        draw_sprite_ext(sprFireTotemMiddle, floor(animFrameMiddle), x, y - 12 + yo - i * 8, image_xscale, image_yscale, 0, color, image_alpha);
+        draw_sprite_ext(middleSprite, floor(animFrameMiddle), x, y - 12 + yo - i * 8, image_xscale, image_yscale, 0, color, image_alpha);
     
     if (image_index &gt;= 6)
-        draw_sprite_ext(sprFireTotemHead, floor(animFrameHead), x, y - 12 + yo - ((i) * 8), image_xscale, image_yscale, 0, color, image_alpha);
+        draw_sprite_ext(headSprite, floor(animFrameHead), x, y - 12 + yo - ((i) * 8), image_xscale, image_yscale, 0, color, image_alpha);
     d3d_set_fog(false, 0, 0, 0);
     if (iceTimer &gt; 0 &amp;&amp; iceGraphicStyle==0)
     {
         draw_set_blend_mode(bm_add);
         for (i = 0; i &lt; sz; i++)
-            draw_sprite_ext(sprFireTotemMiddle, floor(animFrameMiddle), x, y - 12 + yo - i * 8, image_xscale, image_yscale, 0, c_white, image_alpha);
+            draw_sprite_ext(middleSprite, floor(animFrameMiddle), x, y - 12 + yo - i * 8, image_xscale, image_yscale, 0, c_white, image_alpha);
         
         if (image_index &gt;= 6)
-            draw_sprite_ext(sprFireTotemHead, floor(animFrameHead), x, y - 12 + yo - ((i) * 8), image_xscale, image_yscale, 0, c_white, image_alpha);
+            draw_sprite_ext(headSprite, floor(animFrameHead), x, y - 12 + yo - ((i) * 8), image_xscale, image_yscale, 0, c_white, image_alpha);
         draw_set_blend_mode(bm_normal);
     }
 }

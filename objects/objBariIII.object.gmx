@@ -28,6 +28,7 @@
             <string>/// The head of this enemy is a solid that players can stand on, he will shoot sound waves that boounce
 // off walls,but only once. His body is destructible, but it will
 // regenerate over time, how tall he is can be adjusted via creation code.
+
 event_inherited();
 healthpointsStart = 4;
 healthpoints = healthpointsStart;
@@ -39,6 +40,9 @@ doesTransition = false;
 
 //@cc how tall it can be
 maxSize = 3;
+
+//@cc Change colours: 0 (default) = purple, 1 = orange
+col = 0;
 
 size = 0;
 
@@ -54,6 +58,7 @@ killOverride = false; // Allow tornado blow and company to trigger event_user(10
 y -= 1;
 ystart = y;
 prevY = y;
+imgOffset = 0;
 </string>
           </argument>
         </arguments>
@@ -176,7 +181,7 @@ if (entityCanStep())
     }
     if (hasWeight)
     {
-        image_index = 2;
+        image_index = 2 + imgOffset;
         if (phw != hasWeight)
             timer = 0;
         timer += 1;
@@ -207,7 +212,7 @@ if (entityCanStep())
     }
     else
     {
-        image_index = 0;
+        image_index = 0 + imgOffset;
         if (phw != hasWeight)
         {
             timer = 0;
@@ -227,6 +232,7 @@ if (entityCanStep())
                 playSFX(sfxBariIIIRegen);
                 var i = instance_create(x, bbox_bottom + 12 * size, objBariIIIBody);
                 i.owner = id;
+                i.col = col;
                 var maxIndex = -99999;
                 with (objBariIIIBody)
                 {
@@ -245,13 +251,13 @@ if (entityCanStep())
             if (shootTimer &gt;= shT - 10 &amp;&amp; shootTimer &lt;= shT)
             {
                 // Shoot
-                image_index = 1;
+                image_index = 1 + imgOffset;
                 if (shootTimer == shT - 10)
                     event_user(0);
             }
             else if (shootTimer &gt; shT)
             {
-                image_index = 0;
+                image_index = 0 + imgOffset;
                 shootTimer = 0;
             }
         }
@@ -308,8 +314,9 @@ if (spawned)
         var i = instance_create(x, bbox_bottom + 1 + 12 + 12 * size, objBariIIIBody);
         i.owner = id;
         i.animFrame = 2;
-        i.image_index = 2;
+        i.image_index = 2 + imgOffset;
         i.mask_index = mskBariIIIBody2;
+        i.col = col;
         i.index = size;
         with (i)
             shiftObject(0, -1, true);
@@ -328,6 +335,7 @@ else
         }
     }
 }
+imgOffset = col * 3;
 </string>
           </argument>
         </arguments>

@@ -21,5 +21,6 @@
   <height>12</height>
   <frames>
     <frame index="0">images\sprClassicalCannonBullet_0.png</frame>
+    <frame index="1">images\sprClassicalCannonBullet_1.png</frame>
   </frames>
 </sprite>
