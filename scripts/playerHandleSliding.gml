@@ -19,14 +19,17 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
         // check to see that the place is free for sliding
         premask = mask_index;
         mask_index = firstSlideMask;
-        var goForth = !checkSolid(image_xscale, 0);
+        var goForth = !checkSolid(image_xscale, 0,0,1);
         mask_index = premask;
         
         if (goForth)
         {
+    
             premask = mask_index;
             mask_index = firstSlideMask;
-            
+            ground=true;
+            checkGround();
+            shiftObject(0,-gravDir,0);
             isSlide = true;
             slideTimer = 0;
             
@@ -42,6 +45,7 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
             }
             
             xspeed = slideSpeed * image_xscale;
+            
         }
     }
     
@@ -88,9 +92,10 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
             }
         }
         
-        // Check if Mega Man would be grounded when having the extended sliding mask
-        // ground = true;
-        // checkGround();
+        /*// Check if Mega Man would be grounded when having the extended sliding mask
+        ground = true;
+        checkGround();
+        */
         if (!ground)
         {
             if (yspeed * gravDir > 0)
@@ -100,6 +105,7 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
             }
             
             mask_index = secondSlideMask;
+            shiftObject(0,-gravDir,0);
             ground = true;
             checkGround();
             
@@ -122,14 +128,16 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
             slideTimer = 0;
             
             ground = true;
+            mask_index = premask;
+            shiftObject(0,-gravDir,0);
+
             checkGround();
             
-            mask_index = premask;
             if (!ground) // Pushing down until not inside a ceiling anymore
             {
                 dieToSpikes = 0;
                 shiftObject(0, -gravDir, 1);
-                dieToSpikes = 1;
+                dieToSpikes = preDSpikes;
             }
             
             xspeed = (ground && ((instance_exists(statusObject) && statusObject.statusOnIce)

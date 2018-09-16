@@ -318,7 +318,7 @@ if (entityCanStep())
                 case 3:
                     if (ground)
                     {
-                        print(attackTimer);
+                      
                         attackTimer++;
                         if (attackTimer == 4)
                         {

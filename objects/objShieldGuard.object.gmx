@@ -76,7 +76,6 @@ event_inherited();
 
 if (entityCanStep())
 {
-    print (phase);
     if (hasShield == false)
     {
         turnSprite = sprShieldGuardNoShieldTurn;

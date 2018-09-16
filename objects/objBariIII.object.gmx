@@ -170,13 +170,12 @@ if (entityCanStep())
         if (!blockCollision || !ground || id == other.id || (faction != 3 &amp;&amp; object_index != objMegaman))
             continue;
         
-        if (ground &amp;&amp; bbox_bottom &gt; other.bbox_top - 2 &amp;&amp; place_meeting(x, y + 2, other))
+        if (ground &amp;&amp; bbox_bottom &gt; other.bbox_top - 2 &amp;&amp; place_meeting(x, y + 2, other.id))
         {
             if (object_index == objMegaman || (category != "" &amp;&amp; (string_pos("heavy", category) || string_pos("bulky", category))))
             {
                 other.hasWeight = true;
             }
-            shiftObject(0, other.bbox_top - bbox_bottom, true);
         }
     }
     if (hasWeight)

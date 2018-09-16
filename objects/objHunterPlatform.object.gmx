@@ -107,7 +107,13 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             moveDir = 1;
             ySet = minY + 1;
         }
-        y = ystart + (ySet * 8);
+        
+        //New code, use shifting script
+        var movey = (ystart + (ySet * 8)) - y;
+        shiftObject(0,movey,blockCollision);
+        
+        //Old code, manually shift entities
+        /*
         with (prtEntity)
         {
             for (var i = 0; i &lt; abs((other.ySet - other.oldYSet)); i += 1)
@@ -134,6 +140,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 }
             }
         }
+        */
     }
 }
 else if (dead)

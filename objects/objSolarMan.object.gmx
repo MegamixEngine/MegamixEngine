@@ -233,7 +233,7 @@ if (entityCanStep())
     if (isFight)
     {
         attackTimer++;
-        print(phase);
+
         var halfScreen = view_xview + view_wview / 2;
         switch (phase)
         {

@@ -136,7 +136,7 @@ if (xspeed != 0)
         x = round(x);
 
         // move back outsie of the object while overlapping.
-        xcoll = sign(xspeed) * -0.5;
+        xcoll = sign(xspeed) * -1;
         repeat (max(32, abs(xspeed) * 4))
         {
             if (!place_free(x, y))
@@ -210,27 +210,27 @@ if (yspeed != 0)
                 }
             }
         }
-    }
 
-    with (prtEntity)
-    {
-        if (!dead)
+        with (prtEntity)
         {
-            if (isSolid == 2)
+            if (!dead)
             {
-                solid = 0;
-                if ((sign(y-other.y) == cgrav) && (place_meeting(x,y-other.yspeed-cgrav,myid) || place_meeting(x,y-2*cgrav,myid))&&(!place_meeting(x,y,myid)))
+                if (isSolid == 2)
                 {
-                    if (!fnsolid)
+                    solid = 0;
+                    if(!place_meeting(x,y,myid))
                     {
-                        solid = 1;
-                    }
-                    else
-                    {
-                        solid = !global.factionStance[faction, other.faction];
-                        if (fnsolid == 2)
+                        if (!fnsolid)
                         {
-                            solid = !solid;
+                            solid = 1;
+                        }
+                        else
+                        {
+                            solid = !global.factionStance[faction, other.faction];
+                            if (fnsolid == 2)
+                            {
+                                solid = !solid;
+                            }
                         }
                     }
                 }
