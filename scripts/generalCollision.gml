@@ -32,7 +32,6 @@ with (objSolid)
 
 with (prtEntity)
 {
-    solid=0;
     if (!dead && id != myid)
     {
         if (isSolid == 1)

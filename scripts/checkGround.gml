@@ -140,3 +140,8 @@ if (place_free(x, y))
         }
     }
 }
+
+with(all)
+{
+    solid=0;
+}

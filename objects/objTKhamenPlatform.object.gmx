@@ -29,6 +29,7 @@
 
 canHit = false;
 isSolid = true;
+blockCollision=true;
 grav = 0;
 itemDrop = -1;
 dir = 1;
@@ -71,17 +72,7 @@ setup = false;
             y -= 32;
         }
     }
-    if (!place_meeting(x - 16, y, object_index))
-    {
-        while (place_meeting(x + 1, y, object_index))
-        {
-            with (instance_place(x + 1, y, object_index))
-            {
-                instance_destroy();
-            }
-            image_xscale++;
-        }
-    }
+    combineObjects(object_index,true,false);
     with (object_index)
     {
         if (destroy)
@@ -89,6 +80,7 @@ setup = false;
             y += 32;
         }
     }
+    
 }
 
 event_inherited();
@@ -112,14 +104,14 @@ if (entityCanStep())
                 xspeed += accel * dir;
             }
             
-            if ((bbox_right &gt; view_xview + view_wview - 10) || (xcoll != 0))
+            if ((bbox_right &gt; view_xview + view_wview - 10) || (checkSolid(xspeed,0)))
             {
                 with (objTKhamenPlatform)
                 {
                     dir = -1;
                 }
             }
-            else if ((bbox_left &lt; view_xview + 10) || (xcoll != 0))
+            else if ((bbox_left &lt; view_xview + 10) || (checkSolid(xspeed,0)))
             {
                 with (objTKhamenPlatform)
                 {
