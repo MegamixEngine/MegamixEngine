@@ -106,7 +106,7 @@ if (entityCanStep())
     
     if (yspeed &lt; 0)
     {
-        if (y &lt;= ystart)
+        if (y &lt; ystart)
         {
             shiftObject(0, ystart - y, 1);
         }

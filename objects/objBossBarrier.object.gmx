@@ -53,6 +53,10 @@ blockCollision = 0;
 dieToSpikes = 0;
 
 fnsolid = 1;
+if(place_meeting(x,y,objSpike))
+{
+    isSolid=0;
+}
 </string>
           </argument>
         </arguments>

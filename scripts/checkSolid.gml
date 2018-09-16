@@ -52,7 +52,6 @@ if (dieToSpikes)
 // jumpthrough objects
 with (objTopSolid)
 {
-    solid=0;
     if (isSolid)
     {
         if (!place_meeting(x, y + cgrav, myid))
@@ -67,7 +66,6 @@ with (objTopSolid)
 
 with (prtEntity)
 {
-    solid=0;
     if (!dead && id != myid)
     {
         if (isSolid)
@@ -109,6 +107,9 @@ else if (!noSlopeConditions && _xs != 0 && _ys == 0)
         ret = 0;
     }
 }
-
+with(all)
+{
+    solid=0;
+}
 
 return (ret);

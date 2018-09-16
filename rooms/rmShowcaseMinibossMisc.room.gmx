@@ -196,10 +196,10 @@
     <instance objName="objTKhamenRockDropper" x="1184" y="2288" name="inst_0DD0737E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTKhamenRockDropper" x="1200" y="2288" name="inst_6FEA61AA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTKhamenRockDropper" x="1216" y="2288" name="inst_A3097A9D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTKhamenPlatform" x="1056" y="2400" name="inst_05D5C8D8" locked="0" code="destroy = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTKhamenPlatform" x="1072" y="2400" name="inst_CB1141AD" locked="0" code="destroy = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTKhamenPlatform" x="1088" y="2400" name="inst_1AADCE26" locked="0" code="destroy = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTKhamenPlatform" x="1104" y="2400" name="inst_41488BB0" locked="0" code="destroy = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTKhamenPlatform" x="1056" y="2400" name="inst_05D5C8D8" locked="0" code="destroy = true;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTKhamenPlatform" x="1072" y="2400" name="inst_CB1141AD" locked="0" code="destroy = true;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTKhamenPlatform" x="1088" y="2400" name="inst_1AADCE26" locked="0" code="destroy = true;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTKhamenPlatform" x="1104" y="2400" name="inst_41488BB0" locked="0" code="destroy = true;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTKhamenPlatform" x="1120" y="2400" name="inst_30C76640" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTKhamenPlatform" x="1136" y="2400" name="inst_E708D137" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTKhamenPlatform" x="1152" y="2400" name="inst_9FD30E88" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
