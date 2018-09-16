@@ -108,6 +108,8 @@ if (entityCanStep())
                 {
                     climbing = false;
                     yspeed = jumpSpeed * gravDir;
+                    gravfactor = 1.975;
+                    blockCollision = false;
                     if (other.myLock == 0)
                     {
                         other.myLock = lockPoolLock(localPlayerLock[PL_LOCK_CLIMB]);
@@ -129,19 +131,28 @@ if (entityCanStep())
     {
         with (objMegaman)
         {
-            if gravfactor == 1.975 &amp;&amp; !place_meeting(x, y, other.object_index)
+            if( gravfactor == 1.975 &amp;&amp; !place_meeting(x, y, other.object_index))
             {
                 gravfactor = 1;
                 blockCollision = true;
             }
         }
-        myLock = lockPoolRelease(myLock);
+        if(lockPoolExists(myLock)&amp;&amp;isLocked(myLock))
+        {
+            lockPoolRelease(myLock);
+            myLock=0;
+        }
+        
     }
     
     // force despawn
     if (bbox_top &gt; sectionBottom) || (x &gt; global.sectionRight) || (x &lt; global.sectionLeft)
     || (instance_exists(objSectionSwitcher))
     {
+        if(lockPoolExists(myLock)&amp;&amp;isLocked(myLock))
+        {
+            lockPoolRelease(myLock);
+        }
         instance_destroy();
     }
 }
@@ -149,10 +160,16 @@ else if (dead || instance_exists(objSectionSwitcher))
 {
     with (objMegaman)
     {
-        gravfactor = 1;
-        blockCollision = true;
+        if(!place_meeting(x,y,other.object_index))
+        {
+            gravfactor = 1;
+            blockCollision = true;
+        }
     }
-    myLock = lockPoolRelease(myLock);
+    if(lockPoolExists(myLock)&amp;&amp;isLocked(myLock))
+    {
+        lockPoolRelease(myLock);
+    }
     
     // force despawn
     instance_destroy();

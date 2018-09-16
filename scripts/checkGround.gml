@@ -91,7 +91,7 @@ with (prtEntity)
         {
             if (!place_meeting(x, y + cgrav, myid))
             {
-                if (isSolid != 2 || place_meeting(x, y - cgrav * slp, myid))
+                if (isSolid != 2 || place_meeting(x, y - cgrav*slp, myid))
                 {
                     if (!fnsolid)
                     {

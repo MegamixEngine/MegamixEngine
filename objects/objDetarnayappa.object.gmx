@@ -99,7 +99,6 @@ if (entityCanStep())
             {
                 ey = view_yview[0] + view_hview[0] * (dir == 1);
             }
-            print(ey);
             var distToPlayer = 0;
             var tgt = self;
             if (instance_exists(target))

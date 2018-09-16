@@ -109,6 +109,7 @@ if (entityCanStep())
         if (y &lt; ystart)
         {
             shiftObject(0, ystart - y, 1);
+            y=ystart;
         }
     }
 }

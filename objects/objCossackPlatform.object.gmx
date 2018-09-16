@@ -83,7 +83,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     {
         if (ground &amp;&amp; !isSlide)
         {
-            if (place_meeting(x, y + gravDir, other.id))
+            if (place_meeting(x, y + 2*gravDir, other.id))
             {
                 if (!place_meeting(x, y, other.id))
                 {

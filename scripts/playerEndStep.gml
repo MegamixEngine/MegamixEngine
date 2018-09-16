@@ -1,5 +1,4 @@
 /// playerEndStep
-
 if (!global.frozen && !frozen)
 {
     // Pausing

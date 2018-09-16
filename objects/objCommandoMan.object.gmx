@@ -309,7 +309,6 @@ if (entityCanStep())
                 {
                     if (yspeed == 0)
                     {
-                        print(attackTimer);
                         if (attackTimer &lt;= 49)
                         {
                             grav = 0;
@@ -340,7 +339,7 @@ if (entityCanStep())
                         // If landing on ground...
                         if (ground)
                         {
-                            print(attackTimer);
+                        
                             if (attackTimer &lt;= 90)
                             {
                                 // Shake ground

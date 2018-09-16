@@ -81,7 +81,6 @@ ystart = y;
     
     if (loops == -2)
         instance_destroy();
-    print(grv);
 }
 if (global.switchingSections)
     instance_destroy();

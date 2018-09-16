@@ -94,7 +94,8 @@ dieToSpikes = false;
 sinkin = 1;
 xcoll = 0;
 ycoll = 0;
-plt = 0;
+
+epIsOnPlat = 0;
 
 itemDrop = 0;//This object will be spawned once the entity dies
 

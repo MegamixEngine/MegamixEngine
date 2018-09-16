@@ -128,7 +128,7 @@ if (!global.frozen)
                     {
                         xspeed += 0.04 * dir;
                     }
-                    print("moving");
+                    
                 }
                 else
                 {
@@ -142,7 +142,7 @@ if (!global.frozen)
                             {
                                 other.pushed += 1;
                                 other.dir = sign(xDir);
-                                print("pushed");
+                          
                             }
                         }
                     }
