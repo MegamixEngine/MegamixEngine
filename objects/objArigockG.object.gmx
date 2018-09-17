@@ -57,9 +57,10 @@ wait_time = 120;
 shot_xspeed = 1;
 high_shot_yspeed = -6;
 low_shot_yspeed = -4.5;
-
+imgOffset = 0;
 // animation slowness
 at = 3;
+
 
 image_speed = 0;
 </string>
@@ -85,7 +86,7 @@ image_speed = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+imgOffset = col * 3;
 if (entityCanStep())
 {   
     if (phase == 0)
@@ -157,7 +158,7 @@ else if (dead)
     phase = 0;
 }
 
-imgOffset = col * 3;
+
 </string>
           </argument>
         </arguments>

@@ -65,7 +65,7 @@ if (entityCanStep())
     var pressed = false;
     visible = true;
     with (prtEntity)
-        if (ground &amp;&amp; place_meeting(x, y + image_yscale, other) &amp;&amp; !dead)
+        if (ground &amp;&amp; place_meeting(x, y + 2*sign(grav), other) &amp;&amp; !dead)
         {
             pressed = true;
             if (other.phase == 0)
@@ -111,7 +111,7 @@ if (entityCanStep())
         if (place_meeting(x, y + image_yscale, objSpike))
         {
             with (prtEntity)
-                if (ground &amp;&amp; place_meeting(x, y + image_yscale, other) &amp;&amp; canHit)
+                if (ground &amp;&amp; place_meeting(x, y + 2*sign(grav) , other) &amp;&amp; canHit)
                     event_user(EV_DEATH);
             event_user(EV_DEATH);
         }

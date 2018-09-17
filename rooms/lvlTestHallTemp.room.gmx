@@ -257,6 +257,7 @@
     <instance objName="objBariIII" x="768" y="640" name="inst_B8378CEF" locked="0" code="maxSize=8;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCossackPlatform" x="832" y="608" name="inst_8F917D53" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVenusWaterfallSpawner" x="672" y="464" name="inst_4F8ADE96" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objGutsHover" x="816" y="576" name="inst_E0CBDA4A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgBasic" x="96" y="176" w="16" h="16" xo="16" yo="48" id="11300187" name="inst_B8EA5CF3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

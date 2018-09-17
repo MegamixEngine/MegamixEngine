@@ -19,7 +19,7 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
         // check to see that the place is free for sliding
         premask = mask_index;
         mask_index = firstSlideMask;
-        var goForth = !checkSolid(image_xscale, 0,0,1);
+        var goForth = !checkSolid(image_xscale, 0);
         mask_index = premask;
         
         if (goForth)
@@ -105,7 +105,7 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
             }
             
             mask_index = secondSlideMask;
-            shiftObject(0,-gravDir,0);
+            //shiftObject(0,-gravDir,1);
             ground = true;
             checkGround();
             
@@ -129,7 +129,7 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
             
             ground = true;
             mask_index = premask;
-            shiftObject(0,-gravDir,0);
+            shiftObject(0,-gravDir,1);
 
             checkGround();
             
