@@ -64,14 +64,14 @@ if (isSolid)
                             if (place_meeting(x, y, other.id))
                             {
                                 y=round(y);
-                                y+=epDir*-1;
+                                y+=epDir*-0.5;
                             }
-                            var rpts = max(32,abs(other.bbox_top-other.bbox_bottom))//*2);
+                            var rpts = max(32,abs(other.bbox_top-other.bbox_bottom)*2);
                             repeat (rpts)
                             {
                                 if (place_meeting(x, y, other.id))
                                 {
-                                    y += epDir * -1;
+                                    y += epDir * -0.5;
                                 }
                                 else
                                 {

@@ -93,7 +93,7 @@ if (!global.frozen)
         ;
     with (objMegaman)
     {
-        if (place_meeting(x, y + gravDir, other))
+        if (ground &amp;&amp; place_meeting(x, y + 2*gravDir, other))
         {
             var xDir = global.keyRight[playerID] - global.keyLeft[playerID];
             if ((stepTimer &gt;= stepFrames &amp;&amp; !playerIsLocked(PL_LOCK_MOVE) &amp;&amp; ground &amp;&amp; (xDir == image_xscale)) || isSlide)
