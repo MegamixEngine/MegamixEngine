@@ -144,6 +144,7 @@ alarmJump = 45;
           <argument>
             <kind>1</kind>
             <string>specialDamageValue(objMagneticShockwave, 5);
+specialDamageValue(objIceWall, 10);
 </string>
           </argument>
         </arguments>

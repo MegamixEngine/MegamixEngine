@@ -6058,10 +6058,10 @@
         </objects>
       </objects>
       <objects name="MM1">
-        <object>objects\objElecBlockRotatable</object>
-        <object>objects\objFireBlockRotatable</object>
-        <object>objects\objFireBlock</object>
         <object>objects\objElecBlock</object>
+        <object>objects\objElecBlockRotatable</object>
+        <object>objects\objFireBlock</object>
+        <object>objects\objFireBlockRotatable</object>
         <object>objects\objFirePillar</object>
         <objects name="Fire Waves">
           <object>objects\objFireWaveGoDirector</object>

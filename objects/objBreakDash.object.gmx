@@ -362,7 +362,7 @@ if (global.ammo[playerID, global.weapon[playerID]] &gt; 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>specialDamageValue("grounded", 2);
+            <string>specialDamageValue("grounded", 3);
 specialDamageValue(objSpine, 3);
 </string>
           </argument>

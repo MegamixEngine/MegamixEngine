@@ -113,7 +113,11 @@ if (entityCanStep())
             if (yspeed &gt; 0 &amp;&amp; healthpoints &gt; 0)
             {
                 dead = 1;
-                instance_create(x + 8, y + 8, objHarmfulExplosion);
+                with instance_create(x + 8, y + 8, objHarmfulExplosion)
+                {
+                    sprite_index = sprExplosion;
+                }
+                
                 playSFX(sfxClassicExplosion);
                 repeat (2)
                 {

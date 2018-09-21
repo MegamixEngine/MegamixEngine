@@ -34,6 +34,7 @@ isSolid = 1;
 grav = 0;
 blockCollision = 1;
 canHit = false;
+bubbleTimer = -1;
 
 // super arm interaction
 category = "superArmTarget";

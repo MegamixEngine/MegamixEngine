@@ -44,7 +44,7 @@ if (inWater != -1) // If inWater is set to -1 then there can be no interaction w
             }
             else if (preWater == inWater)
             {
-                if (faction != 0)
+                if (faction != 0 && bubbleTimer >= 0)
                 {
                     bubbleTimer += 1;
                     if (bubbleTimer >= 64) // F***ING BUBBLES
@@ -94,7 +94,9 @@ if (inWater != -1) // If inWater is set to -1 then there can be no interaction w
     }
     
     if (!overlapping)
+    {
         overlapping = instance_place(xprevious - xspeed - hspeed, yprevious - yspeed - vspeed, objWater);
+    }
     
     if (preWater != inWater && overlapping != noone) // Has water state changed?
     {
