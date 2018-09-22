@@ -181,7 +181,7 @@ if (!global.frozen)
     i = fireWeapon(16, 2, objMagicCard, 3, 1, 2, 1);
     if (instance_exists(i))
     {
-        if (global.keyUp[playerID])
+        if ((global.keyUp[playerID] &amp;&amp; gravDir == 1) || (global.keyDown[playerID] &amp;&amp; gravDir == -1))
         {
             i.yspeed = -6.0 * image_yscale;
             i.sprite_index = sprMagicCardVertical;

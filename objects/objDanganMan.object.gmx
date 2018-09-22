@@ -397,7 +397,14 @@ if (entityCanStep())
             <string>// if he's in a rocket, guard
 if (sprite_index == sprDanganRocket)
 {
-    other.guardCancel = 1;
+    if (collision_ellipse(x - 16, y + 16, x + 16, y + 32, other.id, false, true))
+    {
+        other.guardCancel = 1;
+    }
+    else
+    {
+        other.guardCancel = 2;
+    }
 }
 </string>
           </argument>
