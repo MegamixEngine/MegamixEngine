@@ -35,6 +35,7 @@ canHit = false;
 doesTransition = false;
 blockCollision = 1;
 isSolid = 2;
+bubbleTimer = 0;
 
 decreaseAmmoTimer = 0;
 decreaseAmmoTimerMax = 60;

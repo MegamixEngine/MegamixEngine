@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 canHit = false;
+bubbleTimer = -1;
 
 grav = 0;
 

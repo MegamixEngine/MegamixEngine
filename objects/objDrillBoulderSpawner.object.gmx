@@ -32,6 +32,7 @@ healthpoints = healthpointsStart;
 
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 // Enemy specific code
 canHit = false;

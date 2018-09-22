@@ -151,6 +151,8 @@ else if (dead)
     hasFired = false;
     timerAdd = 1;
     beginShoot = 0;
+    imageOffset = 0;
+    imageTimer = 0;
 }
 image_index = imageOffset;
 </string>

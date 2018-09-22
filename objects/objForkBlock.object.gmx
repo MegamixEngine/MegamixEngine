@@ -30,6 +30,7 @@
 isSolid = 1;
 
 canHit = false;
+bubbleTimer = -1;
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;

@@ -41,6 +41,7 @@ killOverride = false;
 grav = 0;
 dieToSpikes = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 fnsolid = 1;
 

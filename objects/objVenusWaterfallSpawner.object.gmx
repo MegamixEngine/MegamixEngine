@@ -30,6 +30,7 @@
 event_inherited();
 canHit = 0;
 grav = 0;
+bubbleTimer = -1;
 
 moveTimer = 0; // Time until next action is performed
 waterTimer = 0; // How long to wait until stopping waterfall

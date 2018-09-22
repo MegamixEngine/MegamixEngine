@@ -34,6 +34,7 @@ isSolid = true;
 itemDrop = -1;
 timer = 0;
 phase = 0;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

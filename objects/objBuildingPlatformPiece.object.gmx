@@ -32,6 +32,7 @@ canHit = false;
 
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 y = view_yview + view_hview - 16;
 respawn = false;

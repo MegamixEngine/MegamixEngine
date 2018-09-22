@@ -168,6 +168,9 @@ if (entityCanStep())
         visible = false;
         dead = true;
     }
+    
+    // turn around on walls
+    xSpeedTurnaround();
 }
 else if (dead)
 {

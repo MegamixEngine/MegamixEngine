@@ -37,6 +37,7 @@ canHit = false;
 
 isSolid = 1;
 blockCollision = 0;
+bubbleTimer = -1;
 
 contactDamage = 0;
 

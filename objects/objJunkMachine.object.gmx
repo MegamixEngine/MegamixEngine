@@ -34,6 +34,7 @@ despawnRange = -1;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 phase = 0; // 0 = not powered up; 1 = powering up
 

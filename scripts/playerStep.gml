@@ -1,8 +1,8 @@
 /// playerStep()
 // Handles general step event code for the player
 
-xDir = -global.keyLeft[playerID] + global.keyRight[playerID];
-yDir = -global.keyUp[playerID] + global.keyDown[playerID];
+xDir = -sign(global.keyLeft[playerID]) + sign(global.keyRight[playerID]);
+yDir = -sign(global.keyUp[playerID]) + sign(global.keyDown[playerID]);
 
 if (!playerIsLocked(PL_LOCK_PHYSICS))
 {

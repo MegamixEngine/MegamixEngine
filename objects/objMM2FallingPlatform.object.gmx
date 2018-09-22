@@ -32,6 +32,7 @@ isSolid = 2;
 
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 timer = 0;
 droptimer = 16;

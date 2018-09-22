@@ -30,6 +30,7 @@
 canHit = false;
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 kamapot = noone;
 
 kamapotSpeed = -2; // SET IN ROOM EDITOR - choose between 'slow', 'medium', and 'fast'.

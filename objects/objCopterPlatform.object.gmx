@@ -32,6 +32,7 @@ isSolid = 1;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 phase = 0; // 0 = not moving; 1 = moving up; 2 = moving down
 timer = 0;

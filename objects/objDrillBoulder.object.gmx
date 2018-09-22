@@ -33,6 +33,8 @@ contactDamage = 6;
 
 category = "cluster, rocky";
 
+bubbleTimer = -1;
+
 // Enemy specific code
 action = 0;
 actionTimer = 0;

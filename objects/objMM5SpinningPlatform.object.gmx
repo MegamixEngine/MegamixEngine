@@ -36,6 +36,7 @@ canHit = false;
 isSolid = 2; // Is it solid?
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 respawn = true;
 

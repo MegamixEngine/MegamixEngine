@@ -34,6 +34,7 @@ blockCollision = 0;
 faction = 7;
 
 grav = 0;
+bubbleTimer = -1;
 
 yspeed = -0.8;
 despawnRange = -1;

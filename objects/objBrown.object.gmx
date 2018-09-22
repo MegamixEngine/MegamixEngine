@@ -125,7 +125,7 @@ if (entityCanStep())
                     playSFX(sfxEnemyDrop);
                 }
             }
-            if (container.wasHit)
+            if (container.wasHit || place_meeting(x, y, objMegaman))
             {
                 phase = 2;
                 timer = 0;

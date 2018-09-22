@@ -37,6 +37,7 @@ respawnRange = -1;
 
 grav = 0;
 blockCollision = false;
+bubbleTimer = -1;
 phase = 0; // 0: descending to ystart. 1: normal
 </string>
           </argument>
