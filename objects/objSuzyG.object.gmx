@@ -35,6 +35,7 @@ respawn = true;
 healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "grounded, semi bulky";
 
 grav = gravAccel * image_yscale;
 

@@ -32,6 +32,7 @@ grav = 0;
 blockCollision = 0;
 despawnRange = 4;
 facePlayerOnSpawn = false;
+category = "flying, nature";
 
 //@cc Explosion lenght
 explosionLenght = 3;

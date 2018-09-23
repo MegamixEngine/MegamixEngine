@@ -32,7 +32,7 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
-category = "cluster";
+category = "cluster, floating";
 
 grav = 0;
 blockCollision = 0;

@@ -30,6 +30,7 @@ contactDamage = 3;
 healthpointsStart = 4;
 healthpoints = healthpointsStart;
 facePlayerOnSpawn = true;
+category = "fire, nature, shielded";
 
 // Enemy specific code
 timer = 0;

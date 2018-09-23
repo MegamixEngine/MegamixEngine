@@ -33,6 +33,7 @@ doesIntro = false;
 healthpointsStart = 20;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "aquatic, bulky";
 
 blockCollision = 0;
 grav = 0;

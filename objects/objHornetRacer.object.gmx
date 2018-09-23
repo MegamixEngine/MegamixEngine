@@ -33,6 +33,7 @@ event_inherited();
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 3;
+category = "flying, nature";
 blockCollision = 0;
 grav = 0;
 

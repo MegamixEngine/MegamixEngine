@@ -35,6 +35,8 @@ healthpoints = healthpointsStart;
 isSolid = 1;
 facePlayer = true;
 doesTransition = false;
+category = "semi bulky";
+
 faction=7;
 behaviourType=3;
 

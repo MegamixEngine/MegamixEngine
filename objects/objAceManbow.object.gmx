@@ -38,6 +38,7 @@ healthpointsStart = 4;
 healthpoints = healthpointsStart;
 contactDamage = 3;
 blockCollision = 0;
+category = "aquatic, nature";
 
 grav = 0;
 facePlayerOnSpawn = true;

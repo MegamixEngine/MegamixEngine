@@ -32,6 +32,8 @@ healthpointsStart = 10;
 healthpoints = healthpointsStart;
 contactDamage = 8;
 
+category = "flying, mets";
+
 blockCollision = 0;
 grav = 0;
 

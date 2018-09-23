@@ -31,6 +31,8 @@ event_inherited();
 
 respawn = true;
 
+category = "bird, bulky, nature";
+
 healthpointsStart = 10;
 healthpoints = healthpointsStart;
 contactDamage = 4;

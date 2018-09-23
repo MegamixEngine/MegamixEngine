@@ -37,6 +37,7 @@ healthpoints = healthpointsStart;
 contactDamage = 6;
 grav = 0;
 blockCollision = false;
+category = "bulky, mets";
 
 doesIntro = false;
 

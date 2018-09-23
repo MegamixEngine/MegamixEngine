@@ -35,7 +35,7 @@ healthpoints = healthpointsStart;
 contactDamage = 4;
 grav = 0;
 
-category = "nature";
+category = "bird, nature";
 facePlayerOnSpawn = true;
 
 // Enemy-specific code

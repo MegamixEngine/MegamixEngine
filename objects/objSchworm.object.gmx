@@ -33,6 +33,7 @@ respawn = true;
 healthpointsStart = 5;
 healthpoints = healthpointsStart;
 contactDamage = 2;
+category = "grounded";
 
 // Enemy specific code
 actionTimer = 0;

@@ -41,6 +41,7 @@ contactDamage = 4;
 rescursiveExplosion = false;
 iFrames = 0;
 
+category = "bulky, rocky";
 
 // Enemy specific code
 

@@ -192,7 +192,7 @@ phase = 1;
           <argument>
             <kind>1</kind>
             <string>// This enemy is invincible, so just do this to reflect bullets.
-other.guardCancel = 3;
+other.guardCancel = 2;//3
 </string>
           </argument>
         </arguments>

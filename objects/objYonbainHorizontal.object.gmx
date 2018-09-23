@@ -28,6 +28,7 @@
             <string>event_inherited();
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
+category = "cluster, flying";
 blockCollision = 0;
 grav = 0;
 

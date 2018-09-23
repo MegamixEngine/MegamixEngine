@@ -31,7 +31,7 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 6;
 
-category = "fire, flying";
+category = "flying";
 
 blockCollision = 0;
 grav = 0;

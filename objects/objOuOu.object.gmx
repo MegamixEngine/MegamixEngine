@@ -34,7 +34,7 @@ healthpointsStart = 9;
 contactDamage = 3;
 facePlayerOnSpawn = true;
 
-category = "aquatic, bulky";
+category = "aquatic, bulky, nature";
 
 // @cc - How fast Ou-Ou's ball moves when thrown
 ballSpeed = 3

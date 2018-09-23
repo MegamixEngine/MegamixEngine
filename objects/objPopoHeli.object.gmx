@@ -33,6 +33,8 @@ event_inherited();
 
 healthpointsStart = 1;
 contactDamage = 4;
+category = "fire, flying, shielded";
+
 image_speed = 0.18;
 grav = 0;
 facePlayerOnSpawn = false;

@@ -31,6 +31,7 @@ event_inherited();
 respawn = true;
 healthpointsStart = 8;
 healthpoints = healthpointsStart;
+category = "nature";
 contactDamage = 2;
 facePlayer = true;
 

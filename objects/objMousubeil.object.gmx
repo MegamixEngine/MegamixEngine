@@ -35,6 +35,7 @@ respawn = true;
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 3;
+category = "grounded, nature";
 
 facePlayerOnSpawn = true;
 
