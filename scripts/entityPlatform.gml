@@ -34,14 +34,13 @@ if (isSolid)
                             continue;
                         }
                     }
-                    
                     var epDir = sign(bboxGetYCenterObject(other.id) - bboxGetYCenter());
 
                     if(place_meeting(x, y, other.id))
                     {
                         continue;
                     }
-                    epIsOnPlat=false;
+                    
                     
                     var epIsPassenger;
                     var epWillCollide;
@@ -102,7 +101,6 @@ if (isSolid)
                         if (yspeed == 0 && epDir == sign(grav))
                         {
                             ground = true;
-                            epIsOnPlat=true;
                         }
                         
                         other.y -= myyspeed;
@@ -117,10 +115,7 @@ if (isSolid)
         {
             with (prtEntity)
             {
-                if(myyspeed==0)
-                {
-                    epIsOnPlat=false;
-                }
+                
                 if (blockCollision && !dead)
                 {
                     if (other.fnsolid)
@@ -136,18 +131,16 @@ if (isSolid)
                         continue;
                     }
                     
+                    /*
                     if (object_index == objMegaman)
                     {
                         grav = gravDir;
                     }
-                    
+                    */
+                    var epIsOnPlat = false;
                     var epDir = sign(bboxGetXCenterObject(other.id) - bboxGetXCenter());
-                    var epImmprecition;
-                    if(ground)
-                        epImmprecition=0.5*ground;
-                    else
-                        epImmprecition=max(abs(abs(y)-floor(abs(y))),abs(abs(myyspeed)-floor(abs(myyspeed))));
-                    if (epIsOnPlat||place_meeting(x, y + sign(grav)+epImmprecition*sign(grav), other.id))
+
+                    if (place_meeting(x, y + sign(grav)+grav+(ground*0.5*sign(grav)), other.id))
                     {
                         shiftObject(myxspeed, 0, 1);
                         epIsOnPlat=true;
@@ -191,6 +184,7 @@ if (isSolid)
                         other.x -= myxspeed;
                     }
                 }
+                epIsOnPlat=false;
             }
         }
         

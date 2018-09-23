@@ -18,8 +18,9 @@ if (deltaX == 0 && deltaY == 0)
     return true;
 }
 
-var norm = sqrt(deltaX * deltaX + deltaY * deltaY);
-xspeed = deltaX * moveSpeed / norm;
-yspeed = deltaY * moveSpeed / norm;
+//var norm = sqrt(deltaX * deltaX + deltaY * deltaY);
+var dir = point_direction(x,y,targetX,targetY);
+xspeed = moveSpeed*cos(degtorad(dir));//deltaX * moveSpeed / norm;
+yspeed = -moveSpeed*sin(degtorad(dir));//deltaY * moveSpeed / norm;
 
 return false;
