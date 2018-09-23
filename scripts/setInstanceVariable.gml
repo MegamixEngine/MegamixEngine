@@ -10,7 +10,7 @@ var _____val_____ = argument1;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4545 variables
+/// 4570 variables
 /// from 1655 source files
 
 if (_____vs_____ == "") return false;
@@ -244,6 +244,7 @@ else if (stringStartsWith(_____vs_____, 'b'))
     else if (_____vs_____ == "background_colour") background_colour = _____val_____;
     else if (_____vs_____ == "background_index") background_index = _____val_____;
     else if (_____vs_____ == "background_visible") background_visible = _____val_____;
+    else if (_____vs_____ == "backtrack") backtrack = _____val_____;
     else if (_____vs_____ == "backtrackTimer") backtrackTimer = _____val_____;
     else if (_____vs_____ == "backtrackTimerMax") backtrackTimerMax = _____val_____;
     else if (_____vs_____ == "ball") ball = _____val_____;
@@ -639,6 +640,7 @@ else if (stringStartsWith(_____vs_____, 'c'))
     else if (_____vs_____ == "color") color = _____val_____;
     else if (_____vs_____ == "colour") colour = _____val_____;
     else if (_____vs_____ == "colourBlock") colourBlock = _____val_____;
+    else if (_____vs_____ == "combineDir") combineDir = _____val_____;
     else if (_____vs_____ == "combineObject") combineObject = _____val_____;
     else if (_____vs_____ == "comeBack") comeBack = _____val_____;
     else if (_____vs_____ == "commonAvailability") commonAvailability = _____val_____;
@@ -1051,6 +1053,7 @@ else if (stringStartsWith(_____vs_____, 'e'))
     else if (_____vs_____ == "endOfStageBoss") endOfStageBoss = _____val_____;
     else if (_____vs_____ == "endReached") endReached = _____val_____;
     else if (_____vs_____ == "endRef") endRef = _____val_____;
+    else if (_____vs_____ == "endTarget") endTarget = _____val_____;
     else if (_____vs_____ == "endTimer") endTimer = _____val_____;
     else if (_____vs_____ == "endXoffset") endXoffset = _____val_____;
     else if (_____vs_____ == "endY") endY = _____val_____;
@@ -1085,6 +1088,12 @@ else if (stringStartsWith(_____vs_____, 'e'))
     else if (_____vs_____ == "enx") enx = _____val_____;
     else if (_____vs_____ == "eny") eny = _____val_____;
     else if (_____vs_____ == "ep") ep = _____val_____;
+    else if (_____vs_____ == "epCanCrush") epCanCrush = _____val_____;
+    else if (_____vs_____ == "epDir") epDir = _____val_____;
+    else if (_____vs_____ == "epImmprecition") epImmprecition = _____val_____;
+    else if (_____vs_____ == "epIsOnPlat") epIsOnPlat = _____val_____;
+    else if (_____vs_____ == "epIsPassenger") epIsPassenger = _____val_____;
+    else if (_____vs_____ == "epWillCollide") epWillCollide = _____val_____;
     else if (_____vs_____ == "eqPos") eqPos = _____val_____;
     else if (_____vs_____ == "error") error = _____val_____;
     else if (_____vs_____ == "errors") errors = _____val_____;
@@ -1823,11 +1832,13 @@ else if (stringStartsWith(_____vs_____, 'h'))
     else if (_____vs_____ == "hasEgg") hasEgg = _____val_____;
     else if (_____vs_____ == "hasFired") hasFired = _____val_____;
     else if (_____vs_____ == "hasGravity") hasGravity = _____val_____;
+    else if (_____vs_____ == "hasGuides") hasGuides = _____val_____;
     else if (_____vs_____ == "hasInit") hasInit = _____val_____;
     else if (_____vs_____ == "hasItem") hasItem = _____val_____;
     else if (_____vs_____ == "hasKnockback") hasKnockback = _____val_____;
     else if (_____vs_____ == "hasLooped") hasLooped = _____val_____;
     else if (_____vs_____ == "hasParent") hasParent = _____val_____;
+    else if (_____vs_____ == "hasPath") hasPath = _____val_____;
     else if (_____vs_____ == "hasPopped") hasPopped = _____val_____;
     else if (_____vs_____ == "hasRock") hasRock = _____val_____;
     else if (_____vs_____ == "hasShell") hasShell = _____val_____;
@@ -2061,6 +2072,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "introTimer") introTimer = _____val_____;
     else if (_____vs_____ == "introType") introType = _____val_____;
     else if (_____vs_____ == "inverse") inverse = _____val_____;
+    else if (_____vs_____ == "invincible") invincible = _____val_____;
     else if (_____vs_____ == "inx") inx = _____val_____;
     else if (_____vs_____ == "iny") iny = _____val_____;
     else if (_____vs_____ == "iphase") iphase = _____val_____;
@@ -2138,6 +2150,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "itext") itext = _____val_____;
     else if (_____vs_____ == "ix") ix = _____val_____;
     else if (_____vs_____ == "ixs") ixs = _____val_____;
+    else if (_____vs_____ == "ixsc") ixsc = _____val_____;
     else if (_____vs_____ == "iy") iy = _____val_____;
     else return false;
 }
@@ -2538,6 +2551,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "moved") moved = _____val_____;
     else if (_____vs_____ == "movementLock") movementLock = _____val_____;
     else if (_____vs_____ == "moves") moves = _____val_____;
+    else if (_____vs_____ == "movey") movey = _____val_____;
     else if (_____vs_____ == "moving") moving = _____val_____;
     else if (_____vs_____ == "movingPlat") movingPlat = _____val_____;
     else if (_____vs_____ == "mp3_1") mp3_1 = _____val_____;
@@ -2687,6 +2701,7 @@ else if (stringStartsWith(_____vs_____, 'n'))
     else if (_____vs_____ == "nextPosOffset") nextPosOffset = _____val_____;
     else if (_____vs_____ == "nextSet") nextSet = _____val_____;
     else if (_____vs_____ == "nextShark") nextShark = _____val_____;
+    else if (_____vs_____ == "nextTarget") nextTarget = _____val_____;
     else if (_____vs_____ == "nextX") nextX = _____val_____;
     else if (_____vs_____ == "nextXdir") nextXdir = _____val_____;
     else if (_____vs_____ == "nextY") nextY = _____val_____;
@@ -2780,6 +2795,7 @@ else if (stringStartsWith(_____vs_____, 'o'))
     else if (_____vs_____ == "oldYSet") oldYSet = _____val_____;
     else if (_____vs_____ == "oldmask") oldmask = _____val_____;
     else if (_____vs_____ == "on") on = _____val_____;
+    else if (_____vs_____ == "onBigBubble") onBigBubble = _____val_____;
     else if (_____vs_____ == "onBlock") onBlock = _____val_____;
     else if (_____vs_____ == "onCeiling") onCeiling = _____val_____;
     else if (_____vs_____ == "onFloor") onFloor = _____val_____;
@@ -3021,6 +3037,7 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "preDir") preDir = _____val_____;
     else if (_____vs_____ == "preDirection") preDirection = _____val_____;
     else if (_____vs_____ == "preGround") preGround = _____val_____;
+    else if (_____vs_____ == "preImgSpeed") preImgSpeed = _____val_____;
     else if (_____vs_____ == "preMsk") preMsk = _____val_____;
     else if (_____vs_____ == "preSpeed") preSpeed = _____val_____;
     else if (_____vs_____ == "preTZ") preTZ = _____val_____;
@@ -3055,6 +3072,7 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "prevDepth") prevDepth = _____val_____;
     else if (_____vs_____ == "prevDir") prevDir = _____val_____;
     else if (_____vs_____ == "prevDrop") prevDrop = _____val_____;
+    else if (_____vs_____ == "prevEndTarget") prevEndTarget = _____val_____;
     else if (_____vs_____ == "prevFrame") prevFrame = _____val_____;
     else if (_____vs_____ == "prevGrav") prevGrav = _____val_____;
     else if (_____vs_____ == "prevGravDir") prevGravDir = _____val_____;
@@ -3065,6 +3083,7 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "prevPhase") prevPhase = _____val_____;
     else if (_____vs_____ == "prevRail") prevRail = _____val_____;
     else if (_____vs_____ == "prevSplit") prevSplit = _____val_____;
+    else if (_____vs_____ == "prevStartTarget") prevStartTarget = _____val_____;
     else if (_____vs_____ == "prevVelx") prevVelx = _____val_____;
     else if (_____vs_____ == "prevVely") prevVely = _____val_____;
     else if (_____vs_____ == "prevWaitTime") prevWaitTime = _____val_____;
@@ -3089,6 +3108,7 @@ else if (stringStartsWith(_____vs_____, 'p'))
     else if (_____vs_____ == "prevx") prevx = _____val_____;
     else if (_____vs_____ == "prevy") prevy = _____val_____;
     else if (_____vs_____ == "prexs") prexs = _____val_____;
+    else if (_____vs_____ == "prexscale") prexscale = _____val_____;
     else if (_____vs_____ == "prey") prey = _____val_____;
     else if (_____vs_____ == "preys") preys = _____val_____;
     else if (_____vs_____ == "preyy") preyy = _____val_____;
@@ -3269,6 +3289,7 @@ else if (stringStartsWith(_____vs_____, 'r'))
     else if (_____vs_____ == "revealers") revealers = _____val_____;
     else if (_____vs_____ == "revealersN") revealersN = _____val_____;
     else if (_____vs_____ == "reverse") reverse = _____val_____;
+    else if (_____vs_____ == "reversePath") reversePath = _____val_____;
     else if (_____vs_____ == "reward") reward = _____val_____;
     else if (_____vs_____ == "rewardN") rewardN = _____val_____;
     else if (_____vs_____ == "rewardText") rewardText = _____val_____;
@@ -3337,6 +3358,7 @@ else if (stringStartsWith(_____vs_____, 'r'))
     else if (_____vs_____ == "route_progress") route_progress = _____val_____;
     else if (_____vs_____ == "route_tile") route_tile = _____val_____;
     else if (_____vs_____ == "route_tile_n") route_tile_n = _____val_____;
+    else if (_____vs_____ == "rpts") rpts = _____val_____;
     else if (_____vs_____ == "rr") rr = _____val_____;
     else if (_____vs_____ == "rubble") rubble = _____val_____;
     else if (_____vs_____ == "runCycleBack") runCycleBack = _____val_____;
@@ -3362,6 +3384,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "sLength") sLength = _____val_____;
     else if (_____vs_____ == "sR") sR = _____val_____;
     else if (_____vs_____ == "sT") sT = _____val_____;
+    else if (_____vs_____ == "safeTimer") safeTimer = _____val_____;
     else if (_____vs_____ == "safeToAdjust") safeToAdjust = _____val_____;
     else if (_____vs_____ == "safety") safety = _____val_____;
     else if (_____vs_____ == "sakugarnePrimaryCol") sakugarnePrimaryCol = _____val_____;
@@ -3617,6 +3640,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "spark") spark = _____val_____;
     else if (_____vs_____ == "sparkblock") sparkblock = _____val_____;
     else if (_____vs_____ == "sparkindex") sparkindex = _____val_____;
+    else if (_____vs_____ == "sparkleTimer") sparkleTimer = _____val_____;
     else if (_____vs_____ == "sparkles") sparkles = _____val_____;
     else if (_____vs_____ == "sparkletimer") sparkletimer = _____val_____;
     else if (_____vs_____ == "spawn") spawn = _____val_____;
@@ -3781,6 +3805,7 @@ else if (stringStartsWith(_____vs_____, 's'))
     else if (_____vs_____ == "startRef") startRef = _____val_____;
     else if (_____vs_____ == "startRightPos") startRightPos = _____val_____;
     else if (_____vs_____ == "startSpeed") startSpeed = _____val_____;
+    else if (_____vs_____ == "startTarget") startTarget = _____val_____;
     else if (_____vs_____ == "startTime") startTime = _____val_____;
     else if (_____vs_____ == "startTimer") startTimer = _____val_____;
     else if (_____vs_____ == "startWait") startWait = _____val_____;
