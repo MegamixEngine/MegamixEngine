@@ -34,7 +34,7 @@ healthpoints = healthpointsStart;
 contactDamage = 8;
 killOverride = false;
 
-category = "bulky, joes";
+category = "big eye, bulky, joes";
 
 // Enemy specific code
 shoot = false;

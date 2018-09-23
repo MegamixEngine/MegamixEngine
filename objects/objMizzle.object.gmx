@@ -31,9 +31,10 @@ event_inherited();
 
 respawn = true;
 
-healthpointsStart = 36;
+healthpointsStart = 10;//36
 healthpoints = healthpointsStart;
-contactDamage = 2;
+contactDamage = 1;
+category = "flying";
 
 blockCollision = 0;
 grav = 0;

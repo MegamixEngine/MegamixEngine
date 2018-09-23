@@ -34,6 +34,8 @@ healthpoints = healthpointsStart;
 contactDamage = 6;
 canIce = false;
 
+category = "bulky, nature";
+
 doesIntro = false;
 
 dir = image_xscale;

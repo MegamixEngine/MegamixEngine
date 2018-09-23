@@ -35,6 +35,7 @@ healthpoints = healthpointsStart;
 isSolid = 1;
 facePlayer = true;
 doesTransition = false;
+category = "semi bulky";
 
 // Enemy specific code
 

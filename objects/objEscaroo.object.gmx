@@ -33,6 +33,7 @@ facePlayerOnSpawn = false;
 healthpointsStart = 16;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "bulky, nature";
 
 introSprite = sprEscarooIntro;
 

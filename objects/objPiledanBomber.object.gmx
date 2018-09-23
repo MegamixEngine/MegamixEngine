@@ -29,6 +29,7 @@
 contactDamage = 3;
 healthpointsStart = 4;
 healthpoints = 4;
+category = "flying, shielded";
 canHit = false;
 canDamage = false;
 grav = 0;

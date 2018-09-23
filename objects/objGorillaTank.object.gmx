@@ -31,7 +31,7 @@ event_inherited();
 
 respawn = true;
 
-category = "nature, primate";
+category = "bulky, nature, primate";
 
 healthpointsStart = 24;
 healthpoints = healthpointsStart;

@@ -32,6 +32,7 @@ tile_layer = 800000;
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 blockCollision = 0;
+category = "flying";
 grav = 0;
 
 // not confirmed:

@@ -35,7 +35,7 @@ healthpointsStart = 2;
 healthpoints = 2;
 contactDamage = 3;
 facePlayer = false;
-
+category = "nature";
 
 // Enemy specific code
 

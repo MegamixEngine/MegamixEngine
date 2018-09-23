@@ -32,6 +32,7 @@ respawn = true;
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "grounded, mets";
 
 facePlayerOnSpawn = true;
 

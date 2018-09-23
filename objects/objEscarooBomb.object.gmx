@@ -73,7 +73,7 @@ if (entityCanStep())
     if (ground)
     {
         instance_create(x, y, objHarmfulExplosion);
-        playSFX(sfxMM3Explode);
+        playSFX(sfxExplosion2);
         instance_destroy();
     }
 }

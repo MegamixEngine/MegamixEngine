@@ -36,6 +36,8 @@ healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 1;
 
+category = "cannons, grounded";
+
 grav = 0;
 
 // Enemy specific code

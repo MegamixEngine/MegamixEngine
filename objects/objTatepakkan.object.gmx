@@ -35,6 +35,7 @@ respawn = true;
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 5;
+category = "cannons, shielded";
 doesTransition = false;
 isSolid = 0;
 

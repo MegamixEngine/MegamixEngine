@@ -32,6 +32,7 @@ respawn = true;
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "aquatic, joes";
 
 facePlayerOnSpawn = true;
 

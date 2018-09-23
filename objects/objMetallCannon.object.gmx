@@ -34,7 +34,7 @@ healthpointsStart = 4;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
-category = "mets";
+category = "cannons, mets";
 
 facePlayerOnSpawn = true;
 

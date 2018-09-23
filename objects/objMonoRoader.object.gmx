@@ -34,7 +34,7 @@ healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
-category = "shielded, semi bulky";
+category = "grounded, shielded, semi bulky";
 
 // Enemy specific code
 inShell = false;

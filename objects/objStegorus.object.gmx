@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 healthpointsStart = 24;
+category = "bulky, nature";
 contactDamage = 3;
 respawnRange = 0;
 despawnRange = 16;

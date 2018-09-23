@@ -41,6 +41,8 @@ despawnRange = -1;
 xspeed = 0;
 yspeed = 0;
 
+category = "fire, flying";
+
 sprite_index = sprChangkeyDragonHead;
 // Enemy-specific code
 

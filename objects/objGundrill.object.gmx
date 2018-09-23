@@ -37,6 +37,7 @@ contactDamage = 6;
 blockCollision = 0;
 grav = 0;
 facePlayerOnSpawn = true;
+category = "bulky, flying, rocky";
 
 despawnRange = -1;
 delayDisplay = 2;

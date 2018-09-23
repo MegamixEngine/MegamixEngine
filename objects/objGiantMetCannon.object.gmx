@@ -40,6 +40,8 @@ blockCollision = 0;
 grav = 0;
 isSolid = true;
 
+category = "mets, bulky, cannon";
+
 // @cc - Determines if it can shoot homing missiles AND cannon shots.
 randomMissiles = false;
 

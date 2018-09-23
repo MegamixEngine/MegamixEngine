@@ -35,6 +35,7 @@ canHit = true;
 facePlayerOnSpawn = true;
 facePlayer = false;
 behaviourType = 1;
+category = "grounded, semi bulky";
 
 // Enemy specific code
 

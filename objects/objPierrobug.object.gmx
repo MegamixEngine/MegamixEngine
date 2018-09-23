@@ -34,7 +34,7 @@ healthpointsStart = 6;
 healthpoints = healthpointsStart;
 contactDamage = 6;
 
-category = "shielded";
+category = "nature, shielded";
 
 facePlayer = true;
 

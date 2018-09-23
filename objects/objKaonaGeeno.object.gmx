@@ -29,6 +29,7 @@
 healthpointsStart = 2;
 despawnRange = 32;
 healthpoints = healthpointsStart;
+category = "grounded";
 blockCollision = true;
 contactDamage = 4;
 throwRange = 6 * 16;

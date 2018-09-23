@@ -36,6 +36,7 @@ i.ystart = y;
 i.minY = y;
 high = true;
 lockTransition = true;
+category = "bird, fire, flying";
 </string>
           </argument>
         </arguments>

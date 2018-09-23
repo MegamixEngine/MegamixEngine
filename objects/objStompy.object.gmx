@@ -37,6 +37,7 @@ contactDamage = 5;
 blockCollision = 1;
 grav = 0.15 * image_yscale;
 facePlayerOnSpawn = true;
+category = "bulky";
 
 // Enemy specific code
 image_speed = 0;

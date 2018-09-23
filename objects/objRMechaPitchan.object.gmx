@@ -31,6 +31,7 @@
 healthpointsStart = 4;
 healthpoints = 4;
 contactDamage = 4;
+category = "grounded";
 canHit = true;
 facePlayerOnSpawn = true;
 facePlayer = true;
