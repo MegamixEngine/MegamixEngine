@@ -123,12 +123,16 @@ if (entityCanStep())
                     image_index = 13;
                 }
             }
+            
+            // turning around on ledges or walls
             xSpeedTurnaround();
-            if (xspeed == 0)
+            if (xspeed == 0 || checkFall(16 * image_xscale))
             {
                 calibrateDirection();
                 xspeed = image_xscale * 1;
             }
+            
+            // don't move in midair
             if (!ground)
             {
                 xspeed = 0;

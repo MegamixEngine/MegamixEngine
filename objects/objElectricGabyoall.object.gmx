@@ -37,6 +37,7 @@ contactDamage = 3;
 
 grav = -sign(image_yscale) * 0.25;
 canIce = false;
+isTargetable = false;
 
 facePlayerOnSpawn = true;
 
@@ -373,7 +374,8 @@ if (spawned)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.damage = 0;
+            <string>other.guardCancel = 2;
+//global.damage = 0;
 </string>
           </argument>
         </arguments>

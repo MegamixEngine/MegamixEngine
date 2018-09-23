@@ -40,6 +40,7 @@ faction = 4;
 
 pierces = 0;
 penetrate = 2;
+bubbleTimer = -1;
 
 // super arm interaction
 category = "superArmTarget";

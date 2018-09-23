@@ -38,6 +38,7 @@ variation = 0;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 interval = 120;
 

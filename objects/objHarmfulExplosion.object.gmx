@@ -73,7 +73,7 @@ event_inherited();
 
 if (entityCanStep())
 {
-    image_speed = 0.3;
+    //image_speed = 0.3;
     if (damageEnemies &amp;&amp; image_index &lt;= 6)
     {
         with (prtEntity)

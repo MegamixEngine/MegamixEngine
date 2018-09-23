@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="167" name="datafiles">
+  <datafiles number="168" name="datafiles">
     <datafile>
       <name>CleanMem.dll</name>
       <exists>-1</exists>
@@ -55,7 +55,7 @@
       </ConfigOptions>
       <filename>GMFMODSimple.dll</filename>
     </datafile>
-    <datafiles number="167" name="Music">
+    <datafiles number="168" name="Music">
       <datafile>
         <name>14 Tenguman.spc</name>
         <exists>-1</exists>
@@ -549,8 +549,25 @@
         </ConfigOptions>
         <filename>WilyTowerBossTheme.vgm</filename>
       </datafile>
+      <datafile>
+        <name>MaGMML3DevkitBoss.nsf</name>
+        <exists>-1</exists>
+        <size>11367</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>MaGMML3DevkitBoss.nsf</filename>
+      </datafile>
     </datafiles>
-    <datafiles number="167" name="Recordings">
+    <datafiles number="168" name="Recordings">
       <datafile>
         <name>demoHoneyWoman.mrc</name>
         <exists>-1</exists>
@@ -603,8 +620,8 @@
         <filename>demoPico.mrc</filename>
       </datafile>
     </datafiles>
-    <datafiles number="167" name="UnitTests">
-      <datafiles number="167" name="Rooms">
+    <datafiles number="168" name="UnitTests">
+      <datafiles number="168" name="Rooms">
         <datafile>
           <name>lvlRecordingTest.room.gmx</name>
           <exists>-1</exists>
@@ -725,7 +742,7 @@
           <filename>lvlUnitTestBossDoors.room.gmx</filename>
         </datafile>
       </datafiles>
-      <datafiles number="167" name="Recordings">
+      <datafiles number="168" name="Recordings">
         <datafile>
           <name>RecordingObjectSet.mrc</name>
           <exists>-1</exists>
@@ -864,7 +881,7 @@
         </datafile>
       </datafiles>
     </datafiles>
-    <datafiles number="167" name="Levels">
+    <datafiles number="168" name="Levels">
       <datafile>
         <name>lvlChillMan.room.gmx</name>
         <exists>-1</exists>
@@ -2014,7 +2031,6 @@
         <sprite>sprites\sprIceWall</sprite>
         <sprite>sprites\sprIceWallShard</sprite>
         <sprite>sprites\sprIceWallBreak</sprite>
-        <sprite>sprites\sprSuperArmDebris</sprite>
         <sprite>sprites\sprMagnetBeam</sprite>
         <sprite>sprites\sprMagnetBeamEnd</sprite>
         <sprite>sprites\sprMagnetBeamPickup</sprite>
@@ -2158,6 +2174,7 @@
             <sprite>sprites\sprBrickWeapon</sprite>
             <sprite>sprites\sprBrickWeaponDebris</sprite>
             <sprite>sprites\sprChillShot</sprite>
+            <sprite>sprites\sprSuperArmDebris</sprite>
             <sprite>sprites\sprIceSlasher</sprite>
             <sprite>sprites\sprPlantBarrier</sprite>
             <sprite>sprites\sprPowerStone</sprite>
@@ -3081,6 +3098,7 @@
         </sprites>
       </sprites>
       <sprites name="MM9">
+        <sprite>sprites\sprChangkeyDragonPreview</sprite>
         <sprite>sprites\sprChangkeyDragonHead</sprite>
         <sprite>sprites\sprChangkeyDragonEyes</sprite>
         <sprite>sprites\sprChangkeyDragonFire</sprite>
@@ -3779,6 +3797,7 @@
         <sprite>sprites\sprFireBeam</sprite>
         <sprite>sprites\sprFireBeamOff</sprite>
         <sprite>sprites\sprFirePillar</sprite>
+        <sprite>sprites\sprFirePillarFrozen</sprite>
         <sprite>sprites\sprFirePillarMask</sprite>
         <sprite>sprites\sprFireWaveHorizontal</sprite>
         <sprite>sprites\sprFireWaveVertical</sprite>

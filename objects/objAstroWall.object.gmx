@@ -66,6 +66,7 @@ respawnRange = -1;
 despawnRange = -1;
 grav = 0;
 blockCollision = false;
+bubbleTimer = -1;
 canHit = false;
 contactDamage = 0;
 isMaster = false;

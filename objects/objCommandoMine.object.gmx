@@ -35,6 +35,7 @@ respawnRange = 48;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 tile_layer = 1000000;
 

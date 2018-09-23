@@ -219,6 +219,8 @@ for (var i = 0; i &lt; 4; i++)
     ID.image_speed = 0;
     ID.moveAtSpeed = 2;
 }
+stopSFX(sfxEnemyHit);
+playSFX(sfxExplosion);
 </string>
           </argument>
         </arguments>

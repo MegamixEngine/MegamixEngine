@@ -116,7 +116,7 @@ if (!global.frozen)
             }
             else
             {
-                var dir = global.keyDown[parent.playerID] - global.keyUp[parent.playerID];
+                var dir = (global.keyDown[parent.playerID] - global.keyUp[parent.playerID]) * (sign(parent.image_yscale));
                 if (dir != 0)
                 {
                     if (yspeed * sign(yspeed) &lt; 2)
@@ -264,7 +264,7 @@ if (!global.frozen)
             <string>with (other)
 {
     par = object_is_ancestor(object_index, prtMiniBoss) || (boss == 1);
-    if (par || !canHit)
+    if (par || !canHit || !killOverride)
     {
         exit;
     }

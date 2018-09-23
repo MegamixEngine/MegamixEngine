@@ -42,6 +42,7 @@ if(image_xscale!=1)
 canHit = 0;
 canIce = false;
 blockCollision = 0;
+bubbleTimer = -1;
 facePlayerOnSpawn = false;
 facePlayer = false;
 grav = 0;

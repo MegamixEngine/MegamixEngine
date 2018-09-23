@@ -32,6 +32,7 @@ isSolid = true;
 
 blockCollision = false;
 doesTransition = false;
+bubbleTimer = -1;
 
 // this can be adjusted
 radius = 83;

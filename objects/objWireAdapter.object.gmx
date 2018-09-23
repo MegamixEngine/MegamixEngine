@@ -321,10 +321,6 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
                 if (instance_exists(i))
                 {
                     i.yspeed = -4 * image_yscale;
-                    if (sign(grav) &lt; 0)
-                    {
-                        i.y += 32;
-                    }
                     
                     i.wireLock = lockPoolLock(
                         localPlayerLock[PL_LOCK_MOVE],

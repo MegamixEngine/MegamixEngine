@@ -32,23 +32,31 @@
 // maxY = 4; // see above, but for down
 // startYSet = 0; // what number in the movement "sequence" does the hunter platform start at.
 // timerMax = 32; // how long does the hunter platform wait before moving.
+
 event_inherited();
+
 canHit = false;
 isSolid = 1;
+
 phase = 1;
 timerN = 64;
 timerMax = 32;
 isRandom = false;
+
 moveDir = image_yscale * -1;
 minY = -4;
 maxY = 4;
+
 startYSet = 0;
 forceMove = false;
 ySet = 0;
 oldYSet = 0;
+
 shiftVisible = 1;
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
+
 despawnRange = 64;
 hasTriggered = false;
 </string>

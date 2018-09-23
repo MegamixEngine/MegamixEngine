@@ -69,7 +69,7 @@ if (!global.frozen)
     if (imgIndex &gt;= 4) // fall
     {
         imgIndex = 4;
-        grav = futureGrav * image_yscale;;
+        grav = futureGrav;
     }
     else //appear animation
     {
@@ -104,7 +104,8 @@ image_index = imgIndex div 1;
             <string>var xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop;
 
 xOffset = 32; // x offset from center of player
-yOffset = view_yview[0] - y + 26; // y offset from center of player
+
+yOffset = (view_yview[0] - y + 26) * gravDir; // y offset from center of player
 
 bulletObject = objBrickWeapon;
 bulletLimit = 1;

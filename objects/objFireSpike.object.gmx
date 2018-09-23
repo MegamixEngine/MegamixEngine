@@ -39,6 +39,7 @@ animTimer = 0;
 animPhase = 0;
 blockCollision = false;
 grav = 0;
+bubbleTimer = -1;
 
 // max distance from starting point to move
 radius = 32;
