@@ -355,6 +355,7 @@ if (!ground &amp;&amp; yspeed &gt; 0)
         ground = prevGround;
         if (doDamage)
         {
+            global.damage=contactDamage;
             other.guardCancel = 0;
             event_user(11);
             if (other.guardCancel &gt; 0)
