@@ -3,7 +3,7 @@
   <spriteName>sprTricksterToken</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-300000</depth>
   <persistent>0</persistent>
   <parentName>prtPickup</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+depth=0;
 despawnRange = -1;
 
 faction = 3;
@@ -47,56 +47,6 @@ tokenIndex = -1;
 alreadyCollected=false;
 animFrame = 0;
 init=true;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(init)
-{
-    if(tokenIndex==-1)
-    {
-        for(var i=instance_number(object_index)-1;i&gt;=0;--i)
-        {
-            if(instance_find(object_index,i)==id)
-            {
-                tokenIndex=i;
-                break;
-            }
-        }
-        
-    }
-    init=false;
-    if(tokenIndex&gt;4)
-    {
-        global.levelTTokensTotal-=1;
-        instance_destroy();
-        exit;
-    }
-    name = room_get_name(room)+string(tokenIndex);
-    
-    if(indexOf(global.tTokensCollected,name)!=-1)
-    {
-        alreadyCollected = true;
-    }
-}
 </string>
           </argument>
         </arguments>
@@ -162,6 +112,56 @@ if (!alreadyCollected)
 }
 playSFX(sfxKeyGet);
 instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(tokenIndex==-1)
+{
+    for(var i=instance_number(object_index)-1;i&gt;=0;--i)
+    {
+        if(instance_find(object_index,i)==id)
+        {
+            tokenIndex=i;
+            break;
+        }
+    }
+    
+}
+if(init)
+{
+    init=false;
+    if(tokenIndex&gt;4)
+    {
+        global.levelTTokensTotal-=1;
+        instance_destroy();
+        exit;
+    }
+    name = room_get_name(room)+string(tokenIndex);
+    
+    if(indexOf(global.tTokensCollected,name)!=-1)
+    {
+        alreadyCollected = true;
+    }
+}
 </string>
           </argument>
         </arguments>
