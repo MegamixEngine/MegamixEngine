@@ -198,6 +198,7 @@ else
             <string>dead = 1;
 
 instance_create(bboxGetXCenter(), bboxGetYCenter(), objBigExplosion);
+playSFX(sfxExplosion);
 </string>
           </argument>
         </arguments>

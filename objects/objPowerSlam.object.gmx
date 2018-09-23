@@ -170,7 +170,7 @@ if (entityCanStep())
                 phase = 0;
                 timer = 0;
                 audio_stop_sound(sfxEnemyDrop2);
-                playSFX(sfxDachoneWalk); // that's actually the landing sfx in game. Not named the best in this engine
+                playSFX(sfxLargeClamp); // that's actually the landing sfx in game. Not named the best in this engine
             }
             break;
     }
@@ -186,6 +186,31 @@ else if (dead)
 }
 
 image_index = imgIndex div 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
+playSFX(sfxExplosion2);
 </string>
           </argument>
         </arguments>
