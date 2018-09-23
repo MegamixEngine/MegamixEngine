@@ -36,6 +36,7 @@ healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 category = "grounded, semi bulky";
+enemyDamageValue(objThunderBeam, 5);
 
 grav = gravAccel * image_yscale;
 
