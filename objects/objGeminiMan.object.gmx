@@ -162,7 +162,6 @@ if (entityCanStep())
         {
             for (var i = 0; i &lt; maxClones; i++)
             {
-                print("Made a clone");
                 var c = instance_create(x, y, objGemineighbour);
                 c.clone = id;
                 c.healthParent=id;
@@ -185,30 +184,11 @@ if (entityCanStep())
             makeClones = false;
         }
         
-        // share healthbar
-        /*
-        with (objGeminiMan)
-        {
-            if (id != other.id &amp;&amp; clone.id == other.clone.id)
-            {
-                if (healthpoints &lt; other.healthpoints)
-                {
-                    other.healthpoints = healthpoints;
-                }
-            }
-        }
-        if (healthpoints &lt;= 0)
-        {
-            event_user(EV_DEATH);
-            exit;
-        }
-        */
         switch (phase)
         {
             case 0: // RunJumping 
-                if (healthpoints &lt;= (healthpointsStart / 2) &amp;&amp; ground)
+                if (healthpoints &lt; (healthpointsStart / 2) &amp;&amp; ground)
                 {
-                    // phase 2
                     if (cloneId == 0)
                     {
                         phase = 2;
@@ -409,9 +389,7 @@ if (entityCanStep())
                 }
                 break;
         }
-        
-        // Face the player
-        //            calibrateDirection();
+
     }
 }
 else
