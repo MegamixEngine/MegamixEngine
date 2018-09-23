@@ -42,22 +42,25 @@ if (isSolid)
                         continue;
                     }
                     epIsOnPlat=false;
-                    var epImmpresition = abs(abs(myyspeed)-floor(abs(myyspeed)));
-
-                    var epIsPassenger;// = place_meeting(x, y + sign(grav) + grav, other.id);
+                    
+                    var epIsPassenger;
                     var epWillCollide;
                     with(other)
                     {
                         epWillCollide = place_meeting(x, y + myyspeed, other.id); 
-                        epIsPassenger = place_meeting(x, y - sign(other.grav) - other.grav - (0.5*sign(other.grav)*other.ground), other.id);
+                       
                     }
+                    epIsPassenger = place_meeting(x, y + sign(grav) + grav + (0.5*sign(grav)*ground), other.id);
+
                     if (epIsPassenger || epWillCollide)
                     {
                         other.y += myyspeed;
                         
                         xypre = y;
                         if(epIsPassenger)
+                        {
                             y += myyspeed;
+                        }
                         
                         if( resolid==1 || (resolid==2 && (epDir*sign(grav))>0))
                         {
@@ -141,7 +144,7 @@ if (isSolid)
                     var epDir = sign(bboxGetXCenterObject(other.id) - bboxGetXCenter());
                     var epImmprecition;
                     if(ground)
-                        epImmprecition=ground;
+                        epImmprecition=0.5*ground;
                     else
                         epImmprecition=max(abs(abs(y)-floor(abs(y))),abs(abs(myyspeed)-floor(abs(myyspeed))));
                     if (epIsOnPlat||place_meeting(x, y + sign(grav)+epImmprecition*sign(grav), other.id))

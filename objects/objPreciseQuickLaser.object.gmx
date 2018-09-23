@@ -288,7 +288,7 @@ if (variation == 1)
         }
         else
         {
-            iFrames = other.drainCooldown;
+            other.timer = other.drainCooldown;
             playSFX(sfxHit);
         }
     }

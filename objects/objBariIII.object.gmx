@@ -35,6 +35,8 @@ healthpoints = healthpointsStart;
 isSolid = 1;
 facePlayer = true;
 doesTransition = false;
+faction=7;
+behaviourType=3;
 
 // Enemy specific code
 
@@ -88,57 +90,6 @@ prevY = y;
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>event_inherited();
-if (entityCanStep())
-{
-    with (objMegaman)
-    {
-        var _coll = false;
-        with (other)
-        {
-            if (place_meeting(x, y + 3, other))
-            {
-                _coll = true;
-            }
-        }
-        if ((bbox_top &gt; other.bbox_bottom - 8) &amp;&amp; (other.yprevious &lt; other.prevY || other.yspeed &gt; 0) &amp;&amp; (ground || checkSolid(0, 3)) &amp;&amp; (_coll || place_meeting(x, y - max(other.yspeed, 0) - max(other.y - other.yprevious, 0), other)))
-        {
-            other.isSolid = false;
-            var xdist = other.bbox_right + 2 - bbox_left;
-            if (x &lt; other.x)
-                xdist = other.bbox_left - 2 - bbox_right;
-            shiftObject(xdist, 0, true);
-            other.isSolid = true;
-            if (iFrames == 0)
-            {
-                hitTimer = 0;
-                playerGetHit(4);
-            }
-        }
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -157,11 +108,12 @@ if (entityCanStep())
           <argument>
             <kind>1</kind>
             <string>/// Enemy AI
-
 event_inherited();
 
 if (entityCanStep())
 {
+    if(facePlayer)
+        calibrateDirection(objMegaman);
     var phw = hasWeight;
     hasWeight = false;
     var ID = id;
@@ -394,7 +346,7 @@ if (instance_exists(objBariIIIBody))
             <string>/// Shoot
 for (var i = -1; i &lt; 2; i += 2)
 {
-    var sw = instance_create(x + (14) * image_xscale, y, objBariIIISoundWave);
+    var sw = instance_create(x + (14) * image_xscale, y-4, objBariIIISoundWave);
     sw.i = i;
     with (sw)
         event_user(0);

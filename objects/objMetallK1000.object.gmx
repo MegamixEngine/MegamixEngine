@@ -93,9 +93,8 @@ if (entityCanStep())
         image_index = 9;
     }
     
-    xs = xspeed;
     
-    if (xs != 0 &amp;&amp; xspeed == 0)
+    if (xcoll!=0 )
     {
         turnTimer = 14;
         image_index = 9;
@@ -169,7 +168,30 @@ if (entityCanStep())
         dead = true;
     }
 }
-else if (dead)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if(spawned)
 {
     xspeed = 0;
     yspeed = 0;

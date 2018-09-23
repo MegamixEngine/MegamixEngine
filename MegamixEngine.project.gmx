@@ -2662,6 +2662,7 @@
         <sprite>sprites\sprTsuranattori</sprite>
         <sprite>sprites\sprTurboRoader</sprite>
         <sprite>sprites\sprStegorus</sprite>
+        <sprite>sprites\mskStegorus</sprite>
         <sprites name="Projectiles">
           <sprite>sprites\sprKaminariKogoroLightning</sprite>
           <sprite>sprites\sprStegorusMissile</sprite>
