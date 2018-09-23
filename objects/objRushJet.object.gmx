@@ -164,7 +164,7 @@ if (!global.frozen)
                 }
                 
                 // Move vertically
-                yspeed = (-global.keyUp[parent.playerID] + global.keyDown[parent.playerID]) * climbSlope * spd;
+                yspeed = (-global.keyUp[parent.playerID] + global.keyDown[parent.playerID]) * sign(parent.image_yscale) * climbSlope * spd;
                 
                 isSolid *= -1;
                 

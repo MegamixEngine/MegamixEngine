@@ -209,7 +209,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
     // set its starting angle.
     if (i)
     {
-        i.direction = 30 + (120 * (image_xscale == -1));
+        i.direction = 30 + (120 * (image_xscale == -1 &amp;&amp; image_yscale == 1)) + (300 * (image_yscale == -1)) - (120 * (image_xscale == -1 &amp;&amp; image_yscale == -1));
     }
 }
 </string>

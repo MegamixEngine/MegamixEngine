@@ -2031,7 +2031,6 @@
         <sprite>sprites\sprIceWall</sprite>
         <sprite>sprites\sprIceWallShard</sprite>
         <sprite>sprites\sprIceWallBreak</sprite>
-        <sprite>sprites\sprSuperArmDebris</sprite>
         <sprite>sprites\sprMagnetBeam</sprite>
         <sprite>sprites\sprMagnetBeamEnd</sprite>
         <sprite>sprites\sprMagnetBeamPickup</sprite>
@@ -2175,6 +2174,7 @@
             <sprite>sprites\sprBrickWeapon</sprite>
             <sprite>sprites\sprBrickWeaponDebris</sprite>
             <sprite>sprites\sprChillShot</sprite>
+            <sprite>sprites\sprSuperArmDebris</sprite>
             <sprite>sprites\sprIceSlasher</sprite>
             <sprite>sprites\sprPlantBarrier</sprite>
             <sprite>sprites\sprPowerStone</sprite>
@@ -3796,6 +3796,7 @@
         <sprite>sprites\sprFireBeam</sprite>
         <sprite>sprites\sprFireBeamOff</sprite>
         <sprite>sprites\sprFirePillar</sprite>
+        <sprite>sprites\sprFirePillarFrozen</sprite>
         <sprite>sprites\sprFirePillarMask</sprite>
         <sprite>sprites\sprFireWaveHorizontal</sprite>
         <sprite>sprites\sprFireWaveVertical</sprite>
