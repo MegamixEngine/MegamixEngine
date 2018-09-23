@@ -58,8 +58,12 @@ iWantToDie = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
 
-if (!global.frozen &amp;&amp; !global.timeStopped)
+if (entityCanStep())
 {
     if (xspeed == 0)
     {

@@ -71,6 +71,11 @@ image_speed = 0.1;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
+
 
 if (entityCanStep())
 {

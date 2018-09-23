@@ -72,7 +72,12 @@ timescale = 1;
             <string>if (timescale &lt; 0)
     timescale = abs(timescale);
 grav = 0.25 * timescale;
+var prexscale = image_xscale;
+image_xscale=1;
+mask_index = mskStegorus;
 event_inherited();
+image_xscale = prexscale;
+mask_index = sprStegorus;
 
 if (entityCanStep())
 {
