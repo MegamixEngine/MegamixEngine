@@ -31,7 +31,7 @@ healthpointsStart = 4;
 healthpoints = healthpointsStart;
 contactDamage = 3;
 
-category = "fire";
+category = "fire, semi bulky";
 
 facePlayer = true;
 

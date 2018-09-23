@@ -28,6 +28,7 @@
             <string>event_inherited();
 
 contactDamage = 0;
+bubbleTimer = -1;
 
 killOverride = false;
 

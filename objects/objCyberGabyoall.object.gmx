@@ -45,8 +45,10 @@ facePlayerOnSpawn = true;
 // Now set the weaknesses
 enemyDamageValue(objThunderBeam, 3);
 enemyDamageValue(objBreakDash, 3);
+enemyDamageValue(objIceWall, 3);
 enemyDamageValue(objSakugarne, 3);
 enemyDamageValue(objThunderWool, 3);
+enemyDamageValue(objIceSlasher, 3);
 dir = 1;
 init = 1;
 

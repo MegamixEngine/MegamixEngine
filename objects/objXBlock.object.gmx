@@ -28,6 +28,7 @@
             <string>event_inherited();
 
 canHit = false;
+bubbleTimer = -1;
 
 isSolid = 1;
 

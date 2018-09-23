@@ -197,7 +197,6 @@ inWater = -1;
                         {
                             x = other.x;
                             y = other.y;
-                            ground = 1;
                             
                             xspeed = 0;
                             yspeed = 0;

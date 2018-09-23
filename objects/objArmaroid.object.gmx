@@ -34,7 +34,7 @@ healthpointsStart = 8;
 contactDamage = 4;
 facePlayerOnSpawn = true;
 
-category = "semi bulky";
+category = "nature, semi bulky";
 missile = noone;
 radius = 4 * 16;
 

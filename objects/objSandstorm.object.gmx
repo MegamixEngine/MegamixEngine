@@ -110,13 +110,6 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 }
             }
         }
-        with(objFuraibon)
-        {
-            if(!dead&amp;&amp;collision_rectangle(other.xs + other.i * 16 * -other.dir, view_yview + other.i * 32,
-                other.xs + other.i * 16 * -other.dir + (other.size * 16), view_yview + other.i * 32 + 32,
-                id, false, false))
-                event_user(EV_DEATH);
-        }
     }
     if (instance_exists(target))
     {

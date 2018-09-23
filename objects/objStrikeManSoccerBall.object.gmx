@@ -19,7 +19,7 @@
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>objStrikeManSoccerBall</whoName>
+        <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
@@ -34,6 +34,7 @@ grav = 0;
 ground = 1;
 blockCollision = 1;
 dieToSpikes = 0;
+bubbleTimer = -1;
 doesTransition = true;
 isSolid = 1;
 contactDamage = 3;

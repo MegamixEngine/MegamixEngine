@@ -34,6 +34,7 @@ healthpoints = healthpointsStart;
 contactDamage = 4;
 
 blockCollision = 0;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

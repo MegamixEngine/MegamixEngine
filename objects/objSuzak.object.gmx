@@ -35,6 +35,7 @@ i.ystart = y;
 i.minY = y;
 high = true; // if false it will be on top of the floor
 lockTransition = true;
+category = "bird, fire, flying";
 </string>
           </argument>
         </arguments>

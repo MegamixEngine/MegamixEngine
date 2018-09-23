@@ -29,6 +29,8 @@
 canHit = false;
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
+
 respawn = false;
 image_speed = 0.1;
 moveTimer = 60;
@@ -110,6 +112,7 @@ if (entityCanStep())
                     yspeed = jumpSpeed * gravDir;
                     gravfactor = 1.975;
                     blockCollision = false;
+                    climbLock = lockPoolRelease(climbLock);
                     if (other.myLock == 0)
                     {
                         other.myLock = lockPoolLock(localPlayerLock[PL_LOCK_CLIMB]);

@@ -68,6 +68,11 @@ col = 0;
             <string>mask_index = mskTsurareStamp;
 event_inherited();
 mask_index = sprite_index;
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
+
 if (entityCanStep())
 {
     if (!ground)

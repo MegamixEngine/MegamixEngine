@@ -33,6 +33,7 @@ canHit = false;
 
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 //@cc the speed of the wind, in pixels per frame.
 mySpeed = 1;

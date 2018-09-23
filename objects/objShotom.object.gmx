@@ -30,6 +30,7 @@
 healthpointsStart = 1;
 healthpoints = 1;
 contactDamage = 3;
+category = "flying";
 grav = 0;
 blockCollision = false;
 facePlayerOnSpawn = true;

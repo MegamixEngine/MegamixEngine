@@ -33,6 +33,7 @@ isSolid = 1;
 contactDamage = 3;
 itemDrop = -1;
 faction = 7;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

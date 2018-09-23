@@ -89,6 +89,11 @@ if (phase != 1)
 }
 
 event_inherited();
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
+
 
 if (entityCanStep())
 {

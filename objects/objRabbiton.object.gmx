@@ -35,6 +35,7 @@ respawn = true;
 healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 3;
+category = "nature";
 
 despawnRange = 32;
 
@@ -76,6 +77,11 @@ imgIndex = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
+
 
 if (entityCanStep())
 {

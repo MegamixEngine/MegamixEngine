@@ -32,6 +32,7 @@ respawn = true;
 healthpointsStart = 10;
 healthpoints = healthpointsStart;
 contactDamage = 8;
+category = "nature";
 
 //@cc neck length
 length = 3;

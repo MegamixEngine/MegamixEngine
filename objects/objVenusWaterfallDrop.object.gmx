@@ -29,6 +29,7 @@
 canHit = false;
 respawn = false;
 blockCollision = 0;
+bubbleTimer = -1;
 
 despawnRange = -1;
 </string>

@@ -32,6 +32,7 @@ canHit = false;
 isSolid = true;
 blockCollision = false;
 grav = 0;
+bubbleTimer = -1;
 contactDamage = 4;
 faction = 0;
 

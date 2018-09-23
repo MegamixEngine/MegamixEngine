@@ -33,6 +33,7 @@ healthpoints = healthpointsStart;
 contactDamage = 3;
 blockCollision = 0;
 grav = 0;
+category = "floating";
 
 // Enemy specific code
 phase = 0;

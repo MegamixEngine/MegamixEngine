@@ -103,7 +103,7 @@ event_inherited();
                 }
             }
             
-            drawPlayer(_pid, _pid, 16, 12, x + 8, y, image_xscale, image_yscale);
+            drawPlayer(_pid, _costume, 16, 12, x + 8, y, image_xscale, image_yscale);
         }
     }
 }

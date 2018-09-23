@@ -31,6 +31,7 @@
 event_inherited();
 
 canHit = false;
+bubbleTimer = -1;
 
 //@cc the amount of delay in between spawning the cutters, in frames.
 delay = 36;

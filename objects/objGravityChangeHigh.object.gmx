@@ -36,6 +36,7 @@ blink = 0;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 shiftVisible = 1;
 </string>

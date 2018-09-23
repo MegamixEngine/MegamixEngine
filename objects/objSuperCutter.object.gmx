@@ -28,8 +28,9 @@
             <string>event_inherited();
 
 blockCollision = 0;
-
 contactDamage = 3;
+bubbleTimer = -1;
+
 image_speed = 0.1;
 
 yspeed = -4.8;

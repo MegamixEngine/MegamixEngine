@@ -72,6 +72,11 @@ init = 1;
             <string>mask_index = msk;
 event_inherited();
 mask_index = sprite_index;
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
+
 
 //Change colours
 if (init)

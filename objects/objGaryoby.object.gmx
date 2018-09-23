@@ -41,6 +41,11 @@ contactDamage = 2;
 facePlayerOnSpawn = true;
 
 // Enemy specific code
+enemyDamageValue(objThunderBeam, 1);
+enemyDamageValue(objBreakDash, 3);
+enemyDamageValue(objLaserTrident, 2);
+enemyDamageValue(objMagicCard, 2);
+
 image_speed = 0.2;
 ground = 1;
 

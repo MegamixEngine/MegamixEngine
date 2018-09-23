@@ -33,6 +33,7 @@ blockCollision=false;
 
 respawnRange = -1;
 despawnRange = -1;
+bubbleTimer = -1;
 
 grav = 0;
 moved = false;

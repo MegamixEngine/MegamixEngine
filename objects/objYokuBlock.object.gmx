@@ -36,6 +36,7 @@ sprite_index = sprYokuBlock;
 canHit = false;
 
 grav = 0;
+bubbleTimer = -1;
 
 // creation code setup stuff
 

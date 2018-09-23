@@ -36,6 +36,7 @@ contactDamage = 8;
 blockCollision = 1;
 grav = 0.15;
 facePlayerOnSpawn = false;
+category = "bulky, nature";
 
 // Enemy specific code
 image_speed = 0;

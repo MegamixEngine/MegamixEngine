@@ -32,7 +32,7 @@ healthpointsStart = 5;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
-category = "flying";
+category = "flying, semi bulky";
 
 facePlayerOnSpawn = true;
 

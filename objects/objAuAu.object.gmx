@@ -31,7 +31,7 @@ healthpointsStart = 5;
 healthpoints = healthpointsStart;
 contactDamage = 3;
 
-category = "nature";
+category = "aquatic, nature, semi bulky";
 
 facePlayerOnSpawn = true;
 

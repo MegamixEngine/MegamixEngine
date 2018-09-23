@@ -34,6 +34,7 @@ introSprite = sprPaozoTeleport;
 healthpointsStart = 15;
 healthpoints = healthpointsStart;
 contactDamage = 5;
+category = "bulky, nature";
 
 // Creation code
 

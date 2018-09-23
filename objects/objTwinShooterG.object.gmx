@@ -36,6 +36,7 @@ healthpoints = healthpointsStart;
 contactDamage = 5;
 blockCollision = 0;
 grav = 0;
+category = "cannons, floating";
 
 image_speed = 0;
 

@@ -31,7 +31,7 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 3;
 
-category = "mets, cluster";
+category = "mets, cluster, flying";
 
 blockCollision = 0;
 grav = 0;

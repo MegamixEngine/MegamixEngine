@@ -30,6 +30,7 @@
 canHit = false;
 grav = -0.05; // flies upward
 blockCollision = false;
+bubbleTimer = -1;
 respawn = false;
 despawnRange = 48;
 speedMultiplier = 2 + random_range(0.5, 3);

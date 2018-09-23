@@ -36,6 +36,7 @@ isTargetable = false;
 contactDamage = 6;
 
 grav = 0;
+bubbleTimer = -1;
 
 // Enemy specific code
 sprite_index = sprNeedleRight;

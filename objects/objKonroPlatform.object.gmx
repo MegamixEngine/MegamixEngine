@@ -26,8 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
 canHit = false;
 grav = 0;
+bubbleTimer = -1;
+
 isSolid = 2;
 subX = 0; // Because moving in sub-pixels messed up collision, we need a value that keeps track of the sub-pixels, and only use real pixels for yspeed
 maxSpeed = 0.75;

@@ -88,6 +88,24 @@ if (collision_rectangle(x + 8, y + 8, x + view_xview - 8, y + view_hview - 8, ob
         setSection(x, y, 1);
         playerCamera(1);
         reAndDeactivateObjects(1, 1);
+        
+        if instance_exists(vehicle)
+        {
+            with vehicle
+            {
+                x += other.camX - view_xview;
+                y += other.camY - view_yview;
+            }
+        }
+    }
+    
+    if instance_exists(objWaterShield)
+    {
+        with objWaterShield
+        {
+            x += other.camX - view_xview;
+            y += other.camY - view_yview;
+        }
     }
 }
 </string>

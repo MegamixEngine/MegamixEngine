@@ -34,6 +34,7 @@ respawn = true;
 healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 6;
+category = "joes";
 
 blockCollision = 1;
 grav = gravAccel;

@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A robot tanuki that fires large spheres from a hatch down below. Obvious joke is obvious.
+
+event_inherited();
 
 healthpointsStart = 4;
 healthpoints = healthpointsStart;

@@ -36,6 +36,7 @@ event_inherited();
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 2;
+category = "fire";
 
 facePlayerOnSpawn = true;
 

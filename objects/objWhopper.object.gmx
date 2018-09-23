@@ -34,7 +34,7 @@ respawn = true;
 healthpointsStart = 9;
 healthpoints = healthpointsStart;
 contactDamage = 8;
-
+category = "floating, shielded";
 grav = 0;
 
 // Enemy specific code

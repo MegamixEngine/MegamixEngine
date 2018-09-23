@@ -36,6 +36,7 @@ wait = 120;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 looped = 0;
 timer = 0;

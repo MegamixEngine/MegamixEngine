@@ -31,6 +31,7 @@ canHit = false;
 
 grav = 0;
 isSolid = true;
+bubbleTimer = -1;
 
 respawnRange = -1;
 despawnRange = -1;

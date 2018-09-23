@@ -35,7 +35,7 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 2;
 
-category = "aquatic";
+category = "aquatic, nature";
 
 blockCollision = 0;
 grav = 0;

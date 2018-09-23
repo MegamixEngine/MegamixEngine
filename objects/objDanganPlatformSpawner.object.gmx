@@ -26,9 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
 canHit = false;
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
+
 alarmSpawn = 16;
 spawnMax = 80;
 </string>

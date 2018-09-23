@@ -33,6 +33,7 @@ grav = 0;
 respawn = false;
 hasCannon = false;
 cannon = noone;
+category = "bulky, rocky";
 
 phase = 3;
 timer = -1;

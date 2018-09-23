@@ -57,9 +57,12 @@ contactDamage = 2;
 
 if (!global.frozen &amp;&amp; !global.timeStopped)
 {
-    xspeed = cos(degtorad(dir)) * 1 * xscale;
-    yspeed = -sin(degtorad(dir))
-        * 1.5; // The vertical speed was, for some reason, inverted, which is why I used a minus. Don't ask me what actually caused this behaviour
+    if (xspeed == 0 &amp;&amp; yspeed == 0)
+    {
+        xspeed = cos(degtorad(dir)) * 1 * xscale;
+        yspeed = -sin(degtorad(dir))
+            * 1.5; // The vertical speed was, for some reason, inverted, which is why I used a minus. Don't ask me what actually caused this behaviour
+    }
 }
 </string>
           </argument>

@@ -37,6 +37,8 @@ contactDamage = 4;
 
 introSprite = sprTamaTeleport;
 
+category = "bulky, nature";
+
 dir = image_xscale;
 
 // Enemy specific code

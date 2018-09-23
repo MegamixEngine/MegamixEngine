@@ -77,6 +77,8 @@ if (myItem == 0)
         ex.myItem = choose(objLifeEnergyBig, objWeaponEnergyBig);
     }
 }
+
+instance_destroy(); // don't respawn
 </string>
           </argument>
         </arguments>

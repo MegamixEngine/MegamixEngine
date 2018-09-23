@@ -230,14 +230,7 @@ shootYOffset = 5;
                 {
                     // idle / shoot (mega man should not go into the jump animation when jumping since he's still standing on the sled)
                     rider.spriteX = 0;
-                    if (rider.isShoot)
-                    {
-                        rider.spriteY = 1;
-                    }
-                    else
-                    {
-                        rider.spriteY = 0;
-                    }
+                    rider.spriteY = rider.isShoot;
                 }
                 
                 // movement

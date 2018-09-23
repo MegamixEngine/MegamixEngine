@@ -32,6 +32,7 @@ isSolid = 1;
 
 grav = 0;
 canHit = false;
+bubbleTimer = -1;
 
 delay = 0;
 zapLength = 60;

@@ -269,7 +269,7 @@ if (entityCanStep())
                 phase = 4;
                 sprite_index = spriteRun[cutter];
                 image_index = 1;
-                xspeed = -0.5 * image_xscale;
+                xspeed = -0.75 * image_xscale;
             }
             else if (phase == 4)
             {
@@ -386,7 +386,8 @@ event_inherited();
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (knockbackTimer == -1)
+
+if (hasKnockback)
 {
     knockbackTimer = min(hitInvun, 30);
 }

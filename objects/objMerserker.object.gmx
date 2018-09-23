@@ -35,6 +35,7 @@ contactDamage = 3;
 healthpointsStart = 3;
 healthpoints = healthpointsStart;
 canHit = true;
+category = "flying";
 
 
 // Enemy Specific Code

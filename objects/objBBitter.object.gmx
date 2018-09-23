@@ -35,6 +35,7 @@ respawn = true;
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "cannons";
 
 blockCollision = 0;
 grav = 0;

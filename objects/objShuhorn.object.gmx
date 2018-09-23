@@ -31,7 +31,7 @@ healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 6;
 
-category = "big eye, shielded";
+category = "big eye, bulky, shielded";
 facePlayerOnSpawn = true;
 
 // Enemy Specific Code

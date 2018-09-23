@@ -72,6 +72,7 @@ despawnRange = -1;
 
 blockCollision = false;
 grav = 0;
+bubbleTimer = -1;
 
 isSolid = true;
 tackleFireN = 0;

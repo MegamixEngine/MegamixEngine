@@ -32,7 +32,7 @@ itemDrop = -1;
 doesIntro = true;
 lockTransition = true;
 
-rescursiveExplosion = true;
+rescursiveExplosion = true; // Use this to set whether or not an explosion chain follows death.
 killOverride = false;
 killed = false;
 

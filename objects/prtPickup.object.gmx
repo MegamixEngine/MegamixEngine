@@ -44,6 +44,8 @@ heavy = 0;
 grabable = 1;
 respawnupondeath = 0;
 
+stopOnFlash = false;
+
 collectPlayer = objMegaman;
 </string>
           </argument>
