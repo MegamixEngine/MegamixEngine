@@ -123,7 +123,6 @@ if (entityCanStep())
     {
         instance_create(x * image_xscale, y, objCannonjoeBullet);
         cooldownTimer = 0;
-        playSFX(sfxEnemyShoot);
     }
 }
 
