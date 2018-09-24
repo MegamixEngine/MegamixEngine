@@ -54,18 +54,10 @@ counter = 0;
 cutscene = -1;
 
 // Levels
-level[1] = getRoom("lvlMM5Dark1", "Levels/lvlMM5Dark1");
-level[2] = getRoom("lvlMM4Wily1", "Levels/lvlMM4Wily1");
-level[3] = getRoom("lvlMM9Wily3", "Levels/lvlMM9Wily3");
-level[4] = getRoom("lvlMM6MrX4", "Levels/lvlMM6MrX4");
-level[5] = getRoom("lvlMM10Wily4", "Levels/lvlMM10Wily4");
+level[1] = lvlCopyThisRoom;
 
 // Energy element grabbing setting stuff
-global.castleStagesBeaten = (indexOf(global.elementsCollected, "wily1") &gt;= 0)
-    + (indexOf(global.elementsCollected, "wily2") &gt;= 0)
-    + (indexOf(global.elementsCollected, "wily3") &gt;= 0)
-    + (indexOf(global.elementsCollected, "wily4") &gt;= 0)
-    + (indexOf(global.elementsCollected, "wily5") &gt;= 0);
+global.castleStagesBeaten = (indexOf(global.elementsCollected, "wily1") &gt;= 0); // example
 </string>
           </argument>
         </arguments>
@@ -180,14 +172,7 @@ alarm[10] = 96;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// failsafe
-if (global.castleStagesBeaten &gt;= 5)
-{
-    stopMusic();
-    global.nextRoom = rmCredits;
-}
-
-cutscene += 1;
+            <string>cutscene += 1;
 
 switch (cutscene)
 {

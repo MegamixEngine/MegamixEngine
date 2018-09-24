@@ -35,8 +35,6 @@ options = 2;
 
 wait = 16;
 
-demoTimer = 0;
-
 // reset all game state
 engineConfig();
 freshSaveFile();
@@ -72,14 +70,6 @@ freshSaveFile();
         exit;
     }
     
-    if ((demoTimer++) mod 500 == 495)
-    {
-        if (!recordInputPlayback(
-            choose("Recordings/demoPharaohMan.mrc",
-            "Recordings/demoHoneyWoman.mrc")))
-            canProceed = false;
-        exit;
-    }
     dir = global.keyDownPressed[0] - global.keyUpPressed[0];
     if (dir != 0)
     {
@@ -98,7 +88,6 @@ freshSaveFile();
     
     if (global.keyPausePressed[0])
     {
-        demoTimer = 0;
         switch (option)
         {
             case 0: // Start 

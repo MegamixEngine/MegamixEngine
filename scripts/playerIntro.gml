@@ -2,14 +2,7 @@
 var init = argument0;
 
 // Set teleport sounds
-if (global.teleportSound)
-{
-    warpInSFX = sfxTeleportInClassic;
-}
-else
-{
-    warpInSFX = sfxTeleportIn;
-}
+warpInSFX = sfxTeleportIn;
 
 // Initialization of the spawning animation (after READY)
 if (init)

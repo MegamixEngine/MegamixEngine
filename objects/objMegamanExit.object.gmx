@@ -47,14 +47,7 @@ externalRoomFilename = "";
 
 teleportLock = -1;
 
-if (global.teleportSound)
-{
-    warpOutSFX = sfxTeleportOutClassic;
-}
-else
-{
-    warpOutSFX = sfxTeleportOut;
-}
+warpOutSFX = sfxTeleportOut;
 </string>
           </argument>
         </arguments>

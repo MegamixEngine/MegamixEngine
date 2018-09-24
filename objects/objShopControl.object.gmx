@@ -100,12 +100,12 @@ itemName[1, 0] = "Energy Saver";
 itemDescription[1, 0] = "Lowers the amount of weapon energy that's consumed when using weapons."
 //itemPurchaseAction[1, 0] = "global.energySaver = true; itemUnavailable[1, 0] = 1;";
 
-itemUnavailable[2, 0] = global.weaponLocked[global.weaponID[? objRushCycle]] == 0;
-itemIcon[2, 0] = sprRushBikeShopIcon;
+itemUnavailable[2, 0] = global.weaponLocked[global.weaponID[? objRushJet]] == 0;
+itemIcon[2, 0] = sprRushJetShopIcon;
 itemPrice[2, 0] = 100;
-itemName[2, 0] = "Rush Bike";
-itemDescription[2, 0] = "Turns rush into a motorcycle, allowing you to travel at high speeds!";
-//itemPurchaseAction[2, 0] = "global.weaponLocked[global.weaponID[? objRushCycle]] = false; itemUnavailable[2, 0] = true;";
+itemName[2, 0] = "Rush Jet";
+itemDescription[2, 0] = "Turns Rush into a jet, allowing you to fly around and dodge obstacles!";
+//itemPurchaseAction[2, 0] = "global.weaponLocked[global.weaponID[? objRushJet]] = false; itemUnavailable[2, 0] = true;";
 
 itemUnavailable[0, 1] = global.eTanks &gt;= global.maxETanks;
 itemIcon[0, 1] = sprETank;
@@ -215,7 +215,7 @@ with (objMegaman)
             }
             else if (cursorX == 2 &amp;&amp; cursorY == 0)
             { // rush cycle
-                global.weaponLocked[global.weaponID[? objRushCycle]] = false;
+                global.weaponLocked[global.weaponID[? objRushJet]] = false;
                 itemUnavailable[2, 0] = true;
             }
             else if (cursorX == 0 &amp;&amp; cursorY == 1)

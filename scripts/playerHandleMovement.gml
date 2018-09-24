@@ -25,11 +25,7 @@ if (!playerIsLocked(PL_LOCK_MOVE))
             }
             else
             {
-                if (place_meeting(x, y + gravDir, objOil)) // Oil
-                {
-                    xspeed = oilWalk * xDir;
-                }
-                else if (place_meeting(x, y + gravDir, objIce)
+                if (place_meeting(x, y + gravDir, objIce)
                     || (instance_exists(statusObject) && statusObject.statusOnIce)) // Ice
                 {
                     if (xspeed * image_xscale < walkSpeed)

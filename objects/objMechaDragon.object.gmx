@@ -51,60 +51,19 @@ enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
 
-// MaGMML3
-enemyDamageValue(objSparkChaser, 2);
-enemyDamageValue(objLaserTrident, 2);
-enemyDamageValue(objWaterShield, 0);
-enemyDamageValue(objTornadoBlow, 0);
-enemyDamageValue(objThunderBeam, 4);
-enemyDamageValue(objBreakDash, 0);
-enemyDamageValue(objMagneticShockwave, 2);
-enemyDamageValue(objIceWall, 8);
-
-// MaGMML2
+enemyDamageValue(objSuperArmBlockProjectile, 1);
+enemyDamageValue(objSuperArmDebris, 1);
+enemyDamageValue(objMetalBlade, 0);
+enemyDamageValue(objTopSpin, 0);
+enemyDamageValue(objSparkShock, 2);
+enemyDamageValue(objSearchSnake, 0);
+enemyDamageValue(objPharaohShot, 2);
 enemyDamageValue(objHornetChaser, 2);
 enemyDamageValue(objJewelSatellite, 4);
 enemyDamageValue(objGrabBuster, 1);
-enemyDamageValue(objTripleBlade, 2);
-enemyDamageValue(objSlashClaw, 1);
-enemyDamageValue(objWheelCutter, 0);
-enemyDamageValue(objSakugarne, 0);
-enemyDamageValue(objSuperArrow, 6);
-enemyDamageValue(objWireAdapter, 1);
-
-// MaGMML1
-enemyDamageValue(objMetalBlade, 0);
-enemyDamageValue(objGeminiLaser, 2);
-enemyDamageValue(objSolarBlaze, 4);
-enemyDamageValue(objTopSpin, 0);
-enemyDamageValue(objThunderWool, 2);
-enemyDamageValue(objPharaohShot, 2);
-enemyDamageValue(objBlackHoleBomb, 1);
-enemyDamageValue(objMagicCard, 2);
-
-// MaG48HMML
-enemyDamageValue(objFlameMixer, 4);
-enemyDamageValue(objRainFlush, 0);
-enemyDamageValue(objSparkShock, 2);
-enemyDamageValue(objSearchSnake, 0);
 enemyDamageValue(objTenguBlade, 2);
 enemyDamageValue(objTenguDash, 0);
 enemyDamageValue(objTenguDisk, 2);
-enemyDamageValue(objSaltWater, 0);
-enemyDamageValue(objConcreteShot, 1);
-enemyDamageValue(objHomingSniper, 2);
-
-// MaG24HMML
-enemyDamageValue(objSuperArmBlockProjectile, 1);
-enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 4);
-enemyDamageValue(objChillSpikeLanded, 0);
-
-// Misc.
-enemyDamageValue(objPowerStone, 0);
-enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 0);
-enemyDamageValue(objIceSlasher, 4);
 </string>
           </argument>
         </arguments>

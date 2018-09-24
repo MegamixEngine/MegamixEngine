@@ -160,9 +160,6 @@ if (spawned)
             <string>// only tolerate objects that actually hit it
 event_inherited();
 global.damage = 0;
-specialDamageValue(objBreakDash, 4);
-specialDamageValue(objSakugarne, 4);
-specialDamageValue(objBlackHoleBomb, 4);
 isTargetable = false;
 if (global.damage == 0)
 {

@@ -43,11 +43,7 @@ goingDown = -1; // -1 = Up; 1 = Down
 myFlag = 0;
 
 // List of Gabyoall-type enemies.
-spinesToKill[0] = objGagabyoall;
-spinesToKill[1] = objSprinklan;
-spinesToKill[2] = objSpringHead;
-spinesToKill[3] = objGaryoby;
-spinesToKill[4] = objSpine;
+spinesToKill[0] = objSpine;
 </string>
           </argument>
         </arguments>

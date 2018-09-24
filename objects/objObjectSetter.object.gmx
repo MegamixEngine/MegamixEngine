@@ -311,7 +311,6 @@ obj[22] = objLineTopRight;
 obj[23] = objLineBottomLeft;
 obj[24] = objLineBottomRight;
 obj[25] = objLineVerticalDrop;
-obj[26] = objCossackSnow;
 obj_n = array_length_1d(obj);
 
 // scan key for objects

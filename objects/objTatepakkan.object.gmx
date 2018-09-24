@@ -251,12 +251,6 @@ cooldownImageMax = 130;
 specialDamageValue(objHornetChaser, 2);
 specialDamageValue(objJewelSatellite, 1);
 specialDamageValue(objGrabBuster, 2);
-specialDamageValue(objTripleBlade, 1);
-specialDamageValue(objWheelCutter, 2);
-specialDamageValue(objSlashClaw, 2);
-specialDamageValue(objSakugarne, 2);
-specialDamageValue(objSuperArrow, 2);
-specialDamageValue(objWireAdapter, 2);
 </string>
           </argument>
         </arguments>

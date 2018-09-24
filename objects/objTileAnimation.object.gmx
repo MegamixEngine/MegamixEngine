@@ -48,7 +48,7 @@ see the example level for how to set this up.
 animLength = 1;
 animTime = 1;
 animateOnTransition = false;
-animID[10] = tstAnimated;
+animID[10] = tstTeleporter;
 animID[0] = noone;
 animationLayer=100000;
 

@@ -136,14 +136,6 @@ if (stretchX &gt; 1)
             shiftObject(0, 0.125, 1);
         }
     }
-    
-    with (objRainFlush)
-    {
-        if (timer &gt;= 30)
-        {
-            other.noRain = false;
-        }
-    }
 }
 else
 {

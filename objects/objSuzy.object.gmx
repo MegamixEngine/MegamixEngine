@@ -34,7 +34,6 @@ event_inherited();
 healthpointsStart = 5;
 healthpoints = healthpointsStart;
 contactDamage = 4;
-enemyDamageValue(objThunderBeam, 5);
 
 grav = 0;
 

@@ -47,9 +47,7 @@ elecDirec = 1;
 myFlag = 0;
 
 // What activates the machine:
-powerSource[1] = objThunderBeam;
-powerSource[2] = objThunderWool;
-powerSource[3] = objSparkShock;
+powerSource[1] = objSparkShock;
 </string>
           </argument>
         </arguments>

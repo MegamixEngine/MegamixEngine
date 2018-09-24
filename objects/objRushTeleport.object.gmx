@@ -52,16 +52,8 @@ upordown = 'down';
 alarm[0] = 1;
 
 //Play correct sounds
-if (global.teleportSound)
-{
-    warpInSFX = sfxTeleportInClassic;
-    warpOutSFX = sfxTeleportOutClassic;
-}
-else
-{
-    warpInSFX = sfxTeleportIn;
-    warpOutSFX = sfxTeleportOut;
-}
+warpInSFX = sfxTeleportIn;
+warpOutSFX = sfxTeleportOut;
 </string>
           </argument>
         </arguments>
@@ -276,16 +268,8 @@ if (!global.frozen)
     }
 }
 
-if (global.teleportSound)
-{
-    warpInSFX = sfxTeleportInClassic;
-    warpOutSFX = sfxTeleportOutClassic;
-}
-else
-{
-    warpInSFX = sfxTeleportIn;
-    warpOutSFX = sfxTeleportOut;
-}
+warpInSFX = sfxTeleportIn;
+warpOutSFX = sfxTeleportOut;
 </string>
           </argument>
         </arguments>

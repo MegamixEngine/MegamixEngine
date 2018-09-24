@@ -68,60 +68,19 @@ enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
 
-// MaGMML3
-enemyDamageValue(objSparkChaser, 1);
-enemyDamageValue(objLaserTrident, 2);
-enemyDamageValue(objWaterShield, 1);
-enemyDamageValue(objTornadoBlow, 1);
-enemyDamageValue(objBreakDash, 4);
-enemyDamageValue(objMagneticShockwave, 1);
-enemyDamageValue(objThunderBeam, 1);
-enemyDamageValue(objIceWall, 1);
-
-// MaGMML2
+enemyDamageValue(objSuperArmBlockProjectile, 1);
+enemyDamageValue(objSuperArmDebris, 1);
+enemyDamageValue(objMetalBlade, 1);
+enemyDamageValue(objTopSpin, 1);
+enemyDamageValue(objSparkShock, 1);
+enemyDamageValue(objSearchSnake, 1);
+enemyDamageValue(objPharaohShot, 2);
 enemyDamageValue(objHornetChaser, 1);
 enemyDamageValue(objJewelSatellite, 1);
 enemyDamageValue(objGrabBuster, 1);
-enemyDamageValue(objTripleBlade, 1);
-enemyDamageValue(objWheelCutter, 1);
-enemyDamageValue(objSlashClaw, 1);
-enemyDamageValue(objSakugarne, 3);
-enemyDamageValue(objSuperArrow, 2);
-enemyDamageValue(objWireAdapter, 1);
-
-// MaGMML1
-enemyDamageValue(objMetalBlade, 1);
-enemyDamageValue(objGeminiLaser, 3);
-enemyDamageValue(objSolarBlaze, 1);
-enemyDamageValue(objTopSpin, 1);
-enemyDamageValue(objThunderWool, 1);
-enemyDamageValue(objPharaohShot, 2);
-enemyDamageValue(objBlackHoleBomb, 1);
-enemyDamageValue(objMagicCard, 2);
-
-// MaG48HMML
-enemyDamageValue(objFlameMixer, 1);
-enemyDamageValue(objRainFlush, 1);
-enemyDamageValue(objSparkShock, 1);
-enemyDamageValue(objSearchSnake, 1);
 enemyDamageValue(objTenguBlade, 2);
 enemyDamageValue(objTenguDash, 3);
 enemyDamageValue(objTenguDisk, 2);
-enemyDamageValue(objSaltWater, 2);
-enemyDamageValue(objConcreteShot, 1);
-enemyDamageValue(objHomingSniper, 4);
-
-// MaG24HMML
-enemyDamageValue(objSuperArmBlockProjectile, 1);
-enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
-enemyDamageValue(objChillSpikeLanded, 2);
-
-// Misc.
-enemyDamageValue(objPowerStone, 1);
-enemyDamageValue(objPlantBarrier, 3);
-enemyDamageValue(objBrickWeapon, 1);
-enemyDamageValue(objIceSlasher, 0);
 </string>
           </argument>
         </arguments>
@@ -442,7 +401,7 @@ else
 }
 
 // FOR EXAMPLE GAME ONLY: Time Stopper drains Guts Man's health
-if (instance_exists(objTimeStopper))
+if (instance_exists(objFlashStopper))
 {
     healthpoints -= 1 / 30;
     if (healthpoints &lt;= 0)

@@ -78,10 +78,6 @@ optionText[13] = 'MOVING TEXT';
 optionText[14] = 'PICKUP EFFECT';
 optionText[15] = 'ESC KEY BEHAVIOR';
 optionText[16] = 'COLORED TEXT OVERLAYS';
-optionText[17] = 'ITEM GRAPHICS';
-optionText[18] = 'DEATH EFFECT';
-optionText[19] = 'JUMP SOUND';
-optionText[20] = 'TELEPORT SOUND';
 </string>
           </argument>
         </arguments>
@@ -375,46 +371,6 @@ if (phase == 2 &amp;&amp; !selected)
                 pre = global.escapeBehavior;
                 global.escapeBehavior = min(max(0, global.escapeBehavior - dir), 2);
                 if (global.escapeBehavior != pre)
-                {
-                    playSFX(sfxMenuMove);
-                }
-                break;
-            
-            // Pickup Graphics
-            case 17:
-                pre = global.pickupGraphics;
-                global.pickupGraphics = min(max(0, global.pickupGraphics + dir), 1);
-                if (global.pickupGraphics != pre)
-                {
-                    playSFX(sfxMenuMove);
-                }
-                break;
-            
-            // Death Effect
-            case 18:
-                pre = global.deathEffect;
-                global.deathEffect = min(max(0, global.deathEffect + dir), 1);
-                if (global.deathEffect != pre)
-                {
-                    playSFX(sfxMenuMove);
-                }
-                break;
-            
-            // Jump Sound
-            case 19:
-                pre = global.jumpSound;
-                global.jumpSound = min(max(0, global.jumpSound + dir), 1);
-                if (global.jumpSound != pre)
-                {
-                    playSFX(sfxMenuMove);
-                }
-                break;
-            
-            // Teleport Sound
-            case 20:
-                pre = global.teleportSound;
-                global.teleportSound = min(max(0, global.teleportSound + dir), 1);
-                if (global.teleportSound != pre)
                 {
                     playSFX(sfxMenuMove);
                 }

@@ -65,60 +65,19 @@ enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
 
-// MaGMML3
-enemyDamageValue(objSparkChaser, 1);
-enemyDamageValue(objLaserTrident, 2);
-enemyDamageValue(objWaterShield, 2);
-enemyDamageValue(objTornadoBlow, 1);
-enemyDamageValue(objThunderBeam, 2);
-enemyDamageValue(objBreakDash, 2);
-enemyDamageValue(objMagneticShockwave, 6);
-enemyDamageValue(objIceWall, 1);
-
-// MaGMML2
+enemyDamageValue(objSuperArmBlockProjectile, 2);
+enemyDamageValue(objSuperArmDebris, 2);
+enemyDamageValue(objMetalBlade, 4);
+enemyDamageValue(objTopSpin, 1);
+enemyDamageValue(objSparkShock, 0);
+enemyDamageValue(objSearchSnake, 1);
+enemyDamageValue(objPharaohShot, 2);
 enemyDamageValue(objHornetChaser, 1);
 enemyDamageValue(objJewelSatellite, 2);
 enemyDamageValue(objGrabBuster, 2);
-enemyDamageValue(objTripleBlade, 3);
-enemyDamageValue(objSlashClaw, 1);
-enemyDamageValue(objWheelCutter, 4);
-enemyDamageValue(objSakugarne, 2);
-enemyDamageValue(objSuperArrow, 2);
-enemyDamageValue(objWireAdapter, 1);
-
-// MaGMML1
-enemyDamageValue(objMetalBlade, 4);
-enemyDamageValue(objGeminiLaser, 4);
-enemyDamageValue(objSolarBlaze, 2);
-enemyDamageValue(objTopSpin, 1);
-enemyDamageValue(objThunderWool, 2);
-enemyDamageValue(objPharaohShot, 2);
-enemyDamageValue(objBlackHoleBomb, 1);
-enemyDamageValue(objMagicCard, 2);
-
-// MaG48HMML
-enemyDamageValue(objFlameMixer, 2);
-enemyDamageValue(objRainFlush, 1);
-enemyDamageValue(objSparkShock, 0);
-enemyDamageValue(objSearchSnake, 1);
 enemyDamageValue(objTenguBlade, 2);
 enemyDamageValue(objTenguDash, 2);
 enemyDamageValue(objTenguDisk, 1);
-enemyDamageValue(objSaltWater, 2);
-enemyDamageValue(objConcreteShot, 2);
-enemyDamageValue(objHomingSniper, 4);
-
-// MaG24HMML
-enemyDamageValue(objSuperArmBlockProjectile, 2);
-enemyDamageValue(objSuperArmDebris, 2);
-enemyDamageValue(objChillShot, 2);
-enemyDamageValue(objChillSpikeLanded, 4);
-
-// Misc.
-enemyDamageValue(objPowerStone, 2);
-enemyDamageValue(objPlantBarrier, 6);
-enemyDamageValue(objBrickWeapon, 2);
-enemyDamageValue(objIceSlasher, 2);
 </string>
           </argument>
         </arguments>
@@ -287,7 +246,7 @@ if (entityCanStep())
     }
     
     // Heal from the Time Stopper
-    if (instance_exists(objTimeStopper)) // &amp;&amp; (phase == 0)
+    if (instance_exists(objFlashStopper)) // &amp;&amp; (phase == 0)
     {
         healthpoints += 28;
         stopOnFlash = true;

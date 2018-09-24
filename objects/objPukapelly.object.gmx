@@ -196,9 +196,6 @@ else if (dead)
             <kind>1</kind>
             <string>specialDamageValue(objJewelSatellite, 2);
 specialDamageValue(objGrabBuster, 2);
-specialDamageValue(objTripleBlade, 2);
-specialDamageValue(objWheelCutter, 2);
-specialDamageValue(objSlashClaw, 2);
 </string>
           </argument>
         </arguments>

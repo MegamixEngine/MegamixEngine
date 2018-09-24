@@ -30,11 +30,6 @@ if (!playerIsLocked(PL_LOCK_PHYSICS))
     }
     
     playerHandleSliding();
-    
-    if (!showReady)
-    {
-        playerHandleOil();
-    }
 }
 
 playerHandleFrozen();

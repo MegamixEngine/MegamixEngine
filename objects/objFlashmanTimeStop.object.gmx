@@ -27,11 +27,6 @@
             <kind>1</kind>
             <string>animationTimer = 0;
 timeStopLock = playerTimeStopped();
-
-with (objBreakDash)
-{
-    instance_destroy();
-}
 </string>
           </argument>
         </arguments>

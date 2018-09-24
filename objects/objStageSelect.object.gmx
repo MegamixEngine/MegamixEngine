@@ -81,7 +81,7 @@ for (var i = 0; i &lt; 3; i++)
         stageRoom[i, j] = noone;
         stageIcon[i, j] = 10;
         stageName[i, j] = "";
-        stageLock[i, j] = false;
+        stageLock[i, j] = true;
         stageBeaten[i, j] = false;
         
         // for stage select intros
@@ -97,84 +97,15 @@ for (var i = 0; i &lt; 3; i++)
 }
 
 // define stages
-stageRoom[0, 0] = "lvlGutsMan"
-stageIcon[0, 0] = 2;
-stageName[0, 0] = " GUTS#    MAN";
-stageBeaten[0, 0] = indexOf(global.elementsCollected, "guts") &gt;= 0;
-stageBossJumpSprite[0, 0] = sprGutsJump;
-stageBossJumpIndex[0, 0] = 0;
-stageBossIntroSprite[0, 0] = sprGutsIdle;
-stageBossIntroSpeed[0, 0] = 0.1;
-
-stageRoom[1, 0] = "lvlFlashMan"
-stageIcon[1, 0] = 3;
-stageName[1, 0] = " FLASH#    MAN";
-stageBeaten[1, 0] = indexOf(global.elementsCollected, "flash") &gt;= 0;
-stageBossJumpSprite[1, 0] = sprFlashman;
-stageBossJumpIndex[1, 0] = 6;
-stageBossIntroSprite[1, 0] = sprFlashIntro;
-stageBossIntroSpeed[1, 0] = 10 / 60;
-
-stageRoom[2, 0] = "lvlGeminiMan";
-stageIcon[2, 0] = 4;
-stageName[2, 0] = " GEMINI#    MAN";
-stageBeaten[2, 0] = indexOf(global.elementsCollected, "gemini") &gt;= 0;
-stageBossJumpSprite[2, 0] = sprGeminiJump;
-stageBossJumpIndex[2, 0] = 0;
-stageBossIntroSprite[2, 0] = sprGeminiIntro;
-stageBossIntroSpeed[2, 0] = 16 / 60;
-
 stageRoom[0, 1] = "lvlPharaohMan";
 stageIcon[0, 1] = 5;
+stageLock[0, 1] = false;
 stageName[0, 1] = "PHARAOH#    MAN";
 stageBeaten[0, 1] = indexOf(global.elementsCollected, "pharaoh") &gt;= 0;
 stageBossJumpSprite[0, 1] = sprPharaohJump;
 stageBossJumpIndex[0, 1] = 0;
 stageBossIntroSprite[0, 1] = sprPharaohPose;
 stageBossIntroSpeed[0, 1] = 3 / 60;
-
-stageRoom[2, 1] = "lvlStoneMan";
-stageIcon[2, 1] = 6;
-stageName[2, 1] = " STONE#    MAN";
-stageBeaten[2, 1] = indexOf(global.elementsCollected, "stone") &gt;= 0;
-stageBossJumpSprite[2, 1] = sprStoneMan;
-stageBossJumpIndex[2, 1] = 5;
-stageBossIntroSprite[2, 1] = sprStoneManIntro;
-stageBossIntroSpeed[2, 1] = 0.3;
-
-stageRoom[0, 2] = "lvlPlantMan";
-stageIcon[0, 2] = 7;
-stageName[0, 2] = " PLANT#    MAN";
-stageBeaten[0, 2] = indexOf(global.elementsCollected, "plant") &gt;= 0;
-stageBossJumpSprite[0, 2] = sprPlantJump;
-stageBossJumpIndex[0, 2] = 0;
-stageBossIntroSprite[0, 2] = sprPlantIntro;
-stageBossIntroSpeed[0, 2] = 10 / 60;
-
-stageRoom[1, 2] = "lvlHoneyWoman";
-stageIcon[1, 2] = 8;
-stageName[1, 2] = " HONEY#  WOMAN";
-stageBeaten[1, 2] = indexOf(global.elementsCollected, "honey") &gt;= 0;
-stageBossJumpSprite[1, 2] = sprHoneyWoman;
-stageBossJumpIndex[1, 2] = 11;
-stageBossIntroSprite[1, 2] = sprHoneyWomanIntro;
-stageBossIntroSpeed[1, 2] = 0.11;
-
-stageRoom[2, 2] = "lvlChillMan";
-stageIcon[2, 2] = 9;
-stageName[2, 2] = " CHILL#    MAN";
-stageBeaten[2, 2] = indexOf(global.elementsCollected, "chill") &gt;= 0;
-stageBossJumpSprite[2, 2] = sprChillJump;
-stageBossJumpIndex[2, 2] = 0;
-stageBossIntroSprite[2, 2] = sprChillIntro;
-stageBossIntroSpeed[2, 2] = 6 / 60;
-
-// Set center stage after grabbing all other indexes
-stageRoom[1, 1] = "rmCastleIntro";
-stageLock[1, 1] = !(stageBeaten[0, 0] &amp;&amp; stageBeaten[1, 0] &amp;&amp; stageBeaten[2, 0]
-    &amp;&amp; stageBeaten[0, 1] &amp;&amp; stageBeaten[2, 1] &amp;&amp; stageBeaten[0, 2]
-    &amp;&amp; stageBeaten[1, 2] &amp;&amp; stageBeaten[2, 2]);
-stageIcon[1, 1] = 11 - stageLock[1, 1];
 
 // menu selections
 stageRoom[0, 3] = "rmTitleScreen";

@@ -2,14 +2,7 @@
 // Dying
 
 // Set up death sound
-if (global.deathEffect)
-{
-    deathSFX = sfxDeathClassic;
-}
-else
-{
-    deathSFX = sfxDeath;
-}
+deathSFX = sfxDeath;
 
 if (global.playerHealth[playerID] <= 0)
 {
@@ -74,17 +67,6 @@ if (global.playerHealth[playerID] <= 0)
                 explosionID = instance_create(x, y, objMegamanExplosion);
                 explosionID.dir = i * 45;
                 explosionID.spd = 0.75 * (1 + floor(i / 8));
-                with (explosionID)
-                {
-                    if (global.deathEffect)
-                    {
-                        sprite_index = sprExplosionClassic;
-                    }
-                    else
-                    {
-                        sprite_index = sprExplosion;
-                    }
-                }
             }
         }
         
