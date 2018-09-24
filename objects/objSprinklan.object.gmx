@@ -53,6 +53,7 @@ anim = 0;
 stopped = false;
 shootCount = 0;
 shootMax = 4;
+stopTimer=0;
 
 slowSpeed = 0.5;
 fastSpeed = 2.15;
@@ -90,38 +91,51 @@ if (entityCanStep())
     
     if (!stopped)
     {
-        animSpeed = 0;
-        anim = 0;
-        
-        if (xcoll != 0)
+        if(stopTimer==0)
         {
-            xdir *= -1;
-        }
-        if (ground)
-        {
-            if (!positionCollision(x + 8 * xdir, bbox_bottom + 2))
+            animSpeed = 0;
+            anim = 0;
+            
+            if (xcoll != 0)
             {
                 xdir *= -1;
             }
-        }
-        
-        // set slow speed as default for frame
-        xspeed = slowSpeed;
-        
-        // speed up if lined up with target
-        if (instance_exists(target))
-        {
-            if (target.bbox_bottom + 1 &lt;= bbox_bottom + 2
-                &amp;&amp; abs(target.y - y) &lt; 8)
+            if (ground)
             {
-                if (sign(target.x - x) == xdir)
-                    xspeed = fastSpeed;
+                if (!positionCollision(x + 8 * xdir, bbox_bottom + 2))
+                {
+                    xdir *= -1;
+                    stopTimer=45;
+                    xspeed=0;
+                }
+            }
+            if(stopTimer==0)
+            {
+                // set slow speed as default for frame
+                xspeed = slowSpeed;
+                
+                // speed up if lined up with target
+                if (instance_exists(target))
+                {
+                    if (target.bbox_bottom + 1 &lt;= bbox_bottom + 2
+                        &amp;&amp; abs(target.y - y) &lt; 8)
+                    {
+                        if (sign(target.x - x) == xdir)
+                            xspeed = fastSpeed;
+                    }
+                }
+                xspeed *= xdir; // base xspeed by direction
             }
         }
-        xspeed *= xdir; // base xspeed by direction
+        else
+        {
+            xspeed=0;
+            --stopTimer;
+        }
     }
     else
     {
+        stopTimer=0;
         animSpeed = 0.25;
         anim = 1;
         
@@ -165,8 +179,32 @@ if (entityCanStep())
         }
     }
 }
-else if (dead)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if(spawned)
 {
+    stopTimer = 0;
     image_index = 0;
     stopped = false;
     shootCount = 0;
