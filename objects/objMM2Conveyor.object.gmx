@@ -49,6 +49,7 @@ blockCollision = 0;
 respawnRange = -1;
 despawnRange = -1;
 shiftVisible = 1;
+bubbleTimer = -1;
 
 dir = sign(image_xscale);
 

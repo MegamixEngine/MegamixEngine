@@ -29,6 +29,7 @@
 // and start over.
 event_inherited();
 healthpointsStart = 3;
+category = "floating";
 contactDamage = 2;
 grav = 0;
 blockCollision = false;

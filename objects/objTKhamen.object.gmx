@@ -34,11 +34,13 @@ isSolid = true;
 
 blockCollision = false;
 grav = 0;
-facePlayerOnSpawn = true;
 
-category = "bulky";
+category = "bulky, rocky";
 
 // Enemy specific variables
+// @cc - Does T. Khamen explode on death or not?
+explodeOnDeath = false;
+
 imgIndex = 0;
 imgSpd = 0.2;
 moveTimer = 60;
@@ -50,7 +52,6 @@ lastDrop = 0;
 myLock = 0;
 dropTime = 4;
 selectTime = 60;
-explodeOnDeath = false; // Does T. Khamen explode on death or not? - SET IN INSTANCE CREATION CODE
 </string>
           </argument>
         </arguments>
@@ -253,6 +254,7 @@ imgIndex = 5;
 
 if (explodeOnDeath == false)
 {
+    //instance_create (x + 20 * image_xscale, y - 18, objBigExplosion);
     i = instance_create(x, y, objTKhamenDead);
     i.image_xscale = image_xscale;
 }

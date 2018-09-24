@@ -34,6 +34,7 @@ col = 0;
 
 healthpointsStart = 3;
 healthpoints = healthpointsStart;
+category = "grounded, nature";
 
 // not confirmed
 contactDamage = 3;

@@ -96,7 +96,7 @@ if (entityCanStep())
     if (activated&amp;&amp;xcoll != 0)
     {
         instance_create(x, spriteGetYCenter(), objHarmfulExplosion);
-        playSFX(sfxExplosion2);
+        playSFX(sfxExplosion);
         dead = true;
     }
     

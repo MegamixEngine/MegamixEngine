@@ -29,6 +29,7 @@
 
 grav = 0;
 blockCollision = false;
+bubbleTimer = -1;
 
 // set defaults
 standardPhysics = false;

@@ -3,7 +3,7 @@
   <spriteName>sprObjectSetter</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>9999999</depth>
+  <depth>999999</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -110,6 +110,7 @@ if (id == object_index.id)
         {
             // determine which objObjectSetter has the associated tileset
             var bg = tile_get_background(tid[i]);
+            
             var automapperID = ds_map_find_value(global.automapper[layerIndex], bg);
             
             if (is_undefined(automapperID))
@@ -120,8 +121,12 @@ if (id == object_index.id)
             with (automapperID)
             {
                 // figure out which object to place according to tileset key (which is determined in user defined 0)
-                var key_lookup_x = clamp(floor(tile_get_left(tid[i]) / grid), 0, floor(key_width / grid - 1));
-                var key_lookup_y = clamp(floor(tile_get_top(tid[i]) / grid), 0, floor(key_height / grid - 1));
+                var key_lookup_x = floor(tile_get_left(tid[i])/grid) - key_left;
+                var key_lookup_y = floor(tile_get_top(tid[i])/grid) - key_top;
+                if( (key_lookup_x&lt;0) || (key_lookup_x &gt; coordW-1) || (key_lookup_y&lt;0) || (key_lookup_y&gt;coordH-1) )
+                {
+                    break;
+                }
                 var obj_id = coord[# key_lookup_x, key_lookup_y];
                 if (obj_id &gt;= 0)
                 {
@@ -241,19 +246,22 @@ if(!useTileAsTileset)
 {
     key_width = tile_get_width(key);
     key_height = tile_get_height(key);
-    key_left = round(tile_get_left(key) / grid);
-    key_top = round(tile_get_top(key) / grid);
-    key_x = tile_get_x(key) + grid / 2;
-    key_y = tile_get_y(key) + grid / 2;
+    key_left = floor(tile_get_left(key) / grid);
+    key_top = floor(tile_get_top(key) / grid);
+    key_x = tile_get_x(key) + grid*0.5;
+    key_y = tile_get_y(key) + grid*0.5;
 }
 else
 {
-    key_width = background_get_width(key_bg);
-    key_height = background_get_height(key_bg);
-    key_left = 0;
-    key_top = 0;
-    key_x = tile_get_x(key) + grid / 2;
-    key_y = tile_get_y(key) + grid / 2;
+    key_left = tile_get_left(key);
+    key_top = tile_get_top(key);
+    
+    key_width = abs(background_get_width(key_bg)-key_left);
+    key_height = abs(background_get_height(key_bg)-key_top);
+    key_left = floor(key_left / grid);
+    key_top = floor(key_top / grid);
+    key_x = tile_get_x(key) + grid*0.5;
+    key_y = tile_get_y(key) + grid*0.5;
 }
 
 tile_delete(key);
@@ -263,10 +271,8 @@ print("  Scanning legend...", WL_VERBOSE);
 
 ds_map_replace(global.automapper[layerIndex], key_bg, id);
 
-var coordW = ceil(background_get_width(key_bg) / grid);
-var coordH = ceil(background_get_height(key_bg) / grid)
-
-;
+coordW = ceil(key_width/grid);
+coordH = ceil(key_height/grid);
 coord = ds_grid_create(coordW, coordH);
 
 for (var i = 0; i &lt; coordW; i++)
@@ -309,23 +315,23 @@ obj[26] = objCossackSnow;
 obj_n = array_length_1d(obj);
 
 // scan key for objects
-for (var _x = 0; _x &lt; key_width; _x += grid)
+for (var _x = 0;_x &lt; coordW; ++_x) //_x &lt; key_width; _x += grid)
 {
-    for (var _y = 0; _y &lt; key_height; _y += grid)
+    for (var _y = 0; _y &lt; coordH; ++_y)// &lt; key_height; _y += grid)
     {
-        obj_found = 0;
+        var obj_found = noone;
         
         for (var i = 0; i &lt; obj_n; i++) // find object located at this point
         {
-            if (position_meeting(key_x + _x, key_y + _y, obj[i]))
+            if (position_meeting(key_x + _x*grid, key_y + _y*grid, obj[i]))
             {
-                obj_found = obj[i];
+                obj_found=obj[i];
             }
         }
         
         if (obj_found) // object found - add to list
         {
-            coord[# key_left + _x / grid, key_top + _y / grid] = obj_found;
+            coord[# _x, _y] = obj_found;
         }
     }
 }

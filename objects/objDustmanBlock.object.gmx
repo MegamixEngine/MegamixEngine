@@ -32,6 +32,7 @@ isSolid = 1;
 
 grav = 0;
 blockCollision = 1;
+bubbleTimer = -1;
 
 healthpoints = 1;
 healthpointsStart = healthpoints;

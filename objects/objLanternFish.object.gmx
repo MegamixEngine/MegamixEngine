@@ -34,6 +34,7 @@ healthpointsStart = 10;
 healthpoints = healthpointsStart;
 contactDamage = 12;
 lockTransition = false;
+category = "aquatic";
 
 doesIntro = false;
 

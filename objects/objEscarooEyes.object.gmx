@@ -33,6 +33,7 @@ healthpointsStart = 16;
 healthpoints = healthpointsStart;
 contactDamage = 4; // Bombs
 facePlayerOnSpawn = false;
+category = "bulky, nature";
 
 doesIntro = false;
 

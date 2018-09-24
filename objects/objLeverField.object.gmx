@@ -40,6 +40,7 @@ event_inherited();
 
 contactDamage = 0;
 canHit = false;
+bubbleTimer = -1;
 
 shiftVisible = 1;
 

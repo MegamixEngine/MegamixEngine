@@ -36,6 +36,7 @@ event_inherited();
 blockCollision = 0;
 grav = 0;
 canHit = false;
+bubbleTimer = -1;
 
 isSolid = 1;
 

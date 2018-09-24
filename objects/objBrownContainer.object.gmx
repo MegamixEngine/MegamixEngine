@@ -35,6 +35,8 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
+isSolid = 1;
+
 // specific code
 wasHit = false;
 animate = true;

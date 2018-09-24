@@ -33,6 +33,8 @@ stopOnFlash = false;
 
 contactDamage = 3;
 
+image_speed = 0.35;
+
 var spd;
 spd = 4;
 if (instance_exists(target))

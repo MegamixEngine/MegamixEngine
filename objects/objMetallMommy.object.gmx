@@ -75,6 +75,7 @@ imageOffset = 0;
             <kind>1</kind>
             <string>event_inherited();
 
+
 if (entityCanStep())
 {
     if (preventFiring)

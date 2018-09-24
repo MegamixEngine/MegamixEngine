@@ -188,7 +188,7 @@ if (entityCanStep())
             <kind>1</kind>
             <string>if (phase == 0)
 {
-    other.guardCancel = 1;
+    other.guardCancel = 3;
 }
 </string>
           </argument>

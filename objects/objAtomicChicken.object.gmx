@@ -66,6 +66,11 @@ alarmJump = 45;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
+
 
 if (entityCanStep())
 {
@@ -144,6 +149,7 @@ alarmJump = 45;
           <argument>
             <kind>1</kind>
             <string>specialDamageValue(objMagneticShockwave, 5);
+specialDamageValue(objIceWall, 10);
 </string>
           </argument>
         </arguments>

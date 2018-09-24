@@ -35,6 +35,7 @@ isTargetable = false;
 
 grav = 0;
 blockCollision = 1;
+bubbleTimer = -1;
 
 fallen = false;
 goup = 0;

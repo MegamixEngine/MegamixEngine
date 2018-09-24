@@ -34,7 +34,7 @@ healthpoints = healthpointsStart;
 contactDamage = 8;
 killOverride = false;
 
-category = "bulky, joes";
+category = "big eye, bulky, joes";
 
 // Enemy specific code
 shoot = false;
@@ -67,6 +67,10 @@ doThing = false;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
 
 if (entityCanStep())
 {

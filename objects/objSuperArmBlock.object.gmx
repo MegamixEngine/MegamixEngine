@@ -59,7 +59,8 @@ contactDamage = 0;
 
 grav = 0;
 blockCollision = 0;
-shiftVisible=1;
+shiftVisible = 1;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

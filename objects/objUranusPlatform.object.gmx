@@ -36,6 +36,7 @@ animFrame = 0;
 faction = 0;
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 _gravDir = 1;
 shiftVisible = 1;
 combineObjects(object_index, true, false);

@@ -41,6 +41,7 @@ appearTimer = 0;
 grav = 0;
 blockCollision = false;
 noFlicker = true;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

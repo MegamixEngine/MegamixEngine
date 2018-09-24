@@ -30,6 +30,7 @@ grav = 0.25 * image_yscale;
 facePlayerOnSpawn = false;
 healthpointsStart = 6;
 contactDamage = 4;
+category = "cannons";
 
 // Enemy specific code
 // @cc - Change colours - 0 (default) = green, 1 = blue, 2 = yellow, 3 = red

@@ -38,6 +38,7 @@ respawn = true;
 healthpointsStart = 4;
 healthpoints = healthpointsStart;
 contactDamage = 3;
+category = "nature";
 
 // Enemy specific code
 actionTimer = -1;

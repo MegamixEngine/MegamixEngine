@@ -34,7 +34,7 @@ respawn = true;
 healthpointsStart = 14;
 healthpoints = healthpointsStart;
 contactDamage = 6;
-
+category = "aquatic, bulky";
 grav = 0;
 
 // Enemy specific code

@@ -35,6 +35,7 @@ image_speed = 7 / 60;
 
 blockCollision = 1;
 grav = gravAccel;
+bubbleTimer = 0;
 
 timer = 4 * 60;
 </string>

@@ -116,7 +116,7 @@ if (!global.frozen)
 {
     if (attached /*&amp;&amp; !global.playerFrozen */ ) // If Wheel Cutter is attached...
     {
-        if (checkSolid(0, 0)) // If connecting with solid surface...
+        if (checkSolid(0, 2 * image_yscale)) // If connecting with solid surface...
         {
             with (parent)
             {
@@ -184,16 +184,16 @@ if (!global.frozen)
                 {
                     playSFX(sfxWheelCutter2);
                 }
-                if ((yspeed &gt; -jumpSpeed &amp;&amp; sign(image_yscale) == 1) || (yspeed &lt; jumpSpeed &amp;&amp; sign(image_yscale) == -1))
+                /*if ((yspeed &gt; -jumpSpeed &amp;&amp; sign(image_yscale) == 1) || (yspeed &lt; jumpSpeed &amp;&amp; sign(image_yscale) == -1))
                 {
                     yspeed = max(yspeed - (accel), -jumpSpeed);
-                }
-                yspeed -= gravAccel * sign(image_yscale);
+                }*/
+                yspeed -= gravAccel * 2 * sign(image_yscale);
             }
-            else
+            /*else
             {
                 yspeed = 0;
-            }
+            }*/
         }
         else
         {

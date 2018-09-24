@@ -33,6 +33,7 @@ respawn = true;
 healthpointsStart = 10;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "aquatic, nature";
 
 facePlayer = true;
 

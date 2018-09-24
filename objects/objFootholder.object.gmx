@@ -47,6 +47,8 @@ startMode = 0;
 alarmTurn = 0;
 moveTarget = noone;
 prevMoveTarget = noone;
+reversePath = false;
+
 
 respawnRange = -1;
 despawnRange = -1;
@@ -54,15 +56,19 @@ despawnRange = -1;
 //@cc 1: normal, 2: shoots bullets from the sides
 variation = 1;
 
-//@cc 0: random stuff, 1: guided movement, it will pick the closest objFootholderguide
-// with its myFlag and will move towards it
-mode = 0;
+//@cc 0: random stuff, 1: guided movement, use objFootholderGuide and change the targetMode
+//variable to change the way it chooses its targets
+mode = 1;
 
 //@cc speed for mode 1
 mySpeed = 1;
 
-//@cc target behavior for mode 1. 0:random if repeated, 1: always pick nearest target
-targetMode = 0;
+//@cc target behavior for mode 1. 0:random if repeated, 1: always pick nearest target, 2: move in a sequence using the order
+//variable in objFootholderGuide
+targetMode = 2;
+
+//@cc if targetMode is 2 and this is true, the footholder will follow the path in reverse once it reaches the end of the path
+backtrack = false;
 </string>
           </argument>
         </arguments>
@@ -87,18 +93,54 @@ targetMode = 0;
             <kind>1</kind>
             <string>if (init)
 {
+    
+    init = 0;
+    if(mode==1 &amp;&amp; targetMode == 2)
+    {
+        var hasPath = false;
+        with(objFootholderGuide)
+        {
+            if(myFlag==other.myFlag&amp;&amp;order!=-1)
+            {
+                hasPath=true;
+                break;
+            }
+        }
+        if(!hasPath)
+        {
+            targetMode=1;
+        }
+    }
+    else
+    {
+        var hasGuides = false;
+        with(objFootholderGuide)
+        {
+            if(myFlag==other.myFlag)
+            {
+                hasGuides=true;
+                break;
+            }
+        }
+        if(!hasGuides)
+        {
+            mode=0;
+        }
+        else
+        {
+            mode=1;
+        }
+    }
     if (mode == 0)
     {
         xspeed = xs * xDir;
         yspeed = ys * yDir;
     }
     startMode = mode;
-    init = 0;
 }
-dead = false;
 event_inherited();
 
-if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
+if (entityCanStep())
 {
     if (mode == 0)
     {
@@ -147,6 +189,15 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 alarmTurn = 0;
             }
         }
+        if(moveTarget!=noone)
+        {
+            if (moveTowardPoint(moveTarget.x, moveTarget.y, mySpeed))
+            {
+                if (targetMode==2 ||(targetMode == 0 &amp;&amp; prevMoveTarget == noone))
+                    prevMoveTarget = moveTarget;
+                moveTarget = noone;
+            }
+        }
         if (moveTarget == noone)
         {
             var total = 0;
@@ -155,42 +206,115 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 if (myFlag == other.myFlag)
                     total++;
             }
-            with (objFootholderGuide)
+            if(targetMode == 2)
             {
-                if (myFlag == other.myFlag &amp;&amp; !place_meeting(x, y, other.id))
+                var nextTarget = noone;
+                var prevEndTarget = noone;
+                var startTarget = noone;
+                var prevStartTarget = noone;
+                var endTarget = noone;
+                
+                with(objFootholderGuide)
                 {
-                    var dist1 = 0, dist2 = 0;
-                    if (other.moveTarget != noone)
+                    if(order==-1||myFlag!=other.myFlag)
+                        continue;
+                    if(startTarget==noone||(startTarget!=noone&amp;&amp;startTarget.order&gt;order))
                     {
-                        dist1 = point_distance(x, y, other.x, other.y);
-                        dist2 = point_distance(other.moveTarget.x, other.moveTarget.y, other.x, other.y);
+                        startTarget = id;
                     }
-                    if (other.moveTarget == noone || (other.moveTarget != noone &amp;&amp; dist1 &lt; dist2) || (other.targetMode == 0 &amp;&amp; id == other.prevMoveTarget))
+                    else if(prevStartTarget==noone || (prevStartTarget!=noone&amp;&amp;prevStartTarget.order&gt;order))
                     {
-                        if (other.targetMode == 1 || (id != other.prevMoveTarget || total &lt;= 1))
+                        prevStartTarget = id;
+                    }
+                    if(endTarget==noone||(endTarget!=noone&amp;&amp;endTarget.order&lt;order))
+                    {
+                        endTarget = id;
+                    }
+                    else if(prevEndTarget==noone||(prevEndTarget!=noone&amp;&amp;prevEndTarget.order&lt;order))
+                    {
+                        prevEndTarget=id;
+                    }
+                    if(other.prevMoveTarget==id)
+                        continue;
+                    
+                    if(!other.reversePath)
+                    {
+                        if((nextTarget==noone||(nextTarget!=noone&amp;&amp;order&lt;nextTarget.order)) &amp;&amp; (other.prevMoveTarget==noone||(other.prevMoveTarget!=noone&amp;&amp;order&gt;other.prevMoveTarget.order)))
                         {
-                            other.moveTarget = id;
+                            nextTarget = id;
                         }
-                        else if (id == other.prevMoveTarget)
+                    }
+                    else
+                    {
+                        if((nextTarget==noone||(nextTarget!=noone&amp;&amp;order&gt;nextTarget.order)) &amp;&amp; (other.prevMoveTarget==noone||(other.prevMoveTarget!=noone&amp;&amp;id!=other.prevMoveTarget&amp;&amp;order&lt;other.prevMoveTarget.order)))
                         {
-                            var randList;
-                            var i = 0;
-                            with (objFootholderGuide)
+                            nextTarget = id;
+                        }
+                    }
+                }
+                if(prevMoveTarget==endTarget)
+                {
+                    if(backtrack &amp;&amp; !reversePath)
+                    {
+                        nextTarget = prevEndTarget;       
+                        reversePath = !reversePath;
+                    }
+                    else
+                    {
+                        nextTarget = startTarget;
+                    }
+                }
+                
+                if(prevMoveTarget == startTarget)
+                {
+                    if(reversePath)
+                    {
+                        nextTarget = startTarget;
+                        reversePath = !reversePath;
+                    }
+                }
+                moveTarget = nextTarget;
+                
+            }
+            else
+            {
+                with (objFootholderGuide)
+                {
+                    if (myFlag == other.myFlag &amp;&amp; !place_meeting(x, y, other.id))
+                    {
+                        var dist1 = 0, dist2 = 0;
+                        if (other.moveTarget != noone)
+                        {
+                            dist1 = point_distance(x, y, other.x, other.y);
+                            dist2 = point_distance(other.moveTarget.x, other.moveTarget.y, other.x, other.y);
+                        }
+                        if (other.moveTarget == noone || (other.moveTarget != noone &amp;&amp; dist1 &lt; dist2) || (other.targetMode == 0 &amp;&amp; id == other.prevMoveTarget))
+                        {
+                            if (other.targetMode == 1 || (id != other.prevMoveTarget || total &lt;= 1))
                             {
-                                if (id != other.id &amp;&amp; myFlag == other.myFlag)
-                                {
-                                    randList[i] = id;
-                                    i++;
-                                }
+                                other.moveTarget = id;
                             }
-                            other.moveTarget = randList[max(0, irandom(i - 1))];
-                            other.prevMoveTarget = noone;
-                            break;
+                            else if (id == other.prevMoveTarget)
+                            {
+                                var randList;
+                                var i = 0;
+                                with (objFootholderGuide)
+                                {
+                                    if (id != other.id &amp;&amp; myFlag == other.myFlag)
+                                    {
+                                        randList[i] = id;
+                                        i++;
+                                    }
+                                }
+                                other.moveTarget = randList[max(0, irandom(i - 1))];
+                                other.prevMoveTarget = noone;
+                                break;
+                            }
                         }
-                    }
-                    else if (other.moveTarget != noone &amp;&amp; ((dist1 == dist2)))
-                    {
-                        other.moveTarget = choose(other.moveTarget, id);
+                        else if (other.moveTarget != noone &amp;&amp; ((dist1 == dist2)))
+                        {
+                            other.moveTarget = choose(other.moveTarget, id);
+                        }
                     }
                 }
             }
@@ -201,15 +325,6 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 xspeed = xs * xDir;
                 yspeed = ys * yDir;
                 exit;
-            }
-        }
-        else
-        {
-            if (moveTowardPoint(moveTarget.x, moveTarget.y, mySpeed))
-            {
-                if (targetMode == 0 &amp;&amp; prevMoveTarget == noone)
-                    prevMoveTarget = moveTarget;
-                moveTarget = noone;
             }
         }
     }
@@ -239,14 +354,15 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             <string>event_inherited();
 if (spawned)
 {
+    x=xstart;
+    y=ystart;
     alarmTurn = 0;
     xspeed = xs * xDir;
     yspeed = ys * yDir;
-}
-else
-{
-    if (insideSection(x, y))
-        dead = false;
+    reversePath=false;
+    mode = startMode;
+    moveTarget=noone;
+    prevMoveTarget = noone;
 }
 </string>
           </argument>

@@ -45,6 +45,7 @@ active = false;
 bounce = 3;
 
 riderPhysicsAllowed = false;
+weaponsAllowed = true;
 </string>
           </argument>
         </arguments>
@@ -107,6 +108,7 @@ if (active)
     with (parent)
     {
         playerHandleSprites("Sakugarne" + string(other.image_index));
+        vehicle = other.id;
     }
 }
 </string>
@@ -203,7 +205,7 @@ if (!global.frozen)
                 dieToSpikes *= -1;
             }
             
-            if (ground &amp;&amp; yspeed &gt;= 0)
+            if (ground &amp;&amp; ((yspeed &gt;= 0 &amp;&amp; sign(image_yscale) == 1) || (yspeed &lt;= 0 &amp;&amp; sign(image_yscale) == -1)))
             {
                 with (other)
                 {
@@ -225,11 +227,11 @@ if (!global.frozen)
     }
     else
     {
-        grav = 0.25 * image_yscale;
+        grav = 0.25 * sign(image_yscale);
         
         if (ground &amp;&amp; yspeed &gt;= 0)
         {
-            yspeed = -(other.bounce) * image_yscale;
+            yspeed = -(other.bounce) * sign(image_yscale);
             image_index = 0;
             playSFX(sfxClamp);
         }
@@ -449,7 +451,7 @@ event_user(8);
             <kind>1</kind>
             <string>if (!active)
 {
-    drawPlayer(0, costumeID, floor(13 + image_index), 8, x, y - 8, image_xscale, image_yscale);
+    drawPlayer(0, costumeID, floor(13 + image_index), 8, x, y - 8 * image_yscale, image_xscale, image_yscale);
 }
 </string>
           </argument>

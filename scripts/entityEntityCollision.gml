@@ -42,12 +42,24 @@ with (other) // trigger on hit event. guardCancel set here!
     event_user(EV_GUARD);
 }
 
+// reflect if no damage
 if (global.damage == 0)
 {
-    if(guardCancel==0)
-        guardCancel=4;
+    if (guardCancel == 0)
+    {
+        guardCancel = 4;
+    }
     else
+    {
         guardCancel = max(1, guardCancel);
+    }
+}
+
+// if invincible, do special handling
+// special handling for invincible enemies
+if (other.invincible == true)
+{
+    guardCancel = 4;
 }
 
 switch (guardCancel)

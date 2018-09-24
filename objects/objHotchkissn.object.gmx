@@ -33,6 +33,7 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 3;
 grav = 0;
+category = "flying";
 blockCollision = false;
 
 // Enemy specific code

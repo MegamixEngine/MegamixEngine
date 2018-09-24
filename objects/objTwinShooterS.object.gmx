@@ -34,6 +34,7 @@ respawn = true;
 healthpointsStart = 5;
 healthpoints = healthpointsStart;
 contactDamage = 3;
+category = "floating, cannons";
 blockCollision = 1;
 grav = 0;
 dieToSpikes = 0;

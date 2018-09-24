@@ -32,7 +32,7 @@ healthpointsStart = 6;
 healthpoints = healthpointsStart;
 contactDamage = 6;
 
-category = "grounded";
+category = "grounded, semi bulky";
 
 facePlayerOnSpawn = true;
 

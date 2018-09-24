@@ -34,6 +34,8 @@ image_speed = 0.25;
 blink = 0;
 
 blockCollision = 0;
+bubbleTimer = -1;
+
 gravMultiplier = 1;
 
 shiftVisible = 1;

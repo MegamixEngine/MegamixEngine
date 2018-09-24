@@ -39,6 +39,8 @@ yspeed = 0;
 grav = 0;
 
 playSFX(sfxMetalBlade);
+
+image_speed = 0.35;
 </string>
           </argument>
         </arguments>

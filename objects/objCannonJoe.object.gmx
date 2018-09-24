@@ -34,7 +34,7 @@ healthpoints = healthpointsStart;
 contactDamage = 4;
 grav = 0;
 
-category = "joes";
+category = "cannons, joes";
 
 // Enemy specific code
 attackTimer = -1;

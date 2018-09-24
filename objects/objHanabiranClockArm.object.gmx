@@ -40,6 +40,7 @@ contactDamage = 4;
 canHit = false;
 
 grav = 0;
+bubbleTimer = -1;
 cDistance = 0;
 pieceGap = 24;
 despawnRange = -1;

@@ -43,6 +43,8 @@ blockCollision = false;
 grav = 0;
 doesIntro = false;
 
+category = "bulky, nature";
+
 // Enemy specific code
 
 //@cc flag of the switch handler

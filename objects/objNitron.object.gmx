@@ -32,7 +32,7 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
-category = "fire";
+category = "fire, floating";
 
 grav = 0;
 blockCollision = 0;

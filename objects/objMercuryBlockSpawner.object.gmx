@@ -31,6 +31,7 @@ canHit = false;
 
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 waitTime = 180;
 timer = 0;

@@ -28,7 +28,9 @@
             <string>event_inherited(); //needs to be called since parent needs to be defined for the switch statement to work
 
 if object_index == objNormalBusterShot
+{
     scrBusterDefault_Create();
+}
 else if instance_exists(parent) 
 {
     switch (global.characterSelected[parent.playerID])

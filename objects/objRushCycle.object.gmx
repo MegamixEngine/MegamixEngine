@@ -33,6 +33,7 @@ contactDamage = 0;
 
 blockCollision = 1;
 grav = 0.25;
+bubbleTimer = 0;
 
 canHit = -1;
 
@@ -258,7 +259,14 @@ if (!global.frozen)
                     {
                         if (place_meeting(x, y + image_yscale * 2, objSpike))
                         {
-                            global.ammo[playerID, global.weapon[playerID]] = max(0, global.ammo[playerID, global.weapon[playerID]] - 1);
+                            if global.infiniteEnergy[global.weaponID[? objRushCycle]]
+                            { 
+                                global.playerHealth[playerID] = max(0, global.playerHealth[playerID] - 1);
+                            }
+                            else
+                            {
+                                global.ammo[playerID, global.weapon[playerID]] = max(0, global.ammo[playerID, global.weapon[playerID]] - 1);
+                            }
                             playSFX(sfxHit);
                             iFrames = 8;
                         }

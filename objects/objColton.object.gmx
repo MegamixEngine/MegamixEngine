@@ -65,19 +65,15 @@ bulletID = -10;
 
 if (entityCanStep())
 {
-    if (!instance_exists(bulletID))
+    if (!instance_exists(bulletID) &amp;&amp; insideView())
     {
-        facePlayer = true;
+        calibrateDirection();
         shooting = true;
         animTimer = 0;
         image_index = 2;
         bulletID = instance_create(x + (15 + 4) * image_xscale, y - 2, objColtonBullet);
         bulletID.image_xscale = image_xscale;
         playSFX(sfxColtonShoot);
-    }
-    else
-    {
-        facePlayer = false;
     }
     
     if (shooting)

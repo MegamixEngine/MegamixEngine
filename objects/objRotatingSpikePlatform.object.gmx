@@ -37,6 +37,7 @@ respawnRange = -1;
 despawnRange = -1;
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 initImageIndex = -1;
 </string>

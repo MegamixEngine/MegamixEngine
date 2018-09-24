@@ -32,6 +32,7 @@ isSolid = 1;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 respawnRange = -1;
 despawnRange = -1;

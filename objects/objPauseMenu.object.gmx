@@ -582,10 +582,13 @@ else
 if ((global.keyWeaponSwitchLeft[playerID] &amp;&amp; global.keyWeaponSwitchRightPressed[playerID])
     || (global.keyWeaponSwitchLeftPressed[playerID] &amp;&amp; global.keyWeaponSwitchRight[playerID]))
 {
-    playSFX(sfxMenuSelect);
     for (var i = 0; i &lt;= global.totalWeapons; i++)
     {
-        global.weaponHotbar[i] = i;
+        if global.weaponHotbar[i] != i
+        {
+            global.weaponHotbar[i] = i;
+            playSFX(sfxMenuSelect);
+        }
     }
     
     weaponVisibleN = 0;

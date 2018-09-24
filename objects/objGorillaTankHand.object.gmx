@@ -39,6 +39,7 @@ contactDamage = 4;
 
 grav = 0;
 blockCollision = false;
+isTargetable = false;
 
 // Enemy specific code
 attack = false;

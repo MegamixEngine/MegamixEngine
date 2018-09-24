@@ -29,6 +29,8 @@
 canHit = false;
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
+
 yDist = 0; // Distance to travel before creating waterfall segment
 respawn = false;
 spawner = noone;

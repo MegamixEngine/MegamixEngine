@@ -32,6 +32,7 @@ respawn = true;
 healthpointsStart = 10;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "fire, nature";
 
 // Enemy specific code
 shootTimer = 0;

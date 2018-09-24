@@ -41,6 +41,7 @@ event_inherited();
 canHit = false;
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 respawnRange = -1;
 despawnRange = -1;
