@@ -109,9 +109,11 @@ stageBossIntroSpeed[0, 1] = 3 / 60;
 
 // menu selections
 stageRoom[0, 3] = "rmTitleScreen";
+stageLock[0, 3] = false;
 stageName[0, 3] = "MENU";
 
 stageRoom[1, 3] = "rmShop";
+stageLock[1, 3] = false;
 stageName[1, 3] = "SHOP";
 
 // convenience feature
