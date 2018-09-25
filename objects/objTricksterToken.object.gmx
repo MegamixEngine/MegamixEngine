@@ -3,7 +3,7 @@
   <spriteName>sprTricksterToken</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-300000</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>prtPickup</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -83,41 +83,7 @@ if(entityCanStep())
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="10">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//Called when the item is collected
-// global effect of attaining the element
-if (!alreadyCollected)
-{
-    arrayAppend(global.tTokensCollected, name);
-    // update count of number of elements collected:
-    global.tricksterTokens = array_length_1d(global.tTokensCollected) - numberOf(global.tTokensCollected, "");
-    // save the game file
-    saveLoadGame(true);
-}
-playSFX(sfxKeyGet);
-instance_destroy();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="4">
+    <event eventtype="7" enumb="13">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -162,6 +128,40 @@ if(init)
         alreadyCollected = true;
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Called when the item is collected
+// global effect of attaining the element
+if (!alreadyCollected)
+{
+    arrayAppend(global.tTokensCollected, name);
+    // update count of number of elements collected:
+    global.tricksterTokens = array_length_1d(global.tTokensCollected) - numberOf(global.tTokensCollected, "");
+    // save the game file
+    saveLoadGame(true);
+}
+playSFX(sfxKeyGet);
+instance_destroy();
 </string>
           </argument>
         </arguments>

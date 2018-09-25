@@ -973,7 +973,10 @@ if (global.inGame)
     
     // Destroy collected pickups
     var str, slash, totalPickups;
-    
+    with(objTricksterToken)
+    {
+        event_user(3);
+    }
     totalPickups = ds_list_size(pickups);
     for (var i = 0; i &lt;= totalPickups; i += 1)
     {
