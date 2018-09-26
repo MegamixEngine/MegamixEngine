@@ -267,7 +267,9 @@
     <instance objName="objFootholderGuide" x="368" y="544" name="inst_7A2AD150" locked="0" code="order=5;&#xA;myFlag=1;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFootholder" x="432" y="528" name="inst_47AB54E0" locked="0" code="myFlag=1;&#xA;mode=1;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFootholder" x="432" y="576" name="inst_425928B8" locked="0" code="myFlag=1;&#xA;mode=1;&#xA;backtrack=true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSprinklan" x="736" y="576" name="inst_B11324C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSprinklan" x="736" y="576" name="inst_B11324C5" locked="0" code="col = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSprinklan" x="704" y="576" name="inst_3356D7C0" locked="0" code="col = 2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSprinklan" x="720" y="576" name="inst_1B51133C" locked="0" code="col = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgBasic" x="96" y="176" w="16" h="16" xo="16" yo="48" id="11300187" name="inst_B8EA5CF3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

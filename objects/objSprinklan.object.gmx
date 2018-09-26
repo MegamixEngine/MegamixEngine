@@ -167,17 +167,17 @@ if (entityCanStep())
         animFrame += 1;
         if (anim == 0)
         {
-            image_index = 0;
+            animFrame = 0;
         }
         else if (anim == 1)
         {
             if (animFrame &gt; 5)
-                animFrame = frameOffset;
+                animFrame = 0;
             else if (animFrame == 2 || animFrame == 5)
                 event_user(0);
-            image_index = frameOffset + animFrame;
         }
     }
+    image_index = 6*col + animFrame;
 }
 </string>
           </argument>
