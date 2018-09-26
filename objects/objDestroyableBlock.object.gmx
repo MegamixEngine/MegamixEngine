@@ -34,6 +34,7 @@ killOverride = false;
 
 //@cc hot to use
 //@cc weakness = global.weaponID[? objWeaponObject];
+//@cc or weakness = ds_map_find_value(global.weaponID, objWeaponObject)
 //@cc To make it a reflect block, use "weakness = -1;"
 weakness = 0;
 
@@ -42,6 +43,7 @@ isSolid = 1;
 timer = 0;
 
 dieToSpikes = false;
+
 </string>
           </argument>
         </arguments>

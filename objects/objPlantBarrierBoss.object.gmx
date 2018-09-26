@@ -155,10 +155,6 @@ if (!global.frozen)
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (other.object_index == objFlameMixer)
-{
-    event_user(EV_DEATH);
-}
 </string>
           </argument>
         </arguments>

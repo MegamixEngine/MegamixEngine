@@ -77,7 +77,7 @@ else if (fname == "position_meeting")
 else if (fname == "instance_destroy")
     instance_destroy();
 else if (fname == "instance_create")
-    instance_create(a0, a1, a2);
+    global.gml_fn_retval = instance_create(a0, a1, a2);
 else if(fname == "ds_map_find_value")
     global.gml_fn_retval = ds_map_find_value(a0,a1);
 else if (fname ==  "ds_list_find_index")
