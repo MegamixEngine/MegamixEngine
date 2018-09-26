@@ -29,10 +29,11 @@
 
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
+contactDamage = 6;
 
 pose = sprAirIntro;
-poseImgSpeed = 0.1;
-contactDamage = 6;
+poseImgSpeed = 15/60; //0.5;
+sprite_index = sprAirJump;
 
 grav = 0.25;
 

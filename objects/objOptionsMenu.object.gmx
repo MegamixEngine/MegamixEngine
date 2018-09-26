@@ -267,7 +267,6 @@ if (phase == 2 &amp;&amp; !selected)
             case 6:
                 pre = global.soundvolume;
                 global.soundvolume = max(0, min(100, global.soundvolume + 10 * dir));
-                audio_master_gain(global.soundvolume * 0.01);
                 if (global.soundvolume != pre)
                 {
                     playSFX(sfxMenuMove);
