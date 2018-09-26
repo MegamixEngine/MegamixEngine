@@ -33,7 +33,7 @@ contactDamage = 2;
 
 penetrate = 1;
 pierces = 2;
-attackDelay = 15;
+attackDelay = 9;
 
 playSFX(sfxEnemyBoost);
 

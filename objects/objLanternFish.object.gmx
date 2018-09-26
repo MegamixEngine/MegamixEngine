@@ -41,6 +41,7 @@ doesIntro = false;
 image_speed = 0.15; // STOP USING THIS VARIABLE
 
 alarmFish = 60;
+deadTimer = 0;
 </string>
           </argument>
         </arguments>
@@ -78,10 +79,18 @@ if (entityCanStep())
         a = instance_create(x + (15 * image_xscale), y - 10, objShrink);
         a.respawn = false;
     }
+    if (image_index &gt;= 4)
+    {
+        image_index = 0;
+    }
 }
 else
 {
     image_speed = 0;
+    if (dead)
+    {
+        image_index = 4;
+    }
 }
 </string>
           </argument>

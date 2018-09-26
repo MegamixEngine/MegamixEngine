@@ -102,6 +102,7 @@ if (entityCanStep())
             {
                 other.yspeed = 0.35 * gravDir;
                 other.moved = true;
+                other.image_index += 0.25;
             }
         }
     }
@@ -110,7 +111,10 @@ if (entityCanStep())
         with (partner)
         {
             if (!moved)
+            {
                 yspeed = -other.yspeed;
+                image_index += 0.25;
+            }
             else
             {
                 other.moved = false;
@@ -131,13 +135,17 @@ if (entityCanStep())
         if (stop)
         {
             yspeed = 0;
+            image_index = 0;
             with (partner)
+            {
                 yspeed = 0;
+                image_index = 0;
+            }
         }
     }
     if (yspeed != 0)
     {
-        if (place_meeting(x, y + yspeed, objXPlatformStop) || ground)
+        if (place_meeting(x, y + yspeed * 2, objXPlatformStop) || ground)
         {
             yspeed = 0;
             with (partner)
@@ -171,7 +179,7 @@ if (entityCanStep())
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (entityCanStep())
+/*if (entityCanStep())
 {
     if (yspeed != 0)
     {

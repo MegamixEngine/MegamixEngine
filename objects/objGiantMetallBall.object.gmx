@@ -29,6 +29,7 @@
 
 blockCollision = 0;
 grav = 0;
+canHit = false;
 
 respawn = false;
 

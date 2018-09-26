@@ -303,6 +303,7 @@ if (!global.frozen)
                 direction += 180;
                 image_xscale *= -1;
                 pierces = 0;
+                grav = 0;
             }
             break;
     }
