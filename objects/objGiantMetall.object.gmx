@@ -49,6 +49,8 @@ blink = false;
 metallTimer = 0;
 spd = 0.75;
 coolDown = 0;
+blinkWait = choose(60, 120, 180);
+blinkTimer = 8;
 
 checkRange = 16 * 10; // 10 blocks
 
@@ -128,7 +130,6 @@ if (entityCanStep())
                     image_index = 3;
                     canShoot = false;
                     image_xscale = other.image_xscale;
-                    //xspeed = 2.5 * other.image_xscale;
                     respawn = false;
                     isFromMiniboss = true;
                     facePlayerOnSpawn = true;
@@ -139,6 +140,22 @@ if (entityCanStep())
         if (coolDown &gt; 0)
         {
             coolDown -= 1;
+        }
+        blinkWait--;
+        if (blinkWait == 0)
+        {
+            blink = true;
+        }
+        
+        if (blink == true)
+        {
+            blinkTimer--;
+            if (blinkTimer == 0)
+            {
+                blinkTimer = 8;
+                blink = false;
+                blinkWait = choose(60, 120, 180);
+            }
         }
     }
 }
@@ -228,8 +245,8 @@ coolDown = 120;
 for (i = -1; i &lt;= 1; i += 1)
 {
     ball = instance_create(x + 8 * image_xscale, y + 24, objGiantMetallBall);
-    ball.xspeed = (2 - (abs(i) / 2)) * image_xscale;
-    ball.yspeed = i * 2;
+    ball.xspeed = (1 - (abs(i) / 2)) * image_xscale;
+    ball.yspeed = i * 1;
 }
 
 coolDown = 60;

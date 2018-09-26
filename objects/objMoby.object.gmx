@@ -84,7 +84,7 @@ if (entityCanStep() &amp;&amp; introTimer &lt;= 0)
     {   
         with (objMegaman)
         {
-            playerBlow((1 / 4)*sign(-other.image_xscale));
+            playerBlow((1 / 2)*sign(-other.image_xscale));//1/4
         }
     }
     blinkTimer += 1;
@@ -164,25 +164,47 @@ else if (!insideView())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (introTimer &gt; 0 &amp;&amp; doesIntro)
+            <string>// Glow white when hit
+if (iFrames == 1) || (iFrames == 3)
+{
+    d3d_set_fog(true, c_white, 0, 0);
+}
+
+// Draw code
+if (introTimer &gt; 0 &amp;&amp; doesIntro)
 {
     event_inherited();
 }
 else
 {
+    // Draw air suction
     if (instance_exists(objMobbyBomb))
+    {
         draw_sprite_ext(sprMobbyAir, image_index, round(x + 42 * image_xscale),
             round(y + 17), image_xscale, image_yscale, image_angle,
             image_blend, image_alpha);
+    }
     
-    draw_sprite_ext(sprite_index, image_index mod 1, round(x), round(y),
+    // Draw self
+    draw_sprite_ext(sprite_index, image_index mod 2, round(x), round(y),
         image_xscale, image_yscale, image_angle, image_blend, image_alpha);
     
+    // Draw flipper
     draw_sprite_ext(sprite_index, floor(flipperIndex + 2), round(x), round(y),
         image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+        
+    // Draw blinking
     if (blink)
+    {
         draw_sprite_ext(sprite_index, 5, round(x), round(y), image_xscale,
             image_yscale, image_angle, image_blend, image_alpha);
+    }
+}
+
+// End white when hit
+if (iFrames == 1) || (iFrames == 3)
+{
+    d3d_set_fog(false, 0, 0, 0);
 }
 </string>
           </argument>
