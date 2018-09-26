@@ -30,5 +30,10 @@
     <frame index="7">images\sprAirIntro_7.png</frame>
     <frame index="8">images\sprAirIntro_8.png</frame>
     <frame index="9">images\sprAirIntro_9.png</frame>
+    <frame index="10">images\sprAirIntro_10.png</frame>
+    <frame index="11">images\sprAirIntro_11.png</frame>
+    <frame index="12">images\sprAirIntro_12.png</frame>
+    <frame index="13">images\sprAirIntro_13.png</frame>
+    <frame index="14">images\sprAirIntro_14.png</frame>
   </frames>
 </sprite>

@@ -28,16 +28,12 @@
             <string>// Allows you to tweak weapons on a per-level basis.
 // Creation code options:
 
-// global.weaponLocked[whatever] = true or false
-// global.infiniteEnergy[whatever] = true or false
+// setWeaponLocked(objWhatever,true/false);
+
+// Examples:
+// setWeaponLocked(objBreakDash,true);
+// setWeaponLocked(objMagnetBeam,true);
 /*
-to access a weapon, use global.weaponID[? objWeapon], with objWeapon
-being substitued for the weapon's object name
-    
-Examples:
-    - global.weaponLocked[global.weaponID[? objSolarBlaze]] = true
-    - global.infiniteEnergy[global.weaponID[? objIceSlasher]] = false
-    
 This object must be placed for this effect; do not use room creation code for this.
 objGlobalControl resets infiniteEnergy to zero on a room begin unless this
 object exists.
@@ -45,7 +41,11 @@ object exists.
 
 //@cc if true weapons wont be unlocked until the level ends
 onlyUnlockOnLevelEnd = false;
+
+//@cc script that runs when the level begins(won't run after respawning)
 levelStartScript = scrNoEffect;
+
+//@cc script that runs when the level ends
 levelEndScript = scrNoEffect;
 
 for (var j = 0; j &lt;= global.totalWeapons; j++)

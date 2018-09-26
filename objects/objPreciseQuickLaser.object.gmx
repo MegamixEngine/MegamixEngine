@@ -162,10 +162,7 @@ if (entityCanStep())
     image_index += imgSpeed;
     
     // Solidify objects
-    with(all)
-    {
-        solid=0;
-    }
+    
     with (prtEntity)
     {
         solid=false;
@@ -247,7 +244,10 @@ if (entityCanStep())
         
     }
     image_angle = ang;
-
+	with(all)
+    {
+        solid=0;
+    }
 }
 </string>
           </argument>
@@ -289,7 +289,7 @@ if (variation == 1)
         }
         else
         {
-            other.timer = other.drainCooldown;
+            iFrames = other.drainCooldown;
             playSFX(sfxHit);
         }
     }

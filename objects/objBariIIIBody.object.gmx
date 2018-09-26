@@ -31,7 +31,7 @@ contactDamage = 3;
 healthpointsStart = 2;
 healthpoints = 2;
 respawn = false;
-despawnRange = -1;
+despawnRange = 32;
 isSolid = 1;
 fnsolid = true;
 facePlayer = false;
@@ -254,14 +254,21 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch (col)
+            <string>if(spawned)
 {
-    case 1:
-        sprite_index = sprBariIIIBodyOrange;
-        break;
-    default:
-        sprite_index = sprBariIIIBody;
-        break;
+    switch (col)
+    {
+        case 1:
+            sprite_index = sprBariIIIBodyOrange;
+            break;
+        default:
+            sprite_index = sprBariIIIBody;
+            break;
+    }
+}
+else
+{
+    event_user(EV_DEATH);
 }
 </string>
           </argument>
@@ -287,7 +294,7 @@ if (entityCanStep())
             <kind>1</kind>
             <string>dead = true;
 instance_create(x, y, objExplosion);
-playSFX(sfxEnemyHit);
+
 if (instance_exists(owner))
 {
     owner.snap = false;
