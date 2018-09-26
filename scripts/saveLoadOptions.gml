@@ -22,7 +22,7 @@ global.jumpSound             = sl(global.jumpSound, "jump-sound");
 global.teleportSound         = sl(global.teleportSound, "teleport-sound");
 global.vsync                 = sl(global.vsync,          "vsync");
 global.showControllerOverlay = sl(global.showControllerOverlay, "controlleroverlay");
-globalescapeBehavior         = sl(global.escapeBehavior, "escapebehavior");
+global.escapeBehavior         = sl(global.escapeBehavior, "escapebehavior");
 
 // controls
 for (var i = 0; i < 4; i += 1)
