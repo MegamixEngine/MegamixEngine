@@ -170,7 +170,7 @@ if (!global.frozen)
                 
                 with (parent)
                 {
-                    if (checkSolid(0, other.yspeed))
+                    if (checkSolid(0, other.yspeed*2))
                     {
                         other.yspeed = 0;
                     }

@@ -82,7 +82,8 @@ global.levelLoop = 1;
 global.levelVolume = 1;
 global.songMemory = -1;
 
-audio_master_gain(global.musicvolume * 0.01);
+// Music volume
+audio_sound_gain(sound_index, global.levelVolume * (global.musicvolume * 0.01), 0);
 </string>
           </argument>
         </arguments>
