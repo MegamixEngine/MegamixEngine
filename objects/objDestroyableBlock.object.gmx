@@ -32,18 +32,18 @@ bubbleTimer = -1;
 
 killOverride = false;
 
-//@cc hot to use
+isSolid = 1;
+faction = 5;
+fnsolid = 2;
+dieToSpikes = false;
+
+//@cc how to use
 //@cc weakness = global.weaponID[? objWeaponObject];
 //@cc or weakness = ds_map_find_value(global.weaponID, objWeaponObject)
 //@cc To make it a reflect block, use "weakness = -1;"
 weakness = 0;
 
-isSolid = 1;
-
 timer = 0;
-
-dieToSpikes = false;
-
 </string>
           </argument>
         </arguments>
@@ -126,15 +126,26 @@ if (spawned)
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+/*other.guardCancel = 4;
+
+if (global.weapon[other.parent.playerID] == weakness)
+{
+    if (global.weapon[other.parent.playerID] == 0 || other.object_index != objNormalBusterShot)
+    {
+        other.guardCancel = 0;
+    }
+}*/
+
 with (other)
 {
     guardCancel = 4;
     
-    if(object_is_ancestor(object_index,prtPlayerProjectile))
+    if (object_is_ancestor(object_index,prtPlayerProjectile))
     {
         if (instance_exists(parent))
         {
-            if (global.weapon[parent.playerID] == other.weakness &amp;&amp; (global.weapon[parent.playerID] == 0 || object_index != objBusterShot))
+            if (global.weapon[parent.playerID] == other.weakness &amp;&amp; (global.weapon[parent.playerID] == 0 || !object_is_ancestor(object_index, objBusterShot)))
             {
                 guardCancel = 0;
             }

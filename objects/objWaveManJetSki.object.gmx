@@ -218,6 +218,14 @@ inWater = -1;
                             {
                                 slideLock = lockPoolRelease(climbLock);
                             }
+                            
+                            if instance_exists(objBreakDash)
+                            {
+                                with objBreakDash
+                                {
+                                    instance_destroy();
+                                }
+                            }
                         }
                         
                         physicsLock = lockPoolLock(
