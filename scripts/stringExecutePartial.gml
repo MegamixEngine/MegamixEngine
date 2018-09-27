@@ -135,7 +135,7 @@ while (string_length(str) > 0)
     // with statement
     if (token == "with")
     {
-        str = stringSubstring(str, string_length("with") + 2);
+        str = stringSubstring(str, string_length("with") + 1);
         parseExpression(str);
         str = stringSubstring(str, global.retval_exprlen + 1);
         if (global.retval_error)
