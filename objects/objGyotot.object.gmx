@@ -93,9 +93,9 @@ if (entityCanStep())
             break;
     }
     
-    if (!phasetimer mod 6)
+    if (phasetimer mod 6 == 0)
     {
-        if (!(image_index mod 2))
+        if (image_index mod 2 == 0)
         {
             image_index += 1;
         }
