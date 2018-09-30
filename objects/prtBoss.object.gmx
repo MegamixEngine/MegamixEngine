@@ -196,13 +196,8 @@ visible = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-// Prevent bosses from healing past their max HP - this means you, Heat Man and Mercury!
 if (isFight == true)
 {
-    if (healthpoints &gt; healthpointsStart)
-    {
-        healthpoints = healthpointsStart;
-    }
     
     if(dieToPits)
     {
@@ -872,8 +867,13 @@ else if (cutsceneTimer == 20)
             <kind>1</kind>
             <string>if (!dead)
 {
+    if (healthpoints &gt; healthpointsStart)
+    {
+        healthpoints = healthpointsStart;
+    }
     if (drawBoss) // actually draw itself
     {
+
         if ((iFrames mod 4) &lt; 2 || !iFrames)
         {
             drawSelf();
