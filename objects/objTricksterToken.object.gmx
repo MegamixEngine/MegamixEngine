@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-depth=0;
 despawnRange = -1;
 
 faction = 3;
@@ -46,7 +45,43 @@ name = "";
 tokenIndex = -1;
 alreadyCollected=false;
 animFrame = 0;
-init=true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if(name == "")
+{
+    if(tokenIndex&gt;4)
+    {
+        instance_destroy();
+        exit;
+    }
+    name = room_get_name(room)+string(tokenIndex);
+    
+    if(indexOf(global.tTokensCollected,name)!=-1)
+    {
+        alreadyCollected = true;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -76,7 +111,6 @@ if(entityCanStep())
     animFrame+=0.15;
     if(floor(animFrame)&gt;3)
         animFrame=0;
-    image_index = floor(animFrame) + (tokenIndex+1)*4;
 }
 </string>
           </argument>
@@ -112,22 +146,7 @@ if(entityCanStep())
     }
     
 }
-if(init)
-{
-    init=false;
-    if(tokenIndex&gt;4)
-    {
-        global.levelTTokensTotal-=1;
-        instance_destroy();
-        exit;
-    }
-    name = room_get_name(room)+string(tokenIndex);
-    
-    if(indexOf(global.tTokensCollected,name)!=-1)
-    {
-        alreadyCollected = true;
-    }
-}
+
 </string>
           </argument>
         </arguments>
@@ -186,6 +205,7 @@ instance_destroy();
             <kind>1</kind>
             <string>if (!dead)
 {
+    image_index = floor(animFrame) + (tokenIndex+1)*4;
     drawSelf();
     if(alreadyCollected)
     {

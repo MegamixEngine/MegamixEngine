@@ -270,6 +270,11 @@
     <instance objName="objSprinklan" x="736" y="576" name="inst_B11324C5" locked="0" code="col = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSprinklan" x="704" y="576" name="inst_3356D7C0" locked="0" code="col = 2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSprinklan" x="720" y="576" name="inst_1B51133C" locked="0" code="col = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTricksterToken" x="976" y="576" name="inst_41B191A7" locked="0" code="tokenIndex = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTricksterToken" x="944" y="544" name="inst_90E6C2A7" locked="0" code="tokenIndex = 1;&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTricksterToken" x="880" y="560" name="inst_52270C67" locked="0" code="tokenIndex = 2;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTricksterToken" x="848" y="512" name="inst_5D5FCEFC" locked="0" code="tokenIndex = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTricksterToken" x="832" y="560" name="inst_84F6C932" locked="0" code="tokenIndex = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgBasic" x="96" y="176" w="16" h="16" xo="16" yo="48" id="11300187" name="inst_B8EA5CF3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
