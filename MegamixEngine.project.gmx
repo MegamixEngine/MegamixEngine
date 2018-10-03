@@ -6177,7 +6177,7 @@
         <object>objects\objForkBlock</object>
         <object>objects\objHover</object>
         <object>objects\objLever</object>
-        <object>objects\objLeverfield</object>
+        <object>objects\objLeverField</object>
         <object>objects\objQuickSand</object>
         <object>objects\objQuickSandB</object>
         <object>objects\objRingmanPlatform</object>

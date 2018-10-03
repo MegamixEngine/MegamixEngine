@@ -226,18 +226,8 @@
     <instance objName="objCFTFConveyor" x="0" y="336" name="inst_B209716F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCFTFConveyor" x="32" y="336" name="inst_EAF3DAD2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBariIII" x="1112" y="608" name="inst_B8378CEF" locked="0" code="maxSize=2;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objRoboRabbit" x="1152" y="640" name="inst_BB9C9A09" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBubukan" x="1264" y="624" name="inst_711A4188" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDada" x="1200" y="640" name="inst_7E6DFCCD" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objWalkingBomb" x="1168" y="640" name="inst_80EE3158" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objDompan" x="1200" y="640" name="inst_2FA084E6" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objRatton" x="1184" y="640" name="inst_BB1185BA" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBabyMetall" x="1136" y="640" name="inst_74D140DE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSkullWalker" x="1184" y="624" name="inst_D2C1D8FE" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBigStomper" x="1168" y="624" name="inst_95C0A4E9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDarspider" x="992" y="512" name="inst_E77F1E53" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
-    <instance objName="objTsurareStamp" x="1200" y="624" name="inst_3EF228CF" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objShigaraky" x="1216" y="624" name="inst_A0B61494" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objObjectSetter" x="464" y="16" name="inst_5824FA55" locked="0" code="" scaleX="1" scaleY="-1" colour="4294967295" rotation="0"/>
     <instance objName="objLadder" x="464" y="0" name="inst_6682587F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="496" y="16" name="inst_14F98FAC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -275,6 +265,7 @@
     <instance objName="objTricksterToken" x="880" y="560" name="inst_52270C67" locked="0" code="tokenIndex = 2;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTricksterToken" x="848" y="512" name="inst_5D5FCEFC" locked="0" code="tokenIndex = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTricksterToken" x="832" y="560" name="inst_84F6C932" locked="0" code="tokenIndex = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objYambow" x="1408" y="592" name="inst_DC0B905D" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgBasic" x="96" y="176" w="16" h="16" xo="16" yo="48" id="11300187" name="inst_B8EA5CF3" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
