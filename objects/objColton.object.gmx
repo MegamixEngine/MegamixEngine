@@ -61,13 +61,16 @@ bulletID = -10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>var imgscl = image_xscale;
+event_inherited();
+image_xscale = imgscl;
 
 if (entityCanStep())
 {
     if (!instance_exists(bulletID) &amp;&amp; insideView())
     {
-        calibrateDirection();
+        if(facePlayer)
+            calibrateDirection();
         shooting = true;
         animTimer = 0;
         image_index = 2;
