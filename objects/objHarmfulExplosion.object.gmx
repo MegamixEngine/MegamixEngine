@@ -72,13 +72,14 @@ parent = noone;
             <string>if (damagePlayer &amp;&amp; image_index &lt;= 6)
     canDamage = true;
 event_inherited();
-if(init)
-{
-	imgSpd = image_speed;
-	init = 0;
-}
+
 if (entityCanStep())
 {
+    if(init)
+    {
+        imgSpd = image_speed;
+        init = 0;
+    }
     image_speed = imgSpd;
     if (damageEnemies &amp;&amp; image_index &lt;= 6)
     {
