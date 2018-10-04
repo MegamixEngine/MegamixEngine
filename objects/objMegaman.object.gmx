@@ -55,7 +55,6 @@ jumpSpeedWater = 0.1;
 // jumpSpeedWater = 4.85 + grav*2;
 
 walkSpeed = 1.3; // walkSpeed = 1.296875;
-oilWalk = 0.3;
 maxVspeed = 7;
 
 premask = mask_index;
@@ -94,11 +93,14 @@ ground = true;
 xDir = 0;
 yDir = 0;
 
+
 prevXScale = image_xscale;
 isStep = false;
 stepTimer = 0;
 canMinJump = false;
 climbShootXscale = 1;
+movementXScale = image_xscale;
+xScaleOverride = 0;
 
 isShoot = false;
 shootTimer = 0;
