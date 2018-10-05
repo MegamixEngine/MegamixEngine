@@ -100,7 +100,7 @@ stepTimer = 0;
 canMinJump = false;
 climbShootXscale = 1;
 movementXScale = image_xscale;
-xScaleOverride = 0;
+xScaleOverride = -1;
 
 isShoot = false;
 shootTimer = 0;

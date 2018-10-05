@@ -13,7 +13,7 @@ if (!global.frozen && !frozen)
         playerMovement();
     }
     movementXScale = image_xscale;
-    if(xScaleOverride != 0)
+    if(xScaleOverride != 0 && !climbing)
     {
         image_xscale = sign(xScaleOverride);
     }
@@ -28,6 +28,11 @@ if (!global.frozen && !frozen)
     else
     {
         playerHandleShoot();
+    }
+    
+    if(climbing)
+    {
+        movementXScale = image_xscale;
     }
     
     // Quick weapon switching
