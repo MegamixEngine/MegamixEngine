@@ -51,6 +51,7 @@ chaseTimer = 0;
 startWait = 0;
 startWaitTimer = startWait;
 rotateChange = 45;
+jetTimer = 0;
 
 spd = 1.50;
 
@@ -180,6 +181,23 @@ if (entityCanStep())
                 break;
         }
     }
+    
+    // Jet Animation
+    /*jetTimer += 1;
+    if (jetTimer &gt;= 4)
+    {
+        // &lt;-- jet animation speed here
+        if (sprite_index == sprYudonMissileOn)
+        {
+            sprite_index = sprYudonMissileOff;
+        }
+        else
+        {
+            sprite_index = sprYudonMissileOn;
+        }
+            
+        jetTimer = 0;
+    }*/
 }
 else if (dead)
 {

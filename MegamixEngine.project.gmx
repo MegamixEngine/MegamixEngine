@@ -3445,6 +3445,7 @@
         </sprites>
         <sprites name="MetallDaddy">
           <sprite>sprites\sprMetallDaddy</sprite>
+          <sprite>sprites\sprMetallDaddyHurt</sprite>
           <sprite>sprites\mskMetallDaddy</sprite>
           <sprite>sprites\sprMetallDaddyJump</sprite>
         </sprites>

@@ -139,7 +139,14 @@ if (entityCanStep())
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-stopSFX(sfxEnemyHit);
+if (place_meeting(x,y,prtPlayerProjectile))
+{
+    playSFX(sfxEnemyHit);
+}
+else
+{
+    stopSFX(sfxEnemyHit);
+}
 instance_create(x, y, objExplosion);
 </string>
           </argument>

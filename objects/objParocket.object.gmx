@@ -208,7 +208,7 @@ else if (dead)
 
 if (sprite_index == sprParocketRise)
 {
-    var i = instance_create(x, y - (sprite_height / 2), objHarmfulExplosion);
+    var i = instance_create(x, y - 10, objHarmfulExplosion);
     i.contactDamage = 6;
 }
 else
@@ -216,6 +216,7 @@ else
     var i = instance_create(x, y, objHarmfulExplosion);
     i.contactDamage = 6;
 }
+stopSFX(sfxEnemyHit);
 playSFX(sfxMM9Explosion);
 </string>
           </argument>
