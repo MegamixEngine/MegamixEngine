@@ -136,8 +136,6 @@ if (entityCanStep() &amp;&amp; instance_exists(target))
                 ID.image_xscale = image_xscale;
                 ID.sprite_index = sprEnemyBullet;
             }
-            
-            playSFX(sfxEnemyShoot);
         }
     }
 }

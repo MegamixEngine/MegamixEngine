@@ -3355,6 +3355,8 @@
           <sprite>sprites\sprMechaDragonTeleport</sprite>
           <sprite>sprites\sprMechaDragon</sprite>
           <sprite>sprites\sprMechaDragonFire</sprite>
+          <sprite>sprites\sprMechaDragonHurt</sprite>
+          <sprite>sprites\sprMechaDragonFireHurt</sprite>
           <sprite>sprites\sprMechaDragonFireBall</sprite>
         </sprites>
         <sprites name="Boobeam ">
@@ -3368,6 +3370,7 @@
         </sprites>
         <sprites name="Guts Dozer">
           <sprite>sprites\sprGutsDozer</sprite>
+          <sprite>sprites\sprGutsDozerHurt</sprite>
           <sprite>sprites\mskGutsDozer</sprite>
           <sprite>sprites\sprGutsDozerHand</sprite>
         </sprites>

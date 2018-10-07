@@ -36,7 +36,7 @@ stopOnFlash = false;
 
 attackTimer = 0;
 hasTriggeredFall = false;
-introType = 1;
+introType = 0;
 
 phase = 0;
 realXSpeed = 0; // Use this to remember xspeed
@@ -176,7 +176,7 @@ if (!global.frozen)
     else if (isIntro)
     {
         // custom intro:
-        if (attackTimer == 0) &amp;&amp; (introType == 1)
+        if (attackTimer == 0)
         {
             image_index = 1;
         }
