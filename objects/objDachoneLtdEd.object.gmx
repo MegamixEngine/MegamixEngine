@@ -216,6 +216,7 @@ if (spawned)
             <kind>1</kind>
             <string>event_inherited();
 instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
+stopSFX(sfxEnemyHit);
 playSFX(sfxExplosion2);
 </string>
           </argument>

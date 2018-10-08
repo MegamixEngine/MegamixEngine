@@ -125,10 +125,10 @@ if (entityCanStep())
                 var ID;
                 for (i = -1; i &lt;= 1; i += 1)
                 {
-                    ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objMM2MetBullet);
+                    ID = instance_create(x + image_xscale * 8, spriteGetYCenter()+2, objMM2MetBullet);
                     ID.dir = 45 * i;
                     ID.image_xscale = image_xscale;
-                    ID.sprite_index = sprEnemyBullet;
+                    ID.sprite_index = sprFlashShot;
                 }
                 playSFX(sfxEnemyShootClassic);
                 break;

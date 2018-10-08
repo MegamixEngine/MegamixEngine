@@ -204,7 +204,8 @@ if (!global.frozen)
                 {
                     xspeed = 0;
                     grav = 0.25;
-                    yspeed = -4;
+                    yspeed = -5; //-4
+                    image_xscale = other.image_xscale;
                     collectMe = true;
                 }
                 hasBomb = false;
@@ -262,6 +263,7 @@ if (entityCanStep())
                     hasBomb = false;
                     with (instance_create(round(x + bombX[2] * image_xscale), round(y + bombY[2] * image_yscale), objBombManBomb))
                     {
+                        image_xscale = other.image_xscale;
                         if (instance_exists(target))
                         {
                             xSpeedAim(x, y, target.x, target.y, yspeed, grav);

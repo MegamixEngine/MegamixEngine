@@ -139,9 +139,10 @@ if (entityCanStep())
                     i = instance_create(x + image_xscale * 16, y, objEnemyBullet);
                     i.xspeed = 6 * image_xscale;
                     i.yspeed = 6 - (moveTimer / 15);
+                    i.sprite_index = sprFlashShot;
                     playSFX(sfxEnemyShootClassic);
                 }
-                else if (moveTimer &gt; 60) // If timer exceeds 60...
+                else if (moveTimer &gt; 75) // If timer exceeds 60...
                 {
                     moveTimer = 0;
                     shoot = false;

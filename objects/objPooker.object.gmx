@@ -126,7 +126,7 @@ if (entityCanStep())
                 
                 instance_create(x, y, objBigExplosion);
                 audio_stop_sound(sfxMM3Explode);
-                playSFX(sfxExplosion);
+                playSFX(sfxExplosion2);
                 
                 dead = true;
                 

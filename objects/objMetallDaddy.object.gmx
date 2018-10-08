@@ -274,7 +274,7 @@ if (entityCanStep())
                 }
                 if (attackTimer == 80 - ((global.difficulty == DIFF_HARD) * 40))
                 {
-                    var inst = instance_create(x, y + 32, objExplosion);
+                    var inst = instance_create(x, y + 19, objExplosion);
                     inst.sprite_index = sprMetallDaddyJump;
                     yspeed = -3.5 - choose(0, 1, 1.5);
                     if (instance_exists(target))
@@ -540,9 +540,9 @@ draw_sprite_ext(sprite_index, hatFrame, round(x), round(y + hatOffset), 1, image
         }
         else // Hitspark
         {
-            d3d_set_fog(true, c_white, 0, 0);
+            sprite_index = sprMetallDaddyHurt;
             event_user(2);
-            d3d_set_fog(false, 0, 0, 0);
+            sprite_index = sprMetallDaddy;
         }
     }
 }

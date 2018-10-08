@@ -240,6 +240,7 @@ if (entityCanStep())
                         yspeed = -5;
                         grav = 0.25;
                         xspeed = other.image_xscale;
+                        sprite_index = sprFlashShot;
                     }
                 }
                 else
@@ -455,9 +456,15 @@ if (instance_exists(child))
         }
         else // Hitspark
         {
-            d3d_set_fog(true, c_white, 0, 0);
+            //d3d_set_fog(true, c_white, 0, 0);
+            sprite_index = sprGutsDozerHurt;
             event_user(2);
-            d3d_set_fog(false, 0, 0, 0);
+            if (instance_exists(child))
+            {
+                draw_sprite_ext(sprGutsDozerHand, 1, round(x - 58 * image_xscale), round(y - 16 - child.yOffset), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+            }
+            sprite_index = sprGutsDozer;
+            //d3d_set_fog(false, 0, 0, 0);
         }
     }
 }

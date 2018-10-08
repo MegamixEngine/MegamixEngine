@@ -41,6 +41,11 @@ phase = 0;
 image_speed = 0.15;
 introType = 0;
 
+// Health Bar
+// Health Bar
+healthBarPrimaryColor[1] = 47;
+healthBarSecondaryColor[1] = 40;
+
 // Music
 music = "Mega_Man_2.nsf";
 musicType = "VGM";
@@ -281,7 +286,35 @@ event_inherited();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>if (!dead)
+{
+    if (drawBoss)
+    {
+        drawSelf();
+        if ((iFrames mod 4) &lt; 2 || !iFrames)
+        {
+            if (sprite_index == sprMechaDragonHurt)
+            {
+                sprite_index = sprMechaDragon;
+            }
+            else if (sprite_index = sprMechaDragonFireHurt)
+            {
+                sprite_index = sprMechaDragonFire;
+            }
+        }
+        else
+        {
+            if (sprite_index ==  sprMechaDragon)
+            {
+                sprite_index = sprMechaDragonHurt;
+            }
+            else if (sprite_index = sprMechaDragonFire)
+            {
+                sprite_index = sprMechaDragonFireHurt;
+            }
+        }
+    }
+}
 </string>
           </argument>
         </arguments>
