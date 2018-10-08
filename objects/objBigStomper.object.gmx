@@ -204,6 +204,7 @@ else if (dead)
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+stopSFX(sfxEnemyHit);
 var i = instance_create(x,y,objBigExplosion);
 with (i)
 {
