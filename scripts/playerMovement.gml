@@ -4,7 +4,14 @@ if (!instance_exists(vehicle))
     {
         if (playLandSound > 2 && !isHit && !climbing)
         {
-            playSFX(sfxLand);
+            if (global.jumpSound)
+            {
+                playSFX(sfxLandClassic);
+            }
+            else
+            {
+                playSFX(sfxLand);
+            }
         }
     }
 }
