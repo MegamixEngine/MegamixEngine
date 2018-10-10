@@ -170,6 +170,7 @@ else
                     canHit = true;
                     iFrames = 0;
                     ground = true;
+                    blockCollision = true;
                     global.lockTransition = false;
                     exit;
                 }
