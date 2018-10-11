@@ -128,13 +128,6 @@ if (myItem &gt;= 0)
     if (item)
     {
         i = instance_create(x, y, item);
-        with(i)
-        {
-            if(other.script != scrNoEffect)
-                script_execute(other.script);
-            if (other.code != "")
-                stringExecutePartial(other.code);
-        }
         i.respawn = false;
         i.x += bboxGetXCenter() - bboxGetXCenterObject(i);
         i.y += bboxGetYCenter() - bboxGetYCenterObject(i);
@@ -142,6 +135,13 @@ if (myItem &gt;= 0)
         if (i.grav != 0)
         {
             i.yspeed = -2;
+        }
+        with(i)
+        {
+            if(other.script != scrNoEffect)
+                script_execute(other.script);
+            if (other.code != "")
+                stringExecutePartial(other.code);
         }
     }
 }
