@@ -1,4 +1,4 @@
-/// bboxGetYCenterObject(obj)
+///bboxGetXCenterObject(obj)
 
 var v;
 v = argument0;
