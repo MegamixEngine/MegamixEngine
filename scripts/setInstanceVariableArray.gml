@@ -12,7 +12,7 @@ var _____j_____ = argument3;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4570 variables
+/// 4581 variables
 /// from 1655 source files
 
 if (_____vs_____ == "") return false;
@@ -299,6 +299,7 @@ else if (stringStartsWith(_____vs_____, 'b'))
     else if (_____vs_____ == "blinkSpeed") blinkSpeed[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "blinkTimer") blinkTimer[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "blinkTimerMax") blinkTimerMax[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "blinkWait") blinkWait[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "blinks") blinks[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "blk") blk[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "blobID") blobID[_____i_____, _____j_____] = _____val_____;
@@ -903,6 +904,7 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "dis") dis[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "disM") disM[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "disappear") disappear[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "disappearTime") disappearTime[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "disappearTimer") disappearTimer[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "disclaimerText") disclaimerText[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "disp") disp[_____i_____, _____j_____] = _____val_____;
@@ -992,12 +994,14 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "drop") drop[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "dropBlockCollision") dropBlockCollision[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "dropCount") dropCount[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "dropDisappearTime") dropDisappearTime[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "dropDown") dropDown[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "dropGrav") dropGrav[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "dropHoney") dropHoney[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "dropIn") dropIn[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "dropInterval") dropInterval[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "dropMax") dropMax[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "dropOnce") dropOnce[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "dropRock") dropRock[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "dropTime") dropTime[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "dropTimer") dropTimer[_____i_____, _____j_____] = _____val_____;
@@ -2006,6 +2010,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "imgalarm") imgalarm[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "imgdelay") imgdelay[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "imgs") imgs[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "imgscl") imgscl[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "imgsp") imgsp[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "imgspalarm") imgspalarm[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "imgx") imgx[_____i_____, _____j_____] = _____val_____;
@@ -2070,6 +2075,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "introFakeGrav") introFakeGrav[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "introFakeYspeed") introFakeYspeed[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "introLock") introLock[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "introProp") introProp[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "introSprite") introSprite[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "introTimer") introTimer[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "introType") introType[_____i_____, _____j_____] = _____val_____;
@@ -2132,6 +2138,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "isfree") isfree[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "ispushed") ispushed[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "item") item[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "itemCode") itemCode[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "itemDescription") itemDescription[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "itemDrawBottom") itemDrawBottom[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "itemDrawBoxHeight") itemDrawBoxHeight[_____i_____, _____j_____] = _____val_____;
@@ -2146,6 +2153,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "itemName") itemName[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "itemPrice") itemPrice[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "itemPurchaseAction") itemPurchaseAction[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "itemScript") itemScript[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "itemSpawnOffsetX") itemSpawnOffsetX[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "itemSpawnOffsetY") itemSpawnOffsetY[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "itemUnavailable") itemUnavailable[_____i_____, _____j_____] = _____val_____;
@@ -2552,6 +2560,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "move_time") move_time[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "moved") moved[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "movementLock") movementLock[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "movementXScale") movementXScale[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "moves") moves[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "movey") movey[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "moving") moving[_____i_____, _____j_____] = _____val_____;
@@ -2625,6 +2634,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "myScore") myScore[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "mySecondaryColor") mySecondaryColor[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "mySolid") mySolid[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "mySound") mySound[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "mySpeed") mySpeed[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "mySpeedMax") mySpeedMax[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "myTag") myTag[_____i_____, _____j_____] = _____val_____;
@@ -4391,6 +4401,7 @@ else if (stringStartsWith(_____vs_____, 'x'))
     else if (_____vs_____ == "xPrev") xPrev[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "xProvLength") xProvLength[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "xSOffset") xSOffset[_____i_____, _____j_____] = _____val_____;
+    else if (_____vs_____ == "xScaleOverride") xScaleOverride[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "xScaleStart") xScaleStart[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "xSpd") xSpd[_____i_____, _____j_____] = _____val_____;
     else if (_____vs_____ == "xSpdConst") xSpdConst[_____i_____, _____j_____] = _____val_____;

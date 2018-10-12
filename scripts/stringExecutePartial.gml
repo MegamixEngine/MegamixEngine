@@ -67,7 +67,7 @@ while (string_length(str) > 0)
     
     // keywords
     var token = stringPeekToken(str);
-    if (token == "while" || token == "var" || token == "do" || token == "until" || token == "switch" || token == "case")
+    if (token == "while" || token == "for" || token == "var" || token == "do" || token == "until" || token == "switch" || token == "case")
     {
         printErr("ERROR executing string. Cannot handle token " + token + " in: " + full_code);
         break;
@@ -166,6 +166,7 @@ while (string_length(str) > 0)
         var fn_str = token;
         var arg_n = 0;
         var arg;
+        arg[0] = 0;
         global.retval_error = false;
         
         // read arguments
@@ -204,7 +205,8 @@ while (string_length(str) > 0)
         if (asset_get_type(fn_str) == asset_script)
         {
             // script
-            scriptExecuteNargs(fn_id, arg);
+            global.execute_gml_function_ERR = false;
+            global.gml_fn_retval = scriptExecuteNargs(fn_id, arg,arg_n);
             continue;
         }
         else if (asset_get_type(fn_str) == asset_unknown)
@@ -214,7 +216,7 @@ while (string_length(str) > 0)
             for (var i = arg_n; i >= 1; i--)
                 arg[i] = arg[i - 1];
             arg[0] = fn_str;
-            scriptExecuteNargs(executeGMLFunction, arg);
+            scriptExecuteNargs(executeGMLFunction, arg, arg_n+1);
             if (global.execute_gml_function_ERR)
             {
                 global.retval_error = true;
