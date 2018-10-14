@@ -104,6 +104,43 @@ else if (fname == "event_perform")
     global.gml_fn_retval = event_perform(a0, a1);
 else if (fname == "event_perform_object")
     global.gml_fn_retval = event_perform_object(a0, a1, a2);
+else if(fname == "event_user")
+	event_user(a0);
+else if (fname == "choose") //need to do this so it accepts varying argument counts
+{
+    if (argument_count == 2)
+    {
+        global.gml_fn_retval = choose(a0);
+    }
+    else if (argument_count == 3)
+    {
+        global.gml_fn_retval = choose(a0, a1);
+    }
+    else if (argument_count == 4)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2);
+    }
+    else if (argument_count == 5)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3);
+    }  
+    else if (argument_count == 6)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3, a4);
+    }
+    else if (argument_count == 7)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5);
+    } 
+    else if (argument_count == 8)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5, a6);
+    }
+    else if (argument_count == 9)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5, a6, a7);
+    }
+}  
 else if (fname == "action_another_room")
     global.gml_fn_retval = action_another_room(a0);
 else if (fname == "action_bounce")
@@ -167,42 +204,7 @@ else if (fname == "action_fullscreen")
 else if (fname == "action_highscore_clear")
     action_highscore_clear();
 else if (fname == "action_if")
-    action_if(a0);
-else if (fname == "choose") //need to do this so it accepts varying argument counts
-{
-    if (argument_count == 2)
-    {
-        global.gml_fn_retval = choose(a0);
-    }
-    else if (argument_count == 3)
-    {
-        global.gml_fn_retval = choose(a0, a1);
-    }
-    else if (argument_count == 4)
-    {
-        global.gml_fn_retval = choose(a0, a1, a2);
-    }
-    else if (argument_count == 5)
-    {
-        global.gml_fn_retval = choose(a0, a1, a2, a3);
-    }  
-    else if (argument_count == 6)
-    {
-        global.gml_fn_retval = choose(a0, a1, a2, a3, a4);
-    }
-    else if (argument_count == 7)
-    {
-        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5);
-    } 
-    else if (argument_count == 8)
-    {
-        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5, a6);
-    }
-    else if (argument_count == 9)
-    {
-        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5, a6, a7);
-    }
-}    
+    action_if(a0);  
 else
     global.execute_gml_function_ERR = true;
 return 0;
