@@ -107,7 +107,7 @@ else if (fname == "event_perform")
 else if (fname == "event_perform_object")
     global.gml_fn_retval = event_perform_object(a0, a1, a2);
 else if(fname == "event_user")
-event_user(a0);
+    event_user(a0);
 else if (fname == "choose") //need to do this so it accepts varying argument counts
 {
     if (argument_count == 2)
@@ -204,7 +204,24 @@ else if (fname == "action_fullscreen")
 else if (fname == "action_highscore_clear")
     action_highscore_clear();
 else if (fname == "action_if")
-    action_if(a0);  
+    global.gml_fn_retval = action_if(a0);
+else if (fname == "action_if_aligned")
+    global.gml_fn_retval = action_if_aligned(a0, a1);  
+else if (fname == "action_if_collision")
+    global.gml_fn_retval = action_if_collision(a0, a1, a2);
+else if (fname == "action_if_dice")
+    global.gml_fn_retval = action_if_dice(a0);
+else if (fname == "action_if_empty")
+    global.gml_fn_retval = action_if_empty(a0, a1, a2);  
+else if (fname == "action_if_health")
+    global.gml_fn_retval = action_if_health(a0, a1);    
+else if (fname == "action_if_life")
+    global.gml_fn_retval = action_if_life(a0, a1);
+else if (fname == "action_if_mouse")
+    global.gml_fn_retval = action_if_mouse(a0);  
+else if (fname == "action_if_next_room")
+    action_if_next_room();        
+
 else
     global.execute_gml_function_ERR = true;
 return 0;
