@@ -308,6 +308,7 @@ if (entityCanStep())
                 if (ground &amp;&amp; image_index &gt;= 9)
                 {
                     image_index = 0;
+                    playSFX(sfxClamp);
                     attackTimer = 0;
                     phase = 0;
                 }
