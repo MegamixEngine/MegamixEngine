@@ -1,7 +1,10 @@
 //THE ACTUAL STEP EVENT
 if (!global.frozen && !frozen)
 {
-    image_xscale = movementXScale;
+    if(xscaleOverride!=0)
+    {
+        image_xscale = movementXScale;
+    }
     playerStep(); // General step event code
     
     if (!playerIsLocked(PL_LOCK_PHYSICS))
@@ -12,7 +15,10 @@ if (!global.frozen && !frozen)
         image_xscale=iscl;
         playerMovement();
     }
-    movementXScale = image_xscale;
+    if(xscaleOverride!=0)
+    {
+        movementXScale = image_xscale;
+    }
     if(xScaleOverride != 0 && !climbing)
     {
         image_xscale = sign(xScaleOverride);
