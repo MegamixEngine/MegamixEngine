@@ -10,7 +10,7 @@ var _____val_____ = argument1;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4570 variables
+/// 4581 variables
 /// from 1655 source files
 
 if (_____vs_____ == "") return false;
@@ -297,6 +297,7 @@ else if (stringStartsWith(_____vs_____, 'b'))
     else if (_____vs_____ == "blinkSpeed") blinkSpeed = _____val_____;
     else if (_____vs_____ == "blinkTimer") blinkTimer = _____val_____;
     else if (_____vs_____ == "blinkTimerMax") blinkTimerMax = _____val_____;
+    else if (_____vs_____ == "blinkWait") blinkWait = _____val_____;
     else if (_____vs_____ == "blinks") blinks = _____val_____;
     else if (_____vs_____ == "blk") blk = _____val_____;
     else if (_____vs_____ == "blobID") blobID = _____val_____;
@@ -901,6 +902,7 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "dis") dis = _____val_____;
     else if (_____vs_____ == "disM") disM = _____val_____;
     else if (_____vs_____ == "disappear") disappear = _____val_____;
+    else if (_____vs_____ == "disappearTime") disappearTime = _____val_____;
     else if (_____vs_____ == "disappearTimer") disappearTimer = _____val_____;
     else if (_____vs_____ == "disclaimerText") disclaimerText = _____val_____;
     else if (_____vs_____ == "disp") disp = _____val_____;
@@ -990,12 +992,14 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "drop") drop = _____val_____;
     else if (_____vs_____ == "dropBlockCollision") dropBlockCollision = _____val_____;
     else if (_____vs_____ == "dropCount") dropCount = _____val_____;
+    else if (_____vs_____ == "dropDisappearTime") dropDisappearTime = _____val_____;
     else if (_____vs_____ == "dropDown") dropDown = _____val_____;
     else if (_____vs_____ == "dropGrav") dropGrav = _____val_____;
     else if (_____vs_____ == "dropHoney") dropHoney = _____val_____;
     else if (_____vs_____ == "dropIn") dropIn = _____val_____;
     else if (_____vs_____ == "dropInterval") dropInterval = _____val_____;
     else if (_____vs_____ == "dropMax") dropMax = _____val_____;
+    else if (_____vs_____ == "dropOnce") dropOnce = _____val_____;
     else if (_____vs_____ == "dropRock") dropRock = _____val_____;
     else if (_____vs_____ == "dropTime") dropTime = _____val_____;
     else if (_____vs_____ == "dropTimer") dropTimer = _____val_____;
@@ -2004,6 +2008,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "imgalarm") imgalarm = _____val_____;
     else if (_____vs_____ == "imgdelay") imgdelay = _____val_____;
     else if (_____vs_____ == "imgs") imgs = _____val_____;
+    else if (_____vs_____ == "imgscl") imgscl = _____val_____;
     else if (_____vs_____ == "imgsp") imgsp = _____val_____;
     else if (_____vs_____ == "imgspalarm") imgspalarm = _____val_____;
     else if (_____vs_____ == "imgx") imgx = _____val_____;
@@ -2068,6 +2073,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "introFakeGrav") introFakeGrav = _____val_____;
     else if (_____vs_____ == "introFakeYspeed") introFakeYspeed = _____val_____;
     else if (_____vs_____ == "introLock") introLock = _____val_____;
+    else if (_____vs_____ == "introProp") introProp = _____val_____;
     else if (_____vs_____ == "introSprite") introSprite = _____val_____;
     else if (_____vs_____ == "introTimer") introTimer = _____val_____;
     else if (_____vs_____ == "introType") introType = _____val_____;
@@ -2130,6 +2136,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "isfree") isfree = _____val_____;
     else if (_____vs_____ == "ispushed") ispushed = _____val_____;
     else if (_____vs_____ == "item") item = _____val_____;
+    else if (_____vs_____ == "itemCode") itemCode = _____val_____;
     else if (_____vs_____ == "itemDescription") itemDescription = _____val_____;
     else if (_____vs_____ == "itemDrawBottom") itemDrawBottom = _____val_____;
     else if (_____vs_____ == "itemDrawBoxHeight") itemDrawBoxHeight = _____val_____;
@@ -2144,6 +2151,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "itemName") itemName = _____val_____;
     else if (_____vs_____ == "itemPrice") itemPrice = _____val_____;
     else if (_____vs_____ == "itemPurchaseAction") itemPurchaseAction = _____val_____;
+    else if (_____vs_____ == "itemScript") itemScript = _____val_____;
     else if (_____vs_____ == "itemSpawnOffsetX") itemSpawnOffsetX = _____val_____;
     else if (_____vs_____ == "itemSpawnOffsetY") itemSpawnOffsetY = _____val_____;
     else if (_____vs_____ == "itemUnavailable") itemUnavailable = _____val_____;
@@ -2550,6 +2558,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "move_time") move_time = _____val_____;
     else if (_____vs_____ == "moved") moved = _____val_____;
     else if (_____vs_____ == "movementLock") movementLock = _____val_____;
+    else if (_____vs_____ == "movementXScale") movementXScale = _____val_____;
     else if (_____vs_____ == "moves") moves = _____val_____;
     else if (_____vs_____ == "movey") movey = _____val_____;
     else if (_____vs_____ == "moving") moving = _____val_____;
@@ -2623,6 +2632,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "myScore") myScore = _____val_____;
     else if (_____vs_____ == "mySecondaryColor") mySecondaryColor = _____val_____;
     else if (_____vs_____ == "mySolid") mySolid = _____val_____;
+    else if (_____vs_____ == "mySound") mySound = _____val_____;
     else if (_____vs_____ == "mySpeed") mySpeed = _____val_____;
     else if (_____vs_____ == "mySpeedMax") mySpeedMax = _____val_____;
     else if (_____vs_____ == "myTag") myTag = _____val_____;
@@ -4389,6 +4399,7 @@ else if (stringStartsWith(_____vs_____, 'x'))
     else if (_____vs_____ == "xPrev") xPrev = _____val_____;
     else if (_____vs_____ == "xProvLength") xProvLength = _____val_____;
     else if (_____vs_____ == "xSOffset") xSOffset = _____val_____;
+    else if (_____vs_____ == "xScaleOverride") xScaleOverride = _____val_____;
     else if (_____vs_____ == "xScaleStart") xScaleStart = _____val_____;
     else if (_____vs_____ == "xSpd") xSpd = _____val_____;
     else if (_____vs_____ == "xSpdConst") xSpdConst = _____val_____;
