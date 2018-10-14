@@ -82,6 +82,8 @@ else if (fname == "instance_change")
     global.gml_fn_retval = instance_change(a0, a1);
 else if(fname == "ds_map_find_value")
     global.gml_fn_retval = ds_map_find_value(a0,a1);
+else if(fname == "ds_map_replace")
+    global.gml_fn_retval = ds_map_replace(a0, a1, a2);
 else if (fname ==  "ds_list_find_index")
     global.gml_fn_retval = ds_list_find_index(a0,a1);
 else if (fname == "ds_list_set")
