@@ -123,6 +123,7 @@ with (other)
 
 instance_create(spriteGetXCenter() + 1, spriteGetYCenter(),
     objHarmfulExplosion);
+stopSFX(sfxEnemyHit);
 playSFX(sfxMM9Explosion);
 </string>
           </argument>

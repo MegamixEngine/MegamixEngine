@@ -126,14 +126,25 @@ if (entityCanStep())
             imgIndex = imgIndex mod 2;
         }
     }
+    
+    // Play audio as long as Molier can move
+    if (!audio_is_playing(sfxHeliButonHover))
+    {
+        loopSFX(sfxHeliButonHover);
+    }
 }
-else if (dead)
+else 
 {
-    timer = 60;
-    knocked = 0;
-    itemDrop = -1;
-    xspeed = 0;
-    yspeed = 0;
+    // Stop audio if time is stopped/Molier is dead
+    audio_stop_sound(sfxHeliButonHover);
+    if (dead)
+    {
+        timer = 60;
+        knocked = 0;
+        itemDrop = -1;
+        xspeed = 0;
+        yspeed = 0;
+    }
 }
 
 image_index = imgIndex div 1;
