@@ -76,11 +76,11 @@ if (instance_exists(parent))
             {
                 if (global.flagParent[myFlag].active)
                 {
-                    other.yspeed = -0.5;
+                    other.y = y; // other.yspeed = -0.5
                 }
                 else
                 {
-                    other.yspeed = 0.5;
+                    other.y = y;
                 }
             }
             else
