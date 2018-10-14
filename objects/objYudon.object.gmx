@@ -130,7 +130,7 @@ if (entityCanStep())
     {
         if (cooldownTimer &gt; 0)
             cooldownTimer -= 1;
-        if (cooldownTimer == 0)
+        if (cooldownTimer == 0) &amp;&amp; (instance_exists(target))
         {
             shooting = true;
             imageOffset = 2;

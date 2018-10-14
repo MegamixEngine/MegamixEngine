@@ -25,17 +25,28 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>event_perform_object(objExplosion, ev_create, ev_create);
+
+event_inherited();
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 0;
+image_speed = 0;
 
 canHit = false;
 
 // @cc the object_index of the item Eddie will send out. If not set, he will choose
 // randomly from his pickup pool
 myItem = 0;
+
+//time until item disappears
+disappearTime = -1;
+
+//code to execute on item throw
+code = "";
+//scrpt to execute on item throw
+script = scrNoEffect;
 
 // @cc if set to true, Eddie will never respawn once the item is given out
 permanent = true;
