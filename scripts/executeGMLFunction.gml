@@ -105,7 +105,7 @@ else if (fname == "event_perform")
 else if (fname == "event_perform_object")
     global.gml_fn_retval = event_perform_object(a0, a1, a2);
 else if(fname == "event_user")
-	event_user(a0);
+event_user(a0);
 else if (fname == "choose") //need to do this so it accepts varying argument counts
 {
     if (argument_count == 2)
@@ -193,8 +193,6 @@ else if (fname == "action_effect")
     global.gml_fn_retval = action_effect(a0, a1, a2, a3, a4, a5)
 else if (fname == "action_end_game")
     action_end_game();
-else if (fname == "action_end_sound")
-    global.gml_fn_retval = action_end_sound(a0, a1);
 else if (fname == "action_execute_script")
     global.gml_fn_retval = action_execute_script(a0, a1, a2, a3, a4, a5);
 else if (fname == "action_font")
