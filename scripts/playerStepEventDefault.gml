@@ -1,7 +1,7 @@
 //THE ACTUAL STEP EVENT
 if (!global.frozen && !frozen)
 {
-    if(xscaleOverride!=0)
+    if(xScaleOverride!=0)
     {
         image_xscale = movementXScale;
     }
@@ -15,7 +15,7 @@ if (!global.frozen && !frozen)
         image_xscale=iscl;
         playerMovement();
     }
-    if(xscaleOverride!=0)
+    if(xScaleOverride!=0)
     {
         movementXScale = image_xscale;
     }
