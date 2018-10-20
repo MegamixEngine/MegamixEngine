@@ -137,8 +137,12 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     }
     
     that = 0;
-    with (objMegaman)
+    with (prtEntity)
     {
+        if(dead || !blockCollision || grav == 0)
+        {
+            continue;
+        }
         with (other)
         {
             that = other.id;
