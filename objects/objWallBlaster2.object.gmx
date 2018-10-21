@@ -90,7 +90,7 @@ if (entityCanStep())
                     {
                         phase = 1;
                         shootTimer = 0;
-                        imgIndex = 1 * turnSet;
+                        imgIndex = 2 * turnSet;
                     }
                     
                     megaDir = point_direction(x, y, target.x, target.y);
@@ -127,7 +127,14 @@ if (entityCanStep())
                     }
                 }
             }
-            imgIndex = turnSet * 3;
+            if (shootTimer &gt;= (delay - 4))
+            {
+                imgIndex = (turnSet * 3) + 2;
+            }
+            else
+            {
+                imgIndex = turnSet * 3;
+            }
             break;
         case 1:
             imgIndex += imgSpd;

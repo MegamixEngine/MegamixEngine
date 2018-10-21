@@ -100,25 +100,33 @@ if (entityCanStep())
         
         // shoot spear
         case 2:
-            if (imgIndex &lt; 7)
+            /*if (imgIndex &lt; 7)
             {
                 imgIndex += imgSpd;
             }
             else
-            {
+            {*/
                 timer += 1;
                 if (timer &gt;= 30)
                 {
-                    phase = 3;
+                    /*phase = 3;
                     timer = 0;
-                    imgIndex = 0;
+                    imgIndex = 0;*/
+                    
+                    imgIndex += imgSpd;
+                    if (imgIndex &gt;= 8)
+                    {
+                        phase = 3;
+                        timer = 0;
+                        imgIndex = 0;
+                    }
                 }
-            }
+            //}
             
-            if (imgIndex &gt;= 8)
+            /*if (imgIndex &gt;= 8)
             {
                 imgIndex = 7;
-            }
+            }*/
             
             break;
         
