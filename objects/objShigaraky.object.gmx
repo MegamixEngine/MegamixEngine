@@ -146,8 +146,7 @@ image_index = imgIndex div 1;
             <string>event_inherited();
 with (ball)
 {
-    instance_create(x,y,objExplosion);
-    instance_destroy();
+    event_user(EV_DEATH);
 }
 </string>
           </argument>
