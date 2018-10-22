@@ -48,8 +48,9 @@ imgSpd = 0.4;
 image_index = 14; // falling sprite from intro
 
 // healthbar
-healthBarPrimaryColor[1] = 34;
-healthBarSecondaryColor[1] = 40;
+manualColors = true;
+healthBarPrimaryColor[1] = make_colour_rgb(228,92,16);
+healthBarSecondaryColor[1] = make_colour_rgb(236,184,68);
 
 // Music
 music = "Mega_Man_9.nsf";

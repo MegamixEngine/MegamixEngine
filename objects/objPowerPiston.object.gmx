@@ -38,7 +38,7 @@ phase = 0;
 shotsFired = 0;
 attackTimer = 0;
 healthBarPrimaryColor[1] = 16;
-healthBarSecondaryColor[1] = 30;
+healthBarSecondaryColor[1] = 40;
 
 
 image_index = 4;

@@ -71,8 +71,8 @@ yCurrOffset = 0; // Keeps track of the height changes for the shark.
 endOfStageBoss = false;
 
 // Health Bar
-healthBarPrimaryColor[1] = 25;
-healthBarSecondaryColor[1] = 52;
+healthBarPrimaryColor[1] = 52;
+healthBarSecondaryColor[1] = 40;
 
 // Music
 music = "Mega_Man_9.nsf";
