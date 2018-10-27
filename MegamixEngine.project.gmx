@@ -990,6 +990,8 @@
         <sprite>sprites\sprMechaDragonTeleport</sprite>
         <sprite>sprites\sprMechaDragon</sprite>
         <sprite>sprites\sprMechaDragonFire</sprite>
+		<sprite>sprites\sprMechaDragonHurt</sprite>
+        <sprite>sprites\sprMechaDragonFireHurt</sprite>
         <sprite>sprites\sprMechaDragonFireBall</sprite>
       </sprites>
       <sprites name="Top">
