@@ -98,6 +98,10 @@ ycoll = 0;
 epIsOnPlat = 0;
 
 itemDrop = 0; //This object will be spawned once the entity dies
+dropOnce = false;//If true itemDrop will be set to 0 after the item is dropped
+dropDisappearTime = 105*2;//(for prtPickup)Set to a non positive value to make infinite;
+itemCode = ""; //Code that runs on the dropped object
+itemScript = scrNoEffect; //Script that runs on the dropped object
 
 stopOnFlash = true;
 iceTimer = 0; // is iced (frozen cold), and how much remaining time to spend iced
@@ -579,6 +583,13 @@ else if(itemDrop == objEnergyElement)
 else
 {
     _ex.myItem = itemDrop;
+    _ex.code = itemCode;
+    _ex.script = itemScript;
+    _ex.disappearTime = dropDisappearTime;
+}
+if(itemDrop &amp;&amp; dropOnce)
+{
+    itemDrop = 0;
 }
 </string>
           </argument>

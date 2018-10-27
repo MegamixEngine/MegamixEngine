@@ -78,8 +78,12 @@ else if (fname == "instance_destroy")
     instance_destroy();
 else if (fname == "instance_create")
     global.gml_fn_retval = instance_create(a0, a1, a2);
+else if (fname == "instance_change")
+    global.gml_fn_retval = instance_change(a0, a1);
 else if(fname == "ds_map_find_value")
     global.gml_fn_retval = ds_map_find_value(a0,a1);
+else if(fname == "ds_map_replace")
+    global.gml_fn_retval = ds_map_replace(a0, a1, a2);
 else if (fname ==  "ds_list_find_index")
     global.gml_fn_retval = ds_list_find_index(a0,a1);
 else if (fname == "ds_list_set")
@@ -102,6 +106,43 @@ else if (fname == "event_perform")
     global.gml_fn_retval = event_perform(a0, a1);
 else if (fname == "event_perform_object")
     global.gml_fn_retval = event_perform_object(a0, a1, a2);
+else if(fname == "event_user")
+    event_user(a0);
+else if (fname == "choose") //need to do this so it accepts varying argument counts
+{
+    if (argument_count == 2)
+    {
+        global.gml_fn_retval = choose(a0);
+    }
+    else if (argument_count == 3)
+    {
+        global.gml_fn_retval = choose(a0, a1);
+    }
+    else if (argument_count == 4)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2);
+    }
+    else if (argument_count == 5)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3);
+    }  
+    else if (argument_count == 6)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3, a4);
+    }
+    else if (argument_count == 7)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5);
+    } 
+    else if (argument_count == 8)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5, a6);
+    }
+    else if (argument_count == 9)
+    {
+        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5, a6, a7);
+    }
+}  
 else if (fname == "action_another_room")
     global.gml_fn_retval = action_another_room(a0);
 else if (fname == "action_bounce")
@@ -138,41 +179,49 @@ else if (fname == "action_draw_life_images")
     global.gml_fn_retval = action_draw_life_images(a0, a1, a2);
 else if (fname == "action_draw_line")
     global.gml_fn_retval = action_draw_line(a0, a1, a2, a3);
-else if (fname == "choose") //need to do this so it accepts varying argument counts
-{
-    if (argument_count == 2)
-    {
-        global.gml_fn_retval = choose(a0);
-    }
-    else if (argument_count == 3)
-    {
-        global.gml_fn_retval = choose(a0, a1);
-    }
-    else if (argument_count == 4)
-    {
-        global.gml_fn_retval = choose(a0, a1, a2);
-    }
-    else if (argument_count == 5)
-    {
-        global.gml_fn_retval = choose(a0, a1, a2, a3);
-    }  
-    else if (argument_count == 6)
-    {
-        global.gml_fn_retval = choose(a0, a1, a2, a3, a4);
-    }
-    else if (argument_count == 7)
-    {
-        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5);
-    } 
-    else if (argument_count == 8)
-    {
-        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5, a6);
-    }
-    else if (argument_count == 9)
-    {
-        global.gml_fn_retval = choose(a0, a1, a2, a3, a4, a5, a6, a7);
-    }
-}    
+else if (fname == "action_draw_rectangle")
+    global.gml_fn_retval = action_draw_rectangle(a0, a1, a2, a3, a4);
+else if (fname == "action_draw_score")
+    global.gml_fn_retval = action_draw_score(a0, a1, a2);
+else if (fname == "action_draw_sprite")
+    global.gml_fn_retval = action_draw_sprite(a0, a1, a2, a3)
+else if (fname == "action_draw_text")
+    global.gml_fn_retval = action_draw_text(a0, a1, a2);
+else if (fname == "action_draw_text_transformed")
+    global.gml_fn_retval = action_draw_text_transformed(a0, a1, a2, a3, a4, a5);
+else if (fname == "action_draw_variable")
+    global.gml_fn_retval = action_draw_variable(a0, a1, a2);
+else if (fname == "action_effect")
+    global.gml_fn_retval = action_effect(a0, a1, a2, a3, a4, a5)
+else if (fname == "action_end_game")
+    action_end_game();
+else if (fname == "action_execute_script")
+    global.gml_fn_retval = action_execute_script(a0, a1, a2, a3, a4, a5);
+else if (fname == "action_font")
+    global.gml_fn_retval = action_font(a0, a1);
+else if (fname == "action_fullscreen")
+    global.gml_fn_retval = action_fullscreen(a0);
+else if (fname == "action_highscore_clear")
+    action_highscore_clear();
+else if (fname == "action_if")
+    global.gml_fn_retval = action_if(a0);
+else if (fname == "action_if_aligned")
+    global.gml_fn_retval = action_if_aligned(a0, a1);  
+else if (fname == "action_if_collision")
+    global.gml_fn_retval = action_if_collision(a0, a1, a2);
+else if (fname == "action_if_dice")
+    global.gml_fn_retval = action_if_dice(a0);
+else if (fname == "action_if_empty")
+    global.gml_fn_retval = action_if_empty(a0, a1, a2);  
+else if (fname == "action_if_health")
+    global.gml_fn_retval = action_if_health(a0, a1);    
+else if (fname == "action_if_life")
+    global.gml_fn_retval = action_if_life(a0, a1);
+else if (fname == "action_if_mouse")
+    global.gml_fn_retval = action_if_mouse(a0);  
+else if (fname == "action_if_next_room")
+    action_if_next_room();        
+
 else
     global.execute_gml_function_ERR = true;
 return 0;

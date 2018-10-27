@@ -9,7 +9,7 @@ var _____vs_____ = argument0;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4581 variables
+/// 4592 variables
 /// from 1655 source files
 
 if (_____vs_____ == "") return false;
@@ -300,6 +300,7 @@ else if (stringStartsWith(_____vs_____, 'b'))
     else if (_____vs_____ == "blinkSpeed") global.retval = blinkSpeed;
     else if (_____vs_____ == "blinkTimer") global.retval = blinkTimer;
     else if (_____vs_____ == "blinkTimerMax") global.retval = blinkTimerMax;
+    else if (_____vs_____ == "blinkWait") global.retval = blinkWait;
     else if (_____vs_____ == "blinks") global.retval = blinks;
     else if (_____vs_____ == "blk") global.retval = blk;
     else if (_____vs_____ == "blobID") global.retval = blobID;
@@ -904,6 +905,7 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "dis") global.retval = dis;
     else if (_____vs_____ == "disM") global.retval = disM;
     else if (_____vs_____ == "disappear") global.retval = disappear;
+    else if (_____vs_____ == "disappearTime") global.retval = disappearTime;
     else if (_____vs_____ == "disappearTimer") global.retval = disappearTimer;
     else if (_____vs_____ == "disclaimerText") global.retval = disclaimerText;
     else if (_____vs_____ == "disp") global.retval = disp;
@@ -993,12 +995,14 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "drop") global.retval = drop;
     else if (_____vs_____ == "dropBlockCollision") global.retval = dropBlockCollision;
     else if (_____vs_____ == "dropCount") global.retval = dropCount;
+    else if (_____vs_____ == "dropDisappearTime") global.retval = dropDisappearTime;
     else if (_____vs_____ == "dropDown") global.retval = dropDown;
     else if (_____vs_____ == "dropGrav") global.retval = dropGrav;
     else if (_____vs_____ == "dropHoney") global.retval = dropHoney;
     else if (_____vs_____ == "dropIn") global.retval = dropIn;
     else if (_____vs_____ == "dropInterval") global.retval = dropInterval;
     else if (_____vs_____ == "dropMax") global.retval = dropMax;
+    else if (_____vs_____ == "dropOnce") global.retval = dropOnce;
     else if (_____vs_____ == "dropRock") global.retval = dropRock;
     else if (_____vs_____ == "dropTime") global.retval = dropTime;
     else if (_____vs_____ == "dropTimer") global.retval = dropTimer;
@@ -2009,6 +2013,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "imgalarm") global.retval = imgalarm;
     else if (_____vs_____ == "imgdelay") global.retval = imgdelay;
     else if (_____vs_____ == "imgs") global.retval = imgs;
+    else if (_____vs_____ == "imgscl") global.retval = imgscl;
     else if (_____vs_____ == "imgsp") global.retval = imgsp;
     else if (_____vs_____ == "imgspalarm") global.retval = imgspalarm;
     else if (_____vs_____ == "imgx") global.retval = imgx;
@@ -2073,6 +2078,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "introFakeGrav") global.retval = introFakeGrav;
     else if (_____vs_____ == "introFakeYspeed") global.retval = introFakeYspeed;
     else if (_____vs_____ == "introLock") global.retval = introLock;
+    else if (_____vs_____ == "introProp") global.retval = introProp;
     else if (_____vs_____ == "introSprite") global.retval = introSprite;
     else if (_____vs_____ == "introTimer") global.retval = introTimer;
     else if (_____vs_____ == "introType") global.retval = introType;
@@ -2135,6 +2141,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "isfree") global.retval = isfree;
     else if (_____vs_____ == "ispushed") global.retval = ispushed;
     else if (_____vs_____ == "item") global.retval = item;
+    else if (_____vs_____ == "itemCode") global.retval = itemCode;
     else if (_____vs_____ == "itemDescription") global.retval = itemDescription;
     else if (_____vs_____ == "itemDrawBottom") global.retval = itemDrawBottom;
     else if (_____vs_____ == "itemDrawBoxHeight") global.retval = itemDrawBoxHeight;
@@ -2149,6 +2156,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "itemName") global.retval = itemName;
     else if (_____vs_____ == "itemPrice") global.retval = itemPrice;
     else if (_____vs_____ == "itemPurchaseAction") global.retval = itemPurchaseAction;
+    else if (_____vs_____ == "itemScript") global.retval = itemScript;
     else if (_____vs_____ == "itemSpawnOffsetX") global.retval = itemSpawnOffsetX;
     else if (_____vs_____ == "itemSpawnOffsetY") global.retval = itemSpawnOffsetY;
     else if (_____vs_____ == "itemUnavailable") global.retval = itemUnavailable;
@@ -2555,6 +2563,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "move_time") global.retval = move_time;
     else if (_____vs_____ == "moved") global.retval = moved;
     else if (_____vs_____ == "movementLock") global.retval = movementLock;
+    else if (_____vs_____ == "movementXScale") global.retval = movementXScale;
     else if (_____vs_____ == "moves") global.retval = moves;
     else if (_____vs_____ == "movey") global.retval = movey;
     else if (_____vs_____ == "moving") global.retval = moving;
@@ -2628,6 +2637,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "myScore") global.retval = myScore;
     else if (_____vs_____ == "mySecondaryColor") global.retval = mySecondaryColor;
     else if (_____vs_____ == "mySolid") global.retval = mySolid;
+    else if (_____vs_____ == "mySound") global.retval = mySound;
     else if (_____vs_____ == "mySpeed") global.retval = mySpeed;
     else if (_____vs_____ == "mySpeedMax") global.retval = mySpeedMax;
     else if (_____vs_____ == "myTag") global.retval = myTag;
@@ -4396,6 +4406,7 @@ else if (stringStartsWith(_____vs_____, 'x'))
     else if (_____vs_____ == "xPrev") global.retval = xPrev;
     else if (_____vs_____ == "xProvLength") global.retval = xProvLength;
     else if (_____vs_____ == "xSOffset") global.retval = xSOffset;
+    else if (_____vs_____ == "xScaleOverride") global.retval = xScaleOverride;
     else if (_____vs_____ == "xScaleStart") global.retval = xScaleStart;
     else if (_____vs_____ == "xSpd") global.retval = xSpd;
     else if (_____vs_____ == "xSpdConst") global.retval = xSpdConst;

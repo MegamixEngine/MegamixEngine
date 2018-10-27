@@ -183,11 +183,11 @@ for (var i = 0; i < prop_inst_n; i++)
 for (var i = 0; i < prop_tile_n; i++)
 {
     var map = prop_tile[i];
-    room_tile_add(exrm, asset_get_index(map[? "bgName"]),
+    room_tile_add_ext(exrm, asset_get_index(map[? "bgName"]),
         real(map[? "xo"]), real(map[? "yo"]),
         real(map[? "w"]), real(map[? "h"]),
         real(map[? "x"]), real(map[? "y"]),
-        real(map[? "depth"]));
+        real(map[? "depth"]), real(map[? "scaleX"]), real(map[? "scaleY"]),1);
     ds_map_destroy(map);
 }
 

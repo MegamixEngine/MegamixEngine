@@ -1,6 +1,10 @@
 //THE ACTUAL STEP EVENT
 if (!global.frozen && !frozen)
 {
+    if(xScaleOverride!=0)
+    {
+        image_xscale = movementXScale;
+    }
     playerStep(); // General step event code
     
     if (!playerIsLocked(PL_LOCK_PHYSICS))
@@ -11,7 +15,14 @@ if (!global.frozen && !frozen)
         image_xscale=iscl;
         playerMovement();
     }
-    
+    if(xScaleOverride!=0)
+    {
+        movementXScale = image_xscale;
+    }
+    if(xScaleOverride != 0 && !climbing)
+    {
+        image_xscale = sign(xScaleOverride);
+    }
     // Shooting
     if (instance_exists(statusObject))
     {
@@ -23,6 +34,11 @@ if (!global.frozen && !frozen)
     else
     {
         playerHandleShoot();
+    }
+    
+    if(climbing)
+    {
+        movementXScale = image_xscale;
     }
     
     // Quick weapon switching

@@ -10,7 +10,7 @@ var _____j_____ = argument2;
 /// DO NOT EDIT BY HAND!
 
 /// Stats:
-/// 4570 variables
+/// 4581 variables
 /// from 1655 source files
 
 if (_____vs_____ == "") return false;
@@ -297,6 +297,7 @@ else if (stringStartsWith(_____vs_____, 'b'))
     else if (_____vs_____ == "blinkSpeed") global.retval = blinkSpeed[_____i_____, _____j_____];
     else if (_____vs_____ == "blinkTimer") global.retval = blinkTimer[_____i_____, _____j_____];
     else if (_____vs_____ == "blinkTimerMax") global.retval = blinkTimerMax[_____i_____, _____j_____];
+    else if (_____vs_____ == "blinkWait") global.retval = blinkWait[_____i_____, _____j_____];
     else if (_____vs_____ == "blinks") global.retval = blinks[_____i_____, _____j_____];
     else if (_____vs_____ == "blk") global.retval = blk[_____i_____, _____j_____];
     else if (_____vs_____ == "blobID") global.retval = blobID[_____i_____, _____j_____];
@@ -901,6 +902,7 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "dis") global.retval = dis[_____i_____, _____j_____];
     else if (_____vs_____ == "disM") global.retval = disM[_____i_____, _____j_____];
     else if (_____vs_____ == "disappear") global.retval = disappear[_____i_____, _____j_____];
+    else if (_____vs_____ == "disappearTime") global.retval = disappearTime[_____i_____, _____j_____];
     else if (_____vs_____ == "disappearTimer") global.retval = disappearTimer[_____i_____, _____j_____];
     else if (_____vs_____ == "disclaimerText") global.retval = disclaimerText[_____i_____, _____j_____];
     else if (_____vs_____ == "disp") global.retval = disp[_____i_____, _____j_____];
@@ -990,12 +992,14 @@ else if (stringStartsWith(_____vs_____, 'd'))
     else if (_____vs_____ == "drop") global.retval = drop[_____i_____, _____j_____];
     else if (_____vs_____ == "dropBlockCollision") global.retval = dropBlockCollision[_____i_____, _____j_____];
     else if (_____vs_____ == "dropCount") global.retval = dropCount[_____i_____, _____j_____];
+    else if (_____vs_____ == "dropDisappearTime") global.retval = dropDisappearTime[_____i_____, _____j_____];
     else if (_____vs_____ == "dropDown") global.retval = dropDown[_____i_____, _____j_____];
     else if (_____vs_____ == "dropGrav") global.retval = dropGrav[_____i_____, _____j_____];
     else if (_____vs_____ == "dropHoney") global.retval = dropHoney[_____i_____, _____j_____];
     else if (_____vs_____ == "dropIn") global.retval = dropIn[_____i_____, _____j_____];
     else if (_____vs_____ == "dropInterval") global.retval = dropInterval[_____i_____, _____j_____];
     else if (_____vs_____ == "dropMax") global.retval = dropMax[_____i_____, _____j_____];
+    else if (_____vs_____ == "dropOnce") global.retval = dropOnce[_____i_____, _____j_____];
     else if (_____vs_____ == "dropRock") global.retval = dropRock[_____i_____, _____j_____];
     else if (_____vs_____ == "dropTime") global.retval = dropTime[_____i_____, _____j_____];
     else if (_____vs_____ == "dropTimer") global.retval = dropTimer[_____i_____, _____j_____];
@@ -2004,6 +2008,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "imgalarm") global.retval = imgalarm[_____i_____, _____j_____];
     else if (_____vs_____ == "imgdelay") global.retval = imgdelay[_____i_____, _____j_____];
     else if (_____vs_____ == "imgs") global.retval = imgs[_____i_____, _____j_____];
+    else if (_____vs_____ == "imgscl") global.retval = imgscl[_____i_____, _____j_____];
     else if (_____vs_____ == "imgsp") global.retval = imgsp[_____i_____, _____j_____];
     else if (_____vs_____ == "imgspalarm") global.retval = imgspalarm[_____i_____, _____j_____];
     else if (_____vs_____ == "imgx") global.retval = imgx[_____i_____, _____j_____];
@@ -2068,6 +2073,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "introFakeGrav") global.retval = introFakeGrav[_____i_____, _____j_____];
     else if (_____vs_____ == "introFakeYspeed") global.retval = introFakeYspeed[_____i_____, _____j_____];
     else if (_____vs_____ == "introLock") global.retval = introLock[_____i_____, _____j_____];
+    else if (_____vs_____ == "introProp") global.retval = introProp[_____i_____, _____j_____];
     else if (_____vs_____ == "introSprite") global.retval = introSprite[_____i_____, _____j_____];
     else if (_____vs_____ == "introTimer") global.retval = introTimer[_____i_____, _____j_____];
     else if (_____vs_____ == "introType") global.retval = introType[_____i_____, _____j_____];
@@ -2130,6 +2136,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "isfree") global.retval = isfree[_____i_____, _____j_____];
     else if (_____vs_____ == "ispushed") global.retval = ispushed[_____i_____, _____j_____];
     else if (_____vs_____ == "item") global.retval = item[_____i_____, _____j_____];
+    else if (_____vs_____ == "itemCode") global.retval = itemCode[_____i_____, _____j_____];
     else if (_____vs_____ == "itemDescription") global.retval = itemDescription[_____i_____, _____j_____];
     else if (_____vs_____ == "itemDrawBottom") global.retval = itemDrawBottom[_____i_____, _____j_____];
     else if (_____vs_____ == "itemDrawBoxHeight") global.retval = itemDrawBoxHeight[_____i_____, _____j_____];
@@ -2144,6 +2151,7 @@ else if (stringStartsWith(_____vs_____, 'i'))
     else if (_____vs_____ == "itemName") global.retval = itemName[_____i_____, _____j_____];
     else if (_____vs_____ == "itemPrice") global.retval = itemPrice[_____i_____, _____j_____];
     else if (_____vs_____ == "itemPurchaseAction") global.retval = itemPurchaseAction[_____i_____, _____j_____];
+    else if (_____vs_____ == "itemScript") global.retval = itemScript[_____i_____, _____j_____];
     else if (_____vs_____ == "itemSpawnOffsetX") global.retval = itemSpawnOffsetX[_____i_____, _____j_____];
     else if (_____vs_____ == "itemSpawnOffsetY") global.retval = itemSpawnOffsetY[_____i_____, _____j_____];
     else if (_____vs_____ == "itemUnavailable") global.retval = itemUnavailable[_____i_____, _____j_____];
@@ -2550,6 +2558,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "move_time") global.retval = move_time[_____i_____, _____j_____];
     else if (_____vs_____ == "moved") global.retval = moved[_____i_____, _____j_____];
     else if (_____vs_____ == "movementLock") global.retval = movementLock[_____i_____, _____j_____];
+    else if (_____vs_____ == "movementXScale") global.retval = movementXScale[_____i_____, _____j_____];
     else if (_____vs_____ == "moves") global.retval = moves[_____i_____, _____j_____];
     else if (_____vs_____ == "movey") global.retval = movey[_____i_____, _____j_____];
     else if (_____vs_____ == "moving") global.retval = moving[_____i_____, _____j_____];
@@ -2623,6 +2632,7 @@ else if (stringStartsWith(_____vs_____, 'm'))
     else if (_____vs_____ == "myScore") global.retval = myScore[_____i_____, _____j_____];
     else if (_____vs_____ == "mySecondaryColor") global.retval = mySecondaryColor[_____i_____, _____j_____];
     else if (_____vs_____ == "mySolid") global.retval = mySolid[_____i_____, _____j_____];
+    else if (_____vs_____ == "mySound") global.retval = mySound[_____i_____, _____j_____];
     else if (_____vs_____ == "mySpeed") global.retval = mySpeed[_____i_____, _____j_____];
     else if (_____vs_____ == "mySpeedMax") global.retval = mySpeedMax[_____i_____, _____j_____];
     else if (_____vs_____ == "myTag") global.retval = myTag[_____i_____, _____j_____];
@@ -4389,6 +4399,7 @@ else if (stringStartsWith(_____vs_____, 'x'))
     else if (_____vs_____ == "xPrev") global.retval = xPrev[_____i_____, _____j_____];
     else if (_____vs_____ == "xProvLength") global.retval = xProvLength[_____i_____, _____j_____];
     else if (_____vs_____ == "xSOffset") global.retval = xSOffset[_____i_____, _____j_____];
+    else if (_____vs_____ == "xScaleOverride") global.retval = xScaleOverride[_____i_____, _____j_____];
     else if (_____vs_____ == "xScaleStart") global.retval = xScaleStart[_____i_____, _____j_____];
     else if (_____vs_____ == "xSpd") global.retval = xSpd[_____i_____, _____j_____];
     else if (_____vs_____ == "xSpdConst") global.retval = xSpdConst[_____i_____, _____j_____];
