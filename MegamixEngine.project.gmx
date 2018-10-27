@@ -490,6 +490,7 @@
         <sound>sound\sfxBariIIIShoot</sound>
         <sound>sound\sfxBlockDevilLaser</sound>
         <sound>sound\sfxBombPotton</sound>
+		<sound>sound\sfxChillGloop</sound>
         <sound>sound\sfxChillSpikeLand</sound>
         <sound>sound\sfxChillSpikeShatter</sound>
         <sound>sound\sfxChillShoot</sound>
@@ -964,6 +965,7 @@
         <sprite>sprites\sprGutsCrouch</sprite>
         <sprite>sprites\sprGutsJump</sprite>
         <sprite>sprites\sprGutsGrab</sprite>
+		<sprite>sprites\sprGutsPose</sprite>
         <sprite>sprites\sprGutsBlock</sprite>
         <sprite>sprites\sprGutsBlockSmall</sprite>
       </sprites>
