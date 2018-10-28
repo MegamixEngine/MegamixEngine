@@ -122,7 +122,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         {
             if (blockCollision &amp;&amp; !dead &amp;&amp; ground &amp;&amp; grav != 0)
             {
-                if (object_index != objCrusher &amp;&amp; object_index!=objOshitsuOsarettsu &amp;&amp; object_index!=objMetalMan)
+                if (object_index != objCrusher)
                 {
                     if(place_meeting(x,y+2*sign(grav), other))
                     {
