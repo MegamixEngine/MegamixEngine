@@ -31,7 +31,7 @@ bulletLimitCost = 1;
 
 animIndex = 0;
 animSpeed = 0.4;
-contactDamage = 2;
+contactDamage = 3;
 
 image_speed = 0.5;
 

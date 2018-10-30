@@ -54,7 +54,7 @@ suckSpeed = 1;
 suckTimer = 224;
 
 // Health Bar
-healthBarPrimaryColor[1] = 27;
+healthBarPrimaryColor[1] = 13; //27
 healthBarSecondaryColor[1] = 40;
 
 // Music
