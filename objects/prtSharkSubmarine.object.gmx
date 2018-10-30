@@ -29,6 +29,7 @@
 
 firstStep = 1;
 
+slowdeathTimer = 0;
 _endStageBehavior = 0;
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
@@ -397,6 +398,7 @@ else
     useEndStageBehavior = false;
     itemDrop = -1;
     doPlayerExplosion = false;
+    
 }
 event_inherited();
 instance_create(bboxGetXCenter(), bboxGetYCenter() - 10, objBigExplosion);
