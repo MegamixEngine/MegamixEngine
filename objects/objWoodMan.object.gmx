@@ -171,6 +171,7 @@ if (entityCanStep())
                         for (i = 0; i &lt; 8; i += 1)
                         {
                             shield = instance_create(x, y, objWoodLeafShield);
+                            shield.myObject = id;
                             shield.image_xscale = image_xscale;
                             shield.direction = i * 45;
                             shield.despawnRange = -1;

@@ -41,6 +41,7 @@ contactDamage = 4;
 blockCollision = 0;
 rotationTimer = 0;
 grav = 0;
+myObject = 0;
 
 x = round(xs + 22 * cos(direction / 57));
 y = round(ys + 22 * sin((direction + 180) / 57));
@@ -71,13 +72,13 @@ y = round(ys + 22 * sin((direction + 180) / 57));
 if (entityCanStep())
 {
     // sticks to wood man
-    if (instance_exists(objWoodMan))
+    if (instance_exists(myObject))
     {
         if (followWood)
         {
-            xs = bboxGetXCenterObject(objWoodMan);
-            ys = bboxGetYCenterObject(objWoodMan);
-            image_xscale = other.image_xscale;
+            xs = bboxGetXCenterObject(myObject);
+            ys = bboxGetYCenterObject(myObject);
+            image_xscale = myObject.image_xscale;
         }
     }
     else
