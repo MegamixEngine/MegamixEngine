@@ -104,7 +104,7 @@ if (init == 1)
     var mapY = floor(y / 224);
     var screenYBottom = mapY * 224 + 224;
     init = 0;
-    while (!place_meeting(x, y + 1, objSolid) &amp;&amp; bbox_bottom &lt; screenYBottom)
+    while (!position_meeting(x, bbox_bottom + 1, objSolid) &amp;&amp; bbox_bottom &lt; screenYBottom)
     {
         y = y + 1;
     }

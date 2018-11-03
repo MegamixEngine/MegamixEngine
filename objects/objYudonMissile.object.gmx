@@ -102,8 +102,9 @@ if (entityCanStep())
         &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
         &gt; 15)
         image_index = (16 + (cooldownTimer mod 4) / 16);
-    
+        
     cooldownTimer += 1;
+        
     if (instance_exists(target))
     {
         switch (phase)
@@ -181,23 +182,6 @@ if (entityCanStep())
                 break;
         }
     }
-    
-    // Jet Animation
-    /*jetTimer += 1;
-    if (jetTimer &gt;= 4)
-    {
-        // &lt;-- jet animation speed here
-        if (sprite_index == sprYudonMissileOn)
-        {
-            sprite_index = sprYudonMissileOff;
-        }
-        else
-        {
-            sprite_index = sprYudonMissileOn;
-        }
-            
-        jetTimer = 0;
-    }*/
 }
 else if (dead)
 {

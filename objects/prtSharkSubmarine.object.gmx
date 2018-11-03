@@ -29,6 +29,7 @@
 
 firstStep = 1;
 
+slowdeathTimer = 0;
 _endStageBehavior = 0;
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
@@ -71,8 +72,8 @@ yCurrOffset = 0; // Keeps track of the height changes for the shark.
 endOfStageBoss = false;
 
 // Health Bar
-healthBarPrimaryColor[1] = 25;
-healthBarSecondaryColor[1] = 52;
+healthBarPrimaryColor[1] = 52;
+healthBarSecondaryColor[1] = 40;
 
 // Music
 music = "Mega_Man_9.nsf";
@@ -397,6 +398,7 @@ else
     useEndStageBehavior = false;
     itemDrop = -1;
     doPlayerExplosion = false;
+    
 }
 event_inherited();
 instance_create(bboxGetXCenter(), bboxGetYCenter() - 10, objBigExplosion);
