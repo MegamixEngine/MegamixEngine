@@ -211,6 +211,7 @@ else if (dead)
     animTimer = 8;
     shooting = false;
     actionTimer = 0;
+    closeBlastDoors = false;
     cooldownTimer = cooldownMax;
     img = 0;
     missile1 = 0;
