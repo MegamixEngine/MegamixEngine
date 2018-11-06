@@ -191,7 +191,7 @@ if (entityCanStep())
                 
                 // setup
                 respawn = false;
-                scriptExecuteNargs(script, scriptArgV, scriptArgC);
+                scriptExecuteNargs(other.script, other.scriptArgV, other.scriptArgC);
                 
                 if (other.code != "")
                     stringExecutePartial(other.code);
