@@ -65,10 +65,11 @@ countOwn = false;
 // and is more reliable since GML code execution from a string is not fully-featured.)
 script = scrNoEffect;
 
-for (i = 0; i &lt; 9; i++)
-{ 
-    scriptArgument[i] = -999;
-}
+//@cc number of arguments
+scriptArgC = 0;
+
+//@cc array containing arguments (will be cropped to `scriptArgC`)
+scriptArgV = makeArray(0);
 
 //@cc string containing GML code to execute. If you put, say, code = "xspeed = -3" and the object is set to objEnemyBullet,
 // then the spawner will create a bullet moving left.
@@ -190,40 +191,8 @@ if (entityCanStep())
                 
                 // setup
                 respawn = false;
-                if other.scriptArgument[0] == -999
-                {
-                    script_execute(other.script);
-                }
-                switch array_length_1d(other.scriptArgument)
-                {
-                    case 1:
-                        script_execute(other.script, other.scriptArgument[0]);
-                        break;
-                    case 2:
-                        script_execute(other.script, other.scriptArgument[0], other.scriptArgument[1]);
-                        break;
-                    case 3:
-                        script_execute(other.script, other.scriptArgument[0], other.scriptArgument[1], other.scriptArgument[2]);
-                        break;
-                    case 4:
-                        script_execute(other.script, other.scriptArgument[0], other.scriptArgument[1], other.scriptArgument[2], other.scriptArgument[3]);
-                        break;
-                    case 5:
-                        script_execute(other.script, other.scriptArgument[0], other.scriptArgument[1], other.scriptArgument[2], other.scriptArgument[3], other.scriptArgument[4]);
-                        break;
-                    case 6:
-                        script_execute(other.script, other.scriptArgument[0], other.scriptArgument[1], other.scriptArgument[2], other.scriptArgument[3], other.scriptArgument[4], other.scriptArgument[5]);
-                        break;
-                    case 7:
-                        script_execute(other.script, other.scriptArgument[0], other.scriptArgument[1], other.scriptArgument[2], other.scriptArgument[3], other.scriptArgument[4], other.scriptArgument[5], other.scriptArgument[6]);
-                        break;
-                    case 8:
-                        script_execute(other.script, other.scriptArgument[0], other.scriptArgument[1], other.scriptArgument[2], other.scriptArgument[3], other.scriptArgument[4], other.scriptArgument[5], other.scriptArgument[6], other.scriptArgument[7]);
-                        break;
-                    case 9:
-                        script_execute(other.script, other.scriptArgument[0], other.scriptArgument[1], other.scriptArgument[2], other.scriptArgument[3], other.scriptArgument[4], other.scriptArgument[5], other.scriptArgument[6], other.scriptArgument[7], other.scriptArgument[8]);
-                        break;
-                }
+                scriptExecuteNargs(other.script, other.scriptArgV, other.scriptArgC);
+                
                 if (other.code != "")
                     stringExecutePartial(other.code);
             }
