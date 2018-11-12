@@ -35,6 +35,7 @@ contactDamage = 4;
 itemDrop = -1;
 stopOnFlash = false;
 canIce = false;
+enemyDamageValue(objLaserTrident,3);
 
 bouncyCalamity = true; // True = can bounce, False = can't bounce.
 </string>

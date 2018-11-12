@@ -50,6 +50,9 @@ moveSpeed = 1;
 
 // @cc - use this to change how low Byouz jumps
 jumpSpeed = 5;
+
+// @cc - radius to detect mega man
+radius = 0;
 </string>
           </argument>
         </arguments>
@@ -123,7 +126,7 @@ if (entityCanStep())
             {
                 if (instance_exists(target))
                 {
-                    if (floor(target.x) == x)
+                    if (abs(floor(target.x) - x) &lt;= radius)
                     {
                         image_index = 1;
                         xspeed = 0;

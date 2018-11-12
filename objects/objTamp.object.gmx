@@ -194,6 +194,7 @@ canDamage = true;
 canHit = true;
 moveTimer = 30;
 warpDelay = 30;
+phase = 0;
 image_alpha = 1;
 </string>
           </argument>

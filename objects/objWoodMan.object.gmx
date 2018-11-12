@@ -171,9 +171,11 @@ if (entityCanStep())
                         for (i = 0; i &lt; 8; i += 1)
                         {
                             shield = instance_create(x, y, objWoodLeafShield);
+                            shield.myObject = id;
                             shield.image_xscale = image_xscale;
                             shield.direction = i * 45;
                             shield.despawnRange = -1;
+                            shield.reflectable = 0;
                             with (shield)
                             {
                                 if (direction / 90 != floor(direction / 90))
@@ -210,10 +212,16 @@ if (entityCanStep())
                         image_index = 4;
                         if instance_exists(objWoodLeafShield)
                         {
-                            objWoodLeafShield.xspeed = 3.5 * image_xscale;
-                            objWoodLeafShield.yspeed = 0;
-                            objWoodLeafShield.followWood = false;
-                            objWoodLeafShield.despawnRange = 4;
+                            with objWoodLeafShield
+                            {
+                                if myObject == other.id
+                                {
+                                    xspeed = 3.5 * other.image_xscale;
+                                    yspeed = 0;
+                                    followWood = false;
+                                    despawnRange = 4;
+                                }
+                            }
                         }
                         for (i = 1; i &lt; 5; i += 1)
                         {
@@ -322,8 +330,11 @@ with (objWoodRisingLeaves)
 }
 with (objWoodLeafShield)
 {
-    instance_create(x, y, objExplosion);
-    instance_destroy();
+    if myObject == other.id
+    {
+        instance_create(x, y, objExplosion);
+        instance_destroy();
+    }
 }
 event_inherited();
 </string>
