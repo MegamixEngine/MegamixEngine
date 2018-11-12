@@ -51,7 +51,6 @@ chaseTimer = 0;
 startWait = 0;
 startWaitTimer = startWait;
 rotateChange = 45;
-jetTimer = 0;
 
 spd = 1.50;
 
@@ -83,25 +82,66 @@ col = 0;
 
 if (entityCanStep())
 {
+    print ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16));
+    
     if (col == 0
         &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
         &lt;= 15)
-        image_index = ((2 * round(direction / 45))
-            + ((cooldownTimer mod 4) / 16));
+    {
+        if (cooldownTimer mod 8 &lt; 4)
+        {
+            image_index = ((2 * round(direction / 45))
+                + ((cooldownTimer mod 4) / 16));
+        }
+        else
+        {
+            image_index = ((2 * round(direction / 45))
+                + ((cooldownTimer mod 4) / 16)) + 1;
+        }
+    }
     else if (col == 0
         &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
         &gt; 15)
-        image_index = ((cooldownTimer mod 4) / 16);
+    {
+        if (cooldownTimer mod 8 &lt; 4)
+        {
+            image_index = ((cooldownTimer mod 4) / 16);
+        }
+        else
+        {
+            image_index = ((cooldownTimer mod 4) / 16) + 1;
+        }
+    }
     
+    // Purple missiles
     if (col == 1
         &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
         &lt;= 15)
-        image_index = (16 + (2 * round(direction / 45))
-            + ((cooldownTimer mod 4) / 16));
+    {
+        if (cooldownTimer mod 8 &lt; 4)
+        {
+            image_index = (16 + (2 * round(direction / 45))
+                + ((cooldownTimer mod 4) / 16));
+        }
+        else
+        {
+            image_index = (16 + (2 * round(direction / 45))
+                + ((cooldownTimer mod 4) / 16)) + 1;
+        }
+    }
     else if (col == 1
         &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
         &gt; 15)
-        image_index = (16 + (cooldownTimer mod 4) / 16);
+    {
+        if (cooldownTimer mod 8 &lt; 4)
+        {
+            image_index = (16 + (cooldownTimer mod 4) / 16);
+        }
+        else
+        {
+            image_index = (16 + (cooldownTimer mod 4) / 16) + 1;
+        }
+    }
         
     cooldownTimer += 1;
         

@@ -125,10 +125,25 @@ if (entityCanStep() &amp;&amp; !killed &amp;&amp; !stop)
         }
     }
 }
-else if (dead)
+else if (killed)
 {
-    hatchIndex = 2;
-    siloIndex = 4;
+    slowdeathTimer++
+    if (slowdeathTimer == 1)
+    {
+        instance_create(x, y + 7, objBigExplosion);
+        playSFX(sfxMM9Explosion);
+    }
+    if (slowdeathTimer == 11)
+    {
+        instance_create(x - 5*image_xscale, y+14, objBigExplosion);
+        playSFX(sfxMM9Explosion);
+    }
+    if (slowdeathTimer == 21)
+    {
+        instance_create(x + 10*image_xscale, y-14, objBigExplosion);
+        playSFX(sfxMM9Explosion);
+        event_user(EV_DEATH);
+    }
 }
 </string>
           </argument>
@@ -185,7 +200,11 @@ if (hatchIndex == 2 &amp;&amp; collision_rectangle(x - 8 * image_xscale, y - 17,
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(missile1))
+            <string>event_inherited();
+hatchIndex = 2;
+siloIndex = 4;
+canHit = false;
+if (instance_exists(missile1))
 {
     with (missile1)
     {
@@ -209,7 +228,6 @@ if (instance_exists(missile3))
         instance_destroy();
     }
 }
-event_inherited();
 </string>
           </argument>
         </arguments>
