@@ -27,12 +27,14 @@
             <kind>1</kind>
             <string>event_inherited();
 
+respawn = true;
+
 healthpointsStart = 5;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 category = "semi bulky";
 
-facePlayerOnSpawn = true;
+//facePlayerOnSpawn = true;
 phase = 0;
 
 // @cc - use this to change how fast La Jaba's horizontal movement is.
@@ -45,7 +47,6 @@ image_index = 2;
 imgSpd = 0.1;
 moveTimer = 0;
 tauntCount = 0;
-mask_index = sprLaJabaSmallMask;
 </string>
           </argument>
         </arguments>
@@ -106,6 +107,8 @@ if (entityCanStep())
                     image_index = 0;
                 }
             }
+            
+            calibrateDirection();
             break;
         // Small Jump - Air
         case 1:
@@ -214,14 +217,11 @@ if (entityCanStep())
 }
 else if (dead)
 {
-    healthpoints = healthpointsStart;
     moveTimer = 0;
     image_index = 2;
     phase = 0;
-    xspeed = 0;
-    yspeed = 0;
-    facePlayer = false;
     tauntCount = 0;
+    calibrateDirection();
 }
 </string>
           </argument>
