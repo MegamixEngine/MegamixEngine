@@ -3839,6 +3839,7 @@
         <sprite>sprites\sprMM2Conveyor</sprite>
         <sprite>sprites\sprMM2ConveyorIcon</sprite>
         <sprite>sprites\sprMM2FallingPlatform</sprite>
+		<sprite>sprites\mskNonPreciseLaserMask</sprite>
         <sprite>sprites\sprQuickLaser</sprite>
         <sprite>sprites\sprQuickLaserDrain</sprite>
         <sprite>sprites\sprPreciseQuickLaserDrain</sprite>

@@ -99,6 +99,14 @@ myPixel = -1;
             <kind>1</kind>
             <string>/* this is to prevent a fatal internal game maker studio error that can occur when the
 image angle is set to certain diagonal up angles */
+if(image_angle == 90 || image_angle == 180 || image_angle == 0 || image_angle == 270 || image_angle == 360)
+{
+    mask_index = mskNonPreciseLaserMask;
+}
+else
+{
+    mask_index = sprQuickLaser;
+}
 if (pauseEndStep)
 {
     pauseEndStep = false;
