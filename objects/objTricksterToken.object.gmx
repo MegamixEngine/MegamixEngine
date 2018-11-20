@@ -45,6 +45,7 @@ name = "";
 tokenIndex = -1;
 alreadyCollected=false;
 animFrame = 0;
+initName = true;
 </string>
           </argument>
         </arguments>
@@ -68,18 +69,29 @@ animFrame = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if(name == "")
+if(initName)
 {
-    if(tokenIndex&gt;4)
+    initName = false;
+    if(name == "")
     {
-        instance_destroy();
-        exit;
+        if(tokenIndex&gt;4)
+        {
+            instance_destroy();
+            exit;
+        }
+        name = room_get_name(room)+string(tokenIndex);
+        
+        if(indexOf(global.tTokensCollected,name)!=-1)
+        {
+            alreadyCollected = true;
+        }
     }
-    name = room_get_name(room)+string(tokenIndex);
-    
-    if(indexOf(global.tTokensCollected,name)!=-1)
+    else
     {
-        alreadyCollected = true;
+        if(indexOf(global.tTokensCollected,name)!=-1)
+        {
+            alreadyCollected = true;
+        }
     }
 }
 </string>
