@@ -15,11 +15,16 @@ if (isSolid)
         y = yprevious;
         x = xprevious;
         
+        /*
         with (objMegaman)
         {
-            savedgrav = grav;
-            grav = gravDir;
+            if(grav != gravDir)
+            {
+                savedgrav = grav;
+                grav = gravDir;
+            }
         }
+        */
         
         if (myyspeed != 0) // Vertical
         {   
@@ -131,12 +136,6 @@ if (isSolid)
                         continue;
                     }
                     
-                    /*
-                    if (object_index == objMegaman)
-                    {
-                        grav = gravDir;
-                    }
-                    */
                     var epIsOnPlat = false;
                     var epDir = sign(bboxGetXCenterObject(other.id) - bboxGetXCenter());
 
@@ -194,9 +193,9 @@ if (isSolid)
         yprevious = y;
         xprevious = x;
         
-        with (objMegaman)
+        /*with (objMegaman)
         {
             grav = savedgrav;
-        }
+        }*/
     }
 }
