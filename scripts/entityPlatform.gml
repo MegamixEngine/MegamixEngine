@@ -25,7 +25,7 @@ if (isSolid)
         {   
             with (prtEntity)
             {
-                if (blockCollision && !dead)
+                if (id!=other.id && blockCollision && !dead)
                 {
                     if (other.fnsolid)
                     {
@@ -116,7 +116,7 @@ if (isSolid)
             with (prtEntity)
             {
                 
-                if (blockCollision && !dead)
+                if (id!=other.id && blockCollision && !dead)
                 {
                     if (other.fnsolid)
                     {
@@ -184,7 +184,6 @@ if (isSolid)
                         other.x -= myxspeed;
                     }
                 }
-                epIsOnPlat=false;
             }
         }
         
