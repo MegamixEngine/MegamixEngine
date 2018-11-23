@@ -189,7 +189,7 @@ else if (init == 2)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>    event_inherited();
 
 if (introTimer &gt; 0 &amp;&amp; doesIntro)
 {
@@ -280,6 +280,11 @@ if (entityCanStep() &amp;&amp; introTimer &lt;= 0)
                 masterTimer = -1;
                 break;
             case 2: // wait for the shooting phase 
+                if(alone &amp;&amp; masterTimer == -1 &amp;&amp; anim == 0 &amp;&amp; phase == 0 &amp;&amp; timer == 0)
+                {
+                    masterTimer = -1;
+                    masterPhase = 0;
+                }
                 if (alone &amp;&amp; anim == 1 || !alone &amp;&amp; (anim == 1 || Other.anim == 1) &amp;&amp; masterTimer == -1)
                     masterTimer = 0;
                 if (masterTimer != -1)
