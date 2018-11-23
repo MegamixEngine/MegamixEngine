@@ -47,8 +47,6 @@ secondarycol = 0;
 timer = 0;
 
 name = "";
-elementIndex=-1;
-globalElementIndex=-2;
 
 alreadyCollected = false;
 energyElementLock = false;
@@ -124,10 +122,7 @@ if (entityCanStep())
     {
         if (!(sparkletimer mod 6))
         {
-            if(globalElementIndex==-2){
-                globalElementIndex=indexOf(global.elementsCollected, name)
-            }
-            if (!globalElementIndex)
+            if (!indexOf(global.elementsCollected, name))
             {
                 primarycol = choose(global.primaryCol[0], global.secondaryCol[0], c_white, make_color_rgb(255, 228, 164));
                 do
@@ -231,48 +226,9 @@ if (entityCanStep())
         // update count of number of elements collected:
         global.energyElements = array_length_1d(global.elementsCollected) - numberOf(global.elementsCollected, "");
     }
-
+    
     // save the game file
     saveLoadGame(true);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="4">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(elementIndex==-1)
-{
-    for(var i=instance_number(object_index)-1;i&gt;=0;--i)
-    {
-        if(instance_find(object_index,i)==id)
-        {
-            elementIndex=i;
-            break;
-        }
-    }
-    if(elementIndex&gt;2)
-    {
-        instance_destroy();
-        exit;
-    }
-    name = room_get_name(room)+string(elementIndex);
 }
 </string>
           </argument>
