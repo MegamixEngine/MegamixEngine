@@ -151,14 +151,17 @@ else if (dead)
             <string>event_inherited();
 if (spawned)
 {
-    if (attachedToCloud &amp;&amp; instance_exists(myCloud))
+    if (attachedToCloud)
     {
-        var f = false;
-        with (myCloud)
-            f = insideView(x, y);
-        if (f)
+        if (instance_exists(myCloud))
         {
-            dead = true;
+            var f = false;
+            with (myCloud)
+                f = !insideSection(x, y);
+            if (f)
+            {
+                dead = true;
+            }
         }
     }
 }

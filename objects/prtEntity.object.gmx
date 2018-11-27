@@ -574,9 +574,10 @@ if (itemDrop == objKey)
     _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objKey);
     _ex.yspeed = -4;
     _ex.homingTimer = 90;
+    _ex.despawnRange = -1;
     playSFX(sfxKeySpawn);
 }
-else if(itemDrop == objEnergyElement)
+else if (itemDrop == objEnergyElement)
 {
     _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objEnergyElement);
 }
@@ -587,7 +588,8 @@ else
     _ex.script = itemScript;
     _ex.disappearTime = dropDisappearTime;
 }
-if(itemDrop &amp;&amp; dropOnce)
+
+if (itemDrop &amp;&amp; dropOnce)
 {
     itemDrop = 0;
 }
