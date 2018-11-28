@@ -55,6 +55,7 @@ jumpSpeedWater = 0.1;
 // jumpSpeedWater = 4.85 + grav*2;
 
 walkSpeed = 1.3; // walkSpeed = 1.296875;
+oilWalk = 0.3;
 maxVspeed = 7;
 
 premask = mask_index;
@@ -239,9 +240,10 @@ paletteRefresh = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch (global.characterSelected[playerID])
+            <string>// costumeID needs to be set here or it won't display correctly.
+switch (global.characterSelected[playerID])
 { 
-    default: //costumeID needs to be set here or it won't display correctly.
+    default: 
         break;
     case "Mega Man":
         costumeID = 0;
@@ -256,9 +258,11 @@ paletteRefresh = 0;
         costumeID = 3;
         break;
 }
-if paletteRefresh == 0
+
+// corrects palette
+if (paletteRefresh == 0)
 {
-    playerPalette(); // corrects palette
+    playerPalette(); 
 }
 </string>
           </argument>
@@ -291,10 +295,8 @@ if paletteRefresh == 0
         playerStepEventDefault();
         break;
     case "Proto Man":
-    {
         playerStepEventProto();
         break;
-    }
 }
 </string>
           </argument>
@@ -455,28 +457,6 @@ global.damage *= contactDamageMultiplier;
             <kind>1</kind>
             <string>playerGetHit(global.damage);
 </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="4">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
           </argument>
         </arguments>
       </action>

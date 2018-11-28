@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>event_inherited(); //needs to be called since parent needs to be defined for the switch statement to work
 
+inWater = -1;
+
 if object_index == objNormalBusterShot
 {
     scrBusterDefault_Create();

@@ -31,6 +31,7 @@ mainShot = 1;
 bulletLimitCost = 1;
 
 contactDamage = 1;
+inWater = -1;
 
 // constants
 moveSpeed = 6;

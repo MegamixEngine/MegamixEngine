@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 4;
+inWater = -1;
 
 image_speed = 0.2;
 
@@ -273,6 +274,8 @@ specialDamageValue("floating", 6);
         
         var copy = instance_copy(false);
         _i.sprite_index = sprite_index;
+        _i.image_xscale = image_xscale;
+        _i.image_yscale = image_yscale;
         copy.sprite_index = sprite_index;
         copy.image_index = image_index;
         copy.image_xscale = image_xscale;

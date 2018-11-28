@@ -32,6 +32,7 @@ bulletLimitCost = 1;
 animIndex = 0;
 animSpeed = 0.4;
 contactDamage = 3;
+inWater = -1;
 
 image_speed = 0.5;
 

@@ -19,6 +19,7 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
             isSlide = false;
             mask_index = mskMegaman;
             slideTimer = 0;
+
             shiftObject(0, -gravDir, 1);
         }
         
