@@ -30,6 +30,7 @@
 bulletLimitCost = 3;
 
 contactDamage = 3;
+inWater = -1;
 
 imgIndex = 0;
 

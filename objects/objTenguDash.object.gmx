@@ -32,6 +32,7 @@ event_inherited();
 bulletLimitCost = 1;
 
 contactDamage = 2;
+inWater = -1;
 
 penetrate = 2; // obviously we don't want to destroy the control for the dash
 pierces = 2;

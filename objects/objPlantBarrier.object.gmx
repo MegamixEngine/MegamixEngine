@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 4;
+inWater = -1;
 
 image_speed = (2 / 3);
 

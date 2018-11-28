@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 2;
+inWater = -1;
 canDamage = 0;
 despawnRange = -1;
 

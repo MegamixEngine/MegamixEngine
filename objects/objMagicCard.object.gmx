@@ -29,6 +29,7 @@
 
 bulletLimitCost = 1;
 contactDamage = 2;
+inWater = -1;
 
 penetrate = 0;
 pierces = 1;

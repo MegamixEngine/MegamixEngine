@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 1;
+inWater = -1;
 
 blockCollision = 1;
 noCollision = 0;
