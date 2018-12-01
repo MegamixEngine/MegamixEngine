@@ -49,11 +49,10 @@ targX = 0;
 targY = 0;
 toxin = false;
 imgIndex = 0;
-imgSpd = 0.5;
+imgSpd = 0.3; //0.5
 toxinTimer = 0;
 drawTimer = 4;
 animBack = false;
-cosCounter = 0;
 </string>
           </argument>
         </arguments>
@@ -124,9 +123,6 @@ if (entityCanStep())
                 if (moveTimer &gt; 0)
                 {
                     calibrateDirection();
-                    
-                    cosCounter += .135;
-                    yspeed = -(cos(cosCounter) * 0.5);
                 }
                 
                 if (moveTimer &lt;= 0)
@@ -135,6 +131,7 @@ if (entityCanStep())
                     {
                         targX = target.x;
                         targY = target.y;
+                        imgSpd = 0.5;
                     }
                     
                     moveTowardPoint(targX, targY, 3);
@@ -164,10 +161,11 @@ if (entityCanStep())
                     calibrateDirection();
                     
                     yspeed = 0;
-                    moveTimer = 120;
+                    moveTimer = 60;
                     phase = 0;
                     targX = 0;
                     targY = 0;
+                    imgSpd = 0.3;
                 }
                 break;
         }
@@ -256,7 +254,7 @@ else if (dead)
     toxinTimer = 0;
     animBack = false;
     drawTimer = 4;
-    cosCounter = 0;
+    imgSpd = 0.3;
 }
 image_index = imgIndex div 1;
 </string>
