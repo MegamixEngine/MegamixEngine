@@ -145,7 +145,7 @@ if (global.enableSlide && !playerIsLocked(PL_LOCK_SLIDE))
             
             if (jump)
             {
-                playerJump();
+                playerJump(0); //this gets incremented twice somehow so it cant increase jumpCounter
                 if dashSlide
                 {
                     dashJumped = true;
