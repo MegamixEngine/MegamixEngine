@@ -86,7 +86,7 @@ if (xspeed != 0)
     {
         with (objTopSolid)
         {
-            solid=0;
+            solid = 0;
             if (place_meeting(x - other.xspeed, y, myid))
             {
                 if (!place_meeting(x - other.xspeed, y + slp, myid)
@@ -304,6 +304,7 @@ if (dieToSpikes)
         {
             global.damage = spSolid.contactDamage;
             healthpoints -= global.damage;
+            playSFX(sfxEnemyHit);
 
             if (healthpoints <= 0)
             {

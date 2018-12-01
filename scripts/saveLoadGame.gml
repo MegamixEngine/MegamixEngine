@@ -12,6 +12,7 @@ slBegin(argument0, global.saveFile);
 objGlobalControl.saveTimer = 40;
 global.bolts = sl(global.bolts);
 global.eTanks = sl(global.eTanks);
+global.wTanks = sl(global.wTanks);
 global.mTanks = sl(global.mTanks);
 global.energyElements = sl(global.energyElements);
 global.elementsCollected = sl(global.elementsCollected, "elements", true);

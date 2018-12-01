@@ -91,7 +91,7 @@ instance_create(0, 0, objDebugControl);
 instance_create(0, 0, objMobileControl);
 
 //Used to load a room passed as parameter
-init=1;
+init = 1;
 
 // show disclaimer
 room_goto(rmDisclaimer);
