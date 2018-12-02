@@ -135,10 +135,6 @@ else if (dead)
     animTimer = 0;
     searchyImage = 0;
     phase = 0;
-    if (audio_is_playing(sfxSearchyLight))
-    {
-        stopSFX(sfxSearchyLight);
-    }
 }
 </string>
           </argument>

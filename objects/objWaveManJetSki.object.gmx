@@ -307,12 +307,17 @@ inWater = -1;
             {
                 if (!instance_exists(waterPlat))
                 {
-                    waterPlat = instance_create(water.x, water.y + 1, objTopSolid);
+                    waterPlat = instance_create(water.x, water.y + 1, objSolidEntity);
+                    waterPlat.faction = 2;
+                    waterPlat.fnsolid = 1;
+                    waterPlat.isSolid = 1;
+                    
+                    playSFX(sfxSplash);
                 }
                 else
                 {
                     waterPlat.x = x;
-                    waterPlat.y = water.y + 1;
+                    waterPlat.y = water.y + 2;
                 }
             }
         }

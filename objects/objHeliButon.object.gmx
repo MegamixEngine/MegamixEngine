@@ -177,7 +177,7 @@ if (entityCanStep())
                 // hover sfx
                 if (!audio_is_playing(sfxHeliButonHover))
                 {
-                    loopSFX(sfxHeliButonHover);
+                    playSFX(sfxHeliButonHover);
                 }
                 break;
         }
@@ -186,7 +186,7 @@ if (entityCanStep())
 else
 {
     speed = 0;
-    audio_stop_sound(sfxHeliButonHover);
+    //audio_stop_sound(sfxHeliButonHover);
     
     if (dead)
     {

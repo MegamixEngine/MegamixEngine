@@ -130,13 +130,13 @@ if (entityCanStep())
     // Play audio as long as Molier can move
     if (!audio_is_playing(sfxHeliButonHover))
     {
-        loopSFX(sfxHeliButonHover);
+        playSFX(sfxHeliButonHover);
     }
 }
 else 
 {
     // Stop audio if time is stopped/Molier is dead
-    audio_stop_sound(sfxHeliButonHover);
+    //audio_stop_sound(sfxHeliButonHover);
     if (dead)
     {
         timer = 60;
