@@ -34,6 +34,8 @@ bubbleTimer = -1;
 
 alarmSpawn = 16;
 spawnMax = 80;
+
+objectDrop = objDanganPlatform;
 </string>
           </argument>
         </arguments>
@@ -71,7 +73,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         {
             ysp = 1;
         }
-        i = instance_create(x, y + 16 * -ysp, objDanganPlatform);
+        i = instance_create(x, y + 16 * -ysp, objectDrop);
         i.ysp = ysp;
         i.image_yscale = image_yscale;
     }

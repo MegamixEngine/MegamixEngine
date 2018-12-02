@@ -46,6 +46,8 @@ gremlinDir = -1;
 gremlinArray[0] = noone;
 gremlinArray[1] = noone;
 gremlinArray[2] = noone;
+
+objectDrop = objGremlin;
 </string>
           </argument>
         </arguments>
@@ -111,11 +113,11 @@ gremlinArray[2] = noone;
     {
         if (gremlinDir == 1)
         {
-            i = instance_create(x + sprite_width - 20, y + 39, objGremlin);
+            i = instance_create(x + sprite_width - 20, y + 39, objectDrop);
         }
         else
         {
-            i = instance_create(x - 4 + 8, y + 39, objGremlin);
+            i = instance_create(x - 4 + 8, y + 39, objectDrop);
         }
         i.respawn = false;
         i.gremlinDir = gremlinDir;

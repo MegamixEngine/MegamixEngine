@@ -38,6 +38,8 @@ grav = 0;
 bubbleTimer = -1;
 
 itemDrop = -1;
+
+objectDrop = objHarmfulExplosion; //explosion object used.
 </string>
           </argument>
         </arguments>
@@ -122,7 +124,7 @@ with (other)
             <string>event_inherited();
 
 instance_create(spriteGetXCenter() + 1, spriteGetYCenter(),
-    objHarmfulExplosion);
+    objectDrop);
 stopSFX(sfxEnemyHit);
 playSFX(sfxMM9Explosion);
 </string>

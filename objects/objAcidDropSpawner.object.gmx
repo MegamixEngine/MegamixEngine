@@ -40,6 +40,7 @@ contactDamage = 4;
 // Enemy specific code
 animTimer = 0;
 shootTimer = -45;
+objectDrop = objAcidDrop;
 </string>
           </argument>
         </arguments>
@@ -89,7 +90,7 @@ if (entityCanStep())
         else if (image_index == 4)
         {
             image_index = 0;
-            i = instance_create(x, y, objAcidDrop);
+            i = instance_create(x, y, objectDrop);
             if (image_yscale == -1)
             {
                 i.image_yscale = -1;
