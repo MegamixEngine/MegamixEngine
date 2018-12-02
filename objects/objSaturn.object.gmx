@@ -186,7 +186,7 @@ if (!global.frozen)
             }
             if (attackTimer == 17)
                 image_index = 2;
-            if (attackTimer == 25)
+            if (attackTimer == 22) //25
                 image_index = 3;
             if (attackTimer == 40)
             {
