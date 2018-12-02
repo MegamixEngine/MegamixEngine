@@ -46,6 +46,8 @@ for (i = 1; i &lt;= molelimit; i += 1)
 yscale = 1;
 
 preyy = 0;
+
+obj = objMole;
 </string>
           </argument>
         </arguments>
@@ -91,7 +93,7 @@ if (entityCanStep())
                     * (view_hview * 0.5 + 6);
             }
             preyy = yy;
-            m = instance_create(xx, yy, objMole);
+            m = instance_create(xx, yy, obj);
             m.respawn = 0;
             yscale *= -1;
             for (i = 1; i &lt;= molelimit; i += 1)

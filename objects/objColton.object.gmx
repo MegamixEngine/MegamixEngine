@@ -39,6 +39,8 @@ facePlayer = true;
 shooting = false;
 animTimer = 0;
 bulletID = -10;
+
+obj = objColtonBullet;
 </string>
           </argument>
         </arguments>
@@ -74,7 +76,7 @@ if (entityCanStep())
         shooting = true;
         animTimer = 0;
         image_index = 2;
-        bulletID = instance_create(x + (15 + 4) * image_xscale, y - 2, objColtonBullet);
+        bulletID = instance_create(x + (15 + 4) * image_xscale, y - 2, obj);
         bulletID.image_xscale = image_xscale;
         playSFX(sfxColtonShoot);
     }
