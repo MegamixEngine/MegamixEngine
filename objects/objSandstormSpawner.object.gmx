@@ -47,6 +47,8 @@ stormdelay = 14 * room_speed;
 
 
 actionTimer = stormdelay;
+
+objectDrop = objSandstorm; //object spawned
 </string>
           </argument>
         </arguments>
@@ -81,11 +83,11 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             if (dir == 1)
             {
                 i = instance_create(global.sectionLeft - size * 16, y,
-                    objSandstorm);
+                    objectDrop);
             }
             if (dir == -1)
             {
-                i = instance_create(global.sectionRight, y, objSandstorm);
+                i = instance_create(global.sectionRight, y, objectDrop);
             }
             i.size = size;
             i.mySpeed = mySpeed;

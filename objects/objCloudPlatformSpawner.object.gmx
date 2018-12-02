@@ -34,6 +34,8 @@ bubbleTimer = -1;
 canHit = false;
 
 alarmSpawn = 16;
+
+objectDrop = objCloudPlatform;
 </string>
           </argument>
         </arguments>
@@ -65,7 +67,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     {
         alarmSpawn = 144;
         ysp = -1;
-        i = instance_create(x, y + 24 * -ysp, objCloudPlatform);
+        i = instance_create(x, y + 24 * -ysp, objectDrop);
         i.image_yscale = image_yscale;
     }
 }

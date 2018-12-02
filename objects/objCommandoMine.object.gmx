@@ -46,6 +46,8 @@ obj_embed[0] = prtEntity;
 obj_embed[1] = prtPickup;
 obj_embed_n = 2;
 
+objectDrop = objHarmfulExplosion; //what is used for the object created on death, defaults to harmful explosion
+
 // order for nested commando mines.
 depth -= y / 100000;
 </string>
@@ -202,7 +204,7 @@ if (spawned)
           <argument>
             <kind>1</kind>
             <string>dead = 1;
-instance_create(x + 8, y, objHarmfulExplosion);
+instance_create(x + 8, y, objectDrop);
 
 playSFX(sfxMM9Explosion);
 
