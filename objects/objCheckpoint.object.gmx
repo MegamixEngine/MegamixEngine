@@ -89,7 +89,16 @@ showDuringReady = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.checkpoint = room;
+            <string>if ((global.checkpointX != xx or global.checkpointY != yy) and global.checkpointNotification)
+{
+    with (objGlobalControl)
+    {
+        checkpointTimer = 60;
+    }
+    playSFX(sfxElementGrab);
+}
+
+global.checkpoint = room;
 global.checkpointX = xx;
 global.checkpointY = yy;
 

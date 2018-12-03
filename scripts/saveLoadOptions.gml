@@ -20,6 +20,7 @@ global.pickupGraphics        = sl(global.pickupGraphics, "item-graphics");
 global.deathEffect           = sl(global.deathEffect, "death-effect");
 global.jumpSound             = sl(global.jumpSound, "jump-sound");
 global.teleportSound         = sl(global.teleportSound, "teleport-sound");
+global.checkpointNotification= sl(global.checkpointNotification, "checkpoint-notice");
 global.vsync                 = sl(global.vsync,          "vsync");
 global.showControllerOverlay = sl(global.showControllerOverlay, "controlleroverlay");
 global.escapeBehavior         = sl(global.escapeBehavior, "escapebehavior");
