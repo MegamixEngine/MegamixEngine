@@ -82,6 +82,7 @@ optionText[17] = 'ITEM GRAPHICS';
 optionText[18] = 'DEATH EFFECT';
 optionText[19] = 'JUMP SOUND';
 optionText[20] = 'TELEPORT SOUND';
+optionText[21] = 'CHECKPOINT NOT.';
 </string>
           </argument>
         </arguments>
@@ -414,6 +415,16 @@ if (phase == 2 &amp;&amp; !selected)
                 pre = global.teleportSound;
                 global.teleportSound = min(max(0, global.teleportSound + dir), 1);
                 if (global.teleportSound != pre)
+                {
+                    playSFX(sfxMenuMove);
+                }
+                break;
+            
+            // Checkpoint notification
+            case 21:
+                pre = global.checkpointNotification;
+                global.checkpointNotification = min(max(0, global.checkpointNotification + dir), 3);
+                if (global.checkpointNotification != pre)
                 {
                     playSFX(sfxMenuMove);
                 }
@@ -1112,6 +1123,26 @@ for (var j = 0; j &lt; visibleOptions; j++)
             else
             {
                 opt += 'MM3-MM6';
+            }
+            break;
+        
+        // Checkpoint notification
+        case 21:
+            if (global.checkpointNotification == 0)
+            {
+                opt += 'ON';
+            }
+            else if (global.checkpointNotification == 1)
+            {
+                opt += 'TOP';
+            }
+            else if (global.checkpointNotification == 2)
+            {
+                opt += 'CENTER';
+            }
+            else if (global.checkpointNotification == 3)
+            {
+                opt += 'BOTTOM';
             }
             break;
     }

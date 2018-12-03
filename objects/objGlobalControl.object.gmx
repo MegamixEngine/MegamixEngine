@@ -59,6 +59,9 @@ depthAlter = 0;
 saveTimer = -1;
 saveFrame = 0;
 
+// checkpoint notification
+checkpointTimer = -1;
+
 // list of pickups (prevents pickup respawning)
 pickups = ds_list_create();
 
@@ -1253,6 +1256,15 @@ if (saveTimer &gt;= 0)
     {
         saveFrame = !saveFrame;
     }
+}
+
+// Checkpoint notification
+if (checkpointTimer &gt;= 0)
+{
+    checkpointTimer -= 0.4;
+    draw_set_halign(fa_left);
+    draw_text(view_xview[0]+48+(max(floor(18-checkpointTimer), 1)*8), view_yview[0]+8+(global.checkpointNotification-1)*100, string_copy("CHECKPOINT REACHED", max(floor(18-checkpointTimer), 1), min(floor(60-checkpointTimer), 18)));
+    draw_set_halign(fa_center);
 }
 
 // Screen iFrames

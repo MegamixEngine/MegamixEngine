@@ -14,6 +14,7 @@ global.pickupGraphics = 0;
 global.deathEffect = 0;
 global.jumpSound = 0;
 global.teleportSound = 0;
+global.checkpointNotification = 1;
 
 global.showControllerOverlay = false;
 global.showMovingText = true;
