@@ -93,6 +93,7 @@ if (entityCanStep())
                     shootWait = 30;
                     imgIndex = 2;
                     instance_create(x, y - sprite_height / 2, objFireBoyShot);
+                    playSFX(sfxFireTelly);
                 }
             }
             break;

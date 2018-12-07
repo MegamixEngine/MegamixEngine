@@ -134,7 +134,7 @@ if (entityCanStep())
                     imgIndex = 4;
                     xspeed = 0;
                     yspeed = 0;
-                    
+                    playSFX(sfxFireTelly);
                     with (instance_create(x, y + sprite_height / 2, objFireTellyShot))
                         parent = other.id;
                 }

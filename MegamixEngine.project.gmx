@@ -1758,6 +1758,7 @@
         <sound>sound\sfxColtonShoot</sound>
         <sound>sound\sfxCurlingerBounce</sound>
         <sound>sound\sfxCyberGabyoallBoost</sound>
+        <sound>sound\sfxFireTelly</sound>
         <sound>sound\sfxHeliButonHover</sound>
         <sound>sound\sfxHeliButonReveal</sound>
         <sound>sound\sfxTeck</sound>
@@ -2334,6 +2335,7 @@
           <sprite>sprites\sprSchwormWormGray</sprite>
           <sprite>sprites\sprCrabbotShell</sprite>
           <sprite>sprites\sprCarrot</sprite>
+          <sprite>sprites\sprPipiEggHalf</sprite>
         </sprites>
       </sprites>
       <sprites name="MM3">
