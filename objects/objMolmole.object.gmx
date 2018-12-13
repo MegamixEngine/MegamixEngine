@@ -194,9 +194,9 @@ if (topblock &gt; 0)
             {
                 sparkblock = (collision_point(x, y + 12, objSolid, false, false));
             }
-            if instance_exists(sparkblock)
+            with(sparkblock)
             {
-            draw_sprite(sprMoleSpark, sparkindex, x, (sparkblock.bbox_top));
+            draw_sprite(sprMoleSpark, other.sparkindex, other.x, (bbox_top));
             }
     }
 }
@@ -224,9 +224,10 @@ if (bottomBlock &gt; 0)
         {
             sparkblock = (collision_point(x, y - 12, objSolid, false, false));
         }
-        if instance_exists(sparkblock)
+       with(sparkblock)
             {
-        draw_sprite(sprMoleSpark, sparkindex, x, (sparkblock.bbox_bottom));
+            
+        draw_sprite(sprMoleSpark, other.sparkindex, other.x, (bbox_bottom));
         }
     }
 }
@@ -250,6 +251,7 @@ if (iFrames == 1 || iFrames == 3)
 {
     d3d_set_fog(false, 0, 0, 0);
 }
+
 </string>
           </argument>
         </arguments>
