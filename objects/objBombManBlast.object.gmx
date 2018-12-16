@@ -31,6 +31,8 @@ grav = 0;
 contactDamage = 4;
 stopOnFlash = false;
 image_speed = 1;
+reflectable = 0;
+canHit = false;
 </string>
           </argument>
         </arguments>
