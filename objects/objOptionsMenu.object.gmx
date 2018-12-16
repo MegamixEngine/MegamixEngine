@@ -225,12 +225,32 @@ if (phase == 2 &amp;&amp; !selected)
         {
             // Screensize
             case 3:
-                pre = global.screensize;
-                setScreenSize(global.screensize + dir);
-                if (global.screensize != pre)
+                if (!window_get_fullscreen())
                 {
-                    playSFX(sfxMenuMove);
+                    // usual screen resizing
+                    pre = global.screensize;
+                    setScreenSize(global.screensize + dir);
+                    if (global.screensize != pre)
+                    {
+                        playSFX(sfxMenuMove);
+                    }
                 }
+                else if (dir &lt; 0)
+                {
+                    // coming out of fullscreen
+                    newS = max(1, min(display_get_height() / global.screenHeight, display_get_width() / global.screenWidth));
+                    if (newS mod 1 == 0)
+                    {
+                        newS --;
+                    }
+                    else
+                    {
+                        newS = floor(newS);
+                    }
+                    
+                    setScreenSize(newS);
+                }
+                
                 break;
             
             // V-Sync
