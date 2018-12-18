@@ -1166,8 +1166,11 @@ if (global.inGame)
 }
 
 // if the new room's view size is different, adjust the screen size accordingly
-if (surface_get_width(application_surface) != view_wview[0] * global.screensize
-    || surface_get_height(application_surface) != view_hview[0] * global.screensize)
+s = max(1, min(display_get_height() / global.screenHeight, display_get_width() / global.screenWidth));
+if ((window_get_fullscreen() &amp;&amp; (surface_get_width(application_surface) != floor(global.screenWidth * s)
+        || surface_get_height(application_surface) != floor(global.screenHeight * s)))
+    || (!window_get_fullscreen() &amp;&amp; (surface_get_width(application_surface) != view_wview[0] * global.screensize
+        || surface_get_height(application_surface) != view_hview[0] * global.screensize)))
 {
     setScreenSize(global.screensize, false);
 }
