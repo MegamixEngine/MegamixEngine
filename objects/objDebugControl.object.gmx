@@ -122,7 +122,14 @@ if (keyboard_check_pressed(vk_f3))
 // Toggle fullscreen
 if (keyboard_check_pressed(vk_f4))
 {
-    window_set_fullscreen(!window_get_fullscreen());
+    if (window_get_fullscreen())
+    {
+        setScreenSize(global.screensize);
+    }
+    else
+    {
+        setScreenSize(9999); // definitely going to set it to fullscreen   :P
+    }
 }
 
 // Screenshot
