@@ -89,6 +89,7 @@ if (entityCanStep())
         if (!activated &amp;&amp; abs(target.x - x) &lt;= radius)
         {
             activated = true;
+			playSFX(sfxFallNoise);
         }
     }
     
