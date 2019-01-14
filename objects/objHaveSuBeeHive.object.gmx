@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEnemyProjectile</parentName>
+  <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -28,8 +28,8 @@
             <string>event_inherited();
 
 contactDamage = 2;
-
-reflectable = 0;
+canHit = true;
+//reflectable = 0;
 </string>
           </argument>
         </arguments>
@@ -76,6 +76,40 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
         
         instance_destroy();
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="21">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (other.object_index != objLaserTrident) &amp;&amp; (other.object_index != objMetalBlade)
+    &amp;&amp; (other.object_index != objMagicCard) &amp;&amp; (other.object_index != objSlashClaw)
+    &amp;&amp; (other.object_index != objWheelCutter) &amp;&amp; (other.object_index != objChillSpikeLanded)
+    &amp;&amp; (other.object_index != objFlameMixer) &amp;&amp; (other.object_index != objRainFlush)
+{
+    other.guardCancel = 3;
+}
+else
+{
+    instance_create(bboxGetXCenter(),bboxGetYCenter(),objExplosion);
+    playSFX(sfxEnemyHit);
 }
 </string>
           </argument>

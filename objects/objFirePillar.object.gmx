@@ -170,7 +170,10 @@ if (entityCanStep())
     {
         if (pierces == 0 || pierces == 1)
         {
-            event_user(EV_DEATH);
+            if (object_index != objSuperArmBlockProjectile) &amp;&amp; (object_index != objSuperArmDebris)
+            {
+                event_user(EV_DEATH);
+            }
             playSFX(sfxEnemyHit);
         }
     }

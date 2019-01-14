@@ -28,8 +28,12 @@
             <string>event_inherited();
 
 blockCollision = 0;
-contactDamage = 3;
+contactDamage = 4;
 bubbleTimer = -1;
+canHit = true;
+
+healthpointsStart = 5;
+healthpoints = healthpointsStart;
 
 image_speed = 0.1;
 
@@ -42,6 +46,9 @@ if (instance_exists(target))
     whereto = target.x - x;
     xspeed = whereto / 48;
 }
+
+enemyDamageValue(objSuperArmBlockProjectile,5);
+enemyDamageValue(objSuperArmDebris,5);
 </string>
           </argument>
         </arguments>

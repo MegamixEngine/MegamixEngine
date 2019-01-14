@@ -4091,6 +4091,7 @@
         <sprite>sprites\sprBubbleFloor</sprite>
         <sprite>sprites\sprBubbleFloorMask</sprite>
         <sprite>sprites\sprFireSpike</sprite>
+        <sprite>sprites\sprFireSpikeFrozen</sprite>
         <sprite>sprites\sprFluorescentBulb</sprite>
         <sprite>sprites\sprGutsHover</sprite>
         <sprite>sprites\sprIcePlatform</sprite>
