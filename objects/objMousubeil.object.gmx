@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>// Creation code (all optional):
 // dir = 1/-1 (1 = ground (default); -1 = ceiling)
+// col = &lt;number&gt; (0 = orange (default); 1 = grey (Game Gear colours))
+// normalSpd = &lt;number&gt; - Sets Mousubeil's speed
 
 event_inherited();
 
@@ -48,6 +50,9 @@ init = 1;
 phase = 0;
 boost = false;
 cooldown = -1;
+imgIndex = 0;
+
+col = 0;
 
 normalSpd = 1.75;
 boostSpd = 1.75;
@@ -121,14 +126,19 @@ if (entityCanStep())
             }
     }
     
-    image_index += 0.20;
+    imgIndex += 0.20;
+    if (imgIndex mod 4 == 0)
+    {
+        imgIndex = 0;
+    }
 }
 else if (dead)
 {
     phase = 0;
     cooldown = -1;
-    image_index = 0;
+    imgIndex = 0;
 }
+image_index = imgIndex + (4 * col);
 </string>
           </argument>
         </arguments>

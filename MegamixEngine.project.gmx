@@ -2442,6 +2442,8 @@
         <sprite>sprites\sprM422A</sprite>
         <sprite>sprites\sprMM4ShieldAttacker</sprite>
         <sprite>sprites\sprMM4ShieldAttackerTurn</sprite>
+        <sprite>sprites\sprMM4ShieldAttackerPink</sprite>
+        <sprite>sprites\sprMM4ShieldAttackerTurnPink</sprite>
         <sprite>sprites\sprShieldAttackerStopper</sprite>
         <sprite>sprites\sprMummira</sprite>
         <sprite>sprites\sprPakatto24</sprite>
@@ -2578,6 +2580,7 @@
           <sprite>sprites\sprSkullBomb</sprite>
           <sprite>sprites\sprYudonMissile</sprite>
           <sprite>sprites\sprTosserRock</sprite>
+          <sprite>sprites\sprTwinCannonBullet</sprite>
           <sprite>sprites\sprGravitronGumball</sprite>
         </sprites>
       </sprites>

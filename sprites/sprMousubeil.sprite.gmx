@@ -24,5 +24,9 @@
     <frame index="1">images\sprMousubeil_1.png</frame>
     <frame index="2">images\sprMousubeil_2.png</frame>
     <frame index="3">images\sprMousubeil_3.png</frame>
+    <frame index="4">images\sprMousubeil_4.png</frame>
+    <frame index="5">images\sprMousubeil_5.png</frame>
+    <frame index="6">images\sprMousubeil_6.png</frame>
+    <frame index="7">images\sprMousubeil_7.png</frame>
   </frames>
 </sprite>

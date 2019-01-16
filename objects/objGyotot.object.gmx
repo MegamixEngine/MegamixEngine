@@ -41,6 +41,10 @@ facePlayerOnSpawn = true;
 // Enemy specific code
 phase = 1;
 phasetimer = 0;
+blinkTimer = 0;
+
+// @cc - Change colours (0 = blue (default); 1 = green)
+col = 0;
 </string>
           </argument>
         </arguments>
@@ -91,6 +95,18 @@ if (entityCanStep())
                 phase = 3;
             }
             break;
+        case 3:
+            blinkTimer++;
+            if (blinkTimer == 120)
+            {
+                image_index += 4;
+            }
+            if (blinkTimer == 128)
+            {
+                image_index -= 4;
+                blinkTimer = 0;
+            }
+            break;
     }
     
     if (phasetimer mod 6 == 0)
@@ -109,6 +125,14 @@ if (entityCanStep())
     if (blockCollision)
     {
         xSpeedTurnaround();
+        if (xcoll != 0) &amp;&amp; (phase = 3)
+        {
+            phase = 1;
+            image_index = 0;
+            phasetimer = 0;
+            blinkTimer = 0;
+            xspeed = image_xscale * 2;
+        }
     }
 }
 else if (dead)
@@ -116,6 +140,7 @@ else if (dead)
     phase = 1;
     phasetimer = 0;
     image_index = 0;
+    blinkTimer = 0;
 }
 </string>
           </argument>
@@ -147,6 +172,10 @@ if (spawned)
     if (instance_exists(target))
     {
         xspeed = image_xscale * 2;
+    }
+    if (col)
+    {
+        sprite_index = sprGyototGreen;
     }
 }
 </string>

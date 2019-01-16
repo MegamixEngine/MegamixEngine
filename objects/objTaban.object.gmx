@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>// Creation code (all optional):
-// col = &lt;number&gt; (0 = green (default); 1 = pink;)
+// col = &lt;number&gt; (0 = green (default); 1 = pink; 2 = green + purple [Game Gear colours])
 
 event_inherited();
 

@@ -26,7 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>// Creation code (all optional):
-// col = &lt;number&gt; (0 = orange (default); 1 = green; 2 = blue; 3 = red;)
+// col = &lt;number&gt; (0 = orange w/ red eye (default); 1 = orange w/ green eye; 
+//                 2 = green; 3 = blue; 4 = red;)
 
 event_inherited();
 

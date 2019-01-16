@@ -24,5 +24,9 @@
     <frame index="1">images\sprRingRing_1.png</frame>
     <frame index="2">images\sprRingRing_2.png</frame>
     <frame index="3">images\sprRingRing_3.png</frame>
+    <frame index="4">images\sprRingRing_4.png</frame>
+    <frame index="5">images\sprRingRing_5.png</frame>
+    <frame index="6">images\sprRingRing_6.png</frame>
+    <frame index="7">images\sprRingRing_7.png</frame>
   </frames>
 </sprite>
