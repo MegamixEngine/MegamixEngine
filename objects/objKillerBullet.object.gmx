@@ -47,6 +47,9 @@ sinCounter = 0;
 //@cc 0 = red (default); 1 = blue; 2 = orange
 col = 0;
 init = 1;
+doExplode = true;
+obj = objBombManBlast;
+explosionSFX = sfxClassicExplosion;
 </string>
           </argument>
         </arguments>
@@ -131,9 +134,11 @@ else if (dead)
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
-instance_create(bboxGetXCenter(), bboxGetYCenter(), objBombManBlast)
-playSFX(sfxClassicExplosion);
+if doExplode
+{
+    instance_create(bboxGetXCenter(), bboxGetYCenter(), obj)
+    playSFX(explosionSFX);
+}
 </string>
           </argument>
         </arguments>

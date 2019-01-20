@@ -47,6 +47,9 @@ phase = 1;
 //@cc color. 0 = blue; 1 = red
 col = 0; // 0 = blue, 1 = red
 init = 1;
+obj = objShrapnel;
+objectSprite = sprBombombShrapnel;
+forceCol = true;
 </string>
           </argument>
         </arguments>
@@ -122,17 +125,25 @@ if (entityCanStep())
                 repeat (2)
                 {
                     image_xscale *= -1;
-                    i = instance_create(x + 8, bboxGetYCenter(), objShrapnel);
+                    i = instance_create(x + 8, bboxGetYCenter(), obj);
                     i.xspeed = 1.5 * image_xscale;
                     i.yspeed = -3.8;
-                    if (col == 1)
+                    if forceCol != true
+                    {
+                        i.sprite_index = objectSprite;
+                    }
+                    if (col == 1 &amp;&amp; forceCol == true)
                     {
                         i.sprite_index = sprBombombShrapnelRed;
                     }
-                    i = instance_create(x + 8, bboxGetYCenter(), objShrapnel);
+                    i = instance_create(x + 8, bboxGetYCenter(), obj);
                     i.xspeed = 2.5 * image_xscale;
                     i.yspeed = -3.5;
-                    if (col == 1)
+                    if forceCol != true
+                    {
+                        i.sprite_index = objectSprite;
+                    }
+                    if (col == 1 &amp;&amp; forceCol)
                     {
                         i.sprite_index = sprBombombShrapnelRed;
                     }

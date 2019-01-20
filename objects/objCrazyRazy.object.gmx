@@ -44,6 +44,8 @@ image_speed = 0.15;
 split = 0;
 
 timer = 0;
+obj = objEnemyBullet;
+objectSprite = sprCrazyRazyBullet;
 </string>
           </argument>
         </arguments>
@@ -75,8 +77,8 @@ if (entityCanStep())
     if (timer &gt;= 75)
     {
         playSFX(sfxEnemyShootClassic);
-        i = instance_create(x, y - (sprite_height / 2), objEnemyBullet);
-        i.sprite_index = sprCrazyRazyBullet;
+        i = instance_create(x, y - (sprite_height / 2), obj);
+        i.sprite_index = objectSprite;
         i.xspeed = 2.5 * image_xscale;
         timer = 0;
     }

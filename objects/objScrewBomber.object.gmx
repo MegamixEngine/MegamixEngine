@@ -53,6 +53,9 @@ bullet = 0;
 animTimer = 0;
 
 radius = 100;
+forceBulletColIndex = true;
+object = objBeakBullet;
+objectSprite = sprBeakBullet;
 </string>
           </argument>
         </arguments>
@@ -140,8 +143,12 @@ if (entityCanStep())
                 {
                     for (i = -2; i &lt;= 2; i++)
                     {
-                        var t = instance_create(x - (4 * i), y + (1.5 * (abs(i)) * image_yscale), objBeakBullet);
-                        t.image_index = col; // set bullet color to that guys color
+                        var t = instance_create(x - (4 * i), y + (1.5 * (abs(i)) * image_yscale), obj);
+                        if forceBulletColIndex == true
+                        {
+                            t.image_index = col; // set bullet color to that guys color
+                        }
+                        t.sprite_index = objectSprite;
                         t.dir = 90 + (i * 45);
                         t.xscale = 1;
                         t.respawn = false;
