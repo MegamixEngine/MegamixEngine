@@ -44,6 +44,11 @@ init = 1;
 col = 0;
 
 // facePlayerOnSpawn = true;
+obj = objCrazyCannonBullet;
+objectXSpeed = 3.5;
+objectYSpeed = -2.75;
+objectSFX = sfxEnemyShootClassic;
+objectSprite = sprFlashShot;
 </string>
           </argument>
         </arguments>
@@ -100,11 +105,11 @@ if (entityCanStep())
                     timer = 35;
                     playSFX(sfxEnemyShootClassic);
                     a = instance_create(x + (17 * image_xscale), y - 13, //6
-                        objCrazyCannonBullet);
-                    a.xspeed = 3.5 * image_xscale;
-                    a.yspeed = -2.75;
+                        obj);
+                    a.xspeed = objectXSpeed * image_xscale;
+                    a.yspeed = objectYSpeed;
                     a.inWater = inWater;
-                    a.sprite_index = sprFlashShot;
+                    a.sprite_index = objectSprite;
                     bulletTimes += 1;
                 }
             }

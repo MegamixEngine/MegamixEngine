@@ -43,6 +43,9 @@ cooldownTimer = 0;
 canShoot = true;
 
 animTimer = 0;
+obj = objMM2MetBullet;
+objectSprite = sprFlashShot;
+objectSFX = sfxEnemyShootClassic;
 </string>
           </argument>
         </arguments>
@@ -125,12 +128,12 @@ if (entityCanStep())
                 var ID;
                 for (i = -1; i &lt;= 1; i += 1)
                 {
-                    ID = instance_create(x + image_xscale * 8, spriteGetYCenter()+2, objMM2MetBullet);
+                    ID = instance_create(x + image_xscale * 8, spriteGetYCenter()+2, obj);
                     ID.dir = 45 * i;
                     ID.image_xscale = image_xscale;
-                    ID.sprite_index = sprFlashShot;
+                    ID.sprite_index = objectSprite;
                 }
-                playSFX(sfxEnemyShootClassic);
+                playSFX(objectSFX);
                 break;
             case 60: // run towards player 
                 xspeed = 2 * image_xscale;
