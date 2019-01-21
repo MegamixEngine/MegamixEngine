@@ -46,6 +46,9 @@ isDrop = false;
 isDropTimer = 0;
 
 image_speed = 0.25;
+
+obj = objPottonBomb;
+objectSprite = sprPottonBomb;
 </string>
           </argument>
         </arguments>
@@ -99,9 +102,10 @@ if (entityCanStep())
             isDrop = false;
             isDropTimer = 0;
             sprite_index = sprPottonShell;
-            with (instance_create(x, y + 6, objPottonBomb))
+            with (instance_create(x, y + 6, obj))
             {
                 image_xscale = other.image_xscale;
+                sprite_index = other.objectSprite;
             }
         }
     }

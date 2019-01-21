@@ -41,6 +41,16 @@ shooting2 = false;
 spriteTimer = 0;
 
 image_speed = 8 / 60;
+
+regBullet = objEnemyBullet;
+regBulletSprite = sprEnemyBullet;
+regBulletXSpeed = 2
+
+gravBullet = objNewShotmanBullet;
+gravBulletSprite = sprEnemyBullet;
+gravBulletGrav = 0.25;
+gravBulletYSpeed = -5;
+gravBulletStopAtSolid = 1;
 </string>
           </argument>
         </arguments>
@@ -75,12 +85,15 @@ if (entityCanStep())
         || shootTimer1 == shootTimerInterval * 2
         || shootTimer1 == shootTimerInterval * 3)
     {
-        i = instance_create(bbox_left - 4, y - 12, objEnemyBullet);
-        i.xspeed = -2;
+        i = instance_create(bbox_left - 4, y - 12, obj);
+        i.xspeed = -regBulletXSpeed;
         i.dir = 180;
-        i = instance_create(bbox_right + 4, y - 12, objEnemyBullet);
-        i.xspeed = 2;
+        i.sprite_index = regBulletSprite;
+        
+        i = instance_create(bbox_right + 4, y - 12, obj);
+        i.xspeed = regBulletXSpeed;
         i.dir = 0;
+        i.sprite_index = regBulletSprite;
     }
     
     if (shootTimer1 &gt;= shootTimerInterval * 4.5)
@@ -103,12 +116,13 @@ if (entityCanStep())
             if (shootTimer2 == shootTimerInterval2
                 || shootTimer2 == shootTimerInterval2 * 2)
             {
-                i = instance_create(x, y - 16, objNewShotmanBullet);
-                i.grav = 0.25;
+                i = instance_create(x, y - 16, gravBullet);
+                i.sprite_index = gravBulletSprite;
+                i.grav = gravBulletGrav;
                 i.destX = spriteGetXCenterObject(target);
                 i.destY = spriteGetYCenterObject(target);
-                i.yspeed = -5;
-                i.stopAtSolid = 1;
+                i.yspeed = gravBulletYSpeed;
+                i.stopAtSolid = gravBulletStopAtSolid;
                 
                 spriteTimer = 5;
                 sprite_index = sprNewShotmanShoot;

@@ -48,6 +48,10 @@ imgSpd = 0.09;
 imgIndex = 0;
 image_speed = 0;
 image_index = 0;
+
+obj = objCannonBall;
+objectSprite = sprCannonBall;
+objectSFX = sfxCannonShoot;
 </string>
           </argument>
         </arguments>
@@ -97,8 +101,9 @@ if (entityCanStep())
                 calibrateDirection();
                 ball = instance_create(x + sprite_width / 2,
                     y - sprite_height * 0.8,
-                    objCannonBall); // sprite_width is negative when xscale is
-                playSFX(sfxCannonShoot);
+                    obj); // sprite_width is negative when xscale is
+                ball.sprite_index = objectSprite;
+                playSFX(objectSFX);
                 imgIndex = 2;
                 shootTimer += 1; // so it doesn't loop like a doof
             }

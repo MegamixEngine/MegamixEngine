@@ -42,6 +42,9 @@ facePlayer = true;
 state = 0;
 timer = 0;
 animTimer = 0;
+
+obj = objThrownJunk;
+objectSprite = sprJunkBlock;
 </string>
           </argument>
         </arguments>
@@ -95,7 +98,8 @@ if (entityCanStep())
         case 2: // Throw TRAAAAAAASH 
             if (timer == 64)
             {
-                instance_create(x - 16, view_yview, objThrownJunk);
+                var i = instance_create(x - 16, view_yview, obj);
+                i.sprite_index = objectSprite;
                 state = 3;
             }
             break;

@@ -45,6 +45,9 @@ canBounce = true;
 
 animTimer = 0;
 isFromMiniboss = false;
+
+obj = objMM3MetBullet;
+objectSprite = sprEnemyBullet;
 </string>
           </argument>
         </arguments>
@@ -122,18 +125,18 @@ if (entityCanStep())
             
             // Shoot
             var ID;
-            ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objMM3MetBullet);
+            ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), obj);
             ID.dir = sign(image_xscale) * 45;
             ID.xscale = image_xscale;
-            ID.sprite_index = sprEnemyBullet;
-            ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objMM3MetBullet);
+            ID.sprite_index = objectSprite;
+            ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), obj);
             ID.dir = 0;
             ID.xscale = image_xscale;
-            ID.sprite_index = sprEnemyBullet;
-            ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objMM3MetBullet);
+            ID.sprite_index = objectSprite;
+            ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), obj);
             ID.dir = sign(image_xscale) * -45;
             ID.xscale = image_xscale;
-            ID.sprite_index = sprEnemyBullet;
+            ID.sprite_index = objectSprite;
             
             //playSFX(sfxEnemyShoot);
         }
