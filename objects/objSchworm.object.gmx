@@ -45,7 +45,7 @@ enemy[2] = 0;
 col = 0;
 forceCol = true;
 
-obj = objCarrot;
+obj = objSchwormWorm;
 objectSprite = sprSchwormWorm;
 objectYSpeed = -4.5;
 
@@ -71,7 +71,23 @@ objectYSpeed = -4.5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>if (init)
+{
+    init = 0;
+    
+    // Set the correct color
+    switch (col)
+    {
+        case 0:
+            sprite_index = sprSchworm;
+            break;
+        case 1:
+            sprite_index = sprSchwormOrange;
+            break;
+    }
+}
+
+event_inherited();
 
 if (entityCanStep())
 {
