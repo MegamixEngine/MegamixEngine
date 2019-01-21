@@ -41,6 +41,7 @@ shooting = false;
 
 enemy[1] = 0;
 enemy[2] = 0;
+init = 1;
 
 col = 0;
 forceCol = true;
