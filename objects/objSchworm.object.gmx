@@ -41,6 +41,15 @@ shooting = false;
 
 enemy[1] = 0;
 enemy[2] = 0;
+init = 1;
+
+col = 0;
+forceCol = true;
+
+obj = objSchwormWorm;
+objectSprite = sprSchwormWorm;
+objectYSpeed = -4.5;
+
 </string>
           </argument>
         </arguments>
@@ -63,7 +72,23 @@ enemy[2] = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>if (init)
+{
+    init = 0;
+    
+    // Set the correct color
+    switch (col)
+    {
+        case 0:
+            sprite_index = sprSchworm;
+            break;
+        case 1:
+            sprite_index = sprSchwormOrange;
+            break;
+    }
+}
+
+event_inherited();
 
 if (entityCanStep())
 {
@@ -101,8 +126,13 @@ if (entityCanStep())
             {
                 i = 1;
             }
-            enemy[i] = instance_create(x + 8, bbox_bottom - 1, objSchwormWorm);
-            enemy[i].yspeed = -4.5;
+            enemy[i] = instance_create(x + 8, bbox_bottom - 1, obj);
+            enemy[i].yspeed = objectYSpeed;
+            enemy[i].sprite_index = objectSprite;
+            if col == 1 &amp;&amp; forceCol == true
+            {
+                enemy[i].sprite_index = sprSchwormWormGray;
+            }
             image_index = 0;
         }
         if (actionTimer == 40)

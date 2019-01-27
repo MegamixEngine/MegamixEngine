@@ -40,6 +40,10 @@ facePlayerOnSpawn = true;
 hasShell = true;
 animTimer = 0;
 calibrated = 0;
+
+obj = objCrabbotShell; //shell object
+objectSprite = sprCrabbotShell;
+objectDamage = 0;
 </string>
           </argument>
         </arguments>
@@ -148,7 +152,9 @@ hasShell = true;
     image_index += 2;
     hasShell = false;
     
-    i = instance_create(x, y, objCrabbotShell);
+    i = instance_create(x, y, obj);
+    i.sprite_index = objectSprite;
+    i.contactDamage = objectDamage;
     i.image_xscale = image_xscale;
 }
 </string>

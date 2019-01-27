@@ -44,6 +44,10 @@ grav = 0;
 col = 0;
 
 init = 1;
+
+obj = objPipiEgg;
+objectSprite = sprPipiEgg;
+forceCol = true;
 </string>
           </argument>
         </arguments>
@@ -113,8 +117,12 @@ if (entityCanStep())
     {
         image_index = 2;
         hasEgg = false;
-        var ID = instance_create(x, y + 3, objPipiEgg);
-        ID.col = col;
+        var ID = instance_create(x, y + 3, obj);
+        ID.sprite_index = objectSprite;
+        if forceCol == true
+        {
+            ID.col = col;
+        }
         ID.image_xscale = image_xscale;
     }
 }

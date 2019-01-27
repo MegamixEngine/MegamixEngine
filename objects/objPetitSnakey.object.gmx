@@ -40,6 +40,9 @@ shootTimer = 0;
 
 // respawnRange = 90000; // set to -1 to make infinite
 // despawnRange = -1; // set to -1 to make infinite
+
+obj = objSnakeyBullet;
+objectSprite = sprEnemyBullet;
 </string>
           </argument>
         </arguments>
@@ -98,7 +101,8 @@ if (entityCanStep())
         if (shootTimer == 60)
         {
             image_index = 2;
-            a = instance_create(x + 4 * image_xscale, y + 8, objSnakeyBullet);
+            a = instance_create(x + 4 * image_xscale, y + 8, obj);
+            a.sprite_index = objectSprite;
         }
         if (shootTimer == 70)
         {

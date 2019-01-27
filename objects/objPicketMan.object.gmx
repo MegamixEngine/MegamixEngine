@@ -49,6 +49,8 @@ bullet = 0;
 shootAmountMax = 0;
 
 facePlayer = true;
+obj = objPicket;
+objectSprite = sprPicket;
 </string>
           </argument>
         </arguments>
@@ -118,8 +120,9 @@ if (entityCanStep())
         if (timer == 15)
         {
             image_index = 2;
-            var i = instance_create(x + image_xscale * 16, spriteGetYCenter(), objPicket);
+            var i = instance_create(x + image_xscale * 16, spriteGetYCenter(), obj);
             i.image_xscale = image_xscale; // shoot
+            i.sprite_index = objectSprite;
             bullet += 1;
         }
         else if (timer == 30)

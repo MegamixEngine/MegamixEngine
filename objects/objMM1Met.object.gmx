@@ -40,6 +40,8 @@ category = "mets";
 radius = 4 * 16; // Four blocks; the radius that MM needs to enter to trigger the shooting of the met
 timer = 0;
 phase = 1;
+obj = objMM1MetBullet;
+objectSprite = sprMM1MetBullet;
 </string>
           </argument>
         </arguments>
@@ -88,8 +90,9 @@ if (entityCanStep())
             // for loop used to make more efficent code
             for (i = -1; i &lt;= 1; i += 1)
             {
-                ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objMM1MetBullet);
+                ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), obj);
                 ID.dir = 45 * i;
+                ID.sprite_index = objectSprite;
                 ID.xscale = image_xscale;
             }
             playSFX(sfxEnemyShootClassic);

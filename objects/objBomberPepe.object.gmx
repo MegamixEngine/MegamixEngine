@@ -49,6 +49,9 @@ event_user(0); // set jumpWaitTimer to a random number within a range
 xspeed = 0;
 yspeed = 0;
 xs = 0;
+
+obj = objBomberPepeEgg;
+objectSprite = sprBomberPepeEgg;
 </string>
           </argument>
         </arguments>
@@ -132,7 +135,8 @@ if (entityCanStep())
     }
     else
     {
-        instance_create(x, y, objBomberPepeEgg);
+        var i = instance_create(x, y, obj);
+        i.sprite_index = objectSprite;
         event_user(0); // set shootWaitTimer to a random number within a range
     }
 }
