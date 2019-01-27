@@ -2564,6 +2564,7 @@
         <sprite>sprites\sprYudon</sprite>
         <sprite>sprites\sprTossMachine</sprite>
         <sprites name="Projectiles">
+          <sprite>sprites\sprBombierSmoke</sprite>
           <sprite>sprites\sprCrystalJoeCrystal</sprite>
           <sprite>sprites\sprJetBombDebry</sprite>
           <sprite>sprites\sprMetallCannonBall</sprite>

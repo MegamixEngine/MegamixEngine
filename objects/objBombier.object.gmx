@@ -102,6 +102,11 @@ if (entityCanStep())
         else if (imgIndex == 5)
         {
             instance_create(x, y + (sprite_height / 2), objSkullBomb);
+            with (instance_create(x, y + (sprite_height / 2), objExplosion))
+            {
+                sprite_index = sprBombierSmoke;
+                image_speed = 0.2;
+            }
             hasBomb = false;
             imgIndex = 6;
         }
