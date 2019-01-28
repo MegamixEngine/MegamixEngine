@@ -46,7 +46,6 @@ animSpeed = 0.2;
 
 //@cc 0 = Uranus (default); 1 = Wily Star)
 style = 0;
-init = 1;
 
 if (image_yscale &lt; 0)
 {
@@ -192,25 +191,7 @@ if (!dead)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (init)
-{
-    init = 0;
-    
-    // Set the correct color
-    switch (style)
-    {
-        case 0:
-            sprite_index = sprUranusPlatform;
-            break;
-        /*
-        case 1:
-            sprite_index = sprUranusPlatform2;
-            break;
-        */
-    }
-}
-
-grav = 0;
+            <string>grav = 0;
 yspeed = 0;
 event_inherited();
 
@@ -239,9 +220,9 @@ if (entityCanStep())
         }
     }
     animFrame += animSpeed;
-    if (floor(animFrame) &gt; image_number - 1)
+    if (floor(animFrame) &gt; 3)//image_number - 1)
         animFrame = 0;
-    image_index = floor(animFrame);
+    image_index = floor(animFrame)+(4 * style);
 }
 </string>
           </argument>
