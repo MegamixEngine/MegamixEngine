@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A levitating bulb platform from Bright Man's stage. While on it, it will rise and fall to specific points.
+event_inherited();
 
 image_speed = 0;
 canHit = false;
@@ -39,6 +40,22 @@ grav = 0;
 blockCollision = false;
 bubbleTimer = -1;
 phase = 0; // 0: descending to ystart. 1: normal
+waitTimer = 0;
+
+// @cc - The speed a bulb moves at
+mySpeed = 1.5;
+
+// @cc - How many pixels above my starting position can I rise?
+maxRise = 48;
+
+// @cc - How many pixels below my starting position can I fall?
+maxFall = 32;
+
+// @cc - The direction Bulbs move in (-1 = up; 1 = down)
+myDir = -1;
+
+// @cc - How long a bulb pauses for
+waitTime = 30;
 </string>
           </argument>
         </arguments>
@@ -76,8 +93,24 @@ if (entityCanStep())
     yspeed = 0;
     if (pressed &amp;&amp; phase &lt; 2)
     {
-        // normal
-        yspeed = -1.5;
+        // Normal movement
+        if (waitTimer = 0)
+        {
+            yspeed = mySpeed * myDir;
+        }
+        // Stop when at max/min height
+        if (y &gt;= ystart + maxFall) &amp;&amp; (myDir == 1) || (y &lt;= ystart - maxRise) &amp;&amp; (myDir == -1)
+        {
+            yspeed = 0;
+            
+            // Count down to when I can move again (only do this while Mega Man is on me)
+            waitTimer++;
+            if (waitTimer == waitTime) // Change direction + reset timer
+            {
+                myDir *= -1;
+                waitTimer = 0;
+            }
+        }
         phase = 1;
     }
     if (phase == 0)
@@ -90,6 +123,7 @@ if (entityCanStep())
             phase = 1;
         }
     }
+    
     if (phase == 2)
     {
         // retreat into ceiling
@@ -139,6 +173,7 @@ if (entityCanStep())
 animTimer = 0;
 y = global.sectionTop;
 phase = 0;
+waitTimer = 0;
 </string>
           </argument>
         </arguments>

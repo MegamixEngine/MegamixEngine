@@ -3,7 +3,7 @@
   <spriteName>sprSharkSubmarineBody</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>2</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <parentName>prtSharkSubmarine</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -95,6 +95,28 @@ if (!global.frozen)
             hatch2.yOffset = 49 ;*/
         }
     }
+    if (isDying)
+    {
+        if (finalDeath)
+        {
+            slowdeathTimer++;
+            if (slowdeathTimer &lt; 155)
+            {
+                if (slowdeathTimer mod 20 == 0)
+                {
+                    instance_create(random_range(x,x+170*image_xscale),random_range(y-110,y+40),objBigExplosion);
+                    playSFX(sfxMM9Explosion);
+                }
+            }
+            if (slowdeathTimer == 160)
+                with(prtSharkSubmarine)
+                    event_user(EV_DEATH);
+        }
+        else
+        {
+            event_user(EV_DEATH);
+        }
+    }
 }
 
 if (isFight &amp;&amp; !killed) // Keeping track of health.
@@ -179,7 +201,12 @@ if (entityCanStep() &amp;&amp; !killed &amp;&amp; !stop)
     instance_create(x, y, objExplosion);
     instance_destroy();
 }
-event_inherited();
+if (!isDying)
+{
+    isDying = true;
+}
+else
+    event_inherited();
 </string>
           </argument>
         </arguments>

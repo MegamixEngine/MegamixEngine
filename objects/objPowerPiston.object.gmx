@@ -40,7 +40,6 @@ attackTimer = 0;
 healthBarPrimaryColor[1] = 16;
 healthBarSecondaryColor[1] = 40;
 
-
 image_index = 4;
 
 yMax = ystart + 32;
@@ -60,6 +59,8 @@ turnCheck[4] = 600;
 startCheck = false;
 child = noone;
 shootAngle = 35;
+isDying = false;
+explodeTimer = 0;
 
 // Music
 music = "Mega_Man_6.nsf";
@@ -198,6 +199,10 @@ if (!global.frozen)
     }
     else if (isIntro)
     {
+        if (y != ystart)
+        {
+            y = ystart;
+        }
         // custom intro:
         attackTimer++;
         
@@ -319,6 +324,53 @@ if (entityCanStep())
                 break;
         }
     }
+    
+    // Death animation
+    if (isDying)
+    {
+        explodeTimer++;
+        if (explodeTimer == 20)//18
+        {
+            with(instance_create(x-14*image_xscale,y+33,objBigExplosion))
+                depth = -1;
+            stopSFX(sfxExplosion2);
+            playSFX(sfxExplosion2);
+        }
+        if (explodeTimer == 40)//27
+        {
+            with(instance_create(x-14*image_xscale,y-17,objBigExplosion))
+                depth = -1;
+            stopSFX(sfxExplosion2);
+            playSFX(sfxExplosion2);
+            image_index = 3;
+        }
+        if (explodeTimer == 60)//36
+        {
+            with(instance_create(x+26*image_xscale,y+9,objBigExplosion))
+                depth = -1;
+            stopSFX(sfxExplosion2);
+            playSFX(sfxExplosion2);
+        }
+        if (explodeTimer == 80)//36
+        {
+            with(instance_create(x+4*image_xscale,y-32,objBigExplosion))
+                depth = -1;
+            stopSFX(sfxExplosion2);
+            playSFX(sfxExplosion2);
+            image_index = 4;
+        }
+        if (explodeTimer == 100)//45
+        {
+            with(instance_create(x+18*image_xscale,y+41,objBigExplosion))
+                depth = -1;
+            stopSFX(sfxExplosion2);
+            playSFX(sfxExplosion2);
+        }
+        if (explodeTimer == 120)
+        {
+            event_user(EV_DEATH);
+        }
+    }
 }
 </string>
           </argument>
@@ -342,18 +394,38 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (objPowerPistonRock)
+            <string>if (isFight)
 {
-    instance_create(x, y, objExplosion);
-    instance_destroy();
+    with (objPowerPistonRock)
+    {
+        instance_create(x, y, objExplosion);
+        instance_destroy();
+    }
+    with (objNewShotmanBullet)
+        instance_destroy();
+    with (objHarmfulExplosion)
+        instance_destroy();
+    with (objMM5AimedBullet)
+        instance_destroy();
+    
+    // Begin death animation
+    image_index = 2;
+    stopSFX(sfxEnemyHit);
+    iFrames = 0;
+    isFight = false;
+    isDying = true;
+    canHit = false;
+    canDamage = false;
+    yspeed = 0;
+    with(instance_create(x+33*image_xscale,y-33,objBigExplosion))
+        depth = -1;
+    playSFX(sfxExplosion2);
 }
-with (objNewShotmanBullet)
-    instance_destroy();
-with (objHarmfulExplosion)
-    instance_destroy();
-with (objMM5AimedBullet)
-    instance_destroy();
-event_inherited();
+else
+{
+    event_inherited();
+    playSFX(sfxExplosion2);
+}
 </string>
           </argument>
         </arguments>
@@ -378,7 +450,7 @@ event_inherited();
             <kind>1</kind>
             <string>/// draw code
 drawSelf();
-if (!dead)
+if (isFight) //(!dead) &amp;&amp; (!isDying)
 {
     if (lightFrame &lt; 2)
     {

@@ -45,7 +45,11 @@ canDrop = true;
 isDrop = false;
 isDropTimer = 0;
 
-image_speed = 0.25;
+// @cc - Changes colour (0 = red (default); 1 = hot pink;)
+col = 0;
+
+imgIndex = 0;
+imgSpd = 0.25;
 
 obj = objPottonBomb;
 objectSprite = sprPottonBomb;
@@ -106,20 +110,30 @@ if (entityCanStep())
             {
                 image_xscale = other.image_xscale;
                 sprite_index = other.objectSprite;
+                if (other.objectSprite == sprPottonBomb)
+                    image_index = other.col;
             }
         }
     }
     
     xspeed = image_xscale * (1 - isDrop);
+    
+    // Animation
+    imgIndex += imgSpd;
+    if (imgIndex &gt;= 2)
+    {
+        imgIndex = 0;
+    }
 }
 else if (dead)
 {
-    image_index = 0;
+    imgIndex = 0;
     canDrop = true;
     isDrop = false;
     isDropTimer = 0;
     sprite_index = sprPotton;
 }
+image_index = floor(imgIndex) + (2 * col);
 </string>
           </argument>
         </arguments>

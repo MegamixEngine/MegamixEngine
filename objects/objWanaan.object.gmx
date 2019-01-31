@@ -37,6 +37,9 @@ isSolid = 1;
 
 alarmDrop = -1;
 cooldown = 0;
+
+// @cc - Changes vent colour (0 = mint green (default); 1 = lime green)
+col = 0;
 </string>
           </argument>
         </arguments>
@@ -94,6 +97,7 @@ else if (dead)
     alarmDrop = -1;
     cooldown = 0;
 }
+image_index = 1 * col;
 </string>
           </argument>
         </arguments>
