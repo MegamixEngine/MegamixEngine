@@ -94,6 +94,7 @@ if (entityCanStep())
                 grav = 0.25;
                 phase = 3;
                 phasetimer = 0;
+                calibrateDirection();
             }
             break;
         case 3: // Launch the speer of DEATH 
@@ -128,7 +129,6 @@ if (entityCanStep())
             xSpeedTurnaround();
             if (xspeed == 0 || checkFall(16 * image_xscale))
             {
-                calibrateDirection();
                 xspeed = image_xscale * 1;
             }
             

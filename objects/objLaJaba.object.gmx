@@ -28,6 +28,7 @@
             <string>event_inherited();
 
 respawn = true;
+facePlayerOnSpawn = true;
 
 healthpointsStart = 5;
 healthpoints = healthpointsStart;
@@ -124,31 +125,43 @@ if (entityCanStep())
             {
                 image_index = 3;
             }
-            if (ground)
+            if (!ground)
             {
+                if (xcoll != sign(image_xscale)) &amp;&amp; (xspeed == 0)
+                {
+                    xspeed = moveSpeed * image_xscale;
+                }
+            }
+            else
+            {
+                xspeed = 0;
                 // Do large jump
                 if (instance_exists(target))
                 {
-                    if ((x &lt; target.x + 32) &amp;&amp; (image_xscale == -1)
-                        || (x &gt; target.x - 32) &amp;&amp; (image_xscale == 1))
+                    if (abs(target.x - x) &lt; 32)
                     {
                         image_index = 1;
-                        xspeed = 0;
-                        yspeed = 0;
                         phase = 2;
                         moveTimer = 10;
                         calibrateDirection();
                     } // Do small jump
                     else
                     {
-                        xspeed = 0;
-                        yspeed = 0;
                         image_index = 2;
                         moveTimer--;
                         if (moveTimer == 0)
                         {
                             phase = 0;
                         }
+                    }
+                }
+                else
+                {
+                    image_index = 2;
+                    moveTimer--;
+                    if (moveTimer == 0)
+                    {
+                        phase = 0;
                     }
                 }
             }
@@ -182,7 +195,14 @@ if (entityCanStep())
             {
                 image_index = 3;
             }
-            if (ground)
+            if (!ground)
+            {
+                if (xcoll != sign(image_xscale)) &amp;&amp; (xspeed == 0)
+                {
+                    xspeed = moveSpeed * image_xscale;
+                }
+            }
+            else
             {
                 image_index = 0;
                 xspeed = 0;
@@ -215,13 +235,36 @@ if (entityCanStep())
             break;
     }
 }
-else if (dead)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
 {
     moveTimer = 0;
     image_index = 2;
     phase = 0;
     tauntCount = 0;
-    calibrateDirection();
+    xspeed = 0;
 }
 </string>
           </argument>

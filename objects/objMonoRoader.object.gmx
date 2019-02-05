@@ -128,7 +128,6 @@ if (entityCanStep())
     // Set xspeed
     if (xspeed == 0 &amp;&amp; !inShell)
     {
-        calibrateDirection();
         xs = 1;
     }
     // Check for Mega Man
@@ -138,7 +137,7 @@ if (entityCanStep())
         {
             inShell = true;
             animTimer = -1;
-            xs = 0; //xspeed = 0;
+            xs = 0;
         }
     }
     if (inShell)
@@ -170,9 +169,6 @@ if (entityCanStep())
                 break;
         }
     }
-    print(shellTimer)
-    print(xspeed)
-    print(inShell);
     // Move if on ground
     if (!ground)
     {

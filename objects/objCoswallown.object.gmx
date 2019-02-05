@@ -42,7 +42,9 @@ parent = noone;
 facePlayerOnSpawn = true;
 
 // Enemy specific code
-image_speed = 0.4;
+imgIndex = 0;
+imgOffset = 0;
+imgSpeed = 0.4;
 </string>
           </argument>
         </arguments>
@@ -69,16 +71,24 @@ image_speed = 0.4;
 
 if (entityCanStep())
 {
-    if (xspeed == 0)
+    if (direction == 0) || (direction == 180)
     {
-        xspeed = image_xscale * 1.2;
-        yspeed = 2;
+        xspeed = 1.5 * image_xscale;
+        if (y &lt; ystart - 8)
+            yspeed = 0;
     }
+    // Animation
+    imgIndex += imgSpeed;
+    if (imgIndex &gt;= 2)
+        imgIndex = 0;
 }
 else if (dead)
 {
-    image_speed = 0.4;
+    imgIndex = 0;
+    imgOffset = 0;
+    phase = 0;
 }
+image_index = floor(imgIndex) + imgOffset;
 </string>
           </argument>
         </arguments>

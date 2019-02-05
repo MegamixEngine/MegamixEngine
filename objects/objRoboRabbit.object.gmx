@@ -39,9 +39,6 @@ facePlayerOnSpawn = true;
 // Enemy specific code
 jumpTimer = 0;
 landtimer = 0;
-
-obj = objCarrot;
-objectSprite = sprCarrot;
 </string>
           </argument>
         </arguments>
@@ -98,8 +95,8 @@ if (entityCanStep())
         jumpTimer += 1;
         if (jumpTimer == 60 || jumpTimer == 105 || jumpTimer == 150)
         {
-            i = instance_create(x, y - 14, obj);
-            i.sprite_index = objectSprite;
+            calibrateDirection();
+            i = instance_create(x, y - 14, objCarrot);
             i.image_xscale = image_xscale;
         }
         if (jumpTimer == 190)

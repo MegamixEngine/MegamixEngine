@@ -106,6 +106,7 @@ if (entityCanStep())
                                 imgIndex = 8;
                                 var i = instance_create(x + 4 * image_xscale, y - 11, objOuOuBall);
                                 i.yspeed = -2;
+                                i.image_xscale = image_xscale;
                                 i.yStart = i.y;
                                 ball = i.id;
                             }

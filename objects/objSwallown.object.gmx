@@ -76,20 +76,41 @@ if (entityCanStep())
     if (y &lt; ystart - 8 &amp;&amp; (xspeed == 1.2 || xspeed == -1.2))
     {
         yspeed = 0;
+        grav = 0;
         xspeed = 1.5 * image_xscale;
         with (objCoswallown)
         {
-            if (parent = other.id &amp;&amp; instance_exists(target))
+            if (parent == other.id)
             {
-                move_towards_point(target.x, target.y, 1.5);
-                xspeed = hspeed;
-                hspeed = 0;
-                yspeed = vspeed;
-                vspeed = 0;
-                speed = 0;
                 grav = 0;
-                
-                calibrateDirection();
+                if (instance_exists(target))
+                {
+                    direction = round(point_direction(x,y,target.x,target.y)/45)*45;
+                    if (direction == 90)
+                    {
+                        imgOffset = 8;
+                        xspeed = 0;
+                        yspeed = -1.5;
+                    }
+                    if (direction == 270)
+                    {
+                        imgOffset = 4;
+                        xspeed = 0;
+                        yspeed = 1.5;
+                    }
+                    if (direction == 225) || (direction == 315)
+                    {
+                        imgOffset = 2;
+                        xspeed = 1.5*image_xscale;
+                        yspeed = 1.5;
+                    }
+                    if (direction == 45) || (direction == 135)
+                    {
+                        imgOffset = 6;
+                        xspeed = 1.5*image_xscale;
+                        yspeed = -1.5;
+                    }
+                }
             }
         }
     }

@@ -66,12 +66,6 @@ turnAroundDelay = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if(xcoll!=0)
-{
-    xspeed=xcoll;
-}
-
-
 if (entityCanStep())
 {
     image_index += 0.15;

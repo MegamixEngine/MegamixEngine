@@ -86,7 +86,7 @@ if (entityCanStep())
     visible = true;
     with (prtEntity)
         if (blockCollision)
-            if (ground &amp;&amp; place_meeting(x, y + image_yscale, other))
+            if (ground &amp;&amp; place_meeting(x, y + image_yscale, other) &amp;&amp; (other.phase != 0))
                 pressed = true;
     
     xspeed = 0;

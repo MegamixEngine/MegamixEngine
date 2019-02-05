@@ -27,13 +27,13 @@
             <kind>1</kind>
             <string>event_inherited();
 
-blockCollision = 0;
-contactDamage = 4;
-bubbleTimer = -1;
 canHit = true;
-
 healthpointsStart = 5;
 healthpoints = healthpointsStart;
+
+blockCollision = 0;
+contactDamage = 3;
+bubbleTimer = -1;
 
 image_speed = 0.1;
 
@@ -46,9 +46,6 @@ if (instance_exists(target))
     whereto = target.x - x;
     xspeed = whereto / 48;
 }
-
-enemyDamageValue(objSuperArmBlockProjectile,5);
-enemyDamageValue(objSuperArmDebris,5);
 </string>
           </argument>
         </arguments>
@@ -71,34 +68,7 @@ enemyDamageValue(objSuperArmDebris,5);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
-
-var _ex = instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
-
-if (itemDrop == objKey)
-{
-    _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objKey);
-    _ex.yspeed = -4;
-    _ex.homingTimer = 90;
-    _ex.despawnRange = -1;
-    playSFX(sfxKeySpawn);
-}
-else if (itemDrop == objEnergyElement)
-{
-    _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objEnergyElement);
-}
-else
-{
-    _ex.myItem = itemDrop;
-    _ex.code = itemCode;
-    _ex.script = itemScript;
-    _ex.disappearTime = dropDisappearTime;
-}
-
-if (itemDrop &amp;&amp; dropOnce)
-{
-    itemDrop = 0;
-}
+            <string>event_perform_object(prtEntity,ev_other,ev_user10);
 </string>
           </argument>
         </arguments>

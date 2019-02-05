@@ -49,7 +49,7 @@ targX = 0;
 targY = 0;
 toxin = false;
 imgIndex = 0;
-imgSpd = 0.3; //0.5
+imgSpd = 0.5;
 toxinTimer = 0;
 drawTimer = 4;
 animBack = false;
@@ -131,7 +131,6 @@ if (entityCanStep())
                     {
                         targX = target.x;
                         targY = target.y;
-                        imgSpd = 0.5;
                     }
                     
                     moveTowardPoint(targX, targY, 3);
@@ -161,11 +160,10 @@ if (entityCanStep())
                     calibrateDirection();
                     
                     yspeed = 0;
-                    moveTimer = 60;
+                    moveTimer = 120;
                     phase = 0;
                     targX = 0;
                     targY = 0;
-                    imgSpd = 0.3;
                 }
                 break;
         }
@@ -228,35 +226,80 @@ if (entityCanStep())
         }
     }
 }
-else if (dead)
+image_index = imgIndex div 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
 {
-    healthpoints = healthpointsStart;
-    image_index = 0;
+    imgIndex = 0;
     phase = 0;
     moveTimer = 120;
     targX = 0;
     targY = 0;
-    if (instance_exists(target))
-    {
-        with (target)
-        {
-            inked = false;
-            
-            if (instance_exists(statusObject))
-            {
-                statusObject.statusChangedWalk = false;
-                statusObject.statusChangedJump = false;
-                gravfactor = 1;
-            }
-        }
-    }
     toxin = false;
     toxinTimer = 0;
     animBack = false;
     drawTimer = 4;
-    imgSpd = 0.3;
 }
-image_index = imgIndex div 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+
+if (instance_exists(target))
+{
+    with (target)
+    {
+        inked = false;
+            
+        if (instance_exists(statusObject))
+        {
+            statusObject.statusChangedWalk = false;
+            statusObject.statusChangedJump = false;
+            gravfactor = 1;
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

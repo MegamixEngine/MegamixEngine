@@ -74,6 +74,10 @@ if (entityCanStep())
     {
         iaction = action;
         actionTimer += 1;
+        if (action &lt; 9)
+        {
+            calibrateDirection();
+        }
         switch (action)
         {
             case 1:
@@ -81,7 +85,7 @@ if (entityCanStep())
                 {
                     action += 1;
                     image_index += 1;
-                    calibrateDirection();
+                    //calibrateDirection();
                 }
                 break;
             case 2:

@@ -108,8 +108,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
 }
 else
 {
-    instance_create(bboxGetXCenter(),bboxGetYCenter(),objExplosion);
-    playSFX(sfxEnemyHit);
+    event_perform_object(prtEntity,ev_other,ev_user10);
 }
 </string>
           </argument>

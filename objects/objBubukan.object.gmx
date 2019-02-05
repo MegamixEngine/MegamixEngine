@@ -52,10 +52,6 @@ imgIndex = 0;
 col = 0;
 
 init = 1;
-
-obj = objBubukanPole;
-objectSprite = sprBubukanPole;
-objectDamage = 2;
 </string>
           </argument>
         </arguments>
@@ -150,10 +146,8 @@ if (entityCanStep())
                 xspeed = jumpSpd * image_xscale;
                 yspeed = -6; // &lt;-- jump speed
                 ground = 0;
-                pole = instance_create(x + sprite_width * 0.6, y, obj); // sprite_width becomes negative if xscale is negative
+                pole = instance_create(x + sprite_width * 0.6, y, objBubukanPole); // sprite_width becomes negative if xscale is negative
                 pole.image_xscale = image_xscale;
-                pole.sprite_index = objectSprite;
-                pole.contactDamage = objectDamage;
             }
             break;
         case 3: // flying through the air 
@@ -184,6 +178,7 @@ if (entityCanStep())
             }
             break;
         case 5: // running around 
+            print(xspeed);
             if (!runCycleBack)
             {
                 imgIndex += imgSpd;
@@ -206,7 +201,7 @@ if (entityCanStep())
     }
     
     // turn around if a wall is run into
-    if (xspeed == 0 &amp;&amp; (phase == 1 || phase == 3 || phase == 5))
+    if (xcoll != 0 &amp;&amp; (phase == 1 || phase == 3 || phase == 5))
     {
         image_xscale = -image_xscale;
         if (phase == 1 || phase == 5)

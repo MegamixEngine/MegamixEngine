@@ -81,8 +81,21 @@ pangle = 0;
 
 if (entityCanStep())
 {
-    image_index = (2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16);
+    // Animation
+    //image_index = (2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16);
     cooldownTimer += 1;
+    if (cooldownTimer mod 8 &lt; 4)
+    {
+        image_index = ((2 * round(direction / 45))
+            + ((cooldownTimer mod 4) / 16));
+    }
+    else
+    {
+        image_index = ((2 * round(direction / 45))
+            + ((cooldownTimer mod 4) / 16)) + 1;
+    }
+        
+    // Actual code
     if (instance_exists(target))
     {
         switch (phase)
