@@ -22,6 +22,23 @@
       <filename>CleanMem.dll</filename>
     </datafile>
     <datafile>
+      <name>filesystem.dll</name>
+      <exists>-1</exists>
+      <size>968704</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>filesystem.dll</filename>
+    </datafile>
+    <datafile>
       <name>fmodex.dll</name>
       <exists>-1</exists>
       <size>370688</size>
@@ -4819,6 +4836,7 @@
         <script>scripts\stringSubstring.gml</script>
         <script>scripts\stringIsNumber.gml</script>
         <script>scripts\stringIndexOf.gml</script>
+        <script>scripts\stringIndexOfReverse.gml</script>
         <script>scripts\stringReverse.gml</script>
         <script>scripts\getTimeStamp.gml</script>
         <script>scripts\zeroPad.gml</script>
@@ -4934,6 +4952,30 @@
         <script>scripts\testSuiteBasicMovement.gml</script>
         <script>scripts\testSuiteEntities.gml</script>
         <script>scripts\testSuiteBossDoors.gml</script>
+      </scripts>
+      <scripts name="Filesystem">
+        <script>scripts\fsInit.gml</script>
+        <script>scripts\fsClose.gml</script>
+        <script>scripts\fsDirectoryExists.gml</script>
+        <script>scripts\fsDirectoryCount.gml</script>
+        <script>scripts\fsPathSplit.gml</script>
+        <script>scripts\fsDirectoryPath.gml</script>
+        <script>scripts\fsDirectoryList.gml</script>
+        <script>scripts\fsDelete.gml</script>
+        <script>scripts\fsExists.gml</script>
+        <script>scripts\fsFileExists.gml</script>
+        <script>scripts\fsGetAppDataRoaming.gml</script>
+        <script>scripts\fsGetHomeDirectory.gml</script>
+        <script>scripts\fsGetUsername.gml</script>
+        <script>scripts\fsGetVersion.gml</script>
+        <script>scripts\fsOpen.gml</script>
+        <script>scripts\fsRead.gml</script>
+        <script>scripts\fsReadLine.gml</script>
+        <script>scripts\fsReadLineAvailable.gml</script>
+        <script>scripts\fsMove.gml</script>
+        <script>scripts\fsWildcardCount.gml</script>
+        <script>scripts\fsWildcardPath.gml</script>
+        <script>scripts\fsWrite.gml</script>
       </scripts>
       <script>scripts\scrNoEffect.gml</script>
       <script>scripts\eventExecute.gml</script>
