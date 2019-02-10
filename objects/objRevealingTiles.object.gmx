@@ -46,6 +46,9 @@ sectionSurfaceMask = noone;
 scanned = false;
 skipDraw=false;
 
+//@cc whether to check if revealers are alive.
+checkAlive = true;
+
 prevWeather = global.telTelWeather;
 </string>
           </argument>
@@ -71,7 +74,7 @@ prevWeather = global.telTelWeather;
             <kind>1</kind>
             <string>if(!insideSection(x,y))
 {
-    instance_deactivate_object(id);
+    exit;
 }
 skipDraw=false;
 if(instance_exists(objTelTelWeatherControl))
@@ -214,23 +217,30 @@ surface_free(sectionSurfaceMask);
           <argument>
             <kind>1</kind>
             <string>// surface (tiles)
+if(!insideSection(x,y))
+{
+    exit;
+}
 if(skipDraw)
     exit;
 surface_set_target(sectionSurface);
 draw_clear_alpha(c_white, 0);
 for (var i = 0; i &lt; array_length_1d(tiles); i++)
 {
-    var tile = tiles[i]
-        ;
-    draw_background_part(
+    var tile = tiles[i];
+    draw_background_part_ext(
         tile_get_background(tile),
         tile_get_left(tile),
         tile_get_top(tile),
         tile_get_width(tile),
         tile_get_height(tile),
         tile_get_x(tile) - sectionLeft,
-        tile_get_y(tile) - sectionTop
-        );
+        tile_get_y(tile) - sectionTop,
+        tile_get_xscale(tile),
+        tile_get_yscale(tile),
+        tile_get_blend(tile),
+        tile_get_alpha(tile)
+    );
 }
 surface_reset_target();
 
@@ -244,10 +254,19 @@ for (var i = 0; i &lt; revealersN; i++)
 {
     with (revealers[i])
     {
+        if (other.checkAlive)
+        {
+            if (dead)
+            {
+                continue;
+            }
+        }
+        
+        // draw circular mask
         draw_circle(
             (bbox_left + bbox_right) / 2 - other.sectionLeft,
             (bbox_top + bbox_bottom) / 2 - other.sectionTop,
-            other.radius[i], false);
+            other.radius[min(i, array_length_1d(other.radius) - 1)], false);
     }
 }
 
