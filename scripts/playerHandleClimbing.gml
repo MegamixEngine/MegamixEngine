@@ -20,7 +20,7 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
             mask_index = mskMegaman;
             slideTimer = 0;
 
-            shiftObject(0, -gravDir, 1);
+            shiftObject(0, -gravDir, 0);
         }
         
         climbing = true;
