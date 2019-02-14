@@ -4521,6 +4521,36 @@
         <background>background\tstMM9Wily4</background>
         <background>background\tstFakeman</background>
         <background>background\tstMM9Endless</background>
+		<backgrounds name="Animated">
+			<background>background\tstConcretemanAnimated1</background>
+			<background>background\tstConcretemanAnimated2</background>
+			<background>background\tstFakemanAnimated1</background>
+			<background>background\tstGalaxymanAnimated1</background>
+			<background>background\tstGalaxymanAnimated2</background>
+			<background>background\tstJewelmanAnimated1</background>
+			<background>background\tstJewelmanAnimated2</background>
+			<background>background\tstMagmamanAnimated1</background>
+			<background>background\tstMagmamanAnimated2</background>
+			<background>background\tstPlugmanAnimated1</background>
+			<background>background\tstTornadomanAnimated1</background>
+			<background>background\tstTornadomanAnimated2</background>
+			<background>background\tstSplashwomanAnimated1</background>
+			<background>background\tstSplashwomanAnimated2</background>
+			<background>background\tstMM9Wily2Animated1</background>
+			<background>background\tstMM9Wily2Animated2</background>
+			<background>background\tstMM9Wily2Animated3</background>
+			<background>background\tstMM9Wily2Animated4</background>
+			<background>background\tstMM9Wily2Animated5</background>
+			<background>background\tstMM9Wily3Animated1</background>
+			<background>background\tstMM9Wily3Animated2</background>
+			<background>background\tstMM9Wily3Animated3</background>
+			<background>background\tstMM9Wily3Animated4</background>
+			<background>background\tstMM9Wily4Animated1</background>
+			<background>background\tstMM9Wily4Animated2</background>
+			<background>background\tstMM9Wily4Animated3</background>
+			<background>background\tstMM9Wily4Animated4</background>
+			<background>background\tstMM9Wily4Animated5</background>
+		</backgrounds>
       </backgrounds>
       <backgrounds name="MM10">
         <background>background\tstBladeMan</background>
