@@ -4981,6 +4981,8 @@
       <script>scripts\eventExecute.gml</script>
       <script>scripts\combineObjects.gml</script>
       <script>scripts\cleanMem.gml</script>
+      <script>scripts\queuePause.gml</script>
+      <script>scripts\queueUnpause.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">

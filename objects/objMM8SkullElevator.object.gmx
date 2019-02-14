@@ -120,7 +120,7 @@ if ((!global.frozen || active) &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         {
             global.flagParent[myFlag].active = false;
             active = true;
-            global.frozen = true;
+            queuePause();
             player.visible = false;
         }
     }

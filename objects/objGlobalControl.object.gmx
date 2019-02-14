@@ -68,6 +68,9 @@ pickups = ds_list_create();
 // used for pausing
 setfrozen = 0;
 
+// ensures global.frozen is read-only.
+frozenCache = global.frozen;
+
 // pause list
 obj[0] = prtEntity;
 obj[1] = prtEffect;
@@ -220,7 +223,7 @@ if (global.nextRoom != 0 || fadeAlpha &gt; 0)
         {
             if (!instance_exists(objPauseMenu))
             {
-                global.frozen = false;
+                queueUnpause();
             }
         }
     }
@@ -310,7 +313,7 @@ if (!instance_exists(objSectionSwitcher) &amp;&amp; global.inGame)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// game timers
+            <string>/// global timers
 
 global.roomTimer += 1;
 global.gameTimer += 1;
@@ -507,6 +510,22 @@ recordInputHandle();
           <argument>
             <kind>1</kind>
             <string>/// freeze / unfreeze game objects
+/// counteracts game maker automatically updating built-in variables.
+
+assert(global.frozen == frozenCache, "global.frozen was modified directly. Use queuePause() or queueUnpause() instead.");
+
+// change global.frozen state.
+if (global.queuePaused == 1)
+{
+    global.frozen = true;
+}
+if (global.queuePaused == -1)
+{
+    global.frozen = false;
+}
+global.queuePaused = 0;
+frozenCache = global.frozen;
+
 if (global.frozen)
 {
     var len = array_length_1d(obj);
@@ -790,7 +809,7 @@ if (increaseHealth || increaseAmmo) // Increase Health and/or Ammo
     
     if (!increaseHealth &amp;&amp; !increaseAmmo)
     {
-        global.frozen = false;
+        queueUnpause();
         increaseTimer = 0;
         if (!global.healthEffect)
         {

@@ -128,6 +128,7 @@ global.lastBackground = background_duplicate(bgNESPalette) - 1;
 global.borderlist = ds_list_create();
 
 global.frozen = false;
+global.queuePaused = 0;
 global.lockTransition = false;
 global.switchingSections = false;
 

@@ -108,7 +108,7 @@ if (global.weapon[pid] == 0 || e == 28)
 
 if (e &lt; 28)
 {
-    global.frozen = true;
+    queuePause();
     with (objGlobalControl)
     {
         increaseAmmo = other.hlth;

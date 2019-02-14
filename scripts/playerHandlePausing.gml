@@ -6,7 +6,7 @@ if (!playerIsLocked(PL_LOCK_PAUSE))
     {
         if (global.playerHealth[playerID] > 0)
         {
-            global.frozen = true;
+            queuePause(true);
             instance_create(x, y, objPauseMenu);
             playSFX(sfxPause);
         }

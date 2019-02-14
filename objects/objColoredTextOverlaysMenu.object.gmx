@@ -169,7 +169,7 @@ switch (phase)
         }
         else if (objGlobalControl.fadeAlpha == 0 &amp;&amp; global.nextRoom == 0)
         {
-            global.frozen = true;
+            queuePause();
             instance_destroy();
         }
         break;

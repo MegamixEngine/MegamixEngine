@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// this boy is about to pop up and be a menu
-global.frozen = true;
+            <string>/// this boy is about to pop up and be a menu
+queuePause();
 
 // playSFX(sfxDebugMenu); 2 cr3epy 4 me
 global.levelRunValid = false;
@@ -74,7 +74,7 @@ KILL ONSCREEN ENTITIES";
           <argument>
             <kind>1</kind>
             <string>lockPoolRelease(pauseLock);
-global.frozen = false;
+queueUnpause();
 </string>
           </argument>
         </arguments>
