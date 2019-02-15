@@ -25,7 +25,7 @@ fs_version()
 }
 
 // Username
-external ty_string
+ty_string
 fs_username()
 {
 	long unsigned int g_ret_buffer_len = sizeof(g_ret_buffer);
@@ -39,7 +39,7 @@ fs_username()
 }
 
 // Home Directory
-external ty_string
+ty_string
 fs_home_directory()
 {
 	if (SHGetFolderPath(

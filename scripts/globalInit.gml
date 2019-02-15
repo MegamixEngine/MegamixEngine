@@ -9,6 +9,7 @@ global.previousRoom=-1;
 mathTableSetup();
 lockPoolInit();
 globalLockInit();
+fsInit();
 
 // extension initialization
 cleanMem('init');

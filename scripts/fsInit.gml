@@ -5,8 +5,6 @@ var dllName = "filesystem.dll";
 var callType = dll_cdecl;
 
 global._fsVersion           = external_define(dllName, "fs_version",              callType, ty_real,   0);
-global._fsUsername          = external_define(dllName, "fs_username",             callType, ty_real,   0);
-global._fsHomeDirectory     = external_define(dllName, "fs_home_directory",       callType, ty_real,   0);
 global._fsAppDataDirectory  = external_define(dllName, "fs_appdata_directory",    callType, ty_real,   0);
 global._fsListCount         = external_define(dllName, "fs_list_count",           callType, ty_real,   1, ty_string);
 global._fsFileExists        = external_define(dllName, "fs_file_exists",          callType, ty_real,   1, ty_string);
