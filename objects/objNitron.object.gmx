@@ -50,7 +50,6 @@ init = 1;
 
 obj = objNitronFire;
 objectSprite = sprNitronFireOrange;
-forceCol = true;
 </string>
           </argument>
         </arguments>
