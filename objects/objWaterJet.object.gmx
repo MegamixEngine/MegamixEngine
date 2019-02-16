@@ -29,6 +29,7 @@
 
 canHit = false;
 
+blockCollision = 0;
 grav = 0;
 bubbleTimer = -1;
 

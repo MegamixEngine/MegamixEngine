@@ -146,7 +146,7 @@ if ((!global.frozen &amp;&amp; !dead || instance_exists(objSectionSwitcher))
             exit;
         }
         
-        if (place_meeting(x, y, objToadRain) &amp;&amp; !instance_exists(objWireAdapter))
+        if (place_meeting(x, y, objToadRain) &amp;&amp; !instance_exists(objWireAdapter) &amp;&amp; !climbing)
         {
             if (ground)
             {

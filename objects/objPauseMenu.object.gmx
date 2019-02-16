@@ -79,11 +79,11 @@ with (objMegaman)
 
 // set these here. makes everyone's lives easier.
 
-etankPositionX = 148;
+etankPositionX = 149;
 etankPositionY = 10;
-wtankPositionX = 178;
+wtankPositionX = 180;
 wtankPositionY = 10;
-mtankPositionX = 210;
+mtankPositionX = 211;
 mtankPositionY = 10;
 
 optionsPositionX = 136;
@@ -202,7 +202,8 @@ switch (phase)
                 proceed = false;
                 for (i = 0; i &lt; weaponVisibleN; i += 1)
                 {
-                    if (ceil(global.ammo[playerID, global.weaponHotbar[weaponVisible[i]]]) &lt; 28)
+                    if (ceil(global.ammo[playerID, global.weaponHotbar[weaponVisible[i]]]) &lt; 28
+                    &amp;&amp; !global.weaponLocked[i])
                     {
                         proceed = true;
                     }
@@ -601,6 +602,8 @@ if ((global.keyWeaponSwitchLeft[playerID] &amp;&amp; global.keyWeaponSwitchRight
     }
     visibleWeapons = min(10, weaponVisibleN); // up to 10 visible
     oldOption = 0;
+    
+    option = 0;
 }
 
 // Set weapon

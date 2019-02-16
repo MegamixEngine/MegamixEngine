@@ -35,3 +35,5 @@ if (!playerIsLocked(PL_LOCK_PHYSICS))
 playerHandleFrozen();
 
 playerHandleHit();
+
+playerHandleOil();
