@@ -45,9 +45,6 @@ spd = 4.5;
 
 imgSpd = 0.2;
 imgIndex = 0;
-
-obj = objHaveSuBeeHive;
-objectSprite = sprHaveSuBeeHive;
 </string>
           </argument>
         </arguments>
@@ -134,9 +131,8 @@ if (entityCanStep())
                 
                 if (dropTimer == 60)
                 {
-                    hive = instance_create(x, y + sprite_height / 2, obj);
+                    hive = instance_create(x, y + sprite_height / 2, objHaveSuBeeHive);
                     hive.image_xscale = image_xscale; // to turn around the sprite. even though it's mostly not noticeable, I just wanted to be complete about it XP
-                    hive.sprite_index = objectSprite;
                     imgIndex = 2;
                 }
                 

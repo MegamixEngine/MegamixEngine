@@ -42,9 +42,6 @@ cooldownTimer = 0;
 canShoot = true;
 
 animTimer = 0;
-
-obj = objMetallDXBullet;
-objectSprite = sprEnemyBullet;
 </string>
           </argument>
         </arguments>
@@ -135,15 +132,15 @@ if (entityCanStep())
             
             // Shoot
             var ID;
-            ID = instance_create(x, spriteGetYCenter(), obj);
+            ID = instance_create(x, spriteGetYCenter(), objMetallDXBullet);
             ID.dir = 45;
-            ID.sprite_index = objectSprite;
-            ID = instance_create(x, spriteGetYCenter(), obj);
+            ID.sprite_index = sprEnemyBullet;
+            ID = instance_create(x, spriteGetYCenter(), objMetallDXBullet);
             ID.dir = 0;
-            ID.sprite_index = objectSprite;
-            ID = instance_create(x, spriteGetYCenter(), obj);
+            ID.sprite_index = sprEnemyBullet;
+            ID = instance_create(x, spriteGetYCenter(), objMetallDXBullet);
             ID.dir = -45;
-            ID.sprite_index = objectSprite;
+            ID.sprite_index = sprEnemyBullet;
             
             //playSFX(sfxEnemyShoot);
         }

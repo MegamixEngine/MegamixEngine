@@ -44,10 +44,6 @@ shooting = false;
 shootAmount = 0;
 
 image_speed = 0.4;
-
-obj = objHammerJoeHammer;
-objectSprite = sprHammerjoeProjectile;
-objectXSpeed = 3;
 </string>
           </argument>
         </arguments>
@@ -102,9 +98,8 @@ if (entityCanStep())
             {
                 box = bbox_left;
             }
-            i = instance_create(box, y, obj);
-            i.xspeed = image_xscale * objectXSpeed;
-            i.sprite_index = objectSprite;
+            i = instance_create(box, y, objHammerJoeHammer);
+            i.xspeed = image_xscale * 3;
             i.image_xscale = image_xscale;
         }
         if (shootTimer == 75)

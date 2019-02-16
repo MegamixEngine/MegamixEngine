@@ -57,10 +57,6 @@ imgSpd = 0.2;
 imgIndex = 0;
 
 depth = 0;
-
-obj = objElecnSpark;
-objectSprite = sprElecnSpark;
-objectSFX = sfxElecnShoot;
 </string>
           </argument>
         </arguments>
@@ -141,11 +137,10 @@ if (entityCanStep())
                 var a;
                 for (a = 0; a &lt;= 360; a += 45)
                 {
-                    spark = instance_create(x, y - sprite_height * 0.4, obj);
-                    spark.sprite_index = objectSprite;
+                    spark = instance_create(x, y - sprite_height * 0.4, objElecnSpark);
                     spark.direction = a;
                 }
-                playSFX(objectSFX);
+                playSFX(sfxElecnShoot);
             }
             
             if (shootWaitTimer &lt; shootWait)
