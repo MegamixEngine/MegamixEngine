@@ -54,7 +54,7 @@ animTimer = 0;
 
 radius = 100;
 forceBulletColIndex = true;
-obj = objBeakBullet;
+object = objBeakBullet;
 objectSprite = sprBeakBullet;
 </string>
           </argument>
