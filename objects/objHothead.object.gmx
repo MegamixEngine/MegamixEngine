@@ -38,12 +38,6 @@ facePlayer = true;
 
 animEndme = 0;
 shootTimer = 0;
-
-obj = objPicket;
-objectSprite = sprTackleFire;
-objectYSpeed = -4;
-objectDamage = 3;
-
 </string>
           </argument>
         </arguments>
@@ -93,11 +87,11 @@ if (entityCanStep())
     if (shootTimer == 106)
     {
         image_index = 3;
-        a = instance_create(x, y - 22, obj);
+        a = instance_create(x, y - 22, objPicket);
         a.image_xscale = image_xscale;
-        a.sprite_index = objectSprite
-        a.contactDamage = objectDamage;
-        a.yspeed = objectYSpeed;
+        a.sprite_index = sprTackleFire;
+        a.contactDamage = 3;
+        a.yspeed = -4;
         a.target = target;
         with (a)
         {

@@ -46,9 +46,7 @@ img = 0;
 childLimit = 3;
 
 //@cc
-obj = objPetitCroaker;
 spitSpeed = 4.5;
-objectYSpeed = -5.5;
 </string>
           </argument>
         </arguments>
@@ -76,7 +74,7 @@ objectYSpeed = -5.5;
 if (entityCanStep())
 {
     var children = 0;
-    with (obj)
+    with (objPetitCroaker)
     {
         if (parent == other.id)
         {
@@ -131,9 +129,9 @@ if (entityCanStep())
         {
             for (i = 1; i &lt;= childLimit; i += 1)
             {
-                c = instance_create(x + 4 * image_xscale, y - 10, obj);
+                c = instance_create(x + 4 * image_xscale, y - 10, objPetitCroaker);
                 c.xspeed = ((spitSpeed / childLimit) * i) * image_xscale;
-                c.yspeed = objectYSpeed;
+                c.yspeed = -5.5;
                 c.parent = id;
             }
             image_index = 4;

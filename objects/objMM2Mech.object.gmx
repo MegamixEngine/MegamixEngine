@@ -44,12 +44,6 @@ repeatAmount = 0;
 repeatIsHigh = true;
 
 doThing = false;
-
-obj = objEnemyBullet;
-objectSprite = sprFlashShot;
-objectSFX = sfxEnemyShootClassic;
-objectXSpeed = 6;
-objectYSpeed = 6;
 </string>
           </argument>
         </arguments>
@@ -142,11 +136,11 @@ if (entityCanStep())
             {
                 if (moveTimer == floor(moveTimer / 15) * 15 &amp;&amp; moveTimer &gt; 0)
                 {
-                    i = instance_create(x + image_xscale * 16, y, obj);
-                    i.xspeed = objectXSpeed * image_xscale;
-                    i.yspeed = objectYSpeed - (moveTimer / 15);
-                    i.sprite_index = objectSprite;
-                    playSFX(objectSFX);
+                    i = instance_create(x + image_xscale * 16, y, objEnemyBullet);
+                    i.xspeed = 6 * image_xscale;
+                    i.yspeed = 6 - (moveTimer / 15);
+                    i.sprite_index = sprFlashShot;
+                    playSFX(sfxEnemyShootClassic);
                 }
                 else if (moveTimer &gt; 75) // If timer exceeds 60...
                 {
