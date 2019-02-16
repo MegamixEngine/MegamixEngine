@@ -47,10 +47,15 @@ global.quadHeight = 240;
 global.quadMarginTop = 8;
 global.quadMarginBottom = 8;
 
-// event_perform(ev_step_begin, 0); //Registers the key inputs
+// index of each asset (+1):
+global.lastBackground = bgNESPalette;
+while (background_exists(global.lastBackground++))
+    { }
+global.lastObject = objGlobalControl;
+while (object_exists(global.lastObject++))
+    { }
 
 // Variables
-
 global.coop = false;
 global.maxPlayerCount = 4;
 global.playerCount = 1; // the number of players playing
@@ -118,14 +123,6 @@ global.castleStagesBeaten = 0;
 
 global.telTelWeather = 0;
 global.superArmInterface = makeArray();
-
-// index of each asset (+1):
-global.lastBackground = bgNESPalette;
-while (background_exists(global.lastBackground++))
-    { }
-global.lastObject = objGlobalControl;
-while (object_exists(global.lastObject++))
-    { }
 
 global.borderlist = ds_list_create();
 
