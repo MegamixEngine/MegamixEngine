@@ -44,10 +44,6 @@ timer = 0;
 phase = 0;
 
 bullets = 8;
-obj = objEnemyBullet;
-objectSprite = sprMM1MetBullet;
-objectDamage = 2;
-objectSpeed = 3.75;
 </string>
           </argument>
         </arguments>
@@ -94,10 +90,10 @@ if (entityCanStep())
                 var t;
                 for (i = 0; i &lt; bullets; i++)
                 {
-                    t = instance_create(x, y, obj);
-                    t.sprite_index = objectSprite;
-                    t.contactDamage = objectDamage;
-                    t.spd = objectSpeed;
+                    t = instance_create(x, y, objEnemyBullet);
+                    t.sprite_index = sprMM1MetBullet;
+                    t.contactDamage = 2;
+                    t.spd = 3.75;
                     t.dir = (180 * (image_xscale &lt; 0)) + (i * (360 / bullets));
                 }
                 timer = 0;

@@ -48,9 +48,6 @@ init = 1;
 timer = 0;
 phase = 1;
 bullet = 0;
-forceBulletColIndex = true;
-obj = objBeakBullet;
-objectSprite = sprBeakBullet; 
 </string>
           </argument>
         </arguments>
@@ -122,12 +119,8 @@ if (entityCanStep())
             case 1:
                 if (bullet &lt; 4)
                 {
-                    var i = instance_create(x + image_xscale * 16, y + 8, obj);
-                    i.sprite_index = objectSprite;
-                    if forceBulletColIndex == true
-                    {
-                        i.image_index = col;
-                    }
+                    var i = instance_create(x + image_xscale * 16, y + 8, objBeakBullet);
+                    i.image_index = col;
                     i.dir = 45 - (bullet * 30);
                     i.xscale = image_xscale;
                     
