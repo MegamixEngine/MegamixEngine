@@ -729,13 +729,13 @@ if (phase != 0)
             {
             switch (global.characterSelected[playerID])
             {
-                case "PROTO":
+                case "Proto Man":
                     wname = "PROTO BUSTER";
                     break;
-                case "BASS":
+                case "Bass":
                     wname = "BASS BUSTER";
                     break;
-                case "ROLL":
+                case "Roll":
                     wname = "ROLL BUSTER";
                     break;
             }
