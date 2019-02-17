@@ -95,6 +95,7 @@ if (entityCanStep())
             a.image_index = 0;
             a.dir = 180;
             a.spd = 2.5;
+			
             a = instance_create(x, y - 13 + 1, objEnemyBullet);
             a.sprite_index = sprHariHariNeedles;
             a.canHit = true;
@@ -102,6 +103,7 @@ if (entityCanStep())
             a.image_index = 1;
             a.dir = 135;
             a.spd = 2.5;
+
             a = instance_create(x, y - 13 + 1, objEnemyBullet);
             a.sprite_index = sprHariHariNeedles;
             a.canHit = true;
@@ -109,6 +111,7 @@ if (entityCanStep())
             a.image_index = 2;
             a.dir = 90;
             a.spd = 2.5;
+
             a = instance_create(x, y - 13 + 1, objEnemyBullet);
             a.sprite_index = sprHariHariNeedles;
             a.canHit = true;
@@ -116,6 +119,7 @@ if (entityCanStep())
             a.image_index = 3;
             a.dir = 45;
             a.spd = 2.5;
+
             a = instance_create(x, y - 13 + 1, objEnemyBullet);
             a.sprite_index = sprHariHariNeedles;
             a.canHit = true;

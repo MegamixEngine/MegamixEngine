@@ -47,10 +47,6 @@ image_speed = 0.1;
 //@cc 0 = blue; 1 = orange;
 col = 0;
 init = 1;
-
-obj = objNitronFire;
-objectSprite = sprNitronFireOrange;
-forceCol = true;
 </string>
           </argument>
         </arguments>
@@ -119,12 +115,8 @@ if (entityCanStep())
             if (dipTimer == 0 || dipTimer == 25 || dipTimer == 50)
             {
                 fire = instance_create(x, y + sprite_height / 2,
-                    obj);
-                fire.sprite_index = objectSprite;
-                if forceCol
-                {
-                    fire.col = col;
-                }
+                    objNitronFire);
+                fire.col = col;
             }
             if (dipTimer == 75)
             {

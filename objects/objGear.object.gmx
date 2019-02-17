@@ -43,8 +43,6 @@ image_speed = 0.25; // Using this variable is not recommended, please avoid it
 
 activated = false;
 alarmPop = 60;
-obj = objPierobot;
-objectSprite = sprPierobot;
 </string>
           </argument>
         </arguments>
@@ -80,8 +78,7 @@ if (entityCanStep())
     alarmPop -= 1;
     if (alarmPop == 0)
     {
-        i = instance_create(x, view_yview + 32, obj);
-        i.sprite_index = objectSprite;
+        i = instance_create(x, view_yview + 32, objPierobot);
         i.mygear = id;
     }
 }

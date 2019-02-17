@@ -40,9 +40,6 @@ actionTimer = 0;
 action = 0;
 
 calibrateDirection();
-
-obj = objHologranVoid; //its technically a projectile.
-objectSprite = sprEnemyBullet;
 </string>
           </argument>
         </arguments>
@@ -95,10 +92,9 @@ if (entityCanStep())
                 action += 1;
                 actionTimer = 0;
                 image_index = 1;
-                if (!instance_exists(obj))
+                if (!instance_exists(objHologranVoid))
                 {
-                    i = instance_create(x, y, obj);
-                    i.sprite_index = objectSprite;
+                    instance_create(x, y, objHologranVoid);
                 }
             }
         }

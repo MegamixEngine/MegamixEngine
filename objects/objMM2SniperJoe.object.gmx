@@ -44,11 +44,6 @@ shootAmount = 0;
 
 respawnRange = -16;
 despawnRange = 16;
-
-obj = objEnemyBullet;
-objectSprite = sprFlashShot;
-objectSFX = sfxEnemyShootClassic;
-objectXSpeed = 2;
 </string>
           </argument>
         </arguments>
@@ -96,10 +91,10 @@ if (entityCanStep())
             {
                 shootTimer = 0;
                 i = instance_create(x + 6 * image_xscale, y - 9,
-                    obj);
-                i.xspeed = image_xscale * objectXSpeed;
-                i.sprite_index = objectSprite;
-                playSFX(objectSFX);
+                    objEnemyBullet);
+                i.xspeed = image_xscale * 2;
+                i.sprite_index = sprFlashShot;
+                playSFX(sfxEnemyShootClassic);
                 shootAmount += 1;
             }
             if (shootAmount &gt;= 3)

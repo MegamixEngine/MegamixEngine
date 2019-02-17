@@ -177,6 +177,8 @@ if (entityCanStep())
             playSFX(sfxEnemyHit);
         }
     }
+    
+    iFrames = 0;
 }
 
 // only Rain Flush can stop fire....even if it's invisible......

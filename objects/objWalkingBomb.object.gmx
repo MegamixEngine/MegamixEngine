@@ -41,10 +41,6 @@ facePlayerOnSpawn = true;
 // Enemy specific code
 animTimer = 0;
 jumpTimes = 0;
-
-obj = objHarmfulExplosion;
-objectSprite = sprBigExplosion;
-explosionSFX = sfxMM3Explode;
 </string>
           </argument>
         </arguments>
@@ -144,9 +140,8 @@ else if (dead)
             <kind>1</kind>
             <string>dead = 1;
 
-i = instance_create(bboxGetXCenter(), bboxGetYCenter(), obj);
-i.sprite_index = objectSprite;
-playSFX(explosionSFX);
+instance_create(bboxGetXCenter(), bboxGetYCenter(), objHarmfulExplosion);
+playSFX(sfxMM3Explode);
 </string>
           </argument>
         </arguments>

@@ -46,11 +46,6 @@ jumpCount = 0;
 
 myDir = -1;
 xs = 0;
-
-obj = objEnemyBullet;
-objectSprite = sprCrazyRazyBullet;
-objectXSpeed = 4;
-objectSFX = sfxEnemyShootClassic;
 </string>
           </argument>
         </arguments>
@@ -142,10 +137,10 @@ if (entityCanStep())
                 if (shootAmount &lt; shootTotal)
                 {
                     shootTimer = 0;
-                    var i = instance_create(x + (12 * image_xscale), y - 8, obj);
-                    i.xspeed = image_xscale * objectXSpeed;
-                    i.sprite_index = objectSprite;
-                    playSFX(objectSFX); // shoooot
+                    var i = instance_create(x + (12 * image_xscale), y - 8, objEnemyBullet);
+                    i.xspeed = image_xscale * 4;
+                    i.sprite_index = sprCrazyRazyBullet;
+                    playSFX(sfxEnemyShootClassic); // shoooot
                     shootAmount += 1;
                 }
                 if (shootAmount &gt;= shootTotal)

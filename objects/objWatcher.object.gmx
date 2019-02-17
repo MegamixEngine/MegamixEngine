@@ -49,11 +49,6 @@ dir = 1;
 
 timer = 0;
 phase = 1;
-
-obj = objEnemyBullet;
-objectSprite = sprWatcherBullet;
-objectXSpeed = 3;
-bulletImageSpeed = 0.3;
 </string>
           </argument>
         </arguments>
@@ -116,10 +111,10 @@ if (entityCanStep())
                 repeat (2)
                 {
                     image_yscale *= -1;
-                    i = instance_create(x + (8 * image_xscale), y + (22 * image_yscale), obj);
-                    i.xspeed = objectXSpeed * image_xscale;
-                    i.sprite_index = objectSprite;
-                    i.imageSpeed = bulletImageSpeed;
+                    i = instance_create(x + (8 * image_xscale), y + (22 * image_yscale), objEnemyBullet);
+                    i.xspeed = 3 * image_xscale;
+                    i.sprite_index = sprWatcherBullet;
+                    i.imageSpeed = 0.3;
                 }
             }
             else if (timer == 32)

@@ -43,9 +43,6 @@ facePlayerOnSpawn = true;
 animTimer = 0;
 actionTimer = 0;
 action = 0;
-
-obj = objGyoraboiMissile;
-objectSprite = sprGyoraboiMissile;
 </string>
           </argument>
         </arguments>
@@ -105,8 +102,7 @@ if (entityCanStep())
                 action += 1;
                 actionTimer = 0;
                 image_index += 1;
-                var i = instance_create(x, y - 5, obj);
-                i.sprite_index = objectSprite;
+                instance_create(x, y - 5, objGyoraboiMissile);
             }
         }
         else if (action == 2)
