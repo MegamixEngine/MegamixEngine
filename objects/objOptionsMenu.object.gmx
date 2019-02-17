@@ -297,13 +297,17 @@ if (phase == 2 &amp;&amp; !selected)
             // Players (co-op)
             case 7:
                 pre = global.playerCount;
-                global.playerCount = max(1, min(4, global.playerCount + dir));
+                global.playerCount = clamp(global.playerCount + dir, 1, global.maxPlayerCount);
                 if (global.playerCount != pre)
                 {
                     playSFX(sfxMenuMove);
                 }
+                // initialize player variables for those that are not initialized.
+                playerGlobalInit();
                 if (global.playerCount &gt; pre)
                 {
+                    // new players enter level with full life and ammo.
+                    // (Note: this can be abused.)
                     resetPlayerState(pre);
                     
                     // allow player to respawn:

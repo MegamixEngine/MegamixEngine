@@ -4837,10 +4837,12 @@
       <script>scripts\freshSaveFile.gml</script>
       <script>scripts\engineConfig.gml</script>
       <script>scripts\globalInit.gml</script>
+      <script>scripts\playerGlobalInit.gml</script>
       <script>scripts\mathTableSetup.gml</script>
       <script>scripts\paletteSetup.gml</script>
     </scripts>
     <scripts name="Weapons">
+      <script>scripts\weaponsInit.gml</script>
       <script>scripts\weaponSetup.gml</script>
       <script>scripts\setWeaponLocked.gml</script>
       <script>scripts\specialDamageValue.gml</script>

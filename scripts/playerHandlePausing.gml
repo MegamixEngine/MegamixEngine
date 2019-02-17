@@ -2,13 +2,17 @@
 // Pausing
 if (!playerIsLocked(PL_LOCK_PAUSE))
 {
-    if (global.keyPausePressed[0])
+    if (!instance_exists(objPauseMenu))
     {
-        if (global.playerHealth[playerID] > 0)
+        if (global.keyPausePressed[playerID])
         {
-            queuePause(true);
-            instance_create(x, y, objPauseMenu);
-            playSFX(sfxPause);
+            if (global.playerHealth[playerID] > 0)
+            {
+                queuePause(true);
+                global.createArgument[0] = playerID;
+                instance_create(x, y, objPauseMenu);
+                playSFX(sfxPause);
+            }
         }
     }
 }

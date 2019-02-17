@@ -28,6 +28,8 @@
             <string>global.nextRoom = -1;
 visible = 0;
 
+playerID = global.createArgument[0];
+
 phase = 0; // 0: increasing the black rectangle's alpha
 
 option = 0;
@@ -48,7 +50,7 @@ visibleWeapons = min(10, weaponVisibleN); // up to 10 visible
 
 for (var i = 0; i &lt; weaponVisibleN; i++)
 {
-    if (global.weapon[0] == global.weaponHotbar[weaponVisible[i]])
+    if (global.weapon[playerID] == global.weaponHotbar[weaponVisible[i]])
     {
         option = i;
         oldOption = i;
@@ -58,7 +60,7 @@ woption = i;
 
 visibleWeapons = 10;
 
-oldWeapon = global.weapon[0];
+oldWeapon = global.weapon[playerID];
 resetWeapon = false; // Should we, after exiting the menu, reset our weapon to the weapon that was used before the pause menu was opened?
 
 wtank = 0;
@@ -68,7 +70,6 @@ retryConfirm = 0;
 exitConfirm = 0;
 hotBarArrangeMode = false;
 
-playerID = 0;
 costumeID = 0;
 
 // Stop charging
@@ -524,7 +525,7 @@ if (yDir != 0)
                     option = weaponVisibleN - 1;
                 }
             }
-                until (!global.weaponLocked[global.weaponHotbar[weaponVisible[option]]])
+            until (!global.weaponLocked[global.weaponHotbar[weaponVisible[option]]])
         }
     }
     else
@@ -651,8 +652,8 @@ if (phase != 0)
     var col;
     col[0, 0] = global.nesPalette[0];
     col[1, 0] = global.nesPalette[13];
-    col[0, 1] = global.primaryCol[0];
-    col[1, 1] = global.secondaryCol[0];
+    col[0, 1] = global.primaryCol[playerID];
+    col[1, 1] = global.secondaryCol[playerID];
     col[0, 2] = make_color_rgb(255, 228, 164);
     col[1, 2] = c_white;
     
@@ -721,6 +722,21 @@ if (phase != 0)
             draw_set_color(col[!cl, (cl * 2) - (cl * !(hotBarArrangeMode mod 8 &lt; 4))]);
             
             wname = global.weaponName[w];
+            if (wname == "MEGA BUSTER")
+            {
+            switch (global.characterSelected[playerID])
+            {
+                case "PROTO":
+                    wname = "PROTO BUSTER";
+                    break;
+                case "BASS":
+                    wname = "BASS BUSTER";
+                    break;
+                case "ROLL":
+                    wname = "ROLL BUSTER";
+                    break;
+            }
+            }
             dot = string_pos(" ", wname);
             if (dot)
             {

@@ -28,7 +28,7 @@
             <string>event_inherited();
 
 faction = 1;
-shiftVisible = 2;
+shiftVisible = 3;
 
 despawnRange = -1;
 

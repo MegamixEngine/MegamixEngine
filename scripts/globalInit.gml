@@ -50,13 +50,13 @@ global.quadMarginBottom = 8;
 // event_perform(ev_step_begin, 0); //Registers the key inputs
 
 // Variables
-global.playerHealth[4] = 28;
-global.weapon[4] = 0;
-
-global.respawnTimer[4] = -1;
 
 global.coop = false;
+global.maxPlayerCount = 4;
 global.playerCount = 1; // the number of players playing
+global.playerCountInitialized = 0; // number of players whose global variables have been initialized.
+weaponsInit();
+playerGlobalInit();
 
 // can dead players respawn?
 global.respawnAllowed = true;
@@ -97,10 +97,6 @@ global.checkpointX = -1;
 global.checkpointY = -1;
 global.hasTeleported = 0;
 
-global.primaryCol[0] = c_white;
-global.secondaryCol[0] = c_white;
-global.outlineCol[0] = c_black;
-
 global.lastTeleporterX = 128;
 global.lastTeleporterY = 160;
 global.roomTimer = 0;
@@ -123,8 +119,13 @@ global.castleStagesBeaten = 0;
 global.telTelWeather = 0;
 global.superArmInterface = makeArray();
 
-// index of last background asset:
-global.lastBackground = background_duplicate(bgNESPalette) - 1;
+// index of each asset (+1):
+global.lastBackground = bgNESPalette;
+while (background_exists(global.lastBackground++))
+    { }
+global.lastObject = objGlobalControl;
+while (object_exists(global.lastObject++))
+    { }
 
 global.borderlist = ds_list_create();
 
@@ -136,14 +137,6 @@ global.switchingSections = false;
 global.inkSurface[0] = -1; // used for octone ink
 global.keyCoinTotal = 0;
 global.keyCoinCollected = 0;
-
-// The default player used
-for (i = 0; i < 5; i++)
-{
-    global.characterSelected[i] = "NONE";
-}
-// Weapon inventory
-weaponSetup();
 
 // cached view -- view is fixed here if not following any object
 global.cachedXView = 0;
