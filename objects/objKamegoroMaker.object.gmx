@@ -152,7 +152,9 @@ if (entityCanStep())
                 {
                     instance_create(x, y + 32, objExplosion);
                     with (instance_create(x, y + 32, objKamegoro))
+                    {
                         spd = (0.75 * other.shotsFired) + 1.5;
+                    }
                     shotsFired += 1;
                 }
                 if (attackTimer == 24)

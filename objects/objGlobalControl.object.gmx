@@ -75,6 +75,10 @@ frozenCache = global.frozen;
 obj[0] = prtEntity;
 obj[1] = prtEffect;
 
+// public variables (these should be changed to global.)
+joystick_connected = false
+xinputDeviceCount = 0;
+
 /// User-specific globals ////
 
 // new save file
@@ -358,16 +362,16 @@ n_connected = min(n_connected, global.playerCount);
 for (i = 0; i &lt; global.playerCount; i += 1)
 {
     // Input
-    keyLeftHold = global.keyLeft[i];
-    keyRightHold = global.keyRight[i];
-    keyUpHold = global.keyUp[i];
-    keyDownHold = global.keyDown[i];
-    keyJumpHold = global.keyJump[i];
-    keyShootHold = global.keyShoot[i];
-    keySlideHold = global.keySlide[i];
-    keyPauseHold = global.keyPause[i];
-    keyWeaponSwitchLeftHold = global.keyWeaponSwitchLeft[i];
-    keyWeaponSwitchRightHold = global.keyWeaponSwitchRight[i];
+    var keyLeftHold = global.keyLeft[i];
+    var keyRightHold = global.keyRight[i];
+    var keyUpHold = global.keyUp[i];
+    var keyDownHold = global.keyDown[i];
+    var keyJumpHold = global.keyJump[i];
+    var keyShootHold = global.keyShoot[i];
+    var keySlideHold = global.keySlide[i];
+    var keyPauseHold = global.keyPause[i];
+    var keyWeaponSwitchLeftHold = global.keyWeaponSwitchLeft[i];
+    var keyWeaponSwitchRightHold = global.keyWeaponSwitchRight[i];
     
     // Check keys
     global.keyLeft[i] = keyboard_check(global.leftKey[i]);
@@ -385,7 +389,7 @@ for (i = 0; i &lt; global.playerCount; i += 1)
     global.keyWeaponSwitchRight[i] = keyboard_check(
         global.weaponSwitchRightKey[i]);
     
-    jp = i;
+    var jp = i;
     
     if (n_connected &gt; 0)
     {
@@ -445,7 +449,7 @@ for (i = 0; i &lt; global.playerCount; i += 1)
                     var axY = gamepad_axis_value(jp, gp_axislv);
                     if ((abs(axY) &gt; 0.4) || (abs(axX) &gt; 0.36))
                     {
-                        gamepadStick = point_direction(0, 0, axX, axY);
+                        var gamepadStick = point_direction(0, 0, axX, axY);
                         global.keyLeft[i] += (gamepadStick &gt;= 120
                             &amp;&amp; gamepadStick &lt;= 240);
                         global.keyRight[i] += ((gamepadStick &lt;= 60)
@@ -546,7 +550,7 @@ if (global.frozen)
                 frozen = 1;
             }
             
-            for (_i = 0; _i &lt;= 11; _i += 1)
+            for (var _i = 0; _i &lt;= 11; _i += 1)
             {
                 if (alarm[_i] &gt; 0)
                 {
@@ -686,7 +690,7 @@ for (i = 0; i &lt; global.playerCount; i += 1)
             }
             with (objMegaman)
             {
-                donate = floor(global.playerHealth[playerID] / donators)
+                var donate = floor(global.playerHealth[playerID] / donators)
                     * (global.playerHealth[playerID]
                     &gt; global.respawnDonateThreshold);
                 respawn_health += donate;
@@ -694,12 +698,12 @@ for (i = 0; i &lt; global.playerCount; i += 1)
             }
             
             // respawn player at random other player's coords
-            targetPlayer = instance_find(objMegaman,
+            var targetPlayer = instance_find(objMegaman,
                 irandom(instance_number(objMegaman) - 1));
-            prev_checkpoint = global.checkpoint;
+            var prev_checkpoint = global.checkpoint;
             global.checkpoint = -1;
             
-            p = instance_create(targetPlayer.x, targetPlayer.y, objMegaman);
+            var p = instance_create(targetPlayer.x, targetPlayer.y, objMegaman);
             p.gravfactor = targetPlayer.gravfactor;
             p.inWater = targetPlayer.inWater;
             p.grav = targetPlayer.grav;
@@ -760,7 +764,7 @@ for (i = 0; i &lt;= global.totalWeapons; i += 1)
 {
     if (global.infiniteEnergy[i])
     {
-        for (j = 0; j &lt; global.playerCount; j += 1)
+        for (var j = 0; j &lt; global.playerCount; j += 1)
         {
             global.ammo[j, i] = 28;
         }
@@ -927,7 +931,7 @@ globalLockReset();
           <argument>
             <kind>1</kind>
             <string>/// setup room, spawn players, etc.
-joystick_connected = 0;
+joystick_connected = false;
 if (joystick_exists(1))
 {
     joystick_connected = true;
@@ -1185,7 +1189,7 @@ if (global.inGame)
 }
 
 // if the new room's view size is different, adjust the screen size accordingly
-s = max(1, min(display_get_height() / global.screenHeight, display_get_width() / global.screenWidth));
+var s = max(1, min(display_get_height() / global.screenHeight, display_get_width() / global.screenWidth));
 if ((window_get_fullscreen() &amp;&amp; (surface_get_width(application_surface) != floor(global.screenWidth * s)
         || surface_get_height(application_surface) != floor(global.screenHeight * s)))
     || (!window_get_fullscreen() &amp;&amp; (surface_get_width(application_surface) != view_wview[0] * global.screensize
@@ -1341,7 +1345,7 @@ depth = depthstart;
     draw_enable_alphablend(false);
     
     /// Draw HUD
-    for (z = 0; z &lt; global.playerCount; z += 1)
+    for (var z = 0; z &lt; global.playerCount; z += 1)
     {
         draw_sprite_ext(sprHealthbarBackground, 0, dx, dy, 1, 1, image_angle,
             c_black, image_alpha);
@@ -1390,6 +1394,7 @@ depth = depthstart;
             var display = true;
             
             // Weapons
+            var c
             if (global.weapon[z] != 0) // Weapon energy
             {
                 c = round(global.ammo[z, global.weapon[z]]);
@@ -1399,9 +1404,9 @@ depth = depthstart;
                 c = 0;
                 with (objMegaman)
                 {
-                    if (playerID == other.z)
+                    if (playerID == z)
                     {
-                        other.c = min(28, floor(chargeTimer) / 2);
+                        c = min(28, floor(chargeTimer) / 2);
                     }
                 }
                 display = global.chargeBar;

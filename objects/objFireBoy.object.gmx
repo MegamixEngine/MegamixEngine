@@ -38,6 +38,7 @@ facePlayer = true;
 // enemy specific code
 phase = 0;
 shootTimer = 0;
+shootWait = 0;
 
 imgSpd = 0.15;
 imgIndex = 0;

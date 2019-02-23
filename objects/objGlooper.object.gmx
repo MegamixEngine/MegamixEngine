@@ -139,7 +139,6 @@ else if (dead)
     animTimer = 5;
     shooting = false;
     hasFired = false;
-    actionTimer = 0;
     shotTimer = 0;
 }
 </string>

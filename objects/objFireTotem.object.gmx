@@ -59,6 +59,7 @@ shotIndex = 0;
 
 init = 1;
 image_index = 0;
+mask = 0;
 </string>
           </argument>
         </arguments>
@@ -365,7 +366,6 @@ timer = -1;
 animFrameBase = 0;
 animFrameMiddle = 0;
 animFrameHead = 0;
-animTimer = -1;
 </string>
           </argument>
         </arguments>

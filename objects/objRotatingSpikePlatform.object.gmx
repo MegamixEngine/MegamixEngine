@@ -71,6 +71,7 @@ event_inherited();
 
 if (entityCanStep() &amp;&amp; insideSection(x, y))
 {
+    var ys;
     if (image_index == 0)
     {
         ys = -1;

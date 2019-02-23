@@ -172,7 +172,7 @@ if (entityCanStep())
         if (imageOffset == 4 &amp;&amp; !popUporDown)
         {
             popUporDown = true;
-            i = instance_create(x + image_xscale * 12,
+            var i = instance_create(x + image_xscale * 12,
                 spriteGetYCenter() + 7, objMetCannonShot);
             i.xspeed = image_xscale * 2;
             i.image_index = col;

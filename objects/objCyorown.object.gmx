@@ -100,7 +100,7 @@ if (entityCanStep())
         
         if instance_exists(target)
         {
-            a = instance_create(x + 12 * image_xscale, y, objCyorownBullet);
+            var a = instance_create(x + 12 * image_xscale, y, objCyorownBullet);
             a.parent = id;
             
             // i don't know why cyorown does this. mm7 is STUPID

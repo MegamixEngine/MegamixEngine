@@ -58,7 +58,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
 {
     if (!thrown)
     {
-        butts = collision_rectangle(x, y, x + 32, y + 32, objJunkGolem, false, true);
+        var butts = collision_rectangle(x, y, x + 32, y + 32, objJunkGolem, false, true);
         if (butts)
         {
             if (butts.visible &amp;&amp; instance_exists(target))
@@ -86,6 +86,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
         
         if (checkSolid(0, 0))
         {
+            var i;
             i = instance_create(x + 16, y + 24, objJunkDebris);
             i.xspeed = -1;
             i.yspeed = -4;

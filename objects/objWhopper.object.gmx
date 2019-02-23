@@ -82,11 +82,11 @@ if (entityCanStep())
     if (shootTimer == 65)
     {
         sprite_index = sprWhopperEyes;
-        for (i = -2; i &lt;= 2; i += 1)
+        for (var i = -2; i &lt;= 2; i += 1)
         {
             if (i != 0)
             {
-                ring = instance_create(x, y, objWhopperRing);
+                var ring = instance_create(x, y, objWhopperRing);
                 ring.yspeed = i * 4;
                 if (abs(i) != 2)
                     ring.xspeed = 6;

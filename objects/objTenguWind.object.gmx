@@ -128,7 +128,7 @@ if (!global.frozen)
         // don't effect the player when spawning in
         for (var p = 0; p &lt; instance_number(objMegaman); p++)
         {
-            player = instance_find(objMegaman, p);
+            var player = instance_find(objMegaman, p);
             if (instance_exists(player))
             {
                 if (player.teleporting || player.showReady)
@@ -146,13 +146,13 @@ if (!global.frozen)
         
         if (leafTimer mod 7 == 0)
         {
-            spawnX = view_xview[0];
+            var spawnX = view_xview[0];
             if (windSpeed &lt; 0)
             {
                 spawnX += view_wview[0];
             }
             
-            spawnRange = 70;
+            var spawnRange = 70;
             instance_create(spawnX, view_yview[0] + view_hview[0] / 2 + 10 + irandom_range(-spawnRange, spawnRange), objectDrop);
         }
     }

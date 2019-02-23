@@ -99,7 +99,7 @@ if (entityCanStep())
             {
                 if (!instance_exists(bubble))
                 {
-                    i = instance_create(x, y, objFeeberBubble);
+                    var i = instance_create(x, y, objFeeberBubble);
                     i.xspeed = 1 * image_xscale;
                     i.image_xscale = image_xscale;
                     i.parent = id;

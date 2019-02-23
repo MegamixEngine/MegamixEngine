@@ -177,7 +177,7 @@ image_index = (3 * col) + imageOffset;
             <string>event_inherited();
 if (spawned)
 {
-    imageOffser = 0;
+    imageOffset = 0;
 }
 </string>
           </argument>

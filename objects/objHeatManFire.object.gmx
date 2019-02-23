@@ -36,6 +36,7 @@ stopOnFlash = false;
 
 style = 0;
 raiseTimer = 0;
+spawnFire = makeArray()
 </string>
           </argument>
         </arguments>

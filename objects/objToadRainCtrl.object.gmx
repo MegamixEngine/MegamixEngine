@@ -72,7 +72,7 @@ bg = bgToadRain;
             <kind>1</kind>
             <string>setSection(x + 8, y + 8, 0);
 
-xscale = -sign(blowSpeed);
+var xscale = -sign(blowSpeed);
 if (xscale == 0)
 {
     xscale = 1;
@@ -84,10 +84,11 @@ for (x = sectionLeft; x &lt; sectionRight; x += 16)
     {
         if (!tile_layer_find(1000000, x, y))
         {
-            t = instance_create(x, y, objToadRain);
+            var t = instance_create(x, y, objToadRain);
             t.blowSpeed = blowSpeed;
             t.parent=id;
             
+            var top;
             if (place_meeting(x, y + 8, objSolid)
                 || place_meeting(x, y + 16, objTopSolid))
             {
@@ -98,7 +99,7 @@ for (x = sectionLeft; x &lt; sectionRight; x += 16)
                 top = 0;
             }
             
-            for (i = 0; i &lt;= 2; i += 1)
+            for (var i = 0; i &lt;= 2; i += 1)
             {
                 t = tile_add(bg, 0 + 16 * i, top, 16, 16, x + (xscale == -1) * 16, y, mylayer + i);
                 tile_set_scale(t, xscale, 1);

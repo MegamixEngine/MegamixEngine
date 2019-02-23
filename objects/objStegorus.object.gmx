@@ -44,6 +44,7 @@ phase = 0;
 animFrame = 0;
 timer = 0;
 shotCount = 0;
+turn = 0;
 
 //@cc random shenanigans
 timescale = 1;

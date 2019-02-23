@@ -161,14 +161,14 @@ if (entityCanStep())
             timer -= 1;
             if (timer &lt;= 0)
             {
-                turnOffset = 0;
+                var turnOffset = 0;
                 if (image_xscale &lt; 0)
                 {
                     turnOffset = 180;
                 }
                 
                 var ID;
-                for (i = 0; i &lt; 3; i += 1)
+                for (var i = 0; i &lt; 3; i += 1)
                 {
                     ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objEnemyBullet);
                     ID.direction = (i - 1) * 45 + turnOffset;

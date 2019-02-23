@@ -192,7 +192,7 @@ if (entityCanStep())
         else
         {
             dead = true;
-            explosion = instance_create(x, spriteGetYCenter(), objHarmfulExplosion);
+            var explosion = instance_create(x, spriteGetYCenter(), objHarmfulExplosion);
             explosion.contactDamage = 8;
             explosion.damageEnemies = true;
             playSFX(sfxMM9Explosion);

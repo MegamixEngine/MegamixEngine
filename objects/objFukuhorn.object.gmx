@@ -109,7 +109,7 @@ if (entityCanStep())
                 hideTimer -= 1;
                 
                 // Get target
-                megaDir = point_direction(x, y, target.x, target.y + 5);
+                var megaDir = point_direction(x, y, target.x, target.y + 5);
                 
                 // Set angle
                 if (image_index &lt; 4)

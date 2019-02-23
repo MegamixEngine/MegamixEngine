@@ -118,7 +118,7 @@ if (entityCanStep())
                 {
                     action += 1;
                     actionTimer = 0;
-                    i = instance_create(x + 3 * image_xscale,
+                    var i = instance_create(x + 3 * image_xscale,
                         y - 11 + (image_index - 6) * 16, objEnemyBullet);
                     i.sprite_index = sprTotemPolenProjectile;
                     i.image_xscale = image_xscale;

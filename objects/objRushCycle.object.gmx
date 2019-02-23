@@ -234,7 +234,7 @@ if (!global.frozen)
                     
                     if (trailTimer mod 3 == 0 &amp;&amp; abs(xspeed) &gt; 1.5)
                     {
-                        a = instance_create(rider.x, rider.y, objTrailEffect);
+                        var a = instance_create(rider.x, rider.y, objTrailEffect);
                         a.drawingPlayer = true;
                         a.parent = rider;
                         a.spriteX = 10 + currentImg;

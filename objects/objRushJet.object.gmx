@@ -199,7 +199,7 @@ if (!global.frozen)
         if (!timer)
         {
             // Teleport away
-            i = instance_create(x, y + 8 * image_yscale, objRushTeleport);
+            var i = instance_create(x, y + 8 * image_yscale, objRushTeleport);
             i.upordown = 'up';
             i.parent = parent;
             i.image_yscale = image_yscale;
@@ -235,7 +235,7 @@ if (!global.frozen)
     if (!instance_exists(objRushJet) &amp;&amp; !instance_exists(objRushTeleport)
     &amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
     {
-        i = fireWeapon(26, 0, objRushTeleport, 4, 0, 0, 0);
+        var i = fireWeapon(26, 0, objRushTeleport, 4, 0, 0, 0);
         with (i)
         {
             type = 'jet';

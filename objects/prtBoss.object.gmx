@@ -411,7 +411,6 @@ if (_init)
         canFillHealthBar = false;
         healthpoints = healthpointsStart;
         isIntro = false;
-        introTimer = 0;
     }
     else
     {

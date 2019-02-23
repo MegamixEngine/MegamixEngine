@@ -173,7 +173,7 @@ else
             <kind>1</kind>
             <string>for (i = 0; i &lt; image_xscale; i += 1)
 {
-    for (j = stretchY - 1; j &gt;= 0; j -= 1)
+    for (var j = stretchY - 1; j &gt;= 0; j -= 1)
     {
         draw_sprite(sprite_index, -1,
             round(x) + sprite_get_width(sprite_index) * i,

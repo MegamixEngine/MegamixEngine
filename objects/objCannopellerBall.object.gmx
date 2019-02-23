@@ -81,7 +81,7 @@ if (entityCanStep())
     if (ground || xspeed == 0)
     {
         playSFX(sfxExplosion2);
-        explosion = instance_create(x, y, objHarmfulExplosion);
+        var explosion = instance_create(x, y, objHarmfulExplosion);
         explosion.contactDamage = contactDamage;
         instance_destroy();
     }

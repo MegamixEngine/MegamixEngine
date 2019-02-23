@@ -45,6 +45,7 @@ sectionSurface = noone;
 sectionSurfaceMask = noone;
 scanned = false;
 skipDraw=false;
+tiles = makeArray();
 
 //@cc whether to check if revealers are alive.
 checkAlive = true;
@@ -162,8 +163,8 @@ if (!scanned)
 // allocate surface
 if (!surface_exists(sectionSurface) || !surface_exists(sectionSurfaceMask))
 {
-    sectionWidth = sectionRight - sectionLeft;
-    sectionHeight = sectionBottom - sectionTop;
+    var sectionWidth = sectionRight - sectionLeft;
+    var sectionHeight = sectionBottom - sectionTop;
     surface_free(sectionSurface);
     surface_free(sectionSurfaceMask);
     

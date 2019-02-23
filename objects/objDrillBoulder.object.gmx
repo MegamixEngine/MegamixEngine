@@ -80,9 +80,9 @@ if (entityCanStep())
         actionTimer += 1;
         if (actionTimer &gt;= 6)
         {
-            for (b = 0; b &lt; 4; b += 1)
+            for (var b = 0; b &lt; 4; b += 1)
             {
-                i = instance_create(x, y - 6, objDrillBoulderParticle);
+                var i = instance_create(x, y - 6, objDrillBoulderParticle);
                 i.image_index = b;
                 i.grav = 0.25;
                 i.xspeed = irandom(10) * 0.1 * choose(1, -1);

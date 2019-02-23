@@ -36,6 +36,7 @@ inWater = -1;
 
 canDrop = true;
 phase = 0;
+iphase = 0;
 timer = 0;
 timeri = 0;
 touched=false;

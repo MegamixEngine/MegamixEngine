@@ -63,7 +63,7 @@ alarmStop = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ys = yspeed;
+            <string>var ys = yspeed;
 
 event_inherited();
 
@@ -98,7 +98,7 @@ if (entityCanStep())
             repeat (2)
             {
                 image_xscale *= -1;
-                i = instance_create(x + 5 * image_xscale, bbox_bottom - 1, objSlideDust);
+                var i = instance_create(x + 5 * image_xscale, bbox_bottom - 1, objSlideDust);
                 i.image_xscale = -image_xscale;
             }
         }

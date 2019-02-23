@@ -150,7 +150,6 @@ if (!global.frozen)
                         yspeed = 0;
                         active = true;
                         canDamage = true;
-                        dontDieToScreenTransitions = true;
                         shiftVisible = 2;
                         despawnRange = -1;
                         
@@ -181,7 +180,7 @@ if (!global.frozen)
         }
         else // Teleport away if out of ammo
         {
-            i = instance_create(x, y + 16 - 8, objRushTeleport);
+            var i = instance_create(x, y + 16 - 8, objRushTeleport);
             i.upordown = 'up';
             i.parent = parent;
             

@@ -98,7 +98,7 @@ if (!global.frozen)
             <kind>1</kind>
             <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(16, 3, objMetalBlade, 3, 0.5, 2, 1);
+    var i = fireWeapon(16, 3, objMetalBlade, 3, 0.5, 2, 1);
     if (instance_exists(i))
     {
         i.dir = 0;

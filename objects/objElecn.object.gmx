@@ -137,7 +137,7 @@ if (entityCanStep())
                 var a;
                 for (a = 0; a &lt;= 360; a += 45)
                 {
-                    spark = instance_create(x, y - sprite_height * 0.4, objElecnSpark);
+                    var spark = instance_create(x, y - sprite_height * 0.4, objElecnSpark);
                     spark.direction = a;
                 }
                 playSFX(sfxElecnShoot);
@@ -180,7 +180,6 @@ if (entityCanStep())
 else if (dead)
 {
     phase = 0;
-    first = true;
     shootWaitTimer = 0;
     sinCounter = 0;
     grav = 0;

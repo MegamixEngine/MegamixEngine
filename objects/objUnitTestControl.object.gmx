@@ -103,6 +103,7 @@ scrollX = 0;
 global.unitTestAbortAll = false
 global.unitSuiteName = "??"
 global.unitTestCase = "??"
+unitTestFullResults = 0;
 
 //@noformat
 </string>
@@ -398,6 +399,7 @@ if (file &gt;= 0)
             <kind>1</kind>
             <string>clearDrawState();
 
+var draw_x, draw_y;
 if (displayMessage)
 {
     draw_y = -scroll;
@@ -414,8 +416,8 @@ if (displayResults)
     draw_set_halign(fa_left);
     draw_y = -scroll;
     draw_x = 16 - scrollX;
-    draw_indent = 0;
-    draw_spacing = 12;
+    var draw_indent = 0;
+    var draw_spacing = 12;
     
     // header
     draw_text(draw_x, draw_y, "Test Complete");
@@ -501,8 +503,7 @@ if (displayResults)
             draw_set_color(c_yellow);
             for (var k = 0; k &lt; ds_list_size(result.warnings); k++)
             {
-                var drawString = "- " + ds_list_find_value(result.warnings, k)
-                    ;
+                var drawString = "- " + ds_list_find_value(result.warnings, k);
                 draw_text(draw_x + draw_indent * 2, draw_y, drawString);
                 draw_y += string_height(drawString) + 4;
             }
@@ -511,8 +512,7 @@ if (displayResults)
             draw_set_color(c_red);
             for (var k = 0; k &lt; ds_list_size(result.errors); k++)
             {
-                var drawString = "- " + ds_list_find_value(result.errors, k)
-                    ;
+                var drawString = "- " + ds_list_find_value(result.errors, k);
                 draw_text(draw_x + draw_indent * 2, draw_y, drawString);
                 draw_y += string_height(drawString) + 4;
             }

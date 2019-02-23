@@ -218,7 +218,6 @@ if (!global.frozen)
             grav = gravStart;
             blockCollision = blockCollisionStart;
             attackTimer = 0;
-            storeDirection = image_xscale;
         }
     }
 }

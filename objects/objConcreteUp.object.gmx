@@ -42,6 +42,8 @@ maxSpeed = 4;
 image_speed = 0.15;
 
 imgspalarm = 0;
+ys = 0;
+imgsp = 0;
 </string>
           </argument>
         </arguments>

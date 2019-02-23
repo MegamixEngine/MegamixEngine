@@ -49,6 +49,7 @@ maxVspeed = 7;
 
 playSFX(sfxWheelCutter1);
 dieToSpikes = 0;
+xx = 0;
 </string>
           </argument>
         </arguments>
@@ -228,7 +229,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
     if (!isShoot)
     {
-        i = fireWeapon(13, 0, objWheelCutter, 3, 1, 1, 0);
+        var i = fireWeapon(13, 0, objWheelCutter, 3, 1, 1, 0);
         if (i)
         {
             i.jumpSpeed = jumpSpeed;

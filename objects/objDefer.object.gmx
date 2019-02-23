@@ -31,6 +31,7 @@ subEvent = ev_step_normal;
 script = scrNoEffect;
 argCount = 0;
 timer = 0;
+step = 0;
 caller = noone;
 triggered = false; // set to true as soon as timer begins to decrement
 </string>

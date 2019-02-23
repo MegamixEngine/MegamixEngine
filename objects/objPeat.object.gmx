@@ -106,6 +106,7 @@ if (entityCanStep())
                     yspeed = 0;
                     
                     // spawn egg shell particles
+                    var yOUwILLgIVEmEaNeGG;
                     yOUwILLgIVEmEaNeGG = instance_create(x - 4, y,
                         objPeatEggParticle);
                     yOUwILLgIVEmEaNeGG.xspeed = -0.5;
@@ -125,7 +126,7 @@ if (entityCanStep())
             
             // wait until flying
             case 2:
-                waitTime = 20; // &lt;-- time waiting until flying here
+                var waitTime = 20; // &lt;-- time waiting until flying here
                 
                 // set direction to fly to
                 if (timer == waitTime / 2)
@@ -233,7 +234,7 @@ image_index = imgIndex div 1;
 
     phase = 0;
     direction = 0;
-    xpeed = 0;
+    xspeed = 0;
     yspeed = 0;
     breakY = 0;
     calibrateDirection();

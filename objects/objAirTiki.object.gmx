@@ -80,12 +80,12 @@ objectDrop = objGremlin;
         exit;
     }
     
-    place = -1;
+    var place = -1;
     
     var i;
     for (i = 0; i &lt; 3; i += 1)
     {
-        ded = false;
+        var ded = false;
         if (!instance_exists(gremlinArray[i]))
         {
             ded = true;

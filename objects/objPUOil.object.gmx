@@ -111,7 +111,7 @@ if (!fire)
     // manual exception, since these share an object.
     if (instance_place(x, y, objPicket))
     {
-        a = instance_place(x, y, objPicket);
+        var a = instance_place(x, y, objPicket);
         if (a.sprite_index == sprTackleFire &amp;&amp; a.yspeed &gt; 0)
         {
             fire = true;

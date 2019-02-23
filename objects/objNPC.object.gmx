@@ -177,7 +177,7 @@ if (!global.frozen &amp;&amp; !dead)
     {
         if (face_player)
         {
-            xtarg = x;
+            var xtarg = x;
             if (instance_exists(target))
             {
                 xtarg = target.x;

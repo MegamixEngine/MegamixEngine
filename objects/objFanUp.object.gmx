@@ -124,11 +124,11 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                         playSound = false;
                     }
                     
-                    for (i = 1; i &gt;= -1; i -= 2)
+                    for (var i = 1; i &gt;= -1; i -= 2)
                     {
                         if (instance_place(x + i, y, objFanUp))
                         {
-                            otherFan = instance_place(x + i, y, objFanUp);
+                            var otherFan = instance_place(x + i, y, objFanUp);
                             if (otherFan.object_index == object_index)
                             {
                                 otherFan.velocity = velocity;
@@ -156,11 +156,11 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                         playSFX(sfxFan);
                         playSound = false;
                     }
-                    for (i = 1; i &gt;= -1; i -= 2)
+                    for (var i = 1; i &gt;= -1; i -= 2)
                     {
                         if (instance_place(x + i, y, objFanUp))
                         {
-                            otherFan = instance_place(x + i, y, objFanUp);
+                            var otherFan = instance_place(x + i, y, objFanUp);
                             if (otherFan.object_index == object_index)
                             {
                                 otherFan.velocity = velocity;

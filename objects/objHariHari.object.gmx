@@ -88,6 +88,7 @@ if (entityCanStep())
         if (shootTimer == 60 || shootTimer == 90 || shootTimer == 235)
         {
             image_index = 1;
+            var a;
             a = instance_create(x, y - 13 + 1, objEnemyBullet);
             a.sprite_index = sprHariHariNeedles;
             a.canHit = true;
@@ -170,7 +171,6 @@ else if (dead)
     shootTimer = 0;
     animEndme = 0;
     image_index = 0;
-    calibrated = 0;
 }
 </string>
           </argument>

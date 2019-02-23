@@ -133,10 +133,11 @@ else
             <kind>1</kind>
             <string>if (image_xscale != 0)
 {
-    var posOffset = max(sign(image_xscale), 0), negOffset = min(sign(image_xscale), 0);
+    var posOffset = max(sign(image_xscale), 0);
+    var negOffset = min(sign(image_xscale), 0);
     
     // body
-    for (i = -negOffset; i &lt; floor(abs(image_xscale)) - negOffset; i++)
+    for (var i = -negOffset; i &lt; floor(abs(image_xscale)) - negOffset; i++)
     {
         draw_sprite(platformSprite, floor(imgIndex), floor(x + (i * 16) * sign(image_xscale)), floor(y));
     }

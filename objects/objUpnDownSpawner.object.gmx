@@ -72,7 +72,7 @@ if (entityCanStep())
         {
             if (abs(target.x - x) &lt; 32)
             {
-                i = instance_create(x, y, obj);
+                var i = instance_create(x, y, obj);
                 i.respawn = false;
                 i.col = col;
                 cooldownTimer = 120; // &lt;-- cooldown time

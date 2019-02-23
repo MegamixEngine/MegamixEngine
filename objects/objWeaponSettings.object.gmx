@@ -106,7 +106,7 @@ if(!onlyUnlockOnLevelEnd)
     exit;
 global.lockBuster = false;
 
-for (i = 0; i &lt;= global.totalWeapons; i += 1)
+for (var i = 0; i &lt;= global.totalWeapons; i += 1)
 {
     global.weaponLocked[i] = false;
     global.infiniteEnergy[i] = false;
@@ -163,7 +163,7 @@ if(onlyUnlockOnLevelEnd)
 
 global.lockBuster = false;
 
-for (i = 0; i &lt;= global.totalWeapons; i += 1)
+for (var i = 0; i &lt;= global.totalWeapons; i += 1)
 {
     global.weaponLocked[i] = false;
     global.infiniteEnergy[i] = false;

@@ -58,12 +58,12 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
 {
     if (ycoll != 0)
     {
-        explosion = instance_create(x, y, objHarmfulExplosion);
+        var explosion = instance_create(x, y, objHarmfulExplosion);
         explosion.contactDamage = 2;
         playSFX(sfxMM3Explode);
         
-        d = 15;
-        chibee = instance_create(x - d, y - d, objChibee);
+        var d = 15;
+        var chibee = instance_create(x - d, y - d, objChibee);
         chibee.respawn = false;
         chibee = instance_create(x + d, y - d, objChibee);
         chibee.respawn = false;

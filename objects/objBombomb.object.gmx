@@ -101,7 +101,7 @@ if (entityCanStep())
                     grav = 0.25;
                     
                     // Check for the custom stopper object.
-                    i = collision_rectangle(bbox_left + 1, y, bbox_right - 1, y - view_hview, objBombombStopper, false, false);
+                    var i = collision_rectangle(bbox_left + 1, y, bbox_right - 1, y - view_hview, objBombombStopper, false, false);
                     if (i)
                     {
                         yspeed = ySpeedAim(y, i.y, 0.25);
@@ -122,7 +122,7 @@ if (entityCanStep())
                 repeat (2)
                 {
                     image_xscale *= -1;
-                    i = instance_create(x + 8, bboxGetYCenter(), objShrapnel);
+                    var i = instance_create(x + 8, bboxGetYCenter(), objShrapnel);
                     i.xspeed = 1.5 * image_xscale;
                     i.yspeed = -3.8;
                     if (col == 1)

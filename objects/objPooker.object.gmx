@@ -138,6 +138,7 @@ if (entityCanStep())
         // rideable platform
         case 2:
             contactDamage = 0;
+            var ID;
             if (instance_place(x, y + 4, objOil))
             {
                 ID = instance_place(x, y + 4, objOil);

@@ -130,6 +130,7 @@ if (entityCanStep())
     x = clamp(x, xMin, xMax);
     
     // phases
+    var spd;
     
     switch (phase)
     {

@@ -46,6 +46,8 @@ init = true;
 
 freezeTimer = 0;
 preImgSpeed = 0.25;
+spriteWidth = 0;
+spriteHeight = 0;
 </string>
           </argument>
         </arguments>

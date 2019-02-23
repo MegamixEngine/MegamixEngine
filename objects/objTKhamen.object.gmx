@@ -182,7 +182,7 @@ if (entityCanStep())
                                 active = false;
                             }
                         }
-                        rn = irandom_range(0, i - 1);
+                        var rn = irandom_range(0, i - 1);
                         if (rockDrop[rn] &gt; 0)
                         {
                             lastDrop = rockDrop[rn];

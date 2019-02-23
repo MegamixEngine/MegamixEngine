@@ -86,7 +86,7 @@ if (!global.frozen)
             spawnTimer--;
             if (!spawnTimer &amp;&amp; insideView())
             {
-                i = instance_create(x + (28 * image_xscale), y, objMagneticShockwave);
+                var i = instance_create(x + (28 * image_xscale), y, objMagneticShockwave);
                 i.number = number + 1;
                 i.image_xscale = image_xscale;
                 i.image_yscale = image_yscale;
@@ -99,7 +99,7 @@ if (!global.frozen)
         // screenShake(2, 1, 1);
         if (!positionCollision(x - 8, y + image_yscale) || !positionCollision(x + 8, y + image_yscale))
         {
-            i = instance_create(x, y, objSingleLoopEffect);
+            var i = instance_create(x, y, objSingleLoopEffect);
             i.sprite_index = sprExplosion;
             i.image_index = 1;
             i.image_speed = 0.15;
@@ -109,7 +109,7 @@ if (!global.frozen)
     timer++;
     if (!(timer mod 3))
     {
-        i = instance_create(irandom_range(x - 7, x + 7), y, objSingleLoopEffect);
+        var i = instance_create(irandom_range(x - 7, x + 7), y, objSingleLoopEffect);
         i.sprite_index = sprMagneticShockwaveParticle;
         i.image_speed = 0.4;
         i.vspeed = (-irandom(25) / 10 * (1 - ((timer mod 6) == 0) * 1.33)) * image_yscale;
@@ -219,7 +219,7 @@ specialDamageValue("mets", 0);
 
 repeat (32)
 {
-    i = instance_create(irandom_range(bbox_left, bbox_right), irandom_range(bbox_top, bbox_bottom), objSingleLoopEffect);
+    var i = instance_create(irandom_range(bbox_left, bbox_right), irandom_range(bbox_top, bbox_bottom), objSingleLoopEffect);
     i.sprite_index = sprMagneticShockwaveParticle;
     i.image_speed = 0.25;
     i.vspeed = -0.1 * image_yscale;

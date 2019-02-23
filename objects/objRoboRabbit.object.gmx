@@ -96,7 +96,7 @@ if (entityCanStep())
         if (jumpTimer == 60 || jumpTimer == 105 || jumpTimer == 150)
         {
             calibrateDirection();
-            i = instance_create(x, y - 14, objCarrot);
+            var i = instance_create(x, y - 14, objCarrot);
             i.image_xscale = image_xscale;
         }
         if (jumpTimer == 190)

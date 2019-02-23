@@ -356,8 +356,8 @@ if (!audio_is_playing(sfxReflect) || !(timer mod 4))
     
     if (timer &lt; shardTime)
     {
-        shards = sprite_get_number(sprIceWallShard) - 1;
-        shImg = shards - min(shards, floor(timer) / 3);
+        var shards = sprite_get_number(sprIceWallShard) - 1;
+        var shImg = shards - min(shards, floor(timer) / 3);
         
         for (var i = 0; i &lt; 4; i += 1)
         {

@@ -88,12 +88,12 @@ starspeed[2] = 0.25;
                 }
             }
         }
-        endit = 1;
+        var endit = 1;
         with (objHologran)
         {
             if (!dead)
             {
-                other.endit = 0;
+                endit = 0;
             }
         }
         if (endit)
@@ -133,7 +133,7 @@ starspeed[2] = 0.25;
           <argument>
             <kind>1</kind>
             <string>draw_set_color(c_black);
-storealpha = draw_get_alpha();
+var storealpha = draw_get_alpha();
 draw_set_alpha(image_alpha);
 
 draw_rectangle(view_xview - 1, view_yview - 1, view_xview + view_wview + 1,
@@ -143,7 +143,7 @@ draw_set_alpha(storealpha);
 
 if (image_alpha == 1)
 {
-    for (i = 1; i &lt;= 2; i += 1)
+    for (var i = 1; i &lt;= 2; i += 1)
     {
         draw_background(starbg[i], view_xview - starshift[i], view_yview);
         draw_background(starbg[i], view_xview - starshift[i] + 256, view_yview);

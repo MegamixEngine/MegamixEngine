@@ -110,7 +110,7 @@ if (entityCanStep())
                 angle += 360 / 120;
                 if (instance_place(x, y, objRounder))
                 {
-                    rounder = instance_place(x, y, objRounder);
+                    var rounder = instance_place(x, y, objRounder);
                     if (rounder.id &gt; id)
                     {
                         angle -= (360 / 120) * 2;

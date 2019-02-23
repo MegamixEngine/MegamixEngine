@@ -175,8 +175,8 @@ shootYOffset = 5;
                 var i;
                 for (i = 0; i &lt; instance_number(prtPlayerProjectile); i += 1)
                 {
-                    proj = instance_find(prtPlayerProjectile, i);
-                    exception = false;
+                    var proj = instance_find(prtPlayerProjectile, i);
+                    var exception = false;
                     if (proj.object_index == objJewelSatellite)
                     {
                         if (proj.followPlayer)
@@ -188,7 +188,7 @@ shootYOffset = 5;
                         &amp;&amp; !exception)
                     {
                         proj.xspeed += xspeed;
-                        added = false;
+                        var added = false;
                         var j;
                         for (j = 0; j &lt; ds_list_size(playerProjectiles); j += 1)
                         {

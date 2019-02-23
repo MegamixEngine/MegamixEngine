@@ -45,6 +45,8 @@ topblock = -1;
 bottomBlock = -1;
 touchblock = place_meeting(x, y, objSolid);
 cantDraw = touchblock;
+centerTopBlock = 0;
+centerBottomBlock = 0;
 
 animTimer = 0;
 sparkindex = 0;
@@ -189,7 +191,7 @@ if (topblock &gt; 0)
                 }
             }
             
-            sparkblock = (collision_point(x, y, objSolid, false, false));
+            var sparkblock = (collision_point(x, y, objSolid, false, false));
             if (!sparkblock)
             {
                 sparkblock = (collision_point(x, y + 12, objSolid, false, false));
@@ -219,15 +221,14 @@ if (bottomBlock &gt; 0)
             }
         }
         
-        sparkblock = (collision_point(x, y, objSolid, false, false));
+        var sparkblock = (collision_point(x, y, objSolid, false, false));
         if (!sparkblock)
         {
             sparkblock = (collision_point(x, y - 12, objSolid, false, false));
         }
-       with(sparkblock)
-            {
-            
-        draw_sprite(sprMoleSpark, other.sparkindex, other.x, (bbox_bottom));
+        with(sparkblock)
+        {
+            draw_sprite(sprMoleSpark, other.sparkindex, other.x, (bbox_bottom));
         }
     }
 }

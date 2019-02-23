@@ -48,6 +48,8 @@ keptYSpeed = 0;
 
 imgSpd = 0.10;
 imgIndex = 0;
+shootWait = 0;
+moveV = false;
 </string>
           </argument>
         </arguments>
@@ -78,7 +80,7 @@ if (entityCanStep())
     {
         // set charge time
         case 1: // choose time to wait between shots, and don't repeat the same time more than twice in a row 
-            shotType = choose(0, 1);
+            var shotType = choose(0, 1);
             
             if (shotType == previousShotType &amp;&amp; chain &gt;= 2)
             {

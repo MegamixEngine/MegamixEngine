@@ -91,7 +91,7 @@ if (entityCanStep())
         
         // fall
         case 1:
-            water = instance_place(x, y + yspeed, objWater);
+            var water = instance_place(x, y + yspeed, objWater);
             if (!instance_exists(water))
             {
                 if (ground)
@@ -162,8 +162,9 @@ if (entityCanStep())
             }
             if (explodeTimer &gt;= explodeWait)
             {
-                offset = 45;
+                var offset = 45;
                 
+                var d;
                 d = instance_create(x, y, objSRU21PDebris);
                 d.direction = 90 + offset;
                 d.image_index = 0;

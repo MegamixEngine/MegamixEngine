@@ -209,7 +209,7 @@ if (!global.frozen)
             <kind>1</kind>
             <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; !instance_exists(objSectionSwitcher))
 {
-    j = fireWeapon(0, 0, objFlameMixer, 1, 2, 0, 0);
+    var j = fireWeapon(0, 0, objFlameMixer, 1, 2, 0, 0);
     if (j)
     {
         with (j)

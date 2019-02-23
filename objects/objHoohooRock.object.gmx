@@ -87,9 +87,9 @@ if (entityCanStep())
         instance_destroy();
         playSFX(sfxHoohooRock);
         
-        for (i = 1; i &lt;= 4; i++)
+        for (var i = 1; i &lt;= 4; i++)
         {
-            debris = instance_create(x, y, objEnemyBullet);
+            var debris = instance_create(x, y, objEnemyBullet);
             debris.sprite_index = sprHoohooRock;
             debris.image_speed = 0;
             debris.contactDamage = 3;

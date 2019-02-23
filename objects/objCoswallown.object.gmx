@@ -86,7 +86,6 @@ else if (dead)
 {
     imgIndex = 0;
     imgOffset = 0;
-    phase = 0;
 }
 image_index = floor(imgIndex) + imgOffset;
 </string>

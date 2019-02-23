@@ -205,7 +205,6 @@ if (entityCanStep())
                 isIntro = false;
                 attackTimer = 0;
                 hasFired = false;
-                storeDirection = image_xscale;
                 grav = gravStart;
                 blockCollision = blockCollisionStart;
                 with (objMegaman)

@@ -88,7 +88,7 @@ if (entityCanStep())
             {
                 playSFX(sfxEnemyShootClassic);
                 var t;
-                for (i = 0; i &lt; bullets; i++)
+                for (var i = 0; i &lt; bullets; i++)
                 {
                     t = instance_create(x, y, objEnemyBullet);
                     t.sprite_index = sprMM1MetBullet;

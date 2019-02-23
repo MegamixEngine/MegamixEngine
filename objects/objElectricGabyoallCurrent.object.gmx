@@ -61,7 +61,7 @@ reflectable = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (i = 0; i &lt; image_xscale; i += 1)
+            <string>for (var i = 0; i &lt; image_xscale; i += 1)
 {
     draw_sprite(sprite_index, image_index, x, y + i * 16);
 }

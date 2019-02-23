@@ -59,6 +59,7 @@ attackTimerMax = 8;
 animTimer = 0;
 setY = 0;
 shotsFired = 1;
+dir = 1;
 </string>
           </argument>
         </arguments>

@@ -203,7 +203,7 @@ else if (!global.timeStopped &amp;&amp; !global.frozen)
     exit;
 }
 
-ys = 0;
+var ys = 0;
 
 switch (startup - timer)
 {

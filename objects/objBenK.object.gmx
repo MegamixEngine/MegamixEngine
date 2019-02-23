@@ -91,7 +91,7 @@ if (entityCanStep())
                 imgIndex = 6;
                 timer = 0;
                 
-                spear = instance_create(x + sprite_width * 0.65, y - 5, objBenKSpear);
+                var spear = instance_create(x + sprite_width * 0.65, y - 5, objBenKSpear);
                 spear.image_xscale = image_xscale;
                 spear.xspeed *= image_xscale;
             }

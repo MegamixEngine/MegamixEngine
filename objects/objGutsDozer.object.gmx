@@ -310,7 +310,7 @@ if (entityCanStep())
             {
                 repeat(4)
                 {
-                    i = instance_create(_x, _y, objExplosion);
+                    var i = instance_create(_x, _y, objExplosion);
                     i.sprite_index = sprCrashExplosion;
                 }
             }
@@ -320,7 +320,7 @@ if (entityCanStep())
             }
             if (explodeTimer mod 16 == 0)
             {
-                i = instance_create(_x, _y, objBigExplosion);
+                instance_create(_x, _y, objBigExplosion);
             }
             if (explodeTimer == 180)
             {

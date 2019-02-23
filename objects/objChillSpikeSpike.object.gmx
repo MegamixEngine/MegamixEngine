@@ -179,9 +179,9 @@ specialDamageValue(objJewelSatellite, 1);
             <string>dead = 1;
 
 playSFX(sfxChillSpikeShatter);
-for (i = 0; i &lt; 2; i += 1)
+for (var i = 0; i &lt; 2; i += 1)
 {
-    MET = instance_create(bboxGetXCenter(), bboxGetYCenter(),
+    var MET = instance_create(bboxGetXCenter(), bboxGetYCenter(),
         objChillDebry);
     MET.xspeed = -choose(0.25, 0.5);
     if (i == 1)

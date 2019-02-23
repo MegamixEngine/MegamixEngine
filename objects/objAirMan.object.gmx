@@ -125,6 +125,7 @@ enemyDamageValue(objIceSlasher, 2);
 // AirShooter Patterns
 lastShot0 = -1;
 lastShot1 = -1;
+lastShot2 = -1;
 airShoot[0] = ds_grid_create(18, 16);
 airShoot[1] = ds_grid_create(18, 16);
 airShoot[2] = ds_grid_create(18, 16);
@@ -237,11 +238,11 @@ if (entityCanStep())
                             lastShot0 = shootPattern;
                         else if (lastShot1 == -1)
                             lastShot1 = shootPattern;
-                        for (i = 0; i &lt; ds_grid_width(airShoot[shootPattern]); i += 1)
-                            for (j = 0; j &lt; ds_grid_height(airShoot[shootPattern]); j += 1)
+                        for (var i = 0; i &lt; ds_grid_width(airShoot[shootPattern]); i += 1)
+                            for (var j = 0; j &lt; ds_grid_height(airShoot[shootPattern]); j += 1)
                                 if (ds_grid_get(airShoot[shootPattern], i, j) == 1)
                                 {
-                                    ID = instance_create((round(x / 16) * 16) + 8 + ((i / 2) * 16 * image_xscale), ((round(y / 16) * 16) + 8) - (8 * 16) + (j / 2) * 16, objAirManGust);
+                                    var ID = instance_create((round(x / 16) * 16) + 8 + ((i / 2) * 16 * image_xscale), ((round(y / 16) * 16) + 8) - (8 * 16) + (j / 2) * 16, objAirManGust);
                                     ID.image_xscale = image_xscale;
                                 }
                     }

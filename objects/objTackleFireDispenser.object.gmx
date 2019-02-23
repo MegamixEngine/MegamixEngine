@@ -78,6 +78,7 @@ isSolid = true;
 tackleFireN = 0;
 image_speed = 0;
 nComplete = 0;
+flightTimer = 0;
 </string>
           </argument>
         </arguments>
@@ -238,8 +239,7 @@ if (entityCanStep())
     for (var k = 0; k &lt; tackleFireN; k++)
     {
         var fire = tackleFire[k];
-        var t = (flightTimer - k * tackleFireInterval) / tackleFireFlightTime
-            ;
+        var t = (flightTimer - k * tackleFireInterval) / tackleFireFlightTime;
         if (t &gt; 1)
         {
             // kill fire when it reaches destination

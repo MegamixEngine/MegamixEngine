@@ -77,7 +77,7 @@ if (entityCanStep())
         // pull/push
         case 0:
             pullTimer += 1;
-            currentPullSpd = 0;
+            var currentPullSpd = 0;
             if (pullTimer &lt; pullDuration)
             {
                 currentPullSpd = pullSpd;

@@ -187,7 +187,7 @@ visible = 0;
 {
     with (other)
     {
-        par = object_get_parent(object_index);
+        var par = object_get_parent(object_index);
         if (par == prtMiniBoss || par == prtBoss || !canHit)
         {
             exit;

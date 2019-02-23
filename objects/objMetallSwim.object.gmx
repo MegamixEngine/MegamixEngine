@@ -138,9 +138,9 @@ if (entityCanStep())
             image_index = 5;
             
             // Shoot
-            for (i = -1; i &lt; 2; i += 1)
+            for (var i = -1; i &lt; 2; i += 1)
             {
-                ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objMM4MetBullet);
+                var ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objMM4MetBullet);
                 ID.dir = 45 * i;
                 ID.xscale = image_xscale;
                 ID.sprite_index = sprEnemyBullet;

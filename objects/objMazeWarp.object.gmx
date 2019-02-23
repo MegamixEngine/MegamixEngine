@@ -172,10 +172,10 @@ if (!surface_exists(tileSurface))
     surface_set_target(tileSurface);
     draw_clear_alpha(c_black, 0);
     
-    for (layer = min(tileCheckStart, tileCheckEnd); layer &lt;= max(tileCheckStart, tileCheckEnd); layer++)
+    for (var layer = min(tileCheckStart, tileCheckEnd); layer &lt;= max(tileCheckStart, tileCheckEnd); layer++)
     {
-        for (i = 0; i &lt;= round(view_wview); i += tileDistanceCheck)
-            for (j = 0; j &lt;= round(view_hview); j += tileDistanceCheck)
+        for (var i = 0; i &lt;= round(view_wview); i += tileDistanceCheck)
+            for (var j = 0; j &lt;= round(view_hview); j += tileDistanceCheck)
             {
                 var tile = tile_layer_find(layer, camX + i, camY + j);
                 if (tile_exists(tile))

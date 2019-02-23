@@ -55,6 +55,7 @@ shieldDPS = 5;
 dpsTimer = 0;
 timer = 0;
 hasShield = true;
+animFrame = 0;
 </string>
           </argument>
         </arguments>

@@ -43,6 +43,12 @@ viewobjects = 0;
 // screenshots
 screenshotNum = 0;
 screenshotTimer = 0.0;
+
+limit = 0
+names = 0
+scroll = 0
+amounts = 0
+ids = -1;
 </string>
           </argument>
         </arguments>
@@ -301,7 +307,7 @@ if (viewobjects)
     if (limit)
     {
         draw_sprite_ext(sprDot, 0, view_xview + 8, yy, view_wview - 16, limit * 8, 0, c_gray, 0.5);
-        for (_i = 0; limit &gt; _i; _i++)
+        for (var _i = 0; limit &gt; _i; _i++)
         {
             cID = ds_list_find_value(ids, _i + scroll);
             

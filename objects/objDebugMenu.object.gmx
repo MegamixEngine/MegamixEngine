@@ -166,9 +166,12 @@ if (mode == 0)
                 if (global.keyPausePressed[playerID])
                 {
                     playSFX(sfxYasichi);
-                    for (i = 0; i &lt;= global.totalWeapons; i += 1)
+                    for (var i = 0; i &lt;= global.totalWeapons; i += 1)
                     {
-                        global.ammo[i] = 28;
+                        for (var j = 0; j &lt; global.playerCount; j++)
+                        {
+                            global.ammo[j, i] = 28;
+                        }
                     }
                 }
                 break;
@@ -294,7 +297,7 @@ if (mode == 0)
             
             // PRESS 2
             case 8:
-                for (i = 0; i &lt;= 8; i += 1)
+                for (var i = 0; i &lt;= global.playerCount; i += 1)
                 {
                     global.playerHealth[i] = 0;
                 }
@@ -304,9 +307,9 @@ if (mode == 0)
             // instakill entities
             case 9:
                 playSFX(sfxExplosion2);
-                with prtEntity
+                with (prtEntity)
                 {
-                    if canHit &amp;&amp; object_index != objMegaman
+                    if (canHit &amp;&amp; object_index != objMegaman)
                     {
                         healthpoints = 0;
                         event_user(EV_DEATH);
@@ -397,7 +400,7 @@ draw_sprite(sprOptionsCursor, 0, view_xview[0] + 8, view_yview[0] + 24 + (option
 // specific text for options
 draw_set_halign(fa_right);
 if (mode == 0)
-    for (i = 24; i &lt;= endy * 16; i += 16)
+    for (var i = 24; i &lt;= endy * 16; i += 16)
     {
         switch ((i - 24) / 16)
         {

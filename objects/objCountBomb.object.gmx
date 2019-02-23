@@ -145,7 +145,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
     if (instance_exists(target) &amp;&amp; image_index == 0)
     {
-        doIt = 0;
+        var doIt = 0;
         with (objMegaman)
         {
             with (other)

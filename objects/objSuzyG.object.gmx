@@ -141,7 +141,6 @@ if (entityCanStep() &amp;&amp; instance_exists(target))
 }
 else if (dead)
 {
-    shootTimer = 0;
     image_index = 0;
     grav = gravAccel * image_yscale; // Note: gravAccel is a macro
 }

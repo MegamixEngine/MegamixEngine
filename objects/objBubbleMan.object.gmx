@@ -161,7 +161,7 @@ if (entityCanStep())
     if (isFight)
     {
         grav = 0;
-        
+        var idleSprite, swimSprite;
         // Sprite handling - Underwater sprites
         if (inWater)
         {

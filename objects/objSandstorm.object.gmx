@@ -94,7 +94,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     {
         sandstormed = 0;
     }
-    for (i = 0; i &lt; 7; i += 1)
+    for (var i = 0; i &lt; 7; i += 1)
     {
         var meg = collision_rectangle(xs + i * 16 * -dir, view_yview + i * 32,
             xs + i * 16 * -dir + (size * 16), view_yview + i * 32 + 32,
@@ -153,11 +153,11 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             <kind>1</kind>
             <string>imgadd = 3;
 
-for (z = 0; z &lt; 7; z += 1)
+for (var z = 0; z &lt; 7; z += 1)
 {
     draw_sprite(sprSandstormLeft, image_index + img + imgadd, xs + z * -dir * 16 - 8, view_yview + z * 32);
     
-    for (i = 0; i &lt; size; i += 1)
+    for (var i = 0; i &lt; size; i += 1)
     {
         draw_sprite(sprSandstorm, image_index + img + imgadd, xs + (i + z * -dir) * 16, view_yview + z * 32);
     }

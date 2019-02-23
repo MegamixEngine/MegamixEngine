@@ -120,7 +120,6 @@ else if (dead)
     image_index = 0;
     animTimer = 5;
     shooting = false;
-    actionTimer = 0;
     shotTimer = 0;
 }
 </string>

@@ -70,17 +70,12 @@ obj = objBombomb;
             <string>event_inherited();
 
 if (entityCanStep())
-{
-    // if (timer &lt; 0)
-    //{
-    //    shoottimer = delay * 0.75;
-    //}
-    
+{   
     timer += 1;
     if (timer &gt;= delay)
     {
         // used to spawn below the spawner? changed to spawn above spawner. -Zatsu
-        i = instance_create(x, y - 8, obj);
+        var i = instance_create(x, y - 8, obj);
         i.col = col;
         i.respawn = 0;
         i.inWater = inWater;

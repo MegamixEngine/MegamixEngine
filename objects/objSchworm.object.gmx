@@ -86,7 +86,7 @@ event_inherited();
 
 if (entityCanStep())
 {
-    for (i = 1; i &lt;= 2; i += 1)
+    for (var i = 1; i &lt;= 2; i += 1)
     {
         if (enemy[i])
         {
@@ -103,7 +103,6 @@ if (entityCanStep())
     }
     if (shooting)
     {
-        animTimer = -1;
         actionTimer += 1;
         if (actionTimer == 8 &amp;&amp; image_index &lt; 3)
         {

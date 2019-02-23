@@ -119,7 +119,7 @@ if (entityCanStep())
             if (shootTimer == floor(shootTimer / 8) * 8)
             {
                 playSFX(sfxEnemyShoot);
-                shoot = instance_create(x + 18 * image_xscale, y - 15, objEnemyBullet);
+                var shoot = instance_create(x + 18 * image_xscale, y - 15, objEnemyBullet);
                 with (shoot)
                 {
                     var spd;

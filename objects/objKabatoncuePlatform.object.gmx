@@ -39,6 +39,7 @@ canHit = false;
 isSolid = 1;
 
 spd = 0.5;
+height = 0;
 
 bossID=noone;
 enemyObject = objKabatoncue; //@cc the object index of the object over the platform, if its not kabatoncue
@@ -90,7 +91,7 @@ if (entityCanStep())
         if (!place_meeting(x, ystart + (height + 1) * 16,
             objKabatoncuePlatformPiece))
         {
-            plat = instance_create(x, ystart + (height + 1) * 16,
+            var plat = instance_create(x, ystart + (height + 1) * 16,
                 objKabatoncuePlatformPiece);
             plat.offset = 16;
         }
@@ -154,7 +155,7 @@ if (spawned)
 
 if (height &gt; 0)
 {
-    for (i = 1; i &lt;= height; i += 1)
+    for (var i = 1; i &lt;= height; i += 1)
     {
         instance_create(x, y + i * 16, objKabatoncuePlatformPiece);
     }

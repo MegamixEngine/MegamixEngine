@@ -66,7 +66,7 @@ event_inherited();
 
 if (entityCanStep())
 {
-    prevAnim = anim;
+    var prevAnim = anim;
     if (anim == -1)
         anim = 0;
     if (anim == 0)

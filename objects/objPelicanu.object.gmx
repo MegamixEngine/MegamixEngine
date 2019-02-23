@@ -107,7 +107,7 @@ if (entityCanStep())
                         cooldownTimer = 0;
                         imgIndex = 4 - imgIndex mod 4;
                         animBack = true;
-                        fluffytheironicallynamedfish = instance_create(
+                        var fluffytheironicallynamedfish = instance_create(
                             x + sprite_width * 0.7, y + 9, objPelicanuFish);
                         fluffytheironicallynamedfish.image_xscale = image_xscale;
                         xspeed = spd * image_xscale;

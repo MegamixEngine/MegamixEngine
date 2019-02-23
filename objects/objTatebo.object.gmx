@@ -74,7 +74,7 @@ if (entityCanStep())
         {
             // wait &amp; shoot arc shot
             case 0:
-                shootWait = 100;
+                var shootWait = 100;
                 if (timer == shootWait - waitDiff)
                 {
                     calibrateDirection();
@@ -85,7 +85,7 @@ if (entityCanStep())
                     if (timer == shootWait)
                     {
                         imgIndex = 1;
-                        shot = instance_create(x + sprite_width * 0.35, y - 11,
+                        var shot = instance_create(x + sprite_width * 0.35, y - 11,
                             objEnemyBullet);
                         with (shot)
                         {
@@ -117,14 +117,14 @@ if (entityCanStep())
             
             // wait &amp; shoot straight shot
             case 1:
-                shootWait = 30;
+                var shootWait = 30;
                 if (imgIndex == 2)
                 {
                     timer += 1;
                     if (timer == shootWait)
                     {
                         imgIndex = 3;
-                        shot = instance_create(x + sprite_width * 0.5, y + 5, objEnemyBullet);
+                        var shot = instance_create(x + sprite_width * 0.5, y + 5, objEnemyBullet);
                         shot.sprite_index = sprTateboShot;
                         shot.contactDamage = 3;
                         shot.xspeed = 1.9 * image_xscale;

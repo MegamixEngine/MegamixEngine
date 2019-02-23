@@ -157,7 +157,7 @@ if (entityCanStep())
                 {
                     timer = 0;
                     
-                    prevDir = dir;
+                    var prevDir = dir;
                     event_user(0); // face mega man
                     
                     if (dir
@@ -224,7 +224,7 @@ if (entityCanStep())
                 if (timer &gt;= dropWait * 0.6)
                 {
                     timer = 0;
-                    bomb = instance_create(x, y + sprite_height / 2,
+                    var bomb = instance_create(x, y + sprite_height / 2,
                         objBigTellyBomb);
                     bomb.megaX = megaX;
                     playSFX(sfxEnemyShoot);

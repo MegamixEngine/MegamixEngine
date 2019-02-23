@@ -118,7 +118,7 @@ if (entityCanStep())
     spawnTimer += 1;
     if (spawnTimer == 20 || spawnTimer == 30 || spawnTimer == 40)
     {
-        i = instance_create(view_xview[0] + 128 - (128 * image_xscale), y, objCoswallown);
+        var i = instance_create(view_xview[0] + 128 - (128 * image_xscale), y, objCoswallown);
         i.image_xscale = image_xscale;
         i.parent = id;
     }

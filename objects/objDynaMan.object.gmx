@@ -270,14 +270,14 @@ if (entityCanStep())
                     {
                         image_index = (jumpCounter mod 2) + 1;
                         yspeed = -sqrt(abs(2 * gravAccel * smallJumpHeight));
-                        airTime = abs(2 * yspeed / gravAccel);
+                        var airTime = abs(2 * yspeed / gravAccel);
                         xspeed = x_displacement / airTime;
                     }
                     else
                     {
                         image_index = 3;
                         yspeed = -sqrt(abs(2 * gravAccel * bigJumpHeight));
-                        airTime = abs(2 * yspeed / gravAccel);
+                        var airTime = abs(2 * yspeed / gravAccel);
                         xspeed = x_displacement * 2 / airTime;
                     }
                 }

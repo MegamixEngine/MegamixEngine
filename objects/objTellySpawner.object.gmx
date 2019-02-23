@@ -91,7 +91,7 @@ if (entityCanStep())
         }
         if (instance_number(obj) &lt; maxTellies)
         {
-            i = instance_create(x, y, obj);
+            var i = instance_create(x, y, obj);
             i.respawn = 0;
             i.travelSpeed = travelSpeed;
         }

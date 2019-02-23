@@ -213,7 +213,7 @@ if (entityCanStep())
             }
             xspeed = 0;
         }
-        startPhase = phase;
+        var startPhase = phase;
         switch (phase)
         {
             case 1: // run 

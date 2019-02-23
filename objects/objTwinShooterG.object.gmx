@@ -195,7 +195,7 @@ if (entityCanStep()
             }
             break;
         case 11:
-            aimDir = 1;
+            var aimDir = 1;
             if (image_xscale == -1)
             {
                 aimDir = -1;

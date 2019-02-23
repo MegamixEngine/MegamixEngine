@@ -95,10 +95,6 @@ if (entityCanStep())
     {
         moveDir = -moveDir;
     }
-    else
-    {
-        delay = 0;
-    }
     
     // set speed
     if (ground)

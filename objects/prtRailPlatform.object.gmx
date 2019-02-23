@@ -415,10 +415,10 @@ image_yscale = reysc;
 
 if (lastRail == noone)
 {
-    left = min(x + xOffset, xprevious + xOffset);
-    right = max(x + xOffset, xprevious + xOffset);
-    top = min(y + yOffset, yprevious + yOffset);
-    bottom = max(y + yOffset, yprevious + yOffset);
+    var left = min(x + xOffset, xprevious + xOffset);
+    var right = max(x + xOffset, xprevious + xOffset);
+    var top = min(y + yOffset, yprevious + yOffset);
+    var bottom = max(y + yOffset, yprevious + yOffset);
     lastRail = collision_rectangle(left, top, right, bottom, prtRail, true, true);
     if (lastRail == noone)
         lastRail = collision_line(x + xOffset, y + yOffset, xprevious + xOffset, yprevious + yOffset, prtRail, true, true);

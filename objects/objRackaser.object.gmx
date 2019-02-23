@@ -103,7 +103,7 @@ if (entityCanStep())
                 image_index += 1;
                 if (image_index == 11)
                 {
-                    i = instance_create(x + 28 * image_xscale, y - 8, objEnemyBullet);
+                    var i = instance_create(x + 28 * image_xscale, y - 8, objEnemyBullet);
                     i.sprite_index = sprUmbrella;
                     i.xspeed = 2 * image_xscale;
                 }

@@ -53,6 +53,7 @@ timeri = 0;
 dir = startDir;
 drawDir = dir;
 yo = dir;
+touchedStopper = false;
 </string>
           </argument>
         </arguments>

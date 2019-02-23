@@ -80,7 +80,7 @@ if (!global.frozen)
         }
         if (xcoll != 0 || ycoll != 0)
         {
-            expl = instance_create(x, y, objHarmfulExplosion);
+            var expl = instance_create(x, y, objHarmfulExplosion);
             expl.contactDamage = 4;
             expl.stopOnFlash = false;
             playSFX(sfxExplosion);

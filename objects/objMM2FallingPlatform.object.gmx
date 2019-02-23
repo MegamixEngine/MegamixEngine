@@ -78,7 +78,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     }
     else
     {
-        ontop = 0;
+        var ontop = 0;
         with (target)
         {
             if (ground)
@@ -88,7 +88,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 {
                     other.timer += 1;
                     other.dir = gravDir;
-                    other.ontop = 1;
+                    ontop = 1;
                 }
             }
         }

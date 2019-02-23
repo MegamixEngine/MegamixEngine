@@ -127,9 +127,9 @@ if (entityCanStep())
         }
         if (actionTimer == 14)
         {
-            for (i = 1; i &lt;= childLimit; i += 1)
+            for (var i = 1; i &lt;= childLimit; i += 1)
             {
-                c = instance_create(x + 4 * image_xscale, y - 10, objPetitCroaker);
+                var c = instance_create(x + 4 * image_xscale, y - 10, objPetitCroaker);
                 c.xspeed = ((spitSpeed / childLimit) * i) * image_xscale;
                 c.yspeed = -5.5;
                 c.parent = id;

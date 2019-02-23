@@ -102,7 +102,7 @@ if (!global.frozen)
             <string>/// update speeds
 if (instance_exists(objTenguWind))
 {
-    windObj = instance_find(objTenguWind, 0);
+    var windObj = instance_find(objTenguWind, 0);
     if (instance_exists(windObj))
     {
         xspeed = windObj.windSpeed * speedMultiplier;

@@ -34,6 +34,9 @@ grav = 0;
 bubbleTimer = -1;
 
 shiftVisible = 1;
+xs = 0;
+ys = 0;
+that = 0;
 
 if (image_angle == 90)
 {
@@ -243,11 +246,11 @@ else if (dead || instance_exists(objSectionSwitcher))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>X = 0;
-Y = 0;
-xDir = 1;
-yDir = 1;
-angle = 0;
+            <string>var X = 0;
+var Y = 0;
+var xDir = 1;
+var yDir = 1;
+var angle = 0;
 
 if (dir == "up")
 {

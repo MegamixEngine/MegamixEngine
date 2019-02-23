@@ -80,9 +80,9 @@ if (entityCanStep())
     if (shootTimer &gt;= 90)
     {
         shootTimer = 0;
-        for (i = 0; i &lt; 3; i += 1)
+        for (var i = 0; i &lt; 3; i += 1)
         {
-            a = instance_create(x + 4 * image_xscale, y - 32,
+            var a = instance_create(x + 4 * image_xscale, y - 32,
                 objEnemyBullet);
             a.sprite_index = sprFoojeenTrash;
             a.image_index = 0;

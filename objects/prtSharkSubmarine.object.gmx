@@ -51,6 +51,10 @@ grav = 0;
 contactDamage = 5;
 destroyOnDeath = false;
 isTargetable = false;
+endRef = 0;
+isEnd = false;
+isStart = false;
+startRef = 0;
 
 speedToMove = 0.5; // The absolute value for yspeed;
 
@@ -500,7 +504,9 @@ if (allDead) &amp;&amp; (finalDeath)
 if (!isEnd)
 {
     if (rightShark.rightShark == noone)
+    {
         endRef = rightShark;
+    }
     else
     {
         with (rightShark)

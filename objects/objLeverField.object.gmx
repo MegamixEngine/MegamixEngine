@@ -186,6 +186,7 @@ if (myTile &gt;= 0)
           <argument>
             <kind>1</kind>
             <string>/// find tile underneath
+var t
 t = tile_layer_find(tile_depth, x + 8, y + 8);
 splitTile(t);
 
@@ -229,9 +230,10 @@ if (object != noone) // Set custom object
 
 if (myindex == noone) // Set tile object
 {
-    myobj = 0;
-    for (i = 1; i &lt;= 7; i += 1)
+    var myobj = 0;
+    for (var i = 1; i &lt;= 7; i += 1)
     {
+        var obj;
         switch (i)
         {
             case 1:
@@ -256,7 +258,7 @@ if (myindex == noone) // Set tile object
                 obj = objStandSolid;
                 break;
         }
-        in_pos = instance_position(x + 8, y + 8, obj);
+        var in_pos = instance_position(x + 8, y + 8, obj);
         if (instance_exists(in_pos))
         {
             myobj = in_pos;
@@ -308,9 +310,9 @@ if (propagated)
 
 propagated = true;
 
-for (x_offset = -1; x_offset &lt;= 1; x_offset += 1)
+for (var x_offset = -1; x_offset &lt;= 1; x_offset += 1)
 {
-    for (y_offset = -1; y_offset &lt;= 1; y_offset += 1)
+    for (var y_offset = -1; y_offset &lt;= 1; y_offset += 1)
     {
         // skip diagonals and center:
         if (abs(x_offset) + abs(y_offset) != 1)
@@ -318,10 +320,10 @@ for (x_offset = -1; x_offset &lt;= 1; x_offset += 1)
             continue;
         }
         
-        ix = x + 8 + 16 * x_offset;
-        iy = y + 8 + 16 * y_offset;
+        var ix = x + 8 + 16 * x_offset;
+        var iy = y + 8 + 16 * y_offset;
         
-        o = instance_position(ix, iy, object_index);
+        var o = instance_position(ix, iy, object_index);
         if (instance_exists(o) &amp;&amp; o != id)
         {
             // propagate tag if other's tag is blank

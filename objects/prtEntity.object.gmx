@@ -498,7 +498,7 @@ if (DEBUG_SPAWN)
           <argument>
             <kind>1</kind>
             <string>/// EV_WEAPON_SETDAMAGE: Set damage for weapons and weaknesses for enemies
-for (i = 0; i &lt; specialDamageValuesTotal; i++)
+for (var i = 0; i &lt; specialDamageValuesTotal; i++)
 {
     var indx = i * 2;
     if (specialDamageValues[indx] != -1)

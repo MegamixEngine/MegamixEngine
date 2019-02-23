@@ -132,7 +132,7 @@ if (entityCanStep())
             cSpeed = 0;
             xspeed = 0;
             var ID;
-            for (i = 0; i &lt;= 2; i += 1)
+            for (var i = 0; i &lt;= 2; i += 1)
             {
                 ID = instance_create(x + image_xscale * 12,
                     spriteGetYCenter() + 8, objMM2MetBullet);

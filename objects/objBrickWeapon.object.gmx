@@ -221,9 +221,9 @@ if (global.ammo[playerID, global.weapon[playerID]] &gt;= chargedWeaponCost)
             
             if (chargeTimer &gt;= chargeTime)
             {
-                for (q = 0; q &lt;= 1; q += 1)
+                for (var q = 0; q &lt;= 1; q += 1)
                 {
-                    for (z = 0; z &lt;= 7; z += 1)
+                    for (var z = 0; z &lt;= 7; z += 1)
                     {
                         i = fireWeapon(xOffset / 2 + z * 15, yOffset - 8 + q * 15, bulletObject, bulletLimit * (z + q == 0), chargedWeaponCost * (z + q == 0), action, willStop);
                         if (instance_exists(i))
@@ -327,7 +327,7 @@ specialDamageValue("mets", 0);
 var i;
 for (i = 0; i &lt; 4; i++)
 {
-    debris = instance_create(x, y, objBrickWeaponDebris);
+    var debris = instance_create(x, y, objBrickWeaponDebris);
     debris.image_index = i;
     debris.xspeed = random_range(-1.5, 1.5);
     debris.yspeed = -yspeed * 0.8 + random_range(0, 2);

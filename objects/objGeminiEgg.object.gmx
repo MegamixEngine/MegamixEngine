@@ -81,7 +81,7 @@ specialDamageValue(objTornadoBlow, 0);
             <kind>1</kind>
             <string>event_inherited();
 
-i = instance_create(x + 8, y + 8, objectDrop);
+var i = instance_create(x + 8, y + 8, objectDrop);
 i.respawn = false;
 </string>
           </argument>

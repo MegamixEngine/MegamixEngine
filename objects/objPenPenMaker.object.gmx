@@ -82,7 +82,7 @@ if (entityCanStep())
             shootTimer = 0;
             penRate = 0;
         }
-        i = instance_create(x, y + 32, objPenpen);
+        var i = instance_create(x, y + 32, objPenpen);
         i.image_xscale = image_xscale;
         i.respawn = false;
     }

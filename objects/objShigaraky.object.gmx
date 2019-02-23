@@ -93,7 +93,7 @@ if (entityCanStep())
                 {
                     imgIndex = 2 - imgIndex mod 3;
                     animBack = true;
-                    a = instance_create(x + sprite_width * 0.3, y + 8, objShigarakyBall);
+                    var a = instance_create(x + sprite_width * 0.3, y + 8, objShigarakyBall);
                     a.xspeed = image_xscale;
                     a.image_xscale = image_xscale;
                     ball = a.id;

@@ -79,7 +79,7 @@ if (entityCanStep())
         shoottimer -= 1;
         if (shoottimer == 0)
         {
-            i = instance_create(target.x, view_yview[0] + 8, obj);
+            var i = instance_create(target.x, view_yview[0] + 8, obj);
             i.respawn = 0;
             if (crab[1] == 0)
             {

@@ -170,7 +170,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 
 var imgadd;
 
-for (i = 0; i &lt; image_xscale; i += 1)
+for (var i = 0; i &lt; image_xscale; i += 1)
 {
     if(i==0&amp;&amp;image_xscale==1)//single block
     {

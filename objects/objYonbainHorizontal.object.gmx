@@ -92,7 +92,7 @@ split_dist = 0;
             <string>event_inherited();
 if (entityCanStep())
 {
-    anim = 0;
+    var anim = 0;
     switch (phase)
     {
         case 0: // blink 

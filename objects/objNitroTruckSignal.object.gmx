@@ -67,7 +67,7 @@ if (entityCanStep())
     visible = ((blinkTimer++) mod 20 &gt; 5);
     
     // sign
-    prev_index = image_index;
+    var prev_index = image_index;
     image_index = 2;
     
     var checkX = x + 8;

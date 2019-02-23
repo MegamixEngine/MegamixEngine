@@ -57,6 +57,7 @@ destroyIfUnlocked = false;
 
 // other variables
 flashTimer = 0;
+weaponID = noone;
 </string>
           </argument>
         </arguments>
@@ -119,7 +120,7 @@ if (levelReward)
 // lock all weapons
 if (lockToWeapon)
 {
-    for (i = 0; i &lt;= global.totalWeapons; i += 1)
+    for (var i = 0; i &lt;= global.totalWeapons; i += 1)
     {
         if ((i == 0 &amp;&amp; lockBuster) || (i != 0))
         {

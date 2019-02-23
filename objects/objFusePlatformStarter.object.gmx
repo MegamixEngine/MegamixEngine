@@ -78,7 +78,7 @@ if (entityCanStep())
         // tick down to death
         if (timeUntilDeath == 0)
         {
-            a = instance_create(x, y, objFusePlatformDeleter);
+            var a = instance_create(x, y, objFusePlatformDeleter);
             a.dir = startDir;
             a.alarmTimeMax = alarmTimeMax;
         }

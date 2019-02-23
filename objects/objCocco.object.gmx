@@ -99,7 +99,7 @@ event_inherited();
 if (entityCanStep())
 {
     // check to see if eggs exist, if not remove them from the array.
-    for (i = 1; i &lt;= 3; i += 1)
+    for (var i = 1; i &lt;= 3; i += 1)
     {
         if (eggArray[i])
         {

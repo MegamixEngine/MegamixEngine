@@ -84,7 +84,7 @@ if (entityCanStep())
     }
     
     shootTimer += 1;
-    for (i = 1; i &lt;= 3; i += 1)
+    for (var i = 1; i &lt;= 3; i += 1)
     {
         if (top[i])
         {
