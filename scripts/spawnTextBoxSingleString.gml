@@ -130,7 +130,7 @@ while (string_length(mytext) > 0)
     
     
     subtext = string_delete(subtext, 1,
-        s); // remove the word form the text to check
+        s); // remove the word from the text to check
     
     // checking newLinePos because if there is a line break command and this is also true, it'll overwrite the line break task
     if (newLinePos <= 0 && string_length(mytext) - effectSpace - 1
@@ -146,12 +146,12 @@ while (string_length(mytext) > 0)
     
     // if the line is finished, add to the array of lines for the current page
     if (space - effectSpace - 1
-        > linelength) //- 1 so we don't count the space or line break as part of the word
+        > linelength) // - 1 so we don't count the space or line break as part of the word
     {
         t[z] = string_copy(mytext, 1 - 1,
             prespace - 1); // cut off the space / line break
         
-        // if (space - effectSpace - 1 != linelength) //if maxed out the line, then don't do this because it'll wrap anyway
+        // if (space - effectSpace - 1 != linelength) // if maxed out the line, then don't do this because it'll wrap anyway
         //{
         t[z] += "#"; // add the line break for the next line
         
@@ -246,4 +246,8 @@ if (timeOut < 1000)
 {
     spawnTextBox(0, 0, _name, _name_col, txt[1], txt[2], txt[3], txt[4],
         txt[5], txt[6], txt[7], txt[8], txt[9], txt[10], txt[11], txt[12]);
+}
+else
+{
+    return noone;
 }

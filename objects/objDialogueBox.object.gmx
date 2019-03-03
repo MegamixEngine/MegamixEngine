@@ -137,7 +137,8 @@ with (objNPC)
             <kind>1</kind>
             <string>switch (phase)
 {
-    case 1: // Move in box 
+    // Move in box 
+    case 1:
         boxOffset--;
         if (boxOffset &lt;= 0)
         {
@@ -146,13 +147,17 @@ with (objNPC)
             phase = 2;
             itext = ds_list_find_value(text, 0);
         }
+        
         break;
-    case 2: // Increase visible text 
+    
+    // Increase visible text 
+    case 2:
         timer--;
-        if (!timer)
+        if (timer &lt;= 0)
         {
             textLength += 0.5 + (1.5 * (global.keyJump[0] || global.keyPause[0]));
         }
+        
         if (timer &lt; 4 &amp;&amp; global.keyPausePressed[0])
         {
             textLength = string_length(itext);
@@ -164,12 +169,16 @@ with (objNPC)
             timer = 12;
             phase = 3;
         }
+        
         break;
-    case 3: // Go to next block of text 
+    
+    // Go to next block of text 
+    case 3:
         timer--;
         if (!timer)
         {
-            if (optionCount &gt; 0 &amp;&amp; ds_list_size(text) == 1) // Move between options
+            // Move between options
+            if (optionCount &gt; 0 &amp;&amp; ds_list_size(text) == 1)
             {
                 var mv = global.keyDownPressed[0] - global.keyUpPressed[0];
                 if (mv != 0)
@@ -192,7 +201,8 @@ with (objNPC)
             {
                 ds_list_delete(text, 0);
                 
-                if (!ds_list_empty(text)) // Get next block of code
+                // Get next block of code
+                if (!ds_list_empty(text))
                 {
                     itext = ds_list_find_value(text, 0);
                     timer = 2;
@@ -217,7 +227,10 @@ with (objNPC)
                                         d.dialogueLock = playerFreeMovement(d.dialogueLock);
                                         prev_index = d.image_index;
                                         with (d)
+                                        {
                                             instance_destroy();
+                                        }
+                                        
                                         event_user(0);
                                         active = false;
                                     }
@@ -225,20 +238,26 @@ with (objNPC)
                             }
                         }
                     }
+                    
                     phase = 4;
                     showtext = 0;
                 }
+                
                 textLength = 0;
             }
         }
+        
         break;
-    case 4: // Move away box 
+    
+    // Move away box 
+    case 4:
         boxOffset++;
         if (boxOffset == 8)
         {
             visible = 0;
             instance_destroy();
         }
+        
         break;
 }
 
@@ -273,6 +292,7 @@ if (pos == 1)
 {
     ypos = view_yview + view_hview + 8 * boxOffset;
 }
+
 draw_sprite_part_ext(sprDialogueBox, 0, 0, 0, 48, 64, view_xview[0], ypos, 1, 1, image_blend, image_alpha); // mugshot section
 draw_sprite_part_ext(sprDialogueBox, 0, 48, 0, 1, 64, view_xview[0] + 48, ypos, view_wview[0] - 56, 1, image_blend, image_alpha); // content section
 draw_sprite_part_ext(sprDialogueBox, 0, 48, 0, 8, 64, view_xview[0] + view_wview[0] - 8, ypos, 1, 1, image_blend, image_alpha); // right border
@@ -305,7 +325,8 @@ if (showtext)
     {
         var drawChar = string_char_at(itext, i);
         
-        if (drawChar == "/") // Get effects
+        // Get effects
+        if (drawChar == "/")
         {
             if (string_char_at(itext, i + 1) == "C") // Color
             {
@@ -336,6 +357,7 @@ if (showtext)
         
         // New line handling
         var e = 1;
+        var check = "";
         while (i + e &lt;= string_length(itext)) // Check for something that seperates words
         {
             var check = string_char_at(itext, i + e);
@@ -343,6 +365,7 @@ if (showtext)
             {
                 break;
             }
+            
             e++;
         }
         
@@ -350,9 +373,15 @@ if (showtext)
         {
             line += 1;
             count = 0;
+            
+            // don't draw spaces at the beginning of new lines
+            if (drawChar == " ")
+            {
+                continue;
+            }
         }
         
-        // Process effect
+        // Process movementeffect
         var xd, yd;
         switch (effect)
         {
