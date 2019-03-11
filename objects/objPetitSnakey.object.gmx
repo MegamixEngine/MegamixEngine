@@ -29,6 +29,8 @@
 event_inherited();
 
 respawn = true;
+              
+killOverride = false;
 
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
