@@ -111,33 +111,33 @@ tileSurface = noone;
 }
 
 // 8-pixel leeway here to prevent some jankiness
-if (collision_rectangle(x + 8, y + 8, x + view_xview - 8, y + view_hview - 8, objMegaman, 0, 0)
+if (collision_rectangle(x + 8, y + 8, x + view_wview[0] - 8, y + view_hview[0] - 8, objMegaman, 0, 0)
     &amp;&amp; !instance_exists(objSectionSwitcher) &amp;&amp; insideView() &amp;&amp; !global.frozen)
 {
     with (objMegaman)
     {
-        x += other.camX - view_xview;
-        y += other.camY - view_yview;
+        x += other.camX - view_xview[0];
+        y += other.camY - view_yview[0];
         setSection(x, y, 1);
         playerCamera(1);
         reAndDeactivateObjects(1, 1);
         
-        if instance_exists(vehicle)
+        if (instance_exists(vehicle))
         {
-            with vehicle
+            with (vehicle)
             {
-                x += other.camX - view_xview;
-                y += other.camY - view_yview;
+                x += other.camX - view_xview[0];
+                y += other.camY - view_yview[0];
             }
         }
     }
     
-    if instance_exists(objWaterShield)
+    if (instance_exists(objWaterShield))
     {
-        with objWaterShield
+        with (objWaterShield)
         {
-            x += other.camX - view_xview;
-            y += other.camY - view_yview;
+            x += other.camX - view_xview[0];
+            y += other.camY - view_yview[0];
         }
     }
     
