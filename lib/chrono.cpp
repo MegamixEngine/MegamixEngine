@@ -3,17 +3,19 @@
 
 #include "common.h"
 
-#include <chrono>
+#include <windows.h>
 
-typedef std::chrono::time_point<std::chrono::high_resolution_clock> chrono_t;
+typedef LARGE_INTEGER chrono_t;
 
+chrono_t freq;
 chrono_t reference;
 
 // resets timer to 0.
 external ty_real
 chrono_reset()
 {
-	reference = std::chrono::high_resolution_clock::now();
+	QueryPerformanceFrequency(&freq);
+	QueryPerformanceCounter(&reference);
 	return 0;
 }
 
@@ -21,13 +23,12 @@ chrono_reset()
 external ty_real
 chrono_get()
 {
-	chrono_t now = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<ty_real> diff = now - reference;
-	return diff.count();
+	chrono_t now;
+	QueryPerformanceCounter(&now);
+	return (now.QuadPart - reference.QuadPart) * 1.0 / freq.QuadPart;
 }
 
 #ifndef IS_DLL
-
 void busywork(long int amount)
 {
 	volatile long int i = -amount;
@@ -76,7 +77,7 @@ int main(int argc, char** argv)
 		}
 	}
 	
-	printf("Granularity is %f ms,\n...which is %f us,\n...or %f ns.\n", granularity * 1000, (granularity * 1000) * 1000, (granularity * 1000) * 1000) * 1000);
+	printf("Granularity is %f ms,\n...which is %f us,\n...or %f ns.\n", granularity * 1000, (granularity * 1000) * 1000, ((granularity * 1000) * 1000) * 1000);
 	
 	if (granularity > 0.0005)
 	{
