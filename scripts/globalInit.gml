@@ -10,6 +10,7 @@ mathTableSetup();
 lockPoolInit();
 globalLockInit();
 fsInit();
+chronoInit();
 
 // extension initialization
 cleanMem('init');

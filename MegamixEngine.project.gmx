@@ -3,7 +3,24 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="106" name="datafiles">
+  <datafiles number="107" name="datafiles">
+    <datafile>
+      <name>chrono.dll</name>
+      <exists>-1</exists>
+      <size>957440</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>chrono.dll</filename>
+    </datafile>
     <datafile>
       <name>CleanMem.dll</name>
       <exists>-1</exists>
@@ -72,7 +89,7 @@
       </ConfigOptions>
       <filename>GMFMODSimple.dll</filename>
     </datafile>
-    <datafiles number="106" name="Levels">
+    <datafiles number="107" name="Levels">
       <datafile>
         <name>lvlChillMan.room.gmx</name>
         <exists>-1</exists>
@@ -856,7 +873,7 @@
         <filename>rmShowcaseWater.room.gmx</filename>
       </datafile>
     </datafiles>
-    <datafiles number="106" name="Music">
+    <datafiles number="107" name="Music">
       <datafile>
         <name>14 Tenguman.spc</name>
         <exists>-1</exists>
@@ -1385,7 +1402,7 @@
         <filename>WW_Boss.vgz</filename>
       </datafile>
     </datafiles>
-    <datafiles number="106" name="Recordings">
+    <datafiles number="107" name="Recordings">
       <datafile>
         <name>demoHoneyWoman.mrc</name>
         <exists>-1</exists>
@@ -1421,8 +1438,8 @@
         <filename>demoPharaohMan.mrc</filename>
       </datafile>
     </datafiles>
-    <datafiles number="106" name="UnitTests">
-      <datafiles number="106" name="Recordings">
+    <datafiles number="107" name="UnitTests">
+      <datafiles number="107" name="Recordings">
         <datafile>
           <name>RecordingObjectSet.mrc</name>
           <exists>-1</exists>
@@ -1696,7 +1713,7 @@
           <filename>recTestA.mrc</filename>
         </datafile>
       </datafiles>
-      <datafiles number="106" name="Rooms">
+      <datafiles number="107" name="Rooms">
         <datafile>
           <name>lvlRecordingTest.room.gmx</name>
           <exists>-1</exists>
@@ -5142,6 +5159,10 @@
         <script>scripts\fsWildcardCount.gml</script>
         <script>scripts\fsWildcardPath.gml</script>
         <script>scripts\fsWrite.gml</script>
+      </scripts>
+      <scripts name="Chrono">
+        <script>scripts\chronoInit.gml</script>
+        <script>scripts\chronoGet.gml</script>
       </scripts>
       <script>scripts\scrNoEffect.gml</script>
       <script>scripts\eventExecute.gml</script>

@@ -10,3 +10,5 @@
 
 typedef double ty_real;
 typedef char* ty_string;
+
+#include <iostream>
