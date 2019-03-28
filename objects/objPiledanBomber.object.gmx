@@ -41,6 +41,7 @@ phase = 0;
 subPhase = 0;
 myPiledan = noone;
 animFrame = 0;
+shootTimer = 0;
 
 sinCounter = 0;
 </string>

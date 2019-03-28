@@ -77,7 +77,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     }
     
     // reset the variable for standing on it every frame
-    ontop = 0;
+    var ontop = 0;
     
     // Check for MM and if he's standing on it
     with (target)
@@ -89,7 +89,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 if (!place_meeting(x, y, other.id))
                 {
                     other.yspeed = other.standSpeed * gravDir;
-                    other.ontop = 1;
+                    ontop = 1;
                 }
             }
         }

@@ -83,8 +83,6 @@ init = 0;
             <string>// Setup
 if (init == 0)
 {
-    dir = image_xscale;
-    angle = 90;
     init = 1;
 }
 

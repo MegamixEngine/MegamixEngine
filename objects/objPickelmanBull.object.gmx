@@ -45,6 +45,7 @@ ground = 1;
 shakeDir = 1;
 shake = 0;
 shaketimer = 0;
+xs = 0;
 </string>
           </argument>
         </arguments>

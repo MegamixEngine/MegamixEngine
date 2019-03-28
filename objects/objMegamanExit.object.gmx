@@ -81,7 +81,7 @@ else
 
 if (((isExternal&amp;&amp;externalRoomFilename=="")||(!isExternal &amp;&amp; myRoom &lt;= 0)) &amp;&amp; !returnToHub)
 {
-    global.frozen = false;
+    queueUnpause();
     
     with (objMegaman)
     {

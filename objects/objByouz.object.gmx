@@ -35,7 +35,7 @@ contactDamage = 4;
 
 category = "grounded";
 
-grav = -grav;
+grav = -grav * image_yscale;
 facePlayerOnSpawn = true;
 mask_index = sprByouzMask;
 
@@ -86,7 +86,8 @@ if (entityCanStep())
             {
                 xspeed = moveSpeed * image_xscale;
                         
-                if (!positionCollision(x + 8 * image_xscale, bbox_top - 2))
+                if ((!positionCollision(x + 8 * image_xscale, bbox_top - 2)) &amp;&amp; (image_yscale == 1))
+                    || ((!positionCollision(x + 8 * image_xscale, bbox_bottom + 2)) &amp;&amp; (image_yscale == -1))
                 {
                     image_xscale *= -1;
                 }
@@ -147,12 +148,12 @@ if (entityCanStep())
             if (moveTimer &lt;= 0)
             {
                 image_index = 4;
-                yspeed = jumpSpeed;
+                yspeed = jumpSpeed * image_yscale;
                 phase = 2;
             }
             break;
         case 2:
-            if (yspeed &lt;= 0)
+            if (yspeed &lt;= 0) &amp;&amp; (image_yscale == 1) || (yspeed &gt;= 0) &amp;&amp; (image_yscale == -1)
             {
                 image_index = 5;
                 if (ground)

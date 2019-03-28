@@ -29,6 +29,7 @@
 
 respawn = false;
 contactDamage = 0;
+caughtXScalePrev = 0;
 
 canHit = false;
 itemDrop = -1;

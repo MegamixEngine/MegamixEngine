@@ -41,6 +41,7 @@ waitLength = 60;
 alarmAttack = 0;
 sx = 0;
 sy = 0;
+i = noone;
 </string>
           </argument>
         </arguments>

@@ -58,6 +58,7 @@ attackTimer = 0;
 attackTimerMax = 24;
 
 moveDir = image_xscale;
+turnTrigger = false;
 
 //@cc if set to 1, mad grinder does not use his fireball attack that was exclusive to power fighters and the intro to MM7.
 variant = 0;
@@ -260,7 +261,6 @@ else if (!insideView())
     phase = 0;
     doQuake = 0;
     turnTrigger = false;
-    findYSpeed = false;
 }
 </string>
           </argument>

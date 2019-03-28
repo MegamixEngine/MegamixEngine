@@ -42,6 +42,7 @@ knocked = false;
 
 imgSpd = 0.1;
 imgIndex = 0;
+down = false;
 
 grav = 0;
 </string>
@@ -74,7 +75,7 @@ if (entityCanStep())
     {
         // wait until jetting up
         case 0:
-            waitTime = 71; // &lt;-- wait time until jetting up
+            var waitTime = 71; // &lt;-- wait time until jetting up
             grav = gravAccel;
             if (timer &lt; waitTime - 30)
             {
@@ -153,7 +154,7 @@ if (entityCanStep())
         
         // slam down
         case 2: // wait until going down 
-            waitTime = 13;
+            var waitTime = 13;
             if (timer == waitTime)
             {
                 yspeed = 6.1;

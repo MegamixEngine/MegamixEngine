@@ -40,8 +40,14 @@ canInitShoot = true;
 phase = 0;
 image_speed = 0.15;
 introType = 0;
+isDying = false;
+explodeTimer = 0;
 
-// Health Bar
+normalSprite = sprMechaDragon;
+fireSprite = sprMechaDragonFire;
+normalHurtSprite = sprMechaDragonHurt;
+fireHurtSprite = sprMechaDragonFireHurt;
+
 // Health Bar
 healthBarPrimaryColor[1] = 47;
 healthBarSecondaryColor[1] = 40;
@@ -191,16 +197,44 @@ if (entityCanStep())
                     xspeed = -0.5;
                 attackTimer -= 1;
                 if (attackTimer == 50)
-                    sprite_index = sprMechaDragon;
+                    sprite_index = normalSprite
                 if (attackTimer &lt;= 0)
                 {
                     attackTimer = 60;
-                    fire = instance_create(x + 48 * image_xscale, y - 32,
+                    var fire = instance_create(x + 48 * image_xscale, y - 32,
                         objMechaDragonFire);
-                    sprite_index = sprMechaDragonFire;
+                    sprite_index = fireSprite;
                     fire.image_xscale = image_xscale;
                 }
                 break;
+        }
+    }
+    // Death animation
+    if (isDying)
+    {
+        var _x = random_range(bbox_left,bbox_right);
+        var _y = random_range(bbox_top,bbox_bottom);
+        
+        explodeTimer++;
+        if (explodeTimer mod 2 == 0)
+        {
+            repeat(4)
+            {
+                var i = instance_create(_x, _y, objExplosion);
+                i.sprite_index = sprCrashExplosion;
+            }
+        }
+        if (explodeTimer mod 8 == 0)
+        {
+            playSFX(sfxEnemyHit);
+        }
+        if (explodeTimer mod 16 == 0)
+        {
+            instance_create(_x, _y, objBigExplosion);
+        }
+        if (explodeTimer == 180)
+        {
+            event_user(EV_DEATH);
         }
     }
 }
@@ -263,7 +297,24 @@ if (entityCanStep())
     instance_create(x, y, objExplosion);
     instance_destroy();
 }
-event_inherited();
+if (!isDying)
+{
+    isFight = false;
+    isDying = true;
+    canHit = false;
+    contactDamage = 0;
+    iFrames = 0;
+    xspeed = 0;
+    yspeed = 0;
+    with(instance_create(random_range(bbox_left,bbox_right),random_range(bbox_top,bbox_bottom),objExplosion))
+        sprite_index = sprCrashExplosion;
+    playSFX(sfxEnemyHit);
+}
+else
+{
+    event_inherited();
+    playSFX(sfxEnemyHit);
+}
 </string>
           </argument>
         </arguments>
@@ -290,27 +341,44 @@ event_inherited();
 {
     if (drawBoss)
     {
-        drawSelf();
-        if ((iFrames mod 4) &lt; 2 || !iFrames)
+        if (!isDying)
         {
-            if (sprite_index == sprMechaDragonHurt)
+            drawSelf();
+            // Hitspark
+            if ((iFrames mod 4) &lt; 2 || !iFrames)
             {
-                sprite_index = sprMechaDragon;
+                if (sprite_index == normalHurtSprite)
+                {
+                    sprite_index = normalSprite;
+                }
+                else if (sprite_index = fireHurtSprite)
+                {
+                    sprite_index = fireSprite;
+                }
             }
-            else if (sprite_index = sprMechaDragonFireHurt)
+            else
             {
-                sprite_index = sprMechaDragonFire;
+                if (sprite_index ==  normalSprite)
+                {
+                    sprite_index = normalHurtSprite;
+                }
+                else if (sprite_index = fireSprite)
+                {
+                    sprite_index = fireHurtSprite;
+                }
             }
         }
         else
         {
-            if (sprite_index ==  sprMechaDragon)
+            if (explodeTimer mod 40 &lt; 10) //((iFrames mod 16) &lt; 8 || !iFrames)
             {
-                sprite_index = sprMechaDragonHurt;
+                d3d_set_fog(true, c_white, 0, 0);
+                drawSelf();
+                d3d_set_fog(false, 0, 0, 0);
             }
-            else if (sprite_index = sprMechaDragonFire)
+            else
             {
-                sprite_index = sprMechaDragonFireHurt;
+                drawSelf();
             }
         }
     }

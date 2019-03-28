@@ -44,6 +44,8 @@ topblock = -1;
 bottomBlock = -1;
 touchblock = place_meeting(x, y, objSolid);
 cantDraw = touchblock;
+centerTopBlock = 0;
+centerBottomBlock = 0;
 
 x = round(x / 8) * 8;
 

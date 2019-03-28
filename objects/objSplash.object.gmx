@@ -32,6 +32,8 @@ image_speed = 0.15;
 timer = floor((1 / image_speed) * 3);
 
 sfc = 0;
+sfcx = 0;
+sfcy = 0;
 
 // both of these were added just for the skull doors lol
 blockCollision = 1;

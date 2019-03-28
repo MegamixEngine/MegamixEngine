@@ -318,7 +318,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
                 &amp;&amp; ((global.keyUp[playerID] &amp;&amp; sign(grav) &gt;= 0)
                 || (global.keyDown[playerID] &amp;&amp; sign(grav) &lt; 0)))
             {
-                i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop);
+                var i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop);
                 if (instance_exists(i))
                 {
                     i.yspeed = -4 * image_yscale;
@@ -340,7 +340,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
             // buster shot
             if (objWireAdapter.phase &gt;= 2)
             {
-                i = fireWeapon(16, 0, objBusterShot, 4, 0, 1, 0);
+                var i = fireWeapon(16, 0, objBusterShot, 4, 0, 1, 0);
                 if (i)
                 {
                     i.xspeed = image_xscale * 5;
@@ -471,9 +471,9 @@ if (!instance_exists(parent))
 gravDir = parent.gravDir;
 image_yscale = gravDir;
 
-wirelength = (floor(((parent.y - 6 * parent.image_yscale) - y) / 4))
+var wireLength = (floor(((parent.y - 6 * parent.image_yscale) - y) / 4))
     * gravDir;
-wireimg = 1;
+var wireimg = 1;
 if (image_xscale == -1)
 {
     wireimg = 3;
@@ -483,7 +483,7 @@ if (phase == 2)
     wireimg = 4;
 }
 
-for (i = 0; i &lt;= wirelength; i += 1)
+for (var i = 0; i &lt;= wireLength; i += 1)
 {
     if (phase == 1)
     {

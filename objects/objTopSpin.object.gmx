@@ -43,6 +43,7 @@ animFrame = 0;
 
 shiftVisible = 2;
 despawnRange = -1;
+topLock = 0;
 </string>
           </argument>
         </arguments>
@@ -168,7 +169,7 @@ if (!global.frozen)
             <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; !ground &amp;&amp; !climbing
     &amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
 {
-    i = fireWeapon(0, 0, objTopSpin, 1, 0, 0, 0);
+    var i = fireWeapon(0, 0, objTopSpin, 1, 0, 0, 0);
     if (i)
     {
         i.topLock = lockPoolLock(localPlayerLock[PL_LOCK_CLIMB],

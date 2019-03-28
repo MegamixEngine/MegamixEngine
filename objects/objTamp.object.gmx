@@ -158,7 +158,6 @@ if (entityCanStep())
                     image_index = 0;
                     moveTimer = 30;
                     warpDelay = 30;
-                    canAnimate = true;
                 }
             }
         }

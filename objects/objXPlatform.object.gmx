@@ -86,7 +86,7 @@ if (entityCanStep())
 {
     if (manualPartnerX != noone &amp;&amp; manualPartnerY != noone)
     {
-        myPartner = instance_place(manualPartnerX, manualPartnerY, object_index);
+        var myPartner = instance_place(manualPartnerX, manualPartnerY, object_index);
         partner = myPartner.id;
         myPartner.partner = id;
         manualPartnerX = noone;

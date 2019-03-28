@@ -99,6 +99,11 @@ if (isSolid)
                                 if (global.factionStance[other.faction, faction])
                                 {
                                     event_user(EV_DEATH);
+                                    
+                                    if (object_index != objMegaman)
+                                    {
+                                        playSFX(sfxEnemyHit);
+                                    }
                                 }
                             }
                         }
@@ -176,6 +181,11 @@ if (isSolid)
                                 if (global.factionStance[other.faction, faction])
                                 {
                                     event_user(EV_DEATH);
+                                    
+                                    if (object_index != objMegaman)
+                                    {
+                                        playSFX(sfxEnemyHit);
+                                    }
                                 }
                             }
                         }

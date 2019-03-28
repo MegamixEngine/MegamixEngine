@@ -94,7 +94,7 @@ if (entityCanStep())
     shootTimer += 1;
     if (shootTimer == shootWait)
     {
-        i = instance_create(x + sprite_width * 0.5, y - 7, objCannopellerBall);
+        var i = instance_create(x + sprite_width * 0.5, y - 7, objCannopellerBall);
         i.image_xscale = image_xscale;
         i.xspeed = 3 * image_xscale;
         imgIndex = 2;

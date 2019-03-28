@@ -101,6 +101,7 @@ i = 0;
         }
         else
         {
+            var cS;
             switch (spike)
             {
                 case 0:

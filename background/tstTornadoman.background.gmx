@@ -13,7 +13,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>288</width>
+  <width>224</width>
   <height>256</height>
   <data>images\tstTornadoman.png</data>
 </background>

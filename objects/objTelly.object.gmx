@@ -82,8 +82,8 @@ if (entityCanStep())
 {
     if (instance_exists(target))
     {
-        pDistX = target.x - x;
-        pDistY = target.y - y;
+        var pDistX = target.x - x;
+        var pDistY = target.y - y;
         
         // If the player is really close, target them directly.
         if (distance_to_object(target) &lt;= 32)

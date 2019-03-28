@@ -728,7 +728,6 @@ if (spawned)
     shootMax = 0;
     high = startHigh;
     prevP0Timer = 3.14;
-    updateTimer = true;
     introTimer = 288 + 15;
     init = 2;
     isMaster = false;

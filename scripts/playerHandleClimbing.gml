@@ -2,12 +2,13 @@
 
 var ladder = collision_line(bboxGetXCenter(), bbox_top + 2, bboxGetXCenter(), bbox_bottom, objLadder, false, false);
 
+var ladderUp = instance_position(spriteGetXCenter(), ((bbox_top * (gravDir < 0)) + (bbox_bottom * (gravDir > 0))) - gravDir, objLadder);
 var ladderDown = instance_position(spriteGetXCenter(), ((bbox_top * (gravDir < 0)) + (bbox_bottom * (gravDir > 0))) + gravDir, objLadder);
 
 if (!playerIsLocked(PL_LOCK_CLIMB))
 {
     if (((instance_exists(ladder) && gravDir == -yDir)
-        || (instance_exists(ladderDown) && gravDir == yDir && ground))
+        || (instance_exists(ladderDown) && !instance_exists(ladderUp) && gravDir == yDir && ground))
         && !climbing)
     {
         // begin climbing:
@@ -20,7 +21,7 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
             mask_index = mskMegaman;
             slideTimer = 0;
 
-            shiftObject(0, -gravDir, 1);
+            shiftObject(0, -gravDir, 0);
         }
         
         climbing = true;

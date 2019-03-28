@@ -182,12 +182,12 @@ if (dead)
     exit;
 }
 
-i = y - 6 - 16;
-endit = 0;
+var i = y - 6 - 16;
+var endit = 0;
 
 while (i &gt; view_yview - 16)
 {
-    s = 0;
+    var s = 0;
     if (collision_point(x, i, objSolid, false, false))
     {
         while (collision_point(x, i + s, objSolid, false, false))

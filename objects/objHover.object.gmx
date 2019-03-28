@@ -82,6 +82,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 yspeed = 0;
                 if (image_index == 1)
                 {
+                    var i;
                     i = instance_create(bbox_left, y + 14, objEnemyBullet);
                     i.xspeed = -2;
                     i = instance_create(bbox_right, y + 14, objEnemyBullet);

@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEnemyProjectile</parentName>
+  <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -28,8 +28,8 @@
             <string>event_inherited();
 
 contactDamage = 2;
-
-reflectable = 0;
+canHit = true;
+//reflectable = 0;
 </string>
           </argument>
         </arguments>
@@ -58,12 +58,12 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
 {
     if (ycoll != 0)
     {
-        explosion = instance_create(x, y, objHarmfulExplosion);
+        var explosion = instance_create(x, y, objHarmfulExplosion);
         explosion.contactDamage = 2;
         playSFX(sfxMM3Explode);
         
-        d = 15;
-        chibee = instance_create(x - d, y - d, objChibee);
+        var d = 15;
+        var chibee = instance_create(x - d, y - d, objChibee);
         chibee.respawn = false;
         chibee = instance_create(x + d, y - d, objChibee);
         chibee.respawn = false;
@@ -76,6 +76,39 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
         
         instance_destroy();
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="21">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (other.object_index != objLaserTrident) &amp;&amp; (other.object_index != objMetalBlade)
+    &amp;&amp; (other.object_index != objMagicCard) &amp;&amp; (other.object_index != objSlashClaw)
+    &amp;&amp; (other.object_index != objWheelCutter) &amp;&amp; (other.object_index != objChillSpikeLanded)
+    &amp;&amp; (other.object_index != objFlameMixer) &amp;&amp; (other.object_index != objRainFlush)
+{
+    other.guardCancel = 3;
+}
+else
+{
+    event_perform_object(prtEntity,ev_other,ev_user10);
 }
 </string>
           </argument>

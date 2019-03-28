@@ -152,7 +152,7 @@ dead=true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ys = 0;
+            <string>var ys = 0;
 
 switch (timer)
 {

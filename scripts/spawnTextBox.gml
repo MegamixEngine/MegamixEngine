@@ -7,10 +7,11 @@
 
 // spawn textbox
 var i = instance_create(x, y, objDialogueBox);
-if ((object_index==objNPC||object_is_ancestor(object_index,objNPC))&&npcID != 0)
+if ((object_index == objNPC || object_is_ancestor(object_index, objNPC)) && npcID != 0)
 {
     i.parent = npcID;
 }
+
 i.pos = argument[0];
 i.origin = id;
 i.o_event = argument[1];
@@ -24,6 +25,7 @@ for (var ca = 4; ca <= 15 && ca < argument_count; ca += 1)
     {
         exit;
     }
+    
     ds_list_add(i.text, argument[ca]);
 }
 

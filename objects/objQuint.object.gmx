@@ -63,6 +63,8 @@ teleportX = x;
 
 bouncePhase = 2;
 getLastY = 0;
+startXspeed = 0;
+startXScale = 0;
 
 // Music
 music = "Mega_Man_2GB.gbs";
@@ -189,10 +191,10 @@ if (entityCanStep())
                     {
                         if (phase == 1)
                         {
-                            for (i = -2; i &lt;= 2; i += 1)
+                            for (var i = -2; i &lt;= 2; i += 1)
                                 if (i != 0)
                                 {
-                                    rock = instance_create(x, y + 8,
+                                    var rock = instance_create(x, y + 8,
                                         objSakugarneRock);
                                     rock.yspeed = -abs(i) * 2;
                                     rock.xspeed = i;
@@ -200,10 +202,10 @@ if (entityCanStep())
                         }
                         else
                         {
-                            for (i = -1; i &lt;= 1; i += 1)
+                            for (var i = -1; i &lt;= 1; i += 1)
                                 if (i != 0)
                                 {
-                                    rock = instance_create(x, y + 4,
+                                    var rock = instance_create(x, y + 4,
                                         objSakugarneBigRock);
                                     rock.yspeed = -abs(i) * 6;
                                     rock.xspeed = i * 3;
@@ -402,11 +404,6 @@ if (teleporting &amp;&amp; isFight)
             teleporting = false;
             teleportTimer = 0;
             teleportY = 0;
-            if (!collision_rectangle(x - 5, bbox_top, x + 5, bbox_bottom,
-                objSolid, false, false))
-            {
-                canCoil = true;
-            }
             exit;
         }
         if (entityCanStep())

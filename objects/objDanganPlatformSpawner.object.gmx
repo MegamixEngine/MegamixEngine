@@ -65,6 +65,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     if (alarmSpawn &lt;= 0)
     {
         alarmSpawn = spawnMax;
+        var ysp;
         if (y &gt; view_yview + view_hview * 0.5)
         {
             ysp = -1;
@@ -73,7 +74,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         {
             ysp = 1;
         }
-        i = instance_create(x, y + 16 * -ysp, objectDrop);
+        var i = instance_create(x, y + 16 * -ysp, objectDrop);
         i.ysp = ysp;
         i.image_yscale = image_yscale;
     }

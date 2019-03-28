@@ -80,7 +80,7 @@ freshSaveFile();
             canProceed = false;
         exit;
     }
-    dir = global.keyDownPressed[0] - global.keyUpPressed[0];
+    var dir = global.keyDownPressed[0] - global.keyUpPressed[0];
     if (dir != 0)
     {
         demoTimer = 0;

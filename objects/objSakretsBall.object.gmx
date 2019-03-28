@@ -127,9 +127,9 @@ if (hitterID != 0)
 }
 
 // this code is kinda lazy but........ eh
-for (i = 1; i &lt;= 6; i += 1)
+for (var i = 1; i &lt;= 6; i += 1)
 {
-    a = instance_create(x, y, objEnemyBullet);
+    var a = instance_create(x, y, objEnemyBullet);
     a.sprite_index = sprite_index;
     a.image_index = 2;
     

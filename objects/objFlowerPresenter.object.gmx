@@ -120,7 +120,7 @@ if (entityCanStep())
                 {
                     state = 0;
                     actionTimer = 0;
-                    a = instance_create(x, y, objFlowerPresenterFlower);
+                    var a = instance_create(x, y, objFlowerPresenterFlower);
                     a.col = flower;
                 }
                 break;

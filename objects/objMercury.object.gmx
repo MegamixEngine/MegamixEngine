@@ -222,6 +222,7 @@ if (entityCanStep())
                     with (instance_create(x + 24 * image_xscale, y, objMercuryGrabBuster))
                     {
                         // Fire straight ahead
+                        var dir;
                         if ((other.shotsFired == 0) || (other.shotsFired == 4) || (other.shotsFired == 8))
                         {
                             dir = 0;

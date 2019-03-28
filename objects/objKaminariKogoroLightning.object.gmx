@@ -93,7 +93,7 @@ if (entityCanStep())
             <kind>1</kind>
             <string>if (!dead)
 {
-    for (i = 1; i &lt;= image_yscale; i += 1)
+    for (var i = 1; i &lt;= image_yscale; i += 1)
     {
         var imgIndex;
         

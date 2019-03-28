@@ -53,6 +53,7 @@ timeri = 0;
 dir = startDir;
 drawDir = dir;
 yo = dir;
+touchedStopper = false;
 </string>
           </argument>
         </arguments>
@@ -114,6 +115,12 @@ if (entityCanStep())
             }
             break;
     }
+}
+else if (dead)
+{
+    timer = 0;
+    timeri = 0;
+    phase = 2;
 }
 </string>
           </argument>

@@ -199,7 +199,7 @@ if (entityCanStep())
                 if (timer &gt; 13 - ((global.difficulty == DIFF_HARD) * 4))
                 {
                     timer = 0;
-                    bee = instance_create(x + 10 * image_xscale, y, objBeeChaser);
+                    var bee = instance_create(x + 10 * image_xscale, y, objBeeChaser);
                     bee.image_xscale = image_xscale;
                     bee.timer += (26 - counter * 13); // make sure they all start moving at the same time
                     playSFX(sfxHornetChaser);
@@ -241,7 +241,7 @@ if (entityCanStep())
                         yspeed = 0;
                         timer = 0;
                         grav = gravAccel;
-                        walk = false;
+                        var walk = false;
                         if (instance_exists(target))
                         {
                             if ((image_xscale &gt; 0 &amp;&amp; target.x &gt; x) || (image_xscale &lt; 0 &amp;&amp; target.x &lt; x))
@@ -324,7 +324,7 @@ if (entityCanStep())
                 if (ground)
                 {
                     // jump
-                    stop = false;
+                    var stop = false;
                     if (checkSolid(10 * image_xscale, 0,1,1) || !positionCollision(x+10 * image_xscale,y+20,1,1))
                     {
                         if (!checkSolid(10 * image_xscale,- 16,1,1))
@@ -402,7 +402,7 @@ if (entityCanStep())
                         imgIndex = 20;
                         if (timer == 10 || (timer == 25 &amp;&amp; global.difficulty == DIFF_HARD)) // Only summon bee once, unless on hard mode
                         {
-                            bee = instance_create(view_xview[0] + view_wview[0] * (image_xscale == -1), view_yview[0] + 64, objBeeDropper);
+                            var bee = instance_create(view_xview[0] + view_wview[0] * (image_xscale == -1), view_yview[0] + 64, objBeeDropper);
                             bee.image_xscale = image_xscale;
                             bee.respawn = false;
                             bee.itemDrop = -1;

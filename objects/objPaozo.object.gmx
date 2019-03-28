@@ -89,8 +89,8 @@ event_inherited();
 if (entityCanStep()
     &amp;&amp; introTimer &lt;= 0)
 {
-    ballPosX = x + 36 * image_xscale;
-    ballPosY = y - 15;
+    var ballPosX = x + 36 * image_xscale;
+    var ballPosY = y - 15;
     
     if (timer &gt; 0)
         timer -= 1;

@@ -38,6 +38,7 @@ category = "cluster, flying";
 
 blockCollision = 0;
 grav = 0;
+targetY = 0;
 
 facePlayerOnSpawn = true;
 
@@ -128,7 +129,6 @@ if (entityCanStep())
                 xspeed = 0;
                 yspeed = 0;
                 shiftObject(0, ystart - y, blockCollision);
-                cooldown = 30;
                 calibrateDirection();
             }
             break;

@@ -52,6 +52,7 @@ findPartner = false;
 wireY = 0;
 xMin = x - 256;
 xMax = x + 256;
+dir = 0;
 
 partner = noone;
 </string>

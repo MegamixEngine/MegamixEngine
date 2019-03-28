@@ -3,7 +3,7 @@
   <spriteName>sprHariHari</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -88,32 +88,42 @@ if (entityCanStep())
         if (shootTimer == 60 || shootTimer == 90 || shootTimer == 235)
         {
             image_index = 1;
-            a = instance_create(x, y - 16 + 1, objEnemyBullet);
+            var a;
+            a = instance_create(x, y - 13 + 1, objEnemyBullet);
             a.sprite_index = sprHariHariNeedles;
+            a.canHit = true;
             a.contactDamage = 2;
             a.image_index = 0;
             a.dir = 180;
             a.spd = 2.5;
-            a = instance_create(x, y - 16 + 1, objEnemyBullet);
+			
+            a = instance_create(x, y - 13 + 1, objEnemyBullet);
             a.sprite_index = sprHariHariNeedles;
+            a.canHit = true;
             a.contactDamage = 2;
             a.image_index = 1;
             a.dir = 135;
             a.spd = 2.5;
-            a = instance_create(x, y - 16 + 1, objEnemyBullet);
+
+            a = instance_create(x, y - 13 + 1, objEnemyBullet);
             a.sprite_index = sprHariHariNeedles;
+            a.canHit = true;
             a.contactDamage = 2;
             a.image_index = 2;
             a.dir = 90;
             a.spd = 2.5;
-            a = instance_create(x, y - 16 + 1, objEnemyBullet);
+
+            a = instance_create(x, y - 13 + 1, objEnemyBullet);
             a.sprite_index = sprHariHariNeedles;
+            a.canHit = true;
             a.contactDamage = 2;
             a.image_index = 3;
             a.dir = 45;
             a.spd = 2.5;
-            a = instance_create(x, y - 16 + 1, objEnemyBullet);
+
+            a = instance_create(x, y - 13 + 1, objEnemyBullet);
             a.sprite_index = sprHariHariNeedles;
+            a.canHit = true;
             a.contactDamage = 2;
             a.image_index = 4;
             a.dir = 0;
@@ -122,6 +132,10 @@ if (entityCanStep())
         if (shootTimer == 65 || shootTimer == 95 || shootTimer == 240)
         {
             image_index = 2;
+        }
+        if (shootTimer == 70 || shootTimer == 100 || shootTimer == 245)
+        {
+            image_index = 0;
         }
         if (shootTimer == 110 || shootTimer == 255)
         {
@@ -157,7 +171,6 @@ else if (dead)
     shootTimer = 0;
     animEndme = 0;
     image_index = 0;
-    calibrated = 0;
 }
 </string>
           </argument>

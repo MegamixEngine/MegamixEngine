@@ -96,6 +96,7 @@ image_index = floor(imgIndex);
     
     if (round(image_index) == 2)
     {
+        var spr
         if (sprite_index == sprBusterShotChargedPlus)
         {
             spr = sprBusterShotChargedPlusColourMask;

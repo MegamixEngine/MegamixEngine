@@ -141,7 +141,7 @@ if (entityCanStep())
                             break;
                         }
                     }
-                    pmi = mask_index;
+                    var pmi = mask_index;
                     
                     if (i != noone)
                     {

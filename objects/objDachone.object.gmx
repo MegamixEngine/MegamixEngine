@@ -54,7 +54,6 @@ cooldownTimer = cooldownMax / 2;
 // AI and animation variables
 imageTimer = 0;
 imageOffset = 0;
-delay = 0;
 radius = 128;
 
 calibrateDirection();
@@ -114,6 +113,7 @@ if (entityCanStep())
     // if boss reaches a platform edge, turn around.
     if (ground)
     {
+        var xs;
         if (xspeed &gt; 0)
         {
             xs = bbox_right + 1;
@@ -170,7 +170,7 @@ if (entityCanStep())
     //{
     if (cooldownTimer == cooldownMax)
     {
-        i = instance_create(x + (image_xscale * 8), y - 4, objDachoneBullet);
+        var i = instance_create(x + (image_xscale * 8), y - 4, objDachoneBullet);
         with (i)
         {
             image_xscale = scaleX;
@@ -182,7 +182,7 @@ if (entityCanStep())
     }
     else if (cooldownTimer == cooldownMax + 20)
     {
-        i = instance_create(x + (image_xscale * 8), y - 4, objDachoneBullet);
+        var i = instance_create(x + (image_xscale * 8), y - 4, objDachoneBullet);
         with (i)
         {
             image_xscale = scaleX;
@@ -194,7 +194,7 @@ if (entityCanStep())
     }
     else if (cooldownTimer == cooldownMax + 40)
     {
-        i = instance_create(x + (image_xscale * 8), y - 4, objDachoneBullet);
+        var i = instance_create(x + (image_xscale * 8), y - 4, objDachoneBullet);
         with (i)
         {
             image_xscale = scaleX;
@@ -206,7 +206,7 @@ if (entityCanStep())
     }
     else if (cooldownTimer == cooldownMax + 60)
     {
-        i = instance_create(x + (image_xscale * 8), y - 4, objDachoneBullet);
+        var i = instance_create(x + (image_xscale * 8), y - 4, objDachoneBullet);
         with (i)
         {
             image_xscale = scaleX;

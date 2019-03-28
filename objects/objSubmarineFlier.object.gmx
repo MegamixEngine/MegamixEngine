@@ -85,7 +85,7 @@ if (entityCanStep())
             xspeed = 0.4 * image_xscale;
             sinCounter += 0.03;
             yspeed = -(cos(sinCounter) * 0.5);
-            reveal = false;
+            var reveal = false;
             if (healthpoints &lt;= healthpointsStart - 2)
             {
                 reveal = true;
@@ -118,7 +118,7 @@ if (entityCanStep())
             }
             if (waterY == 0)
             {
-                water = instance_place(x, y + yspeed, objWater);
+                var water = instance_place(x, y + yspeed, objWater);
                 if (instance_exists(water))
                 {
                     waterY = water.y - 2;
@@ -170,7 +170,7 @@ if (entityCanStep())
                 timer += 1;
                 if (timer &gt;= 65) // &lt;-- shot wait time here
                 {
-                    bullet = instance_create(x, y - 12, objEnemyBullet);
+                    var bullet = instance_create(x, y - 12, objEnemyBullet);
                     with (bullet)
                     {
                         yspeed = -2.7;

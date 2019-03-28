@@ -88,7 +88,7 @@ spawnN = 0;
 spawnedCount = 0;
 
 alarm[0] = 1;
-
+spawnList = makeArray()
 canHit = false;
 image_speed = 0;
 </string>

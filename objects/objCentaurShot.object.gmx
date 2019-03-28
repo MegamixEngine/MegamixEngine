@@ -70,7 +70,7 @@ if (global.frozen == false)
         var i;
         for (i = 0; i &lt;= 8; i += 1)
         {
-            cS = instance_create(x, y, objCentaurSecondaryBullet);
+            var cS = instance_create(x, y, objCentaurSecondaryBullet);
             cS.dir = 90 + (22.5 * i);
             cS.image_xscale = image_xscale;
             cS.xscale = cS.image_xscale;

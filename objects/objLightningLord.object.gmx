@@ -106,7 +106,7 @@ if (entityCanStep())
     if (shootTimer == 150)
     {
         image_index = 2;
-        i = instance_create(x, y - 22, obj);
+        var i = instance_create(x, y - 22, obj);
         i.image_xscale = image_xscale;
         i.xspeed = image_xscale;
     }

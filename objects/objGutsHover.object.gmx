@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A flying platform based on Guts Man's head. It sinks when entities ride it, and it dies to spikes.
+event_inherited();
 
 image_speed = 0;
 canHit = false;
@@ -35,7 +36,18 @@ blockCollision = true;
 rotorTimer = 0;
 activateTimer = 0;
 phase = 0; // 0: inactive. 1: moving
-dir = 1; // 1: left. -1: right.
+
+// @cc - What direction it moves in. (-1: left. 1: right.)
+dir = 1;
+
+// @cc - Can I move in any direction based on the xscale of my rider?
+freeMove = false;
+
+// @cc - How fast can I move horizontally?
+myXSpeed = 0.5;
+
+// @cc - How fast can I move vertically?
+myYSpeed = 0.5;
 </string>
           </argument>
         </arguments>
@@ -68,7 +80,7 @@ if (entityCanStep())
         if (ground &amp;&amp; place_meeting(x, y + 2*sign(grav), other) &amp;&amp; !dead)
         {
             pressed = true;
-            if (other.phase == 0)
+            if (other.phase == 0) &amp;&amp; (other.freeMove)
                 other.dir += image_xscale * (0.0001 + (object_index == objMegaman));
         }
     
@@ -99,8 +111,8 @@ if (entityCanStep())
     else
     {
         // move diagonally downward.
-        xspeed = dir / 2;
-        yspeed = image_yscale / 2;
+        xspeed = myXSpeed * dir;
+        yspeed = myYSpeed * image_yscale;
         image_index = 8;
         if (rotorTimer mod 5 == 0)
             rotorTimer++;
@@ -111,8 +123,10 @@ if (entityCanStep())
         if (place_meeting(x, y + image_yscale, objSpike))
         {
             with (prtEntity)
-                if (ground &amp;&amp; place_meeting(x, y + 2*sign(grav) , other) &amp;&amp; canHit)
+                if (ground &amp;&amp; place_meeting(x, y + 2*sign(grav) , other) &amp;&amp; canHit &amp;&amp; object_index != objMegaman)
+                {
                     event_user(EV_DEATH);
+                }
             event_user(EV_DEATH);
         }
     }

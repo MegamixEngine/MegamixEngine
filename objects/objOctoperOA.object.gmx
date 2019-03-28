@@ -359,7 +359,7 @@ if(spawned)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>b = bboxGetYCenterObject(other.id);
+            <string>var b = bboxGetYCenterObject(other.id);
 if (!collision_rectangle(x, y,
     x + ((bbox_right - bbox_left) / 2) * image_xscale, y - 16, other.id,
     false, false))

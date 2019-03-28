@@ -105,7 +105,9 @@ with (objMegaman)
 }
 
 if (simshot)
-    keyShoot[0] = true;
+{
+    global.keyShoot[0] = true;
+}
 
 cursorDown = false;
 

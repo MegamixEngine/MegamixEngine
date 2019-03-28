@@ -167,7 +167,7 @@ if (floor(blink) &gt; 0)
 }
 if (length &gt; 0)
 {
-    for (i = 1; i &lt;= length; i += 1)
+    for (var i = 1; i &lt;= length; i += 1)
     {
         draw_background_part(tstSnakeman, 0, 32, 32, 16, round(x) - 16,
             round(y) + (i - 1) * 16);

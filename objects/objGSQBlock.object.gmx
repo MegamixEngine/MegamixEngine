@@ -73,6 +73,7 @@ if (entityCanStep)
     
     if (explode == true)
     {
+        var i;
         i = instance_create(x, y, objGSQDebris);
         i.xspeed = 2;
         i.yspeed = 2;

@@ -46,6 +46,7 @@ moveDist = 64;
 spawnHead = true;
 spawnHeadReset = spawnHead;
 init = 1;
+bodyInstanceStore = noone;
 </string>
           </argument>
         </arguments>

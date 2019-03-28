@@ -93,7 +93,7 @@ if (entityCanStep())
             //
             // --FIX THIS LATER--
             //
-            testAngle = point_direction(x, y, target.x, target.y);
+            var testAngle = point_direction(x, y, target.x, target.y);
             if (testAngle &lt;= 0)
             {
                 testAngle += 360;

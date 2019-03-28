@@ -330,7 +330,6 @@ event_inherited();
 mask_index = sprKakinbatank;
 phase = 0;
 timer = 60;
-attackTimer = 0;
 shielded = true;
 detectsShot = false;
 animFrame = 0;

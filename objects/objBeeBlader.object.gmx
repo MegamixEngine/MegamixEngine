@@ -116,7 +116,7 @@ if (entityCanStep()
                 break;
             }
         }
-        aimDir = 1;
+        var aimDir = 1;
         if (image_xscale == -1)
         {
             aimDir = -1;

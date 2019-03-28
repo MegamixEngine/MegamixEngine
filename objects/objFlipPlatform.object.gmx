@@ -42,6 +42,7 @@ respawnRange = -1;
 despawnRange = -1;
 
 isSolid = 2;
+iphase = 0;
 </string>
           </argument>
         </arguments>

@@ -101,7 +101,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         // manual exceptions, since these share objects.
         if (instance_place(x, y, objPicket))
         {
-            a = instance_place(x, y, objPicket);
+            var a = instance_place(x, y, objPicket);
             if (a.sprite_index == sprTackleFire &amp;&amp; a.yspeed &gt; 0)
             {
                 fire = true;
@@ -109,7 +109,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         }
         if (instance_place(x, y, objEnemyBullet))
         {
-            a = instance_place(x, y, objEnemyBullet);
+            var a = instance_place(x, y, objEnemyBullet);
             if (a.sprite_index == sprFireTotemFlame &amp;&amp; a.yspeed &gt; 0)
             {
                 fire = true;
@@ -117,7 +117,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         }
         
         // ITS LIT FAM :joy:
-        for (i = 0; i &lt; array_length_1d(fireSource); i++)
+        for (var i = 0; i &lt; array_length_1d(fireSource); i++)
         {
             if (place_meeting(x, y, fireSource[i]))
             {
@@ -126,7 +126,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         }
         
         // check if anything else is on fire near it
-        for (i = 0; i &lt;= 1; i += 1)
+        for (var i = 0; i &lt;= 1; i += 1)
         {
             if (place_meeting(x - 16, y, oil[i]))
             {
@@ -189,7 +189,7 @@ else if (dead)
             <kind>1</kind>
             <string>if (instance_exists(target))
 {
-    spl = instance_create(target.x, bbox_top + 4, objSplash);
+    var spl = instance_create(target.x, bbox_top + 4, objSplash);
     spl.sprite_index = sprOilSplash;
     spl.blockCollision = 0;
 }

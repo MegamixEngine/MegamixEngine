@@ -176,7 +176,7 @@ if (entityCanStep())
     // blow up on ground hit
     if ((xcoll) || (ycoll))
     {
-        i = instance_create(x, y, objHarmfulExplosion);
+        var i = instance_create(x, y, objHarmfulExplosion);
         i.contactDamage = 4;
         playSFX(sfxMM9Explosion);
         itemDrop = -1;
@@ -239,7 +239,7 @@ if other.y &lt;= y - 2 &amp;&amp; image_index &gt;= 5
             <kind>1</kind>
             <string>event_inherited();
 
-i = instance_create(x, y, objHarmfulExplosion);
+var i = instance_create(x, y, objHarmfulExplosion);
 i.contactDamage = 4;
 playSFX(sfxMM9Explosion);
 </string>

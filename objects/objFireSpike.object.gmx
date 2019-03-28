@@ -27,8 +27,9 @@
             <kind>1</kind>
             <string>event_inherited();
 
-canHit = false;
 contactDamage = 4;
+healthpointsStart = 3;
+healthpoints = healthpointsStart;
 
 image_speed = 0;
 image_index = 0;
@@ -40,14 +41,16 @@ animPhase = 0;
 blockCollision = false;
 grav = 0;
 bubbleTimer = -1;
+freezeTimer = 0;
+canIce = false;
 
-// max distance from starting point to move
+// @cc - max distance from starting point to move
 radius = 32;
 
-// number of frames per tick
+// @cc - number of frames per tick
 moveTime = 5;
 
-// -1: moves left. 1: moves right
+// @cc - -1: moves left. 1: moves right
 dir = 1;
 </string>
           </argument>
@@ -75,20 +78,36 @@ dir = 1;
 
 if (entityCanStep())
 {
-    animTimer++;
-    if (animTimer &gt;= moveTime)
+    healthpoints = 3;
+    // Freeze Control
+    if (freezeTimer &gt; 0)
     {
-        animTimer = 0;
-        animPhase = (animPhase + 1) mod 4;
-        x += 8 * dir;
-        if (place_meeting(x, y, objSolid) || abs(x - xstart) &gt; radius)
+        freezeTimer--;
+        if (freezeTimer == 1)
         {
-            x = xstart - floorTo(radius, 8) * dir;
-            animPhase = 0;
+            if (sprite_index == sprFireSpikeFrozen)
+            {
+                sprite_index = sprFireSpike;
+            }
         }
     }
-    var animTable = makeArray(2, 1, 0, 1);
-    image_index = animTable[animPhase];
+    else
+    {
+        animTimer++;
+        if (animTimer &gt;= moveTime)
+        {
+            animTimer = 0;
+            animPhase = (animPhase + 1) mod 4;
+            x += 8 * dir;
+            if (place_meeting(x, y, objSolid) || abs(x - xstart) &gt; radius)
+            {
+                x = xstart - floorTo(radius, 8) * dir;
+                animPhase = 0;
+            }
+        }
+        var animTable = makeArray(2, 1, 0, 1);
+        image_index = animTable[animPhase];
+    }
 }
 </string>
           </argument>
@@ -117,6 +136,7 @@ if (entityCanStep())
 animTimer = 0;
 animPhase = 0;
 image_index = 0;
+freezeTimer = 0;
 </string>
           </argument>
         </arguments>
@@ -139,7 +159,21 @@ image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>other.guardCancel = 2;
+            <string>if (other.object_index == objIceWall) || (other.object_index == objIceSlasher)
+{
+    freezeTimer = 240;
+                
+    if (sprite_index == sprFireSpike)
+    {
+        sprite_index = sprFireSpikeFrozen;
+    }
+    playSFX(sfxEnemyHit);
+    healthpoints = 3;
+}
+else
+{
+    other.guardCancel = 2;
+}
 </string>
           </argument>
         </arguments>

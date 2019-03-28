@@ -147,7 +147,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             <kind>1</kind>
             <string>var getWidth = sprite_get_width(sprite) / 3;
 
-for (i = 0; i &lt; image_xscale; i++)
+for (var i = 0; i &lt; image_xscale; i++)
 {
     draw_sprite_part(sprite, img mod sprite_get_number(sprite), getWidth * (sign(i) + (i == image_xscale - 1)), 0, getWidth, sprite_height, x + i * getWidth, y);
 }

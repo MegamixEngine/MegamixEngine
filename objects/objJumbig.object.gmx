@@ -30,6 +30,7 @@
 healthpointsStart = 14;
 healthpoints = healthpointsStart;
 contactDamage = 7;
+xs = 0;
 
 category = "big eye, bulky";
 

@@ -58,7 +58,7 @@ sp = 8;
 {
     timer += 1;
     
-    open = ds_list_create();
+    var open = ds_list_create();
     
     for (i = 0; i &lt; array_length_1d(sq); i += 1)
     {
@@ -88,9 +88,10 @@ sp = 8;
     ds_list_destroy(open);
 }
 
-dir = 1;
-sw = view_wview / 8;
-for (i = 0; i &lt; array_length_1d(sq); i += 1)
+var dir = 1;
+var sw = view_wview / 8;
+var ys, xs, xa, ya;
+for (var i = 0; i &lt; array_length_1d(sq); i += 1)
 {
     if (sq[i])
     {

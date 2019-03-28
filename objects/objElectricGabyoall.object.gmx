@@ -157,7 +157,7 @@ if (entityCanStep())
             var i;
             for (i = 0; i &lt; ds_list_size(electricityList); i += 1)
             {
-                current = ds_list_find_value(electricityList, i);
+                var current = ds_list_find_value(electricityList, i);
                 current.x = x;
             }
         }
@@ -332,7 +332,7 @@ if (spawned)
         shootWaitTimer = shootWait;
         
         var i;
-        p = 0;
+        var p = 0;
         for (i = y + 8 * image_yscale; i &lt;= global.sectionBottom; i += 16 * image_yscale)
         {
             p += 1;
@@ -404,7 +404,7 @@ if (electricityList != noone)
     var i;
     for (i = 0; i &lt; ds_list_size(electricityList); i += 1)
     {
-        current = ds_list_find_value(electricityList, i);
+        var current = ds_list_find_value(electricityList, i);
         with (current)
         {
             instance_destroy();

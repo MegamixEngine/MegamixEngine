@@ -46,6 +46,7 @@ moveTimer = 60;
 shootTimer = 30;
 timeSlow = 2;
 drawTimer = 4;
+statusObject = noone;
 </string>
           </argument>
         </arguments>

@@ -191,8 +191,8 @@ switch (angle)
             <kind>1</kind>
             <string>event_inherited();
 
-refX = spriteGetXCenter();
-refY = spriteGetYCenter();
+var refX = spriteGetXCenter();
+var refY = spriteGetYCenter();
 
 if (object_index == objPetitDevilYellow)
 {

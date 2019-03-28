@@ -93,7 +93,7 @@ if (entityCanStep())
     }
     
     // AI
-    range = 48; // &lt;-- movement area width here
+    var range = 48; // &lt;-- movement area width here
     if (xspeed == 0 || x &lt; xstart - range || x &gt; xstart + range)
     {
         image_xscale = -image_xscale;

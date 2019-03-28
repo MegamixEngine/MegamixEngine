@@ -118,7 +118,7 @@ event_inherited();
 if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
     // Left button
-    mm = collision_rectangle(bbox_left + 1, bbox_top - 1, bbox_left + 1 + 30 - 2, bbox_top - 1, target, false, false);
+    var mm = collision_rectangle(bbox_left + 1, bbox_top - 1, bbox_left + 1 + 30 - 2, bbox_top - 1, target, false, false);
     if (mm)
     {
         if (mm.ground)
@@ -219,8 +219,8 @@ else if (dead)
     }
 }
 
-xs = x;
-ys = y;
+var xs = x;
+var ys = y;
 
 x = round(x);
 y = round(y);

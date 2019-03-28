@@ -159,10 +159,10 @@ if (entityCanStep())
             }
         }
         
-        mypillar = instance_position(x + 7, y + 7, objPetitSnakeyPillar);
-        if (mypillar)
+        myPillar = instance_position(x + 7, y + 7, objPetitSnakeyPillar);
+        if (myPillar)
         {
-            with (mypillar)
+            with (myPillar)
             {
                 if (visible &amp;&amp; !dead)
                 {

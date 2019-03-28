@@ -162,7 +162,7 @@ if (entityCanStep())
             
             with (objMegaman)
             {
-                i = instance_create(x, y, objMegamanExit);
+                var i = instance_create(x, y, objMegamanExit);
                 i.pid = playerID;
                 i.cid = costumeID;
                 
@@ -201,10 +201,10 @@ if (entityCanStep())
     playMusic('Mega_Man_10.nsf', "VGM", 19, 0, 0, false, 1);
     playSFX(sfxElementGrab);
     
-    for (j = 0; j &lt; global.playerCount; j += 1) // Refill stuff
+    for (var j = 0; j &lt; global.playerCount; j += 1) // Refill stuff
     {
         global.playerHealth[j] = 28;
-        for (i = 0; i &lt;= global.totalWeapons; i += 1)
+        for (var i = 0; i &lt;= global.totalWeapons; i += 1)
         {
             global.ammo[j, i] = 28;
         }

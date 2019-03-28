@@ -101,7 +101,7 @@ if (!controlsLocked)
         {
             // quit:
             global.nextRoom = rmTitleScreen;
-            lockControls = true;
+            controlsLocked = true;
         }
         else if (selection == 1)
         {

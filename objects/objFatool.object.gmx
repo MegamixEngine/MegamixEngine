@@ -93,7 +93,7 @@ if (entityCanStep())
         if (yspeed &gt; -1.5 &amp;&amp; !hasFired)
         {
             hasFired = true;
-            i = instance_create(x + image_xscale * 8, spriteGetYCenter() + 4, objMM2MetBullet);
+            var i = instance_create(x + image_xscale * 8, spriteGetYCenter() + 4, objMM2MetBullet);
             i.dir = 0;
             i.image_xscale = image_xscale;
             playSFX(sfxEnemyShootClassic);

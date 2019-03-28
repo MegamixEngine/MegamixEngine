@@ -122,7 +122,7 @@ if (entityCanStep())
         {
             if (metallTimer == floor(metallTimer / 20) * 20)
             {
-                met = instance_create(x + 8 * image_xscale, y + 32, objMetall);
+                var met = instance_create(x + 8 * image_xscale, y + 32, objMetall);
                 with (met)
                 {
                     yspeed = -2;
@@ -242,11 +242,12 @@ coolDown = 120;
           <argument>
             <kind>1</kind>
             <string>/// Balls
-for (i = -1; i &lt;= 1; i += 1)
+for (var i = -1; i &lt;= 1; i += 1)
 {
-    ball = instance_create(x + 8 * image_xscale, y + 24, objGiantMetallBall);
+    var ball = instance_create(x + 8 * image_xscale, y + 24, objGiantMetallBall);
     ball.xspeed = (1 - (abs(i) / 2)) * image_xscale;
     ball.yspeed = i * 1;
+    ball.image_xscale = image_xscale;
 }
 
 coolDown = 60;

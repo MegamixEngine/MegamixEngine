@@ -229,7 +229,7 @@ catchTimes = 0;
         playSFX(sfxEnemyHit);
         if (healthpoints == 2)
         {
-            i = instance_create(x, y + 16, objBlockySpray);
+            var i = instance_create(x, y + 16, objBlockySpray);
             with (i)
             {
                 switch (other.col)

@@ -110,7 +110,7 @@ if (entityCanStep())
                 
                 if (instance_exists(target))
                 {
-                    bullet = instance_create(x, y - 14, objEnemyBullet);
+                    var bullet = instance_create(x, y - 14, objEnemyBullet);
                     bullet.contactDamage = 3;
                     bullet.grav = 0.11;
                     bullet.image_xscale = image_xscale;

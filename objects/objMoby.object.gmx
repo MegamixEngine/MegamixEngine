@@ -112,6 +112,7 @@ if (entityCanStep() &amp;&amp; introTimer &lt;= 0)
     
     if (shootTimer == floor(shootTimer / 60) * 60)
     {
+        var myAttack;
         if (attack == 0)
         {
             myAttack = instance_create(x + 38 * image_xscale, y + 20,
@@ -121,7 +122,7 @@ if (entityCanStep() &amp;&amp; introTimer &lt;= 0)
         }
         else
         {
-            for (i = 0; i &lt;= 3; i += 1)
+            for (var i = 0; i &lt;= 3; i += 1)
             {
                 myAttack = instance_create(x - 8 * image_xscale, y - 32,
                     objMobbyBomb);

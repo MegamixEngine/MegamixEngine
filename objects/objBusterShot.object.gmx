@@ -158,30 +158,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch (global.characterSelected[0])
-{
-    default:
-    case "Mega Man":
-    {
-        weaponSetup("MEGA BUSTER", -1, -1, sprWeaponIconsMegaBuster);
-        break;
-    }
-    case "Proto Man":
-    {
-        weaponSetup("PROTO BUSTER", -1, -1, sprWeaponIconsMegaBuster);
-        break;
-    }
-    case "Bass":
-    {
-        weaponSetup("BASS BUSTER", -1, -1, sprWeaponIconsMegaBuster);
-        break;
-    }
-    case "Roll":
-    {
-        weaponSetup("ROLL BUSTER", -1, -1, sprWeaponIconsMegaBuster);
-        break;
-    }
-}
+            <string>weaponSetup("MEGA BUSTER", -1, -1, sprWeaponIconsMegaBuster);
 </string>
           </argument>
         </arguments>

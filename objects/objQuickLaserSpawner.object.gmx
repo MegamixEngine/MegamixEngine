@@ -186,8 +186,8 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         
         // Shoot da lazor
         case 1: // spawn the actual laser 
-            sx = x;
-            sy = y;
+            var sx = x;
+            var sy = y;
             
             // find the top left position of the laser spawner so we can spawn at it (basically remove the sprite x and y origin of the spawner)
             sx -= sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle));
@@ -225,15 +225,15 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
             }
             else
             {
-                height = sprite_get_height(sprQuickLaserDrain);
+                var height = sprite_get_height(sprQuickLaserDrain);
                 if (sprite != -1)
                 {
                     height = sprite_get_height(sprite);
                 }
                 
-                for (i = 0; i &lt; height; i++)
+                for (var i = 0; i &lt; height; i++)
                 {
-                    laser = instance_create(sx, sy, objQuickLaser);
+                    var laser = instance_create(sx, sy, objQuickLaser);
                     laser.image_xscale = 0;
                     laser.image_angle = image_angle;
                     laser.mySpeed = extendSpeed;
@@ -329,8 +329,8 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
             }
             
             // rotate + reposition the laser(s) to fit with the spawner
-            lx = x;
-            ly = y;
+            var lx = x;
+            var ly = y;
             
             // find the top left position of the laser spawner (basically remove the sprite x and y origin of the spawner)
             lx -= sprite_get_xoffset(sprite_index) * cos(degtorad(image_angle));
@@ -505,7 +505,7 @@ if (rotateSpeed != 0 &amp;&amp; rotateStartDir != 0)
         // if this object's starting angle is outside the rotate range, then fix that
         if (!withinDegreeRange(rotateStartRange, true, rotateEndRange, true, image_angle))
         {
-            _middle = (rotateStartRange + rotateEndRange) / 2;
+            var _middle = (rotateStartRange + rotateEndRange) / 2;
             if (rotateEndRange &lt; rotateStartRange)
             {
                 // start range + half the range distance + 180 to flip to the middle of the angles not in the range
@@ -529,16 +529,16 @@ if (rotateSpeed != 0 &amp;&amp; rotateStartDir != 0)
         
         // Vf = Vi + a * t
         // (Vf - Vi) / a = t
-        _time = (rotateSpeed - 0) / rotateAccel;
+        var _time = (rotateSpeed - 0) / rotateAccel;
         
         // d = ((Vi + Vf) / 2) * t
-        _dist = ((0 + rotateSpeed) / 2) * _time;
+        var _dist = ((0 + rotateSpeed) / 2) * _time;
         
         rotateStartRangeTurn = loopDegrees(rotateStartRange + _dist);
         rotateEndRangeTurn = loopDegrees(rotateEndRange - _dist);
         
         // if acceleration is too slow to get to max speed, then make the turn points right in the middle of the range so it still stops at the correct angles
-        _middle = (rotateStartRange + rotateEndRange) / 2;
+        var _middle = (rotateStartRange + rotateEndRange) / 2;
         if (rotateEndRange &lt; rotateStartRange)
         {
             // start range + half the range distance
@@ -570,8 +570,8 @@ if (rotateSpeed != 0 &amp;&amp; rotateStartDir != 0)
         _dist = 0;
         if (withinDegreeRange(rotateStartRange, false, rotateStartRangeTurn, true, image_angle))
         {
-            _startPoint = rotateStartRange;
-            _endPoint = image_angle;
+            var _startPoint = rotateStartRange;
+            var _endPoint = image_angle;
             
             if (_endPoint &lt; _startPoint)
             {
@@ -586,8 +586,8 @@ if (rotateSpeed != 0 &amp;&amp; rotateStartDir != 0)
         }
         else if (withinDegreeRange(rotateEndRangeTurn, true, rotateEndRange, false, image_angle))
         {
-            _startPoint = image_angle;
-            _endPoint = rotateEndRange;
+            var _startPoint = image_angle;
+            var _endPoint = rotateEndRange;
             
             if (_endPoint &lt; _startPoint)
             {

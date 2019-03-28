@@ -46,6 +46,8 @@ init = true;
 
 freezeTimer = 0;
 preImgSpeed = 0.25;
+spriteWidth = 0;
+spriteHeight = 0;
 </string>
           </argument>
         </arguments>
@@ -170,10 +172,15 @@ if (entityCanStep())
     {
         if (pierces == 0 || pierces == 1)
         {
-            event_user(EV_DEATH);
+            if (object_index != objSuperArmBlockProjectile) &amp;&amp; (object_index != objSuperArmDebris)
+            {
+                event_user(EV_DEATH);
+            }
             playSFX(sfxEnemyHit);
         }
     }
+    
+    iFrames = 0;
 }
 
 // only Rain Flush can stop fire....even if it's invisible......

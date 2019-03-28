@@ -277,7 +277,7 @@ if (entityCanStep()
                         phase = 0;
                         joeFrame = 0;
                         attackTimer = 0;
-                        animeTimer = 0;
+                        animTimer = 0;
                     }
                     break;
                 case 48:
@@ -293,7 +293,7 @@ if (entityCanStep()
                     joeFrame = 9;
                     phase = 2;
                     attackTimer = 0;
-                    animeTimer = 0;
+                    animTimer = 0;
                     break;
             }
             break;

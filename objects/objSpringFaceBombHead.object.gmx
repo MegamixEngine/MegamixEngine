@@ -71,7 +71,7 @@ if (entityCanStep())
 {
     if (xcoll != 0 || ground)
     {
-        bwooooaaaaaaa = instance_create(x, y, objHarmfulExplosion);
+        var bwooooaaaaaaa = instance_create(x, y, objHarmfulExplosion);
         bwooooaaaaaaa.contactDamage = 3;
         playSFX(sfxExplosion2);
         instance_destroy();

@@ -122,7 +122,7 @@ if (instance_exists(parent))
         other.image_yscale = abs(other.image_yscale) * image_yscale;
     }
     
-    xxs = xs;
+    var xxs = xs;
     if (image_xscale != xst)
     {
         xxs *= -1;
@@ -163,7 +163,7 @@ else
             <kind>1</kind>
             <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(5, -2, objSlashClaw, 1, 1, 1, 1);
+    var i = fireWeapon(5, -2, objSlashClaw, 1, 1, 1, 1);
     if (instance_exists(i))
     {
         i.xs = i.x - x;
@@ -257,7 +257,7 @@ specialDamageValue("shield attackers", 4);
 {
     with (other)
     {
-        par = object_is_ancestor(object_index, prtMiniBoss) || (boss == 1);
+        var par = object_is_ancestor(object_index, prtMiniBoss) || (boss == 1);
         if (par || !canHit)
         {
             exit;

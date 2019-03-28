@@ -93,9 +93,9 @@ if (entityCanStep())
                     waitTimer++;
                     break;
                 }
-                pxd = target.x - x;
-                pyd = target.y - y;
-                pangle = 0;
+                var pxd = target.x - x;
+                var pyd = target.y - y;
+                var pangle = 0;
                 if (pxd != 0)
                 {
                     pangle = point_direction(x, y, target.x, target.y);
@@ -113,7 +113,7 @@ if (entityCanStep())
                 }
                 
                 // and now that we have the angle the player is facing, we take the difference of the angles
-                change = direction - pangle;
+                var change = direction - pangle;
                 
                 // loop degree check, so the angle isn't above 360 or below 0
                 if (change &gt; 360)

@@ -73,6 +73,7 @@ if (entityCanStep())
     var progress = timer div 3;
     
     // what tiles blow up
+    var pos_x, pos_y, pos_n;
     pos_n = 0;
     if (progress == 0)
     {

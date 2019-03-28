@@ -87,7 +87,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             }
         }
         
-        i = instance_create(x, y + 24 * -sign(myTopSpeed), objectDrop);
+        var i = instance_create(x, y + 24 * -sign(myTopSpeed), objectDrop);
         i.yspeed = myTopSpeed;
         i.image_yscale = image_yscale;
     }

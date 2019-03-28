@@ -53,6 +53,7 @@ choosePhase = 0;
 lastPhase = phase;
 block = noone;
 timer = 0;
+newX = 0;
 
 // Health Bar
 healthBarPrimaryColor[1] = 18;

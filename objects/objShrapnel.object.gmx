@@ -59,7 +59,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
 {
     if (xcoll != 0 || ycoll != 0)
     {
-        i = instance_create(x, y, objHarmfulExplosion);
+        var i = instance_create(x, y, objHarmfulExplosion);
         i.sprite_index = sprExplosion;
         playSFX(sfxClassicExplosion);
         

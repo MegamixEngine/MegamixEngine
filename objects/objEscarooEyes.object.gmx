@@ -104,7 +104,7 @@ if (entityCanStep())
         getY = y;
         
         // image_index = 0;
-        spd = 4;
+        var spd = 4;
         
         // setTargetStep();
         if (instance_exists(target))

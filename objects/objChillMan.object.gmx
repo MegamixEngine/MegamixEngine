@@ -54,6 +54,7 @@ slide = false;
 pauseGravity = false;
 shotsFired = 0;
 frostTimer = 0;
+d = 0
 
 // chill man has a bit of randomised shenangians going on. this variable sets it.
 randomiser = -1;
@@ -166,7 +167,7 @@ enemyDamageValue(objIceSlasher, 1);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>cS = instance_create(x + (24 * image_xscale), y + 3, objChillSpike);
+            <string>var cS = instance_create(x + (24 * image_xscale), y + 3, objChillSpike);
 cS.image_xscale = image_xscale;
 cS.toWall = true;
 </string>
@@ -211,7 +212,7 @@ cS.toWall = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>cS = instance_create(x + (24 * image_xscale), y + 3, objChillSpike);
+            <string>var cS = instance_create(x + (24 * image_xscale), y + 3, objChillSpike);
 cS.image_xscale = image_xscale;
 cS.yspeed = -3;
 </string>
@@ -374,7 +375,7 @@ if (entityCanStep())
                     playSFX(sfxChillShoot);
                     if (delay == 0)
                     {
-                        cD = instance_create(x, y, objChillSpikeDetector);
+                        var cD = instance_create(x, y, objChillSpikeDetector);
                         cD.image_xscale = image_xscale;
                         cD.aimAtMegaman = true;
                         cD.target = target;
@@ -384,7 +385,7 @@ if (entityCanStep())
                 else if (attackTimer == 20 &amp;&amp; shotsFired mod 2 == 1)
                 {
                     playSFX(sfxChillShoot);
-                    cD = instance_create(x, y, objChillSpikeDetector);
+                    var cD = instance_create(x, y, objChillSpikeDetector);
                     cD.image_xscale = image_xscale;
                     cD.aimAtMegaman = false;
                     alarm[8] = 2;
@@ -429,7 +430,7 @@ if (entityCanStep())
                     }
                     else
                     {
-                        cD = instance_create(x, y, objChillSpikeDetector);
+                        var cD = instance_create(x, y, objChillSpikeDetector);
                         cD.aimAtMegaman = true;
                         xspeed = xSpeedAim(x, y, objChillSpikeDetector.x, objChillSpikeDetector.y, yspeed, grav);
                     }
@@ -467,7 +468,7 @@ if (entityCanStep())
                     {
                         sprite_index = sprChillJump;
                         delay = 3;
-                        cD = instance_create(view_xview + (view_wview / 2),
+                        var cD = instance_create(view_xview + (view_wview / 2),
                             view_yview + (view_hview / 2),
                             objChillSpikeDetector);
                         cD.center = true;
@@ -514,7 +515,7 @@ if (entityCanStep())
                         &amp;&amp; shotsFired &lt; 5)
                     {
                         playSFX(sfxChillGloop);
-                        cG = instance_create(x, y, objChillSpikeGenerator);
+                        var cG = instance_create(x, y, objChillSpikeGenerator);
                         cG.cooldownTimer = 16 * (shotsFired + 1);
                         cG.spike = 4 - shotsFired;
                         cG.x += 24 * cos(d / 57);

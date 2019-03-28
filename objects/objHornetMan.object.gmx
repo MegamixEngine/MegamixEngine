@@ -187,7 +187,7 @@ if (entityCanStep())
                 {
                     timer = 0;
                     
-                    bee = instance_create(x + 10 * image_xscale, y - 6, objBeeChaser);
+                    var bee = instance_create(x + 10 * image_xscale, y - 6, objBeeChaser);
                     bee.sprite_index = sprBossHornetChaser;
                     bee.image_xscale = image_xscale;
                     bee.timer += (26 - counter * 13); // make sure they all start moving at the same time
@@ -268,7 +268,7 @@ if (entityCanStep())
                 // jump
                 if (ground)
                 {
-                    stop = false;
+                    var stop = false;
                     
                     if (checkSolid(10 * image_xscale, 0,1,1) || !positionCollision(x+10 * image_xscale,y+20,1,1))
                     {

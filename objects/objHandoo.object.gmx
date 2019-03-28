@@ -218,7 +218,6 @@ if (entityCanStep())
                 yspeed = 0;
                 image_index = 4;
                 moveTimer = 60;
-                inAir = false;
                 phase = 0;
                 facePlayer = true;
             }

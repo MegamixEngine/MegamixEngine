@@ -294,7 +294,7 @@ if (entityCanStep())
                             image_speed = 0;
                             yspeed = -6;
                             xspeed = xSpeedAim(x, y, targX, y);
-                            attackTimer = -20;
+                            attackTimer = -28;
                             phase = 2;
                         }
                     }
@@ -304,7 +304,15 @@ if (entityCanStep())
             case 2:
                 if (ground)
                 {
-                    image_index = 0;
+                    if (attackTimer &lt; -20)
+                    {
+                        image_index = 1;
+                        attackTimer++;
+                    }
+                    else
+                    {
+                        image_index = 0;
+                    }
                     xspeed = 0;
                     
                     if (!instance_exists(objDarkBarrier))

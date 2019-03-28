@@ -52,7 +52,7 @@ dir = "Left";
             <kind>1</kind>
             <string>if (place_meeting(x, y, objMegaman) &amp;&amp; !instance_exists(objWaveManWarp))
 {
-    ID = instance_create(x + 8, y, objWaveManWarp);
+    var ID = instance_create(x + 8, y, objWaveManWarp);
     ID.dir = dir;
     ID.spd = spd;
 }

@@ -2,7 +2,7 @@
 <sprite>
   <type>0</type>
   <xorig>12</xorig>
-  <yorigin>29</yorigin>
+  <yorigin>30</yorigin>
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
@@ -10,7 +10,7 @@
   <bbox_left>2</bbox_left>
   <bbox_right>22</bbox_right>
   <bbox_top>6</bbox_top>
-  <bbox_bottom>28</bbox_bottom>
+  <bbox_bottom>29</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
@@ -18,7 +18,7 @@
   </TextureGroups>
   <For3D>0</For3D>
   <width>25</width>
-  <height>30</height>
+  <height>31</height>
   <frames>
     <frame index="0">images\sprMonoRoaderRed_0.png</frame>
     <frame index="1">images\sprMonoRoaderRed_1.png</frame>

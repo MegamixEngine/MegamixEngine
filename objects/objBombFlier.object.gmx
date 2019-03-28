@@ -154,8 +154,17 @@ else if (dead)
         
         sprite_index = sprBombFlierUncover;
         image_index = 0;
+        iFrames = 0;
+        with (other)
+        {
+            if ((penetrate &lt; 2) &amp;&amp; (pierces &lt; 2))
+            {
+                event_user(EV_DEATH);
+            }
+        }
+        other.guardCancel = 2;
         
-        healthpoints += global.damage;
+        //healthpoints += global.damage;
     }
 }
 else

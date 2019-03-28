@@ -100,7 +100,7 @@ if (entityCanStep())
             {
                 if (shotLimit &gt; 0)
                 {
-                    i = instance_create(x, y - 4, objEnemyBullet);
+                    var i = instance_create(x, y - 4, objEnemyBullet);
                     i.xspeed = 2 * image_xscale;
                     playSFX(sfxEnemyShootClassic);
                     shotLimit--;

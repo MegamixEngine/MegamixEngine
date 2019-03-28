@@ -107,7 +107,7 @@ if (entityCanStep())
                         
                         if (shootTimer == 0)
                         {
-                            i = instance_create(x + 8 * image_xscale, y, objPalmHopperMissile);
+                            var i = instance_create(x + 8 * image_xscale, y, objPalmHopperMissile);
                             playSFX(sfxMissileLaunch);
                             i.xspeed = 2 * image_xscale;
                             i.image_xscale = image_xscale;

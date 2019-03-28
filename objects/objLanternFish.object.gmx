@@ -76,7 +76,7 @@ if (entityCanStep())
     if (alarmFish == 0 &amp;&amp; instance_number(objShrink) &lt; 2)
     {
         alarmFish = 60;
-        a = instance_create(x + (15 * image_xscale), y - 10, objShrink);
+        var a = instance_create(x + (15 * image_xscale), y - 10, objShrink);
         a.respawn = false;
     }
     if (image_index &gt;= 4)

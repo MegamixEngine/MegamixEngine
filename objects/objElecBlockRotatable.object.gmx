@@ -85,7 +85,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     alarmAttack += 1;
     if (alarmAttack &gt;= (waitLength + zapLength))
     {
-        i = instance_create(sx, sy, objEnemyBullet);
+        var i = instance_create(sx, sy, objEnemyBullet);
         i.sprite_index = sprElecThunder;
         i.alarmDie = zapLength;
         i.image_angle = image_angle;

@@ -74,7 +74,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
         if (delay &lt;= 0)
         {
             visible = 0;
-            i = instance_create(x, y + 2, objExplosion);
+            var i = instance_create(x, y + 2, objExplosion);
             with (i)
             {
                 // event_perform(ev_create,0);

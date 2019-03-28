@@ -179,7 +179,7 @@ if (!global.frozen)
 {
     for (var z = 1; z &lt;= 4; z++)
     {
-        i = fireWeapon(0, 0, objTornadoBlow, (z == 1), (7 * (z == 1)), 1, 0);
+        var i = fireWeapon(0, 0, objTornadoBlow, (z == 1), (7 * (z == 1)), 1, 0);
         if (instance_exists(i))
         {
             i.location = z;
@@ -262,7 +262,7 @@ specialDamageValue("floating", 6);
             <kind>1</kind>
             <string>with (other)
 {
-    par = object_is_ancestor(object_index, prtMiniBoss) || (boss == 1);
+    var par = object_is_ancestor(object_index, prtMiniBoss) || (boss == 1);
     if (par || !canHit || !killOverride)
     {
         exit;
@@ -270,7 +270,7 @@ specialDamageValue("floating", 6);
     
     if (healthpoints - global.damage &lt;= 0)
     {
-        _i = instance_create(x, y, objTornadoEffect);
+        var _i = instance_create(x, y, objTornadoEffect);
         
         var copy = instance_copy(false);
         _i.sprite_index = sprite_index;

@@ -194,7 +194,7 @@ image_index = imgIndex div 1;
             <kind>1</kind>
             <string>event_inherited();
 
-i = instance_create(x, y - 1, objHellMetallDX2);
+var i = instance_create(x, y - 1, objHellMetallDX2);
 i.yspeed = -2;
 
 if (other.object_index == objBreakDash)

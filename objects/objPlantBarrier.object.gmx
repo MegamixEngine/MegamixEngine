@@ -136,7 +136,7 @@ if (!global.frozen)
 
 if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(0, 0, objPlantBarrier, 1, 2, 1, 0);
+    fireWeapon(0, 0, objPlantBarrier, 1, 2, 1, 0);
 }
 </string>
           </argument>

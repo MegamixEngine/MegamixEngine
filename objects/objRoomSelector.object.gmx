@@ -242,7 +242,7 @@ if (!selected)
     if (global.keyPausePressed[0])
     {
         var ID;
-        myRoom = ds_list_find_value(roomlist, option - 1);
+        var myRoom = ds_list_find_value(roomlist, option - 1);
         if (myRoom == -1)
         {
             // load external

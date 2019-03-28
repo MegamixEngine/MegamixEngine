@@ -125,7 +125,7 @@ if (!global.frozen)
 {
     for (var z = 0; z &lt;= 2; z += 1)
     {
-        i = fireWeapon(16, image_yscale * (ground == false), objThunderBeam, 1 * (z == 0), 1.5 * (z == 0), 1, 0);
+        var i = fireWeapon(16, image_yscale * (ground == false), objThunderBeam, 1 * (z == 0), 1.5 * (z == 0), 1, 0);
         if (i)
         {
             if (z != 1) // Vertical beam

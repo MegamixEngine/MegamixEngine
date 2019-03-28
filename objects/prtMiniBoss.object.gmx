@@ -154,7 +154,7 @@ if (!global.frozen &amp;&amp; dead &amp;&amp; !instance_exists(objSectionSwitche
             playSFX(sfxExplosion);
             
             // randomize();
-            inst = instance_create(xcenter + irandom_range(-(sprite_width / 2),
+            var inst = instance_create(xcenter + irandom_range(-(sprite_width / 2),
                 (sprite_width / 2)),
                 ycenter + irandom_range(-(sprite_height / 2) + 16,
                 (sprite_height / 2) - 16), objBigExplosion);

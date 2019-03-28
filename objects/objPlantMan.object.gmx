@@ -195,7 +195,7 @@ if (entityCanStep())
                     var i;
                     for (i = 0; i &lt; 4; i += 1)
                     {
-                        WS = instance_create(x, y, objPlantBarrierBoss);
+                        var WS = instance_create(x, y, objPlantBarrierBoss);
                         WS.cAngle = degtorad(90 * i);
                         WS.image_xscale = image_xscale;
                     }

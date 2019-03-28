@@ -86,7 +86,7 @@ alarm[8] = 1;
 
 if (global.keyCoinCollected == global.keyCoinTotal)
 {
-    i = instance_create(spriteGetXCenter() - 8, spriteGetYCenter() - 8,
+    var i = instance_create(spriteGetXCenter() - 8, spriteGetYCenter() - 8,
         objKey);
     i.yspeed = -4;
     i.homingTimer = 90;

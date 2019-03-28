@@ -188,7 +188,7 @@ if (!global.frozen &amp;&amp; !lock)
                             yspeed = 0;
                         }
                         
-                        global.frozen = true;
+                        queuePause();
                         
                         with (other)
                         {

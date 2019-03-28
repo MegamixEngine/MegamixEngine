@@ -85,15 +85,15 @@ if (entityCanStep())
         shoottimer -= 1;
         if (shoottimer == 0)
         {
-            xx = target.x + choose(1, -1) * irandom_range(20, 64);
-            yy = 0;
+            var xx = target.x + choose(1, -1) * irandom_range(20, 64);
+            var yy = 0;
             while (preyy == yy || yy == 0)
             {
                 yy = (view_yview[0] + view_hview * 0.5) + yscale
                     * (view_hview * 0.5 + 6);
             }
             preyy = yy;
-            m = instance_create(xx, yy, obj);
+            var m = instance_create(xx, yy, obj);
             m.respawn = 0;
             yscale *= -1;
             for (i = 1; i &lt;= molelimit; i += 1)

@@ -85,13 +85,13 @@ if (firstFrame)
     
     // sink to ground
     
-    normal = 1;
+    var normal = 1;
     if (dir == 1 || dir == 3)
     {
         normal = -1;
     }
     
-    settle_dist = 1;
+    var settle_dist = 1;
     
     if (dir == 0)
     {
@@ -104,11 +104,11 @@ if (firstFrame)
     
     if (dir &lt;= 1)
     {
-        n_tries = 16;
+        var n_tries = 16;
         
         // move horizontally to avoid wall:
-        sg = 1;
-        r = 0;
+        var sg = 1;
+        var r = 0;
         
         while (place_meeting(x + sg * r, y + normal * settle_dist, objSolid) &amp;&amp; n_tries &gt; 0)
         {
@@ -137,8 +137,8 @@ if (firstFrame)
         n_tries = 16;
         
         // move vertically to avoid floor/ceiling:
-        sg = 1;
-        r = 0;
+        var sg = 1;
+        var r = 0;
         
         while (place_meeting(x + normal * settle_dist, y + sg * r, objSolid) &amp;&amp; n_tries &gt; 0)
         {
@@ -209,9 +209,9 @@ if (!instance_exists(objSectionSwitcher))
     playSFX(sfxChillSpikeShatter);
     
     // code swiped from whoever made chill man. thank you! &lt;3
-    for (i = 0; i &lt; 3; i += 1)
+    for (var i = 0; i &lt; 3; i += 1)
     {
-        a = instance_create(bboxGetXCenter() + random(8) - random(8), bboxGetYCenter(), objChillDebris);
+        var a = instance_create(bboxGetXCenter() + random(8) - random(8), bboxGetYCenter(), objChillDebris);
         a.xspeed = -choose(0.25, 0.5);
         if (i == 1)
         {

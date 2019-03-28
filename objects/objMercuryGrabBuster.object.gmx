@@ -95,7 +95,7 @@ else if (!instance_exists(parent))
             <string>event_inherited();
 
 // Create pickup
-i = instance_create(bboxGetXCenter(), bbox_top - 2, objMercuryGrabBusterPickup);
+var i = instance_create(bboxGetXCenter(), bbox_top - 2, objMercuryGrabBusterPickup);
                 
 with (other)
 {
@@ -115,7 +115,7 @@ with (other)
                 // Take big Bolt
                 if (z == 1)
                 {
-                    with (other.i)
+                    with (i)
                     {
                         sprite_index = sprBoltBig;
                         hp = 4;
@@ -125,7 +125,7 @@ with (other)
                 } // Take small bolt
                 else
                 {
-                    with (other.i)
+                    with (i)
                     {
                         sprite_index = sprBoltSmall;
                         hp = 2;
@@ -135,7 +135,7 @@ with (other)
             } // Take small Bolt if the player has less than 10 Bolts
             else if (global.bolts &gt; 0)
             {
-                with (other.i)
+                with (i)
                 {
                     sprite_index = sprBoltSmall;
                     hp = 2;
@@ -144,7 +144,7 @@ with (other)
             } // If no bolts, take health
             else
             {
-                with (other.i)
+                with (i)
                 {
                     hp = 2;
                 }
@@ -165,7 +165,7 @@ with (other)
                     // Take big energy
                     if (z == 1)
                     {
-                        with (other.i)
+                        with (i)
                         {
                             if (global.pickupGraphics)
                             {
@@ -181,7 +181,7 @@ with (other)
                     } // Take small energy
                     else
                     {
-                        with (other.i)
+                        with (i)
                         {
                             if (global.pickupGraphics)
                             {
@@ -198,7 +198,7 @@ with (other)
                 } // Take small energy if big energy isn't available
                 else if (global.ammo[e] &gt; 0)
                 {
-                    with (other.i)
+                    with (i)
                     {
                         if (global.pickupGraphics)
                         {
@@ -214,7 +214,7 @@ with (other)
                 } // Take health if no ammo
                 else
                 {
-                    with (other.i)
+                    with (i)
                     {
                         hp = 2;
                     }
@@ -223,7 +223,7 @@ with (other)
         } // Steal health
         else
         {
-            with (other.i)
+            with (i)
             {
                 hp = 2;
             }
@@ -231,7 +231,7 @@ with (other)
     }
                     
     // If no bolts or ammo, take health
-    with (other.i)
+    with (i)
     {
         hp = 2;
     }

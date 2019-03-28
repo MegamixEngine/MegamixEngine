@@ -288,7 +288,7 @@ if (!global.frozen)
             playSFX(sfxEnemyHit);
             with (other)
             {
-                i = instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
+                instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
                 event_user(EV_DEATH);
             }
             break;
@@ -331,13 +331,13 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>doIt = 1;
+            <string>var doIt = true;
 
 with (object_index)
 {
     if (insideView())
     {
-        other.doIt = 0;
+        other.doIt = false;
     }
 }
 
@@ -375,9 +375,9 @@ if (doIt)
             <kind>1</kind>
             <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    for (z = 0; z &lt; 8; z += 1)
+    for (var z = 0; z &lt; 8; z += 1)
     {
-        i = fireWeapon(0, 0, objJewelSatellite, 8, 4 * (z == 0), 0, 0);
+        var i = fireWeapon(0, 0, objJewelSatellite, 8, 4 * (z == 0), 0, 0);
         if (i)
         {
             i.direction = z * 90;

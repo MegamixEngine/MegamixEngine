@@ -177,7 +177,7 @@ if (!global.frozen &amp;&amp; !dead)
     {
         if (face_player)
         {
-            xtarg = x;
+            var xtarg = x;
             if (instance_exists(target))
             {
                 xtarg = target.x;
@@ -226,7 +226,7 @@ if (!global.frozen &amp;&amp; !dead)
                             }
                             
                             event_user(1); // start dialogue
-                            global.frozen = 1;
+                            queuePause();
                         }
                     }
                     else
@@ -281,7 +281,7 @@ if (option_text[0] != "" &amp;&amp; option_spoken == true &amp;&amp; !global.fro
     canExecute = true;
 }
 active = 0;
-global.frozen = 0;
+queueUnpause();
     
 // return to previous orientation, whether it was the same or not -- unless face_player is true
 if (!face_player)
@@ -338,7 +338,7 @@ if (code_on_talk_start != "")
 {
     stringExecutePartial(code_on_talk_start);
 }
-global.frozen = true;
+queuePause();
 </string>
           </argument>
         </arguments>
@@ -384,7 +384,7 @@ if (option_chosen != -1 &amp;&amp; !option_spoken &amp;&amp; option_text[option_
         stringExecutePartial(option_code_on_talk_start[option_chosen]);
         
     active = true;
-    global.frozen = 1;
+    queuePause();
     // exit;
 }
 </string>

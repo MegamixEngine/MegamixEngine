@@ -43,6 +43,8 @@ itemDrop = -1;
 lockTransition = false;
 
 phaseMultiple = 8; // Multiply in if arguments involving the timer.
+isDying = false;
+explodeTimer = 0;
 
 bodyShark = noone; // The shark part that made this.
 leftShark = noone; // Copied from the shark part that made this.
@@ -146,6 +148,8 @@ if (entityCanStep())
         image_xscale = bodyShark.image_xscale;
         image_yscale = bodyShark.image_yscale;
         
+        if (!isDying)
+        {
         // Opening (0) or closing (60) hatch.
         if (timer &lt;= 0 || timer == phaseMultiple * 6)
         {
@@ -174,6 +178,23 @@ if (entityCanStep())
         }
         timer++;
         image_index = hatchIndex; // Making sure the hitbox changes when opened.
+        }
+        //Death animation
+        else
+        {
+            explodeTimer++;
+            if (explodeTimer == 15)
+            {
+                instance_create(x-15*image_xscale,y+7,objBigExplosion);
+                playSFX(sfxMM9Explosion);
+            }
+            if (explodeTimer == 30)
+            {
+                instance_create(x+10*image_xscale,y-9,objBigExplosion);
+                playSFX(sfxMM9Explosion);
+                event_user(EV_DEATH);
+            }
+        }
     }
     else
     {
@@ -202,13 +223,24 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
-visible = false;
-
-// dead = 1;
-
-// instance_create(bboxGetXCenter(), bboxGetYCenter(), objHarmfulExplosion);
-// playSFX(sfxMM3Explode);
+            <string>//event_inherited();
+if(!isDying)
+{
+    visible = false;
+    instance_create(x,y,objBigExplosion);
+    playSFX(sfxMM9Explosion);
+    iFrames = 0;
+    stopSFX(sfxEnemyHit);
+    canHit = false;
+    isDying = true;
+    hatchIndex = 3;
+}
+else
+{
+    event_inherited();
+    xplX = -1;
+    xplY = -1;
+}
 </string>
           </argument>
         </arguments>

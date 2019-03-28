@@ -62,13 +62,15 @@ if (global.frozen == false)
         instance_create(x, y, objExplosion);
         playSFX(sfxExplosion);
         instance_destroy();
-        for (i = -1; i &lt;= 1; i += 1)
+        for (var i = -1; i &lt;= 1; i += 1)
+        {
             if (i != 0)
             {
-                rock = instance_create(x, y - 8, objSakugarneRock);
+                var rock = instance_create(x, y - 8, objSakugarneRock);
                 rock.yspeed = -abs(i) * 4;
                 rock.xspeed = i;
             }
+        }
     }
 }
 </string>

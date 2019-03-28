@@ -127,7 +127,7 @@ if (myItem &gt;= 0)
     
     if (item)
     {
-        i = instance_create(x, y, item);
+        var i = instance_create(x, y, item);
         i.respawn = false;
         i.x += bboxGetXCenter() - bboxGetXCenterObject(i);
         i.y += bboxGetYCenter() - bboxGetYCenterObject(i);

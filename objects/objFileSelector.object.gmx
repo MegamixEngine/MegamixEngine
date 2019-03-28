@@ -131,7 +131,7 @@ if (!controlsLocked)
         {
             // quit:
             global.nextRoom = rmTitleScreen;
-            lockControls = true;
+            controlsLocked = true;
             global.debugEnabled = true;
             global.livesEnabled = false;
         }
@@ -140,7 +140,7 @@ if (!controlsLocked)
             // new file:
             global.nextRoom = rmNewFile;
             global.saveFile = fileName[fileCount];
-            lockControls = true;
+            controlsLocked = true;
             playSFX(sfxMenuSelect);
         }
         else
@@ -156,7 +156,7 @@ if (!controlsLocked)
             else
             {
                 global.nextRoom = rmStageSelect;
-                lockControls = true;
+                controlsLocked = true;
                 playSFX(sfxMenuSelect);
             }
         }

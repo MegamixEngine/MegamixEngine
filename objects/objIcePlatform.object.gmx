@@ -58,6 +58,7 @@ blk = -1;
 
 if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
+    var ontop;
     ontop = 0;
     
     with (target)
@@ -84,6 +85,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         image_index = round(image_index);
     }
     
+    var ys;
     switch (round(image_index))
     {
         case 0:

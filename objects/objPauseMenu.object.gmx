@@ -28,12 +28,15 @@
             <string>global.nextRoom = -1;
 visible = 0;
 
+playerID = global.createArgument[0];
+
 phase = 0; // 0: increasing the black rectangle's alpha
 
 option = 0;
 oldOption = 0;
 weaponOffset = 0;
 offsetTimer = -1;
+eTankTimer = 0;
 
 // get currently visible weapons
 weaponVisibleN = 0;
@@ -48,7 +51,7 @@ visibleWeapons = min(10, weaponVisibleN); // up to 10 visible
 
 for (var i = 0; i &lt; weaponVisibleN; i++)
 {
-    if (global.weapon[0] == global.weaponHotbar[weaponVisible[i]])
+    if (global.weapon[playerID] == global.weaponHotbar[weaponVisible[i]])
     {
         option = i;
         oldOption = i;
@@ -58,7 +61,7 @@ woption = i;
 
 visibleWeapons = 10;
 
-oldWeapon = global.weapon[0];
+oldWeapon = global.weapon[playerID];
 resetWeapon = false; // Should we, after exiting the menu, reset our weapon to the weapon that was used before the pause menu was opened?
 
 wtank = 0;
@@ -68,7 +71,6 @@ retryConfirm = 0;
 exitConfirm = 0;
 hotBarArrangeMode = false;
 
-playerID = 0;
 costumeID = 0;
 
 // Stop charging
@@ -79,11 +81,11 @@ with (objMegaman)
 
 // set these here. makes everyone's lives easier.
 
-etankPositionX = 148;
+etankPositionX = 149;
 etankPositionY = 10;
-wtankPositionX = 178;
+wtankPositionX = 180;
 wtankPositionY = 10;
-mtankPositionX = 210;
+mtankPositionX = 211;
 mtankPositionY = 10;
 
 optionsPositionX = 136;
@@ -202,7 +204,8 @@ switch (phase)
                 proceed = false;
                 for (i = 0; i &lt; weaponVisibleN; i += 1)
                 {
-                    if (ceil(global.ammo[playerID, global.weaponHotbar[weaponVisible[i]]]) &lt; 28)
+                    if (ceil(global.ammo[playerID, global.weaponHotbar[weaponVisible[i]]]) &lt; 28
+                    &amp;&amp; !global.weaponLocked[i])
                     {
                         proceed = true;
                     }
@@ -360,7 +363,7 @@ switch (phase)
                 {
                     audio_resume_all();
                     instance_destroy();
-                    global.frozen = 0;
+                    queueUnpause();
                 }
             }
         }
@@ -524,7 +527,7 @@ if (yDir != 0)
                     option = weaponVisibleN - 1;
                 }
             }
-                until (!global.weaponLocked[global.weaponHotbar[weaponVisible[option]]])
+            until (!global.weaponLocked[global.weaponHotbar[weaponVisible[option]]])
         }
     }
     else
@@ -601,6 +604,8 @@ if ((global.keyWeaponSwitchLeft[playerID] &amp;&amp; global.keyWeaponSwitchRight
     }
     visibleWeapons = min(10, weaponVisibleN); // up to 10 visible
     oldOption = 0;
+    
+    option = 0;
 }
 
 // Set weapon
@@ -651,8 +656,8 @@ if (phase != 0)
     var col;
     col[0, 0] = global.nesPalette[0];
     col[1, 0] = global.nesPalette[13];
-    col[0, 1] = global.primaryCol[0];
-    col[1, 1] = global.secondaryCol[0];
+    col[0, 1] = global.primaryCol[playerID];
+    col[1, 1] = global.secondaryCol[playerID];
     col[0, 2] = make_color_rgb(255, 228, 164);
     col[1, 2] = c_white;
     
@@ -704,7 +709,7 @@ if (phase != 0)
         if (!global.weaponLocked[w])
         {
             // Drawing ammo bars
-            ammo = ceil(global.playerHealth[playerID] * (i == 0) + global.ammo[playerID, w] * (i != 0));
+            var ammo = ceil(global.playerHealth[playerID] * (i == 0) + global.ammo[playerID, w] * (i != 0));
             
             draw_sprite_ext(sprPauseMenuBarPrimary, ammo, 18, yOff + 8, 1, 1, 0, col[0, cl * (1 + (i == 0))], 1);
             draw_sprite_ext(sprPauseMenuBarSecondary, ammo, 18, yOff + 8, 1, 1, 0, col[1, cl * (1 + (i == 0))], 1);
@@ -720,8 +725,23 @@ if (phase != 0)
             // Name
             draw_set_color(col[!cl, (cl * 2) - (cl * !(hotBarArrangeMode mod 8 &lt; 4))]);
             
-            wname = global.weaponName[w];
-            dot = string_pos(" ", wname);
+            var wname = global.weaponName[w];
+            if (wname == "MEGA BUSTER")
+            {
+            switch (global.characterSelected[playerID])
+            {
+                case "Proto Man":
+                    wname = "PROTO BUSTER";
+                    break;
+                case "Bass":
+                    wname = "BASS BUSTER";
+                    break;
+                case "Roll":
+                    wname = "ROLL BUSTER";
+                    break;
+            }
+            }
+            var dot = string_pos(" ", wname);
             if (dot)
             {
                 wname = string_insert(".", string_delete(wname, 2, dot - 1), 2);

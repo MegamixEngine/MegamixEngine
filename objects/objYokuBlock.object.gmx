@@ -278,7 +278,7 @@ if (phase != 1)
                 var xx = 0;
                 var yy = -other.gravDir;
                 
-                size = (other.bbox_bottom - other.bbox_top) * yy;
+                var size = (other.bbox_bottom - other.bbox_top) * yy;
                 
                 if (checkSolid(0, size))
                 {

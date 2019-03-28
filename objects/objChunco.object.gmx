@@ -115,7 +115,7 @@ if (entityCanStep())
                 {
                     var getAngle = point_direction(x, y, target.x, target.y);
                     
-                    i = instance_create(x, y, objMM5AimedBullet);
+                    var i = instance_create(x, y, objMM5AimedBullet);
                     i.dir = getAngle + 30;
                     i.xscale = image_xscale;
                     i = instance_create(x, y, objMM5AimedBullet);

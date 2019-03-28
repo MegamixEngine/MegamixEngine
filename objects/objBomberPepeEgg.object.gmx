@@ -139,7 +139,7 @@ if (spawned)
             <kind>1</kind>
             <string>instance_destroy();
 
-explosion = instance_create(x, y, objHarmfulExplosion);
+var explosion = instance_create(x, y, objHarmfulExplosion);
 explosion.contactDamage = 6;
 
 playSFX(
