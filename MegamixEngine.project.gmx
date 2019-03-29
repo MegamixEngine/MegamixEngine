@@ -2358,6 +2358,8 @@
         <sprite>sprites\sprHealthbarBackground</sprite>
         <sprite>sprites\sprHealthbarPrimary</sprite>
         <sprite>sprites\sprHealthbarSecondary</sprite>
+        <sprite>sprites\sprHudBarP</sprite>
+        <sprite>sprites\sprHudBarS</sprite>
         <sprite>sprites\sprInfinityMarkVertical</sprite>
         <sprite>sprites\sprInfinityMarkVerticalPrimary</sprite>
         <sprite>sprites\sprInfinityMarkVerticalSecondary</sprite>
@@ -4830,6 +4832,8 @@
       <script>scripts\drawPlayerInk.gml</script>
       <script>scripts\animationLoop.gml</script>
       <script>scripts\drawControllerOverlay.gml</script>
+      <script>scripts\drawHudBar.gml</script>
+      <script>scripts\getBossHealthBarColors.gml</script>
       <scripts name="Sprite_center">
         <script>scripts\spriteGetXCenter.gml</script>
         <script>scripts\spriteGetYCenter.gml</script>
