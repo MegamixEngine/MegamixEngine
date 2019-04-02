@@ -4367,8 +4367,8 @@
         <object>objects\objAtomicChicken</object>
         <object>objects\objBatton</object>
         <object>objects\objBigFish</object>
+        <object>objects\objBlockyResizable</object>
         <object>objects\objBlocky</object>
-        <object>objects\objBlockyPreset</object>
         <object>objects\objClaw</object>
         <object>objects\objClawSpawner</object>
         <object>objects\objCrabbot</object>

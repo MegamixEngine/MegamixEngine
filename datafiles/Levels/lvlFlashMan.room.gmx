@@ -121,7 +121,7 @@
     <instance objName="objCrazyCannon" x="1640" y="624" name="inst_5B449F40" locked="0" code="col = 1;&#xA;canTurn = false;&#xA;if (global.difficulty == DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSchworm" x="1744" y="1056" name="inst_F9FC1DAC" locked="0" code="if (global.difficulty == DIFF_EASY)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSchworm" x="1696" y="1104" name="inst_CF2C9A1B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockyPreview" x="1688" y="1344" name="inst_FA9BB7D4" locked="0" code="canTurn = false;&#xA;facePlayerOnSpawn = false;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlocky" x="1688" y="1344" name="inst_FA9BB7D4" locked="0" code="canTurn = false;&#xA;facePlayerOnSpawn = false;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCrazyCannon" x="1228" y="160" name="inst_9B1DAEA3" locked="0" code="col = 1;&#xA;calibrated = 1;&#xA;if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLife" x="1360" y="48" name="inst_B7EC7C24" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCrazyCannon" x="1600" y="160" name="inst_F07738EC" locked="0" code="col = 1;&#xA;canTurn = false;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -241,7 +241,7 @@
     <instance objName="objEasyPlatform16" x="1696" y="848" name="inst_14BB0A80" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="1712" y="1008" name="inst_FC93E151" locked="0" code="if (global.difficulty != DIFF_EASY)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM2SniperJoe" x="1648" y="1648" name="inst_F73EF350" locked="0" code="if (global.difficulty != DIFF_EASY)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlockyPreview" x="1776" y="1824" name="inst_BE0638E6" locked="0" code="if (global.difficulty != DIFF_EASY)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlocky" x="1776" y="1824" name="inst_BE0638E6" locked="0" code="if (global.difficulty != DIFF_EASY)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform16" x="2272" y="1744" name="inst_085254DA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWTank" x="2608" y="1728" name="inst_8E157AEE" locked="0" code="if (global.difficulty != DIFF_EASY)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform16" x="2656" y="1808" name="inst_75798C7F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
