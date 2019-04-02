@@ -89,18 +89,18 @@ else
             <string>instance_destroy();
 
 var pid = collectPlayer.playerID;
-increaseWeapon = global.weapon[pid];
+var iw = global.weapon[pid];
 
 var e = global.ammo[pid, global.weapon[pid]];
 
 // Energybalancer
 if (global.weapon[pid] == 0 || e == 28)
 {
-    for (i = 1; i &lt;= global.totalWeapons; i += 1)
+    for (var i = 1; i &lt;= global.totalWeapons; i += 1)
     {
         if (e &gt; global.ammo[pid, i])
         {
-            increaseWeapon = i;
+            iw = i;
             e = global.ammo[pid, i];
         }
     }
@@ -108,11 +108,11 @@ if (global.weapon[pid] == 0 || e == 28)
 
 if (e &lt; 28)
 {
-    global.frozen = true;
+    queuePause();
     with (objGlobalControl)
     {
         increaseAmmo = other.hlth;
-        increaseWeapon = other.increaseWeapon;
+        increaseWeapon = iw;
         increasePID = pid;
     }
     loopSFX(sfxEnergyRestore);

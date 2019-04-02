@@ -29,6 +29,7 @@
 
 canHit = false;
 blockCollision = false;
+bubbleTimer = -1;
 respawn = false;
 isSolid = true;
 grav = 0;

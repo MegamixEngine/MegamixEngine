@@ -75,7 +75,7 @@ if (entityCanStep())
                 &lt; abs(sprite_width) / 2 + 32)
             {
                 // straight bullet
-                bullet = instance_create(x + sprite_width * 0.3, y - 8, objEnemyBullet);
+                var bullet = instance_create(x + sprite_width * 0.3, y - 8, objEnemyBullet);
                 bullet.sprite_index = sprPandeetaStraightShot;
                 bullet.xspeed = 2.5 * image_xscale;
                 playSFX(sfxEnemyShoot);
@@ -83,7 +83,7 @@ if (entityCanStep())
             else
             {
                 // arc bullet
-                bullet = instance_create(x + sprite_width * 0.3, y - 8, objEnemyBullet);
+                var bullet = instance_create(x + sprite_width * 0.3, y - 8, objEnemyBullet);
                 bullet.contactDamage = 3;
                 bullet.sprite_index = sprPandeetaArcShot;
                 bullet.grav = 0.15;

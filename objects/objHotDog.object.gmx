@@ -32,6 +32,7 @@ respawn = true;
 healthpointsStart = 10;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "fire, nature";
 
 // Enemy specific code
 shootTimer = 0;
@@ -87,7 +88,7 @@ if (entityCanStep()
     
     if (shootTimer &gt; 65 &amp;&amp; shootTimer == floor(shootTimer / 4) * 4)
     {
-        fire = instance_create(x + 18 * image_xscale, y, objHotDogFire);
+        var fire = instance_create(x + 18 * image_xscale, y, objHotDogFire);
         fire.yspeed = 5;
         fire.xspeed = image_xscale * 4;
         fire.image_index = shootTimer;

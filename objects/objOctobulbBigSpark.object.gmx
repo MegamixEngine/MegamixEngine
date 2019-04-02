@@ -31,6 +31,7 @@ reflectable = false;
 blockCollision = false;
 contactDamage = 4;
 canHit = false;
+path_speed = 0;
 parent = noone;
 </string>
           </argument>

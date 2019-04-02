@@ -73,7 +73,7 @@ if (global.frozen == false)
     if (ycoll != 0)
     {
         playSFX(sfxExplosion);
-        i = instance_create(x, y, objHarmfulExplosion);
+        var i = instance_create(x, y, objHarmfulExplosion);
         i.sprite_index = sprExplosion;
         screenShake(60, 1, 1);
         if (instance_exists(target))

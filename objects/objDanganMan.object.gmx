@@ -350,7 +350,7 @@ if (entityCanStep())
             // rocket
             case 4:
                 contactDamage = 0;
-                with (collision_ellipse(x - 16, y + 16, x + 16, y + 32, objMegaman, false, true))
+                with (collision_ellipse(x - 12, y + 18, x + 12, y + 30, objMegaman, false, true))
                 {
                     // manual damage to player
                     if (iFrames == 0 &amp;&amp; canHit)
@@ -397,7 +397,14 @@ if (entityCanStep())
             <string>// if he's in a rocket, guard
 if (sprite_index == sprDanganRocket)
 {
-    other.guardCancel = 1;
+    if (collision_ellipse(x - 12, y + 18, x + 12, y + 30, other.id, false, true))
+    {
+        other.guardCancel = 1;
+    }
+    else
+    {
+        other.guardCancel = 2;
+    }
 }
 </string>
           </argument>

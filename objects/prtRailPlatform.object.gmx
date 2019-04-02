@@ -34,6 +34,7 @@ startingDirection = -1;
 
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 respawnRange = -1;
 despawnRange = -1;
@@ -119,8 +120,6 @@ if (entityCanStep())
     if (dir == "none")
     {
         dir = "fall";
-        startDir = dir;
-        init = false;
     }
     
     if (dir != "fall")
@@ -400,7 +399,7 @@ with (prtRail)
     var quit = false;
     with (other)
     {
-        if (place_meeting(x + xOffset, y + yOffset, other) || place_meeting(xprevious + xOffset, yprevious + yOffset, other))
+        if (place_meeting(round(x + xOffset), round(y + yOffset), other) || place_meeting(round(xprevious + xOffset), round(yprevious + yOffset), other))
         {
             lastRail = other.id;
             quit = true;
@@ -416,10 +415,10 @@ image_yscale = reysc;
 
 if (lastRail == noone)
 {
-    left = min(x + xOffset, xprevious + xOffset);
-    right = max(x + xOffset, xprevious + xOffset);
-    top = min(y + yOffset, yprevious + yOffset);
-    bottom = max(y + yOffset, yprevious + yOffset);
+    var left = min(x + xOffset, xprevious + xOffset);
+    var right = max(x + xOffset, xprevious + xOffset);
+    var top = min(y + yOffset, yprevious + yOffset);
+    var bottom = max(y + yOffset, yprevious + yOffset);
     lastRail = collision_rectangle(left, top, right, bottom, prtRail, true, true);
     if (lastRail == noone)
         lastRail = collision_line(x + xOffset, y + yOffset, xprevious + xOffset, yprevious + yOffset, prtRail, true, true);

@@ -35,6 +35,8 @@ respawn = true;
 healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "grounded, semi bulky";
+enemyDamageValue(objThunderBeam, 5);
 
 grav = gravAccel * image_yscale;
 
@@ -134,14 +136,11 @@ if (entityCanStep() &amp;&amp; instance_exists(target))
                 ID.image_xscale = image_xscale;
                 ID.sprite_index = sprEnemyBullet;
             }
-            
-            playSFX(sfxEnemyShoot);
         }
     }
 }
 else if (dead)
 {
-    shootTimer = 0;
     image_index = 0;
     grav = gravAccel * image_yscale; // Note: gravAccel is a macro
 }

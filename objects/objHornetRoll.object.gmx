@@ -31,9 +31,12 @@ sprite_index = sprHornetRoll;
 
 respawnRange = -1;
 despawnRange = -1;
+isTargetable = false;
+timer = 0;
 
 blockCollision = false;
 grav = 0;
+bubbleTimer = -1;
 
 myPlatform = noone;
 

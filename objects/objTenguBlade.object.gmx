@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 1;
+inWater = -1;
 
 image_speed = 0.35;
 
@@ -47,6 +48,7 @@ playSFX(sfxSlashClaw);
 slashLock = false;
 
 nothingStruck = true;
+notDashing = true;
 </string>
           </argument>
         </arguments>
@@ -125,7 +127,7 @@ if (instance_exists(parent))
         other.image_yscale = abs(other.image_yscale) * image_yscale;
     }
     
-    xxs = xs;
+    var xxs = xs;
     if (image_xscale != xst)
     {
         xxs *= -1;
@@ -174,7 +176,7 @@ else
             <kind>1</kind>
             <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(5, -2, objTenguBlade, 1, 1, 1, 1);
+    var i = fireWeapon(5, -2, objTenguBlade, 1, 1, 1, 1);
     if (instance_exists(i))
     {
         i.xs = i.x - x;
@@ -200,7 +202,7 @@ if (global.ammo[playerID, global.weapon[playerID]] &gt; 0)
     if (isSlide &amp;&amp; notDashing)
     {
         slideSpeed = 3;
-        a = instance_create(x, y, objTenguDash);
+        var a = instance_create(x, y, objTenguDash);
         a.image_xscale = image_xscale;
         global.ammo[playerID, global.weapon[playerID]] = max(0,
             global.ammo[playerID, global.weapon[playerID]] - 1);
@@ -260,7 +262,7 @@ if (global.ammo[playerID, global.weapon[playerID]] &gt; 0)
 {
     with (other)
     {
-        par = object_get_parent(object_index);
+        var par = object_get_parent(object_index);
         if (par == prtMiniBoss || par == prtBoss || !canHit)
         {
             exit;

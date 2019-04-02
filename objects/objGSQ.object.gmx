@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A bulky trash-spitting robot. What does G.S.Q. even stand for? "Garbage Squashing Queen"? :thinking:
+
+event_inherited();
 
 healthpointsStart = 9;
 healthpoints = healthpointsStart;
@@ -82,7 +84,7 @@ if (entityCanStep())
                     if (canShoot == true)
                     {
                         // Create block
-                        i = instance_create(x + image_xscale * 8, y - 7, objGSQBlock);
+                        var i = instance_create(x + image_xscale * 8, y - 7, objGSQBlock);
                         i.image_xscale = image_xscale;
                         i.xspeed = 2 * image_xscale;
                         canShoot = false;

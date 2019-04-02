@@ -75,6 +75,7 @@ imageOffset = 0;
             <kind>1</kind>
             <string>event_inherited();
 
+
 if (entityCanStep())
 {
     if (preventFiring)
@@ -178,7 +179,6 @@ imageOffset = 0;
 hasFired = false;
 activated = false;
 preventFiring = 0;
-popUporDown = false;
 cooldownImageTimer = 0;
 </string>
           </argument>
@@ -271,9 +271,9 @@ else
             <kind>1</kind>
             <string>event_inherited();
 
-for (i = -1; i &lt;= 1; i += 1)
+for (var i = -1; i &lt;= 1; i += 1)
 {
-    MET = instance_create(spriteGetXCenter(), spriteGetYCenter(),
+    var MET = instance_create(spriteGetXCenter(), spriteGetYCenter(),
         objBabyMetall);
     MET.respawn = false;
     MET.xspeed = i * 0.25;

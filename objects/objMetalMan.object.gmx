@@ -147,8 +147,12 @@ if (entityCanStep())
         if (flashTimer == (60 * 7) + 1)
         {
             if (instance_exists(objMM2Conveyor))
+            {
                 with (objMM2Conveyor)
+                {
                     dir = -dir;
+                }
+            }
             flashTimer = 0;
             playSFX(sfxGravityFlip);
         }

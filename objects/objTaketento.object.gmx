@@ -31,7 +31,7 @@ healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 3;
 
-category = "cluster, flying";
+category = "cluster, flying, nature";
 
 blockCollision = 0;
 grav = 0;
@@ -75,6 +75,8 @@ image_speed = 0.2;
 
 if (entityCanStep())
 {
+    var megax = 0, megay = 0;
+    
     if (instance_exists(target))
     {
         megax = target.x;
@@ -113,9 +115,9 @@ if (entityCanStep())
             currently pointing, and if they are, increase/decrease our angle by that distance */
         /* This is a special kind of error handler that prevents chibee from moving completely straight and unable to fly towards the player
             if the player moves directly straight against the direction chibee is flying */ 
-            pxd = megax - x;
-            pyd = megay - y;
-            pangle = 0;
+            var pxd = megax - x;
+            var pyd = megay - y;
+            var pangle = 0;
             if (pxd != 0)
             {
                 pangle = point_direction(x, y, megax, megay);
@@ -133,7 +135,7 @@ if (entityCanStep())
             }
             
             // and now that we have the angle the player is facing, we take the difference of the angles
-            change = direction - pangle;
+            var change = direction - pangle;
             
             // loop degree check, so the angle isn't above 360 or below 0
             if (change &gt; 360)

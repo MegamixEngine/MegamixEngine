@@ -95,7 +95,7 @@ if (!global.frozen)
             <kind>1</kind>
             <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(16, 0, objGloopBreaker, 0, 0, 2, 0);
+    fireWeapon(16, 0, objGloopBreaker, 0, 0, 2, 0);
 }
 </string>
           </argument>

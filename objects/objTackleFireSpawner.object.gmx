@@ -50,6 +50,7 @@ alarmDrop = 60;
 timer = -1;
 
 canHit = false;
+obj = objTackleFire;
 </string>
           </argument>
         </arguments>
@@ -80,7 +81,7 @@ if (entityCanStep())
     {
         for (var n = 0; n &lt; num; n++)
         {
-            var i = instance_create(x, y, objTackleFire);
+            var i = instance_create(x, y, obj);
             i.popDelay = spacing * n;
             i.alarmDrop = alarmDrop + spacing * (num - 1) - (spacing * n);
             i.randomOffset = 1;

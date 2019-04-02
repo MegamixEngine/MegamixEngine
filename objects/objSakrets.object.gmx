@@ -128,7 +128,7 @@ if (entityCanStep())
             if (shootTimer == 1)
             {
                 imgIndex += 2; // time to put on my angry eyes
-                a = instance_create(x + 6 * image_xscale, y, objSakretsBall);
+                var a = instance_create(x + 6 * image_xscale, y, objSakretsBall);
                 a.xspeed = 4.5 * image_xscale;
             }
             if (shootTimer == 15)

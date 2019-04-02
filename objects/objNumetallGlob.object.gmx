@@ -182,7 +182,9 @@ if (!global.frozen || (global.switchingSections &amp;&amp; phase == 1))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(x, y, objExplosion);
+            <string>event_inherited();
+
+instance_create(x, y, objExplosion);
 </string>
           </argument>
         </arguments>

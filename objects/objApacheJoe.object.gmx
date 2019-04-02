@@ -33,7 +33,7 @@ healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 6;
 
-category = "joes";
+category = "flying, joes";
 
 facePlayer = true;
 
@@ -120,7 +120,7 @@ if (entityCanStep())
                 if (target.x &gt; x - 16 &amp;&amp; target.x &lt; x + 16 &amp;&amp; target.y &gt;= y)
                     aim += 1;
             }
-            bull = instance_create(x, y, objApacheJoeProjectile);
+            var bull = instance_create(x, y, objApacheJoeProjectile);
             bull.xspeed = (image_xscale - (floor(aim / 2) * image_xscale)) * 3;
             if (aim &gt; 0)
                 bull.yspeed = 3;

@@ -38,6 +38,10 @@ facePlayer = true;
 animEndme = 0;
 shootTimer = 0;
 twinCooldown = 0;
+imgIndex = 0;
+
+// @cc - Change colour (0 = orange, 1 = green, 2 = red [Game Gear colours])
+col = 0;
 </string>
           </argument>
         </arguments>
@@ -67,13 +71,13 @@ if (entityCanStep())
     animEndme += 1;
     if (!(animEndme mod 6))
     {
-        image_index = (image_index == 0);
+        imgIndex = (imgIndex == 0);
     }
     
     shootTimer += 1;
     if (shootTimer == 106)
     {
-        i = instance_create(x + 12 * image_xscale, y - 4, objEnemyBullet);
+        var i = instance_create(x + 12 * image_xscale, y - 4, objEnemyBullet);
         i.xspeed = 1.5 * image_xscale;
     }
     if (shootTimer &gt;= 150)
@@ -95,10 +99,12 @@ if (entityCanStep())
                         {
                             if (collision_rectangle(x - 32, y - 32, x + 32, y, other, false, true))
                             {
-                                i = instance_create(x + 8 * image_xscale, y - 16 + 1, objTwinCannonBullet);
+                                var i = instance_create(x + 8 * image_xscale, y - 16 + 1, objTwinCannonBullet);
                                 i.xspeed = 4 * image_xscale;
+                                i.image_xscale = image_xscale;
+                                i.image_index = col;
                                 twinCooldown = 44;
-                                image_index = 2;
+                                imgIndex = 2;
                                 break;
                             }
                         }
@@ -117,8 +123,9 @@ else if (dead)
     shootTimer = -60;
     animEndme = 0;
     twinCooldown = 0;
-    image_index = 0;
+    imgIndex = 0;
 }
+image_index = imgIndex + (3 * col)
 </string>
           </argument>
         </arguments>

@@ -79,7 +79,6 @@ if (entityCanStep())
     if (alarmMove == 45)
     {
         xspeed = 0;
-        shake = 1;
     }
     if (alarmMove == 0)
     {

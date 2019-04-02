@@ -50,7 +50,7 @@ if (global.playerHealth[playerID] <= 0)
             if (deathTimer == -1)
             {
                 deathTimer = 30;
-                global.frozen = true;
+                queuePause(true);
                 isHit = 0;
                 playerPalette();
                 yspeed = 0;
@@ -103,6 +103,6 @@ if (global.playerHealth[playerID] <= 0)
         }
         
         instance_destroy();
-        global.frozen = false;
+        queueUnpause(true);
     }
 }

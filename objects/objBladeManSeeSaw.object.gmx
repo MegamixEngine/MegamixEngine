@@ -26,11 +26,14 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-isSolid = 0;
-resawn = true;
+sprite_index = sprBladeManSeeSawMiddle;
+mask_index = sprBladeManSeeSawMiddle;
 
-respawnRange = 32;
-despawnRange = 32;
+isSolid = 0;
+respawn = true;
+
+respawnRange = -1;
+despawnRange = -1;
 
 // shift for upper platform
 pux = 27;
@@ -62,6 +65,18 @@ image_speed = 0;
 
 canDraw = true;
 animImage = 0;
+
+startLeftPos = 0;
+startRightPos = 1;
+
+if(image_xscale==-1)
+{
+    startLeftPos = 1;
+    startRightPos = 0;
+}
+
+image_xscale = 1;
+initp = true;
 </string>
           </argument>
         </arguments>
@@ -85,7 +100,7 @@ animImage = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
+if (entityCanStep())
 {
     // if (dir == "fall") print ("Fall!");
     if (bumped)
@@ -117,17 +132,34 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         }
         changeDir = false;
     }
-    if (sprite_index == sprBladeManSeeSawPlace)
+    if (initp)
     {
-        firstPlatform = instance_create(x - pdx + 7, y + pdy, objBladeManSeeSawPlatform);
-        secondPlatform = instance_create(x + pux + 8, y - puy, objBladeManSeeSawPlatform);
+        initp = false;
+        if(startLeftPos)
+        {
+            firstPlatform = instance_create(x + pux + 8, y + pdy, objBladeManSeeSawPlatform);
+            firstPlatform.xPosition = 1;
+        }
+        else
+        {
+            firstPlatform = instance_create(x - pdx + 7, y + pdy, objBladeManSeeSawPlatform);
+            firstPlatform.xPosition = -1;
+        }
+        if(startRightPos)
+        {
+            secondPlatform = instance_create(x + pux + 8, y - puy, objBladeManSeeSawPlatform);
+            secondPlatform.xPosition = 1;
+        }
+        else
+        {
+            secondPlatform = instance_create(x - pdx + 7, y - puy, objBladeManSeeSawPlatform);
+            secondPlatform.xPosition = -1;
+        }
+               
         firstPlatform.parent = id;
         secondPlatform.parent = id;
         
-        
-        firstPlatform.xPosition = -1;
         firstPlatform.yPosition = 1;
-        
         firstPlatform.centerShift = (power(pdx, 2) + power(pdy, 2) - power(pux, 2) - power(puy, 2)) / (2 * puy + 2 * pdy);
         firstPlatform.radiusSquare = power(pdx, 2) + power(pdy - firstPlatform.centerShift, 2);
         
@@ -139,9 +171,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         firstPlatform.yMin = puy;
         firstPlatform.yMax = pdy;
         
-        secondPlatform.xPosition = 1;
         secondPlatform.yPosition = -1;
-        
         secondPlatform.centerShift = (power(pdx, 2) + power(pdy, 2) - power(pux, 2) - power(puy, 2)) / (2 * puy + 2 * pdy);
         secondPlatform.radiusSquare = power(pdx, 2) + power(pdy - secondPlatform.centerShift, 2);
         
@@ -152,9 +182,6 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         
         secondPlatform.yMin = puy;
         secondPlatform.yMax = pdy;
-        
-        sprite_index = sprBladeManSeeSawMiddle;
-        mask_index = sprBladeManSeeSawMiddle;
     }
     else
     {
@@ -368,18 +395,22 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-sprite_index = sprBladeManSeeSawPlace;
-phase = 7;
-backtrackTimer = 0;
-if (instance_exists(firstPlatform))
+if(spawned)
 {
-    with (firstPlatform)
-        instance_destroy();
-}
-if (instance_exists(secondPlatform))
-{
-    with (secondPlatform)
-        instance_destroy();
+    init = true;
+    initp = true;
+    phase = 7;
+    backtrackTimer = 0;
+    if (instance_exists(firstPlatform))
+    {
+        with (firstPlatform)
+            instance_destroy();
+    }
+    if (instance_exists(secondPlatform))
+    {
+        with (secondPlatform)
+            instance_destroy();
+    }
 }
 </string>
           </argument>

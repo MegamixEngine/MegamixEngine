@@ -29,6 +29,7 @@ if (returnHere)
 // switch rooms
 if (fadeOut)
 {
+    global.previousRoom = room;
     global.nextRoom = rm;
 }
 else

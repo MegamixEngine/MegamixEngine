@@ -94,6 +94,7 @@ if (entityCanStep())
                 grav = 0.25;
                 phase = 3;
                 phasetimer = 0;
+                calibrateDirection();
             }
             break;
         case 3: // Launch the speer of DEATH 
@@ -102,7 +103,7 @@ if (entityCanStep())
                 image_index += 1;
                 if (image_index == 11)
                 {
-                    i = instance_create(x + 28 * image_xscale, y - 8, objEnemyBullet);
+                    var i = instance_create(x + 28 * image_xscale, y - 8, objEnemyBullet);
                     i.sprite_index = sprUmbrella;
                     i.xspeed = 2 * image_xscale;
                 }
@@ -123,12 +124,15 @@ if (entityCanStep())
                     image_index = 13;
                 }
             }
+            
+            // turning around on ledges or walls
             xSpeedTurnaround();
-            if (xspeed == 0)
+            if (xspeed == 0 || checkFall(16 * image_xscale))
             {
-                calibrateDirection();
                 xspeed = image_xscale * 1;
             }
+            
+            // don't move in midair
             if (!ground)
             {
                 xspeed = 0;

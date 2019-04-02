@@ -33,6 +33,7 @@ healthpoints = healthpointsStart;
 contactDamage = 3;
 blockCollision = 0;
 grav = 0;
+category = "floating";
 
 // Enemy specific code
 phase = 0;
@@ -67,9 +68,6 @@ imgOffset = 0;
             <string>event_inherited();
 target = objMegaman;
 
-// print("phase: " + string(phase) + ", phaseTimer: " + string(phaseTimer));
-// print(instance_exists(target));
-// print (string(xspeed), string(yspeed))
 if (entityCanStep())
 {
     switch (phase)

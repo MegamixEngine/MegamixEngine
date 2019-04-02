@@ -69,6 +69,10 @@ imgIndex = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
 
 if (entityCanStep())
 {
@@ -131,7 +135,7 @@ if (entityCanStep())
             }
             
             // detection
-            if (xspeed == 0 || checkSolid(sprite_width / 2, 0, 1, 1))
+            if (ground&amp;&amp;xspeed == 0 || checkSolid(sprite_width / 2, 0, 1, 1))
             {
                 // jump
                 phase = 3;

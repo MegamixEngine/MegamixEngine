@@ -37,6 +37,7 @@ image_speed = 0;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 despawnRange = -1;
 respawnRange = -1;
@@ -119,7 +120,7 @@ if ((!global.frozen || active) &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         {
             global.flagParent[myFlag].active = false;
             active = true;
-            global.frozen = true;
+            queuePause();
             player.visible = false;
         }
     }
@@ -187,8 +188,10 @@ if (y &lt; ystart)
     
     if ((ystart - y) &gt;= 16)
     {
-        for (i = 0; i &lt; floor((ystart - y) / 16); i++)
+        for (var i = 0; i &lt; floor((ystart - y) / 16); i++)
+        {
             draw_sprite(sprSkullElevatorShaft, 0, x - 4, y + i * 16);
+        }
     }
 }
 </string>

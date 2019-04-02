@@ -34,7 +34,11 @@ contactDamage = 2;
 grav = 0;
 
 // Enemy specific code
-image_speed = 0.1;
+imgIndex = 0;
+imgSpd = 0.1;
+
+// @cc - Changes colour (0 = peach w/ red light (default); 1 = orange w/ blue light;)
+col = 0;
 </string>
           </argument>
         </arguments>
@@ -81,11 +85,19 @@ if (entityCanStep())
             yspeed = abs(yspeed);
         }
     }
+    
+    // Animation
+    imgIndex += imgSpd;
+    if (imgIndex &gt;= 2)
+    {
+        imgIndex = 0;
+    }
 }
 else if (dead)
 {
-    image_index = 0;
+    imgIndex = 0;
 }
+image_index = floor(imgIndex) + (2 * col);
 </string>
           </argument>
         </arguments>

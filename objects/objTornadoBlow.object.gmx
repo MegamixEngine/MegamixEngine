@@ -29,7 +29,8 @@
 
 bulletLimitCost = 1;
 
-contactDamage = 2;
+contactDamage = 4;
+inWater = -1;
 
 image_speed = 0.2;
 
@@ -178,7 +179,7 @@ if (!global.frozen)
 {
     for (var z = 1; z &lt;= 4; z++)
     {
-        i = fireWeapon(0, 0, objTornadoBlow, (z == 1), (7 * (z == 1)), 1, 0);
+        var i = fireWeapon(0, 0, objTornadoBlow, (z == 1), (7 * (z == 1)), 1, 0);
         if (instance_exists(i))
         {
             i.location = z;
@@ -211,9 +212,9 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>specialDamageValue("fire", 5);
-specialDamageValue("flying", 5);
-specialDamageValue("floating", 5);
+            <string>specialDamageValue("fire", 6);
+specialDamageValue("flying", 6);
+specialDamageValue("floating", 6);
 </string>
           </argument>
         </arguments>
@@ -261,18 +262,20 @@ specialDamageValue("floating", 5);
             <kind>1</kind>
             <string>with (other)
 {
-    par = object_is_ancestor(object_index, prtMiniBoss) || (boss == 1);
-    if (par || !canHit)
+    var par = object_is_ancestor(object_index, prtMiniBoss) || (boss == 1);
+    if (par || !canHit || !killOverride)
     {
         exit;
     }
     
     if (healthpoints - global.damage &lt;= 0)
     {
-        _i = instance_create(x, y, objTornadoEffect);
+        var _i = instance_create(x, y, objTornadoEffect);
         
         var copy = instance_copy(false);
         _i.sprite_index = sprite_index;
+        _i.image_xscale = image_xscale;
+        _i.image_yscale = image_yscale;
         copy.sprite_index = sprite_index;
         copy.image_index = image_index;
         copy.image_xscale = image_xscale;
@@ -308,6 +311,7 @@ specialDamageValue("floating", 5);
           <argument>
             <kind>1</kind>
             <string>// Nothing
+playSFX(sfxReflect);
 </string>
           </argument>
         </arguments>

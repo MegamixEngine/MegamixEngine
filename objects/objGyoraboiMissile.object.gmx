@@ -69,7 +69,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
             bboxGetYCenter(), objSolid, false, false))
         {
             instance_destroy();
-            explosion = instance_create(x, y, objHarmfulExplosion);
+            var explosion = instance_create(x, y, objHarmfulExplosion);
             explosion.contactDamage = 4;
             playSFX(sfxMM3Explode);
         }

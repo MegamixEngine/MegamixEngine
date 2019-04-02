@@ -59,7 +59,17 @@ contactDamage = 0;
 
 grav = 0;
 blockCollision = 0;
-shiftVisible=1;
+shiftVisible = 1;
+bubbleTimer = -1;
+
+tileN = 0;
+tileWidth = makeArray();
+tileHeight = makeArray();
+tileOffsetY = makeArray();
+tileOffsetX = makeArray();
+tileLeft = makeArray();
+tileTop = makeArray();
+tiles = makeArray();
 </string>
           </argument>
         </arguments>

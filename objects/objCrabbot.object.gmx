@@ -148,7 +148,7 @@ hasShell = true;
     image_index += 2;
     hasShell = false;
     
-    i = instance_create(x, y, objCrabbotShell);
+    var i = instance_create(x, y, objCrabbotShell);
     i.image_xscale = image_xscale;
 }
 </string>

@@ -30,6 +30,7 @@
 isSolid = 1;
 
 canHit = false;
+bubbleTimer = -1;
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
@@ -80,7 +81,7 @@ event_inherited();
 if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
     actionTimer += 1;
-    iaction = action;
+    var iaction = action;
     switch (action)
     {
         case 1: // wait 

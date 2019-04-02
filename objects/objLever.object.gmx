@@ -29,6 +29,7 @@
 
 contactDamage = 0;
 canHit = false;
+bubbleTimer = -1;
 
 state = 0; //@cc 0: up, 1: down
 uptag = ""; //@cc tag for the leverfield to activate when up

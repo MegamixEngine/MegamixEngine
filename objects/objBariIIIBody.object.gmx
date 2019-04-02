@@ -31,7 +31,7 @@ contactDamage = 3;
 healthpointsStart = 2;
 healthpoints = 2;
 respawn = false;
-despawnRange = -1;
+despawnRange = 32;
 isSolid = 1;
 fnsolid = true;
 facePlayer = false;
@@ -39,6 +39,7 @@ facePlayerOnSpawn = false;
 dieToSpikes = false;
 canIce = false;
 itemDrop = -1;
+col = 0;
 
 // AI
 owner = noone;
@@ -140,7 +141,7 @@ if (entityCanStep())
                             break;
                         }
                     }
-                    pmi = mask_index;
+                    var pmi = mask_index;
                     
                     if (i != noone)
                     {
@@ -236,6 +237,44 @@ if (entityCanStep())
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(spawned)
+{
+    switch (col)
+    {
+        case 1:
+            sprite_index = sprBariIIIBodyOrange;
+            break;
+        default:
+            sprite_index = sprBariIIIBody;
+            break;
+    }
+}
+else
+{
+    event_user(EV_DEATH);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="20">
       <action>
         <libid>1</libid>
@@ -255,7 +294,7 @@ if (entityCanStep())
             <kind>1</kind>
             <string>dead = true;
 instance_create(x, y, objExplosion);
-playSFX(sfxEnemyHit);
+
 if (instance_exists(owner))
 {
     owner.snap = false;

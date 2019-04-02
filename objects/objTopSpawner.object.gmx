@@ -42,6 +42,8 @@ alarmSpawn = 16;
 
 myTopSpeed = noone;
 waitTime = 224;
+
+objectDrop = objTopLift;
 </string>
           </argument>
         </arguments>
@@ -85,7 +87,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             }
         }
         
-        i = instance_create(x, y + 24 * -sign(myTopSpeed), objTopLift);
+        var i = instance_create(x, y + 24 * -sign(myTopSpeed), objectDrop);
         i.yspeed = myTopSpeed;
         i.image_yscale = image_yscale;
     }

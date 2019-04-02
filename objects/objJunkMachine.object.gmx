@@ -34,6 +34,7 @@ despawnRange = -1;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 phase = 0; // 0 = not powered up; 1 = powering up
 
@@ -85,7 +86,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
     if (phase == 0)
     {
         image_index = 0;
-        for (i = 0; i &lt; array_length_1d(powerSource); i += 1)
+        for (var i = 0; i &lt; array_length_1d(powerSource); i += 1)
         {
             if (place_meeting(x, y, powerSource[i]))
             {

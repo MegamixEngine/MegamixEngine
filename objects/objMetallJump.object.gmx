@@ -64,7 +64,10 @@ animTimer = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
 if (entityCanStep())
 {
     // trigger shooting variable if the target is near
@@ -130,7 +133,7 @@ if (entityCanStep())
             
             // Shoot
             var ID;
-            for (i = -1; i &lt;= 1; i += 1)
+            for (var i = -1; i &lt;= 1; i += 1)
             {
                 ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objMM4MetBullet);
                 ID.dir = 45 * i;

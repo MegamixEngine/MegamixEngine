@@ -90,7 +90,7 @@ global.checkpoint = false;
         {
             // quit:
             returnFromLevel();
-            lockControls = true;
+            controlsLocked = true;
         }
         else
         {

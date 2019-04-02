@@ -137,6 +137,7 @@ if (entityCanStep())
         myMissile.col = col;
         animFrame = 1;
         pixelsMoved = 0;
+        playSFX(sfxMissileLaunch);
     }
     if (timer &gt; 60)
     {

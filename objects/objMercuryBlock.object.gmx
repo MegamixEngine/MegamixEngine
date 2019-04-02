@@ -27,13 +27,22 @@
             <kind>1</kind>
             <string>// A block that drops from the ceiling, landing on the ground. If it hits Mega Man while falling, it will damage him.
 event_inherited();
-respawn = false;
 healthpointsStart = 3;
 isSolid = 1;
 
 contactDamage = 3;
 itemDrop = -1;
 faction = 7;
+bubbleTimer = -1;
+
+// super arm interaction
+category = "superArmTarget";
+superArmFlashTimer = 0;
+superArmFlashInterval = 1;
+superArmFlashOwner = noone;
+superArmHoldOwner = noone;
+superArmDeathOnDrop = true;
+superArmThrown = false;
 </string>
           </argument>
         </arguments>
@@ -58,17 +67,20 @@ faction = 7;
             <kind>1</kind>
             <string>event_inherited();
 
-if ((!global.frozen) &amp;&amp; (!dead) &amp;&amp; (!global.timeStopped))
+if (entityCanStep()) //((!global.frozen) &amp;&amp; (!dead) &amp;&amp; (!global.timeStopped))
 {
-    with (objMegaman)
+    if (superArmHoldOwner == noone)
     {
-        if (place_meeting(x, y - gravDir * 4 - (other.yspeed * (other.yspeed &gt; 0)), other))
+        with (objMegaman)
         {
-            if ((canHit == true) &amp;&amp; (iFrames == 0))
+            if (place_meeting(x, y - gravDir * 4 - (other.yspeed * (other.yspeed &gt; 0)), other))
             {
-                with (other)
+                if ((canHit == true) &amp;&amp; (iFrames == 0))
                 {
-                    entityEntityCollision();
+                    with (other)
+                    {
+                        entityEntityCollision();
+                    }
                 }
             }
         }
@@ -99,6 +111,38 @@ if ((!global.frozen) &amp;&amp; (!dead) &amp;&amp; (!global.timeStopped))
             <string>if (other.object_index == objWaterShield)
 {
     event_user(EV_DEATH);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+
+// super arm flash
+if (superArmFlashTimer mod (2 * superArmFlashInterval) &gt;= superArmFlashInterval || superArmThrown || superArmHoldOwner != noone)
+{
+    draw_set_blend_mode(bm_add);
+    drawSelf();
+    draw_set_blend_mode(bm_normal);
+    draw_set_alpha(1);
 }
 </string>
           </argument>

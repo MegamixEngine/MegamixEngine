@@ -71,7 +71,7 @@ if (entityCanStep())
     
     if (ground)
     {
-        i = instance_create(x, y + 10, objBireeSparkGroundShot);
+        var i = instance_create(x, y + 10, objBireeSparkGroundShot);
         i.image_xscale = image_xscale;
         with (i)
         {

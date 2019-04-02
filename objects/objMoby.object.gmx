@@ -34,7 +34,7 @@ respawn = true;
 healthpointsStart = 14;
 healthpoints = healthpointsStart;
 contactDamage = 6;
-
+category = "aquatic, bulky";
 grav = 0;
 
 // Enemy specific code
@@ -81,13 +81,10 @@ if (entityCanStep() &amp;&amp; introTimer &lt;= 0)
     if (!instance_exists(objMobbyBomb))
         shootTimer += 1;
     else
-    {
-        if (instance_exists(target))
+    {   
+        with (objMegaman)
         {
-            with (target)
-            {
-                shiftObject((1 / 4), 0, 1);
-            }
+            playerBlow((1 / 2)*sign(-other.image_xscale));//1/4
         }
     }
     blinkTimer += 1;
@@ -115,6 +112,7 @@ if (entityCanStep() &amp;&amp; introTimer &lt;= 0)
     
     if (shootTimer == floor(shootTimer / 60) * 60)
     {
+        var myAttack;
         if (attack == 0)
         {
             myAttack = instance_create(x + 38 * image_xscale, y + 20,
@@ -124,7 +122,7 @@ if (entityCanStep() &amp;&amp; introTimer &lt;= 0)
         }
         else
         {
-            for (i = 0; i &lt;= 3; i += 1)
+            for (var i = 0; i &lt;= 3; i += 1)
             {
                 myAttack = instance_create(x - 8 * image_xscale, y - 32,
                     objMobbyBomb);
@@ -167,25 +165,47 @@ else if (!insideView())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (introTimer &gt; 0 &amp;&amp; doesIntro)
+            <string>// Glow white when hit
+if (iFrames == 1) || (iFrames == 3)
+{
+    d3d_set_fog(true, c_white, 0, 0);
+}
+
+// Draw code
+if (introTimer &gt; 0 &amp;&amp; doesIntro)
 {
     event_inherited();
 }
 else
 {
+    // Draw air suction
     if (instance_exists(objMobbyBomb))
+    {
         draw_sprite_ext(sprMobbyAir, image_index, round(x + 42 * image_xscale),
             round(y + 17), image_xscale, image_yscale, image_angle,
             image_blend, image_alpha);
+    }
     
-    draw_sprite_ext(sprite_index, image_index mod 1, round(x), round(y),
+    // Draw self
+    draw_sprite_ext(sprite_index, image_index mod 2, round(x), round(y),
         image_xscale, image_yscale, image_angle, image_blend, image_alpha);
     
+    // Draw flipper
     draw_sprite_ext(sprite_index, floor(flipperIndex + 2), round(x), round(y),
         image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+        
+    // Draw blinking
     if (blink)
+    {
         draw_sprite_ext(sprite_index, 5, round(x), round(y), image_xscale,
             image_yscale, image_angle, image_blend, image_alpha);
+    }
+}
+
+// End white when hit
+if (iFrames == 1) || (iFrames == 3)
+{
+    d3d_set_fog(false, 0, 0, 0);
 }
 </string>
           </argument>

@@ -29,6 +29,9 @@
 
 firstStep = 1;
 
+slowdeathTimer = 0;
+isDying = false;
+finalDeath = false;
 _endStageBehavior = 0;
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
@@ -48,6 +51,10 @@ grav = 0;
 contactDamage = 5;
 destroyOnDeath = false;
 isTargetable = false;
+endRef = 0;
+isEnd = false;
+isStart = false;
+startRef = 0;
 
 speedToMove = 0.5; // The absolute value for yspeed;
 
@@ -71,8 +78,8 @@ yCurrOffset = 0; // Keeps track of the height changes for the shark.
 endOfStageBoss = false;
 
 // Health Bar
-healthBarPrimaryColor[1] = 25;
-healthBarSecondaryColor[1] = 52;
+healthBarPrimaryColor[1] = 52;
+healthBarSecondaryColor[1] = 40;
 
 // Music
 music = "Mega_Man_9.nsf";
@@ -292,6 +299,25 @@ if (!global.frozen &amp;&amp; !allDead &amp;&amp; (!stop || (stop &amp;&amp; y !
         yCurrOffset += yspeed;
     }
 }
+
+// Final Death animation
+if (finalDeath)
+{
+    if (!global.frozen)
+    {
+        yspeed = 0;
+        if (slowdeathTimer == 45)
+            image_alpha = 0.8;
+        if (slowdeathTimer == 60)
+            image_alpha = 0.5;
+        if (slowdeathTimer == 75)
+            image_alpha = 0.2;
+        if (slowdeathTimer == 90)
+            image_alpha = 0;
+        if (slowdeathTimer == 120)
+            event_user(EV_DEATH);
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -346,16 +372,19 @@ if (spawned)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (killed)
+            <string>if (killed)//Ignore this event if I'm dead
+{
+    if (!finalDeath) //(!isDying)
     exit;
-if (!killed &amp;&amp; isFight)
+}
+if (!killed &amp;&amp; isDying)//isFight)
     killed = true;
 
 allDead = true;
 stop = true;
 with (prtSharkSubmarine)
 {
-    if (insideSection(x,y)&amp;&amp;id != other.id &amp;&amp; startRef == other.startRef)
+    if (insideSection(x,y)) &amp;&amp; (id != other.id) &amp;&amp; (startRef == other.startRef)
         other.stop = false;
 }
 instance_activate_object(prtSharkSubmarine);
@@ -380,16 +409,25 @@ else
 with (prtSharkSubmarine)
 {
     if (other.startRef == startRef &amp;&amp; other.allDead)
+    {
         allDead = true;
+    }
     if (!insideSection(x, y))
     {
         instance_deactivate_object(id);
     }
 }
+
 if (allDead)
 {
+    if (!finalDeath)
+    {
+        finalDeath = true;
+        exit;
+    }
     useEndStageBehavior = _endStageBehavior;
     stop = true;
+    yspeed = 0;
     doPlayerExplosion = true;
 }
 else
@@ -398,13 +436,14 @@ else
     itemDrop = -1;
     doPlayerExplosion = false;
 }
-event_inherited();
-instance_create(bboxGetXCenter(), bboxGetYCenter() - 10, objBigExplosion);
-instance_create(bboxGetXCenter() + 32, bboxGetYCenter(), objBigExplosion);
-instance_create(bboxGetXCenter() - 32, bboxGetYCenter(), objBigExplosion);
-playSFX(sfxMM9Explosion);
+//event_inherited();
+
 if (!allDead)
+{
     dead = false;
+    event_inherited();
+}
+    
 if (stop &amp;&amp; y != ystart)
 {
     global.lockTransition = true;
@@ -421,25 +460,20 @@ if (stop &amp;&amp; y != ystart)
 }
 
 // Do explosion Here
-
-if (allDead)
+if (allDead) &amp;&amp; (finalDeath)
 {
     instance_activate_object(prtSharkSubmarine);
     yspeed = 0;
     with (prtSharkSubmarine)
     {
+        event_inherited();
+        playSFX(sfxMM9Explosion);
         if (startRef == other.startRef)
         {
             if (!insideSection(x, y))
                 instance_destroy();
             else // Explode
-            {
-                instance_create(bboxGetXCenter(), bboxGetYCenter() - 10, objBigExplosion);
-                instance_create(bboxGetXCenter() + 32, bboxGetYCenter(), objBigExplosion);
-                instance_create(bboxGetXCenter() - 32, bboxGetYCenter(), objBigExplosion);
-                playSFX(sfxMM9Explosion);
                 instance_destroy();
-            }
         }
     }
 }
@@ -470,7 +504,9 @@ if (allDead)
 if (!isEnd)
 {
     if (rightShark.rightShark == noone)
+    {
         endRef = rightShark;
+    }
     else
     {
         with (rightShark)

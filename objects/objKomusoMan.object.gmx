@@ -218,7 +218,7 @@ if (entityCanStep())
                     delay = 4;
                     playSFX(sfxKomusoDoppler);
                     instance_create(x, y, objKomusoSmoke);
-                    kD = instance_create(x, y, objKomusoDoppler);
+                    var kD = instance_create(x, y, objKomusoDoppler);
                     kD.image_xscale = image_xscale;
                     kD.moveToLocation = moveToLocation;
                     kD.deadlyShadowClones = deadlyShadowClones;
@@ -354,7 +354,7 @@ if (entityCanStep())
                 if (!instance_exists(objKomusoFire))
                 {
                     playSFX(sfxKomusoFireTower);
-                    kF = instance_create(view_xview + (view_wview / 4),
+                    var kF = instance_create(view_xview + (view_wview / 4),
                         view_yview + view_hview, objKomusoFire);
                     kF.cDir = 1;
                     kF = instance_create(view_xview + (view_wview / 4),

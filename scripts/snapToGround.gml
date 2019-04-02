@@ -235,10 +235,6 @@ if (_prevCollision == 1 && !onGround) // if not on the ground rotate and snap to
             }
         }
     }
-    else
-    {
-        print("HECK"); // this should never happen
-    }
     _groundDir = wrapAngle(_groundDir - 90 * _dir);
     groundXDir = cos(degtorad(_groundDir));
     groundYDir = -sin(degtorad(_groundDir));
@@ -290,6 +286,5 @@ if (_prevCollision > -(failTolerancy))
     return true;
 else // if the script glitches out too much return false
 {
-    print("Please kill me");
     return false;
 }

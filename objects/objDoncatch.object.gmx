@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A hammerheaded enemy that smacks the ground and sends debris flying up and down. The
+// debris is also affected by gravity-affecting objects, such as water and 0.5 Grav switches.
+
+event_inherited();
 
 healthpointsStart = 4;
 contactDamage = 4;
@@ -33,9 +36,16 @@ contactDamage = 4;
 facePlayerOnSpawn = true;
 image_index = 1;
 
+category = "rocky";
+
 imageTimerEndpoint = 9; // 6;
 
+// @cc - use this to change how fast Doncatch walks
+moveSpeed = 1;
+
+// @cc - use this to change how close Mega Man has to be for Doncatch to attack
 dist = 54;
+
 imagePhaseDir = 1;
 imageTimer = imageTimerEndpoint;
 shooting = false;
@@ -81,7 +91,7 @@ if (entityCanStep())
             else // Walking along.
             {
                 calibrateDirection();
-                xspeed = 1 * image_xscale;
+                xspeed = moveSpeed * image_xscale;
                 imageTimer += 1;
                 if (imageTimer &gt;= imageTimerEndpoint)
                 {

@@ -11,3 +11,7 @@ global.timeStopped = false;
 
 // TODO: level reward, etc.
 print("Ending Stage");
+with(prtLevelCallbacks)
+{
+    event_user(1);
+}

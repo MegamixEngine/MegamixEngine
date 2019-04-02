@@ -197,7 +197,6 @@ inWater = -1;
                         {
                             x = other.x;
                             y = other.y;
-                            ground = 1;
                             
                             xspeed = 0;
                             yspeed = 0;
@@ -218,6 +217,14 @@ inWater = -1;
                             if lockPoolExists(climbLock)
                             {
                                 slideLock = lockPoolRelease(climbLock);
+                            }
+                            
+                            if instance_exists(objBreakDash)
+                            {
+                                with objBreakDash
+                                {
+                                    instance_destroy();
+                                }
                             }
                         }
                         
@@ -272,8 +279,8 @@ inWater = -1;
         // Destroy
         with (objWaveManJetSkiStopper)
         {
-            if ((other.bbox_left &gt; bbox_left &amp;&amp; other.image_xscale == 1)
-                || (other.bbox_right &gt; bbox_right &amp;&amp; other.image_xscale == -1))
+            if ((other.bbox_left &gt; bbox_left &amp;&amp; other.image_xscale == 1 &amp;&amp; image_xscale == 1)
+                || (other.bbox_right &lt; bbox_right &amp;&amp; other.image_xscale == -1 &amp;&amp; image_xscale == -1))
             {
                 with (other)
                 {

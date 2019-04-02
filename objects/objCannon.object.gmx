@@ -95,9 +95,10 @@ if (entityCanStep())
             if (shootTimer == 20 || shootTimer == 60)
             {
                 calibrateDirection();
-                ball = instance_create(x + sprite_width / 2,
+                var ball = instance_create(x + sprite_width / 2,
                     y - sprite_height * 0.8,
                     objCannonBall); // sprite_width is negative when xscale is
+                ball.image_xscale = image_xscale;
                 playSFX(sfxCannonShoot);
                 imgIndex = 2;
                 shootTimer += 1; // so it doesn't loop like a doof

@@ -33,7 +33,7 @@ healthpointsStart = 28;
 healthpoints = healthpointsStart;
 
 pose = sprCentaurIntro;
-poseImgSpeed = 6 / 60;
+poseImgSpeed = 12 / 60;
 contactDamage = 4;
 
 ground = false;
@@ -339,7 +339,7 @@ if (entityCanStep())
                 sprite_index = sprCentaurShoot;
                 if (hasFired == false &amp;&amp; image_index == 1)
                 {
-                    cS = instance_create(x + (20 * image_xscale), y + 3,
+                    var cS = instance_create(x + (20 * image_xscale), y + 3,
                         objCentaurShot);
                     cS.image_xscale = image_xscale;
                     cS.xspeed = 2 * cS.image_xscale;
@@ -435,6 +435,7 @@ if (entityCanStep())
                 {
                     attackTimer = 0;
                     sprite_index = sprCentaurTeleport;
+                    playSFX(sfxCentaurTeleport);
                     imageTimerMax = 2;
                     hasFired = true;
                 }

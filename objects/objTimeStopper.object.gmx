@@ -28,6 +28,7 @@
             <string>event_inherited();
 
 contactDamage = 0;
+inWater = -1;
 
 despawnRange = -1;
 shiftVisible = true;

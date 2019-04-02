@@ -38,6 +38,7 @@ respawn = true;
 healthpointsStart = 4;
 healthpoints = healthpointsStart;
 contactDamage = 3;
+category = "nature";
 
 // Enemy specific code
 actionTimer = -1;
@@ -119,7 +120,7 @@ if (entityCanStep())
                 {
                     state = 0;
                     actionTimer = 0;
-                    a = instance_create(x, y, objFlowerPresenterFlower);
+                    var a = instance_create(x, y, objFlowerPresenterFlower);
                     a.col = flower;
                 }
                 break;

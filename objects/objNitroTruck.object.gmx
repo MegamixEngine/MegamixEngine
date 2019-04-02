@@ -31,6 +31,8 @@ healthpointsStart = 5;
 healthpoints = healthpointsStart;
 contactDamage = 5;
 
+itemDrop = -1;
+
 isSolid = true;
 
 spd = 3;
@@ -161,7 +163,8 @@ if (entityCanStep())
         if (do_collision)
         {
             slowdeath_timer = 1;
-            playSFX(sfxExplosion2);
+            instance_create(x+25*image_xscale,choose(y+5,y+40),objBigExplosion);
+            playSFX(sfxMM9Explosion);//(sfxExplosion2);
             yspeed = 0;
         }
     }
@@ -172,6 +175,12 @@ if (entityCanStep())
         visible = (slowdeath_timer div 3) mod 2;
         xspeed = -image_xscale;
         
+        if (slowdeath_timer == 10)
+        {
+            instance_create(x-30*image_xscale,choose(y+5,y+30),objBigExplosion);
+            playSFX(sfxMM9Explosion);
+        }
+        
         if (slowdeath_timer &gt; 10)
         {
             xspeed = 0;
@@ -180,7 +189,10 @@ if (entityCanStep())
         if (slowdeath_timer &gt; 20)
         {
             with (instance_create(bboxGetXCenter(), bboxGetYCenter(), objHarmfulExplosion))
+            {
                 contactDamage = 0;
+                playSFX(sfxMM9Explosion);
+            }
             dead = true;
             visible = true;
         }
@@ -222,6 +234,14 @@ else if (dead)
 {
     other.guardCancel = 3;
     global.damage = 0;
+}
+else if (other.object_index == objChillSpikeLanded)
+{
+    slowdeath_timer = 1;
+    instance_create(x+25*image_xscale,choose(y+5,y+40),objBigExplosion);
+    playSFX(sfxMM9Explosion);
+    yspeed = 0;
+    global.damage = 4;
 }
 </string>
           </argument>

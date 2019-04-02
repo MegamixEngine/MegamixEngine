@@ -37,6 +37,7 @@ isSolid = 1;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
@@ -298,8 +299,9 @@ else if (healthpoints &lt; 1) // Break
 {
     drawItem = false;
     playSFX(sfxChillBreak);
+    var xx, yy, xs, ys;
     
-    for (b = 0; b &lt; 4; b += 1)
+    for (var b = 0; b &lt; 4; b += 1)
     {
         if (b == 0)
         {
@@ -329,7 +331,7 @@ else if (healthpoints &lt; 1) // Break
             xs = 0.5;
             ys = -2;
         }
-        i = instance_create(bboxGetXCenter() + xx, bboxGetYCenter() + yy, objEnemyBullet);
+        var i = instance_create(bboxGetXCenter() + xx, bboxGetYCenter() + yy, objEnemyBullet);
         i.sprite_index = sprChillBlockShards;
         i.image_index = b;
         i.grav = 0.2;
@@ -366,7 +368,7 @@ else if (healthpoints &lt; 1) // Break
         var boxLeft = bbox_left + 2;
         var boxTop = bbox_top + 2;
         
-        myEnemy = instance_create(boxLeft, boxTop, itemDrop);
+        var myEnemy = instance_create(boxLeft, boxTop, itemDrop);
         myEnemy.sprite_index = sprite;
         myEnemy.image_xscale = xscale;
         myEnemy.image_yscale = yscale;

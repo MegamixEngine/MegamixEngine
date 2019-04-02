@@ -74,7 +74,7 @@ parent = noone;
             <kind>1</kind>
             <string>event_inherited();
 
-xs = xspeed;
+var xs = xspeed;
 if (!ground)
 {
     xspeed = 0;
@@ -138,7 +138,6 @@ if (entityCanStep())
 else if (dead)
 {
     cooldownTimer = 0;
-    canShoot = true;
     image_index = 0;
 }
 </string>

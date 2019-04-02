@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 2;
+inWater = -1;
 
 penetrate = 3; // obviously we don't want to destroy the control for the dash
 pierces = 2;
@@ -222,7 +223,7 @@ var initChargeTime = 20;
 // Shooting buster shots if not charged.
 if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; !instance_exists(objBreakDash))
 {
-    i = fireWeapon(16, 0, objBusterShot, 3, 0, 1, 0);
+    i = fireWeapon(16, 0, objNormalBusterShot, 3, 0, 1, 0);
     if (i)
     {
         i.xspeed = image_xscale * 5; // zoom
@@ -362,7 +363,7 @@ if (global.ammo[playerID, global.weapon[playerID]] &gt; 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>specialDamageValue("grounded", 2);
+            <string>specialDamageValue("grounded", 3);
 specialDamageValue(objSpine, 3);
 </string>
           </argument>

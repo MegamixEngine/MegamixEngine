@@ -32,6 +32,7 @@ isSolid = 1;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 myFlag = 0;
 inverse = false;
@@ -61,15 +62,26 @@ inverse = false;
 
 if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
-    if (global.flag[myFlag] == round(global.flag[myFlag])
-        &amp;&amp; !place_meeting(x, y - image_yscale, objMegaman))
-        image_index = 0;
-    if (place_meeting(x, y - image_yscale, objMegaman)
-        &amp;&amp; image_index == 0)
+    with (target)
     {
-        global.flagParent[myFlag].active = 1 - global.flagParent[myFlag].active;
-        playSFX(sfxSidewayElevatorButton);
-        image_index = 1;
+        if (place_meeting(x, y + other.image_yscale, other.id)
+        &amp;&amp; other.image_index == 0)
+        {
+            with (other)
+            {
+                global.flagParent[myFlag].active = 1 - global.flagParent[myFlag].active;
+                playSFX(sfxSidewayElevatorButton);
+                image_index = 1;
+            }
+        }
+        if (!place_meeting(x, y + image_yscale, other.id))
+        {
+            with (other)
+            {
+                if (global.flag[myFlag] == round(global.flag[myFlag]))
+                    image_index = 0;
+            }
+        }
     }
 }
 </string>

@@ -31,6 +31,8 @@ contactDamage = 3;
 grav = 0;
 blockCollision = 0;
 
+category = "flying";
+
 // Enemy specific code
 enemyDamageValue(objHornetChaser, 3);
 enemyDamageValue(objSparkChaser, 3);

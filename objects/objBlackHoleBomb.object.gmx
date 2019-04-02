@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 3;
+inWater = -1;
 
 image_speed = 0.4;
 
@@ -116,7 +117,7 @@ if (!global.frozen)
             }
             else
             {
-                var dir = global.keyDown[parent.playerID] - global.keyUp[parent.playerID];
+                var dir = (global.keyDown[parent.playerID] - global.keyUp[parent.playerID]) * (sign(parent.image_yscale));
                 if (dir != 0)
                 {
                     if (yspeed * sign(yspeed) &lt; 2)
@@ -172,7 +173,7 @@ if (!global.frozen)
             playSFX(sfxEnemyHit);
             with (other)
             {
-                i = instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
+                instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
                 event_user(EV_DEATH);
             }
             break;
@@ -210,7 +211,7 @@ if (!global.frozen)
             <kind>1</kind>
             <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(16, 0, objBlackHoleBomb, 1, 7, 1, 0);
+    var i = fireWeapon(16, 0, objBlackHoleBomb, 1, 7, 1, 0);
     with (i)
     {
         xspeed = other.image_xscale * 1; // zoom
@@ -263,8 +264,8 @@ if (!global.frozen)
             <kind>1</kind>
             <string>with (other)
 {
-    par = object_is_ancestor(object_index, prtMiniBoss) || (boss == 1);
-    if (par || !canHit)
+    var par = object_is_ancestor(object_index, prtMiniBoss) || (boss == 1);
+    if (par || !canHit || !killOverride)
     {
         exit;
     }
@@ -305,7 +306,7 @@ if (!global.frozen)
           <argument>
             <kind>1</kind>
             <string>// unique ricochet animation
-i = instance_create(x, y, objHarmfulExplosion);
+var i = instance_create(x, y, objHarmfulExplosion);
 i.contactDamage = 0;
 playSFX(sfxExplosion2);
 instance_destroy();

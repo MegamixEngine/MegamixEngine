@@ -1,0 +1,5 @@
+*.exe
+*.dll
+*.o
+*tmp.txt
+*tmp2.txt

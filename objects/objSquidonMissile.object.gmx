@@ -54,6 +54,7 @@ jetTimer = 0;
 imgIndex = 0;
 image_speed = 0;
 image_index = 0;
+startWaitTimer = 0;
 </string>
           </argument>
         </arguments>
@@ -115,12 +116,12 @@ if (entityCanStep())
                     break;
                 }
                 
-                preDirection = direction;
+                var preDirection = direction;
                 
                 correctDirection(point_direction(x, y, target.x, target.y), rotateSpd);
                 
                 // this is basically so it doesn't add way too much when crossing from 0 degrees to 360 degrees
-                c = abs(direction - preDirection);
+                var c = abs(direction - preDirection);
                 if (c &gt; rotateSpd)
                 {
                     c = rotateSpd;

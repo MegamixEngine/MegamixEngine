@@ -193,6 +193,7 @@ if (entityCanStep())
 {
     if (isFight)
     {
+        var strMMX, strMMY;
         if (instance_exists(target))
         {
             strMMX = target.x;

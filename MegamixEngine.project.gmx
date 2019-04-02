@@ -3,7 +3,24 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="126" name="datafiles">
+  <datafiles number="107" name="datafiles">
+    <datafile>
+      <name>chrono.dll</name>
+      <exists>-1</exists>
+      <size>957440</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>chrono.dll</filename>
+    </datafile>
     <datafile>
       <name>CleanMem.dll</name>
       <exists>-1</exists>
@@ -20,6 +37,23 @@
         </Config>
       </ConfigOptions>
       <filename>CleanMem.dll</filename>
+    </datafile>
+    <datafile>
+      <name>filesystem.dll</name>
+      <exists>-1</exists>
+      <size>968704</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>filesystem.dll</filename>
     </datafile>
     <datafile>
       <name>fmodex.dll</name>
@@ -55,803 +89,11 @@
       </ConfigOptions>
       <filename>GMFMODSimple.dll</filename>
     </datafile>
-    <datafiles number="126" name="Music">
-      <datafile>
-        <name>14 Tenguman.spc</name>
-        <exists>-1</exists>
-        <size>66136</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>14 Tenguman.spc</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_1.nsf</name>
-        <exists>-1</exists>
-        <size>12048</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_1.nsf</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_2.nsf</name>
-        <exists>-1</exists>
-        <size>16848</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_2.nsf</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_3.nsf</name>
-        <exists>-1</exists>
-        <size>20156</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_3.nsf</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_4.nsf</name>
-        <exists>-1</exists>
-        <size>24704</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_4.nsf</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_5.nsf</name>
-        <exists>-1</exists>
-        <size>24704</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_5.nsf</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_6.nsf</name>
-        <exists>-1</exists>
-        <size>24704</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_6.nsf</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_9.nsf</name>
-        <exists>-1</exists>
-        <size>347776</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_9.nsf</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_10.nsf</name>
-        <exists>-1</exists>
-        <size>123008</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_10.nsf</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_1GB.gbs</name>
-        <exists>-1</exists>
-        <size>29405</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_1GB.gbs</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_2GB.gbs</name>
-        <exists>-1</exists>
-        <size>13702</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_2GB.gbs</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_3GB.gbs</name>
-        <exists>-1</exists>
-        <size>15255</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_3GB.gbs</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_4GB.gbs</name>
-        <exists>-1</exists>
-        <size>31998</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_4GB.gbs</filename>
-      </datafile>
-      <datafile>
-        <name>Mega_Man_5GB.gbs</name>
-        <exists>-1</exists>
-        <size>29723</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Mega_Man_5GB.gbs</filename>
-      </datafile>
-      <datafile>
-        <name>MM7_Dr._Wily_3.spc</name>
-        <exists>-1</exists>
-        <size>66144</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>MM7_Dr._Wily_3.spc</filename>
-      </datafile>
-      <datafile>
-        <name>WT_stage_4.vgm</name>
-        <exists>-1</exists>
-        <size>211934</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>WT_stage_4.vgm</filename>
-      </datafile>
-      <datafile>
-        <name>dr. wily stage 1.ogg</name>
-        <exists>-1</exists>
-        <size>1080810</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>dr. wily stage 1.ogg</filename>
-      </datafile>
-      <datafile>
-        <name>18 Boss Battle.spc</name>
-        <exists>-1</exists>
-        <size>66136</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>18 Boss Battle.spc</filename>
-      </datafile>
-      <datafile>
-        <name>Showcase.ogg</name>
-        <exists>-1</exists>
-        <size>3116618</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Showcase.ogg</filename>
-      </datafile>
-      <datafile>
-        <name>RnFBossNES.ogg</name>
-        <exists>-1</exists>
-        <size>1156286</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>RnFBossNES.ogg</filename>
-      </datafile>
-      <datafile>
-        <name>Wily4StairwaytoDarkness.ogg</name>
-        <exists>-1</exists>
-        <size>484043</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Wily4StairwaytoDarkness.ogg</filename>
-      </datafile>
-      <datafile>
-        <name>HoneyWoman.ogg</name>
-        <exists>-1</exists>
-        <size>595441</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>HoneyWoman.ogg</filename>
-      </datafile>
-      <datafile>
-        <name>Chill Man.ogg</name>
-        <exists>-1</exists>
-        <size>807950</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Chill Man.ogg</filename>
-      </datafile>
-      <datafile>
-        <name>TitleScreen.ogg</name>
-        <exists>-1</exists>
-        <size>1485318</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>TitleScreen.ogg</filename>
-      </datafile>
-      <datafile>
-        <name>Victory.ogg</name>
-        <exists>-1</exists>
-        <size>67880</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>Victory.ogg</filename>
-      </datafile>
-      <datafile>
-        <name>WeaponGet.ogg</name>
-        <exists>-1</exists>
-        <size>471574</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>WeaponGet.ogg</filename>
-      </datafile>
-      <datafile>
-        <name>WilyIntro.ogg</name>
-        <exists>-1</exists>
-        <size>109747</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>WilyIntro.ogg</filename>
-      </datafile>
-      <datafile>
-        <name>WilyTowerBossTheme.vgm</name>
-        <exists>-1</exists>
-        <size>94289</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>WilyTowerBossTheme.vgm</filename>
-      </datafile>
-    </datafiles>
-    <datafiles number="126" name="Recordings">
-      <datafile>
-        <name>demoHoneyWoman.mrc</name>
-        <exists>-1</exists>
-        <size>20334</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>demoHoneyWoman.mrc</filename>
-      </datafile>
-      <datafile>
-        <name>demoPharaohMan.mrc</name>
-        <exists>-1</exists>
-        <size>29700</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>demoPharaohMan.mrc</filename>
-      </datafile>
-      <datafile>
-        <name>demoPico.mrc</name>
-        <exists>-1</exists>
-        <size>16408</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>demoPico.mrc</filename>
-      </datafile>
-    </datafiles>
-    <datafiles number="126" name="UnitTests">
-      <datafiles number="126" name="Rooms">
-        <datafile>
-          <name>lvlRecordingTest.room.gmx</name>
-          <exists>-1</exists>
-          <size>4787</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>lvlRecordingTest.room.gmx</filename>
-        </datafile>
-        <datafile>
-          <name>lvlUnitTestEnemies.room.gmx</name>
-          <exists>-1</exists>
-          <size>6583</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>lvlUnitTestEnemies.room.gmx</filename>
-        </datafile>
-        <datafile>
-          <name>lvlUnitTestMovement.room.gmx</name>
-          <exists>-1</exists>
-          <size>35253</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>lvlUnitTestMovement.room.gmx</filename>
-        </datafile>
-        <datafile>
-          <name>lvlUnitTestObjectSetter.room.gmx</name>
-          <exists>-1</exists>
-          <size>22056</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>lvlUnitTestObjectSetter.room.gmx</filename>
-        </datafile>
-        <datafile>
-          <name>lvlUnitTestRecording.room.gmx</name>
-          <exists>-1</exists>
-          <size>4474</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>lvlUnitTestRecording.room.gmx</filename>
-        </datafile>
-        <datafile>
-          <name>rmUnitTestBasic.room.gmx</name>
-          <exists>-1</exists>
-          <size>3853</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>rmUnitTestBasic.room.gmx</filename>
-        </datafile>
-        <datafile>
-          <name>lvlUnitTestBossDoors.room.gmx</name>
-          <exists>-1</exists>
-          <size>149674</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>lvlUnitTestBossDoors.room.gmx</filename>
-        </datafile>
-      </datafiles>
-      <datafiles number="126" name="Recordings">
-        <datafile>
-          <name>RecordingObjectSet.mrc</name>
-          <exists>-1</exists>
-          <size>4163</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>RecordingObjectSet.mrc</filename>
-        </datafile>
-        <datafile>
-          <name>RecordingTestHere.mrc</name>
-          <exists>-1</exists>
-          <size>3505</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>RecordingTestHere.mrc</filename>
-        </datafile>
-        <datafile>
-          <name>RecordingTestBasicMovement.mrc</name>
-          <exists>-1</exists>
-          <size>16529</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>RecordingTestBasicMovement.mrc</filename>
-        </datafile>
-        <datafile>
-          <name>RecordingTestBasicMovement2.mrc</name>
-          <exists>-1</exists>
-          <size>25851</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>RecordingTestBasicMovement2.mrc</filename>
-        </datafile>
-        <datafile>
-          <name>RecordingTestBasicMovement3.mrc</name>
-          <exists>-1</exists>
-          <size>11974</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>RecordingTestBasicMovement3.mrc</filename>
-        </datafile>
-        <datafile>
-          <name>RecordingTestBasicMovement4.mrc</name>
-          <exists>-1</exists>
-          <size>24803</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>RecordingTestBasicMovement4.mrc</filename>
-        </datafile>
-        <datafile>
-          <name>RecordingTestReset.mrc</name>
-          <exists>-1</exists>
-          <size>3605</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>RecordingTestReset.mrc</filename>
-        </datafile>
-        <datafile>
-          <name>recTestA.mrc</name>
-          <exists>-1</exists>
-          <size>3442</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>recTestA.mrc</filename>
-        </datafile>
-      </datafiles>
-    </datafiles>
-    <datafiles number="126" name="Levels">
+    <datafiles number="107" name="Levels">
       <datafile>
         <name>lvlChillMan.room.gmx</name>
         <exists>-1</exists>
-        <size>990006</size>
+        <size>990012</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -902,7 +144,7 @@
       <datafile>
         <name>lvlGeminiMan.room.gmx</name>
         <exists>-1</exists>
-        <size>1041954</size>
+        <size>1082733</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -919,7 +161,7 @@
       <datafile>
         <name>lvlGutsMan.room.gmx</name>
         <exists>-1</exists>
-        <size>591300</size>
+        <size>591334</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -949,6 +191,23 @@
           </Config>
         </ConfigOptions>
         <filename>lvlHoneyWoman.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>lvlMM10Wily4.room.gmx</name>
+        <exists>-1</exists>
+        <size>860364</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>lvlMM10Wily4.room.gmx</filename>
       </datafile>
       <datafile>
         <name>lvlMM4Wily1.room.gmx</name>
@@ -987,7 +246,7 @@
       <datafile>
         <name>lvlMM6MrX4.room.gmx</name>
         <exists>-1</exists>
-        <size>1098617</size>
+        <size>1098626</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -1019,9 +278,9 @@
         <filename>lvlMM9Wily3.room.gmx</filename>
       </datafile>
       <datafile>
-        <name>lvlMM10Wily4.room.gmx</name>
+        <name>lvlPharaohMan.room.gmx</name>
         <exists>-1</exists>
-        <size>860398</size>
+        <size>885878</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -1033,12 +292,12 @@
             <CopyToMask>9223372036854775807</CopyToMask>
           </Config>
         </ConfigOptions>
-        <filename>lvlMM10Wily4.room.gmx</filename>
+        <filename>lvlPharaohMan.room.gmx</filename>
       </datafile>
       <datafile>
         <name>lvlPlantMan.room.gmx</name>
         <exists>-1</exists>
-        <size>863081</size>
+        <size>863087</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -1055,7 +314,7 @@
       <datafile>
         <name>lvlStoneMan.room.gmx</name>
         <exists>-1</exists>
-        <size>1443633</size>
+        <size>1443627</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -1070,9 +329,9 @@
         <filename>lvlStoneMan.room.gmx</filename>
       </datafile>
       <datafile>
-        <name>lvlPharaohMan.room.gmx</name>
+        <name>rmShowcaseBossEarth.room.gmx</name>
         <exists>-1</exists>
-        <size>885859</size>
+        <size>476303</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -1084,8 +343,1497 @@
             <CopyToMask>9223372036854775807</CopyToMask>
           </Config>
         </ConfigOptions>
-        <filename>lvlPharaohMan.room.gmx</filename>
+        <filename>rmShowcaseBossEarth.room.gmx</filename>
       </datafile>
+      <datafile>
+        <name>rmShowcaseBossElectric.room.gmx</name>
+        <exists>-1</exists>
+        <size>183857</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossElectric.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBosses.room.gmx</name>
+        <exists>-1</exists>
+        <size>4164</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBosses.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossFanFlame.room.gmx</name>
+        <exists>-1</exists>
+        <size>268879</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossFanFlame.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossFlashGravity.room.gmx</name>
+        <exists>-1</exists>
+        <size>205314</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossFlashGravity.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossFluidic.room.gmx</name>
+        <exists>-1</exists>
+        <size>692893</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossFluidic.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossMisc.room.gmx</name>
+        <exists>-1</exists>
+        <size>176370</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossMisc.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossOrdinance.room.gmx</name>
+        <exists>-1</exists>
+        <size>585576</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossOrdinance.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossSharp.room.gmx</name>
+        <exists>-1</exists>
+        <size>396824</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossSharp.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseBossSummoner.room.gmx</name>
+        <exists>-1</exists>
+        <size>318063</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseBossSummoner.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseExplosions.room.gmx</name>
+        <exists>-1</exists>
+        <size>1397734</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseExplosions.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseFlying.room.gmx</name>
+        <exists>-1</exists>
+        <size>1294543</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseFlying.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseIceFire.room.gmx</name>
+        <exists>-1</exists>
+        <size>2100014</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseIceFire.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseIndustrial.room.gmx</name>
+        <exists>-1</exists>
+        <size>301172</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseIndustrial.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseJoes.room.gmx</name>
+        <exists>-1</exists>
+        <size>296513</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseJoes.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseJumping.room.gmx</name>
+        <exists>-1</exists>
+        <size>1656089</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseJumping.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseLeftovers.room.gmx</name>
+        <exists>-1</exists>
+        <size>345343</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseLeftovers.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMets.room.gmx</name>
+        <exists>-1</exists>
+        <size>1831823</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMets.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMinibossAnimals.room.gmx</name>
+        <exists>-1</exists>
+        <size>911621</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMinibossAnimals.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMinibossIndustrial.room.gmx</name>
+        <exists>-1</exists>
+        <size>911017</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMinibossIndustrial.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMinibossMisc.room.gmx</name>
+        <exists>-1</exists>
+        <size>506896</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMinibossMisc.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMinibossWater.room.gmx</name>
+        <exists>-1</exists>
+        <size>245215</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMinibossWater.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMovement.room.gmx</name>
+        <exists>-1</exists>
+        <size>497140</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMovement.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseMovingPlatforms.room.gmx</name>
+        <exists>-1</exists>
+        <size>697263</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseMovingPlatforms.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseNoveltyPlatforms.room.gmx</name>
+        <exists>-1</exists>
+        <size>529454</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseNoveltyPlatforms.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcasePlanning.room.gmx</name>
+        <exists>-1</exists>
+        <size>86660</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcasePlanning.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseSpawners.room.gmx</name>
+        <exists>-1</exists>
+        <size>1182187</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseSpawners.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseSurprise.room.gmx</name>
+        <exists>-1</exists>
+        <size>942267</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseSurprise.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseSurprise2.room.gmx</name>
+        <exists>-1</exists>
+        <size>308377</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseSurprise2.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseSwitches.room.gmx</name>
+        <exists>-1</exists>
+        <size>381764</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseSwitches.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseTurrets.room.gmx</name>
+        <exists>-1</exists>
+        <size>1414512</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseTurrets.room.gmx</filename>
+      </datafile>
+      <datafile>
+        <name>rmShowcaseWater.room.gmx</name>
+        <exists>-1</exists>
+        <size>680409</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>rmShowcaseWater.room.gmx</filename>
+      </datafile>
+    </datafiles>
+    <datafiles number="107" name="Music">
+      <datafile>
+        <name>14 Tenguman.spc</name>
+        <exists>-1</exists>
+        <size>66136</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>14 Tenguman.spc</filename>
+      </datafile>
+      <datafile>
+        <name>18 Boss Battle.spc</name>
+        <exists>-1</exists>
+        <size>66136</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>18 Boss Battle.spc</filename>
+      </datafile>
+      <datafile>
+        <name>Chill Man.ogg</name>
+        <exists>-1</exists>
+        <size>807950</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Chill Man.ogg</filename>
+      </datafile>
+      <datafile>
+        <name>dr. wily stage 1.ogg</name>
+        <exists>-1</exists>
+        <size>1080810</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>dr. wily stage 1.ogg</filename>
+      </datafile>
+      <datafile>
+        <name>HoneyWoman.ogg</name>
+        <exists>-1</exists>
+        <size>677300</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>HoneyWoman.ogg</filename>
+      </datafile>
+      <datafile>
+        <name>MaGMML3DevkitBoss.nsf</name>
+        <exists>-1</exists>
+        <size>11367</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>MaGMML3DevkitBoss.nsf</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_1.nsf</name>
+        <exists>-1</exists>
+        <size>12048</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_1.nsf</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_10.nsf</name>
+        <exists>-1</exists>
+        <size>123008</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_10.nsf</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_1GB.gbs</name>
+        <exists>-1</exists>
+        <size>29405</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_1GB.gbs</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_2.nsf</name>
+        <exists>-1</exists>
+        <size>16848</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_2.nsf</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_2GB.gbs</name>
+        <exists>-1</exists>
+        <size>13702</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_2GB.gbs</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_3.nsf</name>
+        <exists>-1</exists>
+        <size>20156</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_3.nsf</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_3GB.gbs</name>
+        <exists>-1</exists>
+        <size>15255</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_3GB.gbs</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_4.nsf</name>
+        <exists>-1</exists>
+        <size>24704</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_4.nsf</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_4GB.gbs</name>
+        <exists>-1</exists>
+        <size>31998</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_4GB.gbs</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_5.nsf</name>
+        <exists>-1</exists>
+        <size>24704</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_5.nsf</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_5GB.gbs</name>
+        <exists>-1</exists>
+        <size>29723</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_5GB.gbs</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_6.nsf</name>
+        <exists>-1</exists>
+        <size>24704</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_6.nsf</filename>
+      </datafile>
+      <datafile>
+        <name>Mega_Man_9.nsf</name>
+        <exists>-1</exists>
+        <size>347776</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Mega_Man_9.nsf</filename>
+      </datafile>
+      <datafile>
+        <name>MM7_Dr._Wily_3.spc</name>
+        <exists>-1</exists>
+        <size>66144</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>MM7_Dr._Wily_3.spc</filename>
+      </datafile>
+      <datafile>
+        <name>RnFBossNES.ogg</name>
+        <exists>-1</exists>
+        <size>1156286</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>RnFBossNES.ogg</filename>
+      </datafile>
+      <datafile>
+        <name>Rockboard.nsf</name>
+        <exists>-1</exists>
+        <size>16512</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Rockboard.nsf</filename>
+      </datafile>
+      <datafile>
+        <name>Showcase.ogg</name>
+        <exists>-1</exists>
+        <size>2990929</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Showcase.ogg</filename>
+      </datafile>
+      <datafile>
+        <name>songlist.txt</name>
+        <exists>-1</exists>
+        <size>7585</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>songlist.txt</filename>
+      </datafile>
+      <datafile>
+        <name>Victory.ogg</name>
+        <exists>-1</exists>
+        <size>67880</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Victory.ogg</filename>
+      </datafile>
+      <datafile>
+        <name>WeaponGet.ogg</name>
+        <exists>-1</exists>
+        <size>471574</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>WeaponGet.ogg</filename>
+      </datafile>
+      <datafile>
+        <name>Wily4StairwaytoDarkness.ogg</name>
+        <exists>-1</exists>
+        <size>484043</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Wily4StairwaytoDarkness.ogg</filename>
+      </datafile>
+      <datafile>
+        <name>WilyIntro.ogg</name>
+        <exists>-1</exists>
+        <size>109747</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>WilyIntro.ogg</filename>
+      </datafile>
+      <datafile>
+        <name>WilyTowerBossTheme.vgm</name>
+        <exists>-1</exists>
+        <size>94289</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>WilyTowerBossTheme.vgm</filename>
+      </datafile>
+      <datafile>
+        <name>WT_stage_4.vgm</name>
+        <exists>-1</exists>
+        <size>211934</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>WT_stage_4.vgm</filename>
+      </datafile>
+      <datafile>
+        <name>WW_Boss.vgz</name>
+        <exists>-1</exists>
+        <size>13134</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>WW_Boss.vgz</filename>
+      </datafile>
+    </datafiles>
+    <datafiles number="107" name="Recordings">
+      <datafile>
+        <name>demoHoneyWoman.mrc</name>
+        <exists>-1</exists>
+        <size>20342</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>demoHoneyWoman.mrc</filename>
+      </datafile>
+      <datafile>
+        <name>demoPharaohMan.mrc</name>
+        <exists>-1</exists>
+        <size>29708</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>demoPharaohMan.mrc</filename>
+      </datafile>
+    </datafiles>
+    <datafiles number="107" name="UnitTests">
+      <datafiles number="107" name="Recordings">
+        <datafile>
+          <name>RecordingObjectSet.mrc</name>
+          <exists>-1</exists>
+          <size>4163</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingObjectSet.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestBasicMovement.mrc</name>
+          <exists>-1</exists>
+          <size>24125</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestBasicMovement.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestBasicMovement2.mrc</name>
+          <exists>-1</exists>
+          <size>22034</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestBasicMovement2.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestBasicMovement2old.mrc</name>
+          <exists>-1</exists>
+          <size>25851</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestBasicMovement2old.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestBasicMovement3.mrc</name>
+          <exists>-1</exists>
+          <size>16422</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestBasicMovement3.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestBasicMovement3old.mrc</name>
+          <exists>-1</exists>
+          <size>11974</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestBasicMovement3old.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestBasicMovement4.mrc</name>
+          <exists>-1</exists>
+          <size>10366</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestBasicMovement4.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestBasicMovement4old.mrc</name>
+          <exists>-1</exists>
+          <size>24803</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestBasicMovement4old.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestBasicMovementOld0.mrc</name>
+          <exists>-1</exists>
+          <size>16529</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestBasicMovementOld0.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestBasicMovementSections.mrc</name>
+          <exists>-1</exists>
+          <size>16728</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestBasicMovementSections.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestEnemies.mrc</name>
+          <exists>-1</exists>
+          <size>6308</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestEnemies.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestHere.mrc</name>
+          <exists>-1</exists>
+          <size>5281</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestHere.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestReset.mrc</name>
+          <exists>-1</exists>
+          <size>5274</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestReset.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestShoot.mrc</name>
+          <exists>-1</exists>
+          <size>6552</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestShoot.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>RecordingTestShootCharge.mrc</name>
+          <exists>-1</exists>
+          <size>6636</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>RecordingTestShootCharge.mrc</filename>
+        </datafile>
+        <datafile>
+          <name>recTestA.mrc</name>
+          <exists>-1</exists>
+          <size>3442</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>recTestA.mrc</filename>
+        </datafile>
+      </datafiles>
+      <datafiles number="107" name="Rooms">
+        <datafile>
+          <name>lvlRecordingTest.room.gmx</name>
+          <exists>-1</exists>
+          <size>4767</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>lvlRecordingTest.room.gmx</filename>
+        </datafile>
+        <datafile>
+          <name>lvlUnitTestBossDoors.room.gmx</name>
+          <exists>-1</exists>
+          <size>149674</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>lvlUnitTestBossDoors.room.gmx</filename>
+        </datafile>
+        <datafile>
+          <name>lvlUnitTestEnemies.room.gmx</name>
+          <exists>-1</exists>
+          <size>6563</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>lvlUnitTestEnemies.room.gmx</filename>
+        </datafile>
+        <datafile>
+          <name>lvlUnitTestMovement.room.gmx</name>
+          <exists>-1</exists>
+          <size>35233</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>lvlUnitTestMovement.room.gmx</filename>
+        </datafile>
+        <datafile>
+          <name>lvlUnitTestObjectSetter.room.gmx</name>
+          <exists>-1</exists>
+          <size>22036</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>lvlUnitTestObjectSetter.room.gmx</filename>
+        </datafile>
+        <datafile>
+          <name>lvlUnitTestRecording.room.gmx</name>
+          <exists>-1</exists>
+          <size>4454</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>lvlUnitTestRecording.room.gmx</filename>
+        </datafile>
+        <datafile>
+          <name>rmUnitTestBasic.room.gmx</name>
+          <exists>-1</exists>
+          <size>3853</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>rmUnitTestBasic.room.gmx</filename>
+        </datafile>
+      </datafiles>
     </datafiles>
   </datafiles>
   <NewExtensions>
@@ -1098,6 +1846,7 @@
       <sound>sound\sfxHit</sound>
       <sound>sound\sfxCharging</sound>
       <sound>sound\sfxCharged</sound>
+      <sound>sound\sfxProtoCharging</sound>
       <sound>sound\sfxDeath</sound>
       <sound>sound\sfxDeathClassic</sound>
       <sound>sound\sfxAbsorb</sound>
@@ -1179,6 +1928,7 @@
         <sound>sound\sfxColtonShoot</sound>
         <sound>sound\sfxCurlingerBounce</sound>
         <sound>sound\sfxCyberGabyoallBoost</sound>
+        <sound>sound\sfxFireTelly</sound>
         <sound>sound\sfxHeliButonHover</sound>
         <sound>sound\sfxHeliButonReveal</sound>
         <sound>sound\sfxTeck</sound>
@@ -1213,6 +1963,7 @@
         <sound>sound\sfxBariIIIShoot</sound>
         <sound>sound\sfxBlockDevilLaser</sound>
         <sound>sound\sfxBombPotton</sound>
+        <sound>sound\sfxChillGloop</sound>
         <sound>sound\sfxChillSpikeLand</sound>
         <sound>sound\sfxChillSpikeShatter</sound>
         <sound>sound\sfxChillShoot</sound>
@@ -1228,9 +1979,10 @@
         <sound>sound\sfxJetEggLaunch</sound>
         <sound>sound\sfxHonk</sound>
         <sound>sound\sfxHaikerNShoot</sound>
-        <sound>sound\sfxNumetallShoot</sound>
+        <sound>sound\sfxKaonaToss</sound>
         <sound>sound\sfxMechaPitchanDrop</sound>
         <sound>sound\sfxMerserker</sound>
+        <sound>sound\sfxNumetallShoot</sound>
         <sound>sound\sfxOctobulbEnergy</sound>
         <sound>sound\sfxOctobulbShoot</sound>
         <sound>sound\sfxPiledan</sound>
@@ -1252,6 +2004,7 @@
         <sound>sound\sfxTackleFireDispenser</sound>
         <sound>sound\sfxTheKeeperFistClash</sound>
         <sound>sound\sfxTheKeeperShockwave</sound>
+        <sound>sound\sfxTsurareStamp</sound>
         <sound>sound\sfxYonbain</sound>
       </sounds>
       <sounds name="CFTF">
@@ -1333,6 +2086,7 @@
       <sound>sound\sfxBuster</sound>
       <sound>sound\sfxBusterHalfCharged</sound>
       <sound>sound\sfxBusterCharged</sound>
+      <sound>sound\sfxBusterProtoCharged</sound>
       <sound>sound\sfxReflect</sound>
       <sound>sound\sfxSparkChaser</sound>
       <sound>sound\sfxLaserTrident</sound>
@@ -1421,6 +2175,7 @@
       <sprite>sprites\mskMegaman</sprite>
       <sprite>sprites\mskMegamanSlide</sprite>
       <sprite>sprites\mskMegamanSlide2</sprite>
+      <sprite>sprites\mskProtoShield</sprite>
       <sprite>sprites\sprMegamanTeleport</sprite>
       <sprite>sprites\sprMegamanTeleportPrimary</sprite>
       <sprite>sprites\sprMegamanTeleportSecondary</sprite>
@@ -1432,6 +2187,10 @@
         <sprite>sprites\sprBusterShotChargedColourMask</sprite>
         <sprite>sprites\sprBusterShotChargedPlus</sprite>
         <sprite>sprites\sprBusterShotChargedPlusColourMask</sprite>
+        <sprite>sprites\sprBusterShotHalfChargedProto</sprite>
+        <sprite>sprites\sprBusterShotChargedProto</sprite>
+        <sprite>sprites\sprBusterShotChargedProtoColourMask</sprite>
+        <sprite>sprites\sprBassBullet</sprite>
         <sprite>sprites\sprSparkChaser</sprite>
         <sprite>sprites\sprLaserTrident</sprite>
         <sprite>sprites\sprTornadoBlow</sprite>
@@ -1444,7 +2203,6 @@
         <sprite>sprites\sprIceWall</sprite>
         <sprite>sprites\sprIceWallShard</sprite>
         <sprite>sprites\sprIceWallBreak</sprite>
-        <sprite>sprites\sprSuperArmDebris</sprite>
         <sprite>sprites\sprMagnetBeam</sprite>
         <sprite>sprites\sprMagnetBeamEnd</sprite>
         <sprite>sprites\sprMagnetBeamPickup</sprite>
@@ -1524,6 +2282,7 @@
         </sprites>
         <sprites name="WeaponIcons">
           <sprite>sprites\sprWeaponIconsMegaBuster</sprite>
+          <sprite>sprites\sprWeaponIconsBassBuster</sprite>
           <sprite>sprites\sprWeaponIconsSparkChaser</sprite>
           <sprite>sprites\sprWeaponIconsLaserTrident</sprite>
           <sprite>sprites\sprWeaponIconsTornadoBlow</sprite>
@@ -1587,6 +2346,7 @@
             <sprite>sprites\sprBrickWeapon</sprite>
             <sprite>sprites\sprBrickWeaponDebris</sprite>
             <sprite>sprites\sprChillShot</sprite>
+            <sprite>sprites\sprSuperArmDebris</sprite>
             <sprite>sprites\sprIceSlasher</sprite>
             <sprite>sprites\sprPlantBarrier</sprite>
             <sprite>sprites\sprPowerStone</sprite>
@@ -1746,6 +2506,7 @@
           <sprite>sprites\sprSchwormWormGray</sprite>
           <sprite>sprites\sprCrabbotShell</sprite>
           <sprite>sprites\sprCarrot</sprite>
+          <sprite>sprites\sprPipiEggHalf</sprite>
         </sprites>
       </sprites>
       <sprites name="MM3">
@@ -1852,6 +2613,8 @@
         <sprite>sprites\sprM422A</sprite>
         <sprite>sprites\sprMM4ShieldAttacker</sprite>
         <sprite>sprites\sprMM4ShieldAttackerTurn</sprite>
+        <sprite>sprites\sprMM4ShieldAttackerPink</sprite>
+        <sprite>sprites\sprMM4ShieldAttackerTurnPink</sprite>
         <sprite>sprites\sprShieldAttackerStopper</sprite>
         <sprite>sprites\sprMummira</sprite>
         <sprite>sprites\sprPakatto24</sprite>
@@ -1972,6 +2735,7 @@
         <sprite>sprites\sprYudon</sprite>
         <sprite>sprites\sprTossMachine</sprite>
         <sprites name="Projectiles">
+          <sprite>sprites\sprBombierSmoke</sprite>
           <sprite>sprites\sprCrystalJoeCrystal</sprite>
           <sprite>sprites\sprJetBombDebry</sprite>
           <sprite>sprites\sprMetallCannonBall</sprite>
@@ -1988,6 +2752,7 @@
           <sprite>sprites\sprSkullBomb</sprite>
           <sprite>sprites\sprYudonMissile</sprite>
           <sprite>sprites\sprTosserRock</sprite>
+          <sprite>sprites\sprTwinCannonBullet</sprite>
           <sprite>sprites\sprGravitronGumball</sprite>
         </sprites>
       </sprites>
@@ -2092,6 +2857,7 @@
         <sprite>sprites\sprTsuranattori</sprite>
         <sprite>sprites\sprTurboRoader</sprite>
         <sprite>sprites\sprStegorus</sprite>
+        <sprite>sprites\mskStegorus</sprite>
         <sprites name="Projectiles">
           <sprite>sprites\sprKaminariKogoroLightning</sprite>
           <sprite>sprites\sprStegorusMissile</sprite>
@@ -2120,6 +2886,8 @@
         <sprite>sprites\sprBallonboo</sprite>
         <sprite>sprites\sprBallonbooBalloon</sprite>
         <sprite>sprites\sprBigStomper</sprite>
+        <sprite>sprites\sprBigStomperBlue</sprite>
+        <sprite>sprites\sprBigStomperGreen</sprite>
         <sprite>sprites\mskBigStomper</sprite>
         <sprite>sprites\mskBigStomperSmall</sprite>
         <sprite>sprites\sprBokazurah</sprite>
@@ -2127,24 +2895,34 @@
         <sprite>sprites\sprBunbyCatcher</sprite>
         <sprite>sprites\sprCaricarry</sprite>
         <sprite>sprites\sprClassicalCannon</sprite>
+        <sprite>sprites\sprClassicalCannonBlue</sprite>
+        <sprite>sprites\sprClassicalCannonYellow</sprite>
+        <sprite>sprites\sprClassicalCannonRed</sprite>
         <sprite>sprites\sprCamouflametall</sprite>
         <sprite>sprites\sprDiarn</sprite>
         <sprite>sprites\sprDeispider</sprite>
         <sprite>sprites\sprDeispiderPreview</sprite>
         <sprite>sprites\sprDetarnayappa</sprite>
+        <sprite>sprites\sprDetarnayappaRed</sprite>
         <sprite>sprites\sprDetarnayappaSpawner</sprite>
         <sprite>sprites\sprFlowerPresenter</sprite>
         <sprite>sprites\sprFireTotemHead</sprite>
+        <sprite>sprites\sprFireTotemHeadGreen</sprite>
         <sprite>sprites\sprFireTotemMiddle</sprite>
+        <sprite>sprites\sprFireTotemMiddleGreen</sprite>
         <sprite>sprites\sprFireTotemBase</sprite>
+        <sprite>sprites\sprFireTotemBaseGreen</sprite>
         <sprite>sprites\sprGagabyoall</sprite>
         <sprite>sprites\sprHoohoo</sprite>
+        <sprite>sprites\sprHoohooWhite</sprite>
         <sprite>sprites\sprIllusian</sprite>
         <sprite>sprites\sprJumpRoller</sprite>
         <sprite>sprites\sprJumpRollerHeatField</sprite>
         <sprite>sprites\sprKakinbatank</sprite>
+        <sprite>sprites\sprKakinbatankGreen</sprite>
         <sprite>sprites\mskKakinbatank</sprite>
         <sprite>sprites\sprLifeCamouPreview</sprite>
+        <sprite>sprites\sprMegamanShadow</sprite>
         <sprite>sprites\sprMetallB</sprite>
         <sprite>sprites\sprMM9MachineGunJoe</sprite>
         <sprite>sprites\sprMM9MachineGunJoeJump</sprite>
@@ -2173,10 +2951,12 @@
           <sprite>sprites\sprCaricarryRock</sprite>
           <sprite>sprites\sprClassicalCannonBullet</sprite>
           <sprite>sprites\sprFireTotemFlame</sprite>
+          <sprite>sprites\sprFireTotemFlameGreen</sprite>
           <sprite>sprites\sprFlowerPresenterFlowerOn</sprite>
           <sprite>sprites\sprFlowerPresenterFlowerOff</sprite>
           <sprite>sprites\sprJumpRollerFlame</sprite>
           <sprite>sprites\sprHoohooRock</sprite>
+          <sprite>sprites\sprHoohooRockWhite</sprite>
           <sprite>sprites\sprKakinbatankBullet</sprite>
           <sprite>sprites\sprMM9MachineGunJoeBullet</sprite>
           <sprite>sprites\sprOctoneInkball</sprite>
@@ -2188,74 +2968,25 @@
         </sprites>
       </sprites>
       <sprites name="MM10">
+        <sprite>sprites\sprArigockG</sprite>
         <sprite>sprites\sprBariIIIHead</sprite>
         <sprite>sprites\sprBariIIIBody</sprite>
+        <sprite>sprites\sprBariIIIBodyOrange</sprite>
         <sprite>sprites\mskBariIIIBody2</sprite>
         <sprite>sprites\mskBariIIIBody1</sprite>
         <sprite>sprites\mskBariIIIBody0</sprite>
         <sprite>sprites\sprBombPotton</sprite>
+        <sprite>sprites\sprBombPottonBlue</sprite>
         <sprite>sprites\sprBombPottonStopper</sprite>
-        <sprite>sprites\sprFuraibonBlue</sprite>
-        <sprite>sprites\sprFuraibonRed</sprite>
-        <sprite>sprites\sprFuraibonPurple</sprite>
-        <sprite>sprites\sprFuraibonYellow</sprite>
-        <sprite>sprites\sprFuraibonSpawner</sprite>
-        <sprite>sprites\sprNewClassicalCannon</sprite>
-        <sprite>sprites\sprYonbain</sprite>
-        <sprite>sprites\sprYonbainVertical</sprite>
-        <sprite>sprites\sprYonbainHorizontal</sprite>
-        <sprite>sprites\sprCommandoMine</sprite>
-        <sprite>sprites\sprMegamanShadow</sprite>
-        <sprite>sprites\sprMM10NeoHeliMetall</sprite>
-        <sprite>sprites\sprNitroTruckSpawner</sprite>
-        <sprite>sprites\sprNitroTruck</sprite>
-        <sprite>sprites\sprNitroTruckLarge</sprite>
-        <sprite>sprites\mskNitroTruckLarge</sprite>
-        <sprite>sprites\sprOshitsuOsarettsu</sprite>
-        <sprite>sprites\sprTsurareStamp</sprite>
-        <sprite>sprites\mskTsurareStamp</sprite>
-        <sprite>sprites\sprSola0</sprite>
-        <sprite>sprites\sprDarspider</sprite>
-        <sprite>sprites\sprDarspiderPreview</sprite>
-        <sprite>sprites\sprGarinkou</sprite>
-        <sprite>sprites\mskGarinkou</sprite>
-        <sprite>sprites\sprRSuzy</sprite>
-        <sprite>sprites\sprMerserker</sprite>
-        <sprite>sprites\sprKaonaGeeno</sprite>
-        <sprite>sprites\sprKaona</sprite>
-        <sprite>sprites\sprRMechaPitchan</sprite>
-        <sprite>sprites\sprBMechaPitchan</sprite>
-        <sprite>sprites\sprArigockG</sprite>
         <sprite>sprites\sprRCargoQ</sprite>
         <sprite>sprites\sprBCargoQ</sprite>
-        <sprite>sprites\sprSprinklan</sprite>
-        <sprite>sprites\mskSprinklanBig</sprite>
-        <sprite>sprites\sprPiledan</sprite>
-        <sprite>sprites\sprPiledanBomber</sprite>
-        <sprite>sprites\sprPiledanTurret</sprite>
-        <sprite>sprites\sprShotom</sprite>
-        <sprite>sprites\sprWaltriot</sprite>
+        <sprite>sprites\sprCommandoMine</sprite>
+        <sprite>sprites\sprDarspider</sprite>
+        <sprite>sprites\sprDarspiderPreview</sprite>
         <sprite>sprites\sprDarspiderWeb</sprite>
-        <sprite>sprites\sprPointan</sprite>
-        <sprite>sprites\sprHaikerN</sprite>
-        <sprite>sprites\sprHaikerNPreview</sprite>
-        <sprite>sprites\sprSepaRoader</sprite>
-        <sprite>sprites\sprSepaRoaderTop</sprite>
-        <sprite>sprites\sprNumetallGlob</sprite>
-        <sprite>sprites\sprNumetall</sprite>
-        <sprite>sprites\sprMM10Suzy</sprite>
-        <sprite>sprites\sprMolmole</sprite>
-        <sprite>sprites\sprMolmoleDown</sprite>
-        <sprite>sprites\sprMoleSpark</sprite>
-        <sprite>sprites\sprMolmoleSpawner</sprite>
-        <sprite>sprites\sprSearchy</sprite>
-        <sprite>sprites\sprSearchyLight</sprite>
-        <sprite>sprites\sprSwallowegg</sprite>
-        <sprite>sprites\sprSwalloweggSpawner</sprite>
-        <sprite>sprites\sprReturningMachinegunJoe</sprite>
-        <sprite>sprites\sprShrimparge91</sprite>
         <sprites name="Dockalocker">
           <sprite>sprites\sprDockaLocker</sprite>
+          <sprite>sprites\sprDockaLockerPurple</sprite>
           <sprite>sprites\sprDockalockerTemplate0</sprite>
           <sprite>sprites\sprDockalockerTemplate1</sprite>
           <sprite>sprites\sprDockalockerTemplate2</sprite>
@@ -2266,33 +2997,101 @@
           <sprite>sprites\sprDockalockerTemplate7</sprite>
           <sprite>sprites\sprDockalockerBack</sprite>
         </sprites>
+        <sprite>sprites\sprFuraibonBlue</sprite>
+        <sprite>sprites\sprFuraibonRed</sprite>
+        <sprite>sprites\sprFuraibonPurple</sprite>
+        <sprite>sprites\sprFuraibonYellow</sprite>
+        <sprite>sprites\sprFuraibonSpawner</sprite>
+        <sprite>sprites\sprGarinkou</sprite>
+        <sprite>sprites\sprGarinkouPurple</sprite>
+        <sprite>sprites\mskGarinkou</sprite>
+        <sprite>sprites\sprHaikerN</sprite>
+        <sprite>sprites\sprHaikerNPreview</sprite>
+        <sprite>sprites\sprKaonaGeeno</sprite>
+        <sprite>sprites\sprKaona</sprite>
+        <sprite>sprites\sprMM10NeoHeliMetall</sprite>
+        <sprite>sprites\sprRMechaPitchan</sprite>
+        <sprite>sprites\sprBMechaPitchan</sprite>
+        <sprite>sprites\sprMerserker</sprite>
+        <sprite>sprites\sprMM10Suzy</sprite>
+        <sprite>sprites\sprMolmole</sprite>
+        <sprite>sprites\sprMolmoleDown</sprite>
+        <sprite>sprites\sprMoleSpark</sprite>
+        <sprite>sprites\sprMolmoleSpawner</sprite>
+        <sprite>sprites\sprNewClassicalCannon</sprite>
+        <sprite>sprites\sprNewClassicalCannonBlue</sprite>
+        <sprite>sprites\sprNewClassicalCannonYellow</sprite>
+        <sprite>sprites\sprNewClassicalCannonRed</sprite>
+        <sprite>sprites\sprNitroTruckSpawner</sprite>
+        <sprite>sprites\sprNitroTruck</sprite>
+        <sprite>sprites\sprNitroTruckLarge</sprite>
+        <sprite>sprites\mskNitroTruckLarge</sprite>
+        <sprite>sprites\sprNumetall</sprite>
+        <sprite>sprites\sprOshitsuOsarettsu</sprite>
+        <sprite>sprites\sprPiledan</sprite>
+        <sprite>sprites\sprPiledanBomber</sprite>
+        <sprite>sprites\sprPiledanTurret</sprite>
+        <sprite>sprites\sprPointan</sprite>
+        <sprite>sprites\sprReturningMachinegunJoe</sprite>
+        <sprite>sprites\sprRSuzy</sprite>
+        <sprite>sprites\sprSearchy</sprite>
+        <sprite>sprites\sprSearchyLight</sprite>
+        <sprite>sprites\sprSepaRoader</sprite>
+        <sprite>sprites\sprSepaRoaderTop</sprite>
+        <sprites name="Shield Attacker TRL">
+          <sprite>sprites\sprShieldAttackerTRL</sprite>
+          <sprite>sprites\sprShieldAttackerTRLBlue</sprite>
+          <sprite>sprites\sprShieldAttackerTRLTurn</sprite>
+          <sprite>sprites\sprShieldAttackerTRLTurnBlue</sprite>
+          <sprite>sprites\sprShieldAttackerTRLSad</sprite>
+          <sprite>sprites\sprShieldAttackerTRLSadBlue</sprite>
+          <sprite>sprites\sprShieldAttackerTRLTurnSad</sprite>
+          <sprite>sprites\sprShieldAttackerTRLTurnSadBlue</sprite>
+          <sprite>sprites\sprShieldAttackerTRLShock</sprite>
+          <sprite>sprites\sprShieldAttackerTRLShockBlue</sprite>
+        </sprites>
+        <sprite>sprites\sprShotom</sprite>
+        <sprite>sprites\sprShrimparge91</sprite>
+        <sprite>sprites\sprSola0</sprite>
+        <sprite>sprites\sprSprinklan</sprite>
+        <sprite>sprites\mskSprinklanBig</sprite>
+        <sprite>sprites\sprSwallowegg</sprite>
+        <sprite>sprites\sprSwalloweggSpawner</sprite>
+        <sprite>sprites\sprTsurareStamp</sprite>
+        <sprite>sprites\sprTsurareStampRed</sprite>
+        <sprite>sprites\sprTsurareStampGreen</sprite>
+        <sprite>sprites\sprTsurareStampBlue</sprite>
+        <sprite>sprites\mskTsurareStamp</sprite>
+        <sprite>sprites\sprWaltriot</sprite>
+        <sprite>sprites\sprYonbain</sprite>
+        <sprite>sprites\sprYonbainPurple</sprite>
+        <sprite>sprites\sprYonbainBlue</sprite>
+        <sprite>sprites\sprYonbainHorizontal</sprite>
+        <sprite>sprites\sprYonbainVertical</sprite>
         <sprites name="Projectiles">
           <sprite>sprites\sprArigockGSpike</sprite>
-          <sprite>sprites\sprMechaPitchanBall</sprite>
+          <sprite>sprites\sprBariIIIWave</sprite>
+          <sprite>sprites\sprBombPottonBomb</sprite>
+          <sprite>sprites\sprBombPottonExplosion</sprite>
+          <sprite>sprites\sprBombPottonExplosionBlue</sprite>
           <sprite>sprites\sprBCargoQBall</sprite>
           <sprite>sprites\sprRCargoQBall</sprite>
-          <sprite>sprites\sprSola0Beam</sprite>
-          <sprite>sprites\sprReturningMachinegunJoeBullet</sprite>
-          <sprite>sprites\sprBariIIIWave</sprite>
+          <sprite>sprites\sprEggFlame</sprite>
+          <sprite>sprites\sprHaikerNGlob</sprite>
+          <sprite>sprites\sprJetEgg</sprite>
+          <sprite>sprites\sprMechaPitchanBall</sprite>
+          <sprite>sprites\sprNumetallGlob</sprite>
           <sprite>sprites\sprNewClassicalCannonBullet</sprite>
           <sprite>sprites\sprPiledanBomb</sprite>
-          <sprite>sprites\sprShotomBullet</sprite>
-          <sprite>sprites\sprWalriotMissile</sprite>
-          <sprite>sprites\sprBombPottonBomb</sprite>
           <sprite>sprites\sprPointanWindow</sprite>
           <sprite>sprites\sprPointanSelectionSquare</sprite>
-          <sprite>sprites\sprHaikerNGlob</sprite>
-          <sprite>sprites\sprBombPottonExplosion</sprite>
+          <sprite>sprites\sprReturningMachinegunJoeBullet</sprite>
           <sprite>sprites\sprReturningMachinegunJoeShield</sprite>
-          <sprite>sprites\sprJetEgg</sprite>
-          <sprite>sprites\sprEggFlame</sprite>
+          <sprite>sprites\sprShotomBullet</sprite>
           <sprite>sprites\sprShieldAttackerTRLShield</sprite>
+          <sprite>sprites\sprSola0Beam</sprite>
+          <sprite>sprites\sprWalriotMissile</sprite>
         </sprites>
-        <sprite>sprites\sprShieldAttackerTRL</sprite>
-        <sprite>sprites\sprShieldAttackerTRLTurn</sprite>
-        <sprite>sprites\sprShieldAttackerTRLSad</sprite>
-        <sprite>sprites\sprShieldAttackerTRLTurnSad</sprite>
-        <sprite>sprites\sprShieldAttackerTRLShock</sprite>
       </sprites>
       <sprites name="GB I-IV">
         <sprite>sprites\sprBubukanMkII</sprite>
@@ -2348,6 +3147,7 @@
         <sprite>sprites\sprHellMetallDXTreads</sprite>
         <sprite>sprites\sprJupibul</sprite>
         <sprite>sprites\sprLaJaba</sprite>
+        <sprite>sprites\sprLaJabaSmallMask</sprite>
         <sprite>sprites\sprMalmet</sprite>
         <sprite>sprites\sprMetSniper</sprite>
         <sprite>sprites\sprMonkikki</sprite>
@@ -2476,6 +3276,7 @@
         </sprites>
       </sprites>
       <sprites name="MM9">
+        <sprite>sprites\sprChangkeyDragonPreview</sprite>
         <sprite>sprites\sprChangkeyDragonHead</sprite>
         <sprite>sprites\sprChangkeyDragonEyes</sprite>
         <sprite>sprites\sprChangkeyDragonFire</sprite>
@@ -2639,6 +3440,7 @@
         </sprites>
         <sprites name="Guts">
           <sprite>sprites\sptGutsMask</sprite>
+          <sprite>sprites\sprGutsPose</sprite>
           <sprite>sprites\sprGutsIdle</sprite>
           <sprite>sprites\sprGutsCrouch</sprite>
           <sprite>sprites\sprGutsJump</sprite>
@@ -2732,6 +3534,8 @@
           <sprite>sprites\sprMechaDragonTeleport</sprite>
           <sprite>sprites\sprMechaDragon</sprite>
           <sprite>sprites\sprMechaDragonFire</sprite>
+          <sprite>sprites\sprMechaDragonHurt</sprite>
+          <sprite>sprites\sprMechaDragonFireHurt</sprite>
           <sprite>sprites\sprMechaDragonFireBall</sprite>
         </sprites>
         <sprites name="Boobeam ">
@@ -2745,6 +3549,7 @@
         </sprites>
         <sprites name="Guts Dozer">
           <sprite>sprites\sprGutsDozer</sprite>
+          <sprite>sprites\sprGutsDozerHurt</sprite>
           <sprite>sprites\mskGutsDozer</sprite>
           <sprite>sprites\sprGutsDozerHand</sprite>
         </sprites>
@@ -2819,6 +3624,7 @@
         </sprites>
         <sprites name="MetallDaddy">
           <sprite>sprites\sprMetallDaddy</sprite>
+          <sprite>sprites\sprMetallDaddyHurt</sprite>
           <sprite>sprites\mskMetallDaddy</sprite>
           <sprite>sprites\sprMetallDaddyJump</sprite>
         </sprites>
@@ -3174,6 +3980,8 @@
         <sprite>sprites\sprFireBeam</sprite>
         <sprite>sprites\sprFireBeamOff</sprite>
         <sprite>sprites\sprFirePillar</sprite>
+        <sprite>sprites\sprFirePillarFrozen</sprite>
+        <sprite>sprites\sprFirePillarMask</sprite>
         <sprite>sprites\sprFireWaveHorizontal</sprite>
         <sprite>sprites\sprFireWaveVertical</sprite>
         <sprite>sprites\sprFireWaveSpawner</sprite>
@@ -3389,6 +4197,7 @@
         <sprite>sprites\sprGalaxyManPortal</sprite>
         <sprite>sprites\sprGalaxyManPortalReverse</sprite>
         <sprite>sprites\sprSplashWomanWaterPlatform</sprite>
+        <sprite>sprites\sprSplashWomanWaterPlatfomSpawner</sprite>
         <sprite>sprites\sprConcretePlatformUp</sprite>
         <sprite>sprites\sprConcretePlatformDown</sprite>
         <sprite>sprites\sprCopterPlatform</sprite>
@@ -3444,6 +4253,7 @@
         <sprite>sprites\sprBladeManSeeSawPlatform</sprite>
         <sprite>sprites\sprBladeManSeeSawTether</sprite>
         <sprite>sprites\sprBladeManSeeSawMiddle</sprite>
+        <sprite>sprites\sprSolarManConveyor</sprite>
       </sprites>
       <sprites name="MM&amp;B">
         <sprite>sprites\sprAstroWallRipple</sprite>
@@ -3456,6 +4266,7 @@
         <sprite>sprites\sprBubbleFloor</sprite>
         <sprite>sprites\sprBubbleFloorMask</sprite>
         <sprite>sprites\sprFireSpike</sprite>
+        <sprite>sprites\sprFireSpikeFrozen</sprite>
         <sprite>sprites\sprFluorescentBulb</sprite>
         <sprite>sprites\sprGutsHover</sprite>
         <sprite>sprites\sprIcePlatform</sprite>
@@ -3864,6 +4675,36 @@
         <background>background\tstMM9Wily4</background>
         <background>background\tstFakeman</background>
         <background>background\tstMM9Endless</background>
+        <backgrounds name="Animated">
+          <background>background\tstConcretemanAnimated1</background>
+          <background>background\tstConcretemanAnimated2</background>
+          <background>background\tstFakemanAnimated1</background>
+          <background>background\tstGalaxymanAnimated1</background>
+          <background>background\tstGalaxymanAnimated2</background>
+          <background>background\tstJewelmanAnimated1</background>
+          <background>background\tstJewelmanAnimated2</background>
+          <background>background\tstMagmamanAnimated1</background>
+          <background>background\tstMagmamanAnimated2</background>
+          <background>background\tstPlugmanAnimated1</background>
+          <background>background\tstTornadomanAnimated1</background>
+          <background>background\tstTornadomanAnimated2</background>
+          <background>background\tstSplashwomanAnimated1</background>
+          <background>background\tstSplashwomanAnimated2</background>
+          <background>background\tstMM9Wily2Animated1</background>
+          <background>background\tstMM9Wily2Animated2</background>
+          <background>background\tstMM9Wily2Animated3</background>
+          <background>background\tstMM9Wily2Animated4</background>
+          <background>background\tstMM9Wily2Animated5</background>
+          <background>background\tstMM9Wily3Animated1</background>
+          <background>background\tstMM9Wily3Animated2</background>
+          <background>background\tstMM9Wily3Animated3</background>
+          <background>background\tstMM9Wily3Animated4</background>
+          <background>background\tstMM9Wily4Animated1</background>
+          <background>background\tstMM9Wily4Animated2</background>
+          <background>background\tstMM9Wily4Animated3</background>
+          <background>background\tstMM9Wily4Animated4</background>
+          <background>background\tstMM9Wily4Animated5</background>
+        </backgrounds>
       </backgrounds>
       <backgrounds name="MM10">
         <background>background\tstBladeMan</background>
@@ -3926,6 +4767,7 @@
   </paths>
   <scripts name="scripts">
     <scripts name="Player">
+      <script>scripts\playerStepEventDefault.gml</script>
       <script>scripts\playerStep.gml</script>
       <script>scripts\playerEndStep.gml</script>
       <script>scripts\playerIntro.gml</script>
@@ -3961,6 +4803,10 @@
         <script>scripts\playerGetShocked.gml</script>
         <script>scripts\playerFanOut.gml</script>
         <script>scripts\playerBlow.gml</script>
+      </scripts>
+      <scripts name="Proto">
+        <script>scripts\playerStepEventProto.gml</script>
+        <script>scripts\playerHandleSpritesProto.gml</script>
       </scripts>
     </scripts>
     <scripts name="Collision/Gravity">
@@ -4009,16 +4855,32 @@
       <script>scripts\freshSaveFile.gml</script>
       <script>scripts\engineConfig.gml</script>
       <script>scripts\globalInit.gml</script>
+      <script>scripts\playerGlobalInit.gml</script>
       <script>scripts\mathTableSetup.gml</script>
       <script>scripts\paletteSetup.gml</script>
     </scripts>
     <scripts name="Weapons">
+      <script>scripts\weaponsInit.gml</script>
       <script>scripts\weaponSetup.gml</script>
       <script>scripts\setWeaponLocked.gml</script>
       <script>scripts\specialDamageValue.gml</script>
       <script>scripts\getWeaponDamage.gml</script>
       <script>scripts\getWeaponID.gml</script>
       <script>scripts\weaponReward.gml</script>
+      <scripts name="Buster Replacements">
+        <scripts name="Default">
+          <script>scripts\scrBusterDefault_Create.gml</script>
+          <script>scripts\scrBusterDefault_14.gml</script>
+        </scripts>
+        <scripts name="Proto">
+          <script>scripts\scrBusterProto_14.gml</script>
+        </scripts>
+        <scripts name="Bass">
+          <script>scripts\scrBusterBass_Create.gml</script>
+          <script>scripts\scrBusterBass_Step.gml</script>
+          <script>scripts\scrBusterBass_14.gml</script>
+        </scripts>
+      </scripts>
     </scripts>
     <scripts name="Views/Section">
       <script>scripts\insideView.gml</script>
@@ -4160,6 +5022,7 @@
         <script>scripts\stringSubstring.gml</script>
         <script>scripts\stringIsNumber.gml</script>
         <script>scripts\stringIndexOf.gml</script>
+        <script>scripts\stringIndexOfReverse.gml</script>
         <script>scripts\stringReverse.gml</script>
         <script>scripts\getTimeStamp.gml</script>
         <script>scripts\zeroPad.gml</script>
@@ -4276,10 +5139,39 @@
         <script>scripts\testSuiteEntities.gml</script>
         <script>scripts\testSuiteBossDoors.gml</script>
       </scripts>
+      <scripts name="Filesystem">
+        <script>scripts\fsInit.gml</script>
+        <script>scripts\fsClose.gml</script>
+        <script>scripts\fsDirectoryExists.gml</script>
+        <script>scripts\fsDirectoryCount.gml</script>
+        <script>scripts\fsPathSplit.gml</script>
+        <script>scripts\fsDirectoryPath.gml</script>
+        <script>scripts\fsDirectoryList.gml</script>
+        <script>scripts\fsDelete.gml</script>
+        <script>scripts\fsExists.gml</script>
+        <script>scripts\fsFileExists.gml</script>
+        <script>scripts\fsGetAppDataRoaming.gml</script>
+        <script>scripts\fsGetVersion.gml</script>
+        <script>scripts\fsOpen.gml</script>
+        <script>scripts\fsRead.gml</script>
+        <script>scripts\fsReadLine.gml</script>
+        <script>scripts\fsReadLineAvailable.gml</script>
+        <script>scripts\fsMove.gml</script>
+        <script>scripts\fsWildcardCount.gml</script>
+        <script>scripts\fsWildcardPath.gml</script>
+        <script>scripts\fsWrite.gml</script>
+      </scripts>
+      <scripts name="Chrono">
+        <script>scripts\chronoInit.gml</script>
+        <script>scripts\chronoGet.gml</script>
+        <script>scripts\chronoReset.gml</script>
+      </scripts>
       <script>scripts\scrNoEffect.gml</script>
       <script>scripts\eventExecute.gml</script>
       <script>scripts\combineObjects.gml</script>
       <script>scripts\cleanMem.gml</script>
+      <script>scripts\queuePause.gml</script>
+      <script>scripts\queueUnpause.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -4708,7 +5600,6 @@
         <object>objects\objClassicalCannon</object>
         <object>objects\objCamouflametall</object>
         <object>objects\objCaricarry</object>
-        <object>objects\objKakinbatank</object>
         <object>objects\objDeispider</object>
         <object>objects\objDetarnayappaSpawner</object>
         <object>objects\objDiarn</object>
@@ -4719,6 +5610,7 @@
         <object>objects\objIllusian</object>
         <object>objects\objJumpRoller</object>
         <object>objects\objJumpRollerFlameField</object>
+        <object>objects\objKakinbatank</object>
         <object>objects\objMetallB</object>
         <object>objects\objMM9MachineGunJoe</object>
         <object>objects\objNombrellan</object>
@@ -5434,7 +6326,9 @@
       </objects>
       <objects name="MM1">
         <object>objects\objElecBlock</object>
+        <object>objects\objElecBlockRotatable</object>
         <object>objects\objFireBlock</object>
+        <object>objects\objFireBlockRotatable</object>
         <object>objects\objFirePillar</object>
         <objects name="Fire Waves">
           <object>objects\objFireWaveGoDirector</object>
@@ -5649,8 +6543,9 @@
         <object>objects\objHanabiranClockArm</object>
         <object>objects\objHornetRoll</object>
         <object>objects\objJewelPlatform</object>
+        <object>objects\objSplashWomanPlatformSpawner</object>
+        <object>objects\objSplashWomanPlatform</object>
         <object>objects\objMagmaBeamSource</object>
-        <object>objects\objSplashWomanWaterPlatform</object>
         <object>objects\objTornadoPlatform</object>
         <object>objects\objWily4Laser</object>
         <objects name="Don't Use">
@@ -5663,6 +6558,7 @@
         <object>objects\objChillManBlock</object>
         <object>objects\objCommandoMine</object>
         <object>objects\objCompactor</object>
+        <object>objects\objMM10Conveyor</object>
         <object>objects\objSandstormSpawner</object>
         <object>objects\objSheepBlockB</object>
         <object>objects\objSheepBlockG</object>
@@ -5719,6 +6615,7 @@
         <object>objects\objGravityChangeNormal</object>
         <object>objects\objKamapotSpawner</object>
         <object>objects\objMercuryBlockSpawner</object>
+        <object>objects\objMercuryBlock</object>
         <object>objects\objLandmine</object>
         <object>objects\objRoomLowGravSetter</object>
         <object>objects\objTyhornPlatformSpawn</object>
@@ -5726,7 +6623,6 @@
         <object>objects\objVenusWaterfallSpawner</object>
         <objects name="Don't Use">
           <object>objects\objKamapot</object>
-          <object>objects\objMercuryBlock</object>
           <object>objects\objTyhornPlatform</object>
           <object>objects\objUranusPlatformSegment</object>
           <object>objects\objVenusWaterfallDrop</object>
@@ -5816,6 +6712,8 @@
           <object>objects\objBusterShot</object>
           <object>objects\objBusterShotHalfCharged</object>
           <object>objects\objBusterShotCharged</object>
+          <object>objects\objBusterShotHalfChargedProto</object>
+          <object>objects\objBusterShotChargedProto</object>
           <object>objects\objSparkChaser</object>
           <object>objects\objLaserTrident</object>
           <object>objects\objWaterShield</object>
@@ -5829,11 +6727,13 @@
           <object>objects\objRushCycle</object>
           <object>objects\objMagnetBeam</object>
           <objects name="Misc.">
+            <object>objects\objNormalBusterShot</object>
             <object>objects\objTornadoEffect</object>
             <object>objects\objBubblePopEffect</object>
             <object>objects\objRushTeleport</object>
             <object>objects\objRushTeleportBlock</object>
             <object>objects\objWeaponExplosion</object>
+            <object>objects\objProtoShield</object>
           </objects>
           <objects name="MaGMML1">
             <object>objects\objMetalBlade</object>
@@ -5912,6 +6812,7 @@
           <object>objects\prtPickup</object>
           <object>objects\prtEffect</object>
           <object>objects\prtAlwaysActive</object>
+          <object>objects\prtLevelCallbacks</object>
         </objects>
         <object>objects\objGlobalControl</object>
         <object>objects\objMusicControl</object>
@@ -5932,6 +6833,7 @@
         <object>objects\objColoredTextOverlaysMenu</object>
         <object>objects\objNewFile</object>
         <object>objects\objFileSelector</object>
+        <object>objects\objCharacterSelector</object>
         <object>objects\objStageSelect</object>
         <object>objects\objWeaponGet</object>
         <object>objects\objShopControl</object>
@@ -5960,9 +6862,11 @@
   <rooms name="rooms">
     <room>rooms\rmInit</room>
     <room>rooms\lvlCopyThisRoom</room>
+    <room>rooms\lvlShowcaseHUB</room>
     <rooms name="Engine">
       <room>rooms\rmDisclaimer</room>
       <room>rooms\rmTitleScreen</room>
+      <room>rooms\rmCharacterSelect</room>
       <room>rooms\rmRoomSelect</room>
       <room>rooms\rmFileSelect</room>
       <room>rooms\rmNewFile</room>

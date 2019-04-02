@@ -32,6 +32,7 @@ image_speed = 8 / 60;
 isSolid = 2;
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 iFrames = -1;
 canHit = false;

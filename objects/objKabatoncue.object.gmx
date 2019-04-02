@@ -34,6 +34,7 @@ dead = false;
 healthpointsStart = 16;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "bulky, nature, rocky";
 
 // Enemy specific code
 dir = image_xscale;
@@ -95,7 +96,7 @@ if (entityCanStep())
         cooldownTimer += 1;
         if (cooldownTimer == cooldownMax * (missilesCreated + 1))
         {
-            inst = instance_create(x + (image_xscale * 22), y + 20, objKabatoncueMissile);
+            var inst = instance_create(x + (image_xscale * 22), y + 20, objKabatoncueMissile);
             with (inst)
             {
                 direction = 180 * (other.image_xscale &lt; 0);

@@ -146,7 +146,11 @@ animTimer = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var dir = point_direction(x, y, other.x, other.y);
+            <string>moveDir = sign(other.xspeed);
+moveTimer = shiftTime;
+playSFX(sfxEnemyHit);
+			
+/*var dir = sign(other.xspeed); //point_direction(x, y, other.x, other.y);
 
 
 if (dir &lt; 70 || dir &gt; 290)
@@ -164,7 +168,7 @@ else if (dir &gt; 110 &amp;&amp; dir &lt; 250)
 else
 {
     other.guardCancel = 2;
-}
+}*/
 </string>
           </argument>
         </arguments>

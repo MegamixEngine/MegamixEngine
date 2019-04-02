@@ -39,7 +39,11 @@ blockCollision = 0;
 facePlayerOnSpawn = true;
 
 // Enemy specific code
-image_speed = 0.15;
+//image_speed = 0.15;
+imgIndex = 0;
+
+// @cc - Changes colour (0 = pink (default); 1 = red)
+col = 0;
 
 megax = -1;
 megay = -1;
@@ -69,7 +73,12 @@ megay = -1;
 
 if (entityCanStep())
 {
-    image_speed = 0.15;
+    imgIndex += 0.15; //image_speed = 0.15;
+    if (imgIndex mod 4 == 0.05)
+    {
+        imgIndex = 0;
+    }
+    
     megax = -1;
     if (instance_exists(target))
     {
@@ -87,15 +96,17 @@ if (entityCanStep())
 }
 else
 {
-    image_speed = 0;
+    //image_speed = 0;
     if (dead)
     {
         megax = -1;
         megay = -1;
+        imgIndex = 0;
     }
     
     speed = 0;
 }
+image_index = imgIndex + (4 * col);
 </string>
           </argument>
         </arguments>
@@ -123,7 +134,7 @@ event_inherited();
 
 if (spawned)
 {
-    image_index = 0;
+    image_index = 0 + (4 * col);
     if (instance_exists(target))
     {
         direction = 60;

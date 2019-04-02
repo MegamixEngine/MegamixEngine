@@ -36,6 +36,7 @@ contactDamage = 8;
 
 ground = false;
 attackTimer = 0;
+deTimer = 0;
 
 phase = 0;
 phaseTimer = 0;
@@ -318,7 +319,7 @@ if (entityCanStep())
                 case 3:
                     if (ground)
                     {
-                        print(attackTimer);
+                      
                         attackTimer++;
                         if (attackTimer == 4)
                         {

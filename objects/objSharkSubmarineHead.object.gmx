@@ -3,7 +3,7 @@
   <spriteName>sprSharkSubmarineHead</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>2</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <parentName>prtSharkSubmarine</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -75,6 +75,57 @@ if (!global.frozen)
             cannon.parent = id;
         }
     }
+    if (isDying)
+    {
+        blinkTimer = -1;
+        slowdeathTimer++
+        if (slowdeathTimer == 20)
+        {
+            instance_create(x - 5*image_xscale, y+14, objBigExplosion);
+            playSFX(sfxMM9Explosion);
+        }
+        if (slowdeathTimer == 40)
+        {
+            instance_create(x -92*image_xscale, y-40, objBigExplosion);
+            playSFX(sfxMM9Explosion);
+            if (!finalDeath)
+            {
+                event_user(EV_DEATH);
+            }
+        }
+        if (finalDeath)
+        {
+            if (slowdeathTimer == 60)
+            {
+                instance_create(x -64*image_xscale, y+24, objBigExplosion);
+                playSFX(sfxMM9Explosion);
+                
+            }
+            if (slowdeathTimer == 80)
+            {
+                instance_create(x -112*image_xscale, y-33, objBigExplosion);
+                playSFX(sfxMM9Explosion);
+            }
+            if (slowdeathTimer == 100)
+            {
+                instance_create(x -70*image_xscale, y-8, objBigExplosion);
+                playSFX(sfxMM9Explosion);
+            }
+            if (slowdeathTimer == 120)
+            {
+                instance_create(x -113*image_xscale, y+9, objBigExplosion);
+                playSFX(sfxMM9Explosion);
+            }
+            if (slowdeathTimer == 140)
+            {
+                instance_create(x -98*image_xscale, y-7, objBigExplosion);
+                playSFX(sfxMM9Explosion);
+            }
+            if (slowdeathTimer == 160)
+                with (prtSharkSubmarine)
+                    event_user(EV_DEATH);
+        }
+    }
 }
 
 if (isFight) // Keeping track of health.
@@ -108,10 +159,6 @@ if (entityCanStep())
         blinkTimer++;
     }
 }
-else if (dead)
-{
-    eyeIndex = 3;
-}
 </string>
           </argument>
         </arguments>
@@ -138,7 +185,19 @@ else if (dead)
 {
     instance_destroy();
 }
-event_inherited();
+eyeIndex = 3;
+if (!isDying)
+{
+    instance_create(x - 79*image_xscale, y-32, objBigExplosion);
+    playSFX(sfxMM9Explosion);
+    isDying = true;
+    iFrames = 0;
+    stopSFX(sfxEnemyHit);
+}
+else
+{
+    event_inherited();
+}
 </string>
           </argument>
         </arguments>

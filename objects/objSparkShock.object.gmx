@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = -1;
+inWater = -1;
 
 penetrate = 0;
 pierces = 0;
@@ -67,7 +68,7 @@ playSFX(sfxSparkShock);
 
 if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(25, -1, objSparkShock, 2, 1, 1, 0);
+    var i = fireWeapon(25, -1, objSparkShock, 2, 1, 1, 0);
     if (i) // set starting speed
     {
         i.xspeed = image_xscale * 5;

@@ -61,6 +61,10 @@ freeMegaman = 0;
 hatFrame = 3;
 directX = 1;
 
+// Death anmation variables
+isDying = false;
+explodeTimer = 0;
+
 // met falling patterns
 met1[0] = 48;
 met2[0] = 112;
@@ -201,7 +205,6 @@ if (entityCanStep())
                 isIntro = false;
                 attackTimer = 0;
                 hasFired = false;
-                storeDirection = image_xscale;
                 grav = gravStart;
                 blockCollision = blockCollisionStart;
                 with (objMegaman)
@@ -274,7 +277,7 @@ if (entityCanStep())
                 }
                 if (attackTimer == 80 - ((global.difficulty == DIFF_HARD) * 40))
                 {
-                    var inst = instance_create(x, y + 32, objExplosion);
+                    var inst = instance_create(x, y + 19, objExplosion);
                     inst.sprite_index = sprMetallDaddyJump;
                     yspeed = -3.5 - choose(0, 1, 1.5);
                     if (instance_exists(target))
@@ -420,6 +423,51 @@ if (entityCanStep())
                 break;
         }
     }
+    // Death Animation
+    if (isDying)
+    {
+        explodeTimer++;
+        if (explodeTimer == 2)
+        {
+            with(instance_create(x-16*image_xscale,y+29*image_yscale,objBigExplosion))
+                depth = -2;
+            playSFX(sfxExplosion2);
+        }
+        if (explodeTimer == 4)
+        {
+            with(instance_create(x-16*image_xscale,y+29*image_yscale,objExplosion))
+                depth = -2;
+            playSFX(sfxExplosion2);
+        }
+        if (explodeTimer == 8)
+        {
+            with(instance_create(x+16*image_xscale,y+1*image_yscale,objBigExplosion))
+                depth = -2;
+            playSFX(sfxExplosion2);
+        }
+        if (explodeTimer == 12)
+        {
+            with(instance_create(x+16*image_xscale,y+1*image_yscale,objExplosion))
+                depth = -2;
+            playSFX(sfxExplosion2);
+        }
+        if (explodeTimer == 18)
+        {
+            with(instance_create(x,y-2*image_yscale,objBigExplosion))
+                depth = -2;
+            playSFX(sfxExplosion2);
+        }
+        if (explodeTimer == 26)
+        {
+            with(instance_create(x+32*image_xscale,y-2*image_yscale,objBigExplosion))
+                depth = -2;
+            playSFX(sfxExplosion2);
+        }
+        if (explodeTimer &gt;= 120)
+        {
+            event_user(EV_DEATH);
+        }
+    }
 }
 else
 { }
@@ -481,7 +529,22 @@ with (objMetallDaddyChild)
 }
 with (objMegaman)
     stunLock = lockPoolRelease(stunLock);
-event_inherited();
+if (!isDying)
+{
+    isFight = false;
+    canHit = false;
+    contactDamage = 0;
+    isDying = true;
+    iFrames = 180; //Do this to keep blinking
+    stopSFX(sfxEnemyHit);
+    with(instance_create(x,y+11,objExplosion))
+        depth = -2;
+    playSFX(sfxExplosion2);
+}
+else
+{
+    event_inherited();
+}
 </string>
           </argument>
         </arguments>
@@ -534,15 +597,29 @@ draw_sprite_ext(sprite_index, hatFrame, round(x), round(y + hatOffset), 1, image
 {
     if (drawBoss) // actually draw itself
     {
-        if ((iFrames mod 4) &lt; 2 || !iFrames)
+        if (!isDying)
         {
-            event_user(2);
+            if ((iFrames mod 4) &lt; 2 || !iFrames)
+            {
+                event_user(2);
+            }
+            else // Hitspark
+            {
+                sprite_index = sprMetallDaddyHurt;
+                event_user(2);
+                sprite_index = sprMetallDaddy;
+            }
         }
-        else // Hitspark
+        else // Blinking when dying
         {
-            d3d_set_fog(true, c_white, 0, 0);
-            event_user(2);
-            d3d_set_fog(false, 0, 0, 0);
+            if ((iFrames mod 16) &lt; 8 || !iFrames)
+                event_user(2);
+            else
+            {
+                d3d_set_fog(true, c_white, 0, 0);
+                event_user(2);
+                d3d_set_fog(false, 0, 0, 0);
+            }
         }
     }
 }

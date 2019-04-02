@@ -37,6 +37,7 @@ respawn = true;
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 2;
+category = "flying, nature";
 
 blockCollision = 0;
 grav = 0;
@@ -125,7 +126,6 @@ else
     {
         moveTimer = 0;
         cooldownTimer = 0;
-        canShoot = true;
         image_index = 0;
     }
 }

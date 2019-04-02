@@ -32,6 +32,7 @@ respawn = true;
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "grounded, mets";
 
 facePlayerOnSpawn = true;
 
@@ -93,9 +94,8 @@ if (entityCanStep())
         image_index = 9;
     }
     
-    xs = xspeed;
     
-    if (xs != 0 &amp;&amp; xspeed == 0)
+    if (xcoll!=0 )
     {
         turnTimer = 14;
         image_index = 9;
@@ -132,7 +132,7 @@ if (entityCanStep())
             cSpeed = 0;
             xspeed = 0;
             var ID;
-            for (i = 0; i &lt;= 2; i += 1)
+            for (var i = 0; i &lt;= 2; i += 1)
             {
                 ID = instance_create(x + image_xscale * 12,
                     spriteGetYCenter() + 8, objMM2MetBullet);
@@ -168,8 +168,34 @@ if (entityCanStep())
         visible = false;
         dead = true;
     }
+    
+    // turn around on walls
+    xSpeedTurnaround();
 }
-else if (dead)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if(spawned)
 {
     xspeed = 0;
     yspeed = 0;

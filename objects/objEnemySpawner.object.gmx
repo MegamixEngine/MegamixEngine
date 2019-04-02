@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// gravityFlip = true;   -  determine the direction of where this sits. if true, it starts on the cieling.)
+            <string>/// Use objCustomSpawner 
+// gravityFlip = true;   -  determine the direction of where this sits. if true, it starts on the cieling.)
 
 event_inherited();
 
@@ -83,7 +84,7 @@ if (entityCanStep())
     alarmTime += 1;
     if (alarmTime == 1)
     {
-        i = instance_create(ex, ey, en);
+        var i = instance_create(ex, ey, en);
         with (i)
         {
             other.enx = bboxGetXCenter();
@@ -98,7 +99,7 @@ if (entityCanStep())
     
     if (alarmTime &gt;= spawntime)
     {
-        i = instance_create(ex, ey, en);
+        var i = instance_create(ex, ey, en);
         i.respawn = 0;
         with (i)
         {
@@ -107,8 +108,6 @@ if (entityCanStep())
                 despawnRange += sprite_height;
             }
         }
-        
-        obj = i.object_index;
         
         event_user(0);
         instance_destroy();
@@ -158,9 +157,9 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>imgx = image_xscale;
+            <string>var imgx = image_xscale;
 image_xscale = 1;
-imgy = image_yscale;
+var imgy = image_yscale;
 image_yscale = 1;
 
 for (i = 0 + lines; i &lt; sprite_height; i += 2)

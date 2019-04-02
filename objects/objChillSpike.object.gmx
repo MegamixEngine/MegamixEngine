@@ -129,19 +129,19 @@ if (!global.frozen)
     if (ground &amp;&amp; !toWall)
     {
         playSFX(sfxChillSpikeLand);
-        cS = instance_create(x, y + 9, objChillSpikeSpike);
+        var cS = instance_create(x, y + 9, objChillSpikeSpike);
         cS.respawn = false;
         instance_destroy();
     }
     if (xspeed == 0 &amp;&amp; toWall)
     {
         playSFX(sfxChillSpikeLand);
-        cS = instance_create(x + speed + (9 * image_xscale), y,
+        var cS = instance_create(x + speed + (9 * image_xscale), y,
             objChillSpikeSpike);
         cS.sprite_index = sprChillSpikeWall;
         cS.image_xscale = image_xscale * -1;
         cS.respawn = false;
-        for (i = 0; i &lt; 16; i += 1)
+        for (var i = 0; i &lt; 16; i += 1)
         {
             with (cS)
             {

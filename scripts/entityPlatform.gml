@@ -8,24 +8,29 @@ if (isSolid)
         isSolid = 0;
         var xypre;
         
+        var epCanCrush = object_index!=objMegaman || (object_index==objMegaman && !global.freeMovement);
+        
         var myyspeed = y - yprevious;
         var myxspeed = x - xprevious;
         y = yprevious;
         x = xprevious;
         
+        /*
         with (objMegaman)
         {
-            savedgrav = grav;
-            grav = gravDir;
+            if(grav != gravDir)
+            {
+                savedgrav = grav;
+                grav = gravDir;
+            }
         }
+        */
         
         if (myyspeed != 0) // Vertical
-        {
-            var flr, cel;
-            
+        {   
             with (prtEntity)
             {
-                if (blockCollision && !dead)
+                if (id!=other.id && blockCollision && !dead)
                 {
                     if (other.fnsolid)
                     {
@@ -34,61 +39,76 @@ if (isSolid)
                             continue;
                         }
                     }
-                    
-                    var dir = sign(bboxGetYCenterObject(other.id) - bboxGetYCenter());
-                    if (dir >= 0)
-                    {
-                        flr = floor(y);
-                        cel = ceil(y);
-                    }
-                    else
-                    {
-                        flr = ceil(y);
-                        cel = floor(y);
-                    }
-                    
-                    if (place_meeting(x, flr, other.id))
+                    var epDir = sign(bboxGetYCenterObject(other.id) - bboxGetYCenter());
+
+                    if(place_meeting(x, y, other.id))
                     {
                         continue;
                     }
                     
-                    if (place_meeting(x, flr + sign(grav), other.id)
-                        || place_meeting(x, cel - myyspeed, other.id))
+                    
+                    var epIsPassenger;
+                    var epWillCollide;
+                    with(other)
+                    {
+                        epWillCollide = place_meeting(x, y + myyspeed, other.id); 
+                       
+                    }
+                    epIsPassenger = place_meeting(x, y + sign(grav) + grav + (0.5*sign(grav)*ground), other.id);
+
+                    if (epIsPassenger || epWillCollide)
                     {
                         other.y += myyspeed;
                         
                         xypre = y;
-                        y += myyspeed + (2 * sign(dir));
+                        if(epIsPassenger)
+                        {
+                            y += myyspeed;
+                        }
                         
-                        repeat (32)
+                        if( resolid==1 || (resolid==2 && (epDir*sign(grav))>0))
                         {
                             if (place_meeting(x, y, other.id))
                             {
-                                y += dir * -0.5;
+                                y=round(y);
+                                y+=epDir*-0.5;
                             }
-                            else
+                            var rpts = max(32,abs(other.bbox_top-other.bbox_bottom)*2);
+                            repeat (rpts)
                             {
-                                break;
+                                if (place_meeting(x, y, other.id))
+                                {
+                                    y += epDir * -0.5;
+                                }
+                                else
+                                {
+                                    break;
+                                }
                             }
                         }
-                        
                         xypre = xypre - y;
                         y += xypre;
                         
                         shiftObject(0, -xypre, 1);
                         
-                        if (resolid == 1) // Crushing
+                        
+                        if (resolid == 1 ) // Crushing
                         {
-                            if (place_meeting(x, y, other.id) && !global.freeMovement)
+                            if (epCanCrush&&place_meeting(x, y, other.id))
                             {
                                 if (global.factionStance[other.faction, faction])
                                 {
                                     event_user(EV_DEATH);
+                                    
+                                    if (object_index != objMegaman)
+                                    {
+                                        playSFX(sfxEnemyHit);
+                                    }
                                 }
                             }
                         }
                         
-                        if (yspeed == 0 && dir == sign(grav))
+                        if (yspeed == 0 && epDir == sign(grav))
                         {
                             ground = true;
                         }
@@ -105,7 +125,8 @@ if (isSolid)
         {
             with (prtEntity)
             {
-                if (blockCollision && !dead)
+                
+                if (id!=other.id && blockCollision && !dead)
                 {
                     if (other.fnsolid)
                     {
@@ -120,32 +141,29 @@ if (isSolid)
                         continue;
                     }
                     
-                    if (object_index == objMegaman)
-                    {
-                        grav = gravDir;
-                    }
-                    
-                    var dir = sign(bboxGetXCenterObject(other.id) - bboxGetXCenter());
-                    
-                    if (place_meeting(x, y + sign(grav), other.id))
+                    var epIsOnPlat = false;
+                    var epDir = sign(bboxGetXCenterObject(other.id) - bboxGetXCenter());
+
+                    if (place_meeting(x, y + sign(grav)+grav+(ground*0.5*sign(grav)), other.id))
                     {
                         shiftObject(myxspeed, 0, 1);
+                        epIsOnPlat=true;
                     }
                     
                     if (resolid == 1)
                     {
                         other.x += myxspeed;
                         
-                        if (place_meeting(x, y, other.id))
+                        if (!epIsOnPlat&&place_meeting(x, y, other.id))
                         {
                             xypre = x;
-                            x += myxspeed + (2 * sign(dir));
-                            
-                            repeat (32)
+                            x += myxspeed + (2 * sign(epDir));
+                            var rpts = max(32,abs(other.bbox_right-other.bbox_left)*2);
+                            repeat (rpts)
                             {
                                 if (place_meeting(x, y, other.id))
                                 {
-                                    x += dir * -0.5;
+                                    x += epDir * -0.5;
                                 }
                                 else
                                 {
@@ -158,11 +176,16 @@ if (isSolid)
                             
                             shiftObject(-xypre, 0, 1);
                             
-                            if (place_meeting(x, y, other.id) && !global.freeMovement) // Crushing
+                            if (epCanCrush&&place_meeting(x, y, other.id))
                             {
                                 if (global.factionStance[other.faction, faction])
                                 {
                                     event_user(EV_DEATH);
+                                    
+                                    if (object_index != objMegaman)
+                                    {
+                                        playSFX(sfxEnemyHit);
+                                    }
                                 }
                             }
                         }
@@ -180,9 +203,9 @@ if (isSolid)
         yprevious = y;
         xprevious = x;
         
-        with (objMegaman)
+        /*with (objMegaman)
         {
             grav = savedgrav;
-        }
+        }*/
     }
 }

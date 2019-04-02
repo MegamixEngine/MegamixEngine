@@ -137,7 +137,7 @@ enemyDamageValue(objIceSlasher, 1);
     {
         if (gravDir &gt; 0)
         {
-            i = instance_create(x - 8, y - 8, objGravityFlipUp);
+            var i = instance_create(x - 8, y - 8, objGravityFlipUp);
             with (i)
             {
                 event_perform(ev_step, ev_step_normal);
@@ -323,7 +323,7 @@ else
 
 if (instance_exists(objMegaman))
 {
-    i = instance_create(objMegaman.x - 8, objMegaman.y - 8, objGravityFlipDown);
+    var i = instance_create(objMegaman.x - 8, objMegaman.y - 8, objGravityFlipDown);
     with (i)
     {
         event_perform(ev_step, ev_step_normal);

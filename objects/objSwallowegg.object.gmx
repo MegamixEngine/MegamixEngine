@@ -51,6 +51,7 @@ spawnEggReset = spawnEgg;
 
 blockCollision = 0;
 grav = 0;
+col = 0;
 init = 1;
 
 image_speed = 0;
@@ -189,6 +190,7 @@ if (spawned)
     image_index = 0;
     spawnEgg = spawnEggReset;
     phase = 0;
+    image_index = col * 4;
 }
 </string>
           </argument>

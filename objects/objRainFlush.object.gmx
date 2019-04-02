@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 2;
+inWater = -1;
 canDamage = 0;
 despawnRange = -1;
 
@@ -152,7 +153,7 @@ if (!global.frozen)
 
 if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(4, -16, objRainFlush, 1, 4, 2, 0);
+    var i = fireWeapon(4, -16, objRainFlush, 1, 4, 2, 0);
     if (i) // set starting speed
     {
         i.yspeed = -0.5;
@@ -230,10 +231,24 @@ specialDamageValue("fire", 4);
             <kind>1</kind>
             <string>if (raining)
 {
-    for (i = 1; i &lt;= 16; i += 1)
-        draw_sprite(sprite_index, -1,
-            view_xview + view_wview - ((timer * 4 + i * 64) mod view_wview),
-            view_yview + ((timer * 4 + i * 128) mod view_hview));
+    for (var i = 1; i &lt;= 16; i += 1)
+    {
+        // regular grav
+        if sign(image_yscale) == 1
+        {
+            draw_sprite(sprite_index, -1,
+                view_xview + view_wview - ((timer * 4 + i * 64) mod view_wview),
+                view_yview + ((timer * 4 + i * 128) mod view_hview));
+        }
+        // reverse grav
+        else
+        {
+            draw_sprite_ext(sprite_index, -1,
+                view_xview + view_wview - ((timer * 4 + i * 64) mod view_wview),
+                view_yview + view_hview - ((timer * 4 + i * 128) mod view_hview),
+                1, -1, image_angle, image_blend, image_alpha);
+        }
+    }
 }
 else
 {

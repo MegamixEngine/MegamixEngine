@@ -118,9 +118,10 @@ if (entityCanStep())
                 {
                     action += 1;
                     actionTimer = 0;
-                    i = instance_create(x + 3 * image_xscale,
+                    var i = instance_create(x + 3 * image_xscale,
                         y - 11 + (image_index - 6) * 16, objEnemyBullet);
                     i.sprite_index = sprTotemPolenProjectile;
+                    i.image_xscale = image_xscale;
                     i.xspeed = image_xscale * 2;
                     i.contactDamage = 2;
                 }
@@ -131,6 +132,7 @@ if (entityCanStep())
                     action = 0;
                     actionTimer = 0;
                     image_index = 0;
+                    calibrateDirection();
                 }
                 break;
         }
@@ -157,6 +159,7 @@ if (entityCanStep())
         if (ground)
         {
             action = 1;
+            calibrateDirection();
         }
     }
 }

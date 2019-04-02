@@ -182,7 +182,6 @@ if (!global.frozen)
                 isIntro = false;
                 attackTimer = 0;
                 hasFired = true;
-                storeDirection = image_xscale;
                 grav = gravStart;
                 blockCollision = blockCollisionStart;
                 resetGrav = grav;

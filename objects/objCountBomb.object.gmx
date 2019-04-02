@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// The classic exploding bomb platform. Jump on it to activate a timer; just remember to jump off!
+event_inherited();
 
 isSolid = 1;
 
@@ -39,11 +40,18 @@ time = 3;
 shownumber = 1;
 pressed = 0;
 
+// @cc - The starting point of the timer when activated
 timerstart = noone;
+
+// @cc - The explosion sound effect made when the Count Bomb explodes
+// (0 = MM4/MM6 (default); 1 = MM9/MM10; 2 = MM5; 3 = MM3;)
+boomSound = 0;
+
 alarm[0] = 1;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 if (sprite_index == sprCountBomb)
 {
@@ -137,7 +145,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
     if (instance_exists(target) &amp;&amp; image_index == 0)
     {
-        doIt = 0;
+        var doIt = 0;
         with (objMegaman)
         {
             with (other)
@@ -284,7 +292,21 @@ else if (dead)
           <argument>
             <kind>1</kind>
             <string>instance_create(x + ex, y + ey, objHarmfulExplosion);
-playSFX(sfxMM3Explode);
+switch(boomSound)
+{
+    case 1:
+        playSFX(sfxMM9Explosion);
+        break;
+    case 2:
+        playSFX(sfxExplosion);
+        break;
+    case 3:
+        playSFX(sfxMM3Explode);
+        break;
+    default:
+        playSFX(sfxExplosion2);
+        break;
+}
 
 dead = 1;
 </string>

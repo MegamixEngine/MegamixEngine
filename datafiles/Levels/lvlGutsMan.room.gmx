@@ -108,8 +108,8 @@ if global.difficulty &lt; DIFF_NORMAL
     <instance objName="objSpike" x="96" y="256" name="inst_D4421D7C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLadder" x="96" y="272" name="inst_21BA351F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGutsLift" x="752" y="64" name="inst_8E44A5D7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objGutsLift" x="656" y="128" name="inst_CC0F2E67" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objGutsLift" x="976" y="192" name="inst_7B1BEBD2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objGutsLift" x="656" y="128" name="inst_CC0F2E67" locked="0" code="col = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objGutsLift" x="976" y="192" name="inst_7B1BEBD2" locked="0" code="col = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM1Met" x="208" y="144" name="inst_2686314D" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM1Met" x="304" y="112" name="inst_56B5969B" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM1Met" x="368" y="80" name="inst_DEBDF318" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>

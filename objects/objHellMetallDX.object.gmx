@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A Metall on treads with a shield. Once the treads are destroyed, charged Mega Buster shots
+// are needed to knock the shield back while it fires arcing shots.
+
+event_inherited();
 
 healthpointsStart = 3;
 contactDamage = 8;
@@ -191,7 +194,7 @@ image_index = imgIndex div 1;
             <kind>1</kind>
             <string>event_inherited();
 
-i = instance_create(x, y - 1, objHellMetallDX2);
+var i = instance_create(x, y - 1, objHellMetallDX2);
 i.yspeed = -2;
 
 if (other.object_index == objBreakDash)

@@ -106,12 +106,12 @@ if (!global.frozen)
             {
                 playSFX(sfxEnemyHit);//playSFX(sfxCrashBomb);
                 var i;
-                d = choose(1, -1);
-                t = irandom(45) * -d;
+                var d = choose(1, -1);
+                var t = irandom(45) * -d;
                 for (i = 0; i &lt; 4; i += 1)
                 {
                     t += irandom_range(45, 90) * sign(d);
-                    expl = instance_create(x, y, objHarmfulExplosion);
+                    var expl = instance_create(x, y, objHarmfulExplosion);
                     expl.stopOnFlash = false;
                     expl.sprite_index = sprCrashExplosion;
                     expl.contactDamage = 4;

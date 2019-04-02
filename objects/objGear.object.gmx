@@ -78,7 +78,7 @@ if (entityCanStep())
     alarmPop -= 1;
     if (alarmPop == 0)
     {
-        i = instance_create(x, view_yview + 32, objPierobot);
+        var i = instance_create(x, view_yview + 32, objPierobot);
         i.mygear = id;
     }
 }

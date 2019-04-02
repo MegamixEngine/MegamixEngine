@@ -98,6 +98,12 @@ if (entityCanStep())
         if (collision_rectangle(x - 32, y, x + 32, y + 512, target, false, true) &amp;&amp; yspeed == 0)
         {
             yspeed = 4;
+            image_index = 1;
+        }
+        if (y &gt;= target.y) &amp;&amp; (yspeed == 4)
+        {
+            image_index = 2;
+            xspeed = image_xscale * 2;
         }
     }
     if (y &gt; view_yview + 224 - 16 &amp;&amp; yspeed == 4)
@@ -107,6 +113,7 @@ if (entityCanStep())
     if (yspeed == -4 &amp;&amp; y &lt;= yMax)
     {
         yspeed = 0;
+        image_index = 0;
     }
 }
 </string>

@@ -40,7 +40,13 @@ facePlayerOnSpawn = true;
 // Enemy specific code
 turnTimer = 0;
 
-image_speed = 12 / 60;
+// @cc - Changes colour (0 = red (default); 1 = hot pink;)
+col = 0;
+
+imgIndex = 0;
+imgSpd = 12 / 60;
+
+//image_speed = 12 / 60;
 </string>
           </argument>
         </arguments>
@@ -90,11 +96,19 @@ if (entityCanStep())
     }
     
     xspeed = image_xscale * 0.5;
+    
+    // Animation
+    imgIndex += imgSpd;
+    if (imgIndex &gt;= 5)
+    {
+        imgIndex = 0;
+    }
 }
 else if (dead)
 {
-    image_index = 0;
+    imgIndex = 0;
 }
+image_index = floor(imgIndex) + (5 * col);
 </string>
           </argument>
         </arguments>

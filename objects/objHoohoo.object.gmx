@@ -43,6 +43,10 @@ facePlayerOnSpawn = true;
 sinCounter = 0; // for wave movement
 animTimer = 0;
 hasRock = true;
+init = 1;
+
+//@cc - Change colour: 0 (default) = brown rock, 1 = white rock
+col = 0;
 </string>
           </argument>
         </arguments>
@@ -66,6 +70,21 @@ hasRock = true;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+//Change colours
+if (init)
+{
+    switch(col)
+    {
+        case 1:
+            sprite_index = sprHoohooWhite;
+            break;
+        default:
+            sprite_index = sprHoohoo;
+            break;
+    }
+    init = 0;
+}
 
 if (entityCanStep())
 {
@@ -112,6 +131,7 @@ if (entityCanStep())
         hasRock = false;
         var ID = instance_create(x, y + 8, objHoohooRock);
         ID.image_xscale = image_xscale;
+        ID.col = col;
     }
 }
 </string>

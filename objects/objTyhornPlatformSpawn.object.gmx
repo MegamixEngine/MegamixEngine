@@ -32,10 +32,14 @@ canHit = false;
 
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 waitTime = 180; // 120
 
 initialDelay = 0;
+alarmSpawn = 0;
+
+objectDrop = objTyhornPlatform;
 </string>
           </argument>
         </arguments>
@@ -66,7 +70,7 @@ if ((!global.frozen) &amp;&amp; (!dead) &amp;&amp; (!global.timeStopped))
     if (alarmSpawn &lt;= 0)
     {
         alarmSpawn = waitTime;
-        i = instance_create(x, y - 8, objTyhornPlatform);
+        instance_create(x, y - 8, objectDrop);
     }
 }
 </string>

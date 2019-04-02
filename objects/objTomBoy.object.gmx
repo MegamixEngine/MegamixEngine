@@ -41,6 +41,7 @@ calibrated = 0;
 actionTimer = 0;
 action = 1;
 first = 1;
+pit = 0;
 </string>
           </argument>
         </arguments>
@@ -69,7 +70,7 @@ if (entityCanStep())
 {
     if (action)
     {
-        iaction = action;
+        var iaction = action;
         actionTimer += 1;
         switch (action)
         {
@@ -88,7 +89,7 @@ if (entityCanStep())
                     {
                         first = 0;
                     }
-                    turned = 0;
+                    var turned = 0;
                     
                     // Flip if wall
                     if (checkSolid(16 * image_xscale, 0, 1, 1))
@@ -99,10 +100,10 @@ if (entityCanStep())
                     }
                     
                     // Look for ledge
-                    xs = x;
+                    var xs = x;
                     x += 16 * image_xscale;
-                    ys = y;
-                    for (i = 0; i &lt;= 2; i += 1)
+                    var ys = y;
+                    for (var i = 0; i &lt;= 2; i += 1)
                     {
                         ground = checkSolid(0, 1, 1, 1);
                         if (ground)

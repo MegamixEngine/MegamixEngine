@@ -67,9 +67,9 @@ firstFrame = true;
 if (firstFrame)
 {
     firstFrame = false;
-    n_tries = 48;
-    checkX = true;
-    r = 0;
+    var n_tries = 48;
+    var checkX = true;
+    var r = 0;
     
     while (place_meeting(x - checkX * r * sign(xspeed), y - (!checkX) * r * sign(yspeed), objSolid) &amp;&amp; n_tries &gt; 0)
     {

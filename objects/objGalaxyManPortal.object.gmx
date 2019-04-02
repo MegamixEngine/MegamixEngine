@@ -39,6 +39,7 @@ viewX = 0;
 viewY = 0;
 
 overwriteAnimation = false;
+player = noone;
 </string>
           </argument>
         </arguments>

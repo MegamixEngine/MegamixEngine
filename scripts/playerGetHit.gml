@@ -20,7 +20,7 @@ if (!isHit)
         if (instance_exists(vehicle))
         {
             // Rush Cycle absorbs hits
-            if (vehicle.object_index == objRushCycle)
+            if (vehicle.object_index == objRushCycle && !global.infiniteEnergy[global.weaponID[? objRushCycle]])
             {
                 var ndmg = dmg;
                 dmg -= min(dmg, global.ammo[playerID, global.weapon[playerID]]);

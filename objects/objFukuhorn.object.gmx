@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Also Metall Sniper. When Mega Man is far away, it aims its gun at him and fires
-// base on where he is. When it gets close, it charges at MM before stopping and repeating.
+            <string>// When Mega Man is far away, it aims its gun at him and fires based on where he is.
+// When it gets close, it charges at him before stopping and repeating.
+// For Metall Sniper, set col to 1 in creation code.
 
 event_inherited();
 
@@ -108,7 +109,7 @@ if (entityCanStep())
                 hideTimer -= 1;
                 
                 // Get target
-                megaDir = point_direction(x, y, target.x, target.y + 5);
+                var megaDir = point_direction(x, y, target.x, target.y + 5);
                 
                 // Set angle
                 if (image_index &lt; 4)

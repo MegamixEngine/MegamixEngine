@@ -34,6 +34,7 @@ canHit = false;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 playerMet[global.playerCount] = true;
 drawarrow = 0;
@@ -74,6 +75,12 @@ newStage = 0;
 returnToHub = false;
 
 lightSprite = sprTeleporterLight;
+
+//@cc isExternal
+isExternal = false;
+
+//@cc externalRoomFilename
+externalRoomFilename = "";
 
 //@cc[1,6] what blinking light to use for the teleporter tiles behind the object (number corresponds with the teleporter's game)
 light = 0;
@@ -170,6 +177,8 @@ if (!global.frozen &amp;&amp; !lock)
                         i.Y = other.Y;
                         i.newStage = other.newStage;
                         i.returnToHub = other.returnToHub;
+                        i.isExternal = other.isExternal;
+                        i.externalRoomFilename = other.externalRoomFilename;
 
                         with (objMegaman)
                         {
@@ -179,7 +188,7 @@ if (!global.frozen &amp;&amp; !lock)
                             yspeed = 0;
                         }
                         
-                        global.frozen = true;
+                        queuePause();
                         
                         with (other)
                         {

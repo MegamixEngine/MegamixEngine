@@ -47,8 +47,9 @@ imgSpd = 0.12;
 image_index = 8; // falling sprite for intro
 
 // Healthbar color
-healthBarPrimaryColor[1] = 20;
-healthBarSecondaryColor[1] = 34;
+manualColors = true;
+healthBarPrimaryColor[1] = make_colour_rgb(228,92,16);
+healthBarSecondaryColor[1] = make_colour_rgb(236,184,68);
 
 // Music
 music = "Mega_Man_9.nsf";
@@ -186,7 +187,7 @@ if (entityCanStep())
                 {
                     timer = 0;
                     
-                    bee = instance_create(x + 10 * image_xscale, y - 6, objBeeChaser);
+                    var bee = instance_create(x + 10 * image_xscale, y - 6, objBeeChaser);
                     bee.sprite_index = sprBossHornetChaser;
                     bee.image_xscale = image_xscale;
                     bee.timer += (26 - counter * 13); // make sure they all start moving at the same time
@@ -267,7 +268,7 @@ if (entityCanStep())
                 // jump
                 if (ground)
                 {
-                    stop = false;
+                    var stop = false;
                     
                     if (checkSolid(10 * image_xscale, 0,1,1) || !positionCollision(x+10 * image_xscale,y+20,1,1))
                     {

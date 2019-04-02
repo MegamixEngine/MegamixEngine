@@ -55,11 +55,14 @@ contactDamage = 2;
             <kind>1</kind>
             <string>event_inherited();
 
-if (global.frozen == false &amp;&amp; global.timeStopped == false)
+if (entityCanStep())
 {
-    xspeed = cos(degtorad(dir)) * 1.5 * xscale;
-    yspeed = -sin(degtorad(dir))
-        * 1.5; // The vertical speed was, for some reason, inverted, which is why I used a minus. Don't ask me what actually caused this behaviour
+    if (xspeed == 0 &amp;&amp; yspeed == 0)
+    {
+        xspeed = cos(degtorad(dir)) * 1.5 * xscale;
+        yspeed = -sin(degtorad(dir))
+            * 1.5; // The vertical speed was, for some reason, inverted, which is why I used a minus. Don't ask me what actually caused this behaviour
+    }
 }
 </string>
           </argument>

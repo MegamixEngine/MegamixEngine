@@ -37,6 +37,7 @@ contactDamage = 4;
 blockCollision = 1;
 grav = 0.15 * image_yscale;
 facePlayerOnSpawn = true;
+category = "bulky, shielded";
 
 // Enemy specific code
 image_speed = 0;
@@ -51,6 +52,7 @@ findPartner = false;
 wireY = 0;
 xMin = x - 256;
 xMax = x + 256;
+dir = 0;
 
 partner = noone;
 </string>

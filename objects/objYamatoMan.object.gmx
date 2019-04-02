@@ -179,7 +179,6 @@ if (!global.frozen)
                 isIntro = false;
                 attackTimer = 0;
                 hasFired = true;
-                storeDirection = image_xscale;
                 grav = gravStart;
                 blockCollision = blockCollisionStart;
             }
@@ -308,6 +307,7 @@ if (entityCanStep())
                 if (ground &amp;&amp; image_index &gt;= 9)
                 {
                     image_index = 0;
+                    playSFX(sfxClamp);
                     attackTimer = 0;
                     phase = 0;
                 }

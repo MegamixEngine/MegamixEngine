@@ -36,6 +36,9 @@ facePlayerOnSpawn = true;
 imgIndex = 0;
 imgSpd = 0.1;
 phase = 0;
+safeTimer = 0;
+
+block = noone;
 </string>
           </argument>
         </arguments>
@@ -95,15 +98,15 @@ if (entityCanStep())
                 {
                     imgIndex = 0;
                     phase = 2;
-                    var i = instance_create(x + 1 * image_xscale, view_yview, objSoshiBreakerCube);
-                    i.image_xscale = image_xscale;
+                    block = instance_create(x + 1 * image_xscale, view_yview, objSoshiBreakerCube);
+                    block.image_xscale = image_xscale;
                 }
             }
             break;
         case 2:
-            if (place_meeting(x, y, objSoshiBreakerCube))
+            if (place_meeting(x, y, block))
             {
-                with (objSoshiBreakerCube)
+                with (block)
                 {
                     instance_destroy();
                 }
@@ -112,6 +115,15 @@ if (entityCanStep())
                 {
                     imgIndex = 3;
                     phase = 3;
+                }
+            }
+            else //Didn't hit the block for whatever reason? No biggie, start again!
+            {
+                safeTimer++;
+                if (safeTimer == 240)
+                {
+                    phase = 0;
+                    safeTimer = 0;
                 }
             }
             break;
@@ -155,6 +167,7 @@ else if (dead)
     healthpoints = healthpointsStart;
     imgIndex = 0;
     phase = 0;
+    safeTimer = 0;
 }
 image_index = imgIndex div 1;
 </string>

@@ -37,6 +37,9 @@ grav = 0.25;
 blockCollision = 1;
 
 facePlayerOnSpawn = true;
+
+moveTimer = 0;
+image_speed = 0;
 </string>
           </argument>
         </arguments>
@@ -67,6 +70,15 @@ if (entityCanStep())
     {
         instance_create(spriteGetXCenter(), spriteGetYCenter(), objExplosion);
         instance_destroy();
+    }
+    else // Potton Bombs shudder slightly when falling
+    {
+        moveTimer++;
+        if (moveTimer == 2)
+        {
+            image_xscale *= -1;
+            moveTimer = 0;
+        }
     }
 }
 </string>

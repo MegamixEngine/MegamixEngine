@@ -31,7 +31,7 @@ healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 3;
 
-category = "cluster, flying";
+category = "cluster, flying, shielded";
 
 blockCollision = false;
 grav = 0;

@@ -54,7 +54,7 @@ suckSpeed = 1;
 suckTimer = 224;
 
 // Health Bar
-healthBarPrimaryColor[1] = 27;
+healthBarPrimaryColor[1] = 13; //27
 healthBarSecondaryColor[1] = 40;
 
 // Music
@@ -146,7 +146,7 @@ enemyDamageValue(objIceSlasher, 1);
             <string>// leave this. this is needed.
 event_inherited();
 
-// all of yamato man's events trigger when the game isn't frozen.
+// all of dust man's events trigger when the game isn't frozen.
 if (!global.frozen)
 {
     // yamato man's custom intro
@@ -184,7 +184,6 @@ if (!global.frozen)
                 isIntro = false;
                 attackTimer = 0;
                 hasFired = true;
-                storeDirection = image_xscale;
                 grav = gravStart;
                 blockCollision = blockCollisionStart;
             }

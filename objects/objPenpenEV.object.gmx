@@ -48,6 +48,8 @@ decel = 0.02;
 xspeed = 0;
 yspeed = 0;
 prevXSpeed = 0;
+myX = 0;
+theirX = 0;
 
 animCount = 0;
 imgSpd = 0.3;
@@ -91,7 +93,7 @@ if (entityCanStep())
         }
         
         // ram other Penpen EVs
-        penpen = collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, objPenpenEV, false, true);
+        var penpen = collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, objPenpenEV, false, true);
         if (instance_exists(penpen))
         {
             if (xspeed != 0 &amp;&amp; (penpen.phase == 0 || penpen.phase == 4))
@@ -105,9 +107,9 @@ if (entityCanStep())
                     if ((myX &lt; theirX &amp;&amp; xspeed &gt; 0) || (myX &gt; theirX &amp;&amp; xspeed &lt; 0))
                     {
                         // hitting each other
-                        aa = xspeed;
+                        var xs = xspeed;
                         xspeed = penpen.xspeed;
-                        penpen.xspeed = aa;
+                        penpen.xspeed = xs;
                         bounced = true;
                     }
                     else

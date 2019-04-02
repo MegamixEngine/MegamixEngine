@@ -65,6 +65,12 @@ countOwn = false;
 // and is more reliable since GML code execution from a string is not fully-featured.)
 script = scrNoEffect;
 
+//@cc number of arguments
+scriptArgC = 0;
+
+//@cc array containing arguments (will be cropped to `scriptArgC`)
+scriptArgV = makeArray(0);
+
 //@cc string containing GML code to execute. If you put, say, code = "xspeed = -3" and the object is set to objEnemyBullet,
 // then the spawner will create a bullet moving left.
 code = "";
@@ -82,7 +88,7 @@ spawnN = 0;
 spawnedCount = 0;
 
 alarm[0] = 1;
-
+spawnList = makeArray()
 canHit = false;
 image_speed = 0;
 </string>
@@ -185,7 +191,8 @@ if (entityCanStep())
                 
                 // setup
                 respawn = false;
-                script_execute(other.script);
+                scriptExecuteNargs(other.script, other.scriptArgV, other.scriptArgC);
+                
                 if (other.code != "")
                     stringExecutePartial(other.code);
             }

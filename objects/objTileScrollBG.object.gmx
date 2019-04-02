@@ -41,6 +41,7 @@ event_inherited();
 canHit = false;
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 respawnRange = -1;
 despawnRange = -1;
@@ -51,6 +52,11 @@ drawInit = 1;
 // section boundaries
 _sl = x;
 sr = x;
+th = 0;
+tw = 0;
+tT = 0;
+tl = 0;
+tb = 0;
 
 tileID = 0;
 xshift = 0;

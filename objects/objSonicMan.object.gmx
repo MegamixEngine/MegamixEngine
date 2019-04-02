@@ -185,7 +185,6 @@ if (!global.frozen)
                 hasFired = true;
                 grav = gravStart;
                 blockCollision = blockCollisionStart;
-                storeDirection = image_xscale;
             }
         }
     }

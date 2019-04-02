@@ -36,6 +36,7 @@ grav = 0;
 blockCollision = false;
 despawnRange = 16;
 respawnRange = -4;
+category = "floating";
 
 waveSpeed = 0.075;
 waveWidth = 3.35;
@@ -149,8 +150,6 @@ if (spawned)
     
     destY = -1;
     startY = -1;
-    t = 0;
-    rval = -1;
 }
 </string>
           </argument>

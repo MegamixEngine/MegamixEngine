@@ -75,7 +75,7 @@ if (entityCanStep())
         || shootTimer1 == shootTimerInterval * 2
         || shootTimer1 == shootTimerInterval * 3)
     {
-        i = instance_create(bbox_left - 4, y - 12, objEnemyBullet);
+        var i = instance_create(bbox_left - 4, y - 12, objEnemyBullet);
         i.xspeed = -2;
         i.dir = 180;
         i = instance_create(bbox_right + 4, y - 12, objEnemyBullet);

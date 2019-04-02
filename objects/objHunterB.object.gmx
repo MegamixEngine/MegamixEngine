@@ -198,7 +198,9 @@ if (entityCanStep())
         {
             case 0: // config 
                 with (objHunterPlatform)
+                {
                     forceMove = true;
+                }
                 if (object_index != objHunterBPartner &amp;&amp; xspeed == 0)
                 {
                     xspeed = -2;

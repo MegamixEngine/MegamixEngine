@@ -31,7 +31,7 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 6;
 
-category = "fire, flying";
+category = "flying";
 
 blockCollision = 0;
 grav = 0;
@@ -83,7 +83,7 @@ if (entityCanStep())
                 image_index += 4;
                 action += 1;
                 actionTimer = 0;
-                i = instance_create(x, bbox_top - 4, objExplosion);
+                var i = instance_create(x, bbox_top - 4, objExplosion);
                 with (i)
                 {
                     sprite_index = spr100WattonSmoke;

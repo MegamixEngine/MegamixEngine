@@ -89,7 +89,7 @@ if (!controlsLocked)
         {
             // quit:
             global.nextRoom = rmFileSelect;
-            lockControls = true;
+            controlsLocked = true;
         }
         else
         {
@@ -122,7 +122,7 @@ if (!controlsLocked)
             
             // go to stage select
             global.nextRoom = rmStageSelect;
-            lockControls = true;
+            controlsLocked = true;
         }
         playSFX(sfxMenuSelect);
     }

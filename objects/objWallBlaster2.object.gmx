@@ -90,10 +90,10 @@ if (entityCanStep())
                     {
                         phase = 1;
                         shootTimer = 0;
-                        imgIndex = 1 * turnSet;
+                        imgIndex = 2 * turnSet;
                     }
                     
-                    megaDir = point_direction(x, y, target.x, target.y);
+                    var megaDir = point_direction(x, y, target.x, target.y);
                     
                     if (image_xscale &gt; 0)
                     {
@@ -127,7 +127,14 @@ if (entityCanStep())
                     }
                 }
             }
-            imgIndex = turnSet * 3;
+            if (shootTimer &gt;= (delay - 4))
+            {
+                imgIndex = (turnSet * 3) + 2;
+            }
+            else
+            {
+                imgIndex = turnSet * 3;
+            }
             break;
         case 1:
             imgIndex += imgSpd;
@@ -135,7 +142,7 @@ if (entityCanStep())
             {
                 shootTimer = 1; // I used shootTimer as a boolean   :P
                 
-                shotX = x;
+                var shotX = x;
                 if (turnSet == 1)
                 {
                     shotX += sprite_width * 0.5;
@@ -145,7 +152,7 @@ if (entityCanStep())
                     shotX += sprite_width * 0.3;
                 }
                 
-                shotY = y;
+                var shotY = y;
                 if (turnSet == 0)
                 {
                     shotY -= sprite_height * 0.4;
@@ -155,7 +162,7 @@ if (entityCanStep())
                     shotY += sprite_height * 0.4;
                 }
                 
-                shotDir = 0;
+                var shotDir = 0;
                 if (image_xscale &gt; 0)
                 {
                     if (turnSet == 0)
@@ -187,7 +194,7 @@ if (entityCanStep())
                     }
                 }
                 
-                i = instance_create(shotX, shotY, objEnemyBullet);
+                var i = instance_create(shotX, shotY, objEnemyBullet);
                 i.sprite_index = sprEnemyBulletMM6;
                 i.speed = 1.3;
                 i.direction = shotDir;

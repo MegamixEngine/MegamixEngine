@@ -43,6 +43,7 @@ delay = 256;
 shoottimer = delay / 4;
 col = 0; // 0 is Red; 1 is Blue
 image_speed = 0;
+obj = objTellyX;
 </string>
           </argument>
         </arguments>
@@ -77,9 +78,9 @@ if (entityCanStep())
         {
             tel = 3;
         }
-        if (instance_number(objTellyX) &lt; tel)
+        if (instance_number(obj) &lt; tel)
         {
-            i = instance_create(x, y, objTellyX);
+            i = instance_create(x, y, obj);
             i.respawn = 0;
             i.col = col;
         }

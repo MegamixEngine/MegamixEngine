@@ -35,6 +35,7 @@ event_inherited();
 sprite_index = sprMM5WheelConveyor;
 
 spd = 0.5;
+animFrames=3;
 </string>
           </argument>
         </arguments>

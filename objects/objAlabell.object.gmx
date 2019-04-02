@@ -192,7 +192,7 @@ if (entityCanStep())
         else
         {
             dead = true;
-            explosion = instance_create(x, spriteGetYCenter(), objHarmfulExplosion);
+            var explosion = instance_create(x, spriteGetYCenter(), objHarmfulExplosion);
             explosion.contactDamage = 8;
             explosion.damageEnemies = true;
             playSFX(sfxMM9Explosion);
@@ -235,11 +235,13 @@ else if (dead)
 
 if (entityCanStep())
 {
-    if (other.x &lt; x)
+    //if (other.x &lt; x)
+    if (sign(other.xspeed) == 1)
     {
         shiftObject(16, 0, 1);
     }
-    else if (other.x &gt; x)
+    //else if (other.x &gt; x)
+    else if (sign(other.xspeed) == -1)
     {
         shiftObject(-16, 0, 1);
     }

@@ -36,6 +36,7 @@ healthpoints = healthpointsStart;
 contactDamage = 3;
 blockCollision = 0;
 grav = 0;
+category = "flying, nature";
 
 // Enemy specific code
 storeXScale = image_xscale;
@@ -115,7 +116,7 @@ if (entityCanStep()
                 break;
             }
         }
-        aimDir = 1;
+        var aimDir = 1;
         if (image_xscale == -1)
         {
             aimDir = -1;

@@ -62,6 +62,11 @@ landtimer = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
+
 
 if (entityCanStep())
 {
@@ -90,7 +95,8 @@ if (entityCanStep())
         jumpTimer += 1;
         if (jumpTimer == 60 || jumpTimer == 105 || jumpTimer == 150)
         {
-            i = instance_create(x, y - 14, objCarrot);
+            calibrateDirection();
+            var i = instance_create(x, y - 14, objCarrot);
             i.image_xscale = image_xscale;
         }
         if (jumpTimer == 190)

@@ -115,8 +115,10 @@ if (instance_exists(target))
         ddY = -17; // To avoid dividing by 0
     else
         ddY = dy;
-    
-    xspeed = dx / ((1 + (ddY / 6)) * const) * image_xscale;
+    if (target.x &gt;= x)
+        xspeed = dx / ((1 + (ddY / 6)) * const);// * image_xscale;
+    else
+        xspeed = dx / ((1 + (ddY / 6)) * const) * -1;
 }
 </string>
           </argument>

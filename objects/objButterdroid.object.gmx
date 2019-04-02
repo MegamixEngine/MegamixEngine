@@ -95,7 +95,7 @@ if (entityCanStep())
         if (cooldownTimer == cooldownMax)
         {
             // Shoot
-            var getAngle;
+            var getAngle, direct;
             
             // If megaman exists, grab his angle, otherwise grab some random different angle.
             if (instance_exists(target))

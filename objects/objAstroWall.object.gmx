@@ -66,13 +66,23 @@ respawnRange = -1;
 despawnRange = -1;
 grav = 0;
 blockCollision = false;
+bubbleTimer = -1;
 canHit = false;
 contactDamage = 0;
 isMaster = false;
 master = noone;
 firstFrame = true;
 entityN = 0;
+popN = 0
 popList = makeArray("");
+minDist = 0;
+entityObject = makeArray();
+entitySprite = makeArray();
+entityWidth = makeArray();
+entityHeight = makeArray()
+entityX = makeArray();
+entityXScale = makeArray()
+entityPop = makeArray()
 rippleN = 0;
 </string>
           </argument>

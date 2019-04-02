@@ -203,7 +203,6 @@ if (!global.frozen)
                 isIntro = false;
                 attackTimer = 0;
                 hasFired = true;
-                storeDirection = image_xscale;
                 grav = gravStart;
                 blockCollision = blockCollisionStart;
             }
@@ -320,7 +319,7 @@ if (entityCanStep())
                     
                     if (global.difficulty == DIFF_HARD)
                     {
-                        for (i = 120; i &lt;= 360; i += 120)
+                        for (var i = 120; i &lt;= 360; i += 120)
                         {
                             var sd = instance_create(x, y, objStoneManPowerStone);
                             sd.cAngle = i;

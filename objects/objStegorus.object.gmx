@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 healthpointsStart = 24;
+category = "bulky, nature";
 contactDamage = 3;
 respawnRange = 0;
 despawnRange = 16;
@@ -43,6 +44,7 @@ phase = 0;
 animFrame = 0;
 timer = 0;
 shotCount = 0;
+turn = 0;
 
 //@cc random shenanigans
 timescale = 1;
@@ -71,7 +73,12 @@ timescale = 1;
             <string>if (timescale &lt; 0)
     timescale = abs(timescale);
 grav = 0.25 * timescale;
+var prexscale = image_xscale;
+image_xscale=1;
+mask_index = mskStegorus;
 event_inherited();
+image_xscale = prexscale;
+mask_index = sprStegorus;
 
 if (entityCanStep())
 {
@@ -338,6 +345,32 @@ if (ignore)
         other.guardCancel = 1;
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
+stopSFX(sfxEnemyHit);
+playSFX(sfxExplosion2);
 </string>
           </argument>
         </arguments>

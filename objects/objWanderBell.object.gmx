@@ -61,7 +61,7 @@ image_speed = 0.1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>xs = xspeed;
+            <string>var xs = xspeed;
 
 event_inherited();
 

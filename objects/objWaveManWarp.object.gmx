@@ -60,6 +60,7 @@ global.waveManWarpLock = false;
 {
     xspeed = spd;
     yspeed = 0;
+    var warp;
     if (instance_place(x, y, objWaveManWarpUp))
     {
         warp = instance_place(x, y, objWaveManWarpUp);

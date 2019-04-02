@@ -36,6 +36,7 @@ event_inherited();
 blockCollision = 0;
 grav = 0;
 canHit = false;
+bubbleTimer = -1;
 
 isSolid = 1;
 
@@ -161,7 +162,7 @@ if (entityCanStep() &amp;&amp; insideSection(x + 8, y))
                 global.sectionBottom += yspeed;
             }
             
-            for (i = myTile; i &lt;= myTile + additionalTile; i += 1)
+            for (var i = myTile; i &lt;= myTile + additionalTile; i += 1)
             {
                 tile_layer_shift(i, 0, other.yspeed);
             }
@@ -263,7 +264,7 @@ if (entityCanStep() &amp;&amp; insideSection(x + 8, y))
     {
         for (i = 0; i &lt;= image_xscale; i += 1)
         {
-            towerBlock = collision_point(x + 8 + (i * 16), y - 1 * sign(image_yscale), blockObject[o], false, true);
+            var towerBlock = collision_point(x + 8 + (i * 16), y - 1 * sign(image_yscale), blockObject[o], false, true);
             
             // if the tower block is found
             if (towerBlock)

@@ -43,6 +43,9 @@ jumpAmount = 0;
 canInitShoot = true;
 phase = 0; // 0 = nothing; 1 = jumping; 2 = jumping and shooting; 3 = shooting the big shot
 
+startXScale = 0;
+startXspeed = 0;
+
 // Health Bar
 healthBarPrimaryColor[1] = 33;
 healthBarSecondaryColor[1] = 40;

@@ -29,6 +29,7 @@
 
 respawn = false;
 contactDamage = 0;
+caughtXScalePrev = 0;
 
 canHit = false;
 itemDrop = -1;
@@ -69,10 +70,8 @@ honeyLock = false;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (instance_exists(caughtPlayer))
-{
-    honeyLock = lockPoolRelease(honeyLock);
-}
+
+honeyLock = lockPoolRelease(honeyLock);
 </string>
           </argument>
         </arguments>
@@ -181,8 +180,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         // time player is caught
         if (caughtTimer &gt;= 8 + ((global.difficulty == DIFF_HARD) * 2))
         {
-            if (instance_exists(caughtPlayer))
-                honeyLock = lockPoolRelease(honeyLock);
+            honeyLock = lockPoolRelease(honeyLock);
             instance_create(x, y, objExplosion);
             instance_destroy();
             exit;
@@ -193,8 +191,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
     despawnTimer += 1;
     if (despawnTimer &gt;= 370)
     {
-        if (isLocked(honeyLock))
-            honeyLock = lockPoolRelease(honeyLock);
+        honeyLock = lockPoolRelease(honeyLock);
         instance_destroy();
         exit;
     }

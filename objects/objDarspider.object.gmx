@@ -35,7 +35,7 @@ healthpointsStart = 2;
 healthpoints = 2;
 contactDamage = 3;
 facePlayer = false;
-
+category = "nature";
 
 // Enemy specific code
 
@@ -87,7 +87,18 @@ isDei = false; // Weather he should act like a deispider, this means it'll rando
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>var ixsc = image_xscale;
+image_xscale=1;
+event_inherited();
+image_xscale=ixsc;
+if(!onCeiling)
+{
+    if(xcoll!=0)
+    {
+        xspeed=xcoll;
+    }
+
+}
 
 if (entityCanStep())
 {

@@ -164,8 +164,8 @@ with (objMegaman)
             <string>if (!global.frozen)
 {
     // controls
-    xDir = global.keyRightPressed[0] - global.keyLeftPressed[0];
-    yDir = global.keyDownPressed[0] - global.keyUpPressed[0];
+    var xDir = global.keyRightPressed[0] - global.keyLeftPressed[0];
+    var yDir = global.keyDownPressed[0] - global.keyUpPressed[0];
     
     cursorX += xDir;
     cursorY += yDir;

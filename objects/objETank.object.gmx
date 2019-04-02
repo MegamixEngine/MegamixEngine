@@ -66,7 +66,7 @@ else
 {
     if (global.playerHealth[pid] &lt; 28)
     {
-        global.frozen = true;
+        queuePause();
         with (objGlobalControl)
         {
             increaseHealth = 28;

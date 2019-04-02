@@ -70,6 +70,7 @@ if (entityCanStep())
 {
     switch (phase)
     {
+        // activate if target approaches
         case 0:
             if (instance_exists(target))
             {
@@ -87,6 +88,7 @@ if (entityCanStep())
                 }
             }
             break;
+        // jump up + float down
         case 1:
             if (yspeed &lt; 0)
             {
@@ -128,58 +130,91 @@ if (entityCanStep())
                 {
                     animDelay++;
                 }
-                
-                // Check for wind/rain objects
-                if (instance_place(x, y, objToadRain))
-                {
-                    xspeed = instance_place(x, y, objToadRain).blowSpeed;
-                }
-                
-                if (instance_exists(objTenguWind))
-                {
-                    if (instance_nearest(x, y, objTenguWind).activated)
-                    {
-                        xspeed = instance_nearest(x, y, objTenguWind).windSpeed * instance_nearest(x, y, objTenguWind).dir;
-                    }
-                }
-                
-                if (instance_place(x, y, objWindRight))
-                {
-                    if (instance_place(x, y, objWindRight).dir == "right")
-                    {
-                        xspeed = instance_place(x, y, objWindRight).spd;
-                    }
-                    else if (instance_place(x, y, objWindRight).dir == "left")
-                    {
-                        xspeed = -(instance_place(x, y, objWindRight).spd);
-                    }
-                    else if (instance_place(x, y, objWindRight).dir == "up")
-                    {
-                        yspeed = 1.2 - instance_place(x, y, objWindRight).spd;
-                    }
-                    else if (instance_place(x, y, objWindRight).dir == "right")
-                    {
-                        yspeed = 1 + instance_place(x, y, objWindRight).spd;
-                    }
-                }
-                
-                if (instance_place(x, y, objSandstorm))
-                {
-                    xspeed = instance_place(x, y, objSandstorm).dir * 0.5;
-                }
-                break;
             }
+            break;
     }
     
+    // Check for wind/rain objects
+    if (instance_place(x, y, objToadRain))
+    {
+        xspeed = instance_place(x, y, objToadRain).blowSpeed;
+    }
+                
+    if (instance_exists(objTenguWind))
+    {
+        if (instance_nearest(x, y, objTenguWind).activated)
+        {
+            xspeed = instance_nearest(x, y, objTenguWind).windSpeed * instance_nearest(x, y, objTenguWind).dir;
+        }
+    }
+                
+    if (instance_place(x, y, objWindRight))
+    {
+        if (instance_place(x, y, objWindRight).dir == "right")
+        {
+            xspeed = instance_place(x, y, objWindRight).spd;
+        }
+        else if (instance_place(x, y, objWindRight).dir == "left")
+        {
+            xspeed = -(instance_place(x, y, objWindRight).spd);
+        }
+        else if (instance_place(x, y, objWindRight).dir == "up")
+        {
+            yspeed = 1.2 - instance_place(x, y, objWindRight).spd;
+        }
+        else if (instance_place(x, y, objWindRight).dir == "right")
+        {
+            yspeed = 1 + instance_place(x, y, objWindRight).spd;
+        }
+    }
+                
+    if (instance_place(x, y, objSandstorm))
+    {
+        xspeed = instance_place(x, y, objSandstorm).dir * 0.5;
+    }
+    
+    // blow up on ground hit
     if ((xcoll) || (ycoll))
     {
-        i = instance_create(x, y, objHarmfulExplosion);
+        var i = instance_create(x, y, objHarmfulExplosion);
         i.contactDamage = 4;
         playSFX(sfxMM9Explosion);
         itemDrop = -1;
     }
 }
 image_index = imgIndex div 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="21">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// destroy the parachute
+if other.y &lt;= y - 2 &amp;&amp; image_index &gt;= 5
+{
+    instance_create(x, y - 2, objExplosion);
+    healthpoints += 1;
+    
+    imgIndex = 3;
+    grav = gravAccel;
+    phase = 2;
+}
 </string>
           </argument>
         </arguments>
@@ -204,7 +239,7 @@ image_index = imgIndex div 1;
             <kind>1</kind>
             <string>event_inherited();
 
-i = instance_create(x, y, objHarmfulExplosion);
+var i = instance_create(x, y, objHarmfulExplosion);
 i.contactDamage = 4;
 playSFX(sfxMM9Explosion);
 </string>

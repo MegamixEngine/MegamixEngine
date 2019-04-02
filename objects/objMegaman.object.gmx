@@ -28,7 +28,7 @@
             <string>event_inherited();
 
 faction = 1;
-shiftVisible = 2;
+shiftVisible = 3;
 
 despawnRange = -1;
 
@@ -94,17 +94,22 @@ ground = true;
 xDir = 0;
 yDir = 0;
 
+
 prevXScale = image_xscale;
 isStep = false;
 stepTimer = 0;
 canMinJump = false;
 climbShootXscale = 1;
+movementXScale = image_xscale;
+xScaleOverride = 0;
 
 isShoot = false;
 shootTimer = 0;
 
 isSlide = false;
 slideTimer = 0;
+firstSlideMask = mskMegamanSlide;
+secondSlideMask = mskMegamanSlide2;
 
 canHit = false;
 isHit = false;
@@ -160,6 +165,18 @@ readyTimer = 0;
 // Camera
 viewPlayer = 1;
 
+//Jump Counter
+jumpCounter = 0;
+jumpCounterMax = 1; //If you want multiple jumps then increase this
+
+//Dash things
+dashSlide = false; // Dash enabled?
+dashJumped = false;
+multiJumpDashCancel = true; //controls whether dash momentum is removed after multiple jumps.
+
+//Contact Damage Multiplier
+contactDamageMultiplier = 1; //you can increase this to multiply the amount of damage mega man takes from a certain object.
+
 // Animation Initiation
 spriteX = 0;
 spriteY = 0;
@@ -176,6 +193,8 @@ for (i = 0; i &lt;= 99; i += 1)
 }
 animSpinOffset = 0;
 animSpinTurn = 1;
+
+paletteRefresh = 0;
 </string>
           </argument>
         </arguments>
@@ -204,6 +223,52 @@ animSpinTurn = 1;
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// costumeID needs to be set here or it won't display correctly.
+switch (global.characterSelected[playerID])
+{ 
+    default: 
+        break;
+    case "Mega Man":
+        costumeID = 0;
+        break;
+    case "Proto Man":
+        costumeID = 1;
+        break;
+    case "Bass":
+        costumeID = 2;
+        break;
+    case "Roll":
+        costumeID = 3;
+        break;
+}
+
+// corrects palette
+if (paletteRefresh == 0)
+{
+    playerPalette(); 
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -221,40 +286,102 @@ animSpinTurn = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!global.frozen &amp;&amp; !frozen)
+            <string>switch (global.characterSelected[playerID])
+{ 
+    default: //you can define step code here that needs to be run on every frame for a specific character. Proto man is the only character that needs to be changed for this specifically, due to his shield so he uses a different script.
+    case "Roll":
+    case "Mega Man":
+    case "Bass":
+        playerStepEventDefault();
+        break;
+    case "Proto Man":
+        playerStepEventProto();
+        break;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
 {
-    playerStep(); // General step event code
-    
-    if (!playerIsLocked(PL_LOCK_PHYSICS))
-    {
-        event_inherited(); // General prtEntity code
-        playerMovement();
-    }
-    
-    // Shooting
-    if (instance_exists(statusObject))
-    {
-        if (statusObject.statusCanShoot)
+    switch (global.characterSelected[playerID])
+    { 
+        default: //define any variables that need to be overwritten here for a specific character. Note that the costume ID variables are assumed to be in their default values
+            break;
+        case "Mega Man":
         {
-            playerHandleShoot();
+            costumeID = 0;
+            break;
+        }
+        case "Proto Man":
+        {
+            contactDamageMultiplier = 2; //Proto Man takes double damage like in MM10
+            costumeID = 1;
+            break;
+        }
+        case "Bass":
+        {
+            jumpCounterMax = 2; //Bass has double jumping
+            dashSlide = true; //Bass can dash
+            multiJumpDashCancel = true; //dash momentum no longer applies when a jump is done in midair with bass
+            firstSlideMask = mskMegaman;//This also applies to dash masks
+            secondSlideMask = mskMegaman;//same as above
+            costumeID = 2;
+            break;
+        }
+        case "Roll":
+        {
+            costumeID = 3;
+            break;
         }
     }
-    else
+    switch (global.characterSelected[0])
     {
-        playerHandleShoot();
+        default: //Weapon Names and Icons. This is to prevent multiplayer from confusing the game
+        case "Mega Man":
+        {
+            global.weaponName[0] = "MEGA BUSTER"
+            global.weaponIcon[0] = sprWeaponIconsMegaBuster;
+            break;
+        }
+        case "Proto Man":
+        {
+            global.weaponName[0] = "PROTO BUSTER"
+            global.weaponIcon[0] = sprWeaponIconsMegaBuster;
+            break;
+        }
+        case "Bass":
+        {
+            global.weaponName[0] = "BASS BUSTER"
+            global.weaponIcon[0] = sprWeaponIconsBassBuster;
+            break;
+        }
+        case "Roll":
+        {
+            global.weaponName[0] = "ROLL BUSTER"
+            global.weaponIcon[0] = sprWeaponIconsMegaBuster;
+            break;
+        }
     }
-    
-    // Quick weapon switching
-    playerSwitchWeapons();
-    
-    // Handle the sprites
-    playerHandleSprites('Normal');
-    
-    // Moving from one section to the next, if possible
-    playerSwitchSections();
-    
-    // Recover from mm1 stun
-    playerHandleStun();
 }
 </string>
           </argument>
@@ -282,6 +409,7 @@ animSpinTurn = 1;
 {
     global.damage = max(1, global.damage div 2);
 }
+global.damage *= contactDamageMultiplier;
 </string>
           </argument>
         </arguments>

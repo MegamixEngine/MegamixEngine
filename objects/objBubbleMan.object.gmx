@@ -161,19 +161,29 @@ if (entityCanStep())
     if (isFight)
     {
         grav = 0;
-        
+        var idleSprite, swimSprite;
         // Sprite handling - Underwater sprites
         if (inWater)
         {
             idleSprite = sprBubbleMan;
             swimSprite = sprBubbleSwim;
-        } // Sprite handling - Land sprites
-        else
+            
+            //Destroy water jet if underwater
+            if (instance_exists(child))
+            {
+                with (child)
+                {
+                    instance_destroy();
+                }
+                child = noone;
+            }
+        }
+        else // Sprite handling - Land sprites
         {
             idleSprite = sprBubbleLand;
             swimSprite = sprBubbleFLUDD;
             
-            if (sprite_index != idleSprite &amp;&amp; !instance_exists(child))
+            if (sprite_index != idleSprite) &amp;&amp; (!instance_exists(child))
             {
                 child = instance_create(x, y, objBubbleManWaterSprout);
                 child.parent = id;
@@ -235,6 +245,7 @@ if (entityCanStep())
                             targX = floor(target.x);
                             xspeed = 1 * image_xscale;
                             yspeed = -0.5;
+                            bubbleLimit = choose(0, 1, 2);
                             
                             // Fire a shot
                             var i = instance_create(x + 16 * image_xscale, y, objBubbleBullet);
@@ -317,7 +328,7 @@ if (entityCanStep())
                 {
                     // Fire shot on landing
                     attackTimer++;
-                    if (attackTimer == 1)
+                    if (attackTimer == 1) &amp;&amp; (bubbleLimit != 0)
                     {
                         var i = instance_create(x + 16 * image_xscale, y, objBubbleBullet);
                         i.image_xscale = image_xscale;
@@ -342,7 +353,6 @@ if (entityCanStep())
                             phase = 0;
                             animBack = false;
                             bubbles = 0;
-                            bubbleLimit = choose(0, 1, 2);
                         }
                     }
                 }

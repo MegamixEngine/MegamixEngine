@@ -115,7 +115,6 @@ if (entityCanStep())
 }
 else if (dead)
 {
-    shooting = false;
     animTimer = 0;
     image_index = 0;
 }

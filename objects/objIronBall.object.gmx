@@ -41,6 +41,7 @@ attackTimer = 0;
 healthBarPrimaryColor[1] = 18;
 healthBarSecondaryColor[1] = 40;
 hasTriggeredFall = false;
+bounces = 0;
 
 laserSpeed = 2;
 

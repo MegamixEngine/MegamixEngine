@@ -38,6 +38,8 @@ grav = 0;
 // Enemy specific code
 cooldownTimer = 0;
 col = 0;
+
+obj = objUpnDown;
 </string>
           </argument>
         </arguments>
@@ -70,7 +72,7 @@ if (entityCanStep())
         {
             if (abs(target.x - x) &lt; 32)
             {
-                i = instance_create(x, y, objUpnDown);
+                var i = instance_create(x, y, obj);
                 i.respawn = false;
                 i.col = col;
                 cooldownTimer = 120; // &lt;-- cooldown time

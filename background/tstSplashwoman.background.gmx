@@ -13,7 +13,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>224</width>
-  <height>112</height>
+  <width>272</width>
+  <height>160</height>
   <data>images\tstSplashwoman.png</data>
 </background>

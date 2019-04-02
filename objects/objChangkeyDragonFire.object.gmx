@@ -127,7 +127,7 @@ if (entityCanStep())
             // Create Tackle Fire on impact
             if (fireExists == false)
             {
-                i = instance_create(x, y, objChangkeyDragonFire);
+                var i = instance_create(x, y, objChangkeyDragonFire);
                 i.image_xscale = image_xscale;
                 i.tackleFire = true;
                 i.isOnGround = true;

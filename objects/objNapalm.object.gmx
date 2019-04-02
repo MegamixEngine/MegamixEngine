@@ -37,6 +37,9 @@ dieTime = 0;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
+
+killOverride = false;
 </string>
           </argument>
         </arguments>
@@ -100,12 +103,10 @@ if (entityCanStep())
         // Tel Tel rain puts out oil
         if (global.telTelWeather == 1)
         {
-            with (other)
-            {
-                dying = true;
-                dieTime = 0;
-                animTimer = 0;
-            }
+            dying = true;
+            dieTime = 0;
+            animTimer = 0;
+
             playSFX(sfxEnemyHit);
         }
     }

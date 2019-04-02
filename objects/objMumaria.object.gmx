@@ -72,8 +72,12 @@ if (entityCanStep())
 {
     if (action)
     {
-        iaction = action;
+        var iaction = action;
         actionTimer += 1;
+        if (action &lt; 9)
+        {
+            calibrateDirection();
+        }
         switch (action)
         {
             case 1:
@@ -81,7 +85,7 @@ if (entityCanStep())
                 {
                     action += 1;
                     image_index += 1;
-                    calibrateDirection();
+                    //calibrateDirection();
                 }
                 break;
             case 2:
@@ -147,7 +151,7 @@ if (entityCanStep())
                     // image_index = 9
                     action += 1;
                     image_index = 9;
-                    i = instance_create(x + 3 * image_xscale, y - 24,
+                    var i = instance_create(x + 3 * image_xscale, y - 24,
                         objEnemyBullet);
                     with (i)
                     {

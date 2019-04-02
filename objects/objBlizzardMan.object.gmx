@@ -37,6 +37,7 @@ phase = 0; // 0 = nothing; 1 = skiing; 2 = Blizzard Attack; 3 = snowball
 phasetime = 0;
 skitime = -1;
 charging = 0;
+reflectProjectiles = false;
 
 // Health Bar
 healthBarPrimaryColor[1] = 38;
@@ -179,7 +180,7 @@ if (entityCanStep())
                     xspeed = 1.5 * image_xscale;
                     if (skitime == 12)
                     {
-                        ID = instance_create(x - (24 * image_xscale), y + 13,
+                        var ID = instance_create(x - (24 * image_xscale), y + 13,
                             objSlideDust);
                         ID.image_xscale = image_xscale;
                     }

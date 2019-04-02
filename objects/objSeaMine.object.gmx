@@ -131,10 +131,9 @@ if (entityCanStep())
                 if (actionTimer == 64)
                 {
                     dead = 1;
-                    visible = 0;
                     instance_create(spriteGetXCenter(), spriteGetYCenter(),
                         objHarmfulExplosion);
-                    playSFX(sfxMM3Explode);
+                    playSFX(sfxExplosion2);
                 }
                 break;
         }

@@ -31,12 +31,15 @@
 event_inherited();
 
 canHit = false;
+bubbleTimer = -1;
 
 //@cc the amount of delay in between spawning the cutters, in frames.
 delay = 36;
 timer = 0;
 
 grav = 0;
+
+objectDrop = objSuperCutter;
 </string>
           </argument>
         </arguments>
@@ -71,7 +74,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         {
             if (abs(target.x - x) &lt;= 80) // Getting only the horizontal distance between player and object
             {
-                instance_create(x, y, objSuperCutter);
+                instance_create(x, y, objectDrop);
             }
         }
         timer = 0;

@@ -262,7 +262,7 @@ if (entityCanStep())
                     phase = 1;
                 break;
             case 1: // determine move distnace for next phase and generate the first detector 
-                SWD = instance_create(x, y, objSplashWallDetector);
+                var SWD = instance_create(x, y, objSplashWallDetector);
                 SWD.image_xscale = image_xscale;
                 alarm[7] = 12;
                 phase = 2;
@@ -284,7 +284,7 @@ if (entityCanStep())
                     {
                         with (objSplashWallDetector)
                             instance_destroy();
-                        SWD = instance_create(x, y, objSplashWallDetector);
+                        var SWD = instance_create(x, y, objSplashWallDetector);
                         SWD.image_xscale = image_xscale;
                         redetectWall = 0;
                     }
@@ -346,7 +346,7 @@ if (entityCanStep())
                             + (fishYDistance * (i - 1)));
                         
                         // this long line of code does the following: it finds the edge of the x screen.. and the bottom of the y screen, and modifies where the fish are created occordingly.
-                        fish = instance_create(fishSpawnX, fishSpawnY,
+                        var fish = instance_create(fishSpawnX, fishSpawnY,
                             objSplashFlounder);
                         fish.image_xscale = fishDirection;
                         fish.respawn = false;
@@ -408,7 +408,7 @@ if (entityCanStep())
                 // fire laser trident
                 if (image_index == 6)
                 {
-                    lT = instance_create(x + (4 * image_xscale), y + 10,
+                    instance_create(x + (4 * image_xscale), y + 10,
                         objSplashTrident);
                     playSFX(sfxLaserTrident);
                     shotsFired += 1;

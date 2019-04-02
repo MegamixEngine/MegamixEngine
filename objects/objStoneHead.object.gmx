@@ -41,6 +41,7 @@ contactDamage = 4;
 rescursiveExplosion = false;
 iFrames = 0;
 
+category = "bulky, rocky";
 
 // Enemy specific code
 
@@ -75,6 +76,14 @@ moveCount = 0;
 
 boulderStart = noone;
 boulderEnd = noone;
+
+// These may be able to be removed and replaced with local variables to step.
+velx = 0;
+prevCollision = 0;
+prevVely = 0;
+vely = 0;
+prevVelx = 0;
+mAngle = 0;
 </string>
           </argument>
         </arguments>
@@ -117,7 +126,6 @@ if (entityCanStep())
                 y = ref.y;
             }
             init = 0;
-            print(i.boulderCount);
         }
         else
         {

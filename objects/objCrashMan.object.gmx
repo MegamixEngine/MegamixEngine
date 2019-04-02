@@ -55,6 +55,7 @@ hasFired = false;
 infiniteCrashBombs = false;
 
 stopOnFlash = false;
+randomiser = 0;
 
 // Health Bar
 healthBarPrimaryColor[1] = 19;
@@ -218,7 +219,7 @@ if (entityCanStep())
                 imageTimerMax = 8;
                 if (instance_exists(target))
                 {
-                    megax = target.x;
+                    var megax = target.x;
                     
                     // if the shoot button is pressed, or crash man reaches a certain timer, he changes to phase 1, jumping.
                     if ((global.keyShootPressed[target.playerID])
@@ -273,7 +274,7 @@ if (entityCanStep())
                         &amp;&amp; infiniteCrashBombs == false)
                         || (infiniteCrashBombs == true))
                     {
-                        cB = instance_create(x + (6 * image_xscale), y + 9,
+                        var cB = instance_create(x + (6 * image_xscale), y + 9,
                             objCrashBomber);
                         cB.image_xscale = image_xscale;
                         hasFired = true;

@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A fat bird from Uranus. It spits Chuncos out the nest on its head and fires three shots at a time.
+
+event_inherited();
 
 healthpointsStart = 9;
 healthpoints = healthpointsStart;
@@ -39,6 +41,7 @@ phase = 0;
 shotLimit = 3;
 animTimer = 30;
 moveTimer = 60;
+chunco = noone;
 </string>
           </argument>
         </arguments>
@@ -71,7 +74,7 @@ if (entityCanStep())
     switch (phase)
     {
         case 0:
-            if (!instance_exists(objChunco))
+            if (!instance_exists(chunco))
             {
                 if (moveTimer == 0)
                 {
@@ -86,9 +89,9 @@ if (entityCanStep())
                     phase = 1;
                     moveTimer = 60;
                     
-                    i = instance_create(x, y - 23, objChunco);
-                    i.respawn = false;
-                    i.moveTimer = 140;
+                    chunco = instance_create(x, y - 23, objChunco);
+                    chunco.respawn = false;
+                    chunco.moveTimer = 140;
                 }
             }
             break;
@@ -97,7 +100,7 @@ if (entityCanStep())
             {
                 if (shotLimit &gt; 0)
                 {
-                    i = instance_create(x, y - 4, objEnemyBullet);
+                    var i = instance_create(x, y - 4, objEnemyBullet);
                     i.xspeed = 2 * image_xscale;
                     playSFX(sfxEnemyShootClassic);
                     shotLimit--;
@@ -105,7 +108,7 @@ if (entityCanStep())
                 }
                 else
                 {
-                    if (instance_exists(objChunco))
+                    if (instance_exists(chunco))
                     {
                         moveTimer = 120;
                     }
@@ -144,6 +147,7 @@ else if (dead)
     animTimer = 30;
     moveTimer = 60;
     image_index = 0;
+    chunco = noone;
 }
 </string>
           </argument>

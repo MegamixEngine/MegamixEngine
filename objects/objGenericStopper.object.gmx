@@ -28,7 +28,14 @@
             <string>/// A general purpose stopper, by default it will make Shield attackers turn around
 // but behind the scenes it is a solid for objects with the object_index it stores
 image_speed = 0;
+
+//@cc
 objectToStop = objMM4ShieldAttacker;
+
+//@cc if true, the stopper will be detected as ground
+isGround=false;
+
+
 </string>
           </argument>
         </arguments>

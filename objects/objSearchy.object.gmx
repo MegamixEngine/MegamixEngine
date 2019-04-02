@@ -119,7 +119,9 @@ if (entityCanStep())
         case 3: // if any conveyer belts exist, flip them backwards 
             if (instance_exists(objMM2Conveyor))
                 with (objMM2Conveyor)
+                {
                     dir = -dir;
+                }
             phase = 4;
             break;
         case 4: // speed up and fly off screen 
@@ -135,10 +137,6 @@ else if (dead)
     animTimer = 0;
     searchyImage = 0;
     phase = 0;
-    if (audio_is_playing(sfxSearchyLight))
-    {
-        stopSFX(sfxSearchyLight);
-    }
 }
 </string>
           </argument>

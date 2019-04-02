@@ -140,7 +140,7 @@ if (spawned)
     // Check for if it's spawned yet, if so, split into two parts
     // if !splitWithSpawn and insideView()
     //{
-    a = instance_create(x, y - 32, objScissascissorPart);
+    var a = instance_create(x, y - 32, objScissascissorPart);
     a.image_yscale = -1;
     a.parent = id;
     

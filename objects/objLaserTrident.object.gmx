@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 1;
+inWater = -1;
 
 image_speed = 0.5;
 
@@ -38,6 +39,9 @@ pierces = 2;
 attackDelay = 8;
 
 timer = 0;
+entity = noone;
+entityx = 0;
+entityy = 0;
 
 playSFX(sfxLaserTrident);
 </string>
@@ -117,7 +121,7 @@ if (!global.frozen)
 
 if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(25, -1, objLaserTrident, 3, 0.5, 1, 0);
+    var i = fireWeapon(25, -1, objLaserTrident, 3, 0.5, 1, 0);
     if (i) // set starting speed
     {
         i.xspeed = image_xscale * 0.5;

@@ -31,7 +31,7 @@ healthpointsStart = 5;
 healthpoints = healthpointsStart;
 contactDamage = 5;
 
-category = "grounded";
+category = "grounded, semi bulky";
 
 facePlayerOnSpawn = true;
 
@@ -75,12 +75,12 @@ if (entityCanStep())
     // Explode when a wall is hit
     if (xcoll != 0)
     {
-        instance_create(x, y, objHarmfulExplosion);
+        instance_create(x, y, objBigExplosion);
         playSFX(sfxExplosion2);
         healthpoints = 0;
         itemDrop = -1;
         
-        event_user(EV_DEATH);
+        dead = true; //event_user(EV_DEATH);
     }
     
     // moving towards the player
@@ -91,9 +91,14 @@ if (entityCanStep())
             if (ground) // If it fell off a ledge, then face the player after landing after a bit
             {
                 timer -= 1;
+                if (timer == 8)
+                {
+                    imgIndex = 2;
+                }
                 if (!timer)
                 {
                     calibrateDirection();
+                    imgIndex = 0;
                 }
             }
         }
@@ -121,14 +126,25 @@ if (entityCanStep())
             imgIndex = imgIndex mod 2;
         }
     }
+    
+    // Play audio as long as Molier can move
+    if (!audio_is_playing(sfxHeliButonHover))
+    {
+        playSFX(sfxHeliButonHover);
+    }
 }
-else if (dead)
+else 
 {
-    timer = 60;
-    knocked = 0;
-    itemDrop = -1;
-    xspeed = 0;
-    yspeed = 0;
+    // Stop audio if time is stopped/Molier is dead
+    //audio_stop_sound(sfxHeliButonHover);
+    if (dead)
+    {
+        timer = 60;
+        knocked = 0;
+        itemDrop = -1;
+        xspeed = 0;
+        yspeed = 0;
+    }
 }
 
 image_index = imgIndex div 1;
@@ -190,6 +206,32 @@ if (spawned)
     playSFX(sfxEnemyHit);
     iFrames = 4;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
+stopSFX(sfxEnemyHit);
+playSFX(sfxExplosion2);
 </string>
           </argument>
         </arguments>

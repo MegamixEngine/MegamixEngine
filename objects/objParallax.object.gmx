@@ -99,6 +99,10 @@ yoff = 0;
 init = false;
 xshift = 0;
 yshift = 0;
+sectionLeft = 0;
+sectionRight = 0;
+sectionTop = 0;
+sectionBottom = 0;
 </string>
           </argument>
         </arguments>
@@ -257,9 +261,9 @@ var yDrawBase = view_yview[0] + modf(yshift - view_yview[0] + offsetY, bgH);
 xDrawBase = floor(xDrawBase);
 yDrawBase = floor(yDrawBase);
 
-for (i = -1; i &lt; ceil(view_wview[0] / bgW) + 1; i += 1)
+for (var i = -1; i &lt; ceil(view_wview[0] / bgW) + 1; i += 1)
 {
-    for (j = -1; j &lt; ceil(view_hview[0] / bgH) + 1; j += 1)
+    for (var j = -1; j &lt; ceil(view_hview[0] / bgH) + 1; j += 1)
     {
         // determine offset of this backgroud chunk
         var xDraw = i * bgW + xDrawBase;

@@ -38,6 +38,7 @@ healthpoints = 15;
 blockCollision = false;
 grav = 0;
 doesIntro = false;
+category = "bulky";
 
 // Enemy specific code
 mySolid = noone;

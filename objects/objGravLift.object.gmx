@@ -96,6 +96,7 @@ liftAccel = 0.05;
         // lock movement except when on the ground:
         if (ground)
         {
+            playLandSound = 0;
             if (global.gravityLiftLockMap[? id])
                 lockPoolRelease(localPlayerLock[PL_LOCK_MOVE], localPlayerLock[PL_LOCK_GRAVITY], global.gravityLiftLockMap[? id]);
             global.gravityLiftLockMap[? id] = false;

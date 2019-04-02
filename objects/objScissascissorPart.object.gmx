@@ -48,6 +48,7 @@ despawnRange = 64;
 contactStart = contactDamage;
 
 actionTimer = 0;
+parent = noone;
 </string>
           </argument>
         </arguments>
@@ -100,7 +101,7 @@ if (entityCanStep())
     }
     
     // check for other parts to combine
-    if (instance_place(x, y, objScissascissorPart) &amp;&amp; actionTimer &gt;= 30)
+    if (instance_exists(parent)&amp;&amp;instance_place(x, y, objScissascissorPart) &amp;&amp; actionTimer &gt;= 30)
     {
         playSFX(sfxBoltonAndNutton);
         parent.x = x;

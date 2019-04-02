@@ -49,6 +49,7 @@ homeY = ystart;
 delayTurn = 0;
 init = false;
 moveDir = 0;
+startDir = 1;
 
 
 // creation code variables

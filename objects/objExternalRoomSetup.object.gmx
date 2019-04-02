@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-100000</depth>
+  <depth>-1410065408</depth>
   <persistent>0</persistent>
   <parentName>prtAlwaysActive</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -58,6 +58,7 @@ if (image_xscale &gt; 0)
             <kind>1</kind>
             <string>if (instance_exists(id))
 {
+    print("External setup post");
     roomExternalSetupPost();
     
     instance_destroy();

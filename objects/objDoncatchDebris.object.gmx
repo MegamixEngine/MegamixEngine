@@ -85,7 +85,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
             xtravel *= 36;
         }
         yspeed = -sqrt(abs(2 * gravAccel * ytravel));
-        airTime = abs(2 * yspeed / gravAccel);
+        var airTime = abs(2 * yspeed / gravAccel);
         xspeed = xtravel / airTime;
     }
 }

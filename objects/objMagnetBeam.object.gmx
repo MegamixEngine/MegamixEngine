@@ -3,7 +3,7 @@
   <spriteName>sprMagnetBeam</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>16</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtPlayerProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 0;
+inWater = -1;
 
 isSolid = 2;
 

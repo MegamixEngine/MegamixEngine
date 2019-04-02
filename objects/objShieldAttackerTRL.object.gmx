@@ -38,6 +38,9 @@ grav = 0;
 // Enemy specific code
 phase = 1;
 
+// @cc - Change colours: 0 (default) = green, 1 = blue
+col = 0;
+
 dir = image_xscale;
 
 moveSprite = sprite_index;
@@ -52,6 +55,7 @@ shieldDPS = 5;
 dpsTimer = 0;
 timer = 0;
 hasShield = true;
+animFrame = 0;
 </string>
           </argument>
         </arguments>
@@ -111,14 +115,31 @@ if (entityCanStep())
             }
             break;
         case 3:
-            sprite_index = sprShieldAttackerTRLShock;
+            switch (col)
+            {
+                case 1:
+                    sprite_index = sprShieldAttackerTRLShockBlue;
+                    break;
+                default:
+                    sprite_index = sprShieldAttackerTRLShock;
+                    break;
+            }
             xspeed = 0;
             timer += 1;
             if (timer &gt; 36)
             {
                 phase = 2;
-                sprite_index = sprShieldAttackerTRLTurnSad;
-                moveSprite = sprShieldAttackerTRLSad;
+                switch (col)
+                {
+                    case 1:
+                        sprite_index = sprShieldAttackerTRLTurnSadBlue;
+                        moveSprite = sprShieldAttackerTRLSadBlue;
+                        break;
+                    default:
+                        sprite_index = sprShieldAttackerTRLTurnSad;
+                        moveSprite = sprShieldAttackerTRLSad;
+                        break;
+                }
                 timer = 0;
                 shieldDamageCount = 0;
                 dpsTimer = 0;
@@ -211,8 +232,17 @@ shieldDamageCount = 0;
 dpsTimer = 0;
 hasShield = true;
 
-moveSprite = sprShieldAttackerTRL;
-turnSprite = sprShieldAttackerTRLTurn;
+switch (col)
+{
+    case 1:
+        moveSprite = sprShieldAttackerTRLBlue;
+        turnSprite = sprShieldAttackerTRLTurnBlue;
+        break;
+    default:
+        moveSprite = sprShieldAttackerTRL;
+        turnSprite = sprShieldAttackerTRLTurn;
+        break;
+}
 blockCollision = 1;
 
 animFrame = 0;
@@ -258,6 +288,7 @@ if (phase == 1)
             i.image_xscale = image_xscale;
             i.xspeed = -1 * image_xscale;
             i.yspeed = -4;
+            i.image_index = min(1,col);
             timer = 0;
         }
     }
