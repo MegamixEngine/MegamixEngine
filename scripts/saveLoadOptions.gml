@@ -16,16 +16,18 @@ global.healthEffect          = sl(global.healthEffect, "healthfx");
 global.playerCount           = sl(global.playerCount,  "player-count");
 global.healthEffect          = sl(global.healthEffect,   "healthfx");
 global.playerCount           = sl(global.playerCount,    "player-count");
+playerGlobalInit(); // Initialize global variable arrays for all players.
 global.pickupGraphics        = sl(global.pickupGraphics, "item-graphics");
 global.deathEffect           = sl(global.deathEffect, "death-effect");
 global.jumpSound             = sl(global.jumpSound, "jump-sound");
 global.teleportSound         = sl(global.teleportSound, "teleport-sound");
+global.checkpointNotification= sl(global.checkpointNotification, "checkpoint-notice");
 global.vsync                 = sl(global.vsync,          "vsync");
 global.showControllerOverlay = sl(global.showControllerOverlay, "controlleroverlay");
-globalescapeBehavior         = sl(global.escapeBehavior, "escapebehavior");
+global.escapeBehavior         = sl(global.escapeBehavior, "escapebehavior");
 
 // controls
-for (var i = 0; i < 4; i += 1)
+for (var i = 0; i < global.maxPlayerCount; i += 1)
 {
     // keyboard
     global.leftKey[i]  = sl(global.leftKey[i],  "key-l" + string(i));

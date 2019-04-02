@@ -93,9 +93,9 @@ alarm[1] = 5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (i = 0; i &lt;= image_xscale; i += 1)
+            <string>for (var i = 0; i &lt;= image_xscale; i += 1)
 {
-    for (j = 0; j &lt;= image_yscale; j += 1)
+    for (var j = 0; j &lt;= image_yscale; j += 1)
     {
         var inst = collision_point(x + 8 + i * 16, y + 8 + j * 16, objSolid,
             0, 0);
@@ -133,13 +133,13 @@ alarm[1] = 5;
 // instance_activate_object(objSolid);
 
 
-for (i = 0; i &lt;= image_xscale; i += 1)
+for (var i = 0; i &lt;= image_xscale; i += 1)
 {
-    for (j = 0; j &lt;= image_yscale; j += 1)
+    for (var j = 0; j &lt;= image_yscale; j += 1)
     {
         if (collision_point(x + i * 16, y + 8 + j * 16, objSolid, 0, 0))
         {
-            a = collision_point(x + i * 16, y + 8 + j * 16, objSolid,
+            var a = collision_point(x + i * 16, y + 8 + j * 16, objSolid,
                 0, 0).id;
             if (!ds_list_find_index(objects, a))
                 ds_list_add(objects, a);
@@ -151,7 +151,7 @@ for (i = 0; i &lt;= image_xscale; i += 1)
         if (collision_point(x + i * 16, y + j * 16, objTopSolid, 0,
             0))
         {
-            a = collision_point(x + i * 16, y + j * 16,
+            var a = collision_point(x + i * 16, y + j * 16,
                 objTopSolid, 0, 0).id;
             if (!ds_list_find_index(objects, a))
                 ds_list_add(objects, a);
@@ -159,7 +159,7 @@ for (i = 0; i &lt;= image_xscale; i += 1)
         if (collision_point(x + i * 16, y - 8 + j * 16, objLadder, 0,
             0))
         {
-            a = collision_point(x + i * 16, y + j * 16, objLadder,
+            var a = collision_point(x + i * 16, y + j * 16, objLadder,
                 0, 0).id;
             if (!ds_list_find_index(objects, a))
                 ds_list_add(objects, a);
@@ -190,8 +190,8 @@ image_xscale += 1;
           <argument>
             <kind>1</kind>
             <string>// delayed for water
-for (i = 0; i &lt;= image_xscale; i += 1)
-    for (j = 0; j &lt;= image_yscale; j += 1)
+for (var i = 0; i &lt;= image_xscale; i += 1)
+    for (var j = 0; j &lt;= image_yscale; j += 1)
     {
         if (collision_point(x + i * 16, y + 8 + j * 16, objWater, 0, 0))
         {
@@ -258,10 +258,14 @@ if (!global.frozen &amp;&amp; insideSection(x + 8, y))
                 tile_layer_shift(i, 0, mySpeed);
             for (i = 0; ds_list_size(objects) &gt; i; i += 1)
             {
-                obj = ds_list_find_value(objects, i);
+                var obj = ds_list_find_value(objects, i);
                 if (instance_exists(obj))
+                {
                     with (obj)
+                    {
                         y += other.mySpeed;
+                    }
+                }
             }
         }
         else
@@ -294,8 +298,12 @@ if (!global.frozen &amp;&amp; insideSection(x + 8, y))
             {
                 obj = ds_list_find_value(objects, i);
                 if (instance_exists(obj))
+                {
                     with (obj)
+                    {
                         y -= other.mySpeed;
+                    }
+                }
             }
         }
         else
@@ -308,15 +316,19 @@ if (!global.frozen &amp;&amp; insideSection(x + 8, y))
 else if (!insideSection(x + 8, y) &amp;&amp; yOffset != 0)
 {
     y = ystart;
-    for (i = myTile; i &lt;= myTile + additionalTile; i += 1)
+    for (var i = myTile; i &lt;= myTile + additionalTile; i += 1)
         tile_layer_shift(i, 0, -yOffset);
-    for (i = 0; ds_list_size(objects) &gt; i; i += 1)
+    for (var i = 0; ds_list_size(objects) &gt; i; i += 1)
     {
-        obj = ds_list_find_value(objects, i);
+        var obj = ds_list_find_value(objects, i);
         instance_activate_object(obj);
         if (instance_exists(obj))
+        {
             with (obj)
+            {
                 y -= other.yOffset;
+            }
+        }
     }
     yOffset = 0;
 }

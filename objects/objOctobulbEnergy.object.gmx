@@ -32,6 +32,7 @@ blockCollision = false;
 grav = 0;
 reflectable = false;
 dead = false;
+path_speed = 0;
 
 spd = 3;
 dir = 1;
@@ -71,7 +72,9 @@ if (entityCanStep)
     path_speed = spd;
 }
 else if (dead)
+{
     path_speed = 0;
+}
 </string>
           </argument>
         </arguments>

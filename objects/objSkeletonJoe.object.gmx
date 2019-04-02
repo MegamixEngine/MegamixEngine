@@ -204,7 +204,7 @@ else if (dead)
           <argument>
             <kind>1</kind>
             <string>// Set all weapons to do no damage
-for (i = 0; i &lt;= 4000; i += 1)
+for (var i = 0; i &lt;= 4000; i += 1)
 {
     specialDamageValue(i, 0);
 }

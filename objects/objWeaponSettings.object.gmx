@@ -5,7 +5,7 @@
   <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtAlwaysActive</parentName>
+  <parentName>prtLevelCallbacks</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -28,20 +28,25 @@
             <string>// Allows you to tweak weapons on a per-level basis.
 // Creation code options:
 
-// global.weaponLocked[whatever] = true or false
-// global.infiniteEnergy[whatever] = true or false
+// setWeaponLocked(objWhatever,true/false);
+
+// Examples:
+// setWeaponLocked(objBreakDash,true);
+// setWeaponLocked(objMagnetBeam,true);
 /*
-to access a weapon, use global.weaponID[? objWeapon], with objWeapon
-being substitued for the weapon's object name
-    
-Examples:
-    - global.weaponLocked[global.weaponID[? objSolarBlaze]] = true
-    - global.infiniteEnergy[global.weaponID[? objIceSlasher]] = false
-    
 This object must be placed for this effect; do not use room creation code for this.
 objGlobalControl resets infiniteEnergy to zero on a room begin unless this
 object exists.
 */
+
+//@cc if true weapons wont be unlocked until the level ends
+onlyUnlockOnLevelEnd = false;
+
+//@cc script that runs when the level begins(won't run after respawning)
+levelStartScript = scrNoEffect;
+
+//@cc script that runs when the level ends
+levelEndScript = scrNoEffect;
 
 for (var j = 0; j &lt;= global.totalWeapons; j++)
 {
@@ -79,6 +84,62 @@ for (var j = 0; j &lt;= global.totalWeapons; j++)
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>script_execute(levelEndScript);
+if(!onlyUnlockOnLevelEnd)
+    exit;
+global.lockBuster = false;
+
+for (var i = 0; i &lt;= global.totalWeapons; i += 1)
+{
+    global.weaponLocked[i] = false;
+    global.infiniteEnergy[i] = false;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//On level start
+script_execute(levelStartScript);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="5">
       <action>
         <libid>1</libid>
@@ -97,9 +158,12 @@ for (var j = 0; j &lt;= global.totalWeapons; j++)
           <argument>
             <kind>1</kind>
             <string>// weapon clean up
+if(onlyUnlockOnLevelEnd)
+    exit;
+
 global.lockBuster = false;
 
-for (i = 0; i &lt;= global.totalWeapons; i += 1)
+for (var i = 0; i &lt;= global.totalWeapons; i += 1)
 {
     global.weaponLocked[i] = false;
     global.infiniteEnergy[i] = false;

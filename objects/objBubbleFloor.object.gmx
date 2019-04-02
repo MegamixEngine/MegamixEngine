@@ -6,7 +6,7 @@
   <depth>5</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
-  <maskName>sprBubbleFloorMask</maskName>
+  <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -35,6 +35,7 @@ despawnRange = -1;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 dir = .25;
 
@@ -47,6 +48,7 @@ spriteTimer = 0;
 image_speed = 0;
 
 yspeed_map = ds_map_create();
+
 </string>
           </argument>
         </arguments>
@@ -96,15 +98,26 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     
     with (objMegaman)
     {
-        if (place_meeting(x, y + 2 * gravDir, other.id) &amp;&amp; !yspeed)
+        var ysp = other.yspeed * (other.yspeed*gravDir&gt;0) + yspeed*(yspeed*gravDir&gt;0);
+        if (place_meeting(x, y + 2 * gravDir + ysp, other.id))
         {
             var bounciness, jumpPower;
-            
+
             with (other)
                 other.prevYspeed = yspeed_map[? other.id];
+                
+            var xscl = sign(other.image_xscale);
+            var onBigBubble;
+            if(xscl&gt;0)
+            {
+                onBigBubble = x&lt;other.bbox_left || ((floor(x-other.bbox_left) mod 32)&lt; 16 &amp;&amp; x&lt;other.bbox_right);
+            }
+            else
+            {
+                onBigBubble = x&gt;=other.bbox_right || ((floor(x-other.bbox_left) mod 32)&gt;= 16 &amp;&amp; x&gt;=other.bbox_left);
+            }
             
-            if ((other.image_xscale &gt; 0 &amp;&amp; (x &gt; other.x + 16 * other.image_xscale)) ||
-                (other.image_xscale &lt; 0 &amp;&amp; (x &lt; other.x - 16 * -other.image_xscale)))
+            if (!onBigBubble)
             {
                 bounciness = .5;
                 jumpPower = 1.0;
@@ -115,10 +128,14 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 jumpPower = 3.0;
             }
             
-            if (prevYspeed &gt; 1.75 || prevYspeed &lt; -1.75)
+            if (!is_undefined(prevYspeed) &amp;&amp; abs(prevYspeed) &gt; 1.75)
             {
                 ground = 0;
                 yspeed = (-prevYspeed * bounciness) - (global.keyJump[playerID] * jumpPower * gravDir);
+                if(yspeed*sign(grav)&gt;0)
+                {
+                    yspeed=0;
+                }
             }
         }
         
@@ -128,22 +145,38 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     
     with (prtEntity)
     {
-        if (place_meeting(x, y + 2, other.id) &amp;&amp; !yspeed &amp;&amp; !dead &amp;&amp; object_get_parent(object_index) != prtPlayerProjectile)
+        var ysp = other.yspeed * (other.yspeed*sign(grav)&gt;0) + yspeed*(yspeed*sign(grav)&gt;0);
+        if (object_index!=objMegaman&amp;&amp; place_meeting(x, y + 2*sign(grav)+ysp, other.id) &amp;&amp; !dead &amp;&amp; !object_is_ancestor(object_index,prtPlayerProjectile)&amp;&amp; object_index!= prtPlayerProjectile)
         {
             var bounciness;
             
             with (other)
                 other.prevYspeed = yspeed_map[? other.id];
             
-            if (x &gt; other.x + 16)
+            var xscl = sign(other.image_xscale);
+            var onBigBubble;
+            if(xscl&gt;0)
+            {
+                onBigBubble = x&lt;other.bbox_left || ((floor(x-other.bbox_left) mod 32)&lt; 16 &amp;&amp; x&lt;other.bbox_right);
+            }
+            else
+            {
+                onBigBubble = x&gt;=other.bbox_right || ((floor(x-other.bbox_left) mod 32)&gt;= 16 &amp;&amp; x&gt;=other.bbox_left);
+            }
+            
+            if (!onBigBubble)
                 bounciness = .5;
             else
                 bounciness = .75;
             
-            if (prevYspeed &gt; 1.75)
+            if (!is_undefined(prevYspeed)&amp;&amp;abs(prevYspeed) &gt; 1.75)
             {
                 ground = 0;
                 yspeed = (-prevYspeed * bounciness);
+                if(yspeed*grav&gt;0)
+                {
+                    yspeed=0;
+                }
             }
         }
         
@@ -179,6 +212,52 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var combineDir = sign(image_xscale);
+image_xscale=ceil(image_xscale);
+if(!place_meeting(x-combineDir*16,y,object_index))
+{
+    var next = instance_place(x+combineDir*16,y,object_index);
+    while(next!=noone &amp;&amp; sign(next.image_xscale)==combineDir)
+    {
+        with(next)
+        {
+            instance_destroy();
+        }
+        next = instance_place(x+combineDir*16,y,object_index);
+        while(next!=noone &amp;&amp; sign(next.image_xscale)==combineDir)
+        {
+            with(next)
+            {
+                instance_destroy();
+                next = instance_place(x+combineDir*16,y,object_index);
+            }
+        }
+        image_xscale+=combineDir;
+        next = instance_place(x+combineDir*16,y,object_index);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -196,7 +275,11 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sprBubbleFloor, image_index, xstart, ystart, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+            <string>var drawDir = sign(image_xscale);
+for(var i=0;i&lt;abs(image_xscale);++i)
+{
+    draw_sprite_ext(sprBubbleFloor, image_index, xstart+drawDir*i*32, ystart, drawDir, image_yscale, image_angle, image_blend, image_alpha);
+}
 </string>
           </argument>
         </arguments>

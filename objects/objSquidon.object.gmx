@@ -106,14 +106,14 @@ if (entityCanStep())
             {
                 phase = 1;
                 imgIndex = imgIndex mod 4;
-                cube = instance_create(x + sprite_width * 0.35, y + 15, objSquidonIceCube);
+                var cube = instance_create(x + sprite_width * 0.35, y + 15, objSquidonIceCube);
                 cube.dir = image_xscale;
                 
                 // see if a missle should be fired
                 var i;
                 for (i = 0; i &lt; 2; i += 1)
                 {
-                    ded = false;
+                    var ded = false;
                     if (!instance_exists(missle[i]))
                     {
                         ded = true;
@@ -154,7 +154,7 @@ if (entityCanStep())
                 {
                     imgIndex = 6;
                     animBack = true;
-                    a = instance_create(x + sprite_width * 0.22, y - 17, objSquidonMissile);
+                    var a = instance_create(x + sprite_width * 0.22, y - 17, objSquidonMissile);
                     a.dir = image_xscale;
                     missle[place] = a;
                     place = -1;
@@ -224,6 +224,34 @@ image_index = imgIndex div 1;
 specialDamageValue(objHornetChaser, 6);
 specialDamageValue(objGeminiLaser, 5);
 specialDamageValue(objIceWall, 5);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+with (objSquidonMissile)
+{
+    event_user(EV_DEATH);
+    itemDrop = -1;
+}
 </string>
           </argument>
         </arguments>

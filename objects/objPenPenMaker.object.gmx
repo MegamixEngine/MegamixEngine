@@ -31,6 +31,8 @@ event_inherited();
 
 respawn = true;
 
+category = "bird, bulky, nature";
+
 healthpointsStart = 10;
 healthpoints = healthpointsStart;
 contactDamage = 4;
@@ -80,7 +82,7 @@ if (entityCanStep())
             shootTimer = 0;
             penRate = 0;
         }
-        i = instance_create(x, y + 32, objPenpen);
+        var i = instance_create(x, y + 32, objPenpen);
         i.image_xscale = image_xscale;
         i.respawn = false;
     }
@@ -112,16 +114,9 @@ else if (!insideView())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (other.y &gt;= y - 6)
+            <string>if (other.y &gt;= y - 6) || (other.y &lt;= y - 24)
 {
     other.guardCancel = 2;
-}
-else
-{
-    if (!collision_rectangle(x, y - 9, x + 33 * image_xscale, y - 9 - 16, other.id, false, false))
-    {
-        other.guardCancel = 1;
-    }
 }
 </string>
           </argument>

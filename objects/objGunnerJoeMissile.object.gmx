@@ -34,6 +34,7 @@ contactDamage = 3;
 respawn = false;
 grav = 0;
 blockCollision = false;
+itemDrop = -1;
 
 parent = noone;
 phase = 0;
@@ -91,9 +92,9 @@ if (entityCanStep())
                     waitTimer++;
                     break;
                 }
-                pxd = target.x - x;
-                pyd = target.y - y;
-                pangle = 0;
+                var pxd = target.x - x;
+                var pyd = target.y - y;
+                var pangle = 0;
                 if (pxd != 0)
                 {
                     pangle = point_direction(x, y, target.x, target.y);
@@ -111,7 +112,7 @@ if (entityCanStep())
                 }
                 
                 // and now that we have the angle the player is facing, we take the difference of the angles
-                change = direction - pangle;
+                var change = direction - pangle;
                 
                 // loop degree check, so the angle isn't above 360 or below 0
                 if (change &gt; 360)
@@ -155,26 +156,25 @@ if (entityCanStep())
                 
                 break;
         }
-        
-        // Jet Animation
-        jetTimer += 1;
-        if (jetTimer &gt;= 4)
-        {
-            // &lt;-- jet animation speed here
-            if (sprite_index == sprGunnerJoeMissile2)
-            {
-                sprite_index = sprGunnerJoeMissile;
-            }
-            else
-            {
-                sprite_index = sprGunnerJoeMissile2;
-            }
-            
-            jetTimer = 0;
-        }
-        
-        image_index = round((direction) / 45);
     }
+    // Jet Animation
+    jetTimer += 1;
+    if (jetTimer &gt;= 4)
+    {
+        // &lt;-- jet animation speed here
+        if (sprite_index == sprGunnerJoeMissile2)
+        {
+            sprite_index = sprGunnerJoeMissile;
+        }
+        else
+        {
+            sprite_index = sprGunnerJoeMissile2;
+        }
+            
+        jetTimer = 0;
+    }
+        
+    image_index = round((direction) / 45);
 }
 else
 {

@@ -36,6 +36,8 @@ healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 1;
 
+category = "cannons, grounded";
+
 grav = 0;
 
 // Enemy specific code
@@ -136,7 +138,7 @@ if (entityCanStep())
             {
                 if (bullet &lt; 2)
                 {
-                    for (i = -2; i &lt;= 2; i++)
+                    for (var i = -2; i &lt;= 2; i++)
                     {
                         var t = instance_create(x - (4 * i), y + (1.5 * (abs(i)) * image_yscale), objBeakBullet);
                         t.image_index = col; // set bullet color to that guys color

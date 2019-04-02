@@ -35,6 +35,7 @@ contactDamage = 28;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 // Enemy specific code
 image_speed = 0.4;
@@ -197,6 +198,7 @@ else
             <string>dead = 1;
 
 instance_create(bboxGetXCenter(), bboxGetYCenter(), objBigExplosion);
+playSFX(sfxExplosion);
 </string>
           </argument>
         </arguments>

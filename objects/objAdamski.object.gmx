@@ -35,6 +35,7 @@ respawn = true;
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 2;
+category = "cluster, flying";
 
 blockCollision = 0;
 grav = 0;

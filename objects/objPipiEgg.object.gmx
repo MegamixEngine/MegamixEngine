@@ -64,6 +64,19 @@ if (entityCanStep())
 {
     if (ground)
     {
+        var i = instance_create(bboxGetXCenter(),bboxGetYCenter(),objEnemyBullet);
+        i.sprite_index = sprPipiEggHalf;
+        i.grav = 0.25;
+        i.xspeed = -0.5;
+        i.contactDamage = 0;
+        
+        var a = instance_create(bboxGetXCenter(),bboxGetYCenter(),objEnemyBullet);
+        a.sprite_index = sprPipiEggHalf;
+        a.grav = 0.25;
+        a.image_xscale = -1;
+        a.xspeed = 0.5;
+        a.contactDamage = 0;
+        
         instance_destroy();
         repeat (8)
         {

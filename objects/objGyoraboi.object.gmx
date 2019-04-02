@@ -43,6 +43,7 @@ facePlayerOnSpawn = true;
 animTimer = 0;
 actionTimer = 0;
 action = 0;
+dir = 0;
 </string>
           </argument>
         </arguments>

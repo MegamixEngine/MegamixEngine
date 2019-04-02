@@ -67,6 +67,12 @@
 
 event_inherited();
 
+//Default weaknesses
+for(var i=0; i&lt;global.totalWeapons ; i++)
+{
+    enemyDamageValue(global.weaponObject[i], 1);
+}
+
 // used for some prtEntity control stuff
 boss = 1;
 behaviourType = 2;
@@ -190,13 +196,8 @@ visible = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-// Prevent bosses from healing past their max HP - this means you, Heat Man and Mercury!
 if (isFight == true)
 {
-    if (healthpoints &gt; healthpointsStart)
-    {
-        healthpoints = healthpointsStart;
-    }
     
     if(dieToPits)
     {
@@ -410,7 +411,6 @@ if (_init)
         canFillHealthBar = false;
         healthpoints = healthpointsStart;
         isIntro = false;
-        introTimer = 0;
     }
     else
     {
@@ -629,7 +629,7 @@ if (spawned)
             <string>global.bossTextShown = false;
 if (!quickSpawn)
 {
-    global.aliveBosses -= 1;
+    global.aliveBosses = max(0,global.aliveBosses- 1);
 }
 wasKilled = true;
 
@@ -819,23 +819,22 @@ if (!instance_exists(objDialogueBox))
 // Now, for the actual cutscene.
 if (cutsceneTimer == 5) // 5 frames have passed
 {
-    spawnTextBox(0, 0, "My Boss's Name",
-        "Mwahaha! I am a boss! Placeholder message!", -1);
+    spawnTextBox(0, -1, "My Boss's Name",c_white,"Mwahaha! I am a boss! Placeholder message!");
     
-    // Make sure to put a -1 at the end of each spawnTextBox call like so, as it'll tell the
+    // Make sure to put a -1 in se seconf parameter of each spawnTextBox call like so, as it'll tell the
     // game you're done with that textbox and that it can close it after that message.
     cutsceneTimer += 1; // MAKE SURE YOU DO THIS EVERY TIME YOU SPAWN A TEXTBOX
 }
 else if (cutsceneTimer == 10) // 5 frame later, MM responds
 {
-    spawnTextBox(0, 0, "Player Character",
-        "[WITTY COMMENT]", -1);
+    spawnTextBox(0, -1, "Player Character",c_white,
+        "[WITTY COMMENT]");
     cutsceneTimer += 1;
 }
 else if (cutsceneTimer == 15)
 {
-    spawnTextBox(0, 0, "My Boss's Name",
-        "To be fair, you have to have a very high IQ to understand Rick and Morty. The humour is extremely subtle, and without a solid grasp of theoretical physics most of the jokes will go over a typical viewer’s head. There’s also Rick’s nihilistic outlook, which is deftly woven into his characterisation- his personal philosophy draws heavily from Narodnaya Volya literature, for instance. The fans understand this stuff; they have the intellectual capacity to truly appreciate the depths of these jokes, to realise that they’re not just funny- they say something deep about LIFE. As a consequence people who dislike Rick &amp; Morty truly ARE idiots- of course they wouldn’t appreciate, for instance, the humour in Rick’s existential catchphrase “Wubba Lubba Dub Dub,” which itself is a cryptic reference to Turgenev’s Russian epic Fathers and Sons. I’m smirking right now just imagining one of those addlepated simpletons scratching their heads in confusion as Dan Harmon’s genius wit unfolds itself on their television screens. What fools.. how I pity them.", -1);
+    spawnTextBox(0, -1, "My Boss's Name",c_white,
+        "To be fair, you have to have a very high IQ to understand Rick and Morty. The humour is extremely subtle, and without a solid grasp of theoretical physics most of the jokes will go over a typical viewer’s head. There’s also Rick’s nihilistic outlook, which is deftly woven into his characterisation- his personal philosophy draws heavily from Narodnaya Volya literature, for instance. The fans understand this stuff; they have the intellectual capacity to truly appreciate the depths of these jokes, to realise that they’re not just funny- they say something deep about LIFE. As a consequence people who dislike Rick &amp; Morty truly ARE idiots- of course they wouldn’t appreciate, for instance, the humour in Rick’s existential catchphrase “Wubba Lubba Dub Dub,” which itself is a cryptic reference to Turgenev’s Russian epic Fathers and Sons. I’m smirking right now just imagining one of those addlepated simpletons scratching their heads in confusion as Dan Harmon’s genius wit unfolds itself on their television screens. What fools.. how I pity them.");
     cutsceneTimer += 1;
 }
 else if (cutsceneTimer == 20)
@@ -867,8 +866,13 @@ else if (cutsceneTimer == 20)
             <kind>1</kind>
             <string>if (!dead)
 {
+    if (healthpoints &gt; healthpointsStart)
+    {
+        healthpoints = healthpointsStart;
+    }
     if (drawBoss) // actually draw itself
     {
+
         if ((iFrames mod 4) &lt; 2 || !iFrames)
         {
             drawSelf();

@@ -45,6 +45,8 @@ topblock = -1;
 bottomBlock = -1;
 touchblock = place_meeting(x, y, objSolid);
 cantDraw = touchblock;
+centerTopBlock = 0;
+centerBottomBlock = 0;
 
 animTimer = 0;
 sparkindex = 0;
@@ -175,25 +177,29 @@ if (topblock &gt; 0)
     draw_sprite_part(sprite_index, image_index, 0, 0, sprite_width, topblock,
         x - sprite_xoffset, bbox_top);
     drew = 1;
-    if (topblock &gt; 1 &amp;&amp; bottomBlock &lt;= 0)
-    {
-        animTimer += 1;
-        if (animTimer &gt; 2)
+    
+        if (topblock &gt; 1 &amp;&amp; bottomBlock &lt;= 0)
         {
-            animTimer = 0;
-            sparkindex += 1;
-            if (sparkindex == 3)
+            animTimer += 1;
+            if (animTimer &gt; 2)
             {
-                sparkindex = 0;
+                animTimer = 0;
+                sparkindex += 1;
+                if (sparkindex == 3)
+                {
+                    sparkindex = 0;
+                }
             }
-        }
-        
-        sparkblock = (collision_point(x, y, objSolid, false, false));
-        if (!sparkblock)
-        {
-            sparkblock = (collision_point(x, y + 12, objSolid, false, false));
-        }
-        draw_sprite(sprMoleSpark, sparkindex, x, (sparkblock.bbox_top));
+            
+            var sparkblock = (collision_point(x, y, objSolid, false, false));
+            if (!sparkblock)
+            {
+                sparkblock = (collision_point(x, y + 12, objSolid, false, false));
+            }
+            with(sparkblock)
+            {
+            draw_sprite(sprMoleSpark, other.sparkindex, other.x, (bbox_top));
+            }
     }
 }
 if (bottomBlock &gt; 0)
@@ -215,12 +221,15 @@ if (bottomBlock &gt; 0)
             }
         }
         
-        sparkblock = (collision_point(x, y, objSolid, false, false));
+        var sparkblock = (collision_point(x, y, objSolid, false, false));
         if (!sparkblock)
         {
             sparkblock = (collision_point(x, y - 12, objSolid, false, false));
         }
-        draw_sprite(sprMoleSpark, sparkindex, x, (sparkblock.bbox_bottom));
+        with(sparkblock)
+        {
+            draw_sprite(sprMoleSpark, other.sparkindex, other.x, (bbox_bottom));
+        }
     }
 }
 
@@ -243,6 +252,7 @@ if (iFrames == 1 || iFrames == 3)
 {
     d3d_set_fog(false, 0, 0, 0);
 }
+
 </string>
           </argument>
         </arguments>

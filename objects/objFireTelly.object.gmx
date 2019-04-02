@@ -31,7 +31,7 @@ healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 3;
 
-category = "fire";
+category = "fire, floating";
 
 grav = 0;
 blockCollision = false;
@@ -48,6 +48,8 @@ keptYSpeed = 0;
 
 imgSpd = 0.10;
 imgIndex = 0;
+shootWait = 0;
+moveV = false;
 </string>
           </argument>
         </arguments>
@@ -78,7 +80,7 @@ if (entityCanStep())
     {
         // set charge time
         case 1: // choose time to wait between shots, and don't repeat the same time more than twice in a row 
-            shotType = choose(0, 1);
+            var shotType = choose(0, 1);
             
             if (shotType == previousShotType &amp;&amp; chain &gt;= 2)
             {
@@ -134,7 +136,7 @@ if (entityCanStep())
                     imgIndex = 4;
                     xspeed = 0;
                     yspeed = 0;
-                    
+                    playSFX(sfxFireTelly);
                     with (instance_create(x, y + sprite_height / 2, objFireTellyShot))
                         parent = other.id;
                 }

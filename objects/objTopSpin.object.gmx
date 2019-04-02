@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 3;
+inWater = -1;
 
 penetrate = 3; // obviously we don't want to destroy the control for the dash
 pierces = 2;
@@ -42,6 +43,7 @@ animFrame = 0;
 
 shiftVisible = 2;
 despawnRange = -1;
+topLock = 0;
 </string>
           </argument>
         </arguments>
@@ -167,7 +169,7 @@ if (!global.frozen)
             <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; !ground &amp;&amp; !climbing
     &amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
 {
-    i = fireWeapon(0, 0, objTopSpin, 1, 0, 0, 0);
+    var i = fireWeapon(0, 0, objTopSpin, 1, 0, 0, 0);
     if (i)
     {
         i.topLock = lockPoolLock(localPlayerLock[PL_LOCK_CLIMB],

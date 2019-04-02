@@ -1,5 +1,5 @@
 /// playerDraw()
-
+var restoreMusic = 0;
 // Don't draw if the game is fading in
 if (teleporting || showReady)
 {
@@ -13,13 +13,18 @@ if ((teleporting || showDuringReady) && !instance_exists(objSectionSwitcher))
 {
     playerIntro(false);
 }
-
 // Drawing READY text before teleporting in
 if (showReady)
 {
     depth = -1000000; // make sure the ready text isn't hidden behind stuff
-    
     // Draw the READY text
+    if costumeID == 1 && restoreMusic == 0 && !audio_is_playing(sfxWhistle) && readyTimer == 0 && !global.hasTeleported 
+    {
+        playSFX(sfxWhistle);
+        stopMusic();
+        restoreMusic = 1;
+    }
+    
     if (!global.frozen)
     {
         readyTimer += 1;
@@ -42,13 +47,12 @@ if (showReady)
         draw_set_halign(fa_left);
         draw_set_valign(fa_top);
     }
-    if (readyTimer >= 72)
+    if (readyTimer >= 72 && !audio_is_playing(sfxWhistle))
     {
         depth = 0; // restore normal depth.
         
         readyTimer = 0;
         showReady = false;
-        
         // Teleporting sequence
         teleporting = true;
         playerIntro(true);
@@ -56,11 +60,17 @@ if (showReady)
 } // If it's not READY time, just draw the player
 else
 {
+    if restoreMusic == 1
+    {
+        restoreMusic = -1;
+        resumeMusic();
+    }
     // main drawing stuff
     col[0] = c_white;
     col[1] = global.primaryCol[playerID];
     col[2] = global.secondaryCol[playerID];
     col[3] = global.outlineCol[playerID];
+    
     
     if ((iFrames mod 4) < 2 || iFrames < 0)
     {

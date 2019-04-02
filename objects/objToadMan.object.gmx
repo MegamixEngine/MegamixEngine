@@ -42,6 +42,7 @@ canInitShoot = true;
 phase = 0; // 0 = nothing; 1 = jumping; 2 = dancing;
 
 startXspeed = xspeed;
+startXScale = 0;
 
 // Health Bar
 healthBarPrimaryColor[1] = 35;

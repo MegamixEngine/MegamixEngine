@@ -91,7 +91,7 @@ if (entityCanStep())
         {
             image_index = 3;
             playSFX(sfxCannonShoot);
-            a = instance_create(x + 16 * image_xscale, y, objBokazurahBall);
+            var a = instance_create(x + 16 * image_xscale, y, objBokazurahBall);
             a.image_xscale = image_xscale; // shoot
         }
         else if (shootTimer == 15 || shootTimer == 55 || shootTimer == 95)

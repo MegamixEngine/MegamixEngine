@@ -37,6 +37,8 @@ contactDamage = 4;
 
 introSprite = sprTamaTeleport;
 
+category = "bulky, nature";
+
 dir = image_xscale;
 
 // Enemy specific code
@@ -78,7 +80,7 @@ if (entityCanStep()
         image_index = 2;
     if (shootTimer == 20)
     {
-        ball = instance_create(x + 32 * image_xscale, y + 8, objTamaYarnBall);
+        var ball = instance_create(x + 32 * image_xscale, y + 8, objTamaYarnBall);
         ball.xspeed = image_xscale;
     }
     if (shootTimer == 25)
@@ -92,7 +94,7 @@ if (entityCanStep()
         image_index = 2;
     if (shootTimer == 70 + 20)
     {
-        ball = instance_create(x + 32 * image_xscale, y + 8, objTamaYarnBall);
+        var ball = instance_create(x + 32 * image_xscale, y + 8, objTamaYarnBall);
         ball.xspeed = image_xscale;
     }
     if (shootTimer == 70 + 25)
@@ -110,10 +112,10 @@ if (entityCanStep()
     
     if (shootTimer == 130)
     {
-        for (i = 0; i &lt;= 2; i += 1)
+        for (var i = 0; i &lt;= 2; i += 1)
         {
-            flea = instance_create(x - 8 * image_xscale, y, objTamaFlea);
-            flea.xspeed = image_xscale + (i / 5);
+            var flea = instance_create(x - 8 * image_xscale, y, objTamaFlea);
+            flea.xspeed = image_xscale + (sign(image_xscale)*((i+5) / 5));
             flea.yspeed = -(3 + i);
         }
     }

@@ -69,6 +69,8 @@ for (i = 0; i &lt;= 4; i += 1)
     option_text[i] = "";
     option_script_on_talk_start[i] = 0;
     option_script_on_talk_end[i] = 0;
+    option_code_on_talk_start[i] = "";
+    option_code_on_talk_end[i] = "";
 }
 
 // idle animation:
@@ -126,6 +128,12 @@ script_on_talk_start = 0;
 //@cc script to execute when finished talking
 script_on_talk_end = 0;
 
+//@cc code to execute when talked to
+code_on_talk_start = "";
+
+//@cc code to execute when finished talking
+code_on_talk_end = "";
+
 // private:
 
 _prev_direction = 1;
@@ -137,6 +145,7 @@ option_spoken = false;
 _im = 0;
 
 showarrow = 0;
+npcID = id;
 </string>
           </argument>
         </arguments>
@@ -168,7 +177,7 @@ if (!global.frozen &amp;&amp; !dead)
     {
         if (face_player)
         {
-            xtarg = x;
+            var xtarg = x;
             if (instance_exists(target))
             {
                 xtarg = target.x;
@@ -207,7 +216,6 @@ if (!global.frozen &amp;&amp; !dead)
                                 addChoice(i, option[i]);
                                 i += 1;
                             }
-                            
                             active = true;
                             option_spoken = false;
                             _prev_direction = image_xscale;
@@ -218,8 +226,12 @@ if (!global.frozen &amp;&amp; !dead)
                             }
                             
                             event_user(1); // start dialogue
-                            global.frozen = 1;
+                            queuePause();
                         }
+                    }
+                    else
+                    {
+                        arrowDraw = false;
                     }
                 }
             }
@@ -238,6 +250,57 @@ else
 {
     sprite_index = talk_sprite;
     animationLoop(talk_start, talk_end, talk_speed);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var canExecute = false;
+var executeLocked = false;
+if (option_text[0] != "" &amp;&amp; option_spoken == true &amp;&amp; !global.frozen &amp;&amp; !executeLocked &amp;&amp; !active)
+{
+    executeLocked = true;
+    canExecute = true;
+}
+active = 0;
+queueUnpause();
+    
+// return to previous orientation, whether it was the same or not -- unless face_player is true
+if (!face_player)
+{
+    image_xscale = _prev_direction;
+}
+    
+if (script_on_talk_end != 0 &amp;&amp; option_chosen == -1)
+    script_execute(script_on_talk_end);
+else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_script_on_talk_end[option_chosen] != 0 &amp;&amp; canExecute)
+{
+    script_execute(option_script_on_talk_end[option_chosen]);
+}
+        
+if (code_on_talk_end != "" &amp;&amp; option_chosen == -1)
+    stringExecutePartial(code_on_talk_end);
+else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_code_on_talk_end[option_chosen] != "" &amp;&amp; canExecute)
+{
+    stringExecutePartial(option_code_on_talk_end[option_chosen]);
 }
 </string>
           </argument>
@@ -270,6 +333,12 @@ if (script_on_talk_start != 0)
 {
     script_execute(script_on_talk_start);
 }
+
+if (code_on_talk_start != "")
+{
+    stringExecutePartial(code_on_talk_start);
+}
+queuePause();
 </string>
           </argument>
         </arguments>
@@ -310,25 +379,13 @@ if (option_chosen != -1 &amp;&amp; !option_spoken &amp;&amp; option_text[option_
     option_spoken = true;
     if (option_script_on_talk_start[option_chosen] != 0)
         script_execute(option_script_on_talk_start[option_chosen]);
+        
+    if (option_code_on_talk_start[option_chosen] != "")
+        stringExecutePartial(option_code_on_talk_start[option_chosen]);
+        
     active = true;
-    
+    queuePause();
     // exit;
-}
-else
-{
-    active = false;
-    global.frozen = 0;
-    
-    // return to previous orientation, whether it was the same or not -- unless face_player is true
-    if (!face_player)
-    {
-        image_xscale = _prev_direction;
-    }
-    
-    if (script_on_talk_end != 0 &amp;&amp; option_chosen == -1)
-        script_execute(script_on_talk_end);
-    else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_script_on_talk_end[option_chosen] != 0)
-        script_execute(option_script_on_talk_end[option_chosen]);
 }
 </string>
           </argument>
@@ -401,10 +458,18 @@ if (idle_sprite != sprVoltIdle)
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
-if (place_meeting(x + (other.talk_distance * image_xscale), y, target))
+with (target) // Initiate talking
 {
-    draw_sprite(sprPressUp, 0, bboxGetXCenter(), bbox_top - 12);
+    if (!playerIsLocked(PL_LOCK_PAUSE))
+    {
+        if (place_meeting(x + (other.talk_distance * image_xscale), y, other))
+        {
+            with (other)
+            {
+                draw_sprite(sprPressUp, 0, bboxGetXCenter(), bbox_top - 12);
+            }
+        }
+    }
 }
 </string>
           </argument>

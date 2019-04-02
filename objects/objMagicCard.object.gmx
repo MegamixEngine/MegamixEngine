@@ -29,6 +29,7 @@
 
 bulletLimitCost = 1;
 contactDamage = 2;
+inWater = -1;
 
 penetrate = 0;
 pierces = 1;
@@ -140,8 +141,8 @@ if (!global.frozen)
         {
             if (instance_exists(pickup))
             {
-                pickx = spriteGetXCenterObject(pickup) - pickup.x;
-                picky = spriteGetYCenterObject(pickup) - pickup.y;
+                var pickx = spriteGetXCenterObject(pickup) - pickup.x;
+                var picky = spriteGetYCenterObject(pickup) - pickup.y;
                 pickup.x = x - pickx + 2 * image_xscale;
                 pickup.xspeed = 0;
                 pickup.y = y - picky + 2;
@@ -178,10 +179,10 @@ if (!global.frozen)
             <kind>1</kind>
             <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(16, 2, objMagicCard, 3, 1, 2, 1);
+    var i = fireWeapon(16, 2, objMagicCard, 3, 1, 2, 1);
     if (instance_exists(i))
     {
-        if (global.keyUp[playerID])
+        if ((global.keyUp[playerID] &amp;&amp; gravDir == 1) || (global.keyDown[playerID] &amp;&amp; gravDir == -1))
         {
             i.yspeed = -6.0 * image_yscale;
             i.sprite_index = sprMagicCardVertical;

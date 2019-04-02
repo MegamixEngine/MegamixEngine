@@ -29,6 +29,7 @@
 
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 contactDamage = 2;
 image_speed = 0.25;

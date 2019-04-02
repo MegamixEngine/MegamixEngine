@@ -53,6 +53,10 @@ blockCollision = 0;
 dieToSpikes = 0;
 
 fnsolid = 1;
+if(place_meeting(x,y,objSpike))
+{
+    isSolid=0;
+}
 </string>
           </argument>
         </arguments>
@@ -124,9 +128,9 @@ if (!global.frozen &amp;&amp; !instance_exists(objSectionSwitcher))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (i = 0; i &lt; image_xscale; i += 1) // X
+            <string>for (var i = 0; i &lt; image_xscale; i += 1) // X
 {
-    for (j = 0; j &lt; image_yscale; j += 1) // Y
+    for (var j = 0; j &lt; image_yscale; j += 1) // Y
     {
         if (tile_layer_find(1000000, x + i * 16, y + j * 16))
         {

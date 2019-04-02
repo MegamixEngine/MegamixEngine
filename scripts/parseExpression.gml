@@ -18,6 +18,7 @@ while (stringStartsWith(str, " "))
 }
 
 var expr = stringPeekToken(str);
+
 str = stringSubstring(str, string_length(expr) + 1);
 
 // not (!) [unary]
@@ -86,8 +87,8 @@ else if (expr == "(")
 // parse function
 else if (stringStartsWith(str, "("))
 {
+    var fn_id = asset_get_index(expr);
     var fn_str = expr;
-    
     // gml function
     if (asset_get_type(fn_str) == asset_unknown)
     {
@@ -138,7 +139,68 @@ else if (stringStartsWith(str, "("))
             exprlen += 1;
         }
         
-        scriptExecuteNargs(executeGMLFunction, arg);
+        scriptExecuteNargs(executeGMLFunction, arg, arg_n);
+        if (global.execute_gml_function_ERR)
+        {
+            global.retval_error = true;
+            printErr("ERROR GML built-in function not supported: " + fn_str);
+            printErr("(Please consider adding the script into the the executeGMLFunction script or filing a bug report!)");
+            exit;
+        }
+        global.retval_exprval = global.gml_fn_retval;
+        exit;
+    }
+    else if (asset_get_type(fn_str) == asset_script)
+    {
+        var fnid = asset_get_index(fn_str);
+        str = stringSubstring(str, 2);
+        var exprlen = string_length(expr) + 1;
+        var arg_n = 0;
+        var arg;
+        arg[0] = 0;
+        
+        // read arguments
+        while (true)
+        {
+            exprlen += string_length(str);
+            str = stringTrim(str);
+            exprlen -= string_length(str);
+            if (string_char_at(str, 1) == ")")
+            {
+                str = stringSubstring(str, 2);
+                break;
+            }
+            parseExpression(str);
+            if (global.retval_error)
+            {
+                printErr("ERROR parsing function argument in expression:" + str);
+                global.retval_error = true;
+                exit;
+            }
+            arg[arg_n++] = global.retval_exprval;
+            str = stringSubstring(str, global.retval_exprlen + 1 + whitespaceDropped);
+            exprlen += global.retval_exprlen;
+            exprlen += string_length(str);
+            str = stringTrim(str);
+            exprlen -= string_length(str);
+            if (string_char_at(str, 1) == ")")
+            {
+                str = stringSubstring(str, 2);
+                exprlen += 1;
+                global.retval_exprlen = exprlen + whitespaceDropped;
+                break;
+            }
+            if (string_char_at(str, 1) != ",")
+            {
+                global.retval_error = true;
+                printErr("ERROR parsing function in expression; comma expected: " + str);
+                exit;
+            }
+            str = stringSubstring(str, 2);
+            exprlen += 1;
+        }
+        global.execute_gml_function_ERR = false;
+        global.gml_fn_retval = scriptExecuteNargs(fnid, arg, arg_n);
         if (global.execute_gml_function_ERR)
         {
             global.retval_error = true;

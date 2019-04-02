@@ -126,7 +126,7 @@ if (entityCanStep())
     if (cloudTimer &gt;= 13)
     {
         cloudTimer = 0;
-        cloud = instance_create(x, y, objKemumakinCloud);
+        var cloud = instance_create(x, y, objKemumakinCloud);
         cloud.col = col;
     }
     

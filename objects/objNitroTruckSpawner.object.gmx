@@ -39,6 +39,8 @@ despawnRange = -1;
 
 blockCollision = 0;
 grav = 0;
+
+objectToSpawn = objNitroTruck;
 </string>
           </argument>
         </arguments>
@@ -81,7 +83,7 @@ if (entityCanStep())
     if (spawn_timer &lt;= 0)
     {
         spawn_timer = spawn_interval;
-        with (instance_create(x, y, objNitroTruck))
+        with (instance_create(x, y, objectToSpawn))
         {
             x = spawn_x;
             y = spawn_y;

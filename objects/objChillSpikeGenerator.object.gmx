@@ -65,7 +65,7 @@ i = 0;
     {
         if (!i)
         {
-            playSFX(sfxChillShoot);
+            //playSFX(sfxChillShoot);
             switch (spike)
             {
                 case 0: // generate spike 
@@ -101,6 +101,7 @@ i = 0;
         }
         else
         {
+            var cS;
             switch (spike)
             {
                 case 0:

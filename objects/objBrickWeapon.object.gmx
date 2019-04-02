@@ -69,7 +69,7 @@ if (!global.frozen)
     if (imgIndex &gt;= 4) // fall
     {
         imgIndex = 4;
-        grav = futureGrav * image_yscale;;
+        grav = futureGrav;
     }
     else //appear animation
     {
@@ -104,7 +104,8 @@ image_index = imgIndex div 1;
             <string>var xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop;
 
 xOffset = 32; // x offset from center of player
-yOffset = view_yview[0] - y + 26; // y offset from center of player
+
+yOffset = (view_yview[0] - y + 26) * gravDir; // y offset from center of player
 
 bulletObject = objBrickWeapon;
 bulletLimit = 1;
@@ -220,9 +221,9 @@ if (global.ammo[playerID, global.weapon[playerID]] &gt;= chargedWeaponCost)
             
             if (chargeTimer &gt;= chargeTime)
             {
-                for (q = 0; q &lt;= 1; q += 1)
+                for (var q = 0; q &lt;= 1; q += 1)
                 {
-                    for (z = 0; z &lt;= 7; z += 1)
+                    for (var z = 0; z &lt;= 7; z += 1)
                     {
                         i = fireWeapon(xOffset / 2 + z * 15, yOffset - 8 + q * 15, bulletObject, bulletLimit * (z + q == 0), chargedWeaponCost * (z + q == 0), action, willStop);
                         if (instance_exists(i))
@@ -249,6 +250,34 @@ if (global.ammo[playerID, global.weapon[playerID]] &gt;= chargedWeaponCost)
         }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="23">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Special damage
+specialDamageValue("bird", 4);
+specialDamageValue("cluster", 3);
+specialDamageValue("flying", 4);
+specialDamageValue("fire", 3);
+specialDamageValue("mets", 0);
 </string>
           </argument>
         </arguments>
@@ -298,7 +327,7 @@ if (global.ammo[playerID, global.weapon[playerID]] &gt;= chargedWeaponCost)
 var i;
 for (i = 0; i &lt; 4; i++)
 {
-    debris = instance_create(x, y, objBrickWeaponDebris);
+    var debris = instance_create(x, y, objBrickWeaponDebris);
     debris.image_index = i;
     debris.xspeed = random_range(-1.5, 1.5);
     debris.yspeed = -yspeed * 0.8 + random_range(0, 2);
@@ -307,6 +336,31 @@ for (i = 0; i &lt; 4; i++)
         debris.yspeed = 0;
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="17">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_user(EV_ATTACK);
+playSFX(sfxReflect);
+event_user(EV_DEATH);
 </string>
           </argument>
         </arguments>

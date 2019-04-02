@@ -190,7 +190,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (other.bbox_bottom &lt; y + hitboxOffset)
+            <string>/*if (other.bbox_bottom &lt; y + hitboxOffset)
 {
     other.guardCancel = 2;
 }

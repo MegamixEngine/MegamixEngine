@@ -37,6 +37,7 @@ contactDamage = 5;
 blockCollision = 1;
 grav = 0.15 * image_yscale;
 facePlayerOnSpawn = true;
+category = "bulky";
 
 // Enemy specific code
 image_speed = 0;
@@ -51,6 +52,7 @@ findYSpeed = false;
 
 attackTimer = 0;
 attackTimerMax = 40;
+dir = 0;
 </string>
           </argument>
         </arguments>
@@ -95,7 +97,7 @@ if (entityCanStep()
     
     if (findYSpeed) // find the y speed for a jump. this code is reused throughout, so its also been made a trigger event to not reuse code.
     {
-        setY = 32;
+        var setY = 32;
         for (var i = 32; i &lt; 224; i++)
         {
             if //( place_meeting(x, (y - i) - 40, objSolid))

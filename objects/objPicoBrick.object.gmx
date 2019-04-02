@@ -60,6 +60,10 @@ settingTransplant = false;
 
 phase = 0;
 phaseTimer = 0;
+sectionLeft = 0;
+sectionRight = 0;
+sectionTop = 0;
+sectionBottom = 0;
 
 moveSpeed = .9 + (global.difficulty == DIFF_HARD * .75);
 
@@ -184,8 +188,8 @@ if (entityCanStep())
                 {
                     playSFX(sfxEnemyShootClassic);
                     
-                    // I use a for loop here to avoid copypasting code.
-                    for (i = -1; i &lt;= 1; i += 2)
+                    // or loop here to avoid copypasting code.
+                    for (var i = -1; i &lt;= 1; i += 2)
                     {
                         with (instance_create(x, y, objEnemyBullet))
                         {

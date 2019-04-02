@@ -102,7 +102,7 @@ if (entityCanStep())
         }
         
         // turn around stuff
-        turn = false;
+        var turn = false;
         if (xspeed == 0)
         {
             turn = true;

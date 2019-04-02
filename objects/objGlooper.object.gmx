@@ -31,6 +31,7 @@ event_inherited();
 respawn = true;
 healthpointsStart = 8;
 healthpoints = healthpointsStart;
+category = "nature";
 contactDamage = 2;
 facePlayer = true;
 
@@ -138,7 +139,6 @@ else if (dead)
     animTimer = 5;
     shooting = false;
     hasFired = false;
-    actionTimer = 0;
     shotTimer = 0;
 }
 </string>

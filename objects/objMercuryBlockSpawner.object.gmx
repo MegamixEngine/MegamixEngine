@@ -31,8 +31,10 @@ canHit = false;
 
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 waitTime = 180;
+timer = 0;
 </string>
           </argument>
         </arguments>
@@ -59,16 +61,19 @@ waitTime = 180;
 
 if ((!global.frozen) &amp;&amp; (!dead) &amp;&amp; (!global.timeStopped))
 {
-    waitTime--;
-    if (waitTime &lt;= 0)
+    timer++;
+    if (timer &gt;= waitTime)
     {
-        instance_create(x, y, objMercuryBlock);
-        waitTime = 180;
+        with (instance_create(x, y, objMercuryBlock))
+        {
+            respawn = false;
+        }   
+        timer = 0;
     }
 }
 else if (dead)
 {
-    waitTime = 180;
+    timer = 0;
 }
 </string>
           </argument>

@@ -41,6 +41,8 @@ jumpDistance[1] = 96;
 jumpXSpeed = 0;
 category = "big eye, bulky";
 dieToSpikes = false;
+// @cc - Change colours: 0 (default) = orange, 1 = red, 2 = green, 3 = blue
+col = 0;
 </string>
           </argument>
         </arguments>
@@ -66,6 +68,11 @@ dieToSpikes = false;
             <string>mask_index = mskTsurareStamp;
 event_inherited();
 mask_index = sprite_index;
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
+
 if (entityCanStep())
 {
     if (!ground)
@@ -80,7 +87,7 @@ if (entityCanStep())
         xspeed = 0;
         jumpXSpeed = 0;
         if (ycoll)
-            playSFX(sfxHeavyLand);
+            playSFX(sfxTsurareStamp);
         
         // landing animation
         if (landTimer &gt; 0)
@@ -154,6 +161,21 @@ jumpTimer = 0;
 jumpType = 0;
 spinTimer = 0;
 jumpXSpeed = 0;
+switch (col)
+{
+    case 1:
+        sprite_index = sprTsurareStampRed;
+        break;
+    case 2:
+        sprite_index = sprTsurareStampGreen;
+        break;
+    case 3:
+        sprite_index = sprTsurareStampBlue;
+        break;
+    default:
+        sprite_index = sprTsurareStamp;
+        break;
+}
 </string>
           </argument>
         </arguments>
@@ -177,6 +199,35 @@ jumpXSpeed = 0;
           <argument>
             <kind>1</kind>
             <string>specialDamageValue(objMagneticShockwave, 4);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+stopSFX(sfxEnemyHit);
+var i = instance_create(x,y,objBigExplosion);
+with (i)
+{
+    playSFX(sfxMM9Explosion);
+}
 </string>
           </argument>
         </arguments>

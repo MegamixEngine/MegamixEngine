@@ -14,6 +14,8 @@ else
 // Initialization of the spawning animation (after READY)
 if (init)
 {
+    //if costumeID == 1
+        //resumeMusic();
     switch (global.respawnAnimation)
     {
         case 1: // teleport 
@@ -168,6 +170,7 @@ else
                     canHit = true;
                     iFrames = 0;
                     ground = true;
+                    blockCollision = true;
                     global.lockTransition = false;
                     exit;
                 }

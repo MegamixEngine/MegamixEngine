@@ -193,6 +193,7 @@ if ((other.object_index != objTornadoBlow) &amp;&amp; (other.object_index != obj
 {
     i = instance_create(x, y, objHarmfulExplosion);
     i.contactDamage = 6;
+    stopSFX(sfxEnemyHit);
     playSFX(sfxMM9Explosion);
     
     if ((other.object_index == objSlashClaw) || (other.object_index == objBreakDash))

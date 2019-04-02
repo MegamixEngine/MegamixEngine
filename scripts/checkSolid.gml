@@ -23,16 +23,14 @@ cgrav += (cgrav == 0);
 
 with (objSolid)
 {
-    if (isSolid == 1)
-    {
-        solid = 1;
-    }
+    solid = (isSolid == 1);
 }
 
 // Stoppers are only solid for the object_index they have stored
 
 with (objGenericStopper)
 {
+    solid=0;
     if (other.object_index == objectToStop || object_is_ancestor(other.object_index, objectToStop))
     {
         solid = 1;
@@ -41,12 +39,15 @@ with (objGenericStopper)
 
 if (dieToSpikes)
 {
-    var spSolid = (canHit && iFrames != 0);
-    with (objSpike)
+    if(!alwaysCheckSolids)
     {
-        solid = spSolid;
+        var spSolid = (canHit && iFrames != 0);
+        with (objSpike)
+        {
+            solid = spSolid;
+        }
     }
-}
+} 
 
 // jumpthrough objects
 with (objTopSolid)
@@ -106,10 +107,9 @@ else if (!noSlopeConditions && _xs != 0 && _ys == 0)
         ret = 0;
     }
 }
-
-with (all)
+with(all)
 {
-    solid = 0;
+    solid=0;
 }
 
 return (ret);

@@ -130,6 +130,7 @@ if (entityCanStep())
     x = clamp(x, xMin, xMax);
     
     // phases
+    var spd;
     
     switch (phase)
     {
@@ -138,10 +139,10 @@ if (entityCanStep())
             {
                 spd = 0 - ceil((x - strMMX) / 8);
                 if (abs(spd) &lt; 1)
-                {
-                    if (x &lt; strMMX)
+                {                    
+                    if (x &lt; strMMX &amp;&amp; !checkSolid(1, 0))
                         x += 1;
-                    else if (x &gt; strMMX)
+                    else if (x &gt; strMMX &amp;&amp; !checkSolid(-1, 0))
                         x -= 1;
                 }
                 else

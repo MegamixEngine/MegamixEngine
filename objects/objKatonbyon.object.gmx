@@ -31,7 +31,7 @@ healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 3;
 
-category = "flying";
+category = "flying, nature";
 
 grav = 0;
 blockCollision = false;
@@ -43,6 +43,7 @@ phase = 0;
 
 imgSpd = 0.4;
 imgIndex = 0;
+dropTime = 16;
 </string>
           </argument>
         </arguments>
@@ -82,7 +83,7 @@ if (entityCanStep())
                 }
                 if (instance_exists(target))
                 {
-                    if (abs(x - target.x) &lt; 20)
+                    if (abs(x - target.x) &lt; 32) //20
                     {
                         phase = 2;
                         imgIndex += 3;
@@ -100,18 +101,29 @@ if (entityCanStep())
                 {
                     imgIndex = 3 + imgIndex mod 6;
                 }
+                dropTime--;
+                if (dropTime == 0)
+                {
+                    phase = 3;
+                    imgIndex += 3;
+                }
                 break;
+            // fly away
+            case 3:
+                imgIndex += imgSpd;
+                if (imgIndex &gt;= 9)
+                {
+                    imgIndex = 6 + imgIndex mod 9;
+                }
         }
     }
 }
-else
+else if (dead)
 {
-    if (dead)
-    {
-        phase = 1;
-        xspeed = 0;
-        imgIndex = 0;
-    }
+    phase = 1;
+    xspeed = 0;
+    imgIndex = 0;
+    dropTime = 16;
 }
 
 image_index = imgIndex div 1;

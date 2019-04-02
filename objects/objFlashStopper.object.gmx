@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 0;
+inWater = -1;
 
 canHit = false;
 
@@ -127,7 +128,7 @@ if (!global.frozen)
                 image_speed = 0;
                 frozen = 1;
             }
-            for (i = 0; i &lt;= 10; i += 1)
+            for (var i = 0; i &lt;= 10; i += 1)
             {
                 if (object_get_parent(object_index) != prtBoss)
                 {
@@ -203,7 +204,7 @@ if (!global.frozen)
     }
     else // fire buster shots when flashstopper is active
     {
-        i = fireWeapon(14, 0, objBusterShot, 4, 0, 1, 0);
+        var i = fireWeapon(14, 0, objBusterShot, 4, 0, 1, 0);
         if (i)
         {
             i.xspeed = image_xscale * 5;

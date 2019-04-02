@@ -29,6 +29,8 @@
 // Once in place it will spit projectiles aiming at megaman
 event_inherited();
 healthpointsStart = 6;
+category = "semi bulky";
+
 grav = 0;
 blockCollision = false;
 facePlayerOnSpawn = true;
@@ -54,6 +56,7 @@ horSpeed = 0;
 timer = 0;
 phase = 0;
 animFrame = 0;
+a = 0;
 
 // Parabola Variables
 spawnYOffset = 0;

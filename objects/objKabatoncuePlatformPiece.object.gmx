@@ -44,6 +44,9 @@ canHit = true;
 offset = 0;
 spd = 0.5;
 
+despawnRange = 48;
+respawnRange = 48;
+
 if (instance_exists(objKabatoncuePlatform))
 {
     parent = instance_nearest(x, y, objKabatoncuePlatform);
@@ -85,7 +88,7 @@ if (entityCanStep())
     }
     
     // :aesthetics:
-    if (place_meeting(x, y - 4, objKabatoncuePlatform))
+    if (place_meeting(x, y - 5, objKabatoncuePlatform))
     {
         image_index = 0;
     }

@@ -80,7 +80,7 @@ if (entityCanStep())
     // shooting
     if (shootTimer == shootWait)
     {
-        shot = instance_create(x + sprite_width * 0.4, y - 4, objEnemyBullet);
+        var shot = instance_create(x + sprite_width * 0.4, y - 4, objEnemyBullet);
         shot.xspeed = 1.4 * image_xscale; // &lt;-- bullet speed here
         shot.contactDamage = 3; // &lt;-- bullet damage here
         

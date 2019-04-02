@@ -22,9 +22,5 @@
   <frames>
     <frame index="0">images\sprGutsIdle_0.png</frame>
     <frame index="1">images\sprGutsIdle_1.png</frame>
-    <frame index="2">images\sprGutsIdle_2.png</frame>
-    <frame index="3">images\sprGutsIdle_3.png</frame>
-    <frame index="4">images\sprGutsIdle_4.png</frame>
-    <frame index="5">images\sprGutsIdle_5.png</frame>
   </frames>
 </sprite>

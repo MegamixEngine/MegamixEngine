@@ -151,7 +151,7 @@ if (entityCanStep())
     
     if (shoot)
     {
-        ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objEnemyBullet);
+        var ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objEnemyBullet);
         ID.xspeed = 2 * image_xscale;
         //playSFX(sfxEnemyShoot);
     }

@@ -94,7 +94,7 @@ if (entityCanStep())
                     action -= 1;
                     actionTimer = 0;
                     image_index -= 1;
-                    i = instance_create(x + 12 * image_xscale, y - 26,
+                    var i = instance_create(x + 12 * image_xscale, y - 26,
                         objSuperBallMachineJrBall);
                     i.xspeed = image_xscale * 1.5;
                     i.yspeed = -1.5;

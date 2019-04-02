@@ -28,6 +28,7 @@
             <string>event_inherited();
 
 contactDamage = 2;
+inWater = -1;
 
 penetrate = 0;
 pierces = 0;

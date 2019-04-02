@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 1;
+inWater = -1;
 
 penetrate = 0;
 pierces = 1;
@@ -79,9 +80,9 @@ willStop = 0; // If this is 1, the player will halt on shooting ala Metal Blade.
 // TRIPLE BLADE IS COMPLICATED OK
 if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    for (z = 0; z &lt;= 2; z += 1)
+    for (var z = 0; z &lt;= 2; z += 1)
     {
-        i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit * (z == 0), weaponCost * (z == 0), action, willStop);
+        var i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit * (z == 0), weaponCost * (z == 0), action, willStop);
         if (i)
         {
             i.image_index = z;

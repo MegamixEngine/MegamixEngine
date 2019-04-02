@@ -82,27 +82,69 @@ col = 0;
 
 if (entityCanStep())
 {
+    print ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16));
+    
     if (col == 0
         &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
         &lt;= 15)
-        image_index = ((2 * round(direction / 45))
-            + ((cooldownTimer mod 4) / 16));
+    {
+        if (cooldownTimer mod 8 &lt; 4)
+        {
+            image_index = ((2 * round(direction / 45))
+                + ((cooldownTimer mod 4) / 16));
+        }
+        else
+        {
+            image_index = ((2 * round(direction / 45))
+                + ((cooldownTimer mod 4) / 16)) + 1;
+        }
+    }
     else if (col == 0
         &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
         &gt; 15)
-        image_index = ((cooldownTimer mod 4) / 16);
+    {
+        if (cooldownTimer mod 8 &lt; 4)
+        {
+            image_index = ((cooldownTimer mod 4) / 16);
+        }
+        else
+        {
+            image_index = ((cooldownTimer mod 4) / 16) + 1;
+        }
+    }
     
+    // Purple missiles
     if (col == 1
         &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
         &lt;= 15)
-        image_index = (16 + (2 * round(direction / 45))
-            + ((cooldownTimer mod 4) / 16));
+    {
+        if (cooldownTimer mod 8 &lt; 4)
+        {
+            image_index = (16 + (2 * round(direction / 45))
+                + ((cooldownTimer mod 4) / 16));
+        }
+        else
+        {
+            image_index = (16 + (2 * round(direction / 45))
+                + ((cooldownTimer mod 4) / 16)) + 1;
+        }
+    }
     else if (col == 1
         &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
         &gt; 15)
-        image_index = (16 + (cooldownTimer mod 4) / 16);
-    
+    {
+        if (cooldownTimer mod 8 &lt; 4)
+        {
+            image_index = (16 + (cooldownTimer mod 4) / 16);
+        }
+        else
+        {
+            image_index = (16 + (cooldownTimer mod 4) / 16) + 1;
+        }
+    }
+        
     cooldownTimer += 1;
+        
     if (instance_exists(target))
     {
         switch (phase)
@@ -127,9 +169,9 @@ if (entityCanStep())
                     
                     /* This is a special kind of error handler that prevents missile from moving completely straight and unable to fly towards the player
                 if the player moves directly straight against the direction missile is flying */
-                    pxd = target.x - x;
-                    pyd = target.y - y;
-                    pangle = 0;
+                    var pxd = target.x - x;
+                    var pyd = target.y - y;
+                    var pangle = 0;
                     if (pxd != 0)
                     {
                         pangle = point_direction(x, y, target.x, target.y);
@@ -147,7 +189,7 @@ if (entityCanStep())
                     }
                     
                     // and now that we have the angle the player is facing, we take the difference of the angles
-                    change = direction - pangle;
+                    var change = direction - pangle;
                     
                     // loop degree check, so the angle isn't above 360 or below 0
                     if (change &gt; 360)

@@ -30,7 +30,6 @@
 event_inherited();
 contactDamage = 3;
 healthpointsStart = 2;
-blockCollision = false;
 itemDrop = -1;
 grav = 0;
 

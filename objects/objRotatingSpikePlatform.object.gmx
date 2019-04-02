@@ -37,6 +37,7 @@ respawnRange = -1;
 despawnRange = -1;
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 initImageIndex = -1;
 </string>
@@ -70,6 +71,7 @@ event_inherited();
 
 if (entityCanStep() &amp;&amp; insideSection(x, y))
 {
+    var ys;
     if (image_index == 0)
     {
         ys = -1;

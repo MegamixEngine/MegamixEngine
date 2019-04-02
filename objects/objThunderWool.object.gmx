@@ -30,6 +30,7 @@
 bulletLimitCost = 2;
 
 contactDamage = 0.5;
+inWater = -1;
 
 penetrate = 3;
 pierces = 2;
@@ -110,14 +111,16 @@ if (!global.frozen)
             xspeed -= (min(abs(xspeed), 0.025) * image_xscale);
         }
         
-        if (y &lt; view_yview + 48)
+        if (y &lt; view_yview + 48 &amp;&amp; sign(grav) == 1)
+        || (y &gt; view_yview + 224 - 48 &amp;&amp; sign(grav) == -1)
         {
             yspeed += (grav * 4) * image_yscale;
         }
         
         if (instance_exists(parent)) // stop and shoot thunder
         {
-            if (checkSolid(0, yspeed) || stateTimer &gt;= 120 || y &lt; view_yview + 32)
+            if (checkSolid(0, yspeed) || stateTimer &gt;= 120 
+            || ((y &lt; view_yview + 32 &amp;&amp; sign(grav) == 1) || (y &gt; view_yview + 256 - 32 &amp;&amp; sign(grav) == -1)))
             {
                 grav = 0;
                 state = 1;
@@ -152,7 +155,7 @@ if (!global.frozen)
         
         if (!(stateTimer mod 5))
         {
-            i = instance_create(x, y - 8, objThunderWool);
+            i = instance_create(x, y - 8 * image_yscale, objThunderWool);
             i.isLightning = true;
             i.image_yscale = image_yscale;
             i.yspeed = 8 * image_yscale;

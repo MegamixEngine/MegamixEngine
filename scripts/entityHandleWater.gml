@@ -8,33 +8,39 @@ if (inWater != -1) // If inWater is set to -1 then there can be no interaction w
     var preWater = inWater;
     var overlapping = instance_place(x, y - 2 * sign(grav), objWater);
     
-    if (xw != 0)
-    {
-        xw = 0;
-        if (!collision_rectangle(bbox_left, bbox_top, bbox_left + 8, bbox_bottom, objWater, true, false))
-        {
-            xw = (bbox_right - bbox_left);
-        }
-        else if (!collision_rectangle(bbox_right + 8, bbox_top, bbox_right, bbox_bottom, objWater, true, false))
-        {
-            xw = -(bbox_right - bbox_left);
-        }
-    }
-    if (yw != 0)
-    {
-        yw = 0;
-        if (!collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_top + 8, objWater, true, false))
-        {
-            yw = (bbox_bottom - bbox_top);
-        }
-        else if (!collision_rectangle(bbox_left, bbox_bottom - 8, bbox_right, bbox_bottom, objWater, true, false))
-        {
-            yw = -(bbox_bottom - bbox_top);
-        }
-    }
-    
     if (_yc - 4 >= view_yview && _yc + 4 <= view_yview + view_hview) // Don't change state if offscreen
     {
+        // code for handling splash effect
+        if (xw != 0)
+        {
+            xw = 0;
+            if (!collision_rectangle(bbox_left, bbox_top, bbox_left + 8, bbox_bottom, objWater, true, false))
+            {
+                xw = (bbox_right - bbox_left);
+                preWater = 0;
+            }
+            else if (!collision_rectangle(bbox_right + 8, bbox_top, bbox_right, bbox_bottom, objWater, true, false))
+            {
+                xw = -(bbox_right - bbox_left);
+                preWater = 0;
+            }
+        }
+        if (yw != 0)
+        {
+            yw = 0;
+            if (!collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_top + 8, objWater, true, false))
+            {
+                yw = (bbox_bottom - bbox_top);
+                preWater = 0;
+            }
+            else if (!collision_rectangle(bbox_left, bbox_bottom - 8, bbox_right, bbox_bottom, objWater, true, false))
+            {
+                yw = -(bbox_bottom - bbox_top);
+                preWater = 0;
+            }
+        }
+            
+        // handling some variable controls + bubble effect
         if (inWater)
         {
             if (!overlapping)
@@ -44,7 +50,7 @@ if (inWater != -1) // If inWater is set to -1 then there can be no interaction w
             }
             else if (preWater == inWater)
             {
-                if (faction != 0)
+                if (faction != 0 && bubbleTimer >= 0)
                 {
                     bubbleTimer += 1;
                     if (bubbleTimer >= 64) // F***ING BUBBLES
@@ -53,35 +59,6 @@ if (inWater != -1) // If inWater is set to -1 then there can be no interaction w
                         instance_create(bboxGetXCenter(), bboxGetYCenter(), objAirBubble);
                     }
                 }
-                
-                /* if (xw != 0)
-                {
-                    xw = 0;
-                    if (!collision_rectangle(bbox_left, bbox_top, bbox_left + 8, bbox_bottom, objWater, true, false))
-                    {
-                        xw = (bbox_right - bbox_left);
-                        preWater = 0;
-                    }
-                    else if (!collision_rectangle(bbox_right + 8, bbox_top, bbox_right, bbox_bottom, objWater, true, false))
-                    {
-                        xw = -(bbox_right - bbox_left);
-                        preWater = 0;
-                    }
-                }
-                if (yw != 0)
-                {
-                    yw = 0;
-                    if (!collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_top + 8, objWater, true, false))
-                    {
-                        yw = (bbox_bottom - bbox_top);
-                        preWater = 0;
-                    }
-                    else if (!collision_rectangle(bbox_left, bbox_bottom - 8, bbox_right, bbox_bottom, objWater, true, false))
-                    {
-                        yw = -(bbox_bottom - bbox_top);
-                        preWater = 0;
-                    }
-                }*/
             }
         }
         else
@@ -94,7 +71,9 @@ if (inWater != -1) // If inWater is set to -1 then there can be no interaction w
     }
     
     if (!overlapping)
+    {
         overlapping = instance_place(xprevious - xspeed - hspeed, yprevious - yspeed - vspeed, objWater);
+    }
     
     if (preWater != inWater && overlapping != noone) // Has water state changed?
     {

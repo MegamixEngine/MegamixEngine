@@ -3,5 +3,5 @@
 
 if (!climbing)
 {
-    shiftObject(argument0, 0, true);
+    shiftObject(argument0, 0, blockCollision);
 }

@@ -30,6 +30,7 @@ canHit = false;
 
 grav = 0;
 blockCollision = false;
+bubbleTimer = -1;
 
 // 1: full lighting
 // 0: no lighting

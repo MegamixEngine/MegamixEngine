@@ -191,7 +191,7 @@ if (entityCanStep())
                 {
                     with (objVoltRoofDetector)
                         instance_destroy();
-                    VRD = instance_create(x - 8, y, objVoltRoofDetector);
+                    instance_create(x - 8, y, objVoltRoofDetector);
                 }
                 if (instance_exists(objVoltRoofDetector)
                     &amp;&amp; y &lt;= objVoltRoofDetector.y + 24
@@ -262,7 +262,7 @@ if (entityCanStep())
                     playSFX(sfxBlockZap);
                     
                     // create twin voltman shots
-                    VS = instance_create(x + 16, y - 3, objVoltmanShot);
+                    var VS = instance_create(x + 16, y - 3, objVoltmanShot);
                     VS.image_xscale = 1;
                     VS = instance_create(x - 16, y - 3, objVoltmanShot);
                     VS.image_xscale = -1;

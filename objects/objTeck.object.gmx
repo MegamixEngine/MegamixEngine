@@ -115,7 +115,7 @@ if (entityCanStep())
                     if (imgIndex &gt;= 7 &amp;&amp; timer == 0)
                     {
                         timer = 1;
-                        shot = instance_create(x, y + sprite_height * 0.5,
+                        var shot = instance_create(x, y + sprite_height * 0.5,
                             objEnemyBullet);
                         shot.sprite_index = sprEnemyBulletMM6;
                         shot.contactDamage = 4;

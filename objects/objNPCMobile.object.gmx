@@ -243,8 +243,8 @@ if (!global.frozen &amp;&amp; !global.timeStopped &amp;&amp; !dead)
                 {
                     // see if it is possible to jump
                     // wall in front
-                    doJump = false;
-                    for (i = 0; i &lt;= 48; i += 8)
+                    var doJump = false;
+                    for (var i = 0; i &lt;= 48; i += 8)
                     {
                         if (!checkSolid(xspeed * 18, -i))
                         {

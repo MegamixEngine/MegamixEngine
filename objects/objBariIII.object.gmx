@@ -28,17 +28,25 @@
             <string>/// The head of this enemy is a solid that players can stand on, he will shoot sound waves that boounce
 // off walls,but only once. His body is destructible, but it will
 // regenerate over time, how tall he is can be adjusted via creation code.
+
 event_inherited();
 healthpointsStart = 4;
 healthpoints = healthpointsStart;
 isSolid = 1;
 facePlayer = true;
 doesTransition = false;
+category = "semi bulky";
+
+faction=7;
+behaviourType=3;
 
 // Enemy specific code
 
 //@cc how tall it can be
 maxSize = 3;
+
+//@cc Change colours: 0 (default) = purple, 1 = orange
+col = 0;
 
 size = 0;
 
@@ -54,6 +62,7 @@ killOverride = false; // Allow tornado blow and company to trigger event_user(10
 y -= 1;
 ystart = y;
 prevY = y;
+imgOffset = 0;
 </string>
           </argument>
         </arguments>
@@ -83,57 +92,6 @@ prevY = y;
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>event_inherited();
-if (entityCanStep())
-{
-    with (objMegaman)
-    {
-        var _coll = false;
-        with (other)
-        {
-            if (place_meeting(x, y + 3, other))
-            {
-                _coll = true;
-            }
-        }
-        if ((bbox_top &gt; other.bbox_bottom - 8) &amp;&amp; (other.yprevious &lt; other.prevY || other.yspeed &gt; 0) &amp;&amp; (ground || checkSolid(0, 3)) &amp;&amp; (_coll || place_meeting(x, y - max(other.yspeed, 0) - max(other.y - other.yprevious, 0), other)))
-        {
-            other.isSolid = false;
-            var xdist = other.bbox_right + 2 - bbox_left;
-            if (x &lt; other.x)
-                xdist = other.bbox_left - 2 - bbox_right;
-            shiftObject(xdist, 0, true);
-            other.isSolid = true;
-            if (iFrames == 0)
-            {
-                hitTimer = 0;
-                playerGetHit(4);
-            }
-        }
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -152,11 +110,12 @@ if (entityCanStep())
           <argument>
             <kind>1</kind>
             <string>/// Enemy AI
-
 event_inherited();
 
 if (entityCanStep())
 {
+    if(facePlayer)
+        calibrateDirection(objMegaman);
     var phw = hasWeight;
     hasWeight = false;
     var ID = id;
@@ -165,18 +124,17 @@ if (entityCanStep())
         if (!blockCollision || !ground || id == other.id || (faction != 3 &amp;&amp; object_index != objMegaman))
             continue;
         
-        if (ground &amp;&amp; bbox_bottom &gt; other.bbox_top - 2 &amp;&amp; place_meeting(x, y + 2, other))
+        if (ground &amp;&amp; bbox_bottom &gt; other.bbox_top - 2 &amp;&amp; place_meeting(x, y + 2, other.id))
         {
             if (object_index == objMegaman || (category != "" &amp;&amp; (string_pos("heavy", category) || string_pos("bulky", category))))
             {
                 other.hasWeight = true;
             }
-            shiftObject(0, other.bbox_top - bbox_bottom, true);
         }
     }
     if (hasWeight)
     {
-        image_index = 2;
+        image_index = 2 + imgOffset;
         if (phw != hasWeight)
             timer = 0;
         timer += 1;
@@ -207,7 +165,7 @@ if (entityCanStep())
     }
     else
     {
-        image_index = 0;
+        image_index = 0 + imgOffset;
         if (phw != hasWeight)
         {
             timer = 0;
@@ -227,6 +185,7 @@ if (entityCanStep())
                 playSFX(sfxBariIIIRegen);
                 var i = instance_create(x, bbox_bottom + 12 * size, objBariIIIBody);
                 i.owner = id;
+                i.col = col;
                 var maxIndex = -99999;
                 with (objBariIIIBody)
                 {
@@ -245,13 +204,13 @@ if (entityCanStep())
             if (shootTimer &gt;= shT - 10 &amp;&amp; shootTimer &lt;= shT)
             {
                 // Shoot
-                image_index = 1;
+                image_index = 1 + imgOffset;
                 if (shootTimer == shT - 10)
                     event_user(0);
             }
             else if (shootTimer &gt; shT)
             {
-                image_index = 0;
+                image_index = 0 + imgOffset;
                 shootTimer = 0;
             }
         }
@@ -308,8 +267,9 @@ if (spawned)
         var i = instance_create(x, bbox_bottom + 1 + 12 + 12 * size, objBariIIIBody);
         i.owner = id;
         i.animFrame = 2;
-        i.image_index = 2;
+        i.image_index = 2 + imgOffset;
         i.mask_index = mskBariIIIBody2;
+        i.col = col;
         i.index = size;
         with (i)
             shiftObject(0, -1, true);
@@ -328,6 +288,7 @@ else
         }
     }
 }
+imgOffset = col * 3;
 </string>
           </argument>
         </arguments>
@@ -387,7 +348,7 @@ if (instance_exists(objBariIIIBody))
             <string>/// Shoot
 for (var i = -1; i &lt; 2; i += 2)
 {
-    var sw = instance_create(x + (14) * image_xscale, y, objBariIIISoundWave);
+    var sw = instance_create(x + (14) * image_xscale, y-4, objBariIIISoundWave);
     sw.i = i;
     with (sw)
         event_user(0);

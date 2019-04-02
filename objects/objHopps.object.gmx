@@ -72,6 +72,10 @@ delay = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
 if (entityCanStep())
 {
     cooldownTimer += 1;
@@ -130,6 +134,7 @@ if (entityCanStep())
     {
         // If megaman exists, grab his angle, otherwise grab some random different angle.
         cooldownTimer = 0;
+        var getAngle;
         if (instance_exists(target) &amp;&amp; !ground)
             getAngle = point_direction(spriteGetXCenter(),
                 spriteGetYCenter(), target.x, target.y);
@@ -137,7 +142,7 @@ if (entityCanStep())
             getAngle = 0;
         else if (image_xscale == -1)
             getAngle = 180;
-        ID = instance_create(spriteGetXCenter() + image_xscale * 4,
+        var ID = instance_create(spriteGetXCenter() + image_xscale * 4,
             spriteGetYCenter() + 3, objMM5AimedBullet);
         {
             ID.dir = getAngle;

@@ -243,7 +243,7 @@ if (entityCanStep())
                 image_index = 11;
                 if (phaseTimer mod 6 == 2)
                 {
-                    with (instance_create(x + 24 * image_xscale, y, objEnemyBullet))
+                    with (instance_create(x + 26 * image_xscale, y+2, objEnemyBullet))
                     {
                         sprite_index = sprFlashShot;
                         xspeed = 5.5 * other.image_xscale;

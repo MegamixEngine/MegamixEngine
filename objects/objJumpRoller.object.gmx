@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// An enemy that rolls around and jumps at the player when they approach.
+// Use objJumpRollerFlameField to let it shoot fire from its head when it touches it.
 
 // Creation code (all optional):
 // col = &lt;number&gt;. Color of the enemy. 0 = blue (default); 1 = orange; 2 = green
@@ -35,6 +36,7 @@ event_inherited();
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 2;
+category = "fire";
 
 facePlayerOnSpawn = true;
 

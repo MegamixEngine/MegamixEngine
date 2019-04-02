@@ -98,7 +98,7 @@ category = "gloop";
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (!pop)
+if (!global.frozen &amp;&amp; !pop)
 {
     with (target)
     {
@@ -226,14 +226,14 @@ if ((entityCanStep()) &amp;&amp; !pop)
     {
         with(objGloopBreaker)
         {
-        with (other)
+            with (other)
             {
-            iFrames = 4;
-            playSFX(sfxEnemyHit); 
-            healthpoints --;
+                iFrames = 4;
+                playSFX(sfxEnemyHit); 
+                healthpoints --;
             }
         
-        instance_destroy();
+            instance_destroy();
         }
     }
     

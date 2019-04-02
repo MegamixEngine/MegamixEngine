@@ -35,6 +35,7 @@ respawnRange = 48;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 tile_layer = 1000000;
 
@@ -44,6 +45,8 @@ inst_restore[0] = noone;
 obj_embed[0] = prtEntity;
 obj_embed[1] = prtPickup;
 obj_embed_n = 2;
+
+objectDrop = objHarmfulExplosion; //what is used for the object created on death, defaults to harmful explosion
 
 // order for nested commando mines.
 depth -= y / 100000;
@@ -201,9 +204,9 @@ if (spawned)
           <argument>
             <kind>1</kind>
             <string>dead = 1;
-instance_create(x + 8, y, objHarmfulExplosion);
+instance_create(x + 8, y, objectDrop);
 
-playSFX(sfxMM3Explode);
+playSFX(sfxMM9Explosion);
 
 with (instance_create(round(x / 16) * 16, round(y / 16) * 16, objCommandoMineTiler))
 {
@@ -213,8 +216,6 @@ with (instance_create(round(x / 16) * 16, round(y / 16) * 16, objCommandoMineTil
     parent = other.id;
 }
 
-refX = spriteGetXCenter();
-refY = spriteGetYCenter();
 alarm[2] = 1;
 </string>
           </argument>

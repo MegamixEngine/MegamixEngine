@@ -91,9 +91,9 @@ if (entityCanStep())
         if (cooldownTimer == 17)
         {
             // for loop used to make more efficent code
-            for (i = -1; i &lt;= 1; i += 1)
+            for (var i = -1; i &lt;= 1; i += 1)
             {
-                ID = instance_create(x + image_xscale * 8,
+                var ID = instance_create(x + image_xscale * 8,
                     spriteGetYCenter(), objMM1MetBullet);
                 ID.dir = 45 * i;
                 ID.xscale = image_xscale;
@@ -199,12 +199,6 @@ if (dead)
 {
     exit;
 }
-
-squareSize = 48;
-col[0] = c_white;
-col[1] = global.primaryCol[0];
-col[2] = global.secondaryCol[0];
-col[3] = global.outlineCol[0];
 
 // make sure the target player is set the same way as a 1-up's is if that ever changes!
 if (image_index == 0)

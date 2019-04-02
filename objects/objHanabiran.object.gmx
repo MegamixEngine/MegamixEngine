@@ -38,6 +38,7 @@ contactDamage = 6;
 blockCollision = 0;
 grav = 0;
 facePlayerOnSpawn = false;
+category = "nature";
 
 despawnRange = -1;
 

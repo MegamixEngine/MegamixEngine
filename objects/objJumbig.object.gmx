@@ -30,6 +30,7 @@
 healthpointsStart = 14;
 healthpoints = healthpointsStart;
 contactDamage = 7;
+xs = 0;
 
 category = "big eye, bulky";
 
@@ -61,6 +62,10 @@ dummyTimer = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
 
 if (entityCanStep())
 {

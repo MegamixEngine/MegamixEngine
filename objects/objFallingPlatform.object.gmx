@@ -36,6 +36,7 @@ isSolid = 2;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 respawn = true;
 

@@ -37,6 +37,10 @@ xspeed = 0;
 respawn = false;
 
 image_speed = 0;
+
+// @cc - Change colour: 0 (default) = brown, 1 = white
+col = 0;
+init = 1;
 </string>
           </argument>
         </arguments>
@@ -61,6 +65,21 @@ image_speed = 0;
             <kind>1</kind>
             <string>event_inherited();
 
+//Change colours
+if (init)
+{
+    switch(col)
+    {
+        case 1:
+            sprite_index = sprHoohooRockWhite;
+            break;
+        default:
+            sprite_index = sprHoohooRock;
+            break;
+    }
+    init = 0;
+}
+
 if (entityCanStep())
 {
     if (ground)
@@ -68,9 +87,9 @@ if (entityCanStep())
         instance_destroy();
         playSFX(sfxHoohooRock);
         
-        for (i = 1; i &lt;= 4; i++)
+        for (var i = 1; i &lt;= 4; i++)
         {
-            debris = instance_create(x, y, objEnemyBullet);
+            var debris = instance_create(x, y, objEnemyBullet);
             debris.sprite_index = sprHoohooRock;
             debris.image_speed = 0;
             debris.contactDamage = 3;

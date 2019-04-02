@@ -45,6 +45,7 @@ phase = 0;
 option = 0;
 selected = 0;
 buffer = 0;
+pID = 0;
 
 visibleOptions = 9;
 optionOffset = 0;
@@ -82,6 +83,7 @@ optionText[17] = 'ITEM GRAPHICS';
 optionText[18] = 'DEATH EFFECT';
 optionText[19] = 'JUMP SOUND';
 optionText[20] = 'TELEPORT SOUND';
+optionText[21] = 'CHECKPOINT NOT.';
 </string>
           </argument>
         </arguments>
@@ -180,7 +182,7 @@ switch (phase)
         }
         else if (objGlobalControl.fadeAlpha == 0 &amp;&amp; global.nextRoom == 0)
         {
-            global.frozen = true;
+            queuePause();
             instance_destroy();
         }
         break;
@@ -217,19 +219,39 @@ if (phase == 2 &amp;&amp; !selected)
     // var maxplayers = min(4+gamepad_get_device_count(),4);
     
     // left / right controlled selections
-    dir = (global.keyRightPressed[0] || (global.keyRight[0] &amp;&amp; horizontalQuickScrollTimer &lt;= 0)) - (global.keyLeftPressed[0] || (global.keyLeft[0] &amp;&amp; horizontalQuickScrollTimer &lt;= 0));
+    var dir = (global.keyRightPressed[0] || (global.keyRight[0] &amp;&amp; horizontalQuickScrollTimer &lt;= 0)) - (global.keyLeftPressed[0] || (global.keyLeft[0] &amp;&amp; horizontalQuickScrollTimer &lt;= 0));
     if (dir != 0)
     {
         switch (option)
         {
             // Screensize
             case 3:
-                pre = global.screensize;
-                setScreenSize(global.screensize + dir);
-                if (global.screensize != pre)
+                if (!window_get_fullscreen())
                 {
-                    playSFX(sfxMenuMove);
+                    // usual screen resizing
+                    var pre = global.screensize;
+                    setScreenSize(global.screensize + dir);
+                    if (global.screensize != pre)
+                    {
+                        playSFX(sfxMenuMove);
+                    }
                 }
+                else if (dir &lt; 0)
+                {
+                    // coming out of fullscreen
+                    var newS = max(1, min(display_get_height() / global.screenHeight, display_get_width() / global.screenWidth));
+                    if (newS mod 1 == 0)
+                    {
+                        newS --;
+                    }
+                    else
+                    {
+                        newS = floor(newS);
+                    }
+                    
+                    setScreenSize(newS);
+                }
+                
                 break;
             
             // V-Sync
@@ -267,7 +289,6 @@ if (phase == 2 &amp;&amp; !selected)
             case 6:
                 pre = global.soundvolume;
                 global.soundvolume = max(0, min(100, global.soundvolume + 10 * dir));
-                audio_master_gain(global.soundvolume * 0.01);
                 if (global.soundvolume != pre)
                 {
                     playSFX(sfxMenuMove);
@@ -277,13 +298,17 @@ if (phase == 2 &amp;&amp; !selected)
             // Players (co-op)
             case 7:
                 pre = global.playerCount;
-                global.playerCount = max(1, min(4, global.playerCount + dir));
+                global.playerCount = clamp(global.playerCount + dir, 1, global.maxPlayerCount);
                 if (global.playerCount != pre)
                 {
                     playSFX(sfxMenuMove);
                 }
+                // initialize player variables for those that are not initialized.
+                playerGlobalInit();
                 if (global.playerCount &gt; pre)
                 {
+                    // new players enter level with full life and ammo.
+                    // (Note: this can be abused.)
                     resetPlayerState(pre);
                     
                     // allow player to respawn:
@@ -415,6 +440,16 @@ if (phase == 2 &amp;&amp; !selected)
                 pre = global.teleportSound;
                 global.teleportSound = min(max(0, global.teleportSound + dir), 1);
                 if (global.teleportSound != pre)
+                {
+                    playSFX(sfxMenuMove);
+                }
+                break;
+            
+            // Checkpoint notification
+            case 21:
+                pre = global.checkpointNotification;
+                global.checkpointNotification = min(max(0, global.checkpointNotification + dir), 3);
+                if (global.checkpointNotification != pre)
                 {
                     playSFX(sfxMenuMove);
                 }
@@ -851,8 +886,8 @@ if(key != -1 &amp;&amp; !press)
             <string>draw_set_color(c_white);
 
 // center display on non-standard resolutions
-drawXPosition = view_xview[0] + view_wview[0] / 2 - 128;
-drawYPosition = view_yview[0] + view_hview[0] / 2 - 112;
+var drawXPosition = view_xview[0] + view_wview[0] / 2 - 128;
+var drawYPosition = view_yview[0] + view_hview[0] / 2 - 112;
 
 // draw menu bg
 draw_sprite(sprite_index, 0, drawXPosition, drawYPosition);
@@ -906,7 +941,7 @@ for (var j = 0; j &lt; visibleOptions; j++)
 }
 
 // draw current option status'
-opt = '';
+var opt = '';
 for (var j = 0; j &lt; visibleOptions; j++)
 {
     switch (optionOffset + j)
@@ -1113,6 +1148,26 @@ for (var j = 0; j &lt; visibleOptions; j++)
             else
             {
                 opt += 'MM3-MM6';
+            }
+            break;
+        
+        // Checkpoint notification
+        case 21:
+            if (global.checkpointNotification == 0)
+            {
+                opt += 'ON';
+            }
+            else if (global.checkpointNotification == 1)
+            {
+                opt += 'TOP';
+            }
+            else if (global.checkpointNotification == 2)
+            {
+                opt += 'CENTER';
+            }
+            else if (global.checkpointNotification == 3)
+            {
+                opt += 'BOTTOM';
             }
             break;
     }

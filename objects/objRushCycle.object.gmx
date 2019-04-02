@@ -33,6 +33,7 @@ contactDamage = 0;
 
 blockCollision = 1;
 grav = 0.25;
+bubbleTimer = 0;
 
 canHit = -1;
 
@@ -169,6 +170,14 @@ if (!global.frozen)
         // Drain energy
         if (global.ammo[playerID, global.weapon[playerID]] &gt; 0 &amp;&amp; instance_exists(rider))
         {
+            // turning failsafe thingy (you suck flashman &amp;gt;:C)
+            if (turning &amp;&amp; rider.xDir == 0)
+            {
+                image_xscale = -image_xscale;
+                xspeed *= 1.25;
+                turning = 0;
+            }
+            
             // Take away ammo
             global.ammo[playerID, global.weapon[playerID]] = max(0,
                 global.ammo[playerID, global.weapon[playerID]]
@@ -225,7 +234,7 @@ if (!global.frozen)
                     
                     if (trailTimer mod 3 == 0 &amp;&amp; abs(xspeed) &gt; 1.5)
                     {
-                        a = instance_create(rider.x, rider.y, objTrailEffect);
+                        var a = instance_create(rider.x, rider.y, objTrailEffect);
                         a.drawingPlayer = true;
                         a.parent = rider;
                         a.spriteX = 10 + currentImg;
@@ -258,7 +267,14 @@ if (!global.frozen)
                     {
                         if (place_meeting(x, y + image_yscale * 2, objSpike))
                         {
-                            global.ammo[playerID, global.weapon[playerID]] = max(0, global.ammo[playerID, global.weapon[playerID]] - 1);
+                            if global.infiniteEnergy[global.weaponID[? objRushCycle]]
+                            { 
+                                global.playerHealth[playerID] = max(0, global.playerHealth[playerID] - 1);
+                            }
+                            else
+                            {
+                                global.ammo[playerID, global.weapon[playerID]] = max(0, global.ammo[playerID, global.weapon[playerID]] - 1);
+                            }
                             playSFX(sfxHit);
                             iFrames = 8;
                         }
@@ -352,6 +368,7 @@ if (active)
         }
         x = rider.x;
         y = rider.y + 15 * rider.image_yscale;
+        blockCollision = 0;
     }
 }
 </string>

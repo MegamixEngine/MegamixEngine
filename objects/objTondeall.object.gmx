@@ -154,7 +154,6 @@ else
     {
         direct = 1;
         cooldownTimer = 0;
-        canShoot = true;
         image_index = 0;
     }
 }

@@ -195,8 +195,8 @@ switch (angle)
 
 if (object_index == objPetitDevilGreen)
 {
-    refX = spriteGetXCenter();
-    refY = spriteGetYCenter();
+    var refX = spriteGetXCenter();
+    var refY = spriteGetYCenter();
     
     with (instance_create(refX, refY, objPetitDevilClone))
     {

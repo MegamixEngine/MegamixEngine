@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A crab from Venus's stage that shoots large bubbles. If they touch Mega Man, he'll get
+// trapped inside and must break out as the bubble carries him along.
+
+event_inherited();
 
 healthpointsStart = 6;
 healthpoints = healthpointsStart;
@@ -96,7 +99,7 @@ if (entityCanStep())
             {
                 if (!instance_exists(bubble))
                 {
-                    i = instance_create(x, y, objFeeberBubble);
+                    var i = instance_create(x, y, objFeeberBubble);
                     i.xspeed = 1 * image_xscale;
                     i.image_xscale = image_xscale;
                     i.parent = id;

@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 2;
+inWater = -1;
 
 image_speed = 0.3;
 
@@ -118,8 +119,8 @@ if (!global.frozen)
     {
         if (instance_exists(pickup))
         {
-            pickx = spriteGetXCenterObject(pickup) - pickup.x;
-            picky = spriteGetYCenterObject(pickup) - pickup.y;
+            var pickx = spriteGetXCenterObject(pickup) - pickup.x;
+            var picky = spriteGetYCenterObject(pickup) - pickup.y;
             pickup.x = x - pickx + 8 * image_xscale;
             pickup.xspeed = 0;
             pickup.y = y - picky + 6;
@@ -204,12 +205,12 @@ willStop = 0; // If this is 1, the player will halt on shooting ala Metal Blade.
 
 if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop);
+    var i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop);
     
     // set its starting angle.
     if (i)
     {
-        i.direction = 30 + (120 * (image_xscale == -1));
+        i.direction = 30 + (120 * (image_xscale == -1 &amp;&amp; image_yscale == 1)) + (300 * (image_yscale == -1)) - (120 * (image_xscale == -1 &amp;&amp; image_yscale == -1));
     }
 }
 </string>

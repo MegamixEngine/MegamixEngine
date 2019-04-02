@@ -90,9 +90,10 @@ if (entityCanStep())
             if (shootAmount &lt; 3)
             {
                 shootTimer = 0;
-                i = instance_create(x + 6 * image_xscale, y - 9,
+                var i = instance_create(x + 6 * image_xscale, y - 9,
                     objEnemyBullet);
                 i.xspeed = image_xscale * 2;
+                i.sprite_index = sprFlashShot;
                 playSFX(sfxEnemyShootClassic);
                 shootAmount += 1;
             }

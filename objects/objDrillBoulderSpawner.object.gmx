@@ -32,6 +32,7 @@ healthpoints = healthpointsStart;
 
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 // Enemy specific code
 canHit = false;
@@ -41,6 +42,9 @@ actionTimer = 0;
 delay = 120;
 
 myBoulder = noone;
+
+objectDrop = objDrillBoulder;
+particleDrop = objDrillBoulderParticle;
 </string>
           </argument>
         </arguments>
@@ -72,9 +76,9 @@ if (entityCanStep())
         actionTimer += 1;
         if (abs(target.x - x) &lt; 32)
         {
-            if (actionTimer &gt;= delay &amp;&amp; !instance_exists(myBoulder) &amp;&amp; !instance_exists(objDrillBoulderParticle))
+            if (actionTimer &gt;= delay &amp;&amp; !instance_exists(myBoulder) &amp;&amp; !instance_exists(particleDrop))
             {
-                myBoulder = instance_create(x, y, objDrillBoulder);
+                myBoulder = instance_create(x, y, objectDrop);
                 myBoulder.respawn = 0;
                 actionTimer = 0;
             }

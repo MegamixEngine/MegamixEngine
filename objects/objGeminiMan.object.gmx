@@ -162,7 +162,6 @@ if (entityCanStep())
         {
             for (var i = 0; i &lt; maxClones; i++)
             {
-                print("Made a clone");
                 var c = instance_create(x, y, objGemineighbour);
                 c.clone = id;
                 c.healthParent=id;
@@ -185,30 +184,11 @@ if (entityCanStep())
             makeClones = false;
         }
         
-        // share healthbar
-        /*
-        with (objGeminiMan)
-        {
-            if (id != other.id &amp;&amp; clone.id == other.clone.id)
-            {
-                if (healthpoints &lt; other.healthpoints)
-                {
-                    other.healthpoints = healthpoints;
-                }
-            }
-        }
-        if (healthpoints &lt;= 0)
-        {
-            event_user(EV_DEATH);
-            exit;
-        }
-        */
         switch (phase)
         {
             case 0: // RunJumping 
-                if (healthpoints &lt;= (healthpointsStart / 2) &amp;&amp; ground)
+                if (healthpoints &lt; (healthpointsStart / 2) &amp;&amp; ground)
                 {
-                    // phase 2
                     if (cloneId == 0)
                     {
                         phase = 2;
@@ -332,7 +312,7 @@ if (entityCanStep())
                 if (attackTimer == 5)
                 {
                     image_index = 1;
-                    bull = instance_create(x, y + 2, objGeminiBullet);
+                    var bull = instance_create(x, y + 2, objGeminiBullet);
                     bull.xspeed = image_xscale * 4;
                 }
                 if (attackTimer &gt;= 10)
@@ -396,7 +376,7 @@ if (entityCanStep())
                         {
                             for (i = -1; i &lt;= 1; i += 1)
                             {
-                                laser = instance_create((round(x / 2) * 2) + i * 7,
+                                var laser = instance_create((round(x / 2) * 2) + i * 7,
                                     y + 2, objGeminiManLaser);
                                 laser.xspeed = image_xscale * 2;
                                 if (i == -1)
@@ -409,9 +389,7 @@ if (entityCanStep())
                 }
                 break;
         }
-        
-        // Face the player
-        //            calibrateDirection();
+
     }
 }
 else

@@ -94,13 +94,21 @@ dieToSpikes = false;
 sinkin = 1;
 xcoll = 0;
 ycoll = 0;
-plt = 0;
 
-itemDrop = 0;//This object will be spawned once the entity dies
+epIsOnPlat = 0;
+
+itemDrop = 0; //This object will be spawned once the entity dies
+dropOnce = false;//If true itemDrop will be set to 0 after the item is dropped
+dropDisappearTime = 105*2;//(for prtPickup)Set to a non positive value to make infinite;
+itemCode = ""; //Code that runs on the dropped object
+itemScript = scrNoEffect; //Script that runs on the dropped object
 
 stopOnFlash = true;
 iceTimer = 0; // is iced (frozen cold), and how much remaining time to spend iced
 canIce = true; //@cc is it possible to ice this object (usually doesn't matter if canHit is false)
+
+invincible = false; // set this to true to make this enemy invincible no matter what
+sparkleTimer = 0;
 
 doesTransition = true; // carries mega man through transitions
 
@@ -401,6 +409,22 @@ else if (!global.frozen) // Basically everything prtEntity should usually be doi
         {
             calibrateDirection();
         }
+        
+        // special invincible effect handling
+        if (invincible == true)
+        {
+            sparkleTimer ++;
+            if (!(sparkleTimer mod 6))
+            {
+                with (instance_create(bboxGetXCenter(), bboxGetYCenter(), objSlideDust))
+                {
+                    sprite_index = sprShine;
+                    image_xscale = choose(1, -1);
+                    direction = irandom(360);
+                    rotationMovement(xstart, ystart, irandom_range(5, 12), 0);
+                }
+            }
+        }
     }
 }
 </string>
@@ -474,7 +498,7 @@ if (DEBUG_SPAWN)
           <argument>
             <kind>1</kind>
             <string>/// EV_WEAPON_SETDAMAGE: Set damage for weapons and weaknesses for enemies
-for (i = 0; i &lt; specialDamageValuesTotal; i++)
+for (var i = 0; i &lt; specialDamageValuesTotal; i++)
 {
     var indx = i * 2;
     if (specialDamageValues[indx] != -1)
@@ -509,7 +533,14 @@ for (i = 0; i &lt; specialDamageValuesTotal; i++)
 
 // This event is called when an enemy collides with a player projectile
 // You can reflect the bullet by setting "other.guardCancel" to 1
-// or you can outright cancel the collision event by setting "other.guardCancel" to 2
+// or you can outright cancel the collision event by setting "other.guardCancel" to 2.
+
+// Note that this will have different effects with piercing weapons. Piercing weapons
+// will ignore guardCancel 1, etc.. If you want piercing weapons to pass through but other
+// weapons to use reflect animation, set "other.guardCancel" to 3.
+
+// If you want to reflect the bullet no matter what (some weapons have unique reflecting
+// animations if they're piercing ones to allow this) set "other.guardCancel" to 4.
 </string>
           </argument>
         </arguments>
@@ -543,15 +574,24 @@ if (itemDrop == objKey)
     _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objKey);
     _ex.yspeed = -4;
     _ex.homingTimer = 90;
+    _ex.despawnRange = -1;
     playSFX(sfxKeySpawn);
 }
-else if(itemDrop == objEnergyElement)
+else if (itemDrop == objEnergyElement)
 {
     _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objEnergyElement);
 }
 else
 {
     _ex.myItem = itemDrop;
+    _ex.code = itemCode;
+    _ex.script = itemScript;
+    _ex.disappearTime = dropDisappearTime;
+}
+
+if (itemDrop &amp;&amp; dropOnce)
+{
+    itemDrop = 0;
 }
 </string>
           </argument>
@@ -688,6 +728,14 @@ playSFX(sfxEnemyHit);
         }
         else
         {
+            // Special effect when invincibile
+            if (invincible == true)
+            {
+                d3d_set_fog(true, c_white, 0, 0);
+                draw_sprite_ext(sprite_index, image_index, x, y, image_xscale * 1.075 + (sin(sparkleTimer * 0.15) *.08 * sign(image_xscale)), image_yscale * 1.025 + (sin(sparkleTimer * 0.15) *.08 * sign(image_yscale)), image_angle, image_blend, image_alpha);
+                d3d_set_fog(false, 0, 0, 0);
+            }
+            
             drawSelf();
         }
     }

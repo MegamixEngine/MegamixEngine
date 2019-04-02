@@ -95,13 +95,14 @@ half = 'whole';
 }
 else
 {
-    imgx = image_xscale;
+    var imgx = image_xscale;
     image_xscale = 1;
-    imgy = image_yscale;
+    var imgy = image_yscale;
     image_yscale = 1;
     
-    ys = sprite_height * 0.5;
+    var ys = sprite_height * 0.5;
     
+    var top, yh;
     if (half == 'top')
     {
         top = 0;

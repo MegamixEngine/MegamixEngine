@@ -27,10 +27,7 @@ cgrav += (cgrav == 0);
 // Set stuff solid according to the isSolid variable
 with (objSolid)
 {
-    if (isSolid)
-    {
-        solid = 1;
-    }
+    solid = (isSolid>0);
 }
 
 with (prtEntity)
@@ -61,6 +58,7 @@ with (prtEntity)
 // Stoppers are only solid for the object_index they have stored
 with (objGenericStopper)
 {
+    solid=0;
     if (other.object_index == objectToStop || object_is_ancestor(other.object_index, objectToStop))
     {
         solid = 1;
@@ -88,6 +86,7 @@ if (xspeed != 0)
     {
         with (objTopSolid)
         {
+            solid = 0;
             if (place_meeting(x - other.xspeed, y, myid))
             {
                 if (!place_meeting(x - other.xspeed, y + slp, myid)
@@ -137,7 +136,7 @@ if (xspeed != 0)
         x = round(x);
 
         // move back outsie of the object while overlapping.
-        xcoll = sign(xspeed) * -0.5;
+        xcoll = sign(xspeed) * -1;
         repeat (max(32, abs(xspeed) * 4))
         {
             if (!place_free(x, y))
@@ -219,23 +218,19 @@ if (yspeed != 0)
                 if (isSolid == 2)
                 {
                     solid = 0;
-                    for (var i = 0; i <= abs(ceil(other.yspeed));i+=abs(other.yspeed))
+                    if(!place_meeting(x,y,myid))
                     {
-                        if (!place_meeting(x, y + i * cgrav, myid))
+                        if (!fnsolid)
                         {
-                            if (!fnsolid)
+                            solid = 1;
+                        }
+                        else
+                        {
+                            solid = !global.factionStance[faction, other.faction];
+                            if (fnsolid == 2)
                             {
-                                solid = 1;
+                                solid = !solid;
                             }
-                            else
-                            {
-                                solid = !global.factionStance[faction, other.faction];
-                                if (fnsolid == 2)
-                                {
-                                    solid = !solid;
-                                }
-                            }
-                            break;
                         }
                     }
                 }
@@ -309,6 +304,7 @@ if (dieToSpikes)
         {
             global.damage = spSolid.contactDamage;
             healthpoints -= global.damage;
+            playSFX(sfxEnemyHit);
 
             if (healthpoints <= 0)
             {
@@ -323,8 +319,7 @@ if (dieToSpikes)
         }
     }
 }
-
-with (all)
+with(all)
 {
-    solid = 0;
+    solid=0;
 }

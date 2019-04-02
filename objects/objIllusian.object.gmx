@@ -32,17 +32,30 @@ tile_layer = 800000;
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 blockCollision = 0;
+category = "flying";
 grav = 0;
 
 // not confirmed:
 contactDamage = 3;
 
-// these can be adjusted in creation code
+y_route = 0;
+route_progress = 0;
+route_combined = makeArray();
+route_progress = makeArray();
+route_tile = makeArray();
+route_tile_n = 0;
+
+//@cc
 move_speed = 2;
+//@cc
 lay_time = 90;
+//@cc
 image_speed = 2;
+//@cc
 image_index = 0;
+//@cc
 dir = 0;
+//@cc
 lay_timer = 0;
 </string>
           </argument>
@@ -98,7 +111,7 @@ if (entityCanStep())
         }
         
         // bubble sort x values
-        swapped = false;
+        var swapped = false;
         for (var i = 0; i &lt; route_tile_n - 1; i++)
         {
             if (tile_get_x(route_tile[i + 1]) * dir &lt; tile_get_x(route_tile[i]) * dir)
@@ -171,7 +184,6 @@ if (entityCanStep())
 }
 else if (dead)
 {
-    route = -1;
     image_index = 2;
     dir = 0;
     lay_timer = 0;

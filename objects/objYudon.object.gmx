@@ -114,7 +114,7 @@ if (entityCanStep())
     // tickdown cooldown timer
     
     // check to see if missiles exist, if not remove them from the array.
-    for (i = 1; i &lt;= 2; i += 1)
+    for (var i = 1; i &lt;= 2; i += 1)
     {
         if (missileArray[i])
         {
@@ -130,7 +130,7 @@ if (entityCanStep())
     {
         if (cooldownTimer &gt; 0)
             cooldownTimer -= 1;
-        if (cooldownTimer == 0)
+        if (cooldownTimer == 0) &amp;&amp; (instance_exists(target))
         {
             shooting = true;
             imageOffset = 2;
@@ -211,6 +211,7 @@ else if (dead)
     animTimer = 8;
     shooting = false;
     actionTimer = 0;
+    closeBlastDoors = false;
     cooldownTimer = cooldownMax;
     img = 0;
     missile1 = 0;
@@ -251,6 +252,33 @@ else
     {
         other.guardCancel = 1;
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+with (objYudonMissile)
+{
+    event_user(EV_DEATH);
 }
 </string>
           </argument>

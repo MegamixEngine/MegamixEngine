@@ -41,7 +41,7 @@ facePlayerOnSpawn = true;
 
 // Enemy specific code
 airControlSpeed = 1 / 8; // speed at which player can move up and down on their own
-image_speed = 0.2;
+image_speed = 0.3;
 
 tugDist[global.playerCount] = 0;
 tugSpeed[global.playerCount] = 0;
@@ -80,7 +80,7 @@ var myID = id;
 
 var canStep = entityCanStep();
 if (canStep)
-    image_speed = 0.2;
+    image_speed = 0.3;
 else
     image_speed = 0;
 with (objMegaman)

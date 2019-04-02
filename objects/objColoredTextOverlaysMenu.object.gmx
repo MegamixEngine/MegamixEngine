@@ -169,7 +169,7 @@ switch (phase)
         }
         else if (objGlobalControl.fadeAlpha == 0 &amp;&amp; global.nextRoom == 0)
         {
-            global.frozen = true;
+            queuePause();
             instance_destroy();
         }
         break;
@@ -198,9 +198,10 @@ switch (phase)
 if (phase == 2 &amp;&amp; !selected)
 {
     // left / right controlled selections
-    dir = (global.keyRightPressed[0] || (global.keyRight[0] &amp;&amp; horizontalQuickScrollTimer &lt;= 0)) - (global.keyLeftPressed[0] || (global.keyLeft[0] &amp;&amp; horizontalQuickScrollTimer &lt;= 0));
+    var dir = (global.keyRightPressed[0] || (global.keyRight[0] &amp;&amp; horizontalQuickScrollTimer &lt;= 0)) - (global.keyLeftPressed[0] || (global.keyLeft[0] &amp;&amp; horizontalQuickScrollTimer &lt;= 0));
     if (dir != 0)
     {
+        var pre;
         switch (option)
         {
             // enable
@@ -404,7 +405,7 @@ for (var j = 0; j &lt; array_length_1d(optionText); j++)
 }
 
 // draw current option status'
-opt = '';
+var opt = '';
 for (var j = 0; j &lt; array_length_1d(optionText); j++)
 {
     switch (j)

@@ -34,12 +34,14 @@ healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
-category = "shielded, semi bulky";
+category = "grounded, shielded, semi bulky";
 
 // Enemy specific code
 inShell = false;
 shellTimer = 0;
 animTimer = 0;
+waitTimer = 10;
+xs = 0;
 
 col = 0;
 init = 1;
@@ -94,6 +96,7 @@ if (entityCanStep())
         image_xscale = -sign(xcoll);
     }
     
+    // Animation
     if (animTimer != -1)
     {
         animTimer += 1;
@@ -112,7 +115,7 @@ if (entityCanStep())
     }
     else
     {
-        if (animTimer &gt;= 8)
+        if (animTimer &gt;= 6)//8
         {
             animTimer = 0;
             image_index += 1;
@@ -123,22 +126,21 @@ if (entityCanStep())
         }
     }
     
+    // Set xspeed
     if (xspeed == 0 &amp;&amp; !inShell)
     {
-        calibrateDirection();
         xs = 1;
     }
-    
+    // Check for Mega Man
     if (instance_exists(target))
     {
         if (abs(target.x - x) &lt; 48 &amp;&amp; !inShell &amp;&amp; ground)
         {
             inShell = true;
             animTimer = -1;
-            xspeed = 0;
+            xs = 0;
         }
     }
-    
     if (inShell)
     {
         if (ground)
@@ -161,13 +163,14 @@ if (entityCanStep())
                 break;
             case 112:
                 xs = 0;
+                xspeed = 0;
                 inShell = false;
                 shellTimer = 0;
                 image_index = 0;
                 break;
         }
     }
-    
+    // Move if on ground
     if (!ground)
     {
         xspeed = 0;

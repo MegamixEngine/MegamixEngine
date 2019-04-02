@@ -23,5 +23,8 @@
     <frame index="0">images\sprBariIIIBody_0.png</frame>
     <frame index="1">images\sprBariIIIBody_1.png</frame>
     <frame index="2">images\sprBariIIIBody_2.png</frame>
+    <frame index="3">images\sprBariIIIBody_3.png</frame>
+    <frame index="4">images\sprBariIIIBody_4.png</frame>
+    <frame index="5">images\sprBariIIIBody_5.png</frame>
   </frames>
 </sprite>

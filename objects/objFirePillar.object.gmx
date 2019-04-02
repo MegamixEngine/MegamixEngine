@@ -33,13 +33,21 @@ contactDamage = 3;
 
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
+isTargetable = false;
 
+init = 1;
 image_speed = 0.25;
-
 y += sprite_height;
 
 alarmRise = 0;
 rise = true;
+init = true;
+
+freezeTimer = 0;
+preImgSpeed = 0.25;
+spriteWidth = 0;
+spriteHeight = 0;
 </string>
           </argument>
         </arguments>
@@ -64,30 +72,59 @@ rise = true;
             <kind>1</kind>
             <string>event_inherited();
 
-if (entityCanStep())//(!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
+// initial setup
+if (init)
+{
+    init = false;
+    y += sprite_height;
+    spriteWidth = sprite_get_width(sprite_index);
+    spriteHeight = sprite_get_height(sprite_index);
+}
+
+// actual step code
+if (entityCanStep())
 {
     healthpoints = 1;
     
-    alarmRise += 1;
-    if (alarmRise &gt;= 40)
+    if (freezeTimer &gt; 0)
     {
-        if (rise)
+        // freeze control
+        freezeTimer -= 1;
+        
+        if (freezeTimer == 1)
         {
-            y -= 2;
-            if (y &lt;= ystart)
+            isSolid = 0;
+            if sprite_index == sprFirePillarFrozen
             {
-                rise = !rise;
-                alarmRise = 0;
-                y = ystart;
+                sprite_index = sprFirePillar;
+                image_speed = 0.25;
             }
         }
-        else
+    }
+    else
+    {
+        // actual bobbing up and down
+        alarmRise += 1;
+        if (alarmRise &gt;= 40)
         {
-            y += 2;
-            if (y &gt;= ystart + sprite_height &amp;&amp; !rise)
+            if (rise)
             {
-                rise = !rise;
-                alarmRise = 0;
+                y -= 2;
+                if (y &lt;= ystart)
+                {
+                    rise = !rise;
+                    alarmRise = 0;
+                    y = ystart;
+                }
+            }
+            else
+            {
+                y += 2;
+                if (y &gt;= ystart + spriteHeight &amp;&amp; !rise)
+                {
+                    rise = !rise;
+                    alarmRise = 0;
+                }
             }
         }
     }
@@ -116,17 +153,37 @@ if (entityCanStep())//(!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeSt
             <kind>1</kind>
             <string>if (collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_top + (sprite_height + (ystart - y)), other.id, false, false))
 {
+    // freeze pillar
+    if (other.object_index == objIceWall || other.object_index == objIceSlasher)
+    {
+        freezeTimer = 240;
+        isSolid = 1;
+        image_speed = 0;
+                
+        if (sprite_index == sprFirePillar)
+        {
+            sprite_index = sprFirePillarFrozen;
+        }
+        
+        playSFX(sfxEnemyHit);
+    }
+    
     with (other)
     {
         if (pierces == 0 || pierces == 1)
         {
-            event_user(EV_DEATH);
+            if (object_index != objSuperArmBlockProjectile) &amp;&amp; (object_index != objSuperArmDebris)
+            {
+                event_user(EV_DEATH);
+            }
             playSFX(sfxEnemyHit);
         }
     }
+    
+    iFrames = 0;
 }
 
-// only Rain Flush can stop fire....
+// only Rain Flush can stop fire....even if it's invisible......
 if (other.object_index != objRainFlush)
 {
     other.guardCancel = 2;
@@ -155,7 +212,9 @@ if (other.object_index != objRainFlush)
             <kind>1</kind>
             <string>if (!dead)
 {
-    draw_sprite_part(sprite_index, image_index, 0, 0, sprite_width, max(0, sprite_height + (ystart - y)), x, y);
+    draw_sprite_part(sprite_index, image_index, 0, 0, sprite_get_width(sprite_index), max(0, sprite_get_height(sprite_index) + (ystart - y)), x, y);
+    image_yscale = 1/spriteHeight;
+    image_yscale *= max(0, sprite_get_height(sprite_index) + (ystart - y));
 }
 </string>
           </argument>

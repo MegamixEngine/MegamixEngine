@@ -32,6 +32,7 @@ respawn = true;
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "aquatic, joes";
 
 facePlayerOnSpawn = true;
 
@@ -39,6 +40,7 @@ facePlayerOnSpawn = true;
 waterDelay = 0;
 cooldownTimerMax = 60;
 cooldownTimer = cooldownTimerMax - 5;
+water = 0;
 </string>
           </argument>
         </arguments>
@@ -70,7 +72,7 @@ if (entityCanStep())
     
     if (cooldownTimer == cooldownTimerMax)
     {
-        i = instance_create(x + image_xscale * 8, spriteGetYCenter() + 7,
+        var i = instance_create(x + image_xscale * 8, spriteGetYCenter() + 7,
             objEnemyBullet);
         i.xspeed = 4 * image_xscale;
         i.xscale = image_xscale;

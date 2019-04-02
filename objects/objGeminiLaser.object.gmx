@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 1;
+inWater = -1;
 
 blockCollision = 1;
 noCollision = 0;
@@ -204,7 +205,7 @@ willStop = 0; // If this is 1, the player will halt on shooting ala Metal Blade.
 
 if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop);
+    var i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop);
     
     // set starting speed
     if (instance_exists(i))
@@ -230,7 +231,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
         playSFX(sfxGeminiLaser);
         for (i = 1; i &lt; 4; i += 1)
         {
-            laser = instance_create(x + (xOffset * image_xscale) + (((i * sprite_get_width(sprGeminiLaser))) * image_xscale), y + yOffset, objGeminiLaser);
+            var laser = instance_create(x + (xOffset * image_xscale) + (((i * sprite_get_width(sprGeminiLaser))) * image_xscale), y + yOffset, objGeminiLaser);
             laser.image_xscale = image_xscale;
             laser.bulletLimitCost = 0;
             

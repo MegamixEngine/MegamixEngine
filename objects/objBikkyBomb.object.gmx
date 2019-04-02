@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A lotto wheel enemy from Mars's stage that spins, tosses bombs, and jumps towards you.
+// While spinning, it reflects non-piercing weapons.
+
+event_inherited();
 
 healthpointsStart = 6;
 contactDamage = 6;

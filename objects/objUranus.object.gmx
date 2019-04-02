@@ -144,7 +144,7 @@ enemyDamageValue(objIceSlasher, 1);
             <kind>1</kind>
             <string>// leave this. this is needed.
 
-ixs = image_xscale;
+var ixs = image_xscale;
 image_xscale=1;
 event_inherited();
 image_xscale=ixs;

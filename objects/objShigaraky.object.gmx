@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A robot tanuki that fires large spheres from a hatch down below. Obvious joke is obvious.
+
+event_inherited();
 
 healthpointsStart = 4;
 healthpoints = healthpointsStart;
@@ -44,6 +46,7 @@ startFacingPlayer = true;
 animBack = false;
 imgSpd = 0.2;
 imgIndex = 0;
+ball = noone;
 </string>
           </argument>
         </arguments>
@@ -90,9 +93,10 @@ if (entityCanStep())
                 {
                     imgIndex = 2 - imgIndex mod 3;
                     animBack = true;
-                    a = instance_create(x + sprite_width * 0.3, y + 8, objShigarakyBall);
+                    var a = instance_create(x + sprite_width * 0.3, y + 8, objShigarakyBall);
                     a.xspeed = image_xscale;
                     a.image_xscale = image_xscale;
+                    ball = a.id;
                 }
             }
             else
@@ -113,9 +117,37 @@ else if (dead)
     shootTimer = 100;
     animBack = false;
     imgIndex = 0;
+    ball = noone;
 }
 
 image_index = imgIndex div 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+with (ball)
+{
+    event_user(EV_DEATH);
+}
 </string>
           </argument>
         </arguments>

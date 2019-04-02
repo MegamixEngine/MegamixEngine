@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 2;
+inWater = -1;
 
 penetrate = 0;
 pierces = 1;
@@ -115,7 +116,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &
 {
     for (var angle = 0; angle &lt; 360; angle += 120)
     {
-        i = fireWeapon(cos(degtorad(angle)) * 16, -(sin(degtorad(angle)) * 16), objPowerStone, 3, (1 / 3), 0, 0);
+        var i = fireWeapon(cos(degtorad(angle)) * 16, -(sin(degtorad(angle)) * 16), objPowerStone, 3, (1 / 3), 0, 0);
         if (i) // set starting speed
         {
             i.angle = angle;

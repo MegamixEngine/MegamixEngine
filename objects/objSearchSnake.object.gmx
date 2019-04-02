@@ -223,7 +223,7 @@ else if (!canDamage)
             <string>/// Fire weapon
 if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(13, 0, objSearchSnake, 3, 0.5, 1, 0);
+    var i = fireWeapon(13, 0, objSearchSnake, 3, 0.5, 1, 0);
     if (i)
     {
         i.yspeed = -3 * image_yscale;

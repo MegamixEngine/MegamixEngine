@@ -101,7 +101,7 @@ if (entityCanStep())
                     grav = 0.25;
                     
                     // Check for the custom stopper object.
-                    i = collision_rectangle(bbox_left + 1, y, bbox_right - 1, y - view_hview, objBombombStopper, false, false);
+                    var i = collision_rectangle(bbox_left + 1, y, bbox_right - 1, y - view_hview, objBombombStopper, false, false);
                     if (i)
                     {
                         yspeed = ySpeedAim(y, i.y, 0.25);
@@ -113,12 +113,16 @@ if (entityCanStep())
             if (yspeed &gt; 0 &amp;&amp; healthpoints &gt; 0)
             {
                 dead = 1;
-                instance_create(x + 8, y + 8, objHarmfulExplosion);
+                with instance_create(x + 8, y + 8, objHarmfulExplosion)
+                {
+                    sprite_index = sprExplosion;
+                }
+                
                 playSFX(sfxClassicExplosion);
                 repeat (2)
                 {
                     image_xscale *= -1;
-                    i = instance_create(x + 8, bboxGetYCenter(), objShrapnel);
+                    var i = instance_create(x + 8, bboxGetYCenter(), objShrapnel);
                     i.xspeed = 1.5 * image_xscale;
                     i.yspeed = -3.8;
                     if (col == 1)
@@ -188,7 +192,7 @@ phase = 1;
           <argument>
             <kind>1</kind>
             <string>// This enemy is invincible, so just do this to reflect bullets.
-other.guardCancel = 3;
+other.guardCancel = 2;//3
 </string>
           </argument>
         </arguments>

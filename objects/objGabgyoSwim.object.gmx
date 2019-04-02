@@ -33,6 +33,7 @@ event_inherited();
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 3;
+despawnRange=8;
 
 category = "aquatic, nature";
 
@@ -48,6 +49,7 @@ timer = 0;
 
 imgIndex = 0;
 imgSpd = 0.16;
+startXDir=image_xscale;
 </string>
           </argument>
         </arguments>
@@ -91,7 +93,7 @@ if (entityCanStep())
     }
     
     // AI
-    range = 48; // &lt;-- movement area width here
+    var range = 48; // &lt;-- movement area width here
     if (xspeed == 0 || x &lt; xstart - range || x &gt; xstart + range)
     {
         image_xscale = -image_xscale;
@@ -99,14 +101,36 @@ if (entityCanStep())
     
     xspeed = 1.6 * image_xscale;
 }
-else if (dead)
-{
-    timer = 0;
-    
-    imgIndex = 0;
-}
 
 image_index = imgIndex div 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(spawned)
+{
+    timer = 0;
+    image_xscale = startXDir;
+    imgIndex = 0;
+}
 </string>
           </argument>
         </arguments>

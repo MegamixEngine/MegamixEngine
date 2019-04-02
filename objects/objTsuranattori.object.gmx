@@ -36,7 +36,7 @@ contactDamage = 2;
 respawnRange=0;
 despawnRange=16;
 
-category = "flying, bird";
+category = "flying, bird, cluster";
 
 blockCollision = 0;
 grav = 0;

@@ -28,6 +28,7 @@
             <string>event_inherited();
 
 canHit = false;
+bubbleTimer = -1;
 
 isSolid = 1;
 
@@ -106,7 +107,7 @@ if (entityCanStep())
     
     xspeed = decreaseMagnitude(xspeed, 0.1);
     
-    for (i = 0; i &lt; array_length_1d(pushList); i += 1)
+    for (var i = 0; i &lt; array_length_1d(pushList); i += 1)
     {
         if (place_meeting(x, y, pushList[i]) &amp;&amp; xspeed == 0)
         {

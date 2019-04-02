@@ -111,7 +111,7 @@ if (entityCanStep())
                 repeat (2)
                 {
                     image_yscale *= -1;
-                    i = instance_create(x + (8 * image_xscale), y + (22 * image_yscale), objEnemyBullet);
+                    var i = instance_create(x + (8 * image_xscale), y + (22 * image_yscale), objEnemyBullet);
                     i.xspeed = 3 * image_xscale;
                     i.sprite_index = sprWatcherBullet;
                     i.imageSpeed = 0.3;

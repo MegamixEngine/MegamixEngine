@@ -37,6 +37,7 @@ contactDamage = 6;
 blockCollision = 0;
 grav = 0;
 facePlayerOnSpawn = true;
+category = "bulky, flying, rocky";
 
 despawnRange = -1;
 delayDisplay = 2;
@@ -58,6 +59,7 @@ attackTimerMax = 8;
 animTimer = 0;
 setY = 0;
 shotsFired = 1;
+dir = 1;
 </string>
           </argument>
         </arguments>

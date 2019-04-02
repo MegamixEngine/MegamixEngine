@@ -100,8 +100,8 @@ if (entityCanStep())
             alarmTimeMax = instance_place(x, y, objFusePlatformStarter).alarmTimeMax;
         }
         
-        myfuse = instance_position(x + 8, y + 8, objFusePlatform);
-        if (myfuse)
+        var myfuse = instance_position(x + 8, y + 8, objFusePlatform);
+        if (instance_exists(myfuse))
         {
             with (myfuse)
             {

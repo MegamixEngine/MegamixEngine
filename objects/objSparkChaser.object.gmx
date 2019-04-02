@@ -31,6 +31,7 @@ mainShot = 1;
 bulletLimitCost = 1;
 
 contactDamage = 1;
+inWater = -1;
 
 // constants
 moveSpeed = 6;
@@ -161,7 +162,7 @@ if (!global.frozen)
                 playSFX(sfxSparkChaser);
                 
                 // aim at target
-                newDir = -1;
+                var newDir = -1;
                 
                 if (instance_exists(target))
                 {
@@ -371,7 +372,7 @@ playSFX(sfxReflect);
             <string>// draw tail
 
 // don't have the tail point left upon pausing the game
-persist = false;
+var persist = false;
 if (global.frozen &amp;&amp; direction == 0)
 {
     direction = directionPersist;
@@ -384,7 +385,7 @@ if (!global.frozen &amp;&amp; direction != directionPersist)
     direction = directionPersist;
 }
 
-spriteAlt = false;
+var spriteAlt = false;
 if (direction mod 90 == 0)
 {
     // straight
@@ -419,8 +420,8 @@ else if (direction mod 45 == 0)
 else
 {
     // arctan(1/2) aka 26.56505 diagonal'
-    drawX = x;
-    drawY = y;
+    var drawX = x;
+    var drawY = y;
     
     if (floor(direction mod 90) == 26)
     {

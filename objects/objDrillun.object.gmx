@@ -63,7 +63,7 @@ alarmStop = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ys = yspeed;
+            <string>var ys = yspeed;
 
 event_inherited();
 
@@ -73,7 +73,7 @@ if (entityCanStep())
     {
         if (abs(target.x - x) &lt; 48)
         {
-            if (y == ystart)
+            if (floor(y) == floor(ystart))
             {
                 yspeed = 2.5;
             }
@@ -98,7 +98,7 @@ if (entityCanStep())
             repeat (2)
             {
                 image_xscale *= -1;
-                i = instance_create(x + 5 * image_xscale, bbox_bottom - 1, objSlideDust);
+                var i = instance_create(x + 5 * image_xscale, bbox_bottom - 1, objSlideDust);
                 i.image_xscale = -image_xscale;
             }
         }
@@ -106,9 +106,10 @@ if (entityCanStep())
     
     if (yspeed &lt; 0)
     {
-        if (y &lt;= ystart)
+        if (y &lt; ystart)
         {
             shiftObject(0, ystart - y, 1);
+            y=ystart;
         }
     }
 }

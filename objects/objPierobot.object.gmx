@@ -95,7 +95,7 @@ if (entityCanStep())
             }
         }
         
-        stop = 0;
+        var stop = 0;
         var gearActive = false;
         if (instance_exists(mygear))
         {
@@ -155,7 +155,6 @@ else
             <kind>1</kind>
             <string>/// On spawn
 event_inherited();
-alarmPop = 60;
 </string>
           </argument>
         </arguments>

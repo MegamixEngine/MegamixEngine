@@ -25,20 +25,71 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>event_inherited(); //needs to be called since parent needs to be defined for the switch statement to work
 
-bulletLimitCost = 1;
+inWater = -1;
 
-contactDamage = 1;
+if object_index == objNormalBusterShot
+{
+    scrBusterDefault_Create();
+}
+else if instance_exists(parent) 
+{
+    switch (global.characterSelected[parent.playerID])
+    {
+        //All 3 of these characters essentially have the same buster so only bass has a different one for now. I'll change Proto Man's soon actually.
+        default:
+        case "Mega Man":
+        case "Proto Man":
+        case "Roll":
+        {
+            scrBusterDefault_Create();
+            break;
+        }
+        case "Bass": 
+        {
+            scrBusterBass_Create();
+            dir = 0;
+            break;
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//This is only needed for bass currently. But this can be added to for any character.
+event_inherited();
 
-penetrate = 0;
-pierces = 0;
-
-xspeed = 0;
-yspeed = 0;
-grav = 0;
-
-playSFX(sfxBuster);
+if (!global.frozen &amp;&amp; object_index != objNormalBusterShot &amp;&amp; instance_exists(parent))
+{
+    switch (global.characterSelected[parent.playerID])
+    {
+        case "Bass": 
+        {
+            scrBusterBass_Step();
+            break;
+        }
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -61,143 +112,27 @@ playSFX(sfxBuster);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var bulletLimit = 3;
-var weaponCost = 0;
-var action = 1; // 0 - no frame; 1 - shoot; 2 - throw
-var willStop = 0; // If this is 1, the player will halt on shooting ala Metal Blade.
-
-var chargeTime = 57; // Set charge time for this weapon
-var initChargeTime = 20;
-
-if (!global.lockBuster)
+            <string>if object_index == objNormalBusterShot //normal shots
+    scrBusterDefault_14();
+else 
 {
-    if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; chargeTimer == 0)
+    switch (global.characterSelected[playerID])
     {
-        i = fireWeapon(16, 0, objBusterShot, bulletLimit, weaponCost, action, willStop);
-        if (i)
+        default: //All characters besides Bass and Proto Man use the same event
+        case "Mega Man":
+        case "Roll":
         {
-            i.xspeed = image_xscale * 5; // zoom
+            scrBusterDefault_14();
+            break;
         }
-    }
-    
-    //////////////
-    // Charging //
-    //////////////
-    
-    if (global.enableCharge)
-    {
-        if ((global.keyShoot[playerID] || (isSlide &amp;&amp; chargeTimer &gt; 0))
-            &amp;&amp; !playerIsLocked(PL_LOCK_CHARGE))
+        case "Bass":
         {
-            if (!isShoot)
-            {
-                isCharge = true;
-                
-                if (!isSlide)
-                {
-                    initChargeTimer += 1;
-                }
-                
-                if (initChargeTimer &gt;= initChargeTime)
-                {
-                    if (!chargeTimer)
-                    {
-                        playSFX(sfxCharging);
-                    }
-                    
-                    chargeTimer++;
-                    
-                    if (chargeTimer &lt; chargeTime)
-                    {
-                        var chargeTimeDiv, chargeCol;
-                        chargeTimeDiv = round(chargeTime / 3);
-                        
-                        if (chargeTimer &lt; chargeTimeDiv)
-                        {
-                            chargeCol = make_color_rgb(168, 0, 32); // Dark red
-                        }
-                        else if (chargeTimer &lt; chargeTimeDiv * 2)
-                        {
-                            chargeCol = make_color_rgb(228, 0, 88); // Red (dark pink)
-                        }
-                        else
-                        {
-                            chargeCol = make_color_rgb(248, 88, 152); // Light red (pink)
-                        }
-                        
-                        if (chargeTimer mod 6 &gt;= 0 &amp;&amp; chargeTimer mod 6 &lt; 3)
-                        {
-                            global.outlineCol[playerID] = chargeCol;
-                        }
-                        else
-                        {
-                            global.outlineCol[playerID] = c_black;
-                        }
-                    }
-                    else
-                    {
-                        if (chargeTimer == chargeTime)
-                        {
-                            audio_stop_sound(sfxCharging);
-                            playSFX(sfxCharged);
-                        }
-                        if (!inked)
-                        {
-                            switch (floor(chargeTimer / 3 mod 3))
-                            {
-                                case 0: // Light blue helmet, black shirt, blue outline 
-                                    global.primaryCol[playerID] = rockSecondaryCol;
-                                    global.secondaryCol[playerID] = c_black;
-                                    global.outlineCol[playerID] = rockPrimaryCol;
-                                    break;
-                                case 1: // Black helmet, blue shirt, light blue outline 
-                                    global.primaryCol[playerID] = c_black;
-                                    global.secondaryCol[playerID] = rockPrimaryCol;
-                                    global.outlineCol[playerID] = rockSecondaryCol;
-                                    break;
-                                case 2: // Blue helmet, light blue shirt, blue outline 
-                                    global.primaryCol[playerID] = rockPrimaryCol;
-                                    global.secondaryCol[playerID] = rockSecondaryCol;
-                                    global.outlineCol[playerID] = c_black;
-                                    break;
-                            }
-                        }
-                    }
-                }
-            }
+            scrBusterBass_14();
+            break;
         }
-        else // Release the charge shot
+        case "Proto Man":
         {
-            if (!playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; chargeTimer != 0 &amp;&amp; !isSlide)
-            {
-                /////////////////////
-                // ACTUAL SHOOTING //
-                /////////////////////
-                
-                if (chargeTimer &lt; chargeTime) // Half charge
-                {
-                    i = fireWeapon(12, 0, objBusterShotHalfCharged, bulletLimit, weaponCost, action, willStop);
-                    if (i)
-                    {
-                        i.xspeed = image_xscale * 5;
-                    }
-                }
-                else // Full charge
-                {
-                    i = fireWeapon(20, 0, objBusterShotCharged, 3, 0, 1, 0);
-                    if (i)
-                    {
-                        i.xspeed = image_xscale * 5.5;
-                    }
-                }
-                
-                // Reset all charging stuff
-                chargeTimer = 0;
-                initChargeTimer = 0;
-                audio_stop_sound(sfxCharged);
-                audio_stop_sound(sfxCharging);
-                playerPalette(); // Reset the colors
-            }
+            scrBusterProto_14();
         }
     }
 }

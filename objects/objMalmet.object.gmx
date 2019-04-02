@@ -41,6 +41,9 @@ imgIndex = 0;
 imgSpd = 0.5;
 shootTimer = 120;
 
+// @cc - Determines the time it takes for Malmet to fire a shot
+shootDelay = 120;
+
 animBack = false;
 targX = -1;
 targY = -1;
@@ -101,7 +104,7 @@ if (entityCanStep())
         }
         playSFX(sfxEnemyShootClassic);
         
-        shootTimer = 120;
+        shootTimer = shootDelay;
     }
     
     // Animation
@@ -129,7 +132,7 @@ else if (dead)
     healthpoints = healthpointsStart;
     imgIndex = 0;
     animBack = false;
-    shootTimer = 120;
+    shootTimer = shootDelay;
     targX = -1;
     targY = -1;
 }

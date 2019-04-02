@@ -95,7 +95,7 @@ if (is1Up &amp;&amp; global.livesEnabled)
 }
 else if (global.playerHealth[collectPlayer.playerID] &lt; 28)
 {
-    global.frozen = true;
+    queuePause();
     with (objGlobalControl)
     {
         increaseHealth = other.hlth;

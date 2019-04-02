@@ -94,7 +94,7 @@ if (entityCanStep())
         blockCollision = true;
         timer = -1;
     }
-    prevXspeed = xspeed;
+    var prevXspeed = xspeed;
     xSpeedTurnaround();
     if (prevXspeed != xspeed)
     {

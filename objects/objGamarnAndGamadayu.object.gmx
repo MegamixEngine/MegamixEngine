@@ -34,6 +34,8 @@ healthpoints = healthpointsStart;
 contactDamage = 6;
 canIce = false;
 
+category = "bulky, nature";
+
 doesIntro = false;
 
 dir = image_xscale;
@@ -82,9 +84,9 @@ if (entityCanStep())
         if (shootTimer == 120)
         {
             rideFrame = 2;
-            for (i = 1; i &lt;= 2; i += 1)
+            for (var i = 1; i &lt;= 2; i += 1)
             {
-                bomb = instance_create(round(x - 4 * image_xscale), round(y - 48), objGamadayuBomb);
+                var bomb = instance_create(round(x - 4 * image_xscale), round(y - 48), objGamadayuBomb);
                 if (instance_exists(target))
                 {
                     with (bomb)
@@ -113,7 +115,7 @@ if (entityCanStep())
         if (shootTimer == 100)
         {
             frogFrame += 2;
-            laser = instance_create(round(x + 32 * image_xscale), round(y + 10), objGamarnLaser);
+            var laser = instance_create(round(x + 32 * image_xscale), round(y + 10), objGamarnLaser);
             laser.image_xscale = image_xscale;
         }
         
@@ -180,8 +182,8 @@ else if (!insideView())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>xb = bboxGetXCenterObject(other.id);
-yb = bboxGetYCenterObject(other.id);
+            <string>var xb = bboxGetXCenterObject(other.id);
+var yb = bboxGetYCenterObject(other.id);
 
 if (!(yb &lt; y - 8 &amp;&amp; yb &gt; y - 28) || !(image_xscale &lt; 0 &amp;&amp; xb &lt; x || image_xscale &gt; 0 &amp;&amp; xb &gt; x))
 {

@@ -32,6 +32,7 @@ respawn = true;
 healthpointsStart = 5;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "cannons";
 
 blockCollision = 0;
 grav = 0;
@@ -82,8 +83,6 @@ init = 0;
             <string>// Setup
 if (init == 0)
 {
-    dir = image_xscale;
-    angle = 90;
     init = 1;
 }
 

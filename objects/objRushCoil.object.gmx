@@ -35,6 +35,7 @@ image_speed = 7 / 60;
 
 blockCollision = 1;
 grav = gravAccel;
+bubbleTimer = 0;
 
 timer = 4 * 60;
 </string>
@@ -128,12 +129,10 @@ if (!global.frozen)
         if (!timer)
         {
             // Teleport away
-            i = instance_create(x, y, objRushTeleport);
+            var i = instance_create(x, y, objRushTeleport);
             i.upordown = 'up';
             i.parent = parent;
             i.image_yscale = image_yscale;
-            
-            canCoil = false;
             instance_destroy();
         }
     }
@@ -165,7 +164,7 @@ if (!global.frozen)
     if (!instance_exists(objRushCoil) &amp;&amp; !instance_exists(objRushTeleport)
     &amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
     {
-        i = fireWeapon(26, 0, objRushTeleport, 4, 0, 0, 0);
+        var i = fireWeapon(26, 0, objRushTeleport, 4, 0, 0, 0);
         with (i)
         {
             type = 'coil';
@@ -178,7 +177,7 @@ if (!global.frozen)
     }
     else
     {
-        i = fireWeapon(16, 0, objBusterShot, 4, 0, 1, 0);
+        var i = fireWeapon(16, 0, objBusterShot, 4, 0, 1, 0);
         if (i)
         {
             i.xspeed = image_xscale * 5; // zoom
@@ -231,6 +230,7 @@ if (!global.frozen)
           <argument>
             <kind>1</kind>
             <string>// set proper image to use
+var ximg;
 if (sprite_index == sprRush)
 {
     ximg = 15 + image_index;

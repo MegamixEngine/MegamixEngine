@@ -26,15 +26,23 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-isLine=false;
-if(object_index==objPreciseQuickLaser)
-    isLine=true;
-
 /// A Quick Laser made out of 16 1 pixel wide lasers that can be stopped individually
 // Important Note: more than two or three on screen could potentially lag the game
+
+
+if(image_yscale!=1)
+{
+    image_yscale=1;
+}
+if(image_xscale!=1)
+{
+    image_xscale=1;
+}
+
 canHit = 0;
 canIce = false;
 blockCollision = 0;
+bubbleTimer = -1;
 facePlayerOnSpawn = false;
 facePlayer = false;
 grav = 0;
@@ -78,7 +86,7 @@ rdir = point_direction(rx, ry, x, y);
 r = point_distance(x, y, rx, ry);
 drainCooldown = 4;
 
-hacks = true; // don't change
+hacks = true; 
 </string>
           </argument>
         </arguments>
@@ -103,24 +111,28 @@ hacks = true; // don't change
             <kind>1</kind>
             <string>if (onlyDamagePlayer)
 {
-    var col;
-    var rad=degtorad(image_angle);
-    with (objMegaman)
+    if(image_xscale&gt;0)
     {
-        //This is slower than per pixel collision checking for some reason col = collision_line(other.x,other.y,x+(other.image_xscale*cos(rad)),y-(other.image_xscale*sin(rad)),id,false,false);
-        col = place_meeting(x,y,other);
-        if (iFrames == 0 &amp;&amp; canHit &amp;&amp; col)
+        var col;
+        var rad=degtorad(image_angle);
+        with (objMegaman)
         {
-            with (other)
+            //This is slower than per pixel collision checking for some reason col = collision_line(other.x,other.y,x+(other.image_xscale*cos(rad)),y-(other.image_xscale*sin(rad)),id,false,false);
+            col = place_meeting(round(x),round(y),other);
+            if (iFrames == 0 &amp;&amp; canHit &amp;&amp; col)
             {
-                entityEntityCollision();
+                with (other)
+                {
+                    entityEntityCollision();
+                }
             }
         }
     }
 }
 else
 {
-    event_inherited();
+    if(image_xscale&gt;0)
+        event_inherited();
 }
 </string>
           </argument>
@@ -150,9 +162,10 @@ if (entityCanStep())
     image_index += imgSpeed;
     
     // Solidify objects
+    
     with (prtEntity)
     {
-        solid=0;
+        solid=false;
         if (!dead &amp;&amp; object_index != objPreciseQuickLaserSpawner)
         {
             for (var i = array_length_1d(other.obstacleList) - 1; i &gt;= 0; i--)
@@ -183,11 +196,10 @@ if (entityCanStep())
     }
     with (objSolid)
     {
-        solid=0;
-        if (isSolid)
-            solid = 1;
+        solid=(isSolid==true);
     }
     var ang = image_angle;
+    image_angle = round(image_angle);
     if (hacks &amp;&amp; image_angle &gt;= 177 &amp;&amp; image_angle &lt;= 187) // These messed up with place_free so we handle them as 180(there are still some more but thats ok)
         image_angle = 180;
     else if(hacks&amp;&amp;image_angle&gt;=265 &amp;&amp; image_angle&lt;=280)
@@ -205,29 +217,37 @@ if (entityCanStep())
     
     var tx=x+cos(degtorad(image_angle))*image_xscale;
     var ty=y-sin(degtorad(image_angle))*image_xscale;
-    
-    if(point_in_rectangle(tx,ty,global.sectionLeft,global.sectionTop,global.sectionRight,global.sectionBottom))
+    if(point_in_rectangle(floor(tx),floor(ty),global.sectionLeft,global.sectionTop,global.sectionRight,global.sectionBottom))
     {
         image_xscale += mySpeed;
     }
-    if (!place_free(x, y))
+    if (floor(image_xscale)&gt;0&amp;&amp;!place_free(floor(x), floor(y)))
     {
         image_xscale = floor(image_xscale);
         var moveAmmount = 8 + 8*(image_xscale&gt;64) + 32*(image_xscale&gt;128);
         image_xscale = max(0, image_xscale - moveAmmount);
-        while (!place_free(x, y) &amp;&amp; image_xscale&gt;0)
+        if(image_xscale==0)
+            image_xscale=1;
+        if(image_xscale&gt;0)
         {
-            image_xscale = max(0, image_xscale - moveAmmount);
+            while (image_xscale&gt;0&amp;&amp;!place_free(floor(x), floor(y)) )
+            {
+                image_xscale = max(0, image_xscale - moveAmmount);
+            }
+            while (image_xscale&gt;0&amp;&amp;place_free(floor(x), floor(y)))
+            {
+                image_xscale += 1;
+            }
+            if(image_xscale&gt;0&amp;&amp;!place_free(floor(x),floor(y)))
+                image_xscale -=1;
         }
-        while (place_free(x, y))
-        {
-            image_xscale += 1;
-        }
-        if(!place_free(x,y))
-            image_xscale -=1;
+        
     }
     image_angle = ang;
-
+	with(all)
+    {
+        solid=0;
+    }
 }
 </string>
           </argument>
@@ -298,7 +318,9 @@ if (variation == 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (sprite_get_width(sprite_index) == 1)
+            <string>if(image_xscale==0)
+    exit;
+if (sprite_get_width(sprite_index) == 1)
 {
     draw_sprite_general(sprite_index, image_index, 0, order, 1, 1, x, y, image_xscale, 1, image_angle, c_white, c_white, c_white, c_white, 1);
 }
@@ -312,7 +334,7 @@ else
     {
         bit = min(sprite_get_width(sprite_index), img);
         
-        draw_sprite_general(sprite_index, image_index, 0, order, bit, 1, x + (size - img) * cos(degtorad(image_angle)), y - (size - img) * sin(degtorad(image_angle)), 1, 1, image_angle, c_white, c_white, c_white, c_white, image_alpha);
+        draw_sprite_general(sprite_index, image_index, 0, order, bit, 1, x + (size - img) * cos(degtorad(image_angle)),y - (size - img) * sin(degtorad(image_angle)), 1, 1, image_angle, c_white, c_white, c_white, c_white, image_alpha);
         
         img -= bit;
     }

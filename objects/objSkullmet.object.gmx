@@ -128,7 +128,7 @@ if (entityCanStep())
                     }
                     if (phase == 10.5)
                     {
-                        i = instance_create(x + 12 * image_xscale, y - 28,
+                        var i = instance_create(x + 12 * image_xscale, y - 28,
                             objEnemyBullet);
                         i.sprite_index = sprEnemyBullet;
                         i.image_speed = 0;

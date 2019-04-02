@@ -86,9 +86,9 @@ if (entityCanStep())
         if (timer == 17)
         {
             // for loop used to make more efficent code
-            for (i = -1; i &lt;= 1; i += 1)
+            for (var i = -1; i &lt;= 1; i += 1)
             {
-                ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objMM1MetBullet);
+                var ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objMM1MetBullet);
                 ID.dir = 45 * i;
                 ID.xscale = image_xscale;
             }

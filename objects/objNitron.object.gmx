@@ -32,7 +32,7 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
-category = "fire";
+category = "fire, floating";
 
 grav = 0;
 blockCollision = 0;
@@ -114,7 +114,7 @@ if (entityCanStep())
         case 2:
             if (dipTimer == 0 || dipTimer == 25 || dipTimer == 50)
             {
-                fire = instance_create(x, y + sprite_height / 2,
+                var fire = instance_create(x, y + sprite_height / 2,
                     objNitronFire);
                 fire.col = col;
             }

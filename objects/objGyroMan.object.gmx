@@ -46,6 +46,7 @@ hasFired = false;
 strMMX = 0;
 strMMY = 0;
 grav = 0.24;
+introProp = 0; //Handles propeller animation in intro
 
 // Health Bar
 healthBarPrimaryColor[1] = 35;
@@ -158,7 +159,18 @@ if (!global.frozen)
     {
         // custom intro:
         if (y &lt;= ystart &amp;&amp; !hasTriggeredFall)
+        {
             y += 4;
+            introProp++;
+            if (introProp == 4) 
+            {
+                introProp = 0;
+                if (image_index == 6)
+                    image_index = 7;
+                else
+                    image_index = 6;
+            }
+        }
         if (y &gt;= ystart || hasTriggeredFall)
         {
             hasTriggeredFall = true;

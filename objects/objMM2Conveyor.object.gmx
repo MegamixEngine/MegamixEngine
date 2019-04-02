@@ -32,9 +32,6 @@
 */
 event_inherited();
 
-//@cc The sprite of the conveyor, its divided in three groups of sub images
-sprite = sprMM2Conveyor;
-
 //@cc Total amount of frames per sub image group, 2 by default
 animFrames = 2;
 
@@ -52,6 +49,7 @@ blockCollision = 0;
 respawnRange = -1;
 despawnRange = -1;
 shiftVisible = 1;
+bubbleTimer = -1;
 
 dir = sign(image_xscale);
 
@@ -60,6 +58,12 @@ if (image_xscale &lt; 0)
     image_xscale = abs(image_xscale);
     x -= sprite_width;
     xstart = x;
+}
+if(image_yscale&lt;0)
+{
+    image_yscale=abs(image_yscale);
+    y -= sprite_height;
+    ystart = y;
 }
 
 spd = 1; // The speed the player moves at when standing on the conveyor belt
@@ -108,17 +112,6 @@ if (dir == 1)
             <kind>1</kind>
             <string>event_inherited();
 
-if ((!global.frozen &amp;&amp; !global.timeStopped) || instance_exists(objSectionSwitcher))
-{
-    imgalarm += 1;
-    if (imgalarm &gt;= animTime)
-    {
-        imgalarm = 0;
-        img = (img+1) mod animFrames;
-    }
-}
-
-
 if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
     var exspd = spd * dir;
@@ -165,23 +158,37 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var imgadd;
-
-for (i = 0; i &lt; image_xscale; i += 1)
+            <string>if ((!global.frozen &amp;&amp; !global.timeStopped) || instance_exists(objSectionSwitcher))
 {
-    imgadd = 0;
-    if (i == 0 || i == image_xscale - 1)
+    imgalarm += 1;
+    if (imgalarm &gt;= animTime)
     {
-        if (dir &lt; 0)
-        {
-            imgadd = animFrames;
-        }
-        else
-        {
-            imgadd = 2*animFrames;
-        }
+        imgalarm = 0;
+        img = (img+1) mod animFrames;
     }
-    draw_sprite(sprMM2Conveyor, img + imgadd, x + i * 16, y);
+}
+
+var imgadd;
+
+for (var i = 0; i &lt; image_xscale; i += 1)
+{
+    if(i==0&amp;&amp;image_xscale==1)//single block
+    {
+        imgadd = 6*animFrames + animFrames*(dir&lt;0);
+    }
+    else if (i == 0)//left block
+    {
+        imgadd = animFrames*(dir&lt;0);
+    }
+    else if(i==image_xscale-1)//right block
+    {
+        imgadd = 4*animFrames + animFrames*(dir&lt;0);
+    }
+    else // Middle block
+    {
+        imgadd = 2*animFrames + animFrames*(dir&lt;0);
+    }
+    draw_sprite(sprite_index, img + imgadd, x + i * 16, y);
 }
 </string>
           </argument>

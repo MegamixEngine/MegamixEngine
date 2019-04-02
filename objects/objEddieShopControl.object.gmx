@@ -648,7 +648,7 @@ draw_set_color(c_white);
 draw_set_halign(fa_center);
 
 draw_sprite(sprLargeBolt, 0, 1311, 322);
-v = string(myBolts);
+var v = string(myBolts);
 repeat (4 - string_length(v))
 {
     v = "0" + v;
@@ -678,7 +678,7 @@ if (inShop)
         draw_text(optionTableX[1] + 8, optionTableY[1] + 16 + 4, string(priceTable[1]));
     }
     
-    for (i = 2; i &lt;= 8; i += 1)
+    for (var i = 2; i &lt;= 8; i += 1)
     {
         if (optionTableVariable[i] &gt;= 1)
         {

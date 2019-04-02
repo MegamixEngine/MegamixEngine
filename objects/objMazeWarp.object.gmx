@@ -54,6 +54,39 @@ tileSurface = noone;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (prtEntity)
+{
+    if (!global.frozen and frozen)
+    {
+        hspeed = pre_hsp;
+        vspeed = pre_vsp;
+        speed = pre_spe;
+        image_speed = pre_isp;
+        frozen = false;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -78,17 +111,37 @@ tileSurface = noone;
 }
 
 // 8-pixel leeway here to prevent some jankiness
-if (collision_rectangle(x + 8, y + 8, x + view_xview - 8, y + view_hview - 8, objMegaman, 0, 0)
+if (collision_rectangle(x + 8, y + 8, x + view_wview[0] - 8, y + view_hview[0] - 8, objMegaman, 0, 0)
     &amp;&amp; !instance_exists(objSectionSwitcher) &amp;&amp; insideView() &amp;&amp; !global.frozen)
 {
     with (objMegaman)
     {
-        x += other.camX - view_xview;
-        y += other.camY - view_yview;
+        x += other.camX - view_xview[0];
+        y += other.camY - view_yview[0];
         setSection(x, y, 1);
         playerCamera(1);
         reAndDeactivateObjects(1, 1);
+        
+        if (instance_exists(vehicle))
+        {
+            with (vehicle)
+            {
+                x += other.camX - view_xview[0];
+                y += other.camY - view_yview[0];
+            }
+        }
     }
+    
+    if (instance_exists(objWaterShield))
+    {
+        with (objWaterShield)
+        {
+            x += other.camX - view_xview[0];
+            y += other.camY - view_yview[0];
+        }
+    }
+    
+    alarm[0] = 1;
 }
 </string>
           </argument>
@@ -119,10 +172,10 @@ if (!surface_exists(tileSurface))
     surface_set_target(tileSurface);
     draw_clear_alpha(c_black, 0);
     
-    for (layer = min(tileCheckStart, tileCheckEnd); layer &lt;= max(tileCheckStart, tileCheckEnd); layer++)
+    for (var layer = min(tileCheckStart, tileCheckEnd); layer &lt;= max(tileCheckStart, tileCheckEnd); layer++)
     {
-        for (i = 0; i &lt;= round(view_wview); i += tileDistanceCheck)
-            for (j = 0; j &lt;= round(view_hview); j += tileDistanceCheck)
+        for (var i = 0; i &lt;= round(view_wview); i += tileDistanceCheck)
+            for (var j = 0; j &lt;= round(view_hview); j += tileDistanceCheck)
             {
                 var tile = tile_layer_find(layer, camX + i, camY + j);
                 if (tile_exists(tile))

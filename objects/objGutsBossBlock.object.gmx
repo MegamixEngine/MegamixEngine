@@ -74,10 +74,10 @@ if (global.frozen == false &amp;&amp; global.timeStopped == false)
         timer += 1;
         if (checkSolid(0, 0, 1, 1) &amp;&amp; xspeed != 0 &amp;&amp; yspeed != 0)
         {
-            for (i = 0; i &lt;= 1; i += 1) // X
-                for (j = 0; j &lt;= 1; j += 1) // Y
+            for (var i = 0; i &lt;= 1; i += 1) // X
+                for (var j = 0; j &lt;= 1; j += 1) // Y
                 {
-                    rubble = instance_create(x - (8 * sign(xspeed)) + i * 16,
+                    var rubble = instance_create(x - (8 * sign(xspeed)) + i * 16,
                         y - 8 + j * 16, objGutsBossBlockRubble);
                     if (i == 0)
                         rubble.yspeed = -2 + (j / 2);

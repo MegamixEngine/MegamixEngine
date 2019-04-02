@@ -37,6 +37,7 @@ actionTimer = 0;
 
 alarmTime = 80;
 mySpeed = 3.5;
+yscalestart = 0;
 
 respawnRange = -1;
 despawnRange = -1;

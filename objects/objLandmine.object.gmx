@@ -34,6 +34,9 @@ isSolid = true;
 itemDrop = -1;
 timer = 0;
 phase = 0;
+bubbleTimer = -1;
+
+objectDrop = objHarmfulExplosion; //explosion object
 </string>
           </argument>
         </arguments>
@@ -107,7 +110,7 @@ if (entityCanStep())
             {
                 event_user(EV_DEATH);
                 dead = true;
-                instance_create(x + 8, y + 8, objHarmfulExplosion); //( sprite_width/2,sprite_height/2,objHarmfulExplosion);
+                instance_create(x + 8, y + 8, objectDrop); //( sprite_width/2,sprite_height/2,objHarmfulExplosion);
                 playSFX(sfxMM9Explosion);
             }
             break;

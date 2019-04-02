@@ -72,6 +72,7 @@ delayTimer[0] = 0;
 animFrames[0, 0] = 0;
 
 alarm[0] = 1;
+animTotal = 0;
 </string>
           </argument>
         </arguments>

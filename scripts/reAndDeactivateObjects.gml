@@ -34,10 +34,12 @@ if (deac)
             
             if (shiftVisible)
             {
-                reset = ((!sw &&(!collision_rectangle(global.sectionLeft, global.sectionTop, global.sectionRight, global.sectionBottom, id, true, false))));
+                // false if switching sections or partially inside section.
+                reset = !(sw || collision_rectangle(global.sectionLeft, global.sectionTop, global.sectionRight, global.sectionBottom, id, true, false));
                 
                 if (!reset)
                 {
+                    // if not player and not player projectile
                     if (faction != 1 && faction != 2)
                     {
                         with (objSpawnCondition)

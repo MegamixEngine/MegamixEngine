@@ -30,6 +30,7 @@
 canHit = false;
 grav = -0.05; // flies upward
 blockCollision = false;
+bubbleTimer = -1;
 respawn = false;
 despawnRange = 48;
 speedMultiplier = 2 + random_range(0.5, 3);
@@ -101,7 +102,7 @@ if (!global.frozen)
             <string>/// update speeds
 if (instance_exists(objTenguWind))
 {
-    windObj = instance_find(objTenguWind, 0);
+    var windObj = instance_find(objTenguWind, 0);
     if (instance_exists(windObj))
     {
         xspeed = windObj.windSpeed * speedMultiplier;

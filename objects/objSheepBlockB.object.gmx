@@ -35,6 +35,7 @@ shiftVisible = 1;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 spawn = objSolidIndependent;
 spawnID = -1;
@@ -191,6 +192,7 @@ var i;
 i = 1;
 for (i = 1; i &lt; 5; i += 1)
 {
+    var X, Y;
     if (i == 1)
     {
         X = 1;
@@ -211,7 +213,7 @@ for (i = 1; i &lt; 5; i += 1)
         X = 0;
         Y = -1;
     }
-    b = instance_position(x + X * 16 + 8, y + Y * 16 + 8, colourBlock);
+    var b = instance_position(x + X * 16 + 8, y + Y * 16 + 8, colourBlock);
     if (instance_exists(b))
     {
         if (b != id &amp;&amp; b.colourBlock == colourBlock)

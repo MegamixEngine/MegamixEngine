@@ -33,6 +33,8 @@ event_inherited();
 
 healthpointsStart = 1;
 contactDamage = 4;
+category = "fire, flying, shielded";
+
 image_speed = 0.18;
 grav = 0;
 facePlayerOnSpawn = false;
@@ -148,7 +150,7 @@ if (init &amp;&amp; entityCanStep())
             shootTimer--;
             if (shootTimer == 0)
             {
-                i = instance_create(x + 9 * image_xscale, y + 7, objPopoHeliFire);
+                var i = instance_create(x + 9 * image_xscale, y + 7, objPopoHeliFire);
                 i.image_xscale = image_xscale;
                 i.parent = self.id;
                 shootTimer = 8;

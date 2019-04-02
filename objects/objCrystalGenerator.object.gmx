@@ -38,6 +38,7 @@ variation = 0;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 interval = 120;
 
@@ -73,7 +74,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped &amp;&amp; !dead)
     if (timer &gt;= interval) // spawn bullet
     {
         timer = 0;
-        i = instance_create(x + 8, y + 8, objEnemyBullet);
+        var i = instance_create(x + 8, y + 8, objEnemyBullet);
         i.image_speed = 0.5;
         i.sprite_index = sprCrystal;
         i.grav = 0.25;

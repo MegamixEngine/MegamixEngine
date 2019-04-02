@@ -47,6 +47,8 @@ shotsFired = 0;
 drawLSpark = false;
 grav = 0.24;
 
+storeDirection = 0;
+
 // Health Bar
 healthBarPrimaryColor[1] = 32;
 healthBarSecondaryColor[1] = 40;
@@ -246,6 +248,7 @@ if (entityCanStep())
                         if (i == 48)
                             setX = 40;
                     }
+                    var
                     if (setX != -9999)
                         sd = instance_create(x + setX * image_xscale, y, objEnemyBullet);
                     else
@@ -253,6 +256,7 @@ if (entityCanStep())
                     sd.contactDamage = 0;
                     sd.reflectable = false;
                     sd.trigWall = false;
+                    sd.despawnRange=-1;
                     sd.image_alpha = 0;
                     if (sd.x &gt; view_xview + 26 &amp;&amp; sd.x &lt; (view_xview + view_wview) - 26)
                     {
@@ -294,7 +298,7 @@ if (entityCanStep())
                         attackTimer = -4;
                     }
                 }
-                if (attackTimer == 5)
+                else if (attackTimer == 5)
                 {
                     image_index = 7;
                     if (sd.trigWall)
@@ -311,7 +315,15 @@ if (entityCanStep())
                 }
                 if (attackTimer &gt;= 6 &amp;&amp; xspeed == 0)
                 {
-                    xspeed = xSpeedAim(x, y, sd.x, sd.y, yspeed, grav);
+                    var sx=view_xview;
+                    var sy=view_yview;
+                    if(instance_exists(sd))
+                    {
+                        sx=sd.x;
+                        sy=sd.y;
+                    }
+                    xspeed = xSpeedAim(x, y, sx, sy, yspeed, grav);
+                    
                 }
                 if (attackTimer &gt; 6 &amp;&amp; yspeed &gt;= 0 &amp;&amp; ground)
                 {
@@ -372,9 +384,13 @@ if (entityCanStep())
                             dir = 0;
                     }
                 }
-                if (attackTimer == 124)
+                if (attackTimer == 128)
                 {
-                    image_index = 0;
+                    image_index = 6;
+                }
+                if (attackTimer == 136)
+                {
+                    image_index = 2;
                     hasFired = true;
                     attackTimer = -24;
                     phase = 0;

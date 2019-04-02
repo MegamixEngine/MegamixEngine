@@ -108,6 +108,7 @@ if (entityCanStep())
         if (timer == 1)
         {
             xs = 0;
+            var highJump;
             if (repeatAmount &lt; 2)
             {
                 // randomize();

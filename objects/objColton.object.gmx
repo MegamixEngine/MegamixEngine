@@ -39,6 +39,8 @@ facePlayer = true;
 shooting = false;
 animTimer = 0;
 bulletID = -10;
+
+obj = objColtonBullet;
 </string>
           </argument>
         </arguments>
@@ -61,23 +63,22 @@ bulletID = -10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>var imgscl = image_xscale;
+event_inherited();
+image_xscale = imgscl;
 
 if (entityCanStep())
 {
-    if (!instance_exists(bulletID))
+    if (!instance_exists(bulletID) &amp;&amp; insideView())
     {
-        facePlayer = true;
+        if(facePlayer)
+            calibrateDirection();
         shooting = true;
         animTimer = 0;
         image_index = 2;
-        bulletID = instance_create(x + (15 + 4) * image_xscale, y - 2, objColtonBullet);
+        bulletID = instance_create(x + (15 + 4) * image_xscale, y - 2, obj);
         bulletID.image_xscale = image_xscale;
         playSFX(sfxColtonShoot);
-    }
-    else
-    {
-        facePlayer = false;
     }
     
     if (shooting)

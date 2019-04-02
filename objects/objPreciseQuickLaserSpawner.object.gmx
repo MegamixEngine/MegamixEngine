@@ -119,6 +119,10 @@ myLasers[0] = 0;
 laserCount = 0;
 image_angle = round(image_angle);
 realAngle = image_angle;
+spriteXOffset = 0;
+spriteYOffset = 0;
+dir = 0;
+startDir = 0;
 </string>
           </argument>
         </arguments>
@@ -171,7 +175,7 @@ realAngle = image_angle;
             // if this object's starting angle is outside the rotate range, then fix that
             if (!withinDegreeRange(rotateStartRange, true, rotateEndRange, true, image_angle))
             {
-                _middle = (rotateStartRange + rotateEndRange) / 2;
+                var _middle = (rotateStartRange + rotateEndRange) / 2;
                 if (rotateEndRange &lt; rotateStartRange)
                 {
                     // start range + half the range distance + 180 to flip to the middle of the angles not in the range
@@ -191,15 +195,15 @@ realAngle = image_angle;
             }
             
             // find when to start accelerating / decelerating to stop at the end range
-            _time = (rotateSpeed - 0) / rotateAccel;
+            var _time = (rotateSpeed - 0) / rotateAccel;
             
-            _dist = ((0 + rotateSpeed) / 2) * _time;
+            var _dist = ((0 + rotateSpeed) / 2) * _time;
             
             rotateStartRangeTurn = loopDegrees(rotateStartRange + _dist);
             rotateEndRangeTurn = loopDegrees(rotateEndRange - _dist);
             
             // if acceleration is too slow to get to max speed, then make the turn points right in the middle of the range so it still stops at the correct angles
-            _middle = (rotateStartRange + rotateEndRange) / 2;
+            var _middle = (rotateStartRange + rotateEndRange) / 2;
             if (rotateEndRange &lt; rotateStartRange)
             {
                 // start range + half the range distance
@@ -231,8 +235,8 @@ realAngle = image_angle;
             _dist = 0;
             if (withinDegreeRange(rotateStartRange, false, rotateStartRangeTurn, true, image_angle))
             {
-                _startPoint = rotateStartRange;
-                _endPoint = image_angle;
+                var _startPoint = rotateStartRange;
+                var _endPoint = image_angle;
                 
                 if (_endPoint &lt; _startPoint)
                 {
@@ -245,8 +249,8 @@ realAngle = image_angle;
             }
             else if (withinDegreeRange(rotateEndRangeTurn, true, rotateEndRange, false, image_angle))
             {
-                _startPoint = image_angle;
-                _endPoint = rotateEndRange;
+                var _startPoint = image_angle;
+                var _endPoint = rotateEndRange;
                 
                 if (_endPoint &lt; _startPoint)
                 {
@@ -337,7 +341,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
             sy -= sprite_get_width(sprite_index) * sin(degtorad(image_angle));
         }
         
-        height = sprite_get_height(sprQuickLaserDrain);
+        var height = sprite_get_height(sprQuickLaserDrain);
         if (sprite != -1)
         {
             height = sprite_get_height(sprite);
@@ -413,8 +417,6 @@ if (spawned)
 {
     grav = 0;
     dir = startDir;
-    prevRail = noone;
-    lastRail = noone;
     phase = 0;
     timer = 0;
     image_angle = startAngle;

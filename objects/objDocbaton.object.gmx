@@ -33,6 +33,7 @@ event_inherited();
 respawn = true;
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
+category = "flying, nature, cluster";
 contactDamage = 2;
 blockCollision = 0;
 grav = 0;

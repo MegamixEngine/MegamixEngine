@@ -71,6 +71,10 @@ imgIndex = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
 
 if (entityCanStep())
 {
@@ -194,7 +198,7 @@ image_index = imgIndex div 1;
             <kind>1</kind>
             <string>event_inherited();
 
-a = instance_create(x, y - 8, objSpringFaceBombHead);
+var a = instance_create(x, y - 8, objSpringFaceBombHead);
 a.visible = true;
 </string>
           </argument>

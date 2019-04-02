@@ -89,7 +89,7 @@ if (entityCanStep())
                     action += 1;
                     actionTimer = 0;
                     image_index += 1;
-                    i = instance_create(x + 8 * image_xscale, y - 11,
+                    var i = instance_create(x + 8 * image_xscale, y - 11,
                         objEnemyBullet);
                     i.xspeed = image_xscale
                         * 2; // Base xspeed on the enemy's direction

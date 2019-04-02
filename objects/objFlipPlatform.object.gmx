@@ -42,6 +42,7 @@ respawnRange = -1;
 despawnRange = -1;
 
 isSolid = 2;
+iphase = 0;
 </string>
           </argument>
         </arguments>
@@ -110,7 +111,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             if (timer == 4)
             {
                 image_index += 1;
-                x += 2;
+                x += 2*image_xscale;
                 
                 if (image_index == 1)
                 {
@@ -135,7 +136,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             if (timer == 4)
             {
                 image_index -= 1;
-                x -= 2;
+                x -= 2*image_xscale;
                 
                 if (image_index == 5)
                 {

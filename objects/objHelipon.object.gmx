@@ -72,7 +72,7 @@ if (entityCanStep())
 {
     if (action)
     {
-        iaction = action;
+        var iaction = action;
         actionTimer += 1;
         switch (action)
         {
@@ -171,7 +171,7 @@ if (entityCanStep())
                 if (actionTimer == 8)
                 {
                     action += 1;
-                    i = instance_create(x + 5 * image_xscale, bbox_top + 1,
+                    var i = instance_create(x + 5 * image_xscale, bbox_top + 1,
                         objEnemyBullet);
                     i.xspeed = image_xscale * 2;
                     i.contactDamage = 2;

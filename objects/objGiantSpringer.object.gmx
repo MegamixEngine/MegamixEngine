@@ -31,6 +31,7 @@ event_inherited();
 healthpointsStart = 8;
 healthpoints = healthpointsStart;
 contactDamage = 6;
+category = "bulky, grounded";
 
 loadTimer = 60;
 springTimer = 0;

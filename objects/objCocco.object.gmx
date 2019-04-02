@@ -99,7 +99,7 @@ event_inherited();
 if (entityCanStep())
 {
     // check to see if eggs exist, if not remove them from the array.
-    for (i = 1; i &lt;= 3; i += 1)
+    for (var i = 1; i &lt;= 3; i += 1)
     {
         if (eggArray[i])
         {
@@ -134,12 +134,12 @@ if (entityCanStep())
     if (shooting)
     {
         actionTimer += 1;
-        if (actionTimer == 7)
+        if (actionTimer == 5)//7
         {
             image_index = 2;
             animTimer = -1;
         }
-        if (actionTimer == 14)
+        if (actionTimer == 10)//14
         {
             animTimer = -1;
             eggArray[e] = instance_create(x + 8 * image_xscale, y, objCorocoro);
@@ -148,9 +148,12 @@ if (entityCanStep())
                 respawn = false;
             e += 1;
         }
-        if (actionTimer == 21)
+        if (actionTimer == 15)//21
+        {
             animTimer = 8;
-        if (actionTimer == 50)
+            image_index = 0;
+        }
+        if (actionTimer == 50)//50
         {
             image_index = 0;
             animTimer = 5;

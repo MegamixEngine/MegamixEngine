@@ -35,7 +35,24 @@ for (dirp, dirs, files) in chain.from_iterable(os.walk(os.path.join(pathTo, path
       var = match.group(1)
       vars.add(var)
 
-vars = vars - set(["vs", "true", "false", "val", "var", "other", "argument", "bbox_bottom", "bbox_top", "bbox_left", "bbox_right", "id", "argument_count", "object_index","_____i_____", "_____j_____", "_____vs_____", "_____val_____"]) - set (["argument" + str(i) for i in range (0,17)])
+
+ignore = ["vs", "val", "var", "argument", "argument_count", "_____i_____", "_____j_____", "_____vs_____", "_____val_____"]
+ignore.extend(["argument" + str(i) for i in range (0,17)])
+if type != "-read":
+    ignore.extend(["true", "false", "other", "self", "bbox_bottom", "bbox_top", "bbox_left", "bbox_right", "id", "object_index"])
+vars = vars - set(ignore)
+
+if type == "-read":
+	vars.add("DIFF_HARD")
+	vars.add("DIFF_NORMAL")
+	vars.add("DIFF_EASY")
+	vars.add("bbox_bottom")
+	vars.add("bbox_top")
+	vars.add("bbox_left")
+	vars.add("bbox_right")
+	vars.add("id")
+	vars.add("object_index")
+
   
 varl = sorted(list(vars))
 

@@ -28,6 +28,7 @@
             <string>event_inherited();
 healthpointsStart = 3;
 contactDamage = 3;
+category = "grounded";
 grav = 0.25 * image_yscale;
 
 // Enemy specific code

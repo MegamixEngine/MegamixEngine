@@ -29,11 +29,12 @@
 blockCollision = false;
 canCollide = true;
 grav = false;
-angle = 45;
+angle = 25;
+spd = 2;
 contactDamage = 3;
 deathTimer = -1;
 i = 0;
-image_speed = 0.3;
+image_speed = 0.16;
 </string>
           </argument>
         </arguments>
@@ -141,8 +142,8 @@ if (entityCanStep())
             <kind>1</kind>
             <string>image_xscale = other.image_xscale;
 image_yscale = i;
-xspeed = image_xscale * abs(cos(degtorad(angle)) * 2);
-yspeed = image_yscale * abs(sin(degtorad(angle)) * 2);
+xspeed = image_xscale * abs(cos(degtorad(angle)) * spd);
+yspeed = image_yscale * abs(sin(degtorad(angle)) * spd);
 </string>
           </argument>
         </arguments>

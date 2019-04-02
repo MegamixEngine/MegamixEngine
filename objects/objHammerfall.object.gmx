@@ -31,6 +31,7 @@ event_inherited();
 respawn = true;
 healthpointsStart = 5;
 healthpoints = healthpointsStart;
+category = "aquatic, nature";
 contactDamage = 4;
 blockCollision = 0;
 grav = 0;

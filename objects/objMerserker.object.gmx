@@ -35,12 +35,14 @@ contactDamage = 3;
 healthpointsStart = 3;
 healthpoints = healthpointsStart;
 canHit = true;
+category = "flying";
 
 
 // Enemy Specific Code
 isFalling = false;
 animTimer = 0;
 timer = 0;
+moveDeceleration = 0;
 
 // Customizable values
 leftLimit = 5;
@@ -88,7 +90,7 @@ if (entityCanStep())
     if (xspeed != 0)
     {
         var psign = sign(xspeed);
-        xspeed += moveDecceleration * -psign;
+        xspeed += moveDeceleration * -psign;
         if (sign(xspeed) != psign)
             xspeed = 0;
     }
@@ -192,7 +194,7 @@ if (spawned)
           <argument>
             <kind>1</kind>
             <string>grav = (jumpSpeed * jumpSpeed) / (2 * jumpDistance);
-moveDecceleration = (moveSpeed * moveSpeed) / (2 * moveDistance);
+moveDeceleration = (moveSpeed * moveSpeed) / (2 * moveDistance);
 </string>
           </argument>
         </arguments>

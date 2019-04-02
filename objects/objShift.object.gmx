@@ -100,6 +100,12 @@ tileLayer = 1000000;
 // current time value
 timer = -1;
 
+_regPosX = 0;
+_regPosY = 0;
+tileOffsetX = makeArray();
+tileOffsetY = makeArray();
+tileChild   = makeArray();
+
 // auto-generated statistics:
 period = 0;
 posCount = 0;

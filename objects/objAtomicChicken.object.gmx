@@ -42,7 +42,9 @@ facePlayerOnSpawn = true;
 // Enemy specific code
 image_speed = 0.25;
 
-alarmJump = 45;
+// @cc - The time it takes for an Atomic Chicken to jump
+jumpTime = 30;
+alarmJump = 0;
 </string>
           </argument>
         </arguments>
@@ -66,6 +68,11 @@ alarmJump = 45;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(xcoll!=0)
+{
+    xspeed=xcoll;
+}
+
 
 if (entityCanStep())
 {
@@ -90,7 +97,7 @@ if (entityCanStep())
         if (!alarmJump)
         {
             yspeed = -4;
-            alarmJump = 60;
+            alarmJump = jumpTime; //60
         }
     }
 }
@@ -120,7 +127,7 @@ if (entityCanStep())
 
 /// On spawn
 image_index = 0;
-alarmJump = 45;
+alarmJump = jumpTime;
 </string>
           </argument>
         </arguments>
@@ -144,6 +151,7 @@ alarmJump = 45;
           <argument>
             <kind>1</kind>
             <string>specialDamageValue(objMagneticShockwave, 5);
+specialDamageValue(objIceWall, 10);
 </string>
           </argument>
         </arguments>

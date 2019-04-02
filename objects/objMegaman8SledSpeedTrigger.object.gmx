@@ -3,7 +3,7 @@
   <spriteName>sprMegaman8SledSpeedTrigger</spriteName>
   <solid>0</solid>
   <visible>0</visible>
-  <depth>0</depth>
+  <depth>9999</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -60,7 +60,7 @@ triggered = false;
     if (insideView() &amp;&amp; !triggered)
     {
         // get players
-        players = collisionRectangleList(view_xview[0], view_yview[0], view_xview[0] + view_wview[0], view_yview[0] + view_hview[0], objMegaman, false, false);
+        var players = collisionRectangleList(view_xview[0], view_yview[0], view_xview[0] + view_wview[0], view_yview[0] + view_hview[0], objMegaman, false, false);
         if (players != noone)
         {
             // check all players
@@ -68,7 +68,7 @@ triggered = false;
             for (i = 0; i &lt; ds_list_size(players); i++)
             {
                 // if one is on a sled
-                playerRef = ds_list_find_value(players, i);
+                var playerRef = ds_list_find_value(players, i);
                 if (instance_exists(playerRef))
                 {
                     if (instance_exists(playerRef.vehicle))
@@ -78,14 +78,14 @@ triggered = false;
                         /* speed up all active sleds on screen */
                         
                         // get all sleds
-                        sleds = collisionRectangleList(view_xview[0], view_yview[0], view_xview[0] + view_wview[0], view_yview[0] + view_hview[0], objMegaman8Sled, false, false);
+                        var sleds = collisionRectangleList(view_xview[0], view_yview[0], view_xview[0] + view_wview[0], view_yview[0] + view_hview[0], objMegaman8Sled, false, false);
                         if (sleds != noone)
                         {
                             // go through each sled
                             var j;
                             for (j = 0; j &lt; ds_list_size(sleds); j++)
                             {
-                                sledRef = ds_list_find_value(sleds, j);
+                                var sledRef = ds_list_find_value(sleds, j);
                                 if (instance_exists(sledRef))
                                 {
                                     // speed up

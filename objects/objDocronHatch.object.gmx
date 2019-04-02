@@ -81,7 +81,7 @@ if (entityCanStep())
             {
                 actionTimer = 0;
                 image_index = 1;
-                i = instance_create(x, y + 32, objDocron);
+                var i = instance_create(x, y + 32, objDocron);
                 i.sprite_index = sprDocronDropping;
                 i.action = 0;
                 i.respawn = 0;

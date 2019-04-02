@@ -61,7 +61,7 @@ playSFX(sfxYasichi);
 var pid = collectPlayer.playerID;
 
 global.playerHealth[pid] = 28;
-for (i = 0; i &lt;= global.totalWeapons; i += 1)
+for (var i = 0; i &lt;= global.totalWeapons; i += 1)
 {
     global.ammo[pid, i] = 28;
 }

@@ -142,7 +142,9 @@ else if ((dead) || (!instance_exists(objKomusoMan)))
 {
     instance_destroy();
     with (objKomusoMan)
+    {
         phase = 10;
+    }
 }
 
 if (healthpoints &lt; healthpointsStart)
@@ -172,7 +174,7 @@ if (!instance_exists(objKomusoMan))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (i = 0; i &lt; image_yscale; i += 1)
+            <string>for (var i = 0; i &lt; image_yscale; i += 1)
 {
     if (i == 0 || i == image_yscale - 1)
     {

@@ -48,6 +48,7 @@ healthpointsStart = 20;
 healthpoints = healthpointsStart;
 contactDamage = 6;
 blockCollision = 0;
+category = "nature";
 grav = 0;
 facePlayerOnSpawn = false;
 

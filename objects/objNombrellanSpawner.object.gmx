@@ -45,6 +45,7 @@ i = noone;
 delay = 30;
 
 shoottimer = -1;
+obj = objNombrellan;
 </string>
           </argument>
         </arguments>
@@ -82,7 +83,7 @@ if (entityCanStep())
         shoottimer -= 1;
         if (shoottimer &lt;= 0)
         {
-            i = instance_create(x, y, objNombrellan);
+            i = instance_create(x, y, obj);
             i.respawn = 0;
             shoottimer = delay;
         }

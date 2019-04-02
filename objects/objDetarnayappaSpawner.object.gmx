@@ -41,6 +41,9 @@ dir = -1; //- 1: Up
 
 // timer
 spawnTimer = -interval;
+
+// @cc - Change Detarnayappa colour: 0 (default) = green, 1 = red
+col = 0;
 </string>
           </argument>
         </arguments>
@@ -95,6 +98,7 @@ if (entityCanStep())
             target = other.target;
             dir = other.dir;
             depth=other.depth;
+            col = other.col;
         }
     }
 }

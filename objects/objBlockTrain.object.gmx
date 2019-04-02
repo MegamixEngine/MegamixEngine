@@ -36,6 +36,7 @@ isSolid = 1;
 
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 // Enemy specific code
 origin = 0;
@@ -75,7 +76,7 @@ yy = 0;
 if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
     actionTimer += 1;
-    iaction = action;
+    var iaction = action;
     switch (action)
     {
         case 0: // Appear - Only for the origin 
@@ -133,7 +134,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                     yy = -16;
                 }
                 
-                i = instance_create(x + xx, y + yy, object_index);
+                var i = instance_create(x + xx, y + yy, object_index);
                 i.origin = origin;
                 if (!origin)
                 {
@@ -155,7 +156,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                     }
                     else if (place_meeting(x, y, objMegaman)) // Push Mega out
                     {
-                        ys = sign(yy);
+                        var ys = sign(yy);
                         if (ys == 0)
                         {
                             ys = -instance_place(x, y, objMegaman).gravDir;
@@ -164,7 +165,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                         {
                             while (place_meeting(x, y, other.id))
                             {
-                                y += other.ys;
+                                y += ys;
                             }
                         }
                     }

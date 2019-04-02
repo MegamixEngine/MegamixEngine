@@ -40,6 +40,8 @@ contactDamage = 4;
 attackDelay = 4;
 canDamage = false;
 image_speed = 0.3;
+imgSpd = 0;
+init = 1;
 
 image_index = 1;
 
@@ -73,7 +75,12 @@ event_inherited();
 
 if (entityCanStep())
 {
-    image_speed = 0.3;
+    if(init)
+    {
+        imgSpd = image_speed;
+        init = 0;
+    }
+    image_speed = imgSpd;
     if (damageEnemies &amp;&amp; image_index &lt;= 6)
     {
         with (prtEntity)

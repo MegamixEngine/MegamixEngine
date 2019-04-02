@@ -36,7 +36,7 @@ stopOnFlash = false;
 
 attackTimer = 0;
 hasTriggeredFall = false;
-introType = 1;
+introType = 0;
 
 phase = 0;
 realXSpeed = 0; // Use this to remember xspeed
@@ -170,20 +170,23 @@ if (!global.frozen)
         startIntro = false;
         isIntro = true;
         visible = true;
-        image_index = 1;
         calibrateDirection();
         grav = gravStart;
     }
     else if (isIntro)
     {
         // custom intro:
+        if (attackTimer == 0)
+        {
+            image_index = 1;
+        }
         if (y &gt;= ystart || hasTriggeredFall)
         {
             hasTriggeredFall = true;
             y = ystart;
             
             attackTimer++;
-            if (attackTimer &lt; 20)
+            if (attackTimer &lt; 20) &amp;&amp; (attackTimer &gt; 0)
                 image_index = 0;
             if (attackTimer == 20)
                 image_index = 2;
@@ -191,10 +194,11 @@ if (!global.frozen)
                 image_index = 3;
             if (attackTimer == 50)
             {
-                instance_create(x + 7 * image_xscale, y - 10, objSolarSun);
+                instance_create(x + 5 * image_xscale, y - 10, objSolarSun);
                 playSFX(sfxSolarManSun);
             }
             if (attackTimer &gt; 50)
+            {
                 with (objSolarSun)
                 {
                     if (y &gt; other.y - 13)
@@ -209,6 +213,7 @@ if (!global.frozen)
                         }
                     }
                 }
+            }
             if (attackTimer == 90)
             {
                 image_index = 0;
@@ -228,7 +233,7 @@ if (entityCanStep())
     if (isFight)
     {
         attackTimer++;
-        print(phase);
+
         var halfScreen = view_xview + view_wview / 2;
         switch (phase)
         {

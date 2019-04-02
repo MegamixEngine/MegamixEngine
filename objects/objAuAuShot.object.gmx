@@ -110,7 +110,7 @@ if (entityCanStep())
             direction = point_direction(x, y, target.x, target.y);
         }
         
-        directionMax = 25; // &lt;-- projectile angle limits here
+        var directionMax = 25; // &lt;-- projectile angle limits here
         if (image_xscale &gt; 0)
         {
             if (direction &gt; directionMax &amp;&amp; direction &lt;= 180)

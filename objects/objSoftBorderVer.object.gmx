@@ -35,6 +35,7 @@ deactivationDistance = 32;
 
 // maxSpeed, speed at which the camera scrolls
 maxSpeed = 4;
+defaultSpeed = 0;
 </string>
           </argument>
         </arguments>

@@ -25,13 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// An antlion enemy that spits up spiked projectiles.
 
-// set this in creation code
-color = global.nesPalette[18];
+event_inherited();
+
+// @cc - Use this to change colours: 0 (default) = red, 1 = hot pink, 2 = blue
+col = 0;
 
 healthpointsStart = 3;
 healthpoints = healthpointsStart;
+category = "grounded, nature";
 
 // not confirmed
 contactDamage = 3;
@@ -55,12 +58,13 @@ wait_time = 120;
 shot_xspeed = 1;
 high_shot_yspeed = -6;
 low_shot_yspeed = -4.5;
-
+imgOffset = 0;
 // animation slowness
 at = 3;
 
+
 image_speed = 0;
-image_index = 1;
+obj = objArigockGSpike;
 </string>
           </argument>
         </arguments>
@@ -84,14 +88,12 @@ image_index = 1;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+imgOffset = col * 3;
 if (entityCanStep())
-{
-    image_blend = color;
-    
+{   
     if (phase == 0)
     {
-        image_index = 1;
+        image_index = 0 + imgOffset;
         if (animTimer &gt; init_time)
         {
             phase = 1;
@@ -101,11 +103,11 @@ if (entityCanStep())
     else if (phase == volley_n + 1)
     {
         // sleep briefly
-        image_index = 1;
+        image_index = 0 + imgOffset;
         
         // stretch briefly:
         if ((wait_time - animTimer) &lt; at * 2)
-            image_index = 2;
+            image_index = 1 + imgOffset;
         if (animTimer &gt; wait_time)
         {
             animTimer = 0;
@@ -115,17 +117,27 @@ if (entityCanStep())
     else
     {
         if (abs(animTimer - 2 * at) &lt; 2 * at)
-            image_index = 2;
+            image_index = 1 + imgOffset;
         if (abs(animTimer - 2 * at) &lt; at)
-            image_index = 3;
+            image_index = 2 + imgOffset;
         if (animTimer == 2 * at)
         {
             // create projectile
-            // TODO: this sound is inaccurate
             playSFX(sfxCannonShoot);
-            with (instance_create(x + 8, y - 16, objArigockGSpike))
+            with (instance_create(x + 8, y - 16, obj))
             {
                 yspeed = other.high_shot_yspeed;
+                switch (other.col)
+                {
+                    // Hot pink
+                    case 1:
+                        image_index = 1;
+                        break;
+                    // Blue
+                    case 2:
+                        image_index = 2;
+                        break;
+                }
                 if (other.phase == 1 || other.phase == other.volley_n)
                     yspeed = other.low_shot_yspeed;
                 xspeed = (1 - 2 * (other.phase mod 2)) * other.shot_xspeed;
@@ -147,52 +159,8 @@ else if (dead)
     animTimer = 0;
     phase = 0;
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (dead)
-{
-    exit;
-}
 
-if (iFrames == 1 || iFrames == 3)
-{
-    d3d_set_fog(true, c_white, 0, 0);
-}
 
-image_blend = color;
-drawSelf();
-
-image_blend = c_white;
-
-image_index += 3;
-
-drawSelf();
-
-image_index -= 3;
-
-image_blend = color;
-
-d3d_set_fog(false, 0, 0, 0);
 </string>
           </argument>
         </arguments>

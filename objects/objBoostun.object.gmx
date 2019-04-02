@@ -122,7 +122,7 @@ if (entityCanStep())
                     shootTimer--;
                     
                     // Get target
-                    megaDir = point_direction(x, y, target.x, target.y + 5);
+                    var megaDir = point_direction(x, y, target.x, target.y + 5);
                     
                     // Set angle
                     if (image_xscale == 1)

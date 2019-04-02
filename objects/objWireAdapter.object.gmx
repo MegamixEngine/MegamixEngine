@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 3;
+inWater = -1;
 
 image_speed = 0.15;
 
@@ -317,14 +318,10 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
                 &amp;&amp; ((global.keyUp[playerID] &amp;&amp; sign(grav) &gt;= 0)
                 || (global.keyDown[playerID] &amp;&amp; sign(grav) &lt; 0)))
             {
-                i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop);
+                var i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop);
                 if (instance_exists(i))
                 {
                     i.yspeed = -4 * image_yscale;
-                    if (sign(grav) &lt; 0)
-                    {
-                        i.y += 32;
-                    }
                     
                     i.wireLock = lockPoolLock(
                         localPlayerLock[PL_LOCK_MOVE],
@@ -343,7 +340,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
             // buster shot
             if (objWireAdapter.phase &gt;= 2)
             {
-                i = fireWeapon(16, 0, objBusterShot, 4, 0, 1, 0);
+                var i = fireWeapon(16, 0, objBusterShot, 4, 0, 1, 0);
                 if (i)
                 {
                     i.xspeed = image_xscale * 5;
@@ -415,6 +412,32 @@ weaponSetup("WIRE ADAPTOR", make_color_rgb(216, 40, 0), make_color_rgb(255, 255,
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="17">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_create(x, y, objExplosion);
+playSFX(sfxReflect);
+
+event_user(EV_DEATH);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -448,9 +471,9 @@ if (!instance_exists(parent))
 gravDir = parent.gravDir;
 image_yscale = gravDir;
 
-wirelength = (floor(((parent.y - 6 * parent.image_yscale) - y) / 4))
+var wireLength = (floor(((parent.y - 6 * parent.image_yscale) - y) / 4))
     * gravDir;
-wireimg = 1;
+var wireimg = 1;
 if (image_xscale == -1)
 {
     wireimg = 3;
@@ -460,7 +483,7 @@ if (phase == 2)
     wireimg = 4;
 }
 
-for (i = 0; i &lt;= wirelength; i += 1)
+for (var i = 0; i &lt;= wireLength; i += 1)
 {
     if (phase == 1)
     {

@@ -55,6 +55,13 @@ grav = 0;
 contactDamage = 4;
 subGroup = false;
 startingY = 0;
+
+tileBG = makeArray();
+tileWidth = makeArray();
+tileHeight = makeArray();
+tileX = makeArray();
+tileLeft = makeArray();
+tileTop = makeArray();
 </string>
           </argument>
         </arguments>
@@ -104,11 +111,11 @@ with (solidBlock)
             <kind>1</kind>
             <string>if (subGroup == false)
 {
-    for (getX = 0; getX * 16 &lt; image_xscale * sprite_get_width(sprite_index); getX += 1)
+    for (var getX = 0; getX * 16 &lt; image_xscale * sprite_get_width(sprite_index); getX += 1)
     {
-        for (getY = 0; getY * 16 &lt; image_yscale * sprite_get_height(sprite_index); getY += 1)
+        for (var getY = 0; getY * 16 &lt; image_yscale * sprite_get_height(sprite_index); getY += 1)
         {
-            myTile = tile_layer_find(depth, x + 8 + 16 * getX, y + 8 + 16 * getY);
+            var myTile = tile_layer_find(depth, x + 8 + 16 * getX, y + 8 + 16 * getY);
             if (tile_exists(myTile))
             {
                 tileBG[tileNumber] = tile_get_background(myTile);
@@ -199,9 +206,9 @@ if (entityCanStep())
             with (inst)
             {
                 startingY = other.startingY;
-                for (getX = 0; getX * 16 &lt; image_xscale * sprite_get_width(sprite_index); getX += 1)
+                for (var getX = 0; getX * 16 &lt; image_xscale * sprite_get_width(sprite_index); getX += 1)
                 {
-                    for (getY = 0; getY * 16 &lt; image_yscale * sprite_get_height(sprite_index); getY += 1)
+                    for (var getY = 0; getY * 16 &lt; image_yscale * sprite_get_height(sprite_index); getY += 1)
                     {
                         {
                             myTile = tile_layer_find(depth, x + 8 + 16 * getX, startingY + 8 + 16 * getY);

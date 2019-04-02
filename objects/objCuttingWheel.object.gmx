@@ -78,8 +78,8 @@ if (object_index == objCuttingWheelStationary)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ys = yspeed;
-xs = xspeed;
+            <string>var ys = yspeed;
+var xs = xspeed;
 
 event_inherited();
 

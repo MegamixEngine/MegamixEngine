@@ -31,6 +31,7 @@ i = 0;
 hitWall = false;
 hitFloor = false;
 shuntedIntoRoof = false;
+delay = 0;
 
 // these determine what the detector does
 

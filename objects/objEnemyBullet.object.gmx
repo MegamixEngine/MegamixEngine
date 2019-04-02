@@ -173,7 +173,7 @@ if (canHit)
     else
         dead = true;
     instance_create(x, y, objHarmfulExplosion);
-    playSFX(sfxExplosion);
+    playSFX(explosionSFX);
     stopSFX(sfxEnemyHit);
 }
 else if (dieOnHit)

@@ -31,7 +31,7 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
-category = "flying";
+category = "flying, nature";
 
 grav = 0;
 blockCollision = 0;
@@ -72,12 +72,12 @@ if (entityCanStep())
     actionTimer += 1;
     if (actionTimer == 15 || actionTimer == 25 || actionTimer == 35)
     {
-        i = instance_create(x, y + 9, objEnemyBullet);
+        var i = instance_create(x, y + 9, objEnemyBullet);
         i.yspeed = 2;
     }
     else if (actionTimer == 100)
     {
-        i = instance_create(x, y + 9, objEnemyBullet);
+        var i = instance_create(x, y + 9, objEnemyBullet);
         i.yspeed = 2;
         actionTimer = -30;
     }

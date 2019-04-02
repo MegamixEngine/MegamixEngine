@@ -34,12 +34,14 @@ healthpointsStart = 10;
 healthpoints = healthpointsStart;
 contactDamage = 12;
 lockTransition = false;
+category = "aquatic";
 
 doesIntro = false;
 
 image_speed = 0.15; // STOP USING THIS VARIABLE
 
 alarmFish = 60;
+deadTimer = 0;
 </string>
           </argument>
         </arguments>
@@ -74,13 +76,21 @@ if (entityCanStep())
     if (alarmFish == 0 &amp;&amp; instance_number(objShrink) &lt; 2)
     {
         alarmFish = 60;
-        a = instance_create(x + (15 * image_xscale), y - 10, objShrink);
+        var a = instance_create(x + (15 * image_xscale), y - 10, objShrink);
         a.respawn = false;
+    }
+    if (image_index &gt;= 4)
+    {
+        image_index = 0;
     }
 }
 else
 {
     image_speed = 0;
+    if (dead)
+    {
+        image_index = 4;
+    }
 }
 </string>
           </argument>
