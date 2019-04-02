@@ -754,8 +754,6 @@ with (objTeleporter)
     <instance objName="objBlockTrainUp" x="2800" y="2224" name="inst_06985E11" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="2560" y="2016" name="inst_238F2BAC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEnergyElement" x="2576" y="2048" name="inst_ED32F5B2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1328" y="176" name="inst_AAD77582" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1408" y="144" name="inst_E631F379" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlockyPreset" x="1336" y="128" name="inst_D0AD120B" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBlockyPreset" x="1416" y="96" name="inst_C663849A" locked="0" code="head[0] = 1;&#xA;head[2] = 1;&#xA;head[3] = 1;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
