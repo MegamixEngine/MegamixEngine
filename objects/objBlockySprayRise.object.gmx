@@ -37,12 +37,14 @@ grav = 0;
 
 image_index = 2;
 yspeed = -3;
+
+blockyID = 0;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="objBlocky">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -59,10 +61,21 @@ yspeed = -3;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (y &lt; other.y)
+            <string>event_inherited();
+
+if !global.frozen
 {
-    other.catchTimes += 1;
-    instance_destroy();
+    if instance_exists(blockyID)
+    {
+        if place_meeting(x, y, blockyID)
+        {
+            if (y &lt; blockyID.y)
+            {
+                blockyID.catchTimes += 1;
+                instance_destroy();
+            }
+        }
+    }
 }
 </string>
           </argument>
