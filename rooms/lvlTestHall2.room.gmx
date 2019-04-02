@@ -85,8 +85,6 @@ with (objTeleporter)
     <instance objName="objAtomicChicken" x="800" y="192" name="inst_E98D2C16" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBatton" x="1008" y="160" name="inst_7F166C1C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBatton" x="1120" y="48" name="inst_2020267B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlocky" x="1328" y="128" name="inst_9C5B38F4" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBlocky" x="1408" y="96" name="inst_8CB3BF3D" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCrazyCannon" x="1840" y="192" name="inst_A43AF76D" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCrazyCannon" x="1888" y="160" name="inst_D7285DE4" locked="0" code="col = 1;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMoleSpawner" x="1552" y="112" name="inst_835C06FA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -756,6 +754,8 @@ with (objTeleporter)
     <instance objName="objBlockTrainUp" x="2800" y="2224" name="inst_06985E11" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="2560" y="2016" name="inst_238F2BAC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEnergyElement" x="2576" y="2048" name="inst_ED32F5B2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlocky" x="1336" y="128" name="inst_D0AD120B" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBlocky" x="1416" y="96" name="inst_C663849A" locked="0" code="head[0] = 1;&#xA;head[2] = 1;&#xA;head[3] = 1;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bgBasic" x="0" y="0" w="128" h="128" xo="0" yo="0" id="11285099" name="inst_CC7BB916" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

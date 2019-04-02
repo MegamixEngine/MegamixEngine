@@ -2462,8 +2462,6 @@
         <sprite>sprites\sprSchworm</sprite>
         <sprite>sprites\sprSchwormOrange</sprite>
         <sprite>sprites\sprHothead</sprite>
-        <sprite>sprites\sprBlocky</sprite>
-        <sprite>sprites\sprBlockyGray</sprite>
         <sprite>sprites\sprFanFiend</sprite>
         <sprite>sprites\sprLightningLord</sprite>
         <sprite>sprites\sprGremlin</sprite>
@@ -2484,6 +2482,9 @@
         <sprite>sprites\sprClaw</sprite>
         <sprite>sprites\sprClawSpawner</sprite>
         <sprite>sprites\sprM445</sprite>
+        <sprite>sprites\sprBlockyPiece</sprite>
+        <sprite>sprites\sprBlockyPieceGray</sprite>
+        <sprite>sprites\sprBlockyPreview</sprite>
         <sprite>sprites\sprMM2SniperJoe</sprite>
         <sprite>sprites\sprMM2SniperJoeMech</sprite>
         <sprite>sprites\sprMM2SniperJoeMechEmpty</sprite>
@@ -5258,6 +5259,7 @@
         <object>objects\objAtomicChicken</object>
         <object>objects\objBatton</object>
         <object>objects\objBigFish</object>
+        <object>objects\objBlockyResizable</object>
         <object>objects\objBlocky</object>
         <object>objects\objClaw</object>
         <object>objects\objClawSpawner</object>
