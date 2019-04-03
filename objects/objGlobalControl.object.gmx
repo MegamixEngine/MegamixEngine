@@ -1381,15 +1381,7 @@ depth = depthstart;
                 pcol = global.nesPalette[5];
             }
             
-            for (i = 1; i &lt;= ceil(global.playerHealth[z]); i += 1)
-            {
-                draw_sprite_ext(sprHealthbarPrimary, 0, dx + 1,
-                    dy + (sprite_get_height(sprHealthbarBackground) - i * 2),
-                    1, 1, 0, pcol, 1);
-                draw_sprite_ext(sprHealthbarSecondary, 0, dx + 1,
-                    dy + (sprite_get_height(sprHealthbarBackground) - i * 2),
-                    1, 1, 0, scol, 1);
-            }
+            drawHudBar(dx, dy, pcol, scol, global.playerHealth[z], 28);
             
             var display = true;
             
@@ -1416,15 +1408,10 @@ depth = depthstart;
             {
                 draw_sprite_ext(sprHealthbarBackground, 0, dx - 8, dy, 1, 1,
                     image_angle, global.outlineCol[z], image_alpha);
-                for (i = 1; i &lt;= c; i += 1)
-                {
-                    draw_sprite_ext(sprHealthbarPrimary, 0, dx - 8 + 1, dy
-                        + (sprite_get_height(sprHealthbarBackground) - i * 2),
-                        1, 1, 0, global.primaryCol[z], 1);
-                    draw_sprite_ext(sprHealthbarSecondary, 0, dx - 8 + 1, dy
-                        + (sprite_get_height(sprHealthbarBackground) - i * 2),
-                        1, 1, 0, global.secondaryCol[z], 1);
-                }
+                
+                drawHudBar(dx - 8, dy, global.primaryCol[z],
+                  global.secondaryCol[z], c, 28);
+                
                 if (global.infiniteEnergy[global.weapon[z]])
                 {
                     draw_sprite_ext(sprInfinityMarkVertical, 0, dx - 8, dy + 28, 1,
@@ -1453,7 +1440,7 @@ depth = depthstart;
             
             // Choose color to draw
             var currentExtraHealthBar = 0;
-            var myPrimaryColor, mySecondaryColor;
+            var bar_colors;
             var _currentHealth = 0;
             
             if (fillingHealthBar) //Intro health bar
@@ -1477,38 +1464,20 @@ depth = depthstart;
                     _currentHealth = healthpoints;
                 }
             }
-            // draw the health within the healthbar.
-            for (i = 1; i &lt;= ceil(_currentHealth); i += 1;)
-            {
-                // If the boss has more than 28 health, use this math to find out what 'layer' of
-                // health the boss is currently on. It's i-1/28 because if it was i/28, it would start
-                // a new health layer at the max health (28) rather than 1 over, when it should
-                // overflow.
-                
-                if ((i mod 28) == 1) // Set new colors for the health bar
-                {
-                    currentExtraHealthBar = ((i - 1) / 28);
-                    if (manualColors)
-                    {
-                        myPrimaryColor = healthBarPrimaryColor[currentExtraHealthBar + 1];
-                        mySecondaryColor = healthBarSecondaryColor[currentExtraHealthBar + 1];
-                    }
-                    else
-                    {
-                        // if the colors chosen are higher numbered than valid colors on the NES palette, default to the last in the index (black)
-                        myPrimaryColor = global.nesPalette[min(54, (healthBarPrimaryColor[1] + (healthBarColorSkip * (currentExtraHealthBar))))];
-                        mySecondaryColor = global.nesPalette[min(54, (healthBarSecondaryColor[1] + (healthBarColorSkip * (currentExtraHealthBar))))];
-                    }
-                }
-                
-                // now actually draw the pellets themselves, using all the info we've gatehred.
-                draw_sprite_ext(sprHealthbarPrimary, 0, dxx + 1,
-                    dy + (sprite_get_height(sprHealthbarBackground)) - ((i - (currentExtraHealthBar * 28)) * 2),
-                    1, 1, 0, myPrimaryColor, 1);
-                draw_sprite_ext(sprHealthbarSecondary, 0, dxx + 1,
-                    dy + (sprite_get_height(sprHealthbarBackground)) - ((i - (currentExtraHealthBar * 28)) * 2),
-                    1, 1, 0, mySecondaryColor, 1);
+            
+            var bar_index = _currentHealth div 28;
+            var bar_level = _currentHealth mod 28;
+            
+            if (1 &lt;= bar_index) {
+              bar_colors = getBossHealthBarColors(bar_index);
+              drawHudBar(dxx, dy, bar_colors[0], bar_colors[1], 28, 28);
             }
+            
+            if (0 &lt; bar_level) {
+              bar_colors = getBossHealthBarColors(bar_index + 1);
+              drawHudBar(dxx, dy, bar_colors[0], bar_colors[1], bar_level, 28);
+            }
+            
             healthIndex += 1;
         }
         
