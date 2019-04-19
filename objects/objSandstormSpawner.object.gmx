@@ -45,6 +45,7 @@ size = 32;
 mySpeed = -2;
 stormdelay = 14 * room_speed;
 dir = 0;
+cameraSpawn = false; // true = spawn at camera edge. false = spawn at room edge. 
 
 actionTimer = stormdelay;
 
@@ -83,12 +84,27 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             var i;
             if (dir == 1)
             {
-                i = instance_create(global.sectionLeft - size * 16, y,
-                    objectDrop);
+                if (cameraSpawn)
+                {
+                    i = instance_create(view_xview[0] - size * 16, y,
+                        objectDrop);
+                }
+                else
+                {
+                    i = instance_create(global.sectionLeft - size * 16, y,
+                        objectDrop);
+                }
             }
             if (dir == -1)
             {
-                i = instance_create(global.sectionRight, y, objectDrop);
+                if (cameraSpawn)
+                {
+                    i = instance_create(view_xview[0] + view_wview[0], y, objectDrop);
+                }
+                else
+                {
+                    i = instance_create(global.sectionRight, y, objectDrop);
+                }
             }
             i.size = size;
             i.mySpeed = mySpeed;
