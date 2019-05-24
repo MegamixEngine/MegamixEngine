@@ -57,7 +57,7 @@ disappearTime = 105*2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spawnItemDrop(myItem);
+            <string>spawnItemDrop(myItem, code, script);
 
 instance_destroy();
 </string>
