@@ -70,16 +70,16 @@ else if (global.levelSongType == "VGM")
             audio_sound_gain(sound_index, global.levelVolume * (global.musicvolume * 0.01), 0); // set the volume
             song_tracks = GME_NumTracks();
             song_voices = GME_NumVoices();
-            GME_StartTrack(global.levelTrackNumber);
-            
-            forceReset = true;
             
             // don't play the song before the force reset
+            forceReset = true;
             for (v = 0; v <= song_voices; v++)
             {
                 GME_MuteVoice(v, true);
             }
             
+            // play
+            GME_StartTrack(global.levelTrackNumber);
             GME_Play();
         }
     }

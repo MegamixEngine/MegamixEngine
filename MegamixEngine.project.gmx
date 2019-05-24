@@ -5049,6 +5049,7 @@
       <script>scripts\clearDrawState.gml</script>
       <script>scripts\drawSpriteCropped.gml</script>
       <script>scripts\makeStruct.gml</script>
+      <script>scripts\spawnItemDrop.gml</script>
     </scripts>
     <scripts name="Misc.">
       <scripts name="Saving">

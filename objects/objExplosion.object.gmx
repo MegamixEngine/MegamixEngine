@@ -57,94 +57,9 @@ disappearTime = 105*2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_user(0);
+            <string>spawnItemDrop(myItem);
 
 instance_destroy();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="10">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>event_inherited();
-
-// if "myItem" ==  0 --&gt; regular drop
-// if "myItem" == -1 --&gt; drop nothing
-// if "myItem" &gt;   0 --&gt; use value to determine new object
-
-// Random drop rates (credit to Blyka)
-// randomize();
-
-if (myItem &gt;= 0)
-{
-    var item = myItem;
-    
-    if (item == 0)
-    {
-        if (!irandom(4096)) // The shiniest shiny of all shinies
-        {
-            item = objYashichi;
-        }
-        else
-        {
-            var randItem = floor(random(600));
-            randItem *= 1 - (global.dropUpgrade * 0.33) - (global.converter * 0.1);
-            
-            if (randItem &lt; 4)
-            {
-                item = objLife;
-            }
-            else if (randItem &lt; 45)
-            {
-                item = choose(objLifeEnergyBig, objWeaponEnergyBig);
-            }
-            else if (randItem &lt; 120)
-            {
-                item = choose(objLifeEnergySmall, objWeaponEnergySmall, objBoltBig);
-            }
-            else if (randItem &lt; 240)
-            {
-                item = objBoltSmall;
-            }
-        }
-    }
-    
-    if (item)
-    {
-        var i = instance_create(x, y, item);
-        i.respawn = false;
-        i.x += bboxGetXCenter() - bboxGetXCenterObject(i);
-        i.y += bboxGetYCenter() - bboxGetYCenterObject(i);
-        i.disappear = disappearTime;
-        if (i.grav != 0)
-        {
-            i.yspeed = -2;
-        }
-        with(i)
-        {
-            if(other.script != scrNoEffect)
-                script_execute(other.script);
-            if (other.code != "")
-                stringExecutePartial(other.code);
-        }
-    }
-}
 </string>
           </argument>
         </arguments>

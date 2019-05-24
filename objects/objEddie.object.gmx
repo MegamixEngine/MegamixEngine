@@ -25,9 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_perform_object(objExplosion, ev_create, ev_create);
-
-event_inherited();
+            <string>event_inherited();
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
@@ -287,8 +285,7 @@ if (!myItem)
     }
 }
 
-event_perform_object(objExplosion, ev_other, ev_user0);
-
+i = spawnItemDrop(myItem);
 i.xspeed = image_xscale;
 i.yspeed = -4;
 i.y -= 8 * image_yscale;
