@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="107" name="datafiles">
+  <datafiles number="110" name="datafiles">
     <datafile>
       <name>chrono.dll</name>
       <exists>-1</exists>
@@ -89,7 +89,24 @@
       </ConfigOptions>
       <filename>GMFMODSimple.dll</filename>
     </datafile>
-    <datafiles number="107" name="Levels">
+    <datafile>
+      <name>gig.dll</name>
+      <exists>-1</exists>
+      <size>5719311</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>gig.dll</filename>
+    </datafile>
+    <datafiles number="110" name="Levels">
       <datafile>
         <name>lvlChillMan.room.gmx</name>
         <exists>-1</exists>
@@ -873,7 +890,7 @@
         <filename>rmShowcaseWater.room.gmx</filename>
       </datafile>
     </datafiles>
-    <datafiles number="107" name="Music">
+    <datafiles number="110" name="Music">
       <datafile>
         <name>14 Tenguman.spc</name>
         <exists>-1</exists>
@@ -1402,7 +1419,7 @@
         <filename>WW_Boss.vgz</filename>
       </datafile>
     </datafiles>
-    <datafiles number="107" name="Recordings">
+    <datafiles number="110" name="Recordings">
       <datafile>
         <name>demoHoneyWoman.mrc</name>
         <exists>-1</exists>
@@ -1438,8 +1455,8 @@
         <filename>demoPharaohMan.mrc</filename>
       </datafile>
     </datafiles>
-    <datafiles number="107" name="UnitTests">
-      <datafiles number="107" name="Recordings">
+    <datafiles number="110" name="UnitTests">
+      <datafiles number="110" name="Recordings">
         <datafile>
           <name>RecordingObjectSet.mrc</name>
           <exists>-1</exists>
@@ -1713,7 +1730,7 @@
           <filename>recTestA.mrc</filename>
         </datafile>
       </datafiles>
-      <datafiles number="107" name="Rooms">
+      <datafiles number="110" name="Rooms">
         <datafile>
           <name>lvlRecordingTest.room.gmx</name>
           <exists>-1</exists>
@@ -5096,18 +5113,6 @@
         <script>scripts\recordInputReadFrame.gml</script>
         <script>scripts\recordInputFidelityMessage.gml</script>
       </scripts>
-      <scripts name="Reflection">
-        <script>scripts\stringExecutePartial.gml</script>
-        <script>scripts\parseExpression.gml</script>
-        <script>scripts\stringPeekBlock.gml</script>
-        <script>scripts\setInstanceVariableArray.gml</script>
-        <script>scripts\getInstanceVariable.gml</script>
-        <script>scripts\getInstanceVariableArray.gml</script>
-        <script>scripts\stringPeekToken.gml</script>
-        <script>scripts\scriptExecuteNargs.gml</script>
-        <script>scripts\executeGMLFunction.gml</script>
-        <script>scripts\setInstanceVariable.gml</script>
-      </scripts>
       <scripts name="Unit Tests">
         <scripts name="Framework">
           <script>scripts\unitCase.gml</script>
@@ -5171,6 +5176,15 @@
         <script>scripts\chronoGet.gml</script>
         <script>scripts\chronoReset.gml</script>
       </scripts>
+      <scripts name="gig">
+        <script>scripts\stringExecutePartial.gml</script>
+        <script>scripts\gigVariableGet.gml</script>
+        <script>scripts\gigVariableSet.gml</script>
+        <script>scripts\gigReturnValue.gml</script>
+        <script>scripts\gigInit.gml</script>
+        <script>scripts\gigFunction.gml</script>
+      </scripts>
+      <script>scripts\scriptExecuteNargs.gml</script>
       <script>scripts\scrNoEffect.gml</script>
       <script>scripts\eventExecute.gml</script>
       <script>scripts\combineObjects.gml</script>
