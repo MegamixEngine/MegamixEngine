@@ -101,6 +101,7 @@ switch (AnimID)
                 spriteIDX[2] = 9;
                 spriteIDX[3] = 10;
                 spriteLoopSpeed = 0.3;
+                
                 if (yspeed < 0) // jumping
                 {
                     spriteLoopEnd = 1;
@@ -113,19 +114,24 @@ switch (AnimID)
                 }
                 spriteX = spriteIDX[floor(spriteLoopID)];
                 animate = 1;
+                
                 break;
+                
             case 4: // Climbing 
-                spriteX = 15;
-                if (instance_exists(objSectionSwitcher))
+                spriteLoopStart = 0;
+                spriteLoopEnd = 1;
+                spriteIDX[0] = 15;
+                spriteIDX[1] = 16;
+                
+                if (instance_exists(objSectionSwitcher) && !isShoot)
                 {
                     climbSpriteTimer += 1;
-                    if (climbSpriteTimer >= 8 && !isShoot)
-                    {
-                        climbSpriteTimer = 0;
-                        image_xscale = -image_xscale;
-                    }
                 }
+                
+                spriteX = spriteIDX[!((climbSpriteTimer div 8) mod 2)];
+                
                 break;
+                
             case 5: // Hit 
                 spriteX = 13 + (!isHit) - isFrozen;
                 break;

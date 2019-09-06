@@ -64,10 +64,19 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
         if (yDir != 0 && !isShoot) // Movement
         {
             yspeed = climbSpeed * yDir;
+            
+            // climbing animation
             climbSpriteTimer += 1;
             if (!(climbSpriteTimer mod 8))
             {
-                image_xscale = -image_xscale;
+                if (spriteX == 15)
+                {
+                    spriteX = 16;
+                }
+                else if (spriteX == 16)
+                {
+                    spriteX = 15;
+                }
             }
         }
         else
