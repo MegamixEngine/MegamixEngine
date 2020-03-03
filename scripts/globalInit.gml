@@ -11,6 +11,7 @@ lockPoolInit();
 globalLockInit();
 fsInit();
 chronoInit();
+gigInit();
 
 // extension initialization
 cleanMem('init');
