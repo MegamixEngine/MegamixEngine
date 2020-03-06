@@ -23,7 +23,7 @@ before_script:
   - git clone https://github.com/maiple/opengml
   # don't use prebuilt binaries.
   - rm datafiles/*.dll
-  - rm datafiles/*.so
+  - rm datafiles/*.so*
   # build libs
   - cd lib && ./build.sh && cd -
   - cp lib/*.so datafiles/
@@ -31,6 +31,8 @@ before_script:
   # in particular must switch to 64-bit mode.
   - cd opengml && cmake . -DRELEASE=ON -DNETWORKING=OFF -DX64=ON && make && cd -
   - cp opengml/gig.so datafiles/gig.so
+  # copy all .so files into main folder so they can be run.
+  - cp datafiles/*.so* .
 script:
   # run unit tests with dlls off.
   - ./opengml/ogm -DGME_ENABLED=false -DFMOD_ENABLED=false -DFS_ENABLED=false -DGameMusicEmu ./MegamixEngine.project.gmx --test 
