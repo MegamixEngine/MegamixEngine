@@ -4,6 +4,8 @@ var task, dll;
 task = argument0;
 dll = "CleanMem.dll";
 
+if (os_type == os_linux) return 0;
+
 if (!file_exists(dll))
 {
     exit;

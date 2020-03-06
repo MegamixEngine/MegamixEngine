@@ -10,14 +10,13 @@ if (argument_count > 0)
 
 var preTZ = date_get_timezone();
 date_set_timezone(timezone);
-var date = date_current_datetime();
 var str = "";
-str += string(date_get_year(date)) + "-";
-str += string(date_get_month(date)) + "-";
-str += string(date_get_day(date)) + " ";
-str += string(date_get_hour(date)) + ":";
-str += string(date_get_minute(date)) + ":";
-str += string(date_get_second(date));
+str += string(current_year) + "-";
+str += string(current_month) + "-";
+str += string(current_day) + " ";
+str += string(current_hour) + ":";
+str += string(current_minute) + ":";
+str += string(current_second);
 
 if (timezone == timezone_utc)
 {

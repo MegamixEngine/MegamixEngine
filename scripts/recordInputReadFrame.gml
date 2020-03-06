@@ -60,7 +60,6 @@ while (true)
     {
         // fidelity
         global.recordInputFidelityMessageCompare = value;
-        show_debug_message(key + ": " + value);
     }
     else
     {
@@ -92,15 +91,17 @@ while (true)
 // error-checking
 if (global.recordInputFidelity == 0 && !global.recordInputScriptOverride)
 {
+    var preHashBuffer = global.recordInputFidelityMessageBuffer;
     if (global.recordInputFidelityMessageBuffer != "")
         global.recordInputFidelityMessageBuffer = md5_string_utf8(global.recordInputFidelityMessageBuffer);
     if (!stringStartsWith(global.recordInputFidelityMessageBuffer, global.recordInputFidelityMessageCompare)
         || (global.recordInputFidelityMessageBuffer != "" && global.recordInputFidelityMessageCompare == ""))
     {
+        show_debug_message("fidelity error. stored: " + '"' + global.recordInputFidelityMessageCompare + '", calculated: "' + global.recordInputFidelityMessageBuffer + '" (via "' + preHashBuffer + '")')
         global.recordInputFidelity = -1;
     }
-    global.recordInputFidelityMessageBuffer = "";
 }
+global.recordInputFidelityMessageBuffer = "";
 
 if (global.recordInputDeath)
 {

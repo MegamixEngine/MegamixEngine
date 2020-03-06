@@ -155,10 +155,10 @@ FMODUpdate();
           <argument>
             <kind>1</kind>
             <string>/// GME step
-
+            
 // The following is a check to refill audio buffers
 // if playing has stopped unexpectedly from moving window etc.
-if (playing &amp;&amp; !endReached &amp;&amp; !audio_is_playing(snd_queue))
+if (playing &amp;&amp; !endReached &amp;&amp; !audio_is_playing(snd_queue)  &amp;&amp; GME_ENABLED)
 {
     // Fill all the audio buffers with song data and add to queue
     for (var i = 0; i &lt; buffer_count; i++)
@@ -215,7 +215,7 @@ if (playing &amp;&amp; !endReached &amp;&amp; !audio_is_playing(snd_queue))
             <kind>1</kind>
             <string>// Fill an audio buffer and add it to the queue
 
-if (playing &amp;&amp; !endReached)
+if (playing &amp;&amp; !endReached &amp;&amp; GME_ENABLED)
 {
     // Fill the buffer with audio data
     endReached = !GameMusicEmu_Read(bufPointer[buffer_index]);
@@ -276,8 +276,9 @@ audio_stop_all();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Unload possible file
-if (buffer_gme != noone)
+            <string>/// Unload possible file    
+        
+if (buffer_gme != noone &amp;&amp; GME_ENABLED)
 {
     GameMusicEmu_Free();
     buffer_delete(buffer_gme);

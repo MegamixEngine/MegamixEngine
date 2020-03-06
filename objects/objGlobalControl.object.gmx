@@ -260,6 +260,10 @@ if(init &amp;&amp; room == rmDisclaimer)
     init=0;
     if(parameter_count()&gt;1)
     {
+        if (parameter_string(1) == "--test")
+        {
+            room_goto(rmUnitTest);
+        }
         var filename = "+" + parameter_string(1);
         if(filename!="+" &amp;&amp; stringEndsWith(filename,".room.gmx"))
         {
@@ -967,7 +971,7 @@ if (global.beginStageOnRoomBegin &amp;&amp; global.hasTeleported)
 
 global.inGame = (instance_exists(objDefaultSpawn) || global.hasTeleported);
 
-assert(!global.beginStageOnRoomBegin || global.inGame, "Began a stage but nowhere for player to spawn.");
+assert(!global.beginStageOnRoomBegin || global.inGame, "Began a stage but nowhere for player to spawn: " + roomExternalGetName(room));
 
 if (global.inGame)
 {

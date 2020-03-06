@@ -248,7 +248,7 @@ if (entityCanStep())
                         if (i == 48)
                             setX = 40;
                     }
-                    var
+                    
                     if (setX != -9999)
                         sd = instance_create(x + setX * image_xscale, y, objEnemyBullet);
                     else

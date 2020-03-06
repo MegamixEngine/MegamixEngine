@@ -497,6 +497,7 @@ while (true)
             }
             if (!valid)
             {
+                assert(is_real(id)); // just to confirm that we haven't broken the with stack.
                 return "yield from invalid with-iterator.";
             }
             if (withidx[wi] >= withcount[wi])
@@ -545,6 +546,7 @@ while (true)
         if (sc != 1)
             assert(false, "Bytecode execution finished with " + string(sc) + " values on stack.")
         global.dll_gigReturnValue = stack[0];
+        assert(is_real(id)); // just to confirm that we haven't broken the with stack.
         return false;
     case "eof":
         assert(false, "bytecode eof reached -- unexpected.");
@@ -580,4 +582,5 @@ while (true)
     } until (addressAligned[pc]);
 }
 
+assert(is_real(id)); // just to confirm that we haven't broken the with stack.
 return false;

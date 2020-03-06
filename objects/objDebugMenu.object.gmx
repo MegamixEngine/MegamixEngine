@@ -40,6 +40,7 @@ option = 0;
 quickScrollTimer = 25;
 endy = 10;
 mode = 0; // 0: normal. 1: record input menu
+openTimer = 0;
 
 optionText = "ROOM SELECT#
 AMMO REFILL#
@@ -337,9 +338,6 @@ else if (mode == 1)
                     }
                     else if (option == 1)
                     {
-                        objGlobalControl.fadetimer = -5;
-                        objGlobalControl.fadetimer -= 1; // I'm not sure why but recording requires an extra frame to sync up.
-                        objGlobalControl.fadeAlpha = 1;
                         recordInputToFile(filename, global.checkpoint);
                     }
                     instance_destroy();
@@ -357,10 +355,13 @@ else if (mode == 1)
 }
 
 // close the debug menu
-if (keyboard_check_pressed(ord('2')))
+if (keyboard_check_pressed(ord('2')) && openTimer &gt; 1)
 {
     instance_destroy();
 }
+
+openTimer++;
+
 </string>
           </argument>
         </arguments>

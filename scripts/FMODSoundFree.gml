@@ -19,5 +19,5 @@
 // FMODGroupStop()
 // FMODAllStop()
 
-
+if (!FMOD_ENABLED) return 0;
 return external_call(global.dll_FMODSoundFree, argument0);

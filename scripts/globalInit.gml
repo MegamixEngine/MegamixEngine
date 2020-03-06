@@ -10,7 +10,6 @@ mathTableSetup();
 lockPoolInit();
 globalLockInit();
 fsInit();
-chronoInit();
 gigInit();
 
 // extension initialization

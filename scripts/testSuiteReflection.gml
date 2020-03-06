@@ -138,6 +138,6 @@ if (unitCase("functions"))
     {
         value = 5;
         stringExecutePartial("value = sin(3)");
-        unitRequire(value != sin(3), "couldn't call 1-arg function.");
+        unitRequire(value == sin(3), "couldn't call 1-arg function.");
     }
 }

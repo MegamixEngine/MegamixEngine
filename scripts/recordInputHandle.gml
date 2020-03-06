@@ -13,7 +13,7 @@ else
     if (global.recordInputFrame mod 30 == 20 && instance_exists(objMegaman))
     {
         recordInputFidelityMessage(string(round(objMegaman.x)) + "," + string(round(objMegaman.y)));
-    }
+    }    
 }
 
 // recording
@@ -25,16 +25,25 @@ if (global.recordInputMode == 1)
         // go to correct room for recording input
         if (room == global.recordInputRoom && global.recordInputSkipSpawn)
         {
+            show_debug_message("Began recording.")
             global.recordInputBegin = false;
             global.recordInputFidelityMessageBuffer = "";
+            
+            // sometimes necessary to sync.
+            objGlobalControl.fadetimer = -5;
+            objGlobalControl.fadeAlpha = 1;
             
             // set random seed (created in saveLoadRecordInput)
             random_set_seed(global.recordInputRandomSeed);
         }
         else
         {
+            show_debug_message("switching rooms to recording room " + roomExternalGetName(global.recordInputRoom));
             room_goto(global.recordInputRoom);
             global.recordInputSkipSpawn = true;
+            
+            // reset fidelity buffer.
+            global.recordInputFidelityMessageBuffer = "";
             exit;
         }
     }
@@ -52,6 +61,12 @@ if (global.recordInputMode == 2)
     {
         if (room == global.recordInputRoom)
         {
+            show_debug_message("Began playback in recorded room.")
+            
+            // sometimes necessary to sync.
+            objGlobalControl.fadetimer = -5;
+            objGlobalControl.fadeAlpha = 1;
+            
             global.recordInputBegin = false;
             if (global.recordInputSkipSpawn)
             {
@@ -108,6 +123,7 @@ if (global.recordInputMode == 2)
             {
                 global.playerCount = global.recordPlayerCount;
                 global.livesEnabled = false;
+                global.recordInputFidelityMessageBuffer = "";
                 goToLevel(global.recordInputRoom);
             }
             exit;

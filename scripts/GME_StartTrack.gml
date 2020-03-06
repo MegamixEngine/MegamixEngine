@@ -3,6 +3,8 @@
 var _return = 10;
 var _tracknumber = argument0;
 
+if (!GME_ENABLED) return 0;
+
 with (objMusicControl)
 {
     _return = GameMusicEmu_StartTrack(_tracknumber);

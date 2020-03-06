@@ -1,6 +1,8 @@
 /// fsInit()
 // Loads the filesystem.dll library
 
+if (!FS_ENABLED) exit;
+
 var dllName = "filesystem.dll";
 var callType = dll_cdecl;
 

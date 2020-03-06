@@ -39,6 +39,7 @@ roomlist = ds_list_create();
 roomnames = ds_list_create();
 
 nonLevels = makeArray();
+nonLevels[0] = -10000;
 
 ds_list_add(roomnames, "Main Menu...");
 ds_list_add(roomlist, rmTitleScreen);

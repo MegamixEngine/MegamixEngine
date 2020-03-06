@@ -6,6 +6,9 @@
 // Example call
 // When the game starts
 // LoadFMOD();
+
+if (!FMOD_ENABLED) return 0;
+
 if (!file_exists('GMFMODSimple.dll'))
     show_message("File not found: GMFMODSimple.dll#In directory: "
         + working_directory);

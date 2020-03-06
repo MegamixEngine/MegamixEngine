@@ -5,23 +5,6 @@
   </Configs>
   <datafiles number="110" name="datafiles">
     <datafile>
-      <name>chrono.dll</name>
-      <exists>-1</exists>
-      <size>957440</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>chrono.dll</filename>
-    </datafile>
-    <datafile>
       <name>CleanMem.dll</name>
       <exists>-1</exists>
       <size>1024</size>
@@ -5171,11 +5154,6 @@
         <script>scripts\fsWildcardPath.gml</script>
         <script>scripts\fsWrite.gml</script>
       </scripts>
-      <scripts name="Chrono">
-        <script>scripts\chronoInit.gml</script>
-        <script>scripts\chronoGet.gml</script>
-        <script>scripts\chronoReset.gml</script>
-      </scripts>
       <scripts name="gig">
         <script>scripts\stringExecutePartial.gml</script>
         <script>scripts\gigVariableGet.gml</script>
@@ -6945,6 +6923,9 @@
     <constant name="gravAccel">0.25</constant>
     <constant name="waterAccelMod">0.57</constant>
     <constant name="MAX_SLOPE">2</constant>
+    <constant name="GME_ENABLED">true</constant>
+    <constant name="FMOD_ENABLED">true</constant>
+    <constant name="FS_ENABLED">true</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

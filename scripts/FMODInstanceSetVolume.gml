@@ -20,4 +20,5 @@
 // You need to keep track of the volume yourself in a variable
 // if you need to remember the max volume of the intance
 
+if (!FMOD_ENABLED) return 0;
 return external_call(global.dll_FMODInstanceSetVolume, argument0, argument1);

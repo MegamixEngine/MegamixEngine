@@ -34,7 +34,15 @@ global.levelSong = fileName;
 global.levelSongType = fileType;
 global.levelTrackNumber = trackNumber;
 
-global.levelLoopStart = loopPosition / songLength;
+if (songLength > loopPosition)
+{
+    global.levelLoopStart = loopPosition / songLength;
+}
+else
+{
+    global.levelLoopStart = 1;
+}
+
 global.levelLoopEnd = 1;
 
 global.levelLoop = loops;
@@ -42,6 +50,8 @@ global.levelVolume = volume;
 
 if (global.levelSongType == "OGG")
 {
+    if (!FMOD_ENABLED) exit;
+    
     global.tempSongData = FMODSoundAdd(mus, false, true);
     
     // set loop points before playing
@@ -62,6 +72,8 @@ if (global.levelSongType == "OGG")
 }
 else if (global.levelSongType == "VGM")
 {
+    if (!GME_ENABLED) exit;
+    
     with (objMusicControl)
     {
         sound_index = GME_LoadSong(mus);
