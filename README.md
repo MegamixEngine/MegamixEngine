@@ -1,10 +1,5 @@
 # Megamix Engine
 
-Master: [![Master Build Status](https://api.travis-ci.com/MegamixEngine/MegamixEngine.svg?branch=master)](https://api.travis-ci.com/MegamixEngine/MegamixEngine.svg)
-
-Development branch: [![Dev Build Status](https://api.travis-ci.com/MegamixEngine/MegamixEngine.svg?branch=dev)](https://api.travis-ci.com/MegamixEngine/MegamixEngine.svg)
-
-
 Game Maker Studio Mega Man Engine, forked from the
 [Mega Engine](http://sprites-inc.co.uk/showthread.php?tid=1648).
 
