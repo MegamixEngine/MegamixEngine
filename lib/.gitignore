@@ -1,5 +1,7 @@
 *.exe
 *.dll
 *.o
+*.so
 *tmp.txt
 *tmp2.txt
+*_test

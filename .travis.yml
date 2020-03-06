@@ -21,8 +21,12 @@ before_script:
   - gcc-9 -v && g++-9 -v && cmake --version
   # grab opengml
   - git clone https://github.com/maiple/opengml
+  # don't use prebuilt binaries.
   - rm datafiles/*.dll
   - rm datafiles/*.so
+  # build libs
+  - cd lib && ./build.sh && cd -
+  - cp lib/*.so datafiles/
   # Have to disable some features to get travis to build,
   # in particular must switch to 64-bit mode.
   - cd opengml && cmake . -DRELEASE=ON -DNETWORKING=OFF -DX64=ON && make && cd -
