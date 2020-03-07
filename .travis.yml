@@ -35,6 +35,7 @@ before_script:
   - cp datafiles/*.so* .
 script:
   # run unit tests with dlls off.
+  - ./opengml/ogm --version
   - ./opengml/ogm -DGME_ENABLED=false -DFMOD_ENABLED=false -DFS_ENABLED=false -DGameMusicEmu ./MegamixEngine.project.gmx --test 
   # check that tests passed.
   - cat "test.log"
