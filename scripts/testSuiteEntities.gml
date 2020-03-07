@@ -55,7 +55,7 @@ if (unitCase("Basic entity safety"))
                 // TODO: remove the && !object_is_ancestor(objectIndex, prtEnemyProjectile), they should be tested too but they were too buggy...
                 if (object_is_ancestor(objectIndex, prtEntity) && objectIndex!=objElectricGabyoall&& !object_is_ancestor(objectIndex, prtEnemyProjectile))
                 {
-                    if (string_pos("SharkSubmarine", object_get_name(objectIndex)))
+                    if (string_pos("objPetitSnakeyPillar", object_get_name(objectIndex)))
                     {
                         // sigh
                         unitEnd();

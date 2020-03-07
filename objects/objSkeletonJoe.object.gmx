@@ -46,7 +46,7 @@ shooting = false;
 shootAmount = 0;
 
 // randomize();
-shootAmountMax = choose(5, 10);
+shootAmountMax = -1;
 
 collapse = false;
 </string>
@@ -81,6 +81,11 @@ if (!dead &amp;&amp; global.timeStopped)
 
 if (entityCanStep())
 {
+    if (shootAmountMax &lt; 0)
+    {
+        shootAmountMax = choose(5, 10);
+    }
+    
     if (!collapse)
     {
         facePlayer = true;

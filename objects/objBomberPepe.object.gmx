@@ -43,8 +43,7 @@ imgSpd = 0.2;
 imgIndex = 0;
 jumpWait = 40;
 jumpWaitTimer = jumpWait;
-shootWaitTimer = 0;
-event_user(0); // set jumpWaitTimer to a random number within a range
+shootWaitTimer = -1;
 
 xspeed = 0;
 yspeed = 0;
@@ -75,6 +74,11 @@ xs = 0;
 
 if (entityCanStep())
 {
+    if (shootWaitTimer &lt; 0)
+    {
+        event_user(0);
+    }
+    
     // face player when first coming on screen
     if (jumpWaitTimer == jumpWait)
     {

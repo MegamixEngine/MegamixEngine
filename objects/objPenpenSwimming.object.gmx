@@ -73,7 +73,7 @@ if (entityCanStep())
 {
     if (!homing)
     {
-        var ys;
+        var ys = 0;
         if (xspeed == 0)
         {
             ys = y;

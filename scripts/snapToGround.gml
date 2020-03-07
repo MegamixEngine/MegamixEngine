@@ -28,7 +28,7 @@ if (argument_count > 1 && argument[1] > 0)
 if (argument_count > 2)
     failTolerancy = argument[2];
 else
-    failTolerancy = abs(sprite_get_width(sprite_index) + sprite_get_height(sprite_height)) / 2;
+    failTolerancy = abs(sprite_get_width(sprite_index) + sprite_get_height(sprite_index)) / 2;
 
 if (_groundDir == -1) // Push out of solids and set the direction in which the ground is located
 {

@@ -37,4 +37,5 @@ script:
   # run unit tests with dlls off.
   - ./opengml/ogm -DGME_ENABLED=false -DFMOD_ENABLED=false -DFS_ENABLED=false -DGameMusicEmu ./MegamixEngine.project.gmx --test 
   # check that tests passed.
+  - cat "test.log"
   - grep -q success "test.log"

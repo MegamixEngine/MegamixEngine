@@ -452,10 +452,13 @@ if (instance_exists(objTheKeeperElectricBarH))
             <kind>1</kind>
             <string>if (!dead)
 {
-    if (anim == 0 &amp;&amp; phase == 0)
-        draw_sprite(backSprite, min(animFrame, 2), x - 16, y - 12);
-    else
-        draw_sprite(backSprite, 2, x - 16, y - 12);
+    if (backSprite >= 0)
+    {
+        if (anim == 0 &amp;&amp; phase == 0)
+            draw_sprite(backSprite, min(animFrame, 2), x - 16, y - 12);
+        else
+            draw_sprite(backSprite, 2, x - 16, y - 12);
+    }
 }
 if (phase != 0)
     event_inherited();

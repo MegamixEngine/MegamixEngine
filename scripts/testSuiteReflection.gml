@@ -5,7 +5,8 @@ if (unitCase("set"))
     if (unitExecute())
     {
         test = 0;
-        stringExecutePartial("test = 1");
+        var err = stringExecutePartial("test = 1");
+        if (is_string(err)) show_debug_message(err);
         unitRequireEquals(test, 1, "failed to set instance variable");
     }
 }

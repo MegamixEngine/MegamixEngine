@@ -47,7 +47,6 @@ image_speed = 0;
 
 hand = noone;
 recoil = false;
-attack = choose(0, 1);
 attack = 1;
 animTimer = 0;
 introTimer = 60;

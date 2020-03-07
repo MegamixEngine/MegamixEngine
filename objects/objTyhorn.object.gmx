@@ -36,7 +36,7 @@ isSolid = true;
 facePlayerOnSpawn = true;
 category = "cannons";
 
-shootTimer = choose(60, 120, 180, 240);
+shootTimer = -1;
 </string>
           </argument>
         </arguments>
@@ -63,6 +63,11 @@ shootTimer = choose(60, 120, 180, 240);
 
 if (entityCanStep())
 {
+    if (shootTimer &lt; 0)
+    {
+        shootTimer = choose(60, 120, 180, 240);
+    }
+    
     shootTimer--;
     if (shootTimer &lt;= 0)
     {

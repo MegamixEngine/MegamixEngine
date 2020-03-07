@@ -41,7 +41,7 @@ facePlayerOnSpawn = true;
 // Enemy specific code
 image_speed = 0.75;
 
-yend = irandom_range(16, 112);
+yend = -1;
 
 action = 0;
 actionTimer = 0;
@@ -82,6 +82,8 @@ init = 1;
             sprite_index = sprUpnDownBlue;
             break;
     }
+    
+    yend = irandom_range(16, 112);
 }
 
 event_inherited();
