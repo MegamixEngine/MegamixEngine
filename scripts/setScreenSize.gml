@@ -44,4 +44,4 @@ else
     window_set_cursor(cr_none);
 }
 
-surface_resize(application_surface, view_wview[0] * s, view_hview[0] * s + (s == 1));
+surface_resize(application_surface, view_wview[0] * s, view_hview[0] * s);
