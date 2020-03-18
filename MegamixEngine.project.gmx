@@ -6923,9 +6923,9 @@
     <constant name="gravAccel">0.25</constant>
     <constant name="waterAccelMod">0.57</constant>
     <constant name="MAX_SLOPE">2</constant>
-    <constant name="GME_ENABLED">true</constant>
-    <constant name="FMOD_ENABLED">true</constant>
-    <constant name="FS_ENABLED">true</constant>
+    <constant name="GME_ENABLED">1</constant>
+    <constant name="FMOD_ENABLED">1</constant>
+    <constant name="FS_ENABLED">1</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
