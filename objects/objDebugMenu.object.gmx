@@ -112,7 +112,7 @@ if (global.keyUpPressed[playerID] || (global.keyUp[playerID] &amp;&amp; quickScr
     {
         option = _endy - 1;
     }
-    
+
     playSFX(sfxMenuMove);
 }
 
@@ -123,7 +123,7 @@ if (global.keyDownPressed[playerID] || (global.keyDown[playerID] &amp;&amp; quic
     {
         option = 0;
     }
-    
+
     playSFX(sfxMenuMove);
 }
 
@@ -135,7 +135,7 @@ if ((global.keyUp[playerID] ^^ global.keyDown[playerID]) // only do quick scroll
     {
         quickScrollTimer = 8; // &lt;-- time until quick scroll here
     }
-    
+
     quickScrollTimer--;
 }
 else
@@ -161,7 +161,7 @@ if (mode == 0)
                 }
                 instance_destroy();
                 break;
-            
+
             // Ammo Refill
             case 1:
                 if (global.keyPausePressed[playerID])
@@ -176,7 +176,7 @@ if (mode == 0)
                     }
                 }
                 break;
-            
+
             // Invincibility
             case 2:
                 if (instance_exists(objMegaman))
@@ -197,7 +197,7 @@ if (mode == 0)
                     playSFX(sfxError);
                 }
                 break;
-            
+
             // Infinite Health
             case 3:
                 global.alwaysHealth = !global.alwaysHealth;
@@ -210,7 +210,7 @@ if (mode == 0)
                     playSFX(sfxEnergyRestore);
                 }
                 break;
-            
+
             // Swap Gravity
             case 4:
                 if (instance_exists(objMegaman))
@@ -229,7 +229,7 @@ if (mode == 0)
                     playSFX(sfxError);
                 }
                 break;
-            
+
             // Costumes
             case 5:
                 if (global.keyLeftPressed[playerID] &amp;&amp; !global.keyRightPressed[playerID])
@@ -260,7 +260,7 @@ if (mode == 0)
                     }
                 }
                 break;
-            
+
             // record input
             case 6:
                 switch (global.recordInputMode)
@@ -281,7 +281,7 @@ if (mode == 0)
                         playSFX(sfxError);
                 }
                 break;
-            
+
             // visible solids
             case 7:
                 with (objSolid)
@@ -295,7 +295,7 @@ if (mode == 0)
                 with (objFallingTower)
                     visible ^= true;
                 break;
-            
+
             // PRESS 2
             case 8:
                 for (var i = 0; i &lt;= global.playerCount; i += 1)
@@ -304,7 +304,7 @@ if (mode == 0)
                 }
                 instance_destroy();
                 break;
-            
+
             // instakill entities
             case 9:
                 playSFX(sfxExplosion2);
@@ -355,7 +355,7 @@ else if (mode == 1)
 }
 
 // close the debug menu
-if (keyboard_check_pressed(ord('2')) && openTimer &gt; 1)
+if (keyboard_check_pressed(ord('2')) &amp;&amp; openTimer &gt; 1)
 {
     instance_destroy();
 }
