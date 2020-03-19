@@ -1,5 +1,5 @@
 /// GME_SetPosition(milliseconds)
 
-if (!GME_ENABLED) exit;
+if (!global.gme_enabled) exit;
 
 return GameMusicEmu_SetPosition(argument0);

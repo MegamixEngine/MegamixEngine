@@ -155,10 +155,10 @@ FMODUpdate();
           <argument>
             <kind>1</kind>
             <string>/// GME step
-            
+
 // The following is a check to refill audio buffers
 // if playing has stopped unexpectedly from moving window etc.
-if (playing &amp;&amp; !endReached &amp;&amp; !audio_is_playing(snd_queue)  &amp;&amp; GME_ENABLED)
+if (playing &amp;&amp; !endReached &amp;&amp; !audio_is_playing(snd_queue)  &amp;&amp; global.gme_enabled)
 {
     // Fill all the audio buffers with song data and add to queue
     for (var i = 0; i &lt; buffer_count; i++)
@@ -170,11 +170,11 @@ if (playing &amp;&amp; !endReached &amp;&amp; !audio_is_playing(snd_queue)  &amp
             break;
         }
     }
-    
+
     // Play the queue
     audio_play_sound(snd_queue, 10, false);
     buffer_index = 0;
-    
+
     // the GME extension got a glitch in a Game Maker Studio update that made
     // songs start a bit into the track instead of at the beginning. This is
     // a workaround for that
@@ -185,9 +185,9 @@ if (playing &amp;&amp; !endReached &amp;&amp; !audio_is_playing(snd_queue)  &amp
         {
             GME_MuteVoice(v, false);
         }
-        
+
         GME_SetPosition(0);
-        
+
         forceReset = false;
     }
 }
@@ -215,14 +215,14 @@ if (playing &amp;&amp; !endReached &amp;&amp; !audio_is_playing(snd_queue)  &amp
             <kind>1</kind>
             <string>// Fill an audio buffer and add it to the queue
 
-if (playing &amp;&amp; !endReached &amp;&amp; GME_ENABLED)
+if (playing &amp;&amp; !endReached &amp;&amp; global.gme_enabled)
 {
     // Fill the buffer with audio data
     endReached = !GameMusicEmu_Read(bufPointer[buffer_index]);
-    
+
     // Add the buffer to the queue
     audio_queue_sound(snd_queue, buf[buffer_index], 0, buffer_size);
-    
+
     // Increase the buffer index and wrap to zero if last buffer has been queued
     buffer_index++;
     if (buffer_index &gt;= buffer_count)
@@ -276,9 +276,9 @@ audio_stop_all();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Unload possible file    
-        
-if (buffer_gme != noone &amp;&amp; GME_ENABLED)
+            <string>/// Unload possible file
+
+if (buffer_gme != noone &amp;&amp; global.gme_enabled)
 {
     GameMusicEmu_Free();
     buffer_delete(buffer_gme);

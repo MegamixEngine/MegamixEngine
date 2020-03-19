@@ -6,6 +6,9 @@ global.nextRoom = -1;
 global.previousRoom=-1;
 
 // subsystem initialization
+ogm_is_host = false;
+global.gme_enabled = GME_ENABLED;
+if (GME_ENABLED == 1 && ogm_is_host) global.gme_enabled = false;
 mathTableSetup();
 lockPoolInit();
 globalLockInit();

@@ -10,7 +10,7 @@ addons:
         packages:
             - g++-9
             - cmake
-            - 
+            -
 before_script:
   # https://stackoverflow.com/a/41916657
   # Export CC and CXX to tell cmake which compiler to use

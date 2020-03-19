@@ -72,17 +72,17 @@ if (!global.frozen)
             {
                 continue;
             }
-            
+
             if (global.factionStance[other.faction, faction])
             {
                 continue;
             }
-            
+
             if (grav == 0)
             {
                 continue;
             }
-            
+
             if (yspeed * other.image_yscale &gt; 0)
             {
                 if (blockCollision)
@@ -95,18 +95,15 @@ if (!global.frozen)
                             {
                                 with (other)
                                 {
-                                    if (parent == other)
+                                    if (parent == other.id)
                                     {
                                         global.ammo[playerID, global.weapon[playerID]] = max(0, global.ammo[playerID, global.weapon[playerID]] - 2 / (global.energySaver + 1));
-                                        other.canMinJump = false;
-                                        other.climbing = 0;
-                                        other.yspeed = -7.5 * image_yscale;
                                     }
-                                    else
-                                    {
-                                        other.yspeed = -5 * image_yscale;
-                                    }
-                                    
+
+                                    other.canMinJump = false;
+                                    other.climbing = 0;
+                                    other.yspeed = -7.5 * image_yscale;
+
                                     sprite_index = sprRushCoil;
                                     timer = 60;
                                 }
@@ -117,12 +114,12 @@ if (!global.frozen)
             }
         }
     }
-    
+
     if (!ground)
     {
         timer = 1;
     }
-    
+
     if (timer)
     {
         timer--;

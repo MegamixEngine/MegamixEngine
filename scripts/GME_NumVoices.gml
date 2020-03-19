@@ -1,5 +1,5 @@
 /// GME_NumVoices()
 
-if (!GME_ENABLED) return 0;
+if (!global.gme_enabled) return 0;
 
 return GameMusicEmu_NumVoices();

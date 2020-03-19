@@ -2,7 +2,7 @@
 
 var _tempo = argument0;
 
-if (!GME_ENABLED) exit;
+if (!global.gme_enabled) exit;
 
 with (objMusicControl)
 {

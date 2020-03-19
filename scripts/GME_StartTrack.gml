@@ -3,7 +3,7 @@
 var _return = 10;
 var _tracknumber = argument0;
 
-if (!GME_ENABLED) return 0;
+if (!global.gme_enabled) return 0;
 
 with (objMusicControl)
 {

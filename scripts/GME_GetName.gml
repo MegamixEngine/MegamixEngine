@@ -1,5 +1,5 @@
 /// GME_GetName()
 
-if (!GME_ENABLED) return "";
+if (!global.gme_enabled) return "";
 
 return GameMusicEmu_GetName();

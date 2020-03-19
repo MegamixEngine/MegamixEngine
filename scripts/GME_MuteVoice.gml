@@ -3,7 +3,7 @@
 var _voice = argument0;
 var _mute = argument1;
 
-if (!GME_ENABLED) exit;
+if (!global.gme_enabled) exit;
 
 with (objMusicControl)
 {

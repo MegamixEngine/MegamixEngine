@@ -72,7 +72,7 @@ if (global.levelSongType == "OGG")
 }
 else if (global.levelSongType == "VGM")
 {
-    if (!GME_ENABLED) exit;
+    if (!global.gme_enabled) exit;
     
     with (objMusicControl)
     {
