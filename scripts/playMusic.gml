@@ -85,7 +85,7 @@ else if (global.levelSongType == "VGM")
             
             // don't play the song before the force reset
             forceReset = true;
-            for (v = 0; v <= song_voices; v++)
+            for (v = 0; v < song_voices; v++)
             {
                 GME_MuteVoice(v, true);
             }

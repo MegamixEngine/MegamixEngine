@@ -181,7 +181,7 @@ if (playing &amp;&amp; !endReached &amp;&amp; !audio_is_playing(snd_queue)  &amp
     if (forceReset)
     {
         // unmute after being muted in playMusic()
-        for (var v = 0; v &lt;= song_voices; v++)
+        for (var v = 0; v &lt; song_voices; v++)
         {
             GME_MuteVoice(v, false);
         }
