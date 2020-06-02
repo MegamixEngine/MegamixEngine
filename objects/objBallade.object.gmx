@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>event_inherited();
 
+strMMX = 0;
+strMMY = 0;
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
 contactDamage = 4;
@@ -193,7 +195,6 @@ if (entityCanStep())
 {
     if (isFight)
     {
-        var strMMX, strMMY;
         if (instance_exists(target))
         {
             strMMX = target.x;
