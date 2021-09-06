@@ -40,7 +40,7 @@ if (!global.frozen && !frozen)
     
     if protoShieldCreated == 0
     {
-        protoShieldCreate = instance_create(x, y, objProtoShield)
-        protoShieldCreate.parent = id;
+        protoShieldCreated = instance_create(x, y, objProtoShield)
+        protoShieldCreated.parent = id;
     }
 }
