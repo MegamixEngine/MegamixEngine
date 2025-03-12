@@ -82,7 +82,7 @@ if (entityCanStep())
             dead = true;
             visible = 0;
             event_user(EV_DEATH);
-            playSFX(sfxEnemyHit);
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
         }
     }
     
@@ -183,7 +183,7 @@ specialDamageValue(objBreakDash, 0);
     image_xscale *= -1;
     dir = image_xscale;
     
-    playSFX(sfxEnemyHit);
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
     iFrames = 4;
 }
 </string>

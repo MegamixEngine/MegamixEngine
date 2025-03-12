@@ -3,7 +3,7 @@
   <spriteName>sprSharkSubmarineHead</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>2</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <parentName>prtSharkSubmarine</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -35,6 +35,8 @@ cannon = noone;
 startFiring = false; // Can the cannon shoot yet?
 eyeIndex = 0; // 0 = Open, 1 = Half open/closed, 2 = closed.
 blinkTimer = blinkMultiple * 2; // Controls blink animation.
+killMusic = true;
+playBossMusic = false; //cc plays boss theme or not
 </string>
           </argument>
         </arguments>
@@ -75,6 +77,59 @@ if (!global.frozen)
             cannon.parent = id;
         }
     }
+    if (isDying)
+    {
+        if (sprite_index == sprSharkSubmarineHead)
+            image_index = 1;
+        blinkTimer = -1;
+        slowdeathTimer++
+        if (slowdeathTimer == 20)
+        {
+            instance_create(x - 5*image_xscale, y+14, objBigExplosion);
+            playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+        }
+        if (slowdeathTimer == 40)
+        {
+            instance_create(x -92*image_xscale, y-40, objBigExplosion);
+            playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+            if (!finalDeath)
+            {
+                event_user(EV_DEATH);
+            }
+        }
+        if (finalDeath)
+        {
+            if (slowdeathTimer == 60)
+            {
+                instance_create(x -64*image_xscale, y+24, objBigExplosion);
+                playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+                
+            }
+            if (slowdeathTimer == 80)
+            {
+                instance_create(x -112*image_xscale, y-33, objBigExplosion);
+                playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+            }
+            if (slowdeathTimer == 100)
+            {
+                instance_create(x -70*image_xscale, y-8, objBigExplosion);
+                playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+            }
+            if (slowdeathTimer == 120)
+            {
+                instance_create(x -113*image_xscale, y+9, objBigExplosion);
+                playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+            }
+            if (slowdeathTimer == 140)
+            {
+                instance_create(x -98*image_xscale, y-7, objBigExplosion);
+                playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+            }
+            if (slowdeathTimer == 160)
+                with (prtSharkSubmarine)
+                    event_user(EV_DEATH);
+        }
+    }
 }
 
 if (isFight) // Keeping track of health.
@@ -108,10 +163,6 @@ if (entityCanStep())
         blinkTimer++;
     }
 }
-else if (dead)
-{
-    eyeIndex = 3;
-}
 </string>
           </argument>
         </arguments>
@@ -138,7 +189,19 @@ else if (dead)
 {
     instance_destroy();
 }
-event_inherited();
+eyeIndex = 3;
+if (!isDying)
+{
+    instance_create(x - 79*image_xscale, y-32, objBigExplosion);
+    playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+    isDying = true;
+    iFrames = 0;
+    stopSFX(getGenericSFX(SFX_ENEMYHIT));
+}
+else
+{
+    event_inherited();
+}
 </string>
           </argument>
         </arguments>

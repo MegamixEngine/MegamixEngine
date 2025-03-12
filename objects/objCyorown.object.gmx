@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// This crow will blink and then shoot at MM. If you're hit by the bullet, it will mock you.
+            <string>/// This crow will blink and then shoot a bullet at the player. If you're hit by the bullet, it will mock you.
+/// Bullets are fired either horizontally or diagonally upward, depending on the player's position.
+/// Pretty obnoxious when it blocks the player's path, so try to use it in more out-of-the-way locations.
+
 event_inherited();
 
 respawn = true;

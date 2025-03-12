@@ -39,12 +39,19 @@ category = "flying";
 blockCollision = 0;
 grav = 0;
 
+behaviourType = 1;
+
 // Enemy specific code
 xspeed = 0;
 yspeed = 0;
 
+imgIndex = 0;
+
 phase = 0;
 phasetimer = 0;
+
+yStop = 96;
+
 </string>
           </argument>
         </arguments>
@@ -90,31 +97,36 @@ if (entityCanStep())
             }
             break;
         case 1: // Stop when reaching point 
-            if (y &lt; view_yview + 96)
+            if (y &lt; view_yview + yStop)
             {
-                y = view_yview + 96;
+                y = view_yview + yStop;
                 yspeed = 0;
                 phase = 2;
             }
             break;
         case 2: // wait 
             phasetimer += 1;
+            imgIndex = 1;
             if (phasetimer == 48)
             {
                 yspeed = 1.25 * image_yscale;
                 phase = 3;
-                image_speed = 0.2;
+                imgIndex += 0.2;
             }
             break;
         case 3: // Descend 
+            imgIndex += 0.2;
+            if (imgIndex &gt;= 4)
+            {
+                imgIndex = 2;
+            }
             if (y &gt; ys)
             {
                 y = ys;
                 yspeed = 0;
                 phasetimer = 0;
                 phase = 0;
-                image_speed = 0;
-                image_index = 0;
+                imgIndex = 0;
                 healthpoints = healthpointsStart;
             }
             break;
@@ -122,11 +134,11 @@ if (entityCanStep())
 }
 else if (dead)
 {
-    image_index = 0;
-    image_speed = 0;
+    imgIndex = 0;
     phase = 0;
     phasetimer = 0;
 }
+image_index = imgIndex div 1;
 </string>
           </argument>
         </arguments>

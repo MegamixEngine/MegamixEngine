@@ -30,6 +30,8 @@
 frozen = 0;
 boss = 0; // boolean, is it a boss
 
+parent = noone;
+
 faction = 3; // Used for entities colliding with each other
 
 //@cc the amount of damage that must be dealt to the Entity before it dies.
@@ -48,6 +50,7 @@ spawnEnabled = true; //@cc if this is false, object will never spawn, but will r
 pierces = 2; // 0: destroyed when hits. 1: destroyed unless kills. 2: never destroyed
 penetrate = 0; // 0: reflectable. 1: not reflectable, but no damage. 2: bypasses shields
 attackDelay = 0;
+iFramesIgnore = 0; // 0: not destroyed when enemy is in iFrames. 1: destroyed during iFrames, deals damage. -1: destroyed during iFrames, doesn't deal damage.
 
 category = "";
 
@@ -82,6 +85,8 @@ beenOutsideView = false;
 
 inWater = 0;
 bubbleTimer = 0;
+//bubbleSpawnX = bboxGetXCenter(); //@cc - Sets x spawn point for air bubbles in water EXCEPT IT DOESN'T
+//bubbleSpawnY = bboxGetYCenter(); // @cc - Sets y spawn point for air bubbles in water EXCEPT IT DOESN'T
 
 xspeed = 0;
 yspeed = 0;
@@ -90,14 +95,21 @@ ground = true;
 
 // should the movement scripts block this object's movement at walls? If false, this object will be able to phase through walls.
 blockCollision = true;
-dieToSpikes = false;
-sinkin = 1;
-xcoll = 0;
-ycoll = 0;
+dieToSpikes = false; //Will the entity be killed by spikes?
+sinkin = 1; //Will the entity sink into quicksand?
+
+xcoll = 0; //Upon horizontal block-collision, caches the previous xspeed for 1 step-cycle
+ycoll = 0; //Upon vertical block-collision, caches the previous yspeed for 1 step-cycle
+
+explosionSprite = sprExplosion;
 
 epIsOnPlat = 0;
 
 itemDrop = 0; //This object will be spawned once the entity dies
+dropOnce = false;//If true itemDrop will be set to 0 after the item is dropped
+dropDisappearTime = 105*2;//(for prtPickup)Set to a non positive value to make infinite;
+itemCode = ""; //Code that runs on the dropped object
+itemScript = scrNoEffect; //Script that runs on the dropped object
 
 stopOnFlash = true;
 iceTimer = 0; // is iced (frozen cold), and how much remaining time to spend iced
@@ -118,6 +130,7 @@ fnsolid = 0;
 
 spawned = -1; // parameter for spawn event; -1 indicates never spawned
 deadTimer = 0;
+hasDiedBefore = false;
 
 // the enemy object this entity currently sees as its primary target. Useful for programming any kind of enemy AI which responds to the player.
 target = noone;
@@ -140,6 +153,42 @@ facePlayer = false;
 specialDamageValues[0] = 0;
 specialDamageValues[1] = 0;
 specialDamageValuesTotal = 0;
+
+// Does enemy change factions/hit state during fight?
+changesStates = false; //this is to help for things that need to detect living enemies
+
+// Combo values
+hitPriority = 0;
+combo = -1;
+
+//game pause values - initialized here to prevent crashes
+pre_hsp = 0;
+pre_vsp = 0;
+pre_spe = 0;
+pre_isp = 0;
+pre_tmlrun = 0;
+
+//We can probably make this more robust but this grabs the object's name and makes it a grabbable string. Kind of a useful thing to have.
+// NPCS obviously override this by default.
+name = object_get_name(object_index);
+
+if (string_pos('obj', name) == 1)
+{
+    name = string_replace(name, 'obj', '');
+}
+
+//Shader options. Note this will likely be readjusted in 2.0, this is just a simple setup.
+useShader = false;
+
+replaceColor[0] = c_black;
+replaceColor[1] = c_black;
+replaceColor[2] = c_black;
+replaceColor[3] = c_black;
+newColor[0] = c_black;
+newColor[1] = c_black;
+newColor[2] = c_black;
+newColor[3] = c_black;
+
 </string>
           </argument>
         </arguments>
@@ -191,19 +240,28 @@ else if (!global.frozen)
         {
             with (prtEntity)
             {
-                if (!dead &amp;&amp; iFrames == 0)
+                if (!dead &amp;&amp; ((iFrames == 0 || (iFrames != 0 &amp;&amp; other.iFramesIgnore != 0))
+                || other.hitPriority &gt; combo || (checkCheats(cheatEnums.noIFramesBoss) &amp;&amp;
+                (object_is_ancestor(self.object_index, prtBoss) ||
+                object_index == objSharkSubmarineBodyHatch ||
+                object_index == objSharkSubmarineCannon))))
                 {
                     if (canHit)
                     {
                         if (global.factionStance[other.faction, faction])
                         {
-                            if (hitTimer &gt;= other.attackDelay)
+                            if (hitTimer &gt;= other.attackDelay || (iFrames != 0 &amp;&amp; other.iFramesIgnore != 0))
                             {
                                 if (place_meeting(x, y, other))
                                 {
+                                    combo = other.hitPriority;
                                     with (other)
                                     {
-                                        entityEntityCollision();
+                                        if (other.iFrames == 0 || (other.iFrames != 0 &amp;&amp; iFramesIgnore == 1))
+                                            entityEntityCollision();
+                                        
+                                        if (iFramesIgnore != 0 &amp;&amp; other.iFrames != 0)
+                                            event_user(EV_DEATH);
                                     }
                                 }
                             }
@@ -349,6 +407,13 @@ if (dead)
     iceTimer = 0;
     healthpoints = healthpointsStart; // reset health
     
+    //Make ABSOLUTELY sure that enemy projectiles don't bop Water Shield when they despawn
+    if (!respawn)
+    {
+        instance_destroy();
+        exit;
+    }
+    
     // reset position and speed
     if (deadTimer == 0)
     {
@@ -371,9 +436,10 @@ else if (!global.frozen) // Basically everything prtEntity should usually be doi
     entityHandleWater();
     
     if (iFrames &gt; 0)
-    {
         iFrames -= 1;
-    }
+    else
+        combo = 0;
+        
     hitTimer++;
     
     setTargetStep(); // Targeting other entities (megaman, other players in co-op, etc)
@@ -407,7 +473,7 @@ else if (!global.frozen) // Basically everything prtEntity should usually be doi
         }
         
         // special invincible effect handling
-        if (invincible == true)
+        if (invincible == true &amp;&amp; image_alpha &gt; 0)
         {
             sparkleTimer ++;
             if (!(sparkleTimer mod 6))
@@ -455,7 +521,12 @@ else if (!global.frozen) // Basically everything prtEntity should usually be doi
 if (spawned)
 {
     setTargetStep();
-    healthpoints = healthpointsStart;
+    
+    var mult = 1;
+    if (checkCheats(cheatEnums.doubleEnemyHealth))
+        mult = 2;
+    
+    healthpoints = healthpointsStart * mult;
     
     // face player
     if (facePlayerOnSpawn)
@@ -464,7 +535,7 @@ if (spawned)
     }
 }
 
-if (DEBUG_SPAWN)
+if (DEBUG_SPAWN &amp;&amp; DEBUG_ENABLED)
 {
     var text = " spawn ";
     if (!spawned)
@@ -565,20 +636,37 @@ dead = 1;
 
 var _ex = instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
 
+_ex.sprite_index = explosionSprite;
+_ex.parentHealthPointsStart = healthpointsStart;
+
 if (itemDrop == objKey)
 {
     _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objKey);
     _ex.yspeed = -4;
     _ex.homingTimer = 90;
+    _ex.despawnRange = -1;
     playSFX(sfxKeySpawn);
 }
-else if(itemDrop == objEnergyElement)
+else if (itemDrop == objEnergyElement)
 {
     _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objEnergyElement);
 }
 else
 {
     _ex.myItem = itemDrop;
+    _ex.code = itemCode;
+    _ex.script = itemScript;
+    _ex.disappearTime = dropDisappearTime;
+}
+
+if (itemDrop &amp;&amp; dropOnce)
+{
+    itemDrop = 0;
+}
+if (checkCheats(cheatEnums.allBossExplosion))
+{
+   playerExplosion();
+   _ex.visible = false;
 }
 </string>
           </argument>
@@ -630,6 +718,7 @@ playSFX(sfxEnemyHit);
           <argument>
             <kind>1</kind>
             <string>/// EV_ATTACK: object is hitting something
+
 </string>
           </argument>
         </arguments>
@@ -653,6 +742,7 @@ playSFX(sfxEnemyHit);
           <argument>
             <kind>1</kind>
             <string>/// EV_REFLECTED: when being reflected
+
 </string>
           </argument>
         </arguments>
@@ -702,9 +792,9 @@ playSFX(sfxEnemyHit);
                 }
             }
             
-            d3d_set_fog(true, flashcol, 0, 0);
+            hitFlashEffect(true,flashcol);
             drawSelf();
-            d3d_set_fog(false, 0, 0, 0);
+            hitFlashEffect(false);
             
             if (iceTimer &gt; 0 &amp;&amp; (iceTimer &gt; iceBlinkTime || (iceTimer &lt;= iceBlinkTime &amp;&amp; iceTimer mod 4 == 0)))
             {
@@ -719,11 +809,32 @@ playSFX(sfxEnemyHit);
             if (invincible == true)
             {
                 d3d_set_fog(true, c_white, 0, 0);
-                draw_sprite_ext(sprite_index, image_index, x, y, image_xscale * 1.075 + (sin(sparkleTimer * 0.15) *.08 * sign(image_xscale)), image_yscale * 1.025 + (sin(sparkleTimer * 0.15) *.08 * sign(image_yscale)), image_angle, image_blend, image_alpha);
+                
+                var _ixscale = (image_xscale * 1.075) + (sin(sparkleTimer * 0.15) *.08 * sign(image_xscale));
+                    _ixscale = roundTo(_ixscale, (1 / sprite_get_width(sprite_index)));
+                
+                var _iyscale = (image_yscale * 1.025) + (sin(sparkleTimer * 0.15) *.08 * sign(image_yscale));
+                    _iyscale = roundTo(_iyscale, (1 / sprite_get_height(sprite_index)));
+                
+                var _ix = x;
+                    _ix -= (0.5 - (sprite_get_xoffset(sprite_index) / sprite_get_width(sprite_index))) * ((_ixscale - image_xscale) * sprite_get_width(sprite_index));
+                    
+                var _iy = y;
+                    _iy -= (0.5 - (sprite_get_yoffset(sprite_index) / sprite_get_height(sprite_index))) * ((_iyscale - image_yscale) * sprite_get_height(sprite_index));
+                
+                draw_sprite_ext(sprite_index, image_index, round(_ix), round(_iy), _ixscale, _iyscale, image_angle, image_blend, image_alpha);
                 d3d_set_fog(false, 0, 0, 0);
             }
-            
-            drawSelf();
+            if (useShader)
+            {
+                shaderSetColorreplace(replaceColor[0],newColor[0],replaceColor[1],newColor[1],replaceColor[2],newColor[2],replaceColor[3],newColor[3]);
+                drawSelf();
+                shader_reset();
+            }
+            else
+            {
+                drawSelf();
+            }
         }
     }
 }

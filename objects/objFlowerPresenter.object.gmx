@@ -47,6 +47,8 @@ state = 0;
 imageOffset = 0; // Used for flower var
 
 flower = 0;
+
+isBakeryMan = 0;
 </string>
           </argument>
         </arguments>
@@ -122,6 +124,10 @@ if (entityCanStep())
                     actionTimer = 0;
                     a = instance_create(x, y, objFlowerPresenterFlower);
                     a.col = flower;
+                    if isBakeryMan {
+                    a.sprite_index = sprdarkohexar_ToastOff;
+                    a.isBakeryMan = 1;
+                    }
                 }
                 break;
         }

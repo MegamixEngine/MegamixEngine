@@ -243,7 +243,7 @@ canTurn = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (other.bbox_top &gt;= bbox_top + 12 &amp;&amp; sign(x - other.x) == image_xscale)
+            <string>if (other.bbox_top &gt;= bbox_top + 12 &amp;&amp; sign(x - other.x) == image_xscale) || (other.object_index == objTornadoBlow)
     exit;
 if (other.bbox_top &gt;= bbox_top + 12)
 {
@@ -285,7 +285,8 @@ else if (other.bbox_top &lt; bbox_top + 12 &amp;&amp; !(other.bbox_right &gt; bb
             <kind>1</kind>
             <string>event_inherited();
 instance_create(bbox_left + abs(bbox_left - bbox_right) / 2, bbox_top + abs(bbox_top - bbox_bottom) / 2, objBigExplosion);
-playSFX(sfxMM9Explosion);
+stopSFX(getGenericSFX(SFX_ENEMYHIT));
+playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
 </string>
           </argument>
         </arguments>

@@ -84,6 +84,9 @@ if (init)
         case 2:
             sprite_index = sprBigEyeOrange;
             break;
+        case 3:
+            sprite_index = sprGoldEye;
+            break;
     }
 }
 

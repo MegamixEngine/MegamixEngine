@@ -38,6 +38,10 @@ blockCollision = 0;
 grav = 0;
 facePlayerOnSpawn = true;
 category = "bulky, flying, rocky";
+rescursiveExplosion = true;
+explosionSprite = sprExplosion;
+deadTimerMax = 32;
+deadTimerRecur = 4;
 
 despawnRange = -1;
 delayDisplay = 2;

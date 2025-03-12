@@ -38,6 +38,11 @@ grav = gravAccel;
 bubbleTimer = 0;
 
 timer = 4 * 60;
+autoFireSet = 32;
+
+col[1] = -1;
+col[2] = -1;
+col[3] = -1;
 </string>
           </argument>
         </arguments>
@@ -83,7 +88,7 @@ if (!global.frozen)
                 continue;
             }
             
-            if (yspeed * other.image_yscale &gt; 0)
+            if ((yspeed * other.image_yscale &gt; 0))
             {
                 if (blockCollision)
                 {
@@ -95,17 +100,15 @@ if (!global.frozen)
                             {
                                 with (other)
                                 {
-                                    if (parent == other)
+                                    ammoDecrease(playerID, 2 - (0.5 * (global.energySaver &gt; 0)));
+                                    other.canMinJump = false;
+                                    other.climbing = 0;
+                                    var coilPower = -7.5;
+                                    if (checkCheats(cheatEnums.wiiPhysics))
                                     {
-                                        global.ammo[playerID, global.weapon[playerID]] = max(0, global.ammo[playerID, global.weapon[playerID]] - 2 / (global.energySaver + 1));
-                                        other.canMinJump = false;
-                                        other.climbing = 0;
-                                        other.yspeed = -7.5 * image_yscale;
+                                        coilPower = -8;
                                     }
-                                    else
-                                    {
-                                        other.yspeed = -5 * image_yscale;
-                                    }
+                                    other.yspeed = coilPower * image_yscale;
                                     
                                     sprite_index = sprRushCoil;
                                     timer = 60;
@@ -123,21 +126,37 @@ if (!global.frozen)
         timer = 1;
     }
     
+    if (!ammoCanAfford(playerID))
+    {
+        timer = 1;
+    }
+    
     if (timer)
     {
         timer--;
+        
         if (!timer)
         {
-            // Teleport away
-            i = instance_create(x, y, objRushTeleport);
-            i.upordown = 'up';
-            i.parent = parent;
-            i.image_yscale = image_yscale;
+            if (global.characterSelected[playerID] == CHAR_PROTOMAN) // Alternate destroy effect for Proto Mode
+            {
+                instance_create(x, bboxGetYCenter(), objExplosion);
+            }
+            else // Normal behaviour
+            {
+                // Teleport away
+                i = instance_create(x, y, objRushTeleport);
+                i.upordown = 'up';
+                i.parent = parent;
+                i.image_xscale = image_xscale;
+                i.image_yscale = image_yscale;
+                i.col = col;
+            }
             
             canCoil = false;
             instance_destroy();
         }
     }
+
 }
 </string>
           </argument>
@@ -161,31 +180,45 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>
+if (performShoot)
 {
-    if (!instance_exists(objRushCoil) &amp;&amp; !instance_exists(objRushTeleport)
-    &amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
+    var canSpawn = true;
+    if (instance_exists(objRushCoil) || instance_exists(objRushTeleport)) // check if rush exists 
+    {
+        with (prtPlayerProjectile)
+        {
+            if (playerID == other.playerID)
+                canSpawn = false;
+        }
+    }
+    
+    if (canSpawn &amp;&amp; ammoCanAfford(playerID))
     {
         i = fireWeapon(26, 0, objRushTeleport, 4, 0, 0, 0);
+        
         with (i)
         {
             type = 'coil';
             y = view_yview;
-            if (image_yscale &lt; 0)
+            
+            if (image_yscale[0] &lt; 0)
             {
-                y += view_hview;
+                y += view_hview[0];
             }
         }
     }
-    else
+    else // else player can fire
     {
-        i = fireWeapon(16, 0, objBusterShot, 4, 0, 1, 0);
+        i = fireWeapon(16, 0, objBusterShot, 4 + (12 * (global.shotUpgrade &gt; 0)), 0, 1, 0);
+        
         if (i)
         {
-            i.xspeed = image_xscale * 5; // zoom
+            i.xspeed = (image_xscale * 5);
         }
     }
 }
+
 </string>
           </argument>
         </arguments>
@@ -208,7 +241,10 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weaponSetup("RUSH COIL", -2, -2, sprWeaponIconsRushCoil);
+            <string>if (global.characterSelected[0] == CHAR_PROTOMAN)
+    weaponSetup("PROTO COIL", -2, -2, sprWeaponIconsProtoCoil);
+else
+    weaponSetup("RUSH COIL", -2, -2, sprWeaponIconsRushCoil);
 </string>
           </argument>
         </arguments>
@@ -241,7 +277,7 @@ else
     ximg = 17;
 }
 
-drawPlayer(0, costumeID, ximg, 8, x, y - 16 * image_yscale, image_xscale, image_yscale);
+drawPlayer(playerID, costumeID, ximg, 8, x, y - 16 * image_yscale, image_xscale, image_yscale);
 </string>
           </argument>
         </arguments>

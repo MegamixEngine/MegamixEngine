@@ -40,6 +40,11 @@ category = "mets";
 radius = 4 * 16; // Four blocks; the radius that MM needs to enter to trigger the shooting of the met
 timer = 0;
 phase = 1;
+
+behaviourType = 1;
+
+customProjectile = 0;
+customProjectileDamage = -1;
 </string>
           </argument>
         </arguments>
@@ -85,12 +90,24 @@ if (entityCanStep())
         timer += 1; // action timer
         if (timer == 17)
         {
-            // for loop used to make more efficent code
-            for (i = -1; i &lt;= 1; i += 1)
+            if (customProjectile == 0)
             {
-                ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objMM1MetBullet);
-                ID.dir = 45 * i;
-                ID.xscale = image_xscale;
+                // for loop used to make more efficent code
+                for (i = -1; i &lt;= 1; i += 1)
+                {
+                    ID = instance_create(x + image_xscale * 8, spriteGetYCenter(), objMM1MetBullet);
+                    ID.dir = 45 * i;
+                    ID.xscale = image_xscale;
+                }
+            }
+            else
+            {
+                var i = instance_create(x + image_xscale * 8, spriteGetYCenter(), customProjectile);
+                i.image_xscale = image_xscale;
+                if (customProjectileDamage &gt; -1)
+                {
+                    i.contactDamage = customProjectileDamage;
+                }
             }
             playSFX(sfxEnemyShootClassic);
         }

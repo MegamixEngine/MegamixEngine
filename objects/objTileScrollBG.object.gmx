@@ -222,7 +222,7 @@ depth = tile;
 // finding the tile + setting direction
 if ((drawInit || tileID &lt;= 0) &amp;&amp; !stepInit)
 {
-    tileID = tile_layer_find(tile, x + 8, y + 8);
+    tileID = findTileWithSplit(tile, x + 8, y + 8);
     if (tileID)
     {
         if (x == tile_get_x(tileID) &amp;&amp; y == tile_get_y(tileID))

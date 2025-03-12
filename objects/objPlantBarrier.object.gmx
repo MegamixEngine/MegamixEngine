@@ -36,7 +36,9 @@ image_speed = (2 / 3);
 penetrate = 0;
 pierces = 0;
 
-playSFX(sfxBuster);
+playSFX(getGenericSFX(SFX_BUSTER));
+
+autoFireSet = -1;
 </string>
           </argument>
         </arguments>
@@ -135,7 +137,8 @@ if (!global.frozen)
 
 if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
-    i = fireWeapon(0, 0, objPlantBarrier, 1, 2, 1, 0);
+    var ammoCost = 2 - (1 * (global.energySaver &gt; 0))
+    i = fireWeapon(0, 0, objPlantBarrier, 1, ammoCost, 1, 0);
 }
 </string>
           </argument>

@@ -38,6 +38,8 @@ timer = 0;
 droptimer = 16;
 dir = 0;
 
+behaviourType = 1;
+
 // super arm interaction
 category = "superArmTarget";
 superArmFlashTimer = 0;

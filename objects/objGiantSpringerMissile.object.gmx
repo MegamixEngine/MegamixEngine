@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -31,12 +31,14 @@ calibrateDirection();
 
 respawn = false;
 
-itemDrop = -1;
-pierces = 0;
+//itemDrop = -1;
+//pierces = 0;
 
-healthpointsStart = 1;
-healthpoints = healthpointsStart;
+/*healthpointsStart = 1;
+healthpoints = healthpointsStart;*/
+canHit = true;
 contactDamage = 2;
+reflectable = -1;
 
 blockCollision = false;
 grav = 0;
@@ -83,6 +85,29 @@ if (entityCanStep())
     xspeed = spd * cos(degtorad(dir));
     yspeed = -spd * sin(degtorad(dir));
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_perform_object(prtEntity,ev_other,ev_user10);
 </string>
           </argument>
         </arguments>

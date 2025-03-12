@@ -121,20 +121,22 @@ if (entityCanStep())
             // landing
             if (waitTimer == -1)
             {
-                waitTimer = -2; // I reused it as a boolean again
+                waitTimer = waitTime; // I reused it as a boolean again
                 
                 xspeed = 0;
                 yspeed = 0;
-                imgIndex = 3;
+                playSFX(sfxClamp);
+                waitTimer = waitTime;
+                imgIndex = 0;
             }
             
-            imgIndex -= imgSpd * 2; // landing animation is faster than jumping animation
+            /*imgIndex -= imgSpd * 2; // landing animation is faster than jumping animation
             
             if (imgIndex &lt;= 1)
             {
                 waitTimer = waitTime;
                 imgIndex = 0;
-            }
+            }*/
         }
         else if (waitTimer == -1 &amp;&amp; xspeed == 0)
         {

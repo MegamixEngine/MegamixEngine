@@ -35,6 +35,8 @@ category = "mets";
 
 facePlayerOnSpawn = true;
 
+behaviourType = 1;
+
 // Enemy specific code
 radius = 4 * 16; // Four blocks; the radius that MM needs to enter to trigger the shooting of the met
 cooldownTimer = 0;
@@ -106,10 +108,14 @@ if (entityCanStep())
     {
         animTimer -= 1;
     }
-    if (animTimer == 12 || animTimer == 8 || animTimer == 4 || animTimer == 1)
-    {
-        image_index -= 1;
-    }
+    if (animTimer == 12)
+        image_index = 4;
+    if (animTimer == 8)
+        image_index = 3;
+    if (animTimer == 4)
+        image_index = 1;
+    if (animTimer == 1)
+        image_index = 0;
     
     // canShoot = false is telling the met to do its shooting animation basically
     if (!canShoot)
@@ -130,6 +136,10 @@ if (entityCanStep())
         else if (cooldownTimer == 16)
         {
             image_index = 4;
+        }
+        else if (cooldownTimer == 21)
+        {
+            image_index = 3;
             
             // Shoot
             var ID;

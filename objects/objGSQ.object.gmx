@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A bulky trash-spitting robot. What does G.S.Q. even stand for? "Garbage Squashing Queen"? :thinking:
+            <string>/// A stationary robot that shoots rectangles of compressed garbage in a horizontal line. If the garbage hits a wall, it explodes diagonally into four pieces.
+/// By default, G.S.Q faces the player on spawn and remains facing that direction. Use creation code if you want to make it more or less responsive to the player.
+/// It's a pretty straightforward turret, but the exploding garbage can be tricky with the right room layout.
 
 event_inherited();
 

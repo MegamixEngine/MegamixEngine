@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// creation code
+            <string>/// A dragonfly that flies a specified distance left and right, shooting a bullet aimed at the player at specified intervals.
+/// Unlike many other flying enemies, this one remains at the height where it was placed, only moving horizontally.
+/// Good for adding a little extra danger to a challenge.
+
+// creation code
 // moveDist = &lt;number&gt;;   - The distance the enemy moves before turning back on itself. Default is 168.;
 // cooldownMax = &lt;number&gt;; - How quickly the enemy shoots. The default is 120;
 // spd = &lt;number&gt;; - How quickly the enemy moves. Should be a number that divides evenly into moveDist or else this won't work.
@@ -54,6 +58,8 @@ cooldownTimer = round(cooldownMax / 2);
 spd = 1;
 
 moveDist = 168;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

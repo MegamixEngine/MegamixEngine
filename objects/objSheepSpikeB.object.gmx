@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>event_inherited();
 spawn = objSpike;
+mySprite[0] = sprite_index;
+mySprite[1] = sprSheepSpikeCircle;
 </string>
           </argument>
         </arguments>

@@ -40,6 +40,9 @@ facePlayerOnSpawn = true;
 hasShell = true;
 animTimer = 0;
 calibrated = 0;
+
+//Unhardcoding
+shellSprite = sprCrabbotShell;
 </string>
           </argument>
         </arguments>
@@ -149,6 +152,7 @@ hasShell = true;
     hasShell = false;
     
     i = instance_create(x, y, objCrabbotShell);
+    i.sprite_index = shellSprite;
     i.image_xscale = image_xscale;
 }
 </string>

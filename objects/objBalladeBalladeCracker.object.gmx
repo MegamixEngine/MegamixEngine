@@ -63,7 +63,7 @@ if (!global.frozen)
     image_index += 0.25;
     if (checkSolid(16 * image_xscale, 0))
     {
-        playSFX(sfxBalladeCrackerExplosion);
+        playSFX(getGenericSFX(SFX_EXPLOSIONBALLADE));
         instance_create(x, y, objHarmfulExplosion);
         instance_destroy();
     }
@@ -90,7 +90,7 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>playSFX(sfxBalladeCrackerExplosion);
+            <string>playSFX(getGenericSFX(SFX_EXPLOSIONBALLADE));
 instance_create(x, y, objHarmfulExplosion);
 instance_destroy();
 </string>

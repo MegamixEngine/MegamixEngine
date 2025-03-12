@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -34,8 +34,11 @@ respawn = false;
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 3;
+canHit = true;
 
 grav = 0.22;
+inWater = -1;
+bubbleTimer = -1;
 
 image_speed = 0;
 image_index = 0;
@@ -71,6 +74,31 @@ if (entityCanStep())
         instance_destroy();
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+instance_create(x, y, objExplosion);
+stopSFX(getGenericSFX(SFX_ENEMYHIT));
 </string>
           </argument>
         </arguments>

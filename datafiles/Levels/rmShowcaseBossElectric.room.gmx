@@ -116,7 +116,7 @@
     <instance objName="objRightScrolling" x="2304" y="448" name="inst_F4349087" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="2560" y="448" name="inst_D649A444" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="2048" y="448" name="inst_2778FA06" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTileAnimation" x="32" y="240" name="inst_A2A9EE23" locked="0" code="animLength = 2&#xA;animTime = 4&#xA;animID[0] = tstBrightman;&#xA;animID[1] = tstBrightmanAnimated1;&#xA;animateOnTransition = true;&#xA;&#xA;animationLayer = 1000011;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTileAnimation" x="32" y="240" name="inst_A2A9EE23" locked="0" code="animLength = 2&#xA;animTime = 4&#xA;animID[0] = tstBrightman;&#xA;animID[1] = tstBrightmanAnimated1;&#xA;animateOnTransition = true;&#xA;&#xA;animationLayer = 1000011;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="48" y="0" name="inst_BF86FDF1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="64" y="0" name="inst_7BA44EBD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="48" y="16" name="inst_E54FC4A1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -193,11 +193,11 @@
     <instance objName="objBossBarrier" x="2800" y="592" name="inst_BBD422D0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="2800" y="608" name="inst_97BCED98" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="3040" y="592" name="inst_6561B3AF" locked="0" code="myRoom = lvlShowcaseHUB;&#xA;light = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="880" y="160" name="inst_77DF2CC7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1168" y="352" name="inst_D539F8DE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1408" y="624" name="inst_2A6B10AD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1904" y="624" name="inst_59A47CEA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="2416" y="624" name="inst_9ADD9C63" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="880" y="160" name="inst_77DF2CC7" locked="0" code="name = &quot;Gemini Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1168" y="352" name="inst_D539F8DE" locked="0" code="name = &quot;Enker&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1408" y="624" name="inst_2A6B10AD" locked="0" code="name = &quot;Volt Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1904" y="624" name="inst_59A47CEA" locked="0" code="name = &quot;Iron Ball&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="2416" y="624" name="inst_9ADD9C63" locked="0" code="name = &quot;Dark Man 4&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="912" y="160" name="inst_62234750" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="1216" y="352" name="inst_48F5F554" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="1440" y="624" name="inst_51AAC572" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

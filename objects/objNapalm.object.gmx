@@ -30,6 +30,7 @@
 category = "fire";
 
 faction = 4;
+isTargetable = false;
 
 animTimer = 0;
 dying = false;
@@ -40,6 +41,10 @@ grav = 0;
 bubbleTimer = -1;
 
 killOverride = false;
+canIce = false;
+
+firePutterOuters = makeArray(objRainFlush, objWaterWave);
+firePutterOuterCount = array_length_1d(firePutterOuters);
 </string>
           </argument>
         </arguments>
@@ -65,62 +70,49 @@ killOverride = false;
             <string>event_inherited();
 
 if (!global.frozen &amp;&amp; !global.timeStopped)
-{
     animTimer = global.gameTimer mod 16;
-}
 
-if (entityCanStep())
-{
-    if (!dying)
-    {
-        contactDamage = 28;
-        image_index = animTimer div 4;
-        
-        // special interactions
-        with (objWaterShield) || (objRainFlush) || (objTornadoBlow)
-        {
-            if (place_meeting(x, y, other))
-            {
-                with (other)
-                {
-                    dying = true;
-                    dieTime = 0;
-                    animTimer = 0;
-                }
-                playSFX(sfxEnemyHit);
-                if (object_index == objWaterShield)
-                {
-                    instance_create(x, y, objBubblePopEffect);
-                }
-                if (object_index == objTornadoBlow)
-                {
-                    guardCancel = 2;
-                }
-                instance_destroy();
+if (!entityCanStep())
+    exit;
+
+if (!dying) {
+    contactDamage = 28;
+    image_index = animTimer div 4;
+    
+    // special interactions
+    var i = 0;
+    repeat(firePutterOuterCount) {
+        with (firePutterOuters[i]) {
+            if (!place_meeting(x, y, other))
+                continue;
+            
+            with (other) {
+                dying = true;
+                dieTime = 0;
+                animTimer = 0;
             }
+            
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
+            instance_destroy();
         }
         
-        // Tel Tel rain puts out oil
-        if (global.telTelWeather == 1)
-        {
-            dying = true;
-            dieTime = 0;
-            animTimer = 0;
-
-            playSFX(sfxEnemyHit);
-        }
+        i++;
     }
-    else
-    {
-        dieTime++;
+    
+    // Tel Tel rain puts out oil
+    if (global.telTelWeather == 1) {
+        dying = true;
+        dieTime = 0;
+        animTimer = 0;
         
-        image_index = 4 + dieTime div 4;
-        
-        if (dieTime &gt;= 12)
-        {
-            event_user(EV_DEATH);
-        }
+        playSFX(getGenericSFX(SFX_ENEMYHIT));
     }
+} else {
+    dieTime++;
+    image_index = 4 + dieTime div 4;
+    
+    if (dieTime &gt;= 12)
+        event_user(EV_DEATH);
 }
 </string>
           </argument>
@@ -149,6 +141,7 @@ if (entityCanStep())
 animTimer = 0;
 dying = false;
 dieTime = 0;
+
 </string>
           </argument>
         </arguments>
@@ -171,10 +164,8 @@ dieTime = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.damage == other.contactDamage || dying)
-{
+            <string>if (global.damage &lt;= other.contactDamage || dying)
     other.guardCancel = 2;
-}
 </string>
           </argument>
         </arguments>
@@ -197,14 +188,10 @@ dieTime = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!dying)
-{
+            <string>if (!dying) {
     dying = 1;
-    
     contactDamage = 0;
-}
-else
-{
+} else {
     dead = 1;
 }
 </string>

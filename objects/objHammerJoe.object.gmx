@@ -44,6 +44,11 @@ shooting = false;
 shootAmount = 0;
 
 image_speed = 0.4;
+
+openSprite = sprHammerjoeOpen
+closedSprite = sprHammerjoeClosed
+throwSprite = sprHammerjoeThrow
+hammerSprite = sprHammerjoeProjectile
 </string>
           </argument>
         </arguments>
@@ -73,13 +78,13 @@ if (entityCanStep())
     // Shooting
     if (!shooting)
     {
-        sprite_index = sprHammerjoeClosed;
+        sprite_index = closedSprite;
         shootTimer += 1;
         if (shootTimer &gt;= 33)
         {
             shooting = true;
             shootTimer = 0;
-            sprite_index = sprHammerjoeOpen;
+            sprite_index = openSprite;
         }
     }
     else
@@ -87,7 +92,7 @@ if (entityCanStep())
         shootTimer += 1;
         if (shootTimer == 33)
         {
-            sprite_index = sprHammerjoeThrow;
+            sprite_index = throwSprite;
             
             var i, box;
             if (image_xscale == 1)
@@ -99,6 +104,7 @@ if (entityCanStep())
                 box = bbox_left;
             }
             i = instance_create(box, y, objHammerJoeHammer);
+            i.sprite_index = hammerSprite
             i.xspeed = image_xscale * 3;
             i.image_xscale = image_xscale;
         }
@@ -106,7 +112,7 @@ if (entityCanStep())
         {
             shootTimer = 0;
             shooting = false;
-            sprite_index = sprHammerjoeClosed;
+            sprite_index = closedSprite;
         }
     }
 }

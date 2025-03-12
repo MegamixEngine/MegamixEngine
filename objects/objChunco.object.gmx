@@ -25,9 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Yes, that's really his name. Don't make fun of it; he had a rough childhood. :( Mama Birdy
-// had other Chuncos to feed, and now he takes his aggression out on Mega Man via
-// shooting projectiles and chasing him.
+            <string>/// A flying bird that waits for a moment before chasing the player, shooting two shots in a spread pattern aimed at the player.
+/// Once it starts moving, it constantly flies diagonally up and down, never stopping. Shots are fired at specified intervals.
+/// This is the enemy created by Birdie, but it functions well as a standalone threat or in combination with other things.
 
 event_inherited();
 
@@ -118,9 +118,11 @@ if (entityCanStep())
                     i = instance_create(x, y, objMM5AimedBullet);
                     i.dir = getAngle + 30;
                     i.xscale = image_xscale;
+                    i.sprite_index = sprEnemyBullet;
                     i = instance_create(x, y, objMM5AimedBullet);
                     i.dir = getAngle - 30;
                     i.xscale = image_xscale;
+                    i.sprite_index = sprEnemyBullet;
                     playSFX(sfxEnemyShootClassic);
                     
                     shootTimer = 120;

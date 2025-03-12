@@ -203,6 +203,7 @@ if (object_index == objPetitDevilGreen)
         angle = 60;
         moveDir = other.image_xscale;
         sprite_index = sprPetitDevilCloneGreen;
+        respawn = false;
     }
     
     with (instance_create(refX, refY, objPetitDevilClone))
@@ -210,6 +211,7 @@ if (object_index == objPetitDevilGreen)
         angle = 360 - 15;
         moveDir = other.image_xscale;
         sprite_index = sprPetitDevilCloneGreen;
+        respawn = false;
     }
     
     with (instance_create(refX, refY, objPetitDevilClone))
@@ -217,6 +219,7 @@ if (object_index == objPetitDevilGreen)
         angle = 360 - 50;
         moveDir = other.image_xscale;
         sprite_index = sprPetitDevilCloneGreen;
+        respawn = false;
     }
 }
 </string>

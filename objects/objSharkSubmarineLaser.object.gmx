@@ -39,6 +39,7 @@ laserFormed = false;
 image_speed = 1 / 6;
 
 playSFX(sfxSharkLaser);
+spd = 4;
 </string>
           </argument>
         </arguments>
@@ -65,7 +66,8 @@ playSFX(sfxSharkLaser);
 
 if (!global.frozen)
 {
-    xspeed = 4 * image_xscale;
+    if (xspeed == 0)
+        xspeed = spd * image_xscale;
     if (image_index &lt;= 0)
     {
         if (laserFormed)

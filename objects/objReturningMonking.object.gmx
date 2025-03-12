@@ -44,6 +44,7 @@ state = 0;
 animTimer = 0;
 swingCooldown = 0;
 doneCritSwing = false;
+landed = false;
 </string>
           </argument>
         </arguments>
@@ -96,7 +97,7 @@ if (entityCanStep())
                 state = 1;
                 sprite_index = sprReturningMonkingSwing;
                 image_speed = 0.125;
-                image_index = 0;
+                image_index = 1;
                 actionTimer = 0;
                 state = 1;
                 y += 8;
@@ -125,10 +126,20 @@ if (entityCanStep())
         case 2: // jumping around 
             if (ground)
             {
-                image_index = 2;
-                calibrateDirection();
-                yspeed = -5;
-                xspeed = 2 * image_xscale;
+                if (!landed)
+                {
+                    landed = true;
+                    image_index = 1;
+                    xspeed = 0;
+                }
+                else
+                {
+                    landed = false;
+                    image_index = 2;
+                    calibrateDirection();
+                    yspeed = -5;
+                    xspeed = 2 * image_xscale;
+                }
             }
             
             if (healthpoints &lt;= (healthpointsStart / 2) &amp;&amp; !doneCritSwing)
@@ -142,6 +153,7 @@ if (entityCanStep())
                 doneCritSwing = true;
                 swingCooldown = 40;
                 xspeed = 0;
+                landed = false;
             }
             break;
     }
@@ -173,6 +185,7 @@ else if (dead)
     state = 0;
     swingCooldown = 0;
     doneCritSwing = false;
+    landed = false;
 }
 </string>
           </argument>

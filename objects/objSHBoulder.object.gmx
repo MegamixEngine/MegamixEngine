@@ -80,6 +80,7 @@ code = "";
 
 //@cc script to execute on the dropped object
 script = noone;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

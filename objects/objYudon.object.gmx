@@ -62,6 +62,9 @@ missileCol = 0;
 
 missile1 = 0;
 missile2 = 0;
+
+missileSprite = sprYudonMissile;
+missileExplosion = sprExplosion;
 </string>
           </argument>
         </arguments>
@@ -87,9 +90,13 @@ missile2 = 0;
             <string>event_inherited();
 
 // colour changing events. if game gear colouration is selected, the secondary colour matches the missile colour selected.
-if (col &gt; 0)
+if (col &gt; 0 &amp;&amp; object_index != objYudonGG)
 {
     image_index = (8 * (col + missileCol)) + imageOffset;
+}
+else if (object_index == objYudonGG) //game gear variant does not use the above calculation
+{
+    image_index = (8 * col) + imageOffset;
 }
 else
 {
@@ -130,7 +137,7 @@ if (entityCanStep())
     {
         if (cooldownTimer &gt; 0)
             cooldownTimer -= 1;
-        if (cooldownTimer == 0)
+        if (cooldownTimer == 0) &amp;&amp; (instance_exists(target))
         {
             shooting = true;
             imageOffset = 2;
@@ -153,7 +160,7 @@ if (entityCanStep())
     if (shooting)
     {
         actionTimer += 1;
-        if (actionTimer == doorOpenMax * 2 &amp;&amp; closeBlastDoors == false
+        if (actionTimer == doorOpenMax * (2 + (object_index == objYudonGG)) &amp;&amp; closeBlastDoors == false
             &amp;&amp; imageOffset &lt; 3)
         {
             imageOffset = 3;
@@ -173,7 +180,10 @@ if (entityCanStep())
             actionTimer = 0;
             
             var storeMCol;
-            storeMCol = missileCol;
+            if (object_index != objYudonGG)
+                storeMCol = missileCol;
+            else
+                storeMCol = col;
             
             missileArray[e] = instance_create(x + 8 * image_xscale, y + 20,
                 objYudonMissile);
@@ -181,6 +191,8 @@ if (entityCanStep())
             {
                 respawn = false;
                 col = storeMCol;
+                sprite_index = other.missileSprite;
+                explosionSprite = other.missileExplosion;
             }
             e += 1;
         }
@@ -211,12 +223,17 @@ else if (dead)
     animTimer = 8;
     shooting = false;
     actionTimer = 0;
+    closeBlastDoors = false;
     cooldownTimer = cooldownMax;
     img = 0;
     missile1 = 0;
     missile2 = 0;
-    missileArray[1] = 0;
-    missileArray[2] = 0;
+    if (!instance_exists(missileArray[1]))
+        missileArray[1] = 0;
+    if (!instance_exists(missileArray[2]))
+        missileArray[2] = 0;
+    if (!instance_exists(missileArray[0]))
+        missileArray[0] = 0;
 }
 </string>
           </argument>
@@ -241,7 +258,7 @@ else if (dead)
           <argument>
             <kind>1</kind>
             <string>// yudon is invunerable in image 0, 1 and 2:
-if (imageOffset &lt; 3)
+if (imageOffset &lt; 3 &amp;&amp; object_index != objYudonGG)
 {
     other.guardCancel = 1;
 }
@@ -275,9 +292,13 @@ else
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-with (objYudonMissile)
+
+for (var i = 0; i &lt; array_length_1d(missileArray); i++)
 {
-    event_user(EV_DEATH);
+    with (missileArray[i])
+    {
+        event_user(EV_DEATH);
+    }
 }
 </string>
           </argument>

@@ -32,6 +32,15 @@ xspeed = irandom(20) * 0.05 * choose(1, -1);
 grav = 0.2;
 
 half = 'whole';
+
+// Shadow Clone variables
+spriteX = 0;
+spriteY = 0;
+targetCID = 0;
+col[0] = c_ltgray;
+col[1] = c_black;
+col[2] = global.nesPalette[$2D];
+col[3] = c_black;
 </string>
           </argument>
         </arguments>
@@ -66,6 +75,14 @@ half = 'whole';
     }
     
     visible = !visible;
+    
+    // Colour switching for Camouflametall
+    if (sprite_index == sprCamouflametall)
+    {
+        col[1] = global.primaryCol[0];
+        col[2] = global.secondaryCol[0];
+        col[3] = global.outlineCol[0];
+    }
 }
 </string>
           </argument>
@@ -89,11 +106,23 @@ half = 'whole';
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (half == 'whole')
+            <string>if (half == 'whole') // Break Dash
 {
-    drawSelf();
+    if (sprite_index == sprMegamanShadow) // Draw Shadow Clones
+    {
+        drawCostume_Shadow(global.playerSprite[targetCID], spriteX, spriteY, x, y, image_xscale, image_yscale,
+        c_ltgray, c_black, make_color_rgb(111,111,111), c_black);
+    }
+    else
+    {
+        drawSelf();
+        if (sprite_index == sprCamouflametall) // Draw 1-Up disguise over halves
+        {
+            drawPlayer(0, targetCID, 16, 13, x - image_xscale, (y - 22) * image_yscale, 1, image_yscale);
+        }
+    }
 }
-else
+else // Slash Claw / Tengu Blade
 {
     imgx = image_xscale;
     image_xscale = 1;
@@ -102,20 +131,70 @@ else
     
     ys = sprite_height * 0.5;
     
-    if (half == 'top')
+    if (half == 'top') // Define top half
     {
-        top = 0;
+        if (sprite_index == sprMegamanShadow)
+            top = 1 + (floor(spriteY) * (48 + 3));
+        else
+        {
+            top = 0;
+            if (sprite_index == sprCamouflametall)
+                lifetop = 1 + 12 * (48 + 3);
+        }
         yh = 0;
     }
-    if (half == 'bottom')
+    if (half == 'bottom') // Define bottom half
     {
-        top = sprite_height - ys;
-        yh = ys;
+        if (sprite_index == sprMegamanShadow)
+        {
+            top = 1 + (floor(spriteY) * (48 + 3)) + 24;
+            yh = 24;
+        }
+        else
+        {
+            top = sprite_height - ys;
+            if (sprite_index == sprCamouflametall)
+            {
+                lifetop = 1 + 12 * (48 + 3) + 24;
+            }
+            yh = ys;
+        }
     }
-    draw_sprite_part_ext(sprite_index, image_index, 0, top, sprite_width, ys,
-        x - sprite_xoffset * imgx, y - sprite_yoffset * imgy + yh, imgx, imgy,
-        image_blend, image_alpha);
-    
+    if (sprite_index == sprMegamanShadow) // Special exception for Shadow Clones
+    {
+        for (var i = 0; i &lt; 4; i += 1)
+        {
+            if (i == 0 &amp;&amp; shader_is_compiled(shShadowClones)) // Set shader if compiled
+            {
+                shader_set_safe(shShadowClones);
+            }
+            draw_sprite_part_ext(global.playerSprite[targetCID], i, // Draw clone halves
+                1 + (floor(spriteX) * (48 + 3)),
+                top, 48, 24, x - sprite_xoffset * imgx,
+                y - sprite_yoffset * imgy + yh, imgx, imgy,
+                col[i], image_alpha);
+            if (i == 0 &amp;&amp; shader_is_compiled(shShadowClones)) // Reset shader
+            {
+                shader_reset();
+            }
+        }
+    }
+    else // Draw halves
+    {
+        draw_sprite_part_ext(sprite_index, image_index, 0, top, sprite_width, ys,
+            x - sprite_xoffset * imgx, y - sprite_yoffset * imgy + yh, imgx, imgy,
+            image_blend, image_alpha);
+        if (sprite_index == sprCamouflametall) // Draw 1-Up disguise over halves
+        {
+            for (var i = 0; i &lt; 4; i += 1)
+            {
+                draw_sprite_part_ext(global.playerSprite[targetCID], i,
+                1 + 16 * (48 + 3), lifetop, 48, 24,
+                (x - 24) - imgx, (y - 19) * imgy,
+                1, imgy, col[i], image_alpha);
+            }
+        }
+    }
     image_xscale = imgx;
     image_yscale = imgy;
 }

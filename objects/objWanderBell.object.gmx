@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A bell-shaped, vaguely squidlike enemy that walks slowly along the ground. It will turn around when it reaches a wall or the end of a platform.
+/// Arguably the least threatening enemy in the entire devkit. However, you can make it more of a challenge by adjusting its creation code variables.
+/// In its default configuration, custom spawners and inconvenient placement are perhaps the best ways to maximize its potential.
+
+event_inherited();
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
@@ -39,6 +43,8 @@ facePlayerOnSpawn = true;
 normalSpd = 0.25;
 
 image_speed = 0.1;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

@@ -459,10 +459,10 @@ draw_sprite_part(sprDialogueBox, 0, 1, 4, 2, 4, view_xview[0] + 4 + (floor(dialo
 dialogueBoxLightOffset++;
 
 // draw_sprite(sprDialogueBox, 0, view_xview[0], view_yview[0] + 148);
-draw_sprite(sprMugshots, 0, view_xview[0] + 5, view_yview[0] + 148 + 18);
+draw_sprite(sprGenericMugshots, 0, view_xview[0] + 5, view_yview[0] + 148 + 18);
 
 
-draw_text_color(view_xview[0] + 43, view_yview[0] + 148 + 6, "Developer", global.nesPalette[31], global.nesPalette[31], global.nesPalette[31], global.nesPalette[31], 1);
+draw_text_color(view_xview[0] + 43, view_yview[0] + 148 + 6, "Developer", global.nesPalette[$25], global.nesPalette[$25], global.nesPalette[$25], global.nesPalette[$25], 1);
 draw_text_ext(view_xview[0] + 43, view_yview[0] + 148 + 19, "This is meant to aid people who suffer from Visual Stress, who have a hard time reading text.", 8, 208);
 
 // colored text overlays

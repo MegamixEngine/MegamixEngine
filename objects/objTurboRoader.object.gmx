@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A Roader that wobbles back and forth before zooming forward. If it hits a wall or reaches the end of the screen, it will skid to a halt and turn around.
+/// It will also fall off of ledges.
+/// It's not really dangerous until it starts moving, and it's easily destroyed, so make sure your setups give it a chance to be effective.
+
+event_inherited();
 
 healthpointsStart = 2;
 healthpoints = healthpointsStart;

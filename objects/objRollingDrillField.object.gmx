@@ -30,6 +30,7 @@ canHit = false;
 
 respawn = false;
 blockCollision = 0;
+bubbleTimer = -1;
 grav = 0;
 
 // Enemy specific code

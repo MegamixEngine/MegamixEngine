@@ -27,6 +27,9 @@
             <kind>1</kind>
             <string>event_inherited();
 colourBlock = objSheepBlockR;
+
+mySprite[0] = sprite_index;
+mySprite[1] = sprSheepBlockDiamond;
 </string>
           </argument>
         </arguments>

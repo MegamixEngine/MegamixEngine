@@ -31,6 +31,7 @@ blockCollision = 0;
 grav = 0;
 
 contactDamage = 4;
+reflectable = -1;
 
 spd = 3;
 yspeed = 0;

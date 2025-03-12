@@ -48,13 +48,98 @@ tileDistanceCheck = 16;
 
 // don't touch
 init = true;
-tileSurface = noone;
+tileSurface = -1;
+
+//These are no longer needed after moving the code to step begin
+/*
+for (var i = 0; i &lt; MAX_PLAYERS; i ++)
+{
+    preGround[i] = 0;
+    preSliding[i] = 0;
+    preClimbing[i] = 0;
+}
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if(surface_exists(tileSurface)){
+    mm_surface_free(tileSurface);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (prtEntity)
+{
+    if (!global.frozen and frozen)
+    {
+        hspeed = pre_hsp;
+        vspeed = pre_vsp;
+        speed = pre_spe;
+        image_speed = pre_isp;
+        frozen = false;
+    }
+}
+
+/*with (objMegaman)
+{
+    climbing = other.preClimb[playerID];
+    isSlide = other.preSliding[playerID];
+    ground = other.preGround[playerID];
+    
+    if (climbing)
+    {
+        climbLock = lockPoolLock(localPlayerLock[PL_LOCK_MOVE],
+            localPlayerLock[PL_LOCK_SLIDE],
+            localPlayerLock[PL_LOCK_GRAVITY],
+            localPlayerLock[PL_LOCK_TURN]);
+        ground = false;
+        yspeed = 0;
+    }
+}*/
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -78,35 +163,86 @@ tileSurface = noone;
 }
 
 // 8-pixel leeway here to prevent some jankiness
-if (collision_rectangle(x + 8, y + 8, x + view_xview - 8, y + view_hview - 8, objMegaman, 0, 0)
+if (collision_rectangle(x + 8, y + 8, x + view_wview[0] - 8, y + view_hview[0] - 8, objMegaman, 0, 0)
     &amp;&amp; !instance_exists(objSectionSwitcher) &amp;&amp; insideView() &amp;&amp; !global.frozen)
 {
+    var moveX = camX - view_xview[0];
+    var moveY = camY - view_yview[0];
     with (objMegaman)
     {
-        x += other.camX - view_xview;
-        y += other.camY - view_yview;
+        //other.preClimb[playerID] = climbing;
+        //other.preSliding[playerID] = isSlide;
+        //other.preGround[playerID] = ground;
+        
+        x += moveX;//other.camX - view_xview[0];
+        y += moveY;//other.camY - view_yview[0];
+        
         setSection(x, y, 1);
         playerCamera(1);
         reAndDeactivateObjects(1, 1);
         
-        if instance_exists(vehicle)
+        //checkGround();
+        
+        /*climbing = other.preClimb[playerID];
+        isSlide = other.preSliding[playerID];
+        ground = other.preGround[playerID];
+        
+        if (climbing)
         {
-            with vehicle
-            {
-                x += other.camX - view_xview;
-                y += other.camY - view_yview;
-            }
+            climbLock = lockPoolLock(localPlayerLock[PL_LOCK_MOVE],
+                localPlayerLock[PL_LOCK_SLIDE],
+                localPlayerLock[PL_LOCK_GRAVITY],
+                localPlayerLock[PL_LOCK_TURN]);
+            ground = false;
+            yspeed = 0;
+        }*/
+        
+        if (instance_exists(vehicle))
+        {
+            // NOTE FROM PMB: Fixing a crash with bringing a vehicle into a maze warp. 
+            /*with (vehicle)
+            {*/
+                vehicle.x += moveX;//other.camX - view_xview[0];
+                vehicle.y += moveY;//other.camY - view_yview[0];
+            //}
         }
     }
     
-    if instance_exists(objWaterShield)
+    if (instance_exists(objWaterShield))
     {
-        with objWaterShield
+        with (objWaterShield)
         {
-            x += other.camX - view_xview;
-            y += other.camY - view_yview;
+            x += moveX;//other.camX - view_xview[0];
+            y += moveY;//other.camY - view_yview[0];
         }
     }
+    alarm[0] = 1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if(surface_exists(tileSurface)){
+    mm_surface_free(tileSurface);
 }
 </string>
           </argument>
@@ -133,7 +269,7 @@ if (collision_rectangle(x + 8, y + 8, x + view_xview - 8, y + view_hview - 8, ob
             <string>// Grab all tiles on the screen you're teleporting to
 if (!surface_exists(tileSurface))
 {
-    tileSurface = surface_create(view_wview, view_hview);
+    tileSurface = mm_surface_create(view_wview, view_hview);
     surface_set_target(tileSurface);
     draw_clear_alpha(c_black, 0);
     

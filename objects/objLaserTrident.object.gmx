@@ -6,7 +6,7 @@
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>prtPlayerProjectile</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <maskName>sprLaserTrident</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -31,15 +31,29 @@ bulletLimitCost = 1;
 
 contactDamage = 1;
 
-image_speed = 0.5;
+image_speed = 0;
 
 penetrate = 3;
 pierces = 2;
 attackDelay = 8;
 
 timer = 0;
+iTimer = 0;
+imgOffset = 0;
+autoFireSet = 10;
 
-playSFX(sfxLaserTrident);
+inWater = -1;
+setMe = false;
+
+multPal[0] = $f68271;
+multPal[1] = $3cBFe7;
+
+wepPal[0] = make_color_rgb(255, 124, 0);
+wepPal[1] = make_color_rgb(0, 184, 0);
+wepPal[2] = make_color_rgb(0, 0, 188);
+wepPal[3] = make_color_rgb(216, 40, 0);
+wepPal[4] = make_color_rgb(0,255,255);
+wepPal[5] = make_color_rgb(255, 124, 0);
 </string>
           </argument>
         </arguments>
@@ -72,6 +86,9 @@ if (!global.frozen)
         {
             xspeed += image_xscale * 0.575;
         }
+        
+        image_index += 0.5;
+        
     }
     else
     {
@@ -113,14 +130,40 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// EV_WEAPON_CONTROL
+            <string>/// EV_WEAPON CONTROL
 
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+if (performShoot)
 {
-    i = fireWeapon(25, -1, objLaserTrident, 3, 0.5, 1, 0);
+    var ammoCost = 0.5 - (0.075 * (global.energySaver &gt; 0));
+    
+    i = fireWeapon(25, -1, objLaserTrident, 3, ammoCost, 1, 0, 1.25);
+    
     if (i) // set starting speed
     {
+        with (objLaserTrident) // disconnect
+        {
+            if (setMe &gt; -1)
+            {
+                setMe = -1;
+            }
+        }
+        
         i.xspeed = image_xscale * 0.5;
+        
+        
+        playSFX(sfxLaserTrident);
+        image_speed = 0.5;
+        
+        
+    }
+    
+    with (objLaserTrident)
+    {
+        if (setMe != -1)
+        {
+            if (!(global.multiplayerColors &amp;&amp; global.playerCount &gt; 1))
+                global.primaryCol[playerID] = wepPal[setMe];
+        }
     }
 }
 </string>
@@ -173,7 +216,9 @@ specialDamageValue("primate", 3);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weaponSetup("LASER TRIDENT", make_color_rgb(113, 130, 246), make_color_rgb(231, 191, 60), sprWeaponIconsLaserTrident);
+            <string>
+weaponSetup("LASER TRIDENT", make_color_rgb(113, 130, 246), make_color_rgb(231, 191, 60), sprWeaponIconsLaserTrident);
+
 </string>
           </argument>
         </arguments>
@@ -204,7 +249,11 @@ entityx = other.x - x;
 entityy = other.y - y;
 
 playSFX(sfxReflect);
-image_speed /= 4;
+    
+if (image_speed &gt; 0)
+{
+    image_speed /= 4;
+}
 xspeed = -0.5 * image_xscale;
 
 repeat (2)
@@ -216,6 +265,48 @@ repeat (2)
         image_yscale = other.image_yscale;
     }
 }
+
+
+bulletLimitCost = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+if (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1)
+{
+    shaderSetColorreplace(
+        multPal[0], merge_color(global.multiplayerPalette[playerID,global.weapon[playerID]],c_black,0.66),
+        multPal[1], global.multiplayerPalette[playerID,global.weapon[playerID]]
+    );
+}
+event_inherited();
+if (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1)
+{
+    shader_reset();
+}
+    
+
+
+
 </string>
           </argument>
         </arguments>

@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 1;
+inWater = -1;
 
 pierces = 0;
 
@@ -42,14 +43,24 @@ count = 0;
 
 isMaster = false;
 
-rotationSpeed = 360 / 60;
+rotationSpeed = (360 / 60);
 
 spawnOffset = 360 / total;
 angle = spawnOffset;
 spawnAfter = 360 + spawnOffset;
 
-shiftVisible = 2;
+shiftVisible = 3;//2; // NOTE FROM PMB: Changed to stop maze warps from despawning this. 
 despawnRange = -1;
+
+// glitz ageis variables
+deathXSpeed = 0;
+deathYSpeed = -4;
+maxSprite = 4;
+
+autoFireSet = -1;
+
+multPal[0] = $e86f00;
+multPal[1] = $cc00d8;
 </string>
           </argument>
         </arguments>
@@ -78,7 +89,11 @@ if (!global.frozen || instance_exists(objSectionSwitcher))
 {
     if (instance_exists(parent))
     {
-        image_yscale = parent.image_yscale;
+        var yscaleMult = 1;
+        if (checkCheats(cheatEnums.hugeWeapons))
+            yscaleMult = 4;
+        
+        image_yscale = parent.image_yscale * yscaleMult;
         
         angle += rotationSpeed;
         
@@ -89,21 +104,37 @@ if (!global.frozen || instance_exists(objSectionSwitcher))
         {
             if (angle &gt;= spawnOffset)
             {
-                angle -= spawnOffset;
-                count += 1;
+                //if instant charge is enabled repeat this code block to spawn all the bubbles at once
+                var cheatRepeat = ternary(checkCheats(cheatEnums.instantCharge),total,1);
                 
-                var i = instance_create(x, y, object_index);
-                i.parent = parent;
-                
-                i.angle = angle;
-                i.spawnAfter = spawnAfter - spawnOffset;
-                spawnAfter = i.spawnAfter;
-                i.image_xscale = image_xscale;
-                i.image_yscale = image_yscale;
-                
-                if (count &gt;= total)
+                repeat (cheatRepeat)
                 {
-                    instance_destroy();
+                    angle -= spawnOffset;
+                    count += 1;
+                    
+                    var i = instance_create(x, y, object_index);
+                    i.parent = parent;
+                    i.angle = angle;
+                    i.playerID = playerID;
+                    //glitz code
+                    i.sprite_index = sprite_index;
+                    i.mask_index = mask_index;
+                    
+                    i.spawnAfter = spawnAfter - spawnOffset;
+                    spawnAfter = i.spawnAfter;
+                    i.image_xscale = image_xscale;
+                    i.image_yscale = image_yscale;
+                    
+                    //this is needed to let the player spread out the bubbles immediately with instant charge
+                    if (cheatRepeat &gt; 1)
+                    {
+                        i.angle = i.spawnAfter + 45;
+                    }
+                    
+                    if (count &gt;= total)
+                    {
+                        instance_destroy();
+                    }
                 }
             }
         }
@@ -113,38 +144,15 @@ if (!global.frozen || instance_exists(objSectionSwitcher))
             
             if (!global.frozen)
             {
-                if (velocity == 0) // Spread out
+                if (velocity != 0)
                 {
-                    if (angle &gt;= spawnAfter + 45 &amp;&amp; global.keyShootPressed[parent.playerID])
-                    {
-                        with (parent)
-                        {
-                            if (!playerIsLocked(PL_LOCK_SHOOT))
-                            {
-                                playSFX(sfxWaterShield2);
-                                with (objWaterShield)
-                                {
-                                    if (parent == other.id)
-                                    {
-                                        velocity = 0.1;
-                                        despawnRange = 0;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
+                    distance += velocity;
                     velocity += 0.1;
-                }
-                
-                distance += velocity;
-                
-                if (distance &gt; max(view_wview, view_hview))
-                {
-                    instance_destroy();
-                    exit;
+                    
+                    if (distance &gt; (max(view_wview[0], view_hview[0]) + 8))
+                    {
+                        instance_destroy();
+                    }
                 }
             }
         }
@@ -182,13 +190,15 @@ if (!global.frozen || instance_exists(objSectionSwitcher))
     {
         case -1:
         case 1:
-            playSFX(sfxEnemyHit);
+            var iX = sign(other.x - x);
+
             with (other)
             {
-                instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
+                //instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
                 instance_destroy();
             }
-            instance_create(x, y, objBubblePopEffect);
+            deathXSpeed = -iX * 3;
+            event_user(2); // create projectile death effect
             instance_destroy();
             break;
     }
@@ -215,15 +225,48 @@ if (!global.frozen || instance_exists(objSectionSwitcher))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
-    i = fireWeapon(16, 0, objWaterShield, 1, 4, 1, 0);
-    if (i)
+    var obj = objWaterShield;
+    var ammoCost = 4 - (1.5 * (global.energySaver &gt; 0));
+    
+    i = fireWeapon(16, 0, obj, 1, ammoCost, 1, 0);
+    
+    if (i) //Spawn
     {
         playSFX(sfxWaterShield);
+        i.sprite_index = sprWaterShieldBubble;
+        
         i.isMaster = true;
         i.canHit = false;
         i.canDamage = false;
+    }
+    else //Spread out
+    {
+        with (obj)
+        {
+            if (other == parent)
+            {
+                if (velocity == 0) // Spread out
+                {
+                    if (angle &gt;= spawnAfter + 45 &amp;&amp; global.keyShootPressed[parent.playerID])
+                    {
+                        playSFX(sfxWaterShield2);
+                        
+                        with (obj)
+                        {
+                            if (parent == other.parent)
+                            {
+                                velocity = 0.1;
+                                despawnRange = 0;
+                            }
+                        }
+                        
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
 </string>
@@ -296,9 +339,67 @@ if (!global.frozen || instance_exists(objSectionSwitcher))
             <kind>1</kind>
             <string>audio_stop_sound(sfxReflect);
 
-instance_create(x, y, objBubblePopEffect);
+event_user(2); // create projectile death effect
 
 event_user(EV_DEATH);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///| Death effect
+instance_create(x, y, objBubblePopEffect);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1)
+{
+    shaderSetColorreplace(
+        multPal[0], global.multiplayerPalette[playerID,global.weapon[playerID]]
+    );
+}
+event_inherited();
+
+if (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1)
+{
+    shader_reset();
+}
 </string>
           </argument>
         </arguments>

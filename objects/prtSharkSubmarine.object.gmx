@@ -29,6 +29,11 @@
 
 firstStep = 1;
 
+_doPlayerExplosion = false;
+doPlayerExplosion = false;
+slowdeathTimer = 0;
+isDying = false;
+finalDeath = false;
 _endStageBehavior = 0;
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
@@ -59,6 +64,9 @@ globalYLowOffset = 16; // Largest number yCurrOffset can reach(in scrolling sect
 leftShark = noone;
 rightShark = noone;
 
+killMusic = false;
+playBossMusic = false;
+
 attackTimer = 0;
 
 // Handled by leftShark
@@ -71,18 +79,26 @@ yCurrOffset = 0; // Keeps track of the height changes for the shark.
 endOfStageBoss = false;
 
 // Health Bar
-healthBarPrimaryColor[1] = 25;
-healthBarSecondaryColor[1] = 52;
+healthBarPrimaryColor[1] = $3C;
+healthBarSecondaryColor[1] = $30;
 
 // Music
-music = "Mega_Man_9.nsf";
-musicType = "VGM";
-musicTrackNumber = 16;
+music = "MM9/16_Boss.mid";
+musicType = "MIDI";
+var sf = choose("","_OST");
+musicTrackNumber = "MM9/MM9" + sf + ".sf2";
+if (sf == "")
+{
+    musicVolume = .8;
+}
 
 // Damage Table
 enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
+enemyDamageValue(objBusterShotHalfChargedProto, 2);
+enemyDamageValue(objBusterShotChargedProto, 4);
+enemyDamageValue(objNormalBusterShot, 2);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -93,6 +109,10 @@ enemyDamageValue(objThunderBeam, 3);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 3);
 enemyDamageValue(objIceWall, 0);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -128,15 +148,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 3);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 0);
+enemyDamageValue(objChillSpike, 0);
 enemyDamageValue(objChillSpikeLanded, 0);
 
 // Misc.
 enemyDamageValue(objPowerStone, 2);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 0);
 </string>
           </argument>
@@ -269,7 +290,7 @@ if (!global.frozen &amp;&amp; !allDead &amp;&amp; (!stop || (stop &amp;&amp; y !
         }
         
         // Set the direction the shark moves.
-        if (goingUp) // Going up.
+       if (goingUp) // Going up.
         {
             yspeed = -speedToMove;
         }
@@ -285,11 +306,46 @@ if (!global.frozen &amp;&amp; !allDead &amp;&amp; (!stop || (stop &amp;&amp; y !
                 y = ystart;
                 yspeed = 0;
                 global.lockTransition = false;
+                print("unlocked?");
             }
         }
         
         // Keeps track of the y offset.
         yCurrOffset += yspeed;
+    }
+}
+
+// Final Death animation
+if (finalDeath)
+{
+    if (!global.frozen)
+    {
+        with (prtSharkSubmarine)
+        {
+            if (insideSection(x,y))
+            {
+                if (killed) &amp;&amp; (!finalDeath)
+                {
+                    finalDeath = true;
+                    slowdeathTimer = 40;
+                }
+                yspeed = 0;
+                stop = true;
+                if (slowdeathTimer == 45)
+                    image_alpha = 0.8;
+                if (slowdeathTimer == 60)
+                    image_alpha = 0.5;
+                if (slowdeathTimer == 75)
+                    image_alpha = 0.2;
+                if (slowdeathTimer == 90)
+                    image_alpha = 0;
+                if (slowdeathTimer == 120)
+                    event_user(EV_DEATH);
+                    
+                if (killMusic)
+                    stopMusic();
+            }
+        }
     }
 }
 </string>
@@ -346,16 +402,20 @@ if (spawned)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (killed)
-    exit;
-if (!killed &amp;&amp; isFight)
+            <string>if (killed) //Ignore this event if I'm dead
+{
+    if (!finalDeath) //(!isDying)
+        exit;
+}
+if (!killed &amp;&amp; isDying)//isFight)
     killed = true;
 
 allDead = true;
 stop = true;
+
 with (prtSharkSubmarine)
 {
-    if (insideSection(x,y)&amp;&amp;id != other.id &amp;&amp; startRef == other.startRef)
+    if (insideSection(x,y)) &amp;&amp; (id != other.id) &amp;&amp; (startRef == other.startRef)
         other.stop = false;
 }
 instance_activate_object(prtSharkSubmarine);
@@ -386,11 +446,20 @@ with (prtSharkSubmarine)
         instance_deactivate_object(id);
     }
 }
+
 if (allDead)
 {
+    if (!finalDeath)
+    {
+        finalDeath = true;
+        contactDamage = 0;
+        exit;
+    }
     useEndStageBehavior = _endStageBehavior;
     stop = true;
-    doPlayerExplosion = true;
+    yspeed = 0;
+    if (_doPlayerExplosion)
+        doPlayerExplosion = true;
 }
 else
 {
@@ -398,13 +467,14 @@ else
     itemDrop = -1;
     doPlayerExplosion = false;
 }
-event_inherited();
-instance_create(bboxGetXCenter(), bboxGetYCenter() - 10, objBigExplosion);
-instance_create(bboxGetXCenter() + 32, bboxGetYCenter(), objBigExplosion);
-instance_create(bboxGetXCenter() - 32, bboxGetYCenter(), objBigExplosion);
-playSFX(sfxMM9Explosion);
+//event_inherited();
+
 if (!allDead)
+{
     dead = false;
+    event_inherited();
+}
+    
 if (stop &amp;&amp; y != ystart)
 {
     global.lockTransition = true;
@@ -421,25 +491,20 @@ if (stop &amp;&amp; y != ystart)
 }
 
 // Do explosion Here
-
-if (allDead)
+if (allDead) &amp;&amp; (finalDeath)
 {
     instance_activate_object(prtSharkSubmarine);
     yspeed = 0;
     with (prtSharkSubmarine)
     {
+        event_inherited();
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
         if (startRef == other.startRef)
         {
             if (!insideSection(x, y))
                 instance_destroy();
             else // Explode
-            {
-                instance_create(bboxGetXCenter(), bboxGetYCenter() - 10, objBigExplosion);
-                instance_create(bboxGetXCenter() + 32, bboxGetYCenter(), objBigExplosion);
-                instance_create(bboxGetXCenter() - 32, bboxGetYCenter(), objBigExplosion);
-                playSFX(sfxMM9Explosion);
                 instance_destroy();
-            }
         }
     }
 }
@@ -634,6 +699,12 @@ _endStageBehavior = useEndStageBehavior;
             <kind>1</kind>
             <string>if (introTimer &lt;= 0)
 {
+    if (finalDeath)
+    {
+        draw_sprite_ext(sprite_index, -1, x, round(y), image_xscale,
+        image_yscale, image_angle, c_black,
+        1);
+    }
     draw_sprite_ext(sprite_index, -1, x, round(y), image_xscale,
         image_yscale, image_angle, image_blend, image_alpha);
 }

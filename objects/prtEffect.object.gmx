@@ -34,6 +34,21 @@ despawn = 1;
 grav = 0.25;
 
 noFlicker = false;
+
+
+useShader = false;
+replaceColor[0] = $FFFFFF;
+replaceColor[1] = $ADCFFF;
+newColor[0] = c_blue;
+newColor[1] = c_navy;
+
+
+//game pause values - initialized here to prevent crashes
+pre_hsp = 0;
+pre_vsp = 0;
+pre_spe = 0;
+pre_isp = 0;
+pre_tmlrun = 0;
 </string>
           </argument>
         </arguments>
@@ -82,7 +97,17 @@ noFlicker = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>drawSelf();
+            <string>if (useShader)
+{
+    shaderSetColorreplace(
+            replaceColor[0], newColor[0],
+            replaceColor[1], newColor[1],
+        );
+    drawSelf();
+    shader_reset();
+}
+else
+    drawSelf();
 </string>
           </argument>
         </arguments>

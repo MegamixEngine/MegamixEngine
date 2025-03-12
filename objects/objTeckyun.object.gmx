@@ -30,6 +30,7 @@
 // Creation code (all optional):
 // col = ; 0 blue, 1 orange
 // wait = ; time it waits between slams, in frames
+//damageAmount = ; how much damage teckyan does.
 
 event_inherited();
 
@@ -41,8 +42,53 @@ bubbleTimer = -1;
 col = 0;
 
 wait = 60;
+dir = 1;
 waitStart = wait;
 init = 1;
+mySFX = sfxTeckyun;
+damageAmount = 4;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+// Set color and timers properly
+if (init)
+{
+    init = 0;
+    waitStart = wait;
+    dir = sign(image_xscale);
+    image_xscale = 1;
+    if (col == 1)
+    {
+        sprite_index = sprTeckyunOrange;
+    }
+    if (dir == -1)
+    {
+        image_index = image_number - 1;
+    }
+    else
+        image_index = 0;
+    
+}
 </string>
           </argument>
         </arguments>
@@ -65,18 +111,7 @@ init = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Set color and timers properly
-if (init)
-{
-    init = 0;
-    waitStart = wait;
-    if (col == 1)
-    {
-        sprite_index = sprTeckyunOrange;
-    }
-}
-
-event_inherited();
+            <string>event_inherited();
 
 // Actual code
 if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
@@ -89,22 +124,25 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     else
     {
         // animation
-        if (image_index &lt; image_number - 1)
+        if (dir &gt;= 1 &amp;&amp; image_index &lt; image_number /*- 1*/ || dir &lt;= -1 &amp;&amp; image_index &gt; 0)
         {
-            image_index += 0.1;
+            image_index += 0.1 * dir;
         } // slamming
         else
         {
-            image_xscale = -image_xscale;
-            image_index = 0;
+            //image_xscale = -image_xscale;
+            //image_index = 0;
+            dir = -dir;
             wait = waitStart;
-            playSFX(sfxTeckyun);
+            if (mySFX != noone)
+                playSFX(mySFX);
         }
     }
     
     // hit the target
     if (place_meeting(x, y, target))
     {
+        var dm = damageAmount;
         with (target)
         {
             // manual damage to player
@@ -112,7 +150,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             {
                 with (other)
                 {
-                    entityEntityCollision(4);
+                    entityEntityCollision(dm);
                 }
             }
         }

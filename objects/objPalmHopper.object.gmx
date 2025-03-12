@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A grasshopper that takes a big leap toward the player, fires four missiles horizontally, and repeats.
+/// After every missile, it will turn to face the player again if the player has moved. Its missiles can be destroyed.
+/// Suitable for a variety of challenges, especially ones that take advantage of its hopping and turning.
+
+event_inherited();
 
 facePlayerOnSpawn = true;
 
@@ -95,40 +99,39 @@ if (entityCanStep())
                 }
                 
                 // Shoot
-                if (instance_exists(target))
+                if (canShoot)
                 {
-                    if (canShoot == true)
+                    shootTimer--;
+                    if (shootTimer == 5)
                     {
-                        shootTimer--;
-                        if (shootTimer &lt;= 5)
-                        {
-                            image_index = 4;
-                        }
-                        
-                        if (shootTimer == 0)
-                        {
-                            i = instance_create(x + 8 * image_xscale, y, objPalmHopperMissile);
-                            playSFX(sfxMissileLaunch);
-                            i.xspeed = 2 * image_xscale;
-                            i.image_xscale = image_xscale;
-                            shotsLeft--;
-                            if (shotsLeft &gt; 0)
-                            {
-                                shootTimer = 60;
-                                image_index = 0;
-                            }
-                            else
-                            {
-                                canShoot = false;
-                                image_index = 0;
-                            }
-                        }
+                        image_index = 4;
+                        calibrateDirection();
+                    }
+                    
+                    if (shootTimer == 0)
+                    {
+                        i = instance_create(x + 8 * image_xscale, y, objPalmHopperMissile);
+                        playSFX(sfxMissileLaunch);
+                        i.xspeed = 2 * image_xscale;
+                        i.image_xscale = image_xscale;
+                        shotsLeft--;
+                        image_index = 5;
+                    }
+                    if (shootTimer == -5)
+                    {
+                        image_index = 0;
+                        if (shotsLeft &gt; 0)
+                            shootTimer = 60;
+                        else
+                            canShoot = false;
                     }
                 }
             }
             break;
         case 1: // Jumping 
             xspeed = image_xscale * 2;
+            if (yspeed &gt; 0) &amp;&amp; (!ground)
+                image_index = 0;
             
             // Landing
             if (ground)

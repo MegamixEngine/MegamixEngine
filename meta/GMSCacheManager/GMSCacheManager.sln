@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMSCacheManager", "GMSCacheManager.csproj", "{30A477FB-51B0-4371-B1EB-7F3B65FEAF7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30A477FB-51B0-4371-B1EB-7F3B65FEAF7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30A477FB-51B0-4371-B1EB-7F3B65FEAF7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30A477FB-51B0-4371-B1EB-7F3B65FEAF7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30A477FB-51B0-4371-B1EB-7F3B65FEAF7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFCEC0E0-A845-482D-94FF-6371BB5217D4}
+	EndGlobalSection
+EndGlobal

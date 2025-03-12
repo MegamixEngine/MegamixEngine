@@ -53,8 +53,8 @@ myBlock = noone;
 grav = 0.25;
 
 // Health Bar
-healthBarPrimaryColor[1] = 20;
-healthBarSecondaryColor[1] = 34;
+healthBarPrimaryColor[1] = $17;
+healthBarSecondaryColor[1] = $28;
 
 // Music
 music = "Mega_Man_5GB.gbs";
@@ -65,6 +65,8 @@ musicTrackNumber = 6;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -75,6 +77,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 2);
 enemyDamageValue(objBreakDash, 5);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 0);
@@ -110,15 +116,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 2);
 enemyDamageValue(objSuperArmDebris, 2);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 4);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 4);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -160,7 +167,11 @@ if (!global.frozen)
         with (objMegaman)
         {
             if (ground) // shunt mega man off the floor to prevent sliding and break dash
-                y -= 1.5 * (irandom(3) + 1);
+            {
+                // Edited by PMB to prevent clipping via Banshee Wail shenanigans. 
+                //y -= 1.5 * (irandom(3) + 1);
+                shiftObject(0, -(1.5 * (irandom(3) + 1)), 1);
+            }
         }
     }
     if (entityCanStep())

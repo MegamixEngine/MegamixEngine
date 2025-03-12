@@ -72,7 +72,7 @@ if (global.frozen == false)
         image_index = 2;
     if (ycoll != 0)
     {
-        playSFX(sfxExplosion);
+        playSFX(getGenericSFX(SFX_EXPLOSION));
         i = instance_create(x, y, objHarmfulExplosion);
         i.sprite_index = sprExplosion;
         screenShake(60, 1, 1);

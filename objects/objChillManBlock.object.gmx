@@ -138,7 +138,7 @@ if (!global.frozen &amp;&amp; !dead)
         {
             with (prtEntity)
             {
-                if ((faction == 3 || faction == 1) &amp;&amp; !dead &amp;&amp; ground &amp;&amp; ycoll != 0 &amp;&amp; object_index != objBusterShotCharged)
+                if ((faction == 3 || faction == 1) &amp;&amp; !dead &amp;&amp; ground &amp;&amp; ycoll != 0 &amp;&amp; object_index != objBusterShotCharged &amp;&amp; object_index != objBusterShotChargedProto)
                 {
                     if (place_meeting(x, y + sign(grav), other.id))
                     {
@@ -236,7 +236,7 @@ image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (other.penetrate &lt; 2 &amp;&amp; other.pierces &lt; 2 &amp;&amp; other.object_index != objBusterShotCharged)
+            <string>if (other.penetrate &lt; 2 &amp;&amp; other.pierces &lt; 2 &amp;&amp; other.object_index != objBusterShotCharged &amp;&amp; other.object_index != objBusterShotChargedProto)
 {
     other.penetrate = 0;
     other.pierces = 0;

@@ -40,9 +40,12 @@ blockCollision = 0; // doesnt interact with blocks
 puyoBrickN = 0;
 puyoBrickIndex = 0;
 
+nextDelayMax = 14; // Dekay between next set of bricks activating
+nextDelay = nextDelayMax;
+
 // Health Bar
-healthBarPrimaryColor[1] = 33;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $27;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_2.nsf";
@@ -89,28 +92,34 @@ else if (isFight)
     
     if (nextSet)
     {
-        // initiate next set of puyos
-        var a = puyoBrickList[puyoBrickIndex];
-        var b = puyoBrickList[puyoBrickIndex + 1];
-        a.phase = 1;
-        b.phase = 1;
-        a.partner = b;
-        b.partner = a;
-        
-        // flip the left one
-        if (a.x &gt; b.x)
+        nextDelay--;
+        if (nextDelay &lt;= 0)
         {
-            b.image_xscale *= -1;
-            b.x += 16;
+            // initiate next set of puyos
+            var a = puyoBrickList[puyoBrickIndex];
+            var b = puyoBrickList[puyoBrickIndex + 1];
+            a.phase = 1;
+            b.phase = 1;
+            a.partner = b;
+            b.partner = a;
+            
+            // flip the left one
+            if (a.x &gt; b.x)
+            {
+                b.image_xscale *= -1;
+                b.x += 16;
+            }
+            else
+            {
+                a.image_xscale *= -1;
+                a.x += 16;
+            }
+            var spd = (3 - 2 * healthpoints / 28) + (global.difficulty == DIFF_HARD);
+            a.spd = spd;
+            b.spd = spd;
+            
+            nextDelay = nextDelayMax;
         }
-        else
-        {
-            a.image_xscale *= -1;
-            a.x += 16;
-        }
-        var spd = (3 - 2 * healthpoints / 28) + (global.difficulty == DIFF_HARD);
-        a.spd = spd;
-        b.spd = spd;
     }
 }
 

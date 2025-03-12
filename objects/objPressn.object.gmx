@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// An enemy that rises as far as the architecture will allow before falling in the direction of the player.
+/// Shakes the ground when it lands, but this is purely aesthetic and does not stun the player.
+/// Appropriate as a mini-miniboss; combines well with several gimmicks.
+
+event_inherited();
 
 healthpointsStart = 10;
 contactDamage = 6;

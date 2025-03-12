@@ -2,232 +2,313 @@
 // these are global variables and constants that aren't really meant to be configured.
 global.newLine = "
 ";
-global.nextRoom = -1;
-global.previousRoom=-1;
 
-// subsystem initialization
+global.nextRoom = -1; // set this at any time during gameplay to fade to a particular room.
+global.previousRoom = -1;
+
+global.saveSlot = 0;
+
+global.roomName  = "";
+
+global.stage = "";
+global.stageIsHub = 0;
+
+global.consoleN = 0;
+global.canCheat = 0;
+global.cheatsActive = 0;
+
+global.quickGrid = -1;
+
+/// --- Subsystem initialization --- ///
 mathTableSetup();
 lockPoolInit();
 globalLockInit();
+gigInit();
+scheduler_resolution_set(1);
 
-// extension initialization
-cleanMem('init');
+/// --- Keys and input --- ///
+global.keyLeft[MAX_PLAYERS] = 0;
+global.keyRight[MAX_PLAYERS] = 0;
+global.keyUp[MAX_PLAYERS] = 0;
+global.keyDown[MAX_PLAYERS] = 0;
+global.keyJump[MAX_PLAYERS] = 0;
+global.keyShoot[MAX_PLAYERS] = 0;
+global.keySlide[MAX_PLAYERS] = 0;
+global.keyPause[MAX_PLAYERS] = 0;
+global.keyMap[MAX_PLAYERS] = 0;
+global.keyWeaponSwitchLeft[MAX_PLAYERS] = 0;
+global.keyWeaponSwitchRight[MAX_PLAYERS] = 0;
+global.keyWheelSwitch[MAX_PLAYERS] = 0;
 
-// Keys
-global.keyLeft[4] = 0;
-global.keyRight[4] = 0;
-global.keyUp[4] = 0;
-global.keyDown[4] = 0;
-global.keyJump[4] = 0;
-global.keyShoot[4] = 0;
-global.keySlide[4] = 0;
-global.keyPause[4] = 0;
-global.keyWeaponSwitchLeft[4] = 0;
-global.keyWeaponSwitchRight[4] = 0;
+global.keyLeftPressed[MAX_PLAYERS] = 0;
+global.keyRightPressed[MAX_PLAYERS] = 0;
+global.keyUpPressed[MAX_PLAYERS] = 0;
+global.keyDownPressed[MAX_PLAYERS] = 0;
+global.keyJumpPressed[MAX_PLAYERS] = 0;
+global.keyShootPressed[MAX_PLAYERS] = 0;
+global.keySlidePressed[MAX_PLAYERS] = 0;
+global.keyPausePressed[MAX_PLAYERS] = 0;
+global.keyMapPressed[MAX_PLAYERS] = 0;
+global.keyWeaponSwitchLeftPressed[MAX_PLAYERS] = 0;
+global.keyWeaponSwitchRightPressed[MAX_PLAYERS] = 0;
+global.keyWheelSwitchPressed[MAX_PLAYERS] = 0;
 
-global.keyLeftPressed[4] = 0;
-global.keyRightPressed[4] = 0;
-global.keyUpPressed[4] = 0;
-global.keyDownPressed[4] = 0;
-global.keyJumpPressed[4] = 0;
-global.keyShootPressed[4] = 0;
-global.keySlidePressed[4] = 0;
-global.keyPausePressed[4] = 0;
-global.keyWeaponSwitchLeftPressed[4] = 0;
-global.keyWeaponSwitchRightPressed[4] = 0;
+//For button prompts/*possibly* fixing issues between the two?
+global.DInputConversionTables = makeArray(
+    12,13,14,15,9,8,10,11,4,5,6,7,0,1,2,3
+    );
 
-// width and height of quads (screens).
-// alternatively set per-room by using bgQuadXXXX backgrounds
-global.quadWidth = 256;
-global.quadHeight = 240;
+/*
+REFERENCE TABLE
 
-// borders for game area outside of display area -- screenHeight must equal quadHeight + quadMarginTop + quadMarginBottom
-// (Note that these values are also set automatically given a grid room background)
-global.quadMarginTop = 8;
-global.quadMarginBottom = 8;
+PromptImageIndex-CalibratorID-XboxName-DInputID
 
-// event_perform(ev_step_begin, 0); //Registers the key inputs
+0-Up-Up-12
+1-Down-Down-13
+2-Left-Left-14
+3-Right-Right-15
+4-7-Start-9
+5-8-Select-16
+6-9-LS-10
+7-10-RS-11
+8-5-LB-4
+9-6-RB-5
+10-ZP-LT-6
+11-ZN-RT-7
+12-1-A-0
+13-2-B-1
+14-3-X-2
+15-4-Y-3
 
-// Variables
-global.playerHealth[4] = 28;
-global.weapon[4] = 0;
+8 is missing.
+*/
 
-global.respawnTimer[4] = -1;
+//These values change to reflect the current X and Y positions of the top left of the screen
+//to cross-reference mouse position when borders are on.
+global.mouseStartX = 0;
+global.mouseStartY = 0;
+global.mouseScreenRatio = 1;
 
-global.coop = false;
+global.buttonPromptType = 0;
+
+/// --- Player Variables --- ///
+global.playerHealth[MAX_PLAYERS] = 28;
+global.weapon[MAX_PLAYERS] = 0;
+
+for (var i = 0; i <= MAX_PLAYERS; i ++)
+    global.respawnTimer[i] = -1;
+
 global.playerCount = 1; // the number of players playing
+
+global.WheelEnabled = true;
+global.manualTippytoe = true;
+
+global.primaryCol[MAX_PLAYERS] = c_white;
+global.secondaryCol[MAX_PLAYERS] = c_white;
+global.outlineCol[MAX_PLAYERS] = c_black;
+
+global.inkSurface[0] = -1; // used for octone ink
+
+global.protoWhistle = false; // proto whistle plays once
 
 // can dead players respawn?
 global.respawnAllowed = true;
-global.respawnTime = 3 * room_speed; // how long it takes for players to respawn
-global.respawnTimeBoss = 4; // multiplier when there is a boss on-screen
 
 global.respawnAnimation = 0; // 0 = teleport land, 1 = teleport in, 2 = fall in, 3 = Jump in, 4 = stand there (set showDuringReady to true), 8 = Skull elevator
 global.respawnGravityAngle = 1; // 1 = normal, -1 = reverse
 
-global.font = font_add_sprite(sprMM9Font, ord(' '), false, 0);
+/// --- Font setup --- ///
+CHARACTERSET_LATIN = " !" + '"' + "#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¿ÀÁÂÃÄÅÆÇÐÈÉÊËÌÍÎÏÑÒÓÔÕÖØŒŠÙÚÛÜÝŸŽàáâãäåæçèéêëìíîïñòóôõöøðœšùúûüýÿžßÞþ";
+CHARACTERSET_HIRIGANA = "あぁいぃうぅえぇおぉかきくけこさしすせそたちつってとなにぬねのはひふへほまみむめもやゃゆゅよょらりるれろわをん";
+CHARACTERSET_KATAKANA = "アァイィウゥエェオォカキクケコサシスセソタチツッテトナニヌネノハヒフヘホマミムメモヤャユュヨョラリルレロワヲン";
+CHARACTERSET_JPUNCT = "×「」゛゜、。ー";
+
+var standardSet = CHARACTERSET_LATIN + CHARACTERSET_HIRIGANA + CHARACTERSET_KATAKANA + CHARACTERSET_JPUNCT;
+global.font = font_add_sprite_ext(sprMegamixFont, standardSet, false, 0);
+global.font2 = font_add_sprite(sprFont, ord(' '), false, -1);
+global.fontSmall = font_add_sprite_ext(sprMegamixFontSmall, standardSet, true, 0);
+global.fontSmall2 = font_add_sprite_ext(sprMegamixFontSmall_NoShadow, standardSet, true, 1);
+global.fontTiny = font_add_sprite(sprFontBabyBlocks,ord('!'),true,1);
+
 draw_set_font(global.font);
+
+/// --- Screen and camera --- ///
 
 // the default screen scaling.
 global.screensize = max(1, floor(min(display_get_width() / global.screenWidth,
     (display_get_height() - 32) / global.screenHeight)));
 
+global.adaptiveResolution = 1;
+global.fullscreen = 0;
+global.initfullscreen = 1;
+global.fullscreenprevious = 0;
 global.shakeTimer = 0;
 global.shakeFactorX = 0;
 global.shakeFactorY = 0;
 
 global.flashTimer = 0;
 
+global.displayCornerUI = true;
+
 // Camera variables for users
 global.prevXView = view_xview;
 global.prevYView = view_yview;
 
-// Go to the next room if this is the initializing room
-// Also, initialize some variables
+// cached view -- view is fixed here if not following any object
+global.cachedXView = 0;
+global.cachedYView = 0;
 
-global.keyCoinTotal = 0;
-global.keyCoinCollected = 0;
+// camera ignore, it's back from EZ baybee
+global.cameraPanMode = false;
+global.roundCamera = true;
+
+/// --- In-level item tracking --- ///
 global.keyNumber = 0;
 
-// game progression
-global.livesRemaining = global.defaultLives;
-global.checkpoint = false;
-global.checkpointX = -1;
-global.checkpointY = -1;
-global.hasTeleported = 0;
+global.dontRespawn = makeArray("");
 
-global.primaryCol[0] = c_white;
-global.secondaryCol[0] = c_white;
-global.outlineCol[0] = c_black;
+/// --- Game progression --- ///
+global.livesRemaining = global.defaultLives;
+
+setCheckpoint(0);
+
+//For returning to previous rooms
+global.returnLayers = 0;
+
+global.returnLayer[     0] = 0;
+global.returnLayerX[    0] = 0;
+global.returnLayerY[    0] = 0;
+global.returnLayerDir[  0] = 0;
+
+global.hasTeleported = 0;
+global.usedDoor = 0;
+
+global.teleportX = -1;
+global.teleportY = -1;
+global.teleportDir = 1;
 
 global.lastTeleporterX = 128;
 global.lastTeleporterY = 160;
+
 global.roomTimer = 0;
 
-global.previousRoom = rmTitleScreen;
-global.roomReturn = rmTitleScreen;
-global.roomReturnIsStage = false;
+global.displayCheck = false; //display name once
+global.displayForce = true; //turned off for certain areas
+
+global.previousRoom = rmFileSelect;
+
 global.levelReward = makeArray(0);
 
 // are we in a game room (mega man can jump around and stuff)
 global.inGame = false;
 
 // start a stage when the next room begins
-global.beginStageOnRoomBegin = false;
 global.endStageOnRoomEnd = false;
+global.endMusicOnRoomEnd = false;
 global.decrementLivesOnRoomEnd = true;
 
 global.castleStagesBeaten = 0;
+global.shownCastleIntro = false;
 
-global.telTelWeather = 0;
-global.superArmInterface = makeArray();
-
-// index of last background asset:
-global.lastBackground = background_duplicate(bgNESPalette) - 1;
-
-global.borderlist = ds_list_create();
+/// --- Sections and transitions --- ///
+global.borderlist = mm_ds_list_create();
 
 global.frozen = false;
 global.lockTransition = false;
 global.switchingSections = false;
 
-global.inkSurface[0] = -1; // used for octone ink
-global.keyCoinTotal = 0;
-global.keyCoinCollected = 0;
+global.sectionLeft = 0;
+global.sectionRight = room_width;
+global.sectionTop = 0;
+global.sectionBottom = room_height;
 
-// The default player used
-for (i = 0; i < 5; i++)
-{
-    global.characterSelected[i] = "NONE";
-}
+global.borderLockLeft = 0;
+global.borderLockRight = room_width;
+global.borderLockTop = 0;
+global.borderLockBottom = room_height;
+
+/// --- Weapons and Weapon sets --- ////
+weaponSetInit();
+global.equippedWeaponSet = 0;
+
+cheatInit(); // Moving up here for the sake of Proto Man utilities
+
 // Weapon inventory
 weaponSetup();
 
-// cached view -- view is fixed here if not following any object
-global.cachedXView = 0;
-global.cachedYView = 0;
+//multiplayer palette setups - here due to requiring information on weapon numbers
+multiplayerPaletteSetup();
 
-// set this at any time during gameplay to fade to a particular room.
-global.nextRoom = 0;
+global.superArmInterface = makeArray();
+global.tornadoBlow = 0;
 
-// boss variables
+/// --- Costumes --- ///
+global.customCostumeEquipped = -1; // Added here so costumeInit() won't crash.
+
+for (var i = 0; i < MAX_PLAYERS; i++)
+{
+    global.customCostumeEquipped[i] = 0;
+    global.customCostumeChargeType[i] = 0;
+    global.customCostumeRushTPs[i] = array_create(3);
+    global.customCostumeVictoryPose[i] = false;
+    global.customCostumeGender[i] = 2;
+}
+
+global.costumeID = -1;
+
+costumeInit();
+
+global.customSounds = -1;//Must be out here.
+
+for (var j = 0; j < MAX_PLAYERS; j++)
+{
+    for (var i = 0; i < SFX_LENGTH; i++)
+    {
+        global.customSounds[j,i] = -1;
+    }
+    global.defaultPrimaryPalette[i] = c_blue;
+    global.defaultSecondaryPalette[i] = c_aqua;
+}
+
+/// --- External Room Loading --- ///
+global.roomExternalCache = mm_ds_map_create(true);
+global.roomExternalFileName = mm_ds_map_create(true);
+global.roomExternalSetupMap = mm_ds_map_create(true);
+global.roomExternalBGCache = mm_ds_map_create(true);//Note: May be a good idea in the future to make this system clear assets when none of the rooms that use them are loaded.
+//global.roomExternalSpriteCache = mm_ds_map_create(true);
+
+/// --- Damage handling --- ///
+global.damage = 0;
+global.damageIsContact = false;
+
+//If true, damage was derived directly from contact damage in damage calculation.
+//If -1, damage was an override of some sort.
+//Note: Overrides in EV_HURT for example will not change this value automatically.
+
+factionInit();
+
+scrCutsceneEnum();//This is placed here so the featherweight doesn't optimize it out.
+
+/// --- Boss variables --- ///
 global.bossTextShown = false;
 global.aliveBosses = 0;
 
-// factions
-global.factionStance[0, 0] = 0; // Neutral
-global.factionStance[0, 1] = 0;
-global.factionStance[0, 2] = 0;
-global.factionStance[0, 3] = 0;
-global.factionStance[0, 4] = 0;
-global.factionStance[0, 5] = 0;
-global.factionStance[0, 6] = 0;
-global.factionStance[0, 7] = 0;
+/// --- Custom borders --- ///
 
-global.factionStance[1, 0] = 0; // Player
-global.factionStance[1, 1] = 0;
-global.factionStance[1, 2] = 0;
-global.factionStance[1, 3] = 0;
-global.factionStance[1, 4] = 0;
-global.factionStance[1, 5] = 0;
-global.factionStance[1, 6] = 0;
-global.factionStance[1, 7] = 0;
+file_find_close();
 
-global.factionStance[2, 0] = 0; // Player Projectiles
-global.factionStance[2, 1] = 0;
-global.factionStance[2, 2] = 0;
-global.factionStance[2, 3] = 1;
-global.factionStance[2, 4] = 1;
-global.factionStance[2, 5] = 1;
-global.factionStance[2, 6] = 0;
-global.factionStance[2, 7] = 1;
+global.customBorders = array_create(0);
+var tmp = mm_surface_create(1920,1080);
+global.customBorder_Sprite = sprite_create_from_surface(tmp,0,0,1920,1080,false,false,0,0);
+mm_surface_free(tmp);
 
-global.factionStance[3, 0] = 0; // Enemies
-global.factionStance[3, 1] = 1;
-global.factionStance[3, 2] = 0;
-global.factionStance[3, 3] = 0;
-global.factionStance[3, 4] = 0;
-global.factionStance[3, 5] = 0;
-global.factionStance[3, 6] = 0;
-global.factionStance[3, 7] = 0;
+/// --- In-level song credits --- ///
+global.songCredits = allocateArray(6,"");
 
-global.factionStance[4, 0] = 0; // Misc
-global.factionStance[4, 1] = 1;
-global.factionStance[4, 2] = 0;
-global.factionStance[4, 3] = 1;
-global.factionStance[4, 4] = 0;
-global.factionStance[4, 5] = 0;
-global.factionStance[4, 6] = 0;
-global.factionStance[4, 7] = 0;
+global.songCredits_History = mm_ds_map_create(true);
 
-global.factionStance[5, 0] = 0; // Vs Everyone Else, immune to other enemy factions
-global.factionStance[5, 1] = 1;
-global.factionStance[5, 2] = 0;
-global.factionStance[5, 3] = 1;
-global.factionStance[5, 4] = 1;
-global.factionStance[5, 5] = 1;
-global.factionStance[5, 6] = 0;
-global.factionStance[5, 7] = 1;
+/// --- Misc. --- ///
+global.telTelWeather = 0;
 
-global.factionStance[6, 0] = 1; // Passive only towards the player
-global.factionStance[6, 1] = 0;
-global.factionStance[6, 2] = 1;
-global.factionStance[6, 3] = 1;
-global.factionStance[6, 4] = 1;
-global.factionStance[6, 5] = 1;
-global.factionStance[6, 6] = 0;
-global.factionStance[6, 7] = 0;
-
-global.factionStance[7, 0] = 0; // Passive towards players, but vulnerable to player projectiles
-global.factionStance[7, 1] = 0;
-global.factionStance[7, 2] = 1;
-global.factionStance[7, 3] = 0;
-global.factionStance[7, 4] = 0;
-global.factionStance[7, 5] = 0;
-global.factionStance[7, 6] = 0;
-global.factionStance[7, 7] = 0;
-
-// load external rooms
-global.roomExternalCache = ds_map_create();
-global.roomExternalFileName = ds_map_create();
-global.roomExternalSetupMap = ds_map_create();
+// index of last background asset:
+global.lastBackground = background_duplicate(bgNESPalette) - 1;

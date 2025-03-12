@@ -82,6 +82,8 @@ destroyTerrain = true;
 
 //@cc 0 = teleport in / 1 = move in
 introType = 0;
+
+canTurnAround = 1;
 </string>
           </argument>
         </arguments>
@@ -164,7 +166,7 @@ if (entityCanStep()
                 else
                 {
                     instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
-                    playSFX(sfxEnemyHit);
+                    playSFX(getGenericSFX(SFX_ENEMYHIT));
                     instance_create(x, y, objRollingDrillField);
                     instance_deactivate_object(id);
                 }
@@ -223,9 +225,13 @@ if (entityCanStep()
             {
                 carFrame = 0;
             }
-            if ((strMMX &gt;= x &amp;&amp; image_xscale == -1) || (strMMX &lt;= x &amp;&amp; image_xscale == 1))
+            
+            if (canTurnAround)
             {
-                phase = 1;
+                if ((strMMX &gt;= x &amp;&amp; image_xscale == -1) || (strMMX &lt;= x &amp;&amp; image_xscale == 1))
+                {
+                    phase = 1;
+                }
             }
             break;
         case 1:
@@ -277,7 +283,7 @@ if (entityCanStep()
                         phase = 0;
                         joeFrame = 0;
                         attackTimer = 0;
-                        animeTimer = 0;
+                        animTimer = 0;
                     }
                     break;
                 case 48:
@@ -293,7 +299,7 @@ if (entityCanStep()
                     joeFrame = 9;
                     phase = 2;
                     attackTimer = 0;
-                    animeTimer = 0;
+                    animTimer = 0;
                     break;
             }
             break;
@@ -323,7 +329,33 @@ if (entityCanStep()
                 phase = 3;
             }
             break;
-    
+        case 666: // Stop and cover ears (Banshee Wail effect)
+            animTimer++;
+            switch (animTimer)
+            {
+                case 40:
+                    joeFrame = 10;
+                    break;
+                case 80:
+                case 96:
+                case 112:
+                case 136:
+                case 152:
+                    joeFrame = 11;
+                    break;
+                case 88:
+                case 104:
+                case 128:
+                case 144:
+                    joeFrame = 12;
+                    break;
+                case 160:
+                    joeFrame = 0;
+                    animTimer = 0;
+                    phase = 0;
+                    break;
+            }
+            break;
     
     }
 }
@@ -386,6 +418,39 @@ overrideY = y;
 event_inherited();
 
 alarm[0] = 2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="19">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+// Uhh this is the noise crush interaction. I shouldn't delete it though
+// why is this phase 666?????
+/*if (other.object_index == objBansheeWail &amp;&amp; phase != 666)
+{
+    xspeed = 0;
+    phase = 666;
+    animTimer = 0;
+    attackTimer = 0;
+    joeFrame = 0;
+}*/
 </string>
           </argument>
         </arguments>
@@ -480,9 +545,9 @@ else
                 flashcol = make_color_rgb(0, 120, 255);
             }
             
-            d3d_set_fog(true, flashcol, 0, 0);
+            hitFlashEffect(true,flashcol);
             event_user(2);
-            d3d_set_fog(false, 0, 0, 0);
+            hitFlashEffect(false);
             
             if (iceTimer &gt; 0)
             {

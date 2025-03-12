@@ -3,7 +3,7 @@
   <spriteName>sprBalladeMissile</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -38,6 +38,8 @@ grav = 0;
 bubbleTimer = -1;
 
 itemDrop = -1;
+
+objectDrop = objHarmfulExplosion; //explosion object used.
 </string>
           </argument>
         </arguments>
@@ -62,7 +64,7 @@ itemDrop = -1;
             <kind>1</kind>
             <string>event_inherited();
 
-if (place_meeting(bbox_right, bbox_bottom, objSolid))
+if (place_meeting(x, bbox_bottom, objSolid))//(bbox_right, bbox_bottom, objSolid))
 {
     sprite_index = sprBalladeMissileGrounded;
 }
@@ -122,8 +124,9 @@ with (other)
             <string>event_inherited();
 
 instance_create(spriteGetXCenter() + 1, spriteGetYCenter(),
-    objHarmfulExplosion);
-playSFX(sfxMM9Explosion);
+    objectDrop);
+stopSFX(getGenericSFX(SFX_ENEMYHIT));
+playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
 </string>
           </argument>
         </arguments>

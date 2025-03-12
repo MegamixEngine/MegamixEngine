@@ -34,7 +34,17 @@ contactDamage = 2;
 grav = 0;
 
 // Enemy specific code
-image_speed = 0.1;
+imgIndex = 0;
+imgSpd = 0.1;
+
+// @cc - Changes colour (0 = peach w/ red light (default); 1 = orange w/ blue light;)
+col = 0;
+
+//@ cc - Whether or not this enemy checks for ladders or not. if false, can be placed anywhere but relies on its turners
+ladderCheck = true;
+
+//@cc - Whether or not this enemy checks for its turning object or not.
+turnCheck = true;
 </string>
           </argument>
         </arguments>
@@ -67,25 +77,33 @@ if (entityCanStep())
     }
     else if (yspeed &gt; 0)
     {
-        if (!place_meeting(x, y + (bbox_bottom - bbox_top) + 2, objLadder)
-            || place_meeting(x, y + 1, objJamacyClimbingTurn))
+        if (ladderCheck &amp;&amp; !place_meeting(x, y + (bbox_bottom - bbox_top) + 2, objLadder)
+            || turnCheck &amp;&amp; place_meeting(x, y + 1, objJamacyClimbingTurn))
         {
             yspeed = -abs(yspeed);
         }
     }
     else if (yspeed &lt; 0)
     {
-        if (!place_meeting(x, y - (bbox_bottom - bbox_top) - 2, objLadder)
-            || place_meeting(x, y - 1, objJamacyClimbingTurn))
+        if (ladderCheck &amp;&amp; !place_meeting(x, y - (bbox_bottom - bbox_top) - 2, objLadder)
+            || turnCheck &amp;&amp; place_meeting(x, y - 1, objJamacyClimbingTurn))
         {
             yspeed = abs(yspeed);
         }
     }
+    
+    // Animation
+    imgIndex += imgSpd;
+    if (imgIndex &gt;= 2)
+    {
+        imgIndex = 0;
+    }
 }
 else if (dead)
 {
-    image_index = 0;
+    imgIndex = 0;
 }
+image_index = floor(imgIndex) + (2 * col);
 </string>
           </argument>
         </arguments>

@@ -109,7 +109,10 @@ if (entityCanStep())
             canIce = true;
             if (floor(animFrame) &gt; 8)
             {
-                animFrame = 9;
+                if (object_index == objPiledanTurret)
+                    animFrame = 8;
+                else
+                    animFrame = 9;
                 phase = 2;
             }
             break;
@@ -218,7 +221,8 @@ if (collision_rectangle(x + 16 * image_xscale, _y + 6 * image_yscale, x, _y2, ot
             <string>event_inherited();
 myPiledan = noone;
 instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
-playSFX(sfxMM9Explosion);
+stopSFX(getGenericSFX(SFX_ENEMYHIT));
+playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
 </string>
           </argument>
         </arguments>

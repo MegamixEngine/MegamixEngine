@@ -41,6 +41,8 @@ facePlayerOnSpawn = true;
 // Enemy specific code
 animTimer = 0;
 jumpTimes = 0;
+
+enemyDamageValue(objSparkShock, 1); // This kills it in MM3
 </string>
           </argument>
         </arguments>
@@ -77,19 +79,14 @@ if (entityCanStep())
         if (animTimer == 5)
         {
             animTimer = 0;
-            if (image_index == 1)
-            {
+            image_index++;
+            if (image_index == 4)
                 image_index = 0;
-            }
-            else
-            {
-                image_index = 1;
-            }
         }
     }
     else
     {
-        image_index = 2;
+        image_index = 4;
     }
     
     if (collision_rectangle(x - 20, y - 12, x + 20, y - 12, objSolid, false, true)
@@ -102,6 +99,7 @@ if (entityCanStep())
     else
     {
         xspeed = 1.25 * image_xscale;
+        jumpTimes = 0;
     }
     
     if (ground &amp;&amp; jumpTimes &gt;= 4)
@@ -141,7 +139,7 @@ else if (dead)
             <string>dead = 1;
 
 instance_create(bboxGetXCenter(), bboxGetYCenter(), objHarmfulExplosion);
-playSFX(sfxMM3Explode);
+playSFX(getGenericSFX(SFX_EXPLOSIONMM3));
 </string>
           </argument>
         </arguments>

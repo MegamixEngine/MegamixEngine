@@ -122,6 +122,7 @@ if (entityCanStep())
             objEnemyBullet);
         {
             ID.xspeed = image_xscale * 2;
+            ID.sprite_index = sprEnemyBulletMM5;
             ID.contactDamage = 4;
         }
         playSFX(sfxEnemyShootClassic);

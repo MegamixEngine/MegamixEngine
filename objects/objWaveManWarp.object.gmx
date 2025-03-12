@@ -220,6 +220,8 @@ if (instance_exists(objMegaman))
         global.waveManWarpLock = lockPoolRelease(
             global
             .waveManWarpLock);
+        with (objCoOpWarpStar)
+            event_user(EV_DEATH);
         instance_destroy();
     }
 }

@@ -44,7 +44,7 @@ timer = 25;
 dir = 1;
 trueX = x;
 trueY = y;
-
+bubbleTimer = -1;
 calibrateDirection();
 </string>
           </argument>

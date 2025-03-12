@@ -77,6 +77,7 @@ with (prtEntity)
             vspeed = pre_vsp;
             speed = pre_spe;
             image_speed = pre_isp;
+            timeline_running = pre_tmlrun;
             frozen = 0;
         }
     }
@@ -195,13 +196,14 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
     if (!instance_exists(objFlashStopper))
     {
-        fireWeapon(0, 0, objFlashStopper, 0, 7, 0, 0);
+        var ammoCost = 7 - (2 * (global.energySaver &gt; 0));
+        fireWeapon(0, 0, objFlashStopper, 0, ammoCost, 0, 0);
     }
-    else // fire buster shots when flashstopper is active
+    else // fire buster shots when Flash Stopper is active
     {
         i = fireWeapon(14, 0, objBusterShot, 4, 0, 1, 0);
         if (i)

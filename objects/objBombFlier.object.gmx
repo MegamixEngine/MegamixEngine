@@ -49,6 +49,10 @@ sinCounter = 0;
 
 uncoverWaitTimer = 0;
 
+cloudSprite = sprBombFlierCloud
+uncoverSprite = sprBombFlierUncover
+bulletSprite = sprBombFlierBullet
+
 calibrateDirection();
 </string>
           </argument>
@@ -85,12 +89,12 @@ if (entityCanStep())
             yspeed = -(cos(sinCounter) * 1.3);
             break;
         case 1: // shedding cloud animation 
-            if (sprite_index == sprBombFlierUncover)
+            if (sprite_index == uncoverSprite)
             {
                 image_index += 8 / 60; // uncovering animation speed
                 if (image_index &gt; image_number - 1)
                 {
-                    sprite_index = sprBombFlierBullet;
+                    sprite_index = bulletSprite;
                     image_index = 0;
                     uncoverWaitTimer = 6; // &lt;-- wait time between uncovering and moving forward
                 }
@@ -117,7 +121,7 @@ else if (dead)
     phase = 0;
     sinCounter = 0;
     
-    sprite_index = sprBombFlierCloud;
+    sprite_index = cloudSprite;
     image_index = 0;
 }
 </string>
@@ -152,10 +156,19 @@ else if (dead)
         yspeed = 0;
         sinCounter = 0;
         
-        sprite_index = sprBombFlierUncover;
+        sprite_index = uncoverSprite;
         image_index = 0;
+        iFrames = 0;
+        with (other)
+        {
+            if ((penetrate &lt; 2) &amp;&amp; (pierces &lt; 2))
+            {
+                event_user(EV_DEATH);
+            }
+        }
+        other.guardCancel = 2;
         
-        healthpoints += global.damage;
+        //healthpoints += global.damage;
     }
 }
 else

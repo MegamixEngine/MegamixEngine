@@ -37,7 +37,12 @@ facePlayerOnSpawn = true;
 
 shootTimer = 0;
 
-image_speed = 0.5;
+image_speed = 0.4; //0.5;
+
+shotOffset = 27;
+projectileSprite = sprFoojeenTrash;
+
+canShoot = true; // Set up for Tier 8 NPC to disable shooting
 </string>
           </argument>
         </arguments>
@@ -65,7 +70,7 @@ image_speed = 0.5;
 if (entityCanStep())
 {
     // turn around on hitting a wall
-    image_speed = 0.5;
+    image_speed = 0.4; //0.5;
     xSpeedTurnaround();
     if (xspeed == 0)
     {
@@ -77,15 +82,15 @@ if (entityCanStep())
     }
     
     shootTimer += 1;
-    if (shootTimer &gt;= 90)
+    if (shootTimer &gt;= 90) &amp;&amp; (canShoot)
     {
         shootTimer = 0;
         for (i = 0; i &lt; 3; i += 1)
         {
-            a = instance_create(x + 4 * image_xscale, y - 32,
+            a = instance_create(x + 4 * image_xscale, y - shotOffset, //32,
                 objEnemyBullet);
-            a.sprite_index = sprFoojeenTrash;
-            a.image_index = 0;
+            a.sprite_index = projectileSprite;
+            a.image_index = i;
             a.contactDamage = 3;
             a.dir = (i + 1) * 45;
             a.spd = 2.5;

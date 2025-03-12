@@ -3,7 +3,7 @@
   <spriteName>sprGeminiIntro</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtBoss</parentName>
   <maskName>sprGeminiMask</maskName>
@@ -58,8 +58,8 @@ canIce = false;
 isHard = false;
 
 // Health Bar
-healthBarPrimaryColor[1] = 27;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $21;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_3.nsf";
@@ -70,6 +70,8 @@ musicTrackNumber = 12;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 4);
@@ -80,6 +82,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objBreakDash, 2);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 4); //This is primarily for the Example Game
@@ -115,15 +121,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG48MML
+enemyDamageValue(objWaterWave, 4);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 1);
 
 // Misc.
 enemyDamageValue(objPowerStone, 4);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -312,10 +319,15 @@ if (entityCanStep())
                 if (attackTimer == 5)
                 {
                     image_index = 1;
-                    bull = instance_create(x, y + 2, objGeminiBullet);
+                    bull = instance_create(x+10*image_xscale, y + 5, objGeminiBullet);
                     bull.xspeed = image_xscale * 4;
+                    bull.image_xscale = image_xscale;
                 }
-                if (attackTimer &gt;= 10)
+                /*if (attackTimer &gt;= 10)
+                    phase = 0;*/
+                if (attackTimer == 10)
+                    image_index = 2;
+                if (attackTimer &gt;= 15)
                     phase = 0;
                 break;
             case 2:
@@ -370,21 +382,26 @@ if (entityCanStep())
                         sprite_index = sprGeminiShoot;
                         if (attackTimer &lt; 125)
                             image_index = 0;
-                        else
+                        else if (attackTimer &gt;= 125) &amp;&amp; (attackTimer &lt; 130)
                             image_index = 1;
+                        else
+                            image_index = 2;
                         if (attackTimer == 125)
                         {
                             for (i = -1; i &lt;= 1; i += 1)
                             {
                                 laser = instance_create((round(x / 2) * 2) + i * 7,
-                                    y + 2, objGeminiManLaser);
+                                    y + 5, objGeminiManLaser);
                                 laser.xspeed = image_xscale * 2;
                                 if (i == -1)
                                     laser.x += 1; // for some reason the first one seperates
                             }
                         }
-                        if (attackTimer &gt;= 130)
+                        if (attackTimer &gt;= 135)
+                        {
                             attackTimer = 60;
+                            canInitShoot = true;
+                        }
                     }
                 }
                 break;

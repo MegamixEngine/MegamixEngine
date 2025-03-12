@@ -35,6 +35,7 @@ contactDamage = 4;
 category = "grounded, mets";
 
 facePlayerOnSpawn = true;
+behaviourType = 1;
 
 // Enemy specific code
 xspeed = 0;
@@ -138,7 +139,6 @@ if (entityCanStep())
                     spriteGetYCenter() + 8, objMM2MetBullet);
                 ID.dir = 45 - (i * 45);
                 ID.image_xscale = image_xscale;
-                ID.sprite_index = sprEnemyBullet;
             }
             playSFX(sfxMetallTrain);
         }
@@ -164,8 +164,7 @@ if (entityCanStep())
     if (boomCounter &gt;= 5)
     {
         instance_create(x, y + 8, objHarmfulExplosion);
-        playSFX(sfxExplosion2);
-        visible = false;
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM5));
         dead = true;
     }
     

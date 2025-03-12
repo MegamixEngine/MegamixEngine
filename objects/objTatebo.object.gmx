@@ -42,6 +42,13 @@ waitDiff = 30;
 
 imgSpd = 0.1;
 imgIndex = 0;
+
+bulletObject = objEnemyBullet;
+bulletSprite = sprTateboShot;
+bulletContactDamage = 3;
+bulletImgSpeed = 0.25;
+bulletSFX = sfxEnemyShoot;
+arcBulletSFX = sfxEnemyDrop;
 </string>
           </argument>
         </arguments>
@@ -86,17 +93,18 @@ if (entityCanStep())
                     {
                         imgIndex = 1;
                         shot = instance_create(x + sprite_width * 0.35, y - 11,
-                            objEnemyBullet);
+                            bulletObject);
                         with (shot)
                         {
-                            sprite_index = sprTateboShot;
-                            contactDamage = 3;
+                            sprite_index = other.bulletSprite;
+                            contactDamage = other.bulletContactDamage;
+                            image_speed = other.bulletImgSpeed;
                             yspeed = -4;
                             grav = 0.13;
                             xspeed = xSpeedAim(x, y, target.x, target.y, yspeed, grav);
                         }
                         
-                        playSFX(sfxEnemyDrop);
+                        playSFX(arcBulletSFX);
                     }
                 }
                 else
@@ -124,11 +132,12 @@ if (entityCanStep())
                     if (timer == shootWait)
                     {
                         imgIndex = 3;
-                        shot = instance_create(x + sprite_width * 0.5, y + 5, objEnemyBullet);
-                        shot.sprite_index = sprTateboShot;
-                        shot.contactDamage = 3;
+                        shot = instance_create(x + sprite_width * 0.5, y + 5, bulletObject);
+                        shot.sprite_index = bulletSprite;
+                        shot.contactDamage = bulletContactDamage;
+                        shot.image_speed = bulletImgSpeed;
                         shot.xspeed = 1.9 * image_xscale;
-                        playSFX(sfxEnemyShoot);
+                        playSFX(bulletSFX);
                     }
                 }
                 else

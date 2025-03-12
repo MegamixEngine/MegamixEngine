@@ -102,8 +102,11 @@ if (entityCanStep())
     }
     
     // if
-    if (image_index &gt;= 7 &amp;&amp; sprite_index == sprNobita2)
+    if (image_index &gt;= 9 &amp;&amp; sprite_index == sprNobita2)
+    {
         upOrDown = true;
+        image_index -= 0.15;
+    }
     
     if (image_index == 0 &amp;&amp; upOrDown == true)
     {

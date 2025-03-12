@@ -29,12 +29,13 @@ if (global.recordInputMode == 1)
             global.recordInputFidelityMessageBuffer = "";
             
             // set random seed (created in saveLoadRecordInput)
-            random_set_seed(global.recordInputRandomSeed);
+            //random_set_seed_safe(global.recordInputRandomSeed); Handled in DefaultSpawn now due to object/action priority.
         }
-        else
+        else if (global.nextRoom != global.recordInputRoom)
         {
-            room_goto(global.recordInputRoom);
+            global.nextRoom = global.recordInputRoom;//room_goto(global.recordInputRoom);
             global.recordInputSkipSpawn = true;
+            
             exit;
         }
     }
@@ -53,7 +54,7 @@ if (global.recordInputMode == 2)
         if (room == global.recordInputRoom)
         {
             global.recordInputBegin = false;
-            if (global.recordInputSkipSpawn)
+            if (false)//global.recordInputSkipSpawn)
             {
                 // skipping spawn -- we must warp directly to the recording start point and
                 // set up mega man's state correctly.
@@ -100,7 +101,7 @@ if (global.recordInputMode == 2)
             global.recordInputFidelityMessageBuffer = "";
             
             // set random seed
-            random_set_seed(global.recordInputRandomSeed);
+            //random_set_seed_safe(global.recordInputRandomSeed); Handled in objDefaultSpawn now.
         }
         else
         {

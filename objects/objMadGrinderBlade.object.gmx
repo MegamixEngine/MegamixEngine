@@ -49,6 +49,7 @@ grav = 0.15;
 spd = 1.25;
 
 parent = noone;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

@@ -36,6 +36,7 @@ healthpoints = healthpointsStart;
 contactDamage = 8;
 category = "floating, shielded";
 grav = 0;
+explosionSFX = sfxExplosion2;
 
 // Enemy specific code
 dir = image_xscale;
@@ -43,6 +44,8 @@ dir = image_xscale;
 shootTimer = 0;
 doesIntro = false;
 imgIndex = 0;
+//explosionSprite = sprExplosion;
+image_xscale = -1;
 </string>
           </argument>
         </arguments>
@@ -73,15 +76,18 @@ if (entityCanStep())
     if (shootTimer &lt; 60)
     {
         imgIndex += 0.1;
-        if (imgIndex &gt;= image_number)
+        if (imgIndex &gt;= 5) //image_number)
             imgIndex = 1;
         image_index = floor(imgIndex);
     }
     if (shootTimer == 60)
         image_index = 0;
-    if (shootTimer == 65)
+    if (shootTimer == 68)
+        image_index = 5;
+    if (shootTimer == 76) //65)
     {
         sprite_index = sprWhopperEyes;
+        calibrateDirection();
         for (i = -2; i &lt;= 2; i += 1)
         {
             if (i != 0)
@@ -99,21 +105,24 @@ if (entityCanStep())
             }
         }
     }
-    if (shootTimer == 67)
+    if (shootTimer == 75) //67)
         image_index = 1;
-    if (shootTimer == 90)
+    if (shootTimer == 98) //90)
         image_index = 0;
-    if (shootTimer == 93)
+    if (shootTimer == 101) //93)
         image_index = 1;
-    if (shootTimer == 115)
+    if (shootTimer == 125) //115)
     {
         sprite_index = sprWhopper;
+        image_index = 0;
+        image_xscale = -1;
         shootTimer = 0;
     }
 }
 else if (!insideView())
 {
     image_index = 0;
+    image_xscale = -1;
     shootTimer = 0;
 }
 </string>

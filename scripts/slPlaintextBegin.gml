@@ -15,7 +15,7 @@ global.sl_map = -1;
 
 if (global.sl_save)
 {
-    global.sl_map = ds_map_create();
+    global.sl_map = mm_ds_map_create(true);
 }
 else
 {

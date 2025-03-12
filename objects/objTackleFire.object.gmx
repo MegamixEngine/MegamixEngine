@@ -37,7 +37,7 @@ category = "floating, cluster, fire";
 blockCollision = 0;
 grav = 0;
 
-facePlayerOnSpawn = true;
+//facePlayerOnSpawn = true;
 dummyLogic = false;
 
 // Enemy specific code

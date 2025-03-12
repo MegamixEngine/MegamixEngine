@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A crab from Venus's stage that shoots large bubbles. If they touch Mega Man, he'll get
-// trapped inside and must break out as the bubble carries him along.
+            <string>/// A crab that shoots large bubbles. If the player player touches the bubbles, they'll get trapped inside and must break out as the bubbles carry them along.
+/// Bubbles change direction when hitting a wall. By default, bubbles pop automatically after a certain delay, which can be changed with creation code.
+/// With the right architecture and placement, this enemy can add an extra layer of danger to both platforming and combat encounters.
 
 event_inherited();
 
@@ -37,12 +38,18 @@ contactDamage = 3;
 facePlayer = true;
 category = "aquatic, semi bulky";
 
-// image_index = 1;
+// @cc - Sets delay for bubble to pop
+popTimer = 600;
+// @cc - If false, bubble will never pop after delay
+canPop = true;
+
 imgSpd = 0.1;
 animBack = false;
 phase = 0;
 moveTimer = 30;
+bubbleType = 0; // Makes it use trapping bubble - don't edit.
 bubble = noone;
+heavyBubble = noone;
 animTimer = 10;
 </string>
           </argument>
@@ -97,14 +104,19 @@ if (entityCanStep())
             moveTimer--;
             if (moveTimer == 30)
             {
-                if (!instance_exists(bubble))
+                if (!bubbleType) // Create trapping bubble
                 {
-                    i = instance_create(x, y, objFeeberBubble);
-                    i.xspeed = 1 * image_xscale;
-                    i.image_xscale = image_xscale;
-                    i.parent = id;
-                    bubble = i.id;
-                    playSFX(sfxOil);
+                    if (!instance_exists(bubble))
+                    {
+                        i = instance_create(x, y, objFeeberBubble);
+                        i.image_xscale = image_xscale;
+                        i.image_yscale = image_yscale;
+                        i.parent = id;
+                        i.popTimer = popTimer;
+                        i.canPop = canPop;
+                        bubble = i.id;
+                        playSFX(sfxOil);
+                    }
                 }
             }
             if (moveTimer &lt;= 0)
@@ -161,9 +173,31 @@ if (entityCanStep())
             break;
     }
 }
-else if (dead)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
 {
-    healthpoints = healthpointsStart;
     image_index = 1;
     animBack = false;
     phase = 0;
@@ -171,6 +205,7 @@ else if (dead)
     animTimer = 10;
     animBack = false;
     bubble = noone;
+    heavyBubble = noone;
 }
 </string>
           </argument>

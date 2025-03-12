@@ -51,6 +51,9 @@ maxTellies = 3;
 // this is so it can be placed on the edge of a screen and not have tellies leak over.
 despawnRange = 0;
 respawnRange = 0;
+
+obj = objTelly;
+tellySprite = sprTelly;
 </string>
           </argument>
         </arguments>
@@ -87,11 +90,12 @@ if (entityCanStep())
         {
             tel = maxTellies;
         }
-        if (instance_number(objTelly) &lt; maxTellies)
+        if (instance_number(obj) &lt; maxTellies)
         {
-            i = instance_create(x, y, objTelly);
+            i = instance_create(x, y, obj);
             i.respawn = 0;
             i.travelSpeed = travelSpeed;
+            i.sprite_index = tellySprite;
         }
         
         // set delay timer

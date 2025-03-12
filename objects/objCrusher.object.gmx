@@ -39,6 +39,8 @@ bubbleTimer = -1;
 
 fallen = false;
 goup = 0;
+
+behaviourType = 1;
 </string>
           </argument>
         </arguments>

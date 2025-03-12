@@ -113,34 +113,8 @@
     <instance objName="objFlyingShellSpawner" x="2040" y="608" name="inst_B58B2DAB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objFlyingShellSpawner" x="2040" y="368" name="inst_7C81603C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDefaultSpawn" x="128" y="2064" name="inst_C043F257" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="768" y="1680" name="inst_504B7218" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1024" y="1680" name="inst_86E308A9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="768" y="1440" name="inst_D075266C" locked="0" code="" scaleX="1" scaleY="1.07142853736877" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1024" y="1440" name="inst_906EC012" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="768" y="1200" name="inst_BB34820B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1024" y="1200" name="inst_B1D9D539" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="2048" y="0" name="inst_05933A6B" locked="0" code="" scaleX="1" scaleY="1.07000005245209" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1792" y="240" name="inst_FD67D861" locked="0" code="" scaleX="1" scaleY="1.07000005245209" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="2048" y="240" name="inst_AF761760" locked="0" code="" scaleX="1" scaleY="1.07000005245209" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1792" y="480" name="inst_7E61D97B" locked="0" code="" scaleX="1" scaleY="1.07000005245209" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="2048" y="480" name="inst_BE8E31BF" locked="0" code="" scaleX="1" scaleY="1.07000005245209" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="768" y="960" name="inst_18C5B808" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1536" y="960" name="inst_66B0840E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1280" y="720" name="inst_DCA0969D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1280" y="480" name="inst_1EF23225" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1536" y="480" name="inst_789F6A20" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1280" y="240" name="inst_DE0306D7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1536" y="240" name="inst_654FE92B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1280" y="0" name="inst_203C70B3" locked="0" code="" scaleX="1" scaleY="1.07000005245209" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1024" y="1920" name="inst_CE09C4AF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objRightScrolling" x="3072" y="720" name="inst_EB9635E5" locked="0" code="" scaleX="1" scaleY="1.07142853736877" colour="4294967295" rotation="0"/>
-    <instance objName="objRightScrolling" x="2304" y="720" name="inst_AEAA47EA" locked="0" code="" scaleX="1" scaleY="1.07142853736877" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="3328" y="720" name="inst_AFB0F987" locked="0" code="" scaleX="1" scaleY="1.07142853736877" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="0" y="1920" name="inst_D4446F66" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1440" y="896" name="inst_0D218AF3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="2432" y="864" name="inst_26BF5284" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1536" y="720" name="inst_61F32120" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStopScrollingHorizontal" x="1792" y="720" name="inst_89D9FE0C" locked="0" code="" scaleX="1" scaleY="1.07142853736877" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1440" y="896" name="inst_0D218AF3" locked="0" code="name = &quot;Midway point&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="2432" y="864" name="inst_26BF5284" locked="0" code="name = &quot;Boss corridor&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoor" x="48" y="80" name="inst_61FF560A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDownScrolling" x="768" y="1920" name="inst_9FC3DCB5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDownScrolling" x="1280" y="960" name="inst_9791D3A4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -182,6 +156,32 @@
     <instance objName="objSuperArmBlock2x2" x="3136" y="880" name="inst_84117DB0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="768" y="1680" name="inst_C80D2D99" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="768" y="1440" name="inst_1FF8699C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objRightScrollingNES" x="2304" y="720" name="inst_3F724B02" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objRightScrollingNES" x="3072" y="720" name="inst_C636FFBF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="0" y="1920" name="inst_2D085F52" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="768" y="1680" name="inst_2B2373F1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1024" y="1680" name="inst_F7A2EBAB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1024" y="1920" name="inst_E1B7A766" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1024" y="1200" name="inst_ABF68CE2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="768" y="1200" name="inst_0824FF26" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="768" y="1440" name="inst_44B98693" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1024" y="1440" name="inst_D8DD7F79" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="768" y="960" name="inst_083A0511" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1536" y="960" name="inst_39B26E74" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1280" y="720" name="inst_2582963B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1536" y="720" name="inst_005654F1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1536" y="480" name="inst_8598C3B8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1280" y="480" name="inst_CF80FD80" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1280" y="240" name="inst_44B8F83E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1536" y="240" name="inst_A8362A13" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1280" y="0" name="inst_973F62F2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="2048" y="0" name="inst_75EFEC52" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="2048" y="240" name="inst_A3B19F9D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1792" y="240" name="inst_8189BACD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="2048" y="480" name="inst_2A61F575" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1792" y="480" name="inst_79B31418" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="1792" y="720" name="inst_2F5FECCA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStopScrollingNES" x="3328" y="720" name="inst_1C640D7D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstCutman" x="2304" y="816" w="16" h="16" xo="32" yo="32" id="11185851" name="inst_AE5F780D" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

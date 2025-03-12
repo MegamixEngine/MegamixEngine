@@ -3,7 +3,7 @@
   <spriteName>sprBladeManSeeSawPlatform</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -33,6 +33,7 @@ respawn = false;
 blockCollision = 0;
 grav = 0;
 facePlayerOnSpawn = false;
+bubbleTimer = -1;
 
 respawnRange = -1;
 despawnRange = -1;
@@ -130,7 +131,7 @@ if (canStep)
         if (y &gt;= yMain + yMax)
         {
             // y = yMain + yMax;
-            shiftObject((xMain + xPosition * sqrt(radiusSquare - power(yMain + centerShift - y, 2))) - x, (yMain + yMax) - y, true);
+            shiftObject((xMain + xPosition * sqrt(radiusSquare - power(yMain + centerShift - y, 2))) - x, (yMain + yMax) - y, false);
             phase = 0;
             yPosition = -yPosition;
             xspeedPlatform = 0;
@@ -160,7 +161,7 @@ if (canStep)
         {
             phase = 0;
             yPosition = -yPosition;
-            shiftObject((xMain + xPosition * sqrt(radiusSquare - power(yMain + centerShift - y, 2))) - x, (yMain - yMin) - y, true);
+            shiftObject((xMain + xPosition * sqrt(radiusSquare - power(yMain + centerShift - y, 2))) - x, (yMain - yMin) - y, false);
             if (xPosition == 1)
                 x += 1;
             xspeedPlatform = 0;

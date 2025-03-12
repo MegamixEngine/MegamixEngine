@@ -71,6 +71,8 @@ playSFX(sfxJewelSatellite);
 
 xs = x;
 ys = y;
+
+autoFireSet = -1;
 </string>
           </argument>
         </arguments>
@@ -284,7 +286,7 @@ if (!global.frozen)
             exit;
             break;
         case -1:
-            playSFX(sfxEnemyHit);
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
             with (other)
             {
                 i = instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
@@ -292,7 +294,7 @@ if (!global.frozen)
             }
             break;
         case 1:
-            playSFX(sfxEnemyHit);
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
             with (other)
             {
                 faction = other.faction;
@@ -372,11 +374,12 @@ if (doIt)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
+    var ammoCost = 4 - (2 * (global.energySaver &gt; 0));
     for (z = 0; z &lt; 8; z += 1)
     {
-        i = fireWeapon(0, 0, objJewelSatellite, 8, 4 * (z == 0), 0, 0);
+        i = fireWeapon(0, 0, objJewelSatellite, 8, ammoCost * (z == 0), 0, 0);
         if (i)
         {
             i.direction = z * 90;

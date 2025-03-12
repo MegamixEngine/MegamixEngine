@@ -77,7 +77,7 @@ if (entityCanStep())
     if (checkSolid(xspeed, yspeed) &amp;&amp; blockCollision)
     {
         instance_create(x, y, objExplosion);
-        playSFX(sfxExplosion);
+        playSFX(getGenericSFX(SFX_EXPLOSION));
         instance_destroy();
     }
 }

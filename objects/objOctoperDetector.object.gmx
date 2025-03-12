@@ -33,6 +33,8 @@ grav = 0;
 //visible = false;
 parent = noone;
 respawn = false;
+bubbleTimer = -1;
+inWater = -1;
 </string>
           </argument>
         </arguments>

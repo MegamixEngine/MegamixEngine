@@ -224,11 +224,12 @@ if (!global.frozen)
           <argument>
             <kind>1</kind>
             <string>// only fire if megaman isnt in shooting animation
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+if (performShoot)
 {
     if (!isShoot)
     {
-        i = fireWeapon(13, 0, objWheelCutter, 3, 1, 1, 0);
+        var ammoCost = 1 - (0.5 * (global.energySaver &gt; 0));
+        i = fireWeapon(13, 0, objWheelCutter, 3, ammoCost, 1, 0);
         if (i)
         {
             i.jumpSpeed = jumpSpeed;
@@ -307,7 +308,7 @@ weaponSetup("WHEEL CUTTER", make_color_rgb(112, 112, 112), make_color_rgb(252, 2
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var detach = !global.keyShoot[playerID];
+            <string>var detach = (!global.keyShoot[playerID] &amp;&amp; !global.holdToggle) || (global.keyShootPressed[playerID] &amp;&amp; global.holdToggle);
 if (global.playerHealth[playerID] &lt;= 0)
 {
     detach = 1;

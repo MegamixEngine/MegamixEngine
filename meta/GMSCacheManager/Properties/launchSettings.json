@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GMSCacheManager": {
+      "commandName": "Project",
+      "commandLineArgs": "-clearLightweightData -doExternalRoomClear \"C:\\Users\\Gannio\\repos\\magmml3-judge-repo\\lw_MaGMML3.project.gmx\""
+    }
+  }
+}

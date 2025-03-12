@@ -118,7 +118,7 @@ if (entityCanStep())
                     sprite_index = sprExplosion;
                 }
                 
-                playSFX(sfxClassicExplosion);
+                playSFX(getGenericSFX(SFX_EXPLOSIONCLASSIC));
                 repeat (2)
                 {
                     image_xscale *= -1;

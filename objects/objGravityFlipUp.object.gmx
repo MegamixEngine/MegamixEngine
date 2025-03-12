@@ -36,6 +36,8 @@
                 yspeed /= 2;
                 image_yscale *= -1;
                 y += sprite_get_yoffset(mask_index);
+                while (checkSolid(0, sign(image_yscale)) &amp;&amp; !ground)
+                    y -= sign(image_yscale);
                 
                 playSFX(sfxGravityFlip);
                 gravDir *= -1;

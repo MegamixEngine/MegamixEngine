@@ -29,6 +29,16 @@
 
 image_speed = 0.15;
 vspeed = -1;
+
+attackTimer = 0;
+
+//creation code
+behaviorType = 0; // 0 - destroy out of water, destroy off screen (default). 1 - destroy out of water only, delay off screen death, 2 - destroy off screen only
+flicker = -1; // if higher, effect flickers
+alarmDie = -1; //how long before effect destroys itself
+
+explosionObject = noone; //on death, create object?
+explosionSprite = noone; // set above object's sprite index
 </string>
           </argument>
         </arguments>
@@ -53,17 +63,35 @@ vspeed = -1;
             <kind>1</kind>
             <string>if (!global.frozen)
 {
-    if (!place_meeting(x, y, objWater))
+    if (!place_meeting(x, y, objWater) &amp;&amp; behaviorType != 2)
     {
-        instance_destroy();
+         event_user(2);
     }
     else
     {
-        if (position_meeting(x, bbox_top - 1 - vspeed, objWater)
+        if ((position_meeting(x, bbox_top - 1 - vspeed, objWater)
             &amp;&amp; !position_meeting(x, bbox_top - 1, objWater)
-            || place_meeting(x, y, objSolid))
+            || place_meeting(x, y, objSolid)) &amp;&amp; behaviorType != 2)
         {
-            instance_destroy();
+             event_user(2);
+        }
+    }
+    
+    if (flicker &gt; -1)
+    {
+    	flicker ++;
+    	if (flicker mod 2 == 0)
+    		visible = false;
+    	else
+    		visible = true;
+    }
+    
+    if (alarmDie &gt;= 0)
+    {
+        alarmDie -= 1;
+        if (alarmDie == 0)
+        {
+             event_user(2);
         }
     }
 }
@@ -89,7 +117,50 @@ vspeed = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
+            <string>if (behaviorType != 1)
+{
+    event_user(2);
+}
+else //delay destruction
+{
+    attackTimer ++;
+    if (attackTimer &gt;= 64)
+         event_user(2);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Destroy event
+if (explosionObject != noone)
+{
+    var inst = instance_create(spriteGetXCenter(),spriteGetYCenter(),explosionObject);
+    if (explosionSprite != noone) // set above object's sprite index)
+    {
+        inst.sprite_index = explosionSprite;
+    }
+}
+
+instance_destroy();
+
 </string>
           </argument>
         </arguments>

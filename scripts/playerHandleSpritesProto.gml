@@ -139,7 +139,7 @@ switch (AnimID)
                 }
                 break;
             case 5: // Hit 
-                spriteX = 13 + (!isHit) - isFrozen;
+                spriteX = 13 + (!isHit) - (isFrozen > 0);
                 break;
             case 6: // Sliding 
                 spriteLoopStart = 0;
@@ -288,6 +288,7 @@ switch (AnimID)
         spriteX = 12 + other.animFrame;
         spriteY = 10;
         break;
+        
     case "Guts":
         spriteY = 6;
         break;
@@ -328,12 +329,12 @@ switch (AnimID)
         spriteLoopStart = 0;
         spriteLoopEnd = 3;
         spriteLoopPoint = 2;
-        spriteIDX[0] = 8;
-        spriteIDX[1] = 9;
-        spriteIDX[2] = 10;
-        spriteIDX[3] = 11;
+        spriteIDX[0] = 14;
+        spriteIDX[1] = 15;
+        spriteIDX[2] = 16;
+        spriteIDX[3] = 17;
         spriteLoopSpeed = 0.3;
-        spriteY = 12;
+        spriteY = 10;
         if (yspeed < 0) // jumping
         {
             spriteLoopEnd = 1;

@@ -45,6 +45,11 @@ starspeed[1] = 0.5;
 starbg[2] = bgStarFieldForeground;
 starshift[2] = 0;
 starspeed[2] = 0.25;
+col = c_black;
+fadeSpeed = 1/15;
+
+parent = noone;
+parentObject = objHologran;
 </string>
           </argument>
         </arguments>
@@ -75,21 +80,25 @@ starspeed[2] = 0.25;
     {
         if (image_alpha &lt; 1)
         {
-            image_alpha += 1 / 15;
+            image_alpha += fadeSpeed;
         }
         else
         {
             for (i = 0; i &lt;= 2; i += 1)
             {
                 starshift[i] += starspeed[i];
-                if (starshift[i] &gt;= 256)
+                if (sign(starspeed[i]) == 1 &amp;&amp; starshift[i] &gt;= 256)
                 {
                     starshift[i] -= 256;
+                }
+                if (sign(starspeed[i]) == -1 &amp;&amp; starshift[i] &lt;= 0)
+                {
+                    starshift[i] += 256;
                 }
             }
         }
         endit = 1;
-        with (objHologran)
+        with (parentObject)
         {
             if (!dead)
             {
@@ -103,7 +112,7 @@ starspeed[2] = 0.25;
     }
     else if (fadephase == 2)
     {
-        image_alpha -= 1 / 15;
+        image_alpha -= fadeSpeed;
         if (image_alpha &lt;= 0)
         {
             instance_destroy();
@@ -132,8 +141,8 @@ starspeed[2] = 0.25;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_black);
-storealpha = draw_get_alpha();
+            <string>draw_set_color(col);
+var storealpha = draw_get_alpha();
 draw_set_alpha(image_alpha);
 
 draw_rectangle(view_xview - 1, view_yview - 1, view_xview + view_wview + 1,
@@ -143,10 +152,13 @@ draw_set_alpha(storealpha);
 
 if (image_alpha == 1)
 {
-    for (i = 1; i &lt;= 2; i += 1)
+    for (var i = 0; i &lt; array_length_1d(starbg); i ++)
     {
-        draw_background(starbg[i], view_xview - starshift[i], view_yview);
-        draw_background(starbg[i], view_xview - starshift[i] + 256, view_yview);
+        if (starbg[i] != noone)
+        {
+            draw_background(starbg[i], view_xview - starshift[i], view_yview);
+            draw_background(starbg[i], view_xview - starshift[i] + 256, view_yview);
+        }
     }
 }
 </string>

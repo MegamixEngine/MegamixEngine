@@ -43,7 +43,7 @@ canHit = false;
 canDamage = false;
 destroyTimer = 0;
 
-loopSFX(sfxBlackHoleBomb);
+playSFX(sfxBlackHoleBomb);
 </string>
           </argument>
         </arguments>
@@ -107,7 +107,7 @@ if (!global.frozen)
                 sprite_index = sprBlackHoleBomb;
                 mask_index = sprBlackHoleBombHitbox;
                 audio_stop_sound(sfxBlackHoleBomb);
-                loopSFX(sfxBlackHoleBombOpen);
+                playSFX(sfxBlackHoleBombOpen);
                 canHit = true;
                 canDamage = true;
                 xspeed = 0;
@@ -116,6 +116,11 @@ if (!global.frozen)
             }
             else
             {
+                // Loop audio if game isn't paused
+                if (!audio_is_playing(sfxBlackHoleBomb)) &amp;&amp; (!dead)
+                {
+                    playSFX(sfxBlackHoleBomb);
+                }
                 var dir = (global.keyDown[parent.playerID] - global.keyUp[parent.playerID]) * (sign(parent.image_yscale));
                 if (dir != 0)
                 {
@@ -134,10 +139,18 @@ if (!global.frozen)
     
     if (blownUp) // eventually pitter out
     {
+        if (!audio_is_playing(sfxBlackHoleBombOpen)) &amp;&amp; (!dead)
+            playSFX(sfxBlackHoleBombOpen);
+        
         destroyTimer += 1;
         if (destroyTimer &gt;= 240)
             instance_destroy();
     }
+}
+else // Kill sounds when pausing game
+{
+    audio_stop_sound(sfxBlackHoleBomb);
+    audio_stop_sound(sfxBlackHoleBombOpen);
 }
 </string>
           </argument>
@@ -169,7 +182,16 @@ if (!global.frozen)
             exit;
             break;
         case -1:
-            playSFX(sfxEnemyHit);
+        case 1:
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
+            event_user(EV_ATTACK);
+            with (other)
+            {
+                event_user(EV_DEATH);
+            }
+            break;
+        /*case -1:
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
             with (other)
             {
                 i = instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
@@ -177,13 +199,13 @@ if (!global.frozen)
             }
             break;
         case 1:
-            playSFX(sfxEnemyHit);
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
             event_user(EV_ATTACK);
             with (other)
             {
                 event_user(EV_DEATH);
             }
-            break;
+            break;*/
     }
 }
 </string>
@@ -208,9 +230,10 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
-    i = fireWeapon(16, 0, objBlackHoleBomb, 1, 7, 1, 0);
+    var ammoCost = 4 - (2 * (global.energySaver &gt; 0));
+    i = fireWeapon(16, 0, objBlackHoleBomb, 1, ammoCost, 1, 0);
     with (i)
     {
         xspeed = other.image_xscale * 1; // zoom
@@ -264,7 +287,8 @@ if (!global.frozen)
             <string>with (other)
 {
     par = object_is_ancestor(object_index, prtMiniBoss) || (boss == 1);
-    if (par || !canHit || !killOverride)
+    shot = object_is_ancestor(object_index, prtEnemyProjectile);
+    if (par || (!canHit &amp;&amp; !shot) || !killOverride)
     {
         exit;
     }
@@ -279,7 +303,16 @@ if (!global.frozen)
         _i.image_yscale = image_yscale;
         _i.targetX = other.x;
         _i.targetY = other.y;
-        playSFX(sfxEnemyHit);
+        if (useShader)
+        {
+            _i.useShader = true;
+            for(a = 0; a &lt; 3; a++)
+            {
+                _i.replaceColor[a] = replaceColor[a];
+                _i.newColor[a] = newColor[a];
+            }
+        }
+        playSFX(getGenericSFX(SFX_ENEMYHIT));
     }
 }
 </string>
@@ -305,9 +338,8 @@ if (!global.frozen)
           <argument>
             <kind>1</kind>
             <string>// unique ricochet animation
-i = instance_create(x, y, objHarmfulExplosion);
-i.contactDamage = 0;
-playSFX(sfxExplosion2);
+i = instance_create(x, y, objBigExplosion);
+playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
 instance_destroy();
 </string>
           </argument>

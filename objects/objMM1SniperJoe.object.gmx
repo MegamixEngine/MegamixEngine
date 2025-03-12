@@ -142,6 +142,10 @@ if (entityCanStep())
                     i.sprite_index = sprCrazyRazyBullet;
                     playSFX(sfxEnemyShootClassic); // shoooot
                     shootAmount += 1;
+					if (shootAmount &lt;= shootTotal - 1)
+                    {
+                        image_index = 1;
+                    }
                 }
                 if (shootAmount &gt;= shootTotal)
                 {

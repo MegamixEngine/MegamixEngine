@@ -35,6 +35,8 @@ shiftVisible = true;
 global.timeStopped = true;
 animationTimer = 0;
 contactDamage = 0;
+
+autoFireSet = -1;
 </string>
           </argument>
         </arguments>
@@ -84,8 +86,9 @@ contactDamage = 0;
 
 if (entityCanStep())
 {
-    if (global.ammo[playerID, global.weapon[playerID]] &gt; 0)
-        global.ammo[playerID, global.weapon[playerID]] -= 1 / 15;
+    var ammoCost = (1 / 15) - ((1 / 30) * (global.energySaver &gt; 0));
+    if (ammoCanAfford(playerID))
+        ammoDecrease(playerID, ammoCost);
     else
         instance_destroy();
 }
@@ -136,8 +139,7 @@ if (entityCanStep())
             <kind>1</kind>
             <string>/// EV_WEAPON_CONTROL
 
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT)
-    &amp;&amp; (global.ammo[playerID, global.weapon[playerID]] &gt; 0))
+if (performShoot &amp;&amp; ammoCanAfford(playerID))
 {
     if (!instance_exists(objTimeStopper))
     {
@@ -181,7 +183,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weaponSetup("TIME STOPPER", global.nesPalette[17], global.nesPalette[44], sprWeaponIconsTimeStopper);
+            <string>weaponSetup("TIME STOPPER", global.nesPalette[$14], global.nesPalette[$34], sprWeaponIconsTimeStopper);
 </string>
           </argument>
         </arguments>

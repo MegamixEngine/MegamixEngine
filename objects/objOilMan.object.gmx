@@ -55,8 +55,9 @@ shotsFired = 0;
 grav = 0.25;
 
 // Health Bar
-healthBarPrimaryColor[1] = 12;
-healthBarSecondaryColor[1] = 40;
+manualColors = true;
+healthBarPrimaryColor[1] = make_color_rgb(48,80,128); //12;
+healthBarSecondaryColor[1] = make_colour_rgb(184,184,248); //40;
 
 // Music
 music = "Mega_Man_1.nsf";
@@ -67,6 +68,8 @@ musicTrackNumber = 8;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -77,6 +80,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -112,15 +119,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 2);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 4);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -173,7 +181,7 @@ if (entityCanStep())
             {
                 y = ystart;
                 hasTriggeredFall = true;
-                playSFX(sfxSplash);
+                playSFX(getGenericSFX(SFX_SPLASH));
                 yspeed = -6;
                 image_index = 5;
                 attackTimer = -1000;
@@ -441,7 +449,27 @@ if (entityCanStep())
                 {
                     image_index = 9;
                     instance_create(x + 12 * image_xscale, y + 2, objExplosion);
-                    instance_create(x + 8 * image_xscale, y - 2, objOilManOilShot);
+                    
+                    with (entityCreateChild(8, -2, objOilManOilShot))
+                    {
+                        var spd;
+                        spd = 4;
+                        if (instance_exists(target))
+                        {
+                            var angle;
+                            angle = point_direction(spriteGetXCenter(), spriteGetYCenter(),
+                                spriteGetXCenterObject(target),
+                                spriteGetYCenterObject(target));
+                            xspeed = cos(degtorad(angle)) * spd;
+                            yspeed = -sin(degtorad(angle)) * spd;
+                        }
+                        else
+                        {
+                            xspeed = spd;
+                            yspeed = 0;
+                        }
+                    }
+                    
                     playSFX(sfxEnemyShootClassic);
                     shotsFired += 1;
                 }
@@ -463,12 +491,12 @@ if (entityCanStep())
                 }
                 break;
         }
-        if (!instance_exists(target))
+       /* if (!instance_exists(target)) !?!
         {
             xspeed = 0;
             grav = 0.25;
             image_index = 0;
-        }
+        }*/
     }
 }
 </string>

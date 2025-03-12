@@ -29,7 +29,7 @@
 
 faction = 1;
 shiftVisible = 2;
-
+WheelLock = -1;
 despawnRange = -1;
 
 stopOnFlash = 0;
@@ -67,16 +67,23 @@ iceDecWalk = 0.05; // The deceleration on ice when moving in the opposite direct
 
 slideSpeed = 2.5;
 slideFrames = 26;
-
 // climbSpeed = 1.296875; //Official value of MM3
 climbSpeed = 1.3;
-hitTime = 32; // The amount of frames you experience knockback after getting hit
 
-if (global.sturdyHelmet)
+if (checkCheats(cheatEnums.wiiPhysics))
 {
-    hitTime = 10;
+    walkSpeed = 1.4;
+    stepSpeed = 1;//Is forced to only run on the first frame.
+    slideSpeed = 2.55;//Closest approximation I could get with side-by-side tests in MM10 Wily 4 LC2.
+    climbSpeed = 1.4;
 }
 
+
+
+hitTime = 32; // The amount of frames you experience knockback after getting hit
+if (global.sturdyHelmet)
+    hitTime = 16;
+    
 // Variables
 
 // Lock certain actions
@@ -89,6 +96,8 @@ icedLock = false;
 slideChargeLock = false;
 teleportLock = false;
 shockLock = false;
+honeyLock = false;
+stunLock = false;
 
 ground = true;
 xDir = 0;
@@ -99,6 +108,11 @@ isStep = false;
 stepTimer = 0;
 canMinJump = false;
 climbShootXscale = 1;
+movementXScale = image_xscale;
+xScaleOverride = 0;
+
+chargeTime = 0;
+initChargeTime = 0;
 
 isShoot = false;
 shootTimer = 0;
@@ -110,6 +124,7 @@ secondSlideMask = mskMegamanSlide2;
 
 canHit = false;
 isHit = false;
+hitRecover = 0;
 
 isShocked = false; // had to resort to this ~dracmeister
 shockedTime = 0; // for how long?
@@ -122,6 +137,7 @@ climbing = false;
 climbSpriteTimer = 0;
 
 quickWeaponScrollTimer = 25;
+prevWeapon = -1;
 
 teleporting = false;
 showDuringReady = false;
@@ -135,8 +151,10 @@ blinkTimer = 0; // Timer for MM's blinking animation when standing still
 blinkTimerMax = 120;
 blinkImage = 0; // 0 for no blinking, 1 for blinking
 blinkDuration = 8; // The amount of frames the blinking lasts
-drawWeaponIcon = false; // Whether or not we should draw the weapon icon above our head (used when using quick weapon switching)
+weaponIconDrawing = false; // Whether or not we should draw the weapon icon above our head (used when using quick weapon switching)
+weaponIconMode = 0; // 0 - icon above Mega Man's head; 1 - icons in a wheel around Mega Man
 
+landy = y;
 deathByPit = false; // Did we die by falling in a bottomless pit?
 dieToPit = true;
 isSolid = 0;
@@ -144,19 +162,20 @@ statusObject = noone;
 statusSliding = true;
 plt = 0;
 isFrozen = 0;
+freezeHitOverride = false;
 freezeTimer = 0;
-
+reverseControls = false;
 
 // vehicle: the instance of a vehicle mega man
 // is embarked in.
 vehicle = noone;
 deathTimer = -1;
+global.outlineCol[playerID] = c_black;
 playerPalette();
 
 // Show the READY text
 showReady = false; // this is set to true by objGlobalControl.
 readyTimer = 0;
-
 
 // Camera
 viewPlayer = 1;
@@ -177,6 +196,7 @@ contactDamageMultiplier = 1; //you can increase this to multiply the amount of d
 spriteX = 0;
 spriteY = 0;
 animNameID = 0;
+lastAnimNameID = 0;
 spriteLoopStart = 0;
 spriteLoopEnd = 1;
 spriteLoopSpeed = 1;
@@ -189,8 +209,61 @@ for (i = 0; i &lt;= 99; i += 1)
 }
 animSpinOffset = 0;
 animSpinTurn = 1;
+animLookUp = false;
 
 paletteRefresh = 0;
+
+// Added to fix a crash in one stage. 
+lastanimation = 'Normal';
+
+//Creation code for the weapon wheel
+wheelDirection = -1;
+usingWheel = false;
+
+//Accessibility variables
+fireHeld = false; // whether or not fire is being held (accessibility options)
+autoFireDelay = 0; // auto fire delay timer
+
+myProtoShield = noone;
+myTrebleBoost = noone;
+isBoost = false;//Used in Bass mode for flying.
+lastWeapon = noone;//Just needed for Bass Mode rn.
+lastanimation = "Normal";//For some reason this value was set but is never used until I started using it now, so I'm declaring it here to prevent a crash.
+airDashed = false;
+
+tpk = false;
+
+sectionStartx = xstart;
+sectionStarty = ystart;
+
+gCollXScale = 0;//Used as a reference for damage spike knockback calc, which occurs in generalCollision.
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+for (var i = 0; i &lt; PL_LOCK_MAX; i++)
+{
+    lockPoolDestroy(localPlayerLock[i], true);
+}
 </string>
           </argument>
         </arguments>
@@ -236,26 +309,20 @@ paletteRefresh = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch (global.characterSelected[playerID])
-{ 
-    default: //costumeID needs to be set here or it won't display correctly.
-        break;
-    case "Mega Man":
-        costumeID = 0;
-        break;
-    case "Proto Man":
-        costumeID = 1;
-        break;
-    case "Bass":
-        costumeID = 2;
-        break;
-    case "Roll":
-        costumeID = 3;
-        break;
-}
-if paletteRefresh == 0
+            <string>// costumeID needs to be set here or it won't display correctly.
+if (global.customCostumeEquipped[playerID])
 {
-    playerPalette(); // corrects palette
+    costumeID = global.customCostumeIndex+playerID;//global.playerSpriteMax;
+}
+else
+{
+    costumeID = global.costumeID[? global.costumeSelected[playerID]];
+}
+
+// corrects palette
+if (paletteRefresh == 0) &amp;&amp; (!inked)
+{
+    playerPalette();
 }
 </string>
           </argument>
@@ -279,18 +346,43 @@ if paletteRefresh == 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch (global.characterSelected[playerID])
-{ 
-    default: //you can define step code here that needs to be run on every frame for a specific character. Proto man is the only character that needs to be changed for this specifically, due to his shield so he uses a different script.
-    case "Roll":
-    case "Mega Man":
-    case "Bass":
-        playerStepEventDefault();
-        break;
-    case "Proto Man":
+            <string>playerStepEventDefault();
+
+if (!global.frozen &amp;&amp; !frozen) // used by accessibility options
+{
+    if (autoFireDelay &gt; 0) //tick down autoFireDelay
     {
-        playerStepEventProto();
-        break;
+        autoFireDelay --;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// move all players
+if (DEBUG_ENABLED)
+{
+    if (mouse_x &gt;= bbox_left &amp;&amp; mouse_x &lt;= bbox_right &amp;&amp; mouse_y &gt;= bbox_top &amp;&amp; mouse_y &lt;= bbox_bottom)
+    {
+        coopWarp(playerID,true,30);
     }
 }
 </string>
@@ -316,66 +408,30 @@ if paletteRefresh == 0
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
 if (spawned)
 {
-    switch (global.characterSelected[playerID])
-    { 
-        default: //define any variables that need to be overwritten here for a specific character. Note that the costume ID variables are assumed to be in their default values
-            break;
-        case "Mega Man":
-        {
-            costumeID = 0;
-            break;
-        }
-        case "Proto Man":
-        {
-            contactDamageMultiplier = 2; //Proto Man takes double damage like in MM10
-            costumeID = 1;
-            break;
-        }
-        case "Bass":
-        {
-            jumpCounterMax = 2; //Bass has double jumping
-            dashSlide = true; //Bass can dash
-            multiJumpDashCancel = true; //dash momentum no longer applies when a jump is done in midair with bass
-            firstSlideMask = mskMegaman;//This also applies to dash masks
-            secondSlideMask = mskMegaman;//same as above
-            costumeID = 2;
-            break;
-        }
-        case "Roll":
-        {
-            costumeID = 3;
-            break;
-        }
-    }
-    switch (global.characterSelected[0])
+    if (global.customCostumeEquipped[playerID])
     {
-        default: //Weapon Names and Icons. This is to prevent multiplayer from confusing the game
-        case "Mega Man":
-        {
-            global.weaponName[0] = "MEGA BUSTER"
-            global.weaponIcon[0] = sprWeaponIconsMegaBuster;
-            break;
-        }
-        case "Proto Man":
-        {
-            global.weaponName[0] = "PROTO BUSTER"
-            global.weaponIcon[0] = sprWeaponIconsMegaBuster;
-            break;
-        }
-        case "Bass":
-        {
-            global.weaponName[0] = "BASS BUSTER"
-            global.weaponIcon[0] = sprWeaponIconsBassBuster;
-            break;
-        }
-        case "Roll":
-        {
-            global.weaponName[0] = "ROLL BUSTER"
-            global.weaponIcon[0] = sprWeaponIconsMegaBuster;
-            break;
-        }
+        costumeID = global.customCostumeIndex+playerID;//global.playerSpriteMax;
+    }
+    else
+    {
+        costumeID = global.costumeID[? global.costumeSelected[playerID]];
+    }
+    
+    global.defaultPrimaryPalette[playerID] = global.costumePrimaryColor[costumeID];
+    global.defaultSecondaryPalette[playerID] = global.costumeSecondaryColor[costumeID];
+    
+    if (global.playerCount &lt;= 1)
+    {
+        global.weaponName[0] = global.costumeBusterName[costumeID];
+        global.weaponIcon[0] = global.costumeBusterIcon[costumeID];
+    }
+    else
+    {
+        global.weaponName[0] = "MEGA BUSTER";
+        global.weaponIcon[0] = sprWeaponIconsMegaBuster;
     }
 }
 </string>
@@ -404,7 +460,13 @@ if (spawned)
 {
     global.damage = max(1, global.damage div 2);
 }
+
 global.damage *= contactDamageMultiplier;
+
+if ((checkCheats(cheatEnums.invincible) &amp;&amp; !checkCheats(cheatEnums.buddha)))
+{
+    global.damage = 0;
+}
 </string>
           </argument>
         </arguments>
@@ -427,7 +489,10 @@ global.damage *= contactDamageMultiplier;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.playerHealth[playerID] = 0;
+            <string>if !(checkCheats(cheatEnums.invincible || checkCheats(cheatEnums.buddha)))
+{
+    global.playerHealth[playerID] = 0;
+}
 </string>
           </argument>
         </arguments>
@@ -450,13 +515,13 @@ global.damage *= contactDamageMultiplier;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>playerGetHit(global.damage);
+            <string>playerGetHit(global.damage,true);
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="4">
+    <event eventtype="7" enumb="5">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -473,7 +538,12 @@ global.damage *= contactDamageMultiplier;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>event_inherited();
+for (var i = 0; i &lt; PL_LOCK_MAX; i++)
+{
+    lockPoolDestroy(localPlayerLock[i], true);
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -496,6 +566,7 @@ global.damage *= contactDamageMultiplier;
           <argument>
             <kind>1</kind>
             <string>playerDraw();
+//drawDebugText(x,bbox_top - 8, string(global.weapon[playerID]) + " " + global.weaponName[global.weapon[playerID]])
 </string>
           </argument>
         </arguments>

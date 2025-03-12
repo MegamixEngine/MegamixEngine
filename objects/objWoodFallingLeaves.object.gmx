@@ -27,12 +27,14 @@
             <kind>1</kind>
             <string>event_inherited();
 contactDamage = 4;
-yspeed = 1.5;
-xspeed = 1.5;
-image_speed = 0.125;
+yspeed = 1; //1.5;
+xspeed = -1.5;
+imgIndex = 0;
+imgSpd = 0.2; //0.125;
 blockCollision = 0;
 grav = 0;
 stopOnFlash = true;
+despawnRange = 16;
 </string>
           </argument>
         </arguments>
@@ -59,7 +61,19 @@ stopOnFlash = true;
 
 if (entityCanStep())
 {
-    image_speed = 0.125;
+    // Animation
+    imgIndex += imgSpd;
+    if (imgIndex &gt;= 5)
+    {
+        imgIndex = 4
+        imgSpd *= -1;
+    }
+    if (imgIndex &lt; 0)
+    {
+        imgIndex = 1;
+        imgSpd *= -1;
+    }
+    
     x = round(x);
     if (x == xstart + 16)
     {
@@ -70,10 +84,7 @@ if (entityCanStep())
         xspeed = 1.5;
     }
 }
-else
-{
-    image_speed = 0;
-}
+image_index = imgIndex div 1;
 </string>
           </argument>
         </arguments>

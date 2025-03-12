@@ -3,7 +3,7 @@
 
 // TODO: add global.frozen
 // TODO: add global.lockTransition
-lockPoolReleaseAll(global.timeStopped);
+//lockPoolReleaseAll(global.timeStopped);
 lockPoolReleaseAll(global.playerFrozen);
 
 for (var i = 0; i < PL_LOCK_MAX; i++)

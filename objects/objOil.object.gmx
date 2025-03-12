@@ -38,34 +38,12 @@ grav = 0;
 bubbleTimer = -1;
 
 fire = false;
+fireContactDamage = 28;
+
+behaviourType = 1;
 
 // What lights oil on fire
-fireSource[1] = objFireBlockFire;
-fireSource[2] = objFirePillar;
-fireSource[3] = objFireWave;
-fireSource[4] = objTackleFire;
-fireSource[5] = objHotDogFire;
-fireSource[6] = objLightningLordLightning;
-fireSource[7] = objApacheJoeProjectile;
-fireSource[8] = objFireBoyShot;
-fireSource[9] = objFireTellyShot;
-fireSource[10] = objFireSpike;
-fireSource[11] = objHeatMan;
-fireSource[12] = objHeatManFire;
-fireSource[13] = objMechaDragonFire;
-fireSource[14] = objPharaohManShot;
-fireSource[15] = objPharaohManShotBig;
-fireSource[16] = objPharaohShot;
-fireSource[17] = objSolarBlaze;
-fireSource[18] = objNapalm;
-fireSource[19] = objPopoHeliFire;
-fireSource[20] = objChangkeyDragon;
-fireSource[21] = objChangkeyDragonFire;
-fireSource[22] = objSuzak;
-fireSource[23] = objFenix;
-fireSource[24] = objSFFire;
-fireSource[25] = objFlameMixer;
-fireSource[26] = objPUOilFire;
+fireSource = global.fireSource
 
 // oil
 oil[0] = objOil;
@@ -151,6 +129,7 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
     {
         sprite_index = sprOilfire;
         image_index += 1 / 5;
+        
         if (place_meeting(x, y, target) &amp;&amp; target.canHit &amp;&amp; target.iFrames == 0)
         {
             with (target)
@@ -165,6 +144,51 @@ else if (dead)
     fire = 0;
     sprite_index = sprOil;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="18">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+
+if (other.object_index == objMegaman)
+{
+    var skullAmuletCheck = true;
+    if (global.skullAmulet &amp;&amp; other.healthpoints &gt; 1)
+        skullAmuletCheck = false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </string>
           </argument>
         </arguments>
@@ -189,6 +213,15 @@ else if (dead)
             <kind>1</kind>
             <string>if (instance_exists(target))
 {
+    if (instance_exists(objSplash)) // Destroy any existing oil splashes
+    {
+        with (objSplash)
+        {
+            if (sprite_index == sprOilSplash)
+                instance_destroy();
+        }
+    }
+    
     spl = instance_create(target.x, bbox_top + 4, objSplash);
     spl.sprite_index = sprOilSplash;
     spl.blockCollision = 0;

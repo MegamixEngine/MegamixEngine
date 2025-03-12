@@ -75,6 +75,7 @@ if (entityCanStep())
             objEnemyBullet);
         i.xspeed = 4 * image_xscale;
         i.xscale = image_xscale;
+        i.sprite_index = sprEnemyBulletMM5;
         playSFX(sfxEnemyShootClassic);
         cooldownTimer = 0;
     }

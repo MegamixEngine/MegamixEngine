@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 
+doPlayerExplosion = false;
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
 imageOffset = 0;
@@ -37,9 +38,8 @@ grav = 0;
 phase = 0;
 shotsFired = 0;
 attackTimer = 0;
-healthBarPrimaryColor[1] = 16;
-healthBarSecondaryColor[1] = 30;
-
+healthBarPrimaryColor[1] = $13;
+healthBarSecondaryColor[1] = $30;
 
 image_index = 4;
 
@@ -60,6 +60,8 @@ turnCheck[4] = 600;
 startCheck = false;
 child = noone;
 shootAngle = 35;
+isDying = false;
+explodeTimer = 0;
 
 // Music
 music = "Mega_Man_6.nsf";
@@ -70,6 +72,8 @@ musicTrackNumber = 12;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 4);
@@ -80,6 +84,10 @@ enemyDamageValue(objThunderBeam, 4);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 4);
@@ -115,15 +123,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 4);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 4);
 enemyDamageValue(objSuperArmDebris, 4);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 1);
 
 // Misc.
 enemyDamageValue(objPowerStone, 4);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 4);
+enemyDamageValue(objBlockDropper, 4);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -198,6 +207,10 @@ if (!global.frozen)
     }
     else if (isIntro)
     {
+        if (y != ystart)
+        {
+            y = ystart;
+        }
         // custom intro:
         attackTimer++;
         
@@ -294,17 +307,23 @@ if (entityCanStep())
                     {
                         ID = instance_create(x + image_xscale * 8, spriteGetYCenter(),
                             objMM5AimedBullet);
-                        
+                        ID.sprite_index = sprPowerPistonShot;
+                        ID.image_speed = 0.2;
                         ID.dir = getAngle;
                         ID.xscale = image_xscale;
                     }
                     
                     ID = instance_create(x + image_xscale * 8, spriteGetYCenter(),
                         objMM5AimedBullet);
+                    ID.sprite_index = sprPowerPistonShot;
+                    ID.image_speed = 0.2;
                     ID.dir = getAngle + shootAngle;
                     ID.xscale = image_xscale;
+                    
                     ID = instance_create(x + image_xscale * 8, spriteGetYCenter(),
                         objMM5AimedBullet);
+                    ID.sprite_index = sprPowerPistonShot;
+                    ID.image_speed = 0.2;
                     ID.dir = getAngle - shootAngle;
                     ID.xscale = image_xscale;
                     playSFX(sfxEnemyShoot);
@@ -317,6 +336,46 @@ if (entityCanStep())
                     attackTimer = 0;
                 }
                 break;
+        }
+    }
+    
+    // Death animation
+    if (isDying)
+    {
+        explodeTimer++;
+        if (explodeTimer == 20)//18
+        {
+            with(instance_create(x-14*image_xscale,y+33,objBigExplosion))
+                depth = -1;
+            //stopSFX(sfxExplosion2);
+            playSFX(getGenericSFX(SFX_EXPLOSION2));
+        }
+        if (explodeTimer == 40)//27
+        {
+            with(instance_create(x-14*image_xscale,y-17,objBigExplosion))
+                depth = -1;
+            //stopSFX(sfxExplosion2);
+            playSFX(getGenericSFX(SFX_EXPLOSION2));
+            image_index = 3;
+        }
+        if (explodeTimer == 60)//36
+        {
+            with(instance_create(x+26*image_xscale,y+9,objBigExplosion))
+                depth = -1;
+            //stopSFX(sfxExplosion2);
+            playSFX(getGenericSFX(SFX_EXPLOSION2));
+        }
+        if (explodeTimer == 80)//36
+        {
+            with(instance_create(x+4*image_xscale,y-32,objBigExplosion))
+                depth = -1;
+            //stopSFX(sfxExplosion2);
+            playSFX(getGenericSFX(SFX_EXPLOSION2));
+            image_index = 4;
+        }
+        if (explodeTimer == 100)//45
+        {
+            event_user(EV_DEATH);
         }
     }
 }
@@ -342,18 +401,41 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (objPowerPistonRock)
+            <string>if (isFight)
 {
-    instance_create(x, y, objExplosion);
-    instance_destroy();
+    with (objPowerPistonRock)
+    {
+        instance_create(x, y, objExplosion);
+        instance_destroy();
+    }
+    with (objNewShotmanBullet)
+        instance_destroy();
+    with (objHarmfulExplosion)
+        instance_destroy();
+    with (objMM5AimedBullet)
+        instance_destroy();
+    
+    // Begin death animation
+    image_index = 2;
+    stopSFX(getGenericSFX(SFX_ENEMYHIT));
+    iFrames = 0;
+    isFight = false;
+    isDying = true;
+    wasKilled = true;
+    canHit = false;
+    canDamage = false;
+    yspeed = 0;
+    with(instance_create(x+33*image_xscale,y-33,objBigExplosion))
+        depth = -1;
+    playSFX(getGenericSFX(SFX_EXPLOSION2));
 }
-with (objNewShotmanBullet)
-    instance_destroy();
-with (objHarmfulExplosion)
-    instance_destroy();
-with (objMM5AimedBullet)
-    instance_destroy();
-event_inherited();
+else
+{
+    event_inherited();
+    with(instance_create(x+18*image_xscale,y+41,objBigExplosion))
+        depth = -1;
+    playSFX(getGenericSFX(SFX_EXPLOSION2));
+}
 </string>
           </argument>
         </arguments>
@@ -378,7 +460,7 @@ event_inherited();
             <kind>1</kind>
             <string>/// draw code
 drawSelf();
-if (!dead)
+if (isFight) //(!dead) &amp;&amp; (!isDying)
 {
     if (lightFrame &lt; 2)
     {
@@ -417,9 +499,9 @@ if (!dead)
         }
         else // Hitspark
         {
-            d3d_set_fog(true, c_white, 0, 0);
+            hitFlashEffect(true,c_white);
             event_user(2);
-            d3d_set_fog(false, 0, 0, 0);
+            hitFlashEffect(false);
         }
     }
 }

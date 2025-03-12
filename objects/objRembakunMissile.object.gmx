@@ -63,7 +63,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
         instance_create(spriteGetXCenter(), spriteGetYCenter(),
             objExplosion);
         instance_destroy();
-        playSFX(sfxExplosion);
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM5));
     }
 }
 </string>

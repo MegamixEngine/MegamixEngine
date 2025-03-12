@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -33,9 +33,10 @@ contactDamage = 3;
 
 itemDrop = -1;
 
-respawn = false;
+canHit = true;
 grav = 0;
 blockCollision = false;
+reflectable = -1;
 
 parent = noone;
 phase = 0;
@@ -47,6 +48,7 @@ jetTimer = 0;
 speed = 1.4;
 rotateChange = 2;
 totalChange = 0;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>
@@ -215,7 +217,7 @@ if (entityCanStep())
             <kind>1</kind>
             <string>event_inherited();
 instance_create(x, y, objExplosion);
-playSFX(sfxEnemyHit);
+playSFX(getGenericSFX(SFX_ENEMYHIT));
 </string>
           </argument>
         </arguments>

@@ -35,12 +35,16 @@ category = "mets";
 
 facePlayer = true;
 
+behaviourType = 1;
+
 // Enemy specific code
 radius = 4 * 16; // Four blocks; the radius that MM needs to enter to trigger the shooting of the met
 cooldownTimer = 0;
 canShoot = true;
 animTimer = 0;
 isDancing = false;
+
+isBakeryMan = 0;
 </string>
           </argument>
         </arguments>
@@ -98,7 +102,7 @@ if (entityCanStep())
         {
             image_index = 5;
         }
-        if (image_index &gt; 8)
+        if (image_index &gt;= 9)
         {
             image_index = 5;
         }

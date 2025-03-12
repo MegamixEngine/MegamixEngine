@@ -59,16 +59,12 @@ hp = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (!global.frozen)
+if (entityCanStep())
 {
     // Movement
-    xspeed = cos(degtorad(dir)) * 4 * image_xscale;
+    xspeed = cos(degtorad(dir)) * 4;// * image_xscale;
     yspeed = -sin(degtorad(dir)) * 4;
     image_index += 0.25;
-}
-else if (!instance_exists(parent))
-{
-    instance_destroy();
 }
 </string>
           </argument>
@@ -93,6 +89,9 @@ else if (!instance_exists(parent))
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+if (other.object_index != objMegaman) // Abort if the target isn't Mega Man
+    exit;
 
 // Create pickup
 i = instance_create(bboxGetXCenter(), bbox_top - 2, objMercuryGrabBusterPickup);

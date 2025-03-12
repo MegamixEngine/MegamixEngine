@@ -249,6 +249,8 @@ if (entityCanStep())
                             var i = instance_create(x, y, objEnemyBullet);
                             i.contactDamage = 3;
                             i.sprite_index = sprKakinbatankBullet;
+                            i.image_xscale = image_xscale;
+                            i.image_yscale = image_yscale;
                             i.image_speed = 0;
                             if (col == 1)
                             {
@@ -259,7 +261,7 @@ if (entityCanStep())
                                 i.image_index = 0; // Red bullets
                             }
                             i.x = x + 4 * image_xscale;
-                            i.y = y - 36;
+                            i.y = y - 36 * image_yscale;
                             i.target = target;
                             i.yspeed = -4;
                             i.blockCollision = false;
@@ -363,7 +365,7 @@ detectsShot = true;
 if (mask_index == mskKakinbatank || (sign(x - other.x) == image_xscale))
     exit;
 
-if (collision_rectangle(x + 12 * image_xscale, y, x + 28 * image_xscale, y - 47, other, false, true))
+if (collision_rectangle(x + 12 * image_xscale, y, x + 28 * image_xscale, y - 47 * image_yscale, other, false, true))
 {
     other.guardCancel = 1;
 }
@@ -392,7 +394,8 @@ if (collision_rectangle(x + 12 * image_xscale, y, x + 28 * image_xscale, y - 47,
             <string>/// Death Event
 event_inherited();
 instance_create(bbox_left + abs(bbox_left - bbox_right) / 2, bbox_top + abs(bbox_top - bbox_bottom) / 2, objBigExplosion);
-playSFX(sfxMM9Explosion);
+stopSFX(getGenericSFX(SFX_ENEMYHIT));
+playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
 </string>
           </argument>
         </arguments>

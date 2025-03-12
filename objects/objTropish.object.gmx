@@ -37,6 +37,7 @@ contactDamage = 4;
 contactStart = contactDamage;
 
 category = "aquatic, nature";
+bubbleTimer = -1;
 
 blockCollision = 0;
 grav = 0;

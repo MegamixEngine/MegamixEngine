@@ -36,10 +36,57 @@ blockCollision = 0;
 grav = 0;
 
 // Enemy specific code
-actionTimer = 0;
-action = 0;
-
+phaseTimer = 0;
+phase = 0;
+attackTimer = 0;
+dir = 1;
+delay = 32;
 calibrateDirection();
+
+
+//creation code
+spd = 0.5; //how fast the hologran moves
+radius = 96; //detection radius of target
+
+//creation code speed of backgound
+fadeSpeed = 1 /15; //how quickly the effect fades in and out
+bgSFX = noone; //if set, play sound when creating background
+col = c_black; //color of background
+var i = 0;
+starbg[i] = bgStarFieldBackground;
+starshift[i] = 0; //starting shift of background layer 
+starspeed[i] = 1; //how fast the layer moves. set to negative to move left instead of right.
+i++;
+starbg[i] = bgStarFieldMiddleground; //if these are set to 'noone' then do not display this layer.
+starshift[i] = 24;
+starspeed[i] = 0.5; 
+i++;
+starbg[i] = bgStarFieldForeground;
+starshift[i] = 32;
+starspeed[i] = 0.25; 
+i++;
+//you can add addittional layers, but all variables need to be set per layer.
+//copy the code between /* */ for a new layer and edit variables as needed.
+/*
+
+starbg[i] = bgStarFieldBackground;
+starshift[i] = 24;
+starspeed[i] = 0.75; 
+i++;
+
+*/
+
+//projectiles
+//by default hologran has no attacks but you can create one using these variables.
+childObject = noone; //if set, also create this when starting background
+
+childSprite = noone; //if set, override child object sprite to this sprite
+childImageSpeed = noone; //if set, override child object image speed to this.
+childSFX = noone; //if set, play this sound when shooting
+attackTimerDelay = 32; //how long before it attacks
+attackTimerMax = 32; //how long between 'attacks' before shooting again. set to -1 to attack once.
+childSmoke = objExplosion; //if set, also create this alongside the child object
+childSmokeSprite = sprExplosion;
 </string>
           </argument>
         </arguments>
@@ -68,72 +115,140 @@ if (entityCanStep())
 {
     if (instance_exists(target))
     {
-        if (action == 0)
+        if (phase == 0)
         {
             facePlayer = true;
-            xspeed = image_xscale * 0.5;
+            xspeed = image_xscale * spd;
             image_xscale = 1;
-            if (abs(target.x - x) &lt;= 96)
+            if (abs(target.x - x) &lt;= radius)
             {
                 facePlayer = false;
-                action = 1;
+                phase = 1;
                 dir = sign(xspeed);
                 xspeed = 0;
             }
         }
     }
-    if (action)
+    
+     if (instance_exists(objHologranVoid)) //create projectiles/OBJECTS  if set
     {
-        actionTimer += 1;
-        if (action == 1)
+        if (childObject != noone) //skip this entire thing if no childobject set. which is the default.
         {
-            if (actionTimer == 5)
+            if (delay &gt; 0)
             {
-                action += 1;
-                actionTimer = 0;
-                image_index = 1;
-                if (!instance_exists(objHologranVoid))
-                {
-                    instance_create(x, y, objHologranVoid);
-                }
+                delay --;
             }
-        }
-        else if (action == 2)
-        {
-            if (actionTimer == 5)
+            else
             {
-                action += 1;
-                actionTimer = 0;
-                image_index = 2;
+                if (attackTimer != -1)
+                    attackTimer ++;
+                
             }
-        }
-        else if (action == 3)
-        {
-            if (actionTimer == 5)
+            
+            if (attackTimerMax != -1 &amp;&amp; attackTimer &gt;= attackTimerMax || attackTimer &gt; -1 &amp;&amp; attackTimerMax == -1)
             {
-                action += 1;
-                actionTimer = 0;
-                image_index = 0;
-            }
-        }
-        else if (action == 4)
-        {
-            if (actionTimer == 50)
-            {
-                action = -1;
-                actionTimer = 0;
+                if (attackTimerMax == -1)
+                    attackTimer = -1;
+                else
+                    attackTimer = 0;
+                    
+                if (childSFX != noone)
+                    playSFX(childSFX);
+            
+                    with (instance_create(x,bbox_bottom -2,childObject))
+                    {
+                        if (other.childSprite != noone)
+                            sprite_index = other.childSprite;
+                        if (other.childImageSpeed  != noone)
+                            image_speed = other.childImageSpeed;
+                        image_xscale = other.image_xscale;
+                        respawn = false;
+                        if (other.childSmoke != noone)
+                        {
+                            var cs = other.childSmokeSprite;
+                            with (instance_create(spriteGetXCenter(),spriteGetYCenter(),other.childSmoke))
+                            {
+                                if (cs != noone)
+                                {
+                                    sprite_index = cs;
+                                }
+                            }
+                        }
+                            
+                    }
             }
         }
     }
-    if (action == -1)
+    
+    if (phase)
     {
-        xspeed = dir * 0.25;
+        phaseTimer += 1;
+       
+        
+        if (phase == 1)
+        {
+            if (phaseTimer == 5)
+            {
+                phase += 1;
+                phaseTimer = 0;
+                image_index = 1;
+                if (!instance_exists(objHologranVoid))
+                {
+                    if (bgSFX != noone)
+                        playSFX(bgSFX);
+                    var hv = instance_create(x, y, objHologranVoid);
+                    for (var i = 0; i &lt; array_length_1d(starbg); i++)
+                    {
+                        hv.starbg[i] = starbg[i];
+                        hv.starshift[i] = starshift[i];
+                        hv.starspeed[i] = starspeed[i];
+                        hv.parent = id;
+                        hv.parentObject = object_index;
+                        hv.col = col;
+                        hv.fadeSpeed = fadeSpeed;
+
+                    }
+                }
+            }
+        }
+        else if (phase == 2)
+        {
+            if (phaseTimer == 5)
+            {
+                phase += 1;
+                phaseTimer = 0;
+                image_index = 2;
+            }
+        }
+        else if (phase == 3)
+        {
+            if (phaseTimer == 5)
+            {
+                phase += 1;
+                phaseTimer = 0;
+                image_index = 0;
+            }
+        }
+        else if (phase == 4)
+        {
+            if (phaseTimer == 50)
+            {
+                phase = -1;
+                phaseTimer = 0;
+            }
+        }
+    }
+    if (phase == -1)
+    {
+        xspeed = dir * (spd*0.5);
     }
 }
 else if (dead)
 {
-    action = 0;
-    actionTimer = 0;
+    phase = 0;
+    phaseTimer = 0;
+    delay = attackTimerDelay;
+    attackTimer = 0;
     image_index = 0;
 }
 </string>

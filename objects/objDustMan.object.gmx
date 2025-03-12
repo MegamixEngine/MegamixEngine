@@ -3,7 +3,7 @@
   <spriteName>sprDustMan</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtBoss</parentName>
   <maskName>mskDustMan</maskName>
@@ -54,8 +54,8 @@ suckSpeed = 1;
 suckTimer = 224;
 
 // Health Bar
-healthBarPrimaryColor[1] = 27;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $10; //27
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_4.nsf";
@@ -66,6 +66,8 @@ musicTrackNumber = 17;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -76,6 +78,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objBreakDash, 2);
 enemyDamageValue(objMagneticShockwave, 1);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -111,15 +117,16 @@ enemyDamageValue(objConcreteShot, 4);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG48MML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 4);
 enemyDamageValue(objSuperArmDebris, 4);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 1);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 4);
-enemyDamageValue(objBrickWeapon, 3);
+enemyDamageValue(objBlockDropper, 3);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -158,27 +165,29 @@ if (!global.frozen)
         startIntro = false;
         isIntro = true;
         visible = true;
+        grav = gravAccel;
         calibrateDirection();
     }
     else if (isIntro)
     {
         // custom intro:
-        if (y &lt;= ystart &amp;&amp; !hasTriggeredFall)
-            y += 4;
+        /*if (y &lt;= ystart &amp;&amp; !hasTriggeredFall)
+            y += 4;*/
         if (y &gt;= ystart || hasTriggeredFall)
         {
             // since bosses do not have gravity during intros, we need to reuse this here.
             hasTriggeredFall = true;
-            y = ystart + 1;
+            y = ystart;// + 1;
+            yspeed = 0;
             image_speed = 0;
             attackTimer += 1;
-            if (attackTimer &lt; 8)
+            if (attackTimer &lt; 12)
                 image_index = 0;
-            if (attackTimer == 8)
+            if (attackTimer == 12)
                 image_index = 1;
-            if (attackTimer &gt;= 14 &amp;&amp; attackTimer &lt; 32)
+            if (attackTimer &gt;= 28 &amp;&amp; attackTimer &lt; 40)
                 image_index = 2;
-            if (attackTimer == 32)
+            if (attackTimer == 40)
             {
                 canFillHealthBar = true;
                 isIntro = false;
@@ -216,7 +225,7 @@ if (entityCanStep())
                     switch (nextPhase)
                     {
                         case 1:
-                            image_index = 4;
+                            image_index = 3;
                             break;
                         case 2:
                             image_index = 3;
@@ -280,10 +289,14 @@ if (entityCanStep())
                         break;
                     case 46: // fire dust crusher 
                         image_index = 3;
-                        var inst = instance_create(x, y - 8, objDustManCrusher);
-                        inst.xspeed = image_xscale * 4;
-                        inst.image_xscale = image_xscale;
-                        playSFX(sfxEnemyShoot);
+                        with (entityCreateChild(0, -7, objDustManCrusher))
+                        {
+                            xspeed = image_xscale * 4;
+                            image_xscale = 1; // This is meant to always face the same direction
+                        }
+                        break;
+                    case 51:
+                        image_index = 0;
                         break;
                     case 64: // reset pattern 
                         attackTimer = 0;
@@ -297,11 +310,11 @@ if (entityCanStep())
                 {
                     if (sign(suckSpeed) == 1)
                     {
-                        image_index = min(9 + ((attackTimer / 3) mod 4), 12);
+                        image_index = min(9 + ((attackTimer / 4) mod 4), 12);
                     }
                     if (sign(suckSpeed) == -1)
                     {
-                        image_index = max(12 - ((attackTimer / 3) mod 4), 9);
+                        image_index = max(12 - ((attackTimer / 4) mod 4), 9);
                     }
                     with (objMegaman)
                     {
@@ -331,7 +344,7 @@ if (entityCanStep())
                     // disable suck if timer runs out, or he collides with mega man
                     if (attackTimer &gt;= suckTimer || place_meeting(x - 4 * image_xscale, y, objMegaman))
                     {
-                        image_index = 1;
+                        image_index = 0; //1;
                         attackTimer = 0;
                         skewerPhase = choose(1, 2);
                         phase = 0;

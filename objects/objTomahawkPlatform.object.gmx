@@ -115,6 +115,15 @@ if (entityCanStep())
             break;
     }
 }
+else
+{
+    if (dead)
+    {
+        timer = 0;
+        timeri = 0;
+        phase = 2;
+    }
+}
 </string>
           </argument>
         </arguments>

@@ -36,6 +36,7 @@ yspeed = 0;
 expand = image_xscale;
 
 playSFX(sfxQuickLaser);
+reflectable = false;
 </string>
           </argument>
         </arguments>

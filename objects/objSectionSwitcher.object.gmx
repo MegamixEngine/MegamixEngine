@@ -28,6 +28,23 @@
             <string>global.frozen = true;
 global.switchingSections = true;
 
+// failsafe
+if (instance_exists(objPauseMenu))
+{
+    with (objPauseMenu)
+    {
+        instance_destroy();
+    }
+    
+    with (objGlobalControl)
+    {
+        showhealth = 1;
+        fadeAlpha = 0;
+    }
+    
+    global.nextRoom = 0;
+}
+
 with (objMegaman)
 {
     viewPlayer = 1;
@@ -49,13 +66,14 @@ alpha = 0;
 darksp = 1 / 16;
 
 triggerPlayer = instance_nearest(x, y, objMegaman);
-
+noFlicker = true;
 
 if (instance_exists(triggerPlayer))
 {
     with (triggerPlayer)
     {
         visible = true;
+        coopWarp(playerID,false,30,false,false,false);
         
         other.pxs = x;
         other.pys = y;
@@ -95,6 +113,9 @@ endit=0;
 
 xvs = view_xview;
 yvs = view_yview;
+
+view_xview[0] = round(view_xview[0]);
+view_yview[0] = round(view_yview[0]);
 
 // Variables that can me modified to make switching sections faster/slower
 screenSpeed = 4;
@@ -224,6 +245,8 @@ if (!instance_exists(triggerPlayer))
     global.switchingSections=false;
     reAndDeactivateObjects(1,0);
     global.switchingSections=true;
+    with (objCoOpWarpStar)
+        event_user(EV_DEATH);
     exit;
 }
 
@@ -299,7 +322,10 @@ if (canStep) // When the door is closing, we should not move
             {
                 if (!instance_exists(vehicle))
                 {
-                    playerHandleSprites('Normal'); // Player animation
+                    if (global.characterSelected[playerID] != CHAR_PROTOMAN)
+                        playerHandleSprites('Normal'); // Player animation
+                    else
+                        playerHandleSprites("Proto Shield");
                 }
             }
         }
@@ -412,7 +438,9 @@ y = triggerPlayer.y;
             <string>/// end transition
 
 global.switchingSections = false;
+
 instance_activate_object(objMegaman);
+
 if (instance_exists(triggerPlayer))
 {
     with (objMegaman)
@@ -424,9 +452,13 @@ if (instance_exists(triggerPlayer))
         x = other.triggerPlayer.x;
         y = other.triggerPlayer.y;
         
+        sectionStartx = x;
+        sectionStarty = y;
+        
         yspeed = other.triggerPlayer.yspeed;
         xspeed = other.triggerPlayer.xspeed;
         image_xscale = other.triggerPlayer.image_xscale;
+        image_yscale = other.triggerPlayer.image_yscale;
         
         climbLock = lockPoolRelease(climbLock);
         climbing = other.triggerPlayer.climbing;
@@ -452,10 +484,18 @@ if (instance_exists(triggerPlayer))
             slideTimer = slideFrames - 5;
         }
         
+        gravfactor  = other.triggerPlayer.gravfactor;
+        inWater     = other.triggerPlayer.inWater;
+        grav        = other.triggerPlayer.grav;
+        gravWater   = other.triggerPlayer.gravWater;
+        gravDir     = other.triggerPlayer.gravDir;
+        
         canStep = true;
         mask_index = other.triggerPlayer.mask_index;
         premask = other.triggerPlayer.premask;
     }
+        with (objCoOpWarpStar)
+            event_user(EV_DEATH);
 }
 
 // event_user(0);
@@ -468,6 +508,7 @@ if (plat)
 }
 canProgressDoor = true;
 global.frozen = false;
+
 instance_destroy();
 
 </string>

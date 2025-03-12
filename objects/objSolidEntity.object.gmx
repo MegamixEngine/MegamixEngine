@@ -34,6 +34,7 @@ isSolid = 1;
 blockCollision = 0;
 grav = 0;
 visible = false;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

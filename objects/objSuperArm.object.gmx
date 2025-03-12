@@ -29,7 +29,7 @@
 
 var currentWeapon = global.weapon[playerID];
 var insufficientAmmo = global.ammo[playerID, currentWeapon] &lt;= 0;
-var ammoCost = 2;
+var ammoCost = 2 - (1 * (global.energySaver &gt; 0));
 
 var interactionCache = makeArray();
 var interactionCacheSort = makeArray();
@@ -142,7 +142,7 @@ if (superArmHeldObject == noone)
                     superArmPreCanHit = canHit;
                     
                     // this will overlap and look ugly, so set it to 0
-                    other.drawWeaponIcon = 0;
+                    other.weaponIconDrawing = 0;
                 }
             }
         }
@@ -177,6 +177,10 @@ if (superArmHeldObject != noone)
     if (image_yscale == -1)
     {
         superArmDesiredY = y + originToBBoxTop + 6;
+    }
+    if (isSlide)
+    {
+        superArmDesiredY += 3*image_yscale;
     }
     
     superArmHeldObject.x = superArmDesiredX;
@@ -235,7 +239,7 @@ if (superArmHeldObject != noone)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weaponSetup("SUPER ARM", global.nesPalette[20], global.nesPalette[40], sprWeaponIconsSuperArm);
+            <string>weaponSetup("SUPER ARM", global.nesPalette[$17], global.nesPalette[$30], sprWeaponIconsSuperArm);
 
 // objects which have the 'superArmTarget' category
 // must have the following instance variables:

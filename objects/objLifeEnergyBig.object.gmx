@@ -86,22 +86,22 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
+            <string>
+instance_destroy();
 
-if (is1Up &amp;&amp; global.livesEnabled)
+if (is1Up &amp;&amp; global.livesEnabled) //1UP :)
 {
-    global.livesRemaining++;
+    if (global.livesRemaining &lt; global.maxLives)
+        global.livesRemaining ++;
     playSFX(sfxImportantItem);
 }
-else if (global.playerHealth[collectPlayer.playerID] &lt; 28)
+else //HEALTH!
 {
-    global.frozen = true;
     with (objGlobalControl)
     {
         increaseHealth = other.hlth;
-        increasePID = other.collectPlayer.playerID;
+        increasePID    = other.collectPlayer.playerID;
     }
-    loopSFX(sfxEnergyRestore);
 }
 </string>
           </argument>

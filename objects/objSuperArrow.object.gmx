@@ -44,7 +44,7 @@ inWall = false; // Did we collide with a wall?
 
 y = round(y);
 
-playSFX(sfxBuster);
+playSFX(getGenericSFX(SFX_BUSTER));
 </string>
           </argument>
         </arguments>
@@ -103,9 +103,9 @@ if (!global.frozen)
                     {
                         if (!place_meeting(x, y, other.id))
                         {
-                            if (global.ammo[playerID, global.weapon[playerID]] &gt; 0)
+                            if (ammoCanAfford(playerID))
                             {
-                                global.ammo[playerID, global.weapon[playerID]] -= (0.05 / (global.energySaver + 1));
+                                ammoDecrease(playerID, 0.05 - (0.025 * (global.energySaver &gt; 0)));
                             }
                         }
                     }
@@ -147,9 +147,10 @@ image_single = inWall;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
-    fireWeapon(22, 0, objSuperArrow, 3, 2, 1, 0);
+    var ammoCost = 2 - (1 * (global.energySaver &gt; 0));
+    fireWeapon(22, 0, objSuperArrow, 3, ammoCost, 1, 0);
 }
 </string>
           </argument>

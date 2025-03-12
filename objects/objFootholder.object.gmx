@@ -3,7 +3,7 @@
   <spriteName>sprFootholder</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -91,57 +91,58 @@ backtrack = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (init)
-{
-    
-    init = 0;
-    if(mode==1 &amp;&amp; targetMode == 2)
-    {
-        var hasPath = false;
-        with(objFootholderGuide)
-        {
-            if(myFlag==other.myFlag&amp;&amp;order!=-1)
-            {
-                hasPath=true;
-                break;
-            }
-        }
-        if(!hasPath)
-        {
-            targetMode=1;
-        }
-    }
-    else
-    {
-        var hasGuides = false;
-        with(objFootholderGuide)
-        {
-            if(myFlag==other.myFlag)
-            {
-                hasGuides=true;
-                break;
-            }
-        }
-        if(!hasGuides)
-        {
-            mode=0;
-        }
-        else
-        {
-            mode=1;
-        }
-    }
-    if (mode == 0)
-    {
-        xspeed = xs * xDir;
-        yspeed = ys * yDir;
-    }
-    startMode = mode;
-}
+            <string>
 event_inherited();
 
 if (entityCanStep())
 {
+    if (init)
+    {
+        
+        init = 0;
+        if(mode==1 &amp;&amp; targetMode == 2)
+        {
+            var hasPath = false;
+            with(objFootholderGuide)
+            {
+                if(myFlag==other.myFlag&amp;&amp;order!=-1)
+                {
+                    hasPath=true;
+                    break;
+                }
+            }
+            if(!hasPath)
+            {
+                targetMode=1;
+            }
+        }
+        else
+        {
+            var hasGuides = false;
+            with(objFootholderGuide)
+            {
+                if(myFlag==other.myFlag)
+                {
+                    hasGuides=true;
+                    break;
+                }
+            }
+            if(!hasGuides)
+            {
+                mode=0;
+            }
+            else
+            {
+                mode=1;
+            }
+        }
+        if (mode == 0)
+        {
+            xspeed = xs * xDir;
+            yspeed = ys * yDir;
+        }
+        startMode = mode;
+    }
     if (mode == 0)
     {
         alarmTurn += 1;

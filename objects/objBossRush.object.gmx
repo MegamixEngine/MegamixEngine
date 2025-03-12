@@ -78,20 +78,23 @@ finalTeleportY = 0;
 
 delay--;
 
-
 if (!instance_exists(prtBoss) &amp;&amp; hasBossSpawned &amp;&amp; !active)
 {
     active = true;
     teleportX = global.lastTeleporterX;
     teleportY = global.lastTeleporterY;
 }
+
 if (active &amp;&amp; !instance_exists(objLifeEnergyBig) &amp;&amp; !instance_exists(prtBoss) &amp;&amp; delay &lt;= 0 &amp;&amp; bossesDefeated &lt; 9999)
 {
     lockOn = true;
     clearedBossX[bossesDefeated] = teleportX;
     clearedBossY[bossesDefeated] = teleportY;
     bossesDefeated++;
-    inst = instance_create(objMegaman.x, objMegaman.y, objTeleporter);
+    
+    var useMegaman = instance_find(objMegaman, 0);
+    
+    inst = instance_create(useMegaman.x, useMegaman.y, objTeleporter);
     with (inst)
     {
         if (other.bossesDefeated &lt; other.bossesToDefeat)
@@ -111,6 +114,7 @@ if (active &amp;&amp; !instance_exists(objLifeEnergyBig) &amp;&amp; !instance_ex
     active = false;
     hasBossSpawned = false;
 }
+
 if (!instance_exists(inst))
 {
     lockOn = false;

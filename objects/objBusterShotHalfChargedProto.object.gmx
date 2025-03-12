@@ -30,8 +30,9 @@
 bulletLimitCost = 1;
 
 contactDamage = 1;
+inWater = -1;
 
-playSFX(sfxBuster);
+playSFX(getGenericSFX(SFX_BUSTER));
 </string>
           </argument>
         </arguments>

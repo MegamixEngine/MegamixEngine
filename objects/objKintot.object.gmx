@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// An enemy from Burst Man's stage. It'll float up and down in the water, or flop around otherwise.
+            <string>/// When underwater, this fish moves forward in a sine wave. When out of water, it flops up and down until it self-destructs.
+/// It changes direction after swiming about one screen length past its starting position. Note that it swims through solid objects. It cannot be contained.
+/// To avoid it accidentally falling out of the water and flopping around, it needs to be used in sufficiently wide underwater areas.
 
 // Creation code (all optional):
 
@@ -36,6 +38,7 @@ healthpoints = healthpointsStart;
 contactDamage = 2;
 
 category = "aquatic, nature";
+bubbleTimer = -1;
 
 blockCollision = 0;
 grav = 0;
@@ -51,6 +54,9 @@ blinkTimer = 0;
 outtaWaterTimer = 0;
 
 image_speed = 0;
+
+//cc
+checkWater = true; //if false dont bother with water check
 </string>
           </argument>
         </arguments>
@@ -77,7 +83,7 @@ image_speed = 0;
 
 if (entityCanStep())
 {
-    if (inWater)
+    if (inWater || !checkWater)
     {
         blockCollision = 0;
         grav = 0;
@@ -154,7 +160,7 @@ if (entityCanStep())
         
         if (outtaWaterTimer &gt;= 360)
         {
-            playSFX(sfxEnemyHit);
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
             healthpoints = 0;
             event_user(EV_DEATH);
         }
@@ -162,7 +168,7 @@ if (entityCanStep())
         // jump on ground/water
         if (ycoll &gt; 0 || place_meeting(x, y - 1, objWater))
         {
-            playSFX(sfxSplash);
+            playSFX(getGenericSFX(SFX_SPLASH));
             yspeed = choose(-4.5, -3.5);
             
             // sometimes it flips

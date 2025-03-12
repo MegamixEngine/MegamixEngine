@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A stationary Joe that swings a spike flail overhead. When it attacks, the spike balls extend toward the player in a horizontal line and then retract.
+/// Unlike most other Joes, this one does not have a shield. However, the spike balls absorb attacks and essentially function like a shield.
+/// This enemy synergizes well with several different gimmicks. Keep in mind that its default health is much higher than average for a regular enemy.
+
+event_inherited();
 
 healthpointsStart = 12;
 healthpoints = healthpointsStart;
@@ -51,6 +55,8 @@ animFrame = 0;
 xOffset[0] = -2;
 xOffset[1] = 0;
 xOffset[2] = 2;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>
@@ -89,7 +95,7 @@ if (entityCanStep())
             image_index = 2;
             for (var i = 0; i &lt; 4; i++)
             {
-                star[i] = instance_create(x, y - 24, objMorningJoeStar);
+                star[i] = instance_create(x, y - 23, objMorningJoeStar);
                 star[i].newX = x;
                 star[i].newY = star[i].y;
                 star[i].parent = id;
@@ -111,20 +117,20 @@ if (entityCanStep())
     {
         image_index = 5;
         star[0].newX = x - 8 * image_xscale;
-        star[0].newY = y - 24;
+        star[0].newY = y - 23;
         star[1].newX = x - 6 * image_xscale;
-        star[1].newY = y - 22;
+        star[1].newY = y - 21;
         star[2].newX = x - 4 * image_xscale;
-        star[2].newY = y - 20;
+        star[2].newY = y - 19;
         star[3].newX = x - 2 * image_xscale;
-        star[3].newY = y - 18;
+        star[3].newY = y - 17;
     }
     else if (attackTimer == 124)
     {
         for (var i = 0; i &lt; 4; i++)
         {
             star[i].newX = x + 32 * image_xscale;
-            star[i].newY = y;
+            star[i].newY = y + 1;
         }
     }
     else if (attackTimer &gt; 124 &amp;&amp; attackTimer &lt; 172)

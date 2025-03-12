@@ -152,6 +152,7 @@ if (entityCanStep())
                     i.imageSpeed = 0.175;
                     i.yspeed = -2;
                     i.xspeed = xSpeedAim(i.x, i.y, x + image_xscale * abs(tx - x), ty, i.yspeed, i.grav, 3);
+                    i.reflectable = -1; // Accurate to MM10, but could be changed? - Spin
                 }
             }
             with (objMegaman)

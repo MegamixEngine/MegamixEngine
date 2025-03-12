@@ -37,6 +37,7 @@ respawnRange = -1;
 despawnRange = -1;
 
 inWater = -1;
+bubbleTimer = -1;
 grav = 0;
 blockCollision = 0;
 
@@ -55,7 +56,7 @@ opening = false;
 closing = false;
 canOpen = true;
 
-imgSpeed = 0.125;
+imgSpeed = -1;
 layer = 1000000;
 
 //@cc true / false (default)
@@ -123,6 +124,7 @@ if (isTile &amp;&amp; type != '' &amp;&amp; !destroyDelay)
           <argument>
             <kind>1</kind>
             <string>///No
+
 </string>
           </argument>
         </arguments>
@@ -147,7 +149,9 @@ if (isTile &amp;&amp; type != '' &amp;&amp; !destroyDelay)
             <kind>1</kind>
             <string>event_inherited();
 
-if (canOpen)
+var acCheck = true;
+
+if (canOpen &amp;&amp; acCheck)
 {
     var player = collision_rectangle(bbox_left + 3, bbox_top + 3, bbox_right - 3, bbox_bottom - 3, objMegaman, false, false);
     
@@ -198,11 +202,32 @@ if (closing || opening)
 {
     var lastHeightFrame = doorHeight;
     
-    doorHeight = clamp(doorHeight + imgSpeed * (1 - (!closing) * 2), 0, height);
+    var actualImgSpeed = imgSpeed;
+    
+    if (imgSpeed &lt;= 0)
+    {
+        // For the sake of getting these sound options to sound right, we're gonna
+        // *VERY SLIGHTLY* increase the speed doors open at when they're active
+        switch (global.doorSound)
+        {
+        case 0: // MM3+, default
+            actualImgSpeed = 0.125;
+            break;
+        case 1: // MM1, MM2, MM9, MM10
+        case 2: // GB1
+        case 3: // GB2
+        case 4: // GB3, GB4, GB5
+        case 5: // DOS
+            actualImgSpeed = 0.150;
+            break;
+        }
+    }
+    
+    doorHeight = clamp(doorHeight + actualImgSpeed * (1 - (!closing) * 2), 0, height);
     
     if (floor(doorHeight) != floor(lastHeightFrame))
     {
-        playSFX(sfxDoor);
+        playSFX(getGenericSFX(SFX_DOOR));
         if (isTile)
         {
             if (type == 'h')

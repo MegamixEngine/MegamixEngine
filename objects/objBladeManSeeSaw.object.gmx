@@ -3,7 +3,7 @@
   <spriteName>sprBladeManSeeSawPlace</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <parentName>prtRailPlatform</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -30,10 +30,10 @@ sprite_index = sprBladeManSeeSawMiddle;
 mask_index = sprBladeManSeeSawMiddle;
 
 isSolid = 0;
-respawn = true;
+resawn = true;
 
-respawnRange = -1;
-despawnRange = -1;
+respawnRange = 32;
+despawnRange = 32;
 
 // shift for upper platform
 pux = 27;
@@ -74,8 +74,7 @@ if(image_xscale==-1)
     startLeftPos = 1;
     startRightPos = 0;
 }
-
-image_xscale = 1;
+image_xscale=1;
 initp = true;
 </string>
           </argument>
@@ -137,29 +136,28 @@ if (entityCanStep())
         initp = false;
         if(startLeftPos)
         {
-            firstPlatform = instance_create(x + pux + 8, y + pdy, objBladeManSeeSawPlatform);
-            firstPlatform.xPosition = 1;
+            firstPlatform = instance_create(x - pdx + 7, y - puy, objBladeManSeeSawPlatform);
         }
         else
         {
             firstPlatform = instance_create(x - pdx + 7, y + pdy, objBladeManSeeSawPlatform);
-            firstPlatform.xPosition = -1;
         }
         if(startRightPos)
         {
             secondPlatform = instance_create(x + pux + 8, y - puy, objBladeManSeeSawPlatform);
-            secondPlatform.xPosition = 1;
         }
         else
         {
-            secondPlatform = instance_create(x - pdx + 7, y - puy, objBladeManSeeSawPlatform);
-            secondPlatform.xPosition = -1;
+            secondPlatform = instance_create(x + pux + 8, y + pdy, objBladeManSeeSawPlatform);
         }
-               
+        
         firstPlatform.parent = id;
         secondPlatform.parent = id;
         
+        
+        firstPlatform.xPosition = -1;
         firstPlatform.yPosition = 1;
+        
         firstPlatform.centerShift = (power(pdx, 2) + power(pdy, 2) - power(pux, 2) - power(puy, 2)) / (2 * puy + 2 * pdy);
         firstPlatform.radiusSquare = power(pdx, 2) + power(pdy - firstPlatform.centerShift, 2);
         
@@ -171,7 +169,9 @@ if (entityCanStep())
         firstPlatform.yMin = puy;
         firstPlatform.yMax = pdy;
         
+        secondPlatform.xPosition = 1;
         secondPlatform.yPosition = -1;
+        
         secondPlatform.centerShift = (power(pdx, 2) + power(pdy, 2) - power(pux, 2) - power(puy, 2)) / (2 * puy + 2 * pdy);
         secondPlatform.radiusSquare = power(pdx, 2) + power(pdy - secondPlatform.centerShift, 2);
         

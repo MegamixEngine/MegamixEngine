@@ -77,10 +77,16 @@ if (global.frozen == false &amp;&amp; global.timeStopped == false)
             for (i = 0; i &lt;= 1; i += 1) // X
                 for (j = 0; j &lt;= 1; j += 1) // Y
                 {
-                    rubble = instance_create(x - (8 * sign(xspeed)) + i * 16,
-                        y - 8 + j * 16, objGutsBossBlockRubble);
+                    var xx = x - (8 * sign(xspeed)) + (i * 16)
+                    var yy = y - 8 + (j * 16);
+                    
+                    var rubble = entityCreateChild(0, 0, objGutsBossBlockRubble);
+                    rubble.x = xx;
+                    rubble.y = yy;
                     if (i == 0)
+                    {
                         rubble.yspeed = -2 + (j / 2);
+                    }
                     rubble.xspeed = (4 - j) * sign(xspeed);
                 }
             instance_destroy();

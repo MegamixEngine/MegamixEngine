@@ -173,7 +173,7 @@ if (runTests)
     {
         testingBegin = false;
         global.unitTestGlobalErrorSummaryResult = 0;
-        unitTestFullResults = ds_list_create();
+        unitTestFullResults = mm_ds_list_create();
         defer(ev_destroy, ev_destroy, 0, dsDestroy, makeArray(unitTestFullResults, ds_type_list));
     }
     

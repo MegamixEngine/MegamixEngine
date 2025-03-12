@@ -32,11 +32,12 @@ itemDrop = -1;
 doesIntro = true;
 lockTransition = true;
 
-rescursiveExplosion = true; // Use this to set whether or not an explosion chain follows death.
+
 killOverride = false;
 killed = false;
 
 despawnRange = -1;
+
 
 introSprite = sprHotDogTeleport;
 introTimer = 288 + 15; // 288 is the height above, 15 is the extra frames for teleporting in.
@@ -45,6 +46,56 @@ xplX = -100;
 xplY = -100;
 
 canIce = false; // Shouldn't be able to freeze minibosses
+
+drawHealthBar = false;
+healthBarPrimaryColor[1] = $28;
+healthBarSecondaryColor[1] = $30;
+healthBarBackgroundColor = c_black;
+healthBarColorSkip = 1;
+manualColors = false;
+
+playBossMusic = false;
+killBossMusic = true;
+
+/* BOSS SETTINGS ! - this is mostly to help setup boss gallery and therefore needs
+more robust changes to make it work properly in future devkits
+ideally I think it'd be nice to have this as a 8bit remix of MM8's mid-boss theme, as its one
+of the few canonical expamples in teh series.*/
+music = "Mega_Man_2.nsf";
+musicType = "VGM";
+musicTrackNumber = 17;
+musicVolume = 0.8;
+musicLoop = true;
+musicLoopSecondsStart = 8.825;
+musicLoopSecondsEnd = 61.575;
+
+// Music storage for restarting it after death
+musicStore = "";
+musicTypeStore = "";
+musicLoopStartStore = 0;
+musicLoopEndStore = 1;
+musicLoopStore = 0;
+musicVolumeStore = 0.8;
+musicTrackNumberStore = 0;
+
+musicChanged = false;
+
+rescursiveExplosion = true; // Use this to set whether or not an explosion chain follows death.
+doExplosion = true; // Hacky fix for Tricastle
+
+//recursive explosion variables
+deadDelay = 0; //@cc if set, delay explosions until this has passed.
+deadFrame = -1; //@cc if set, display this frame when exploding
+deadFrameMax = -1; // @cc if set, animation to this frame
+deadFrameRecur = 5;
+deadTimerRecur = 5; //@cc how often explosions occur
+deadTimerMax = 60; //@cc how long the boss explodes for
+explosionSFX = sfxExplosion; //@cc explosion sound
+explosionSprite = sprBigExplosion; //@cc explosion graphics.
+
+//set the below variable to sprMegaman to create the player explosion upon death, which uses the above variables to grab graphics.
+finalExplosionSprite = noone; //cc entity destruction sprite. 
+finalExplosionSFX = noone;// if set, use specific explosion sample for its final explosion. this defaults to the player death if above is set to sprMegaman.
 </string>
           </argument>
         </arguments>
@@ -139,31 +190,49 @@ if (!global.frozen &amp;&amp; dead &amp;&amp; !instance_exists(objSectionSwitche
     {
         x = xplX;
         y = xplY;
+        if (deadTimer == 0)
+        {
+            if (deadFrame != -1)
+                image_index = deadFrame;
+        }
         deadTimer += 1;
         
         // flickering
-        if (deadTimer mod 2 == 0)
+        if (deadTimer &gt; deadDelay &amp;&amp; deadTimer mod 2 == 0)
         {
             visible = !visible;
         }
         
-        if (floor(deadTimer / 5) * 5 == deadTimer)
+        if (deadTimer &gt; deadDelay &amp;&amp; floor(deadTimer / deadTimerRecur) * deadTimerRecur == deadTimer)
         {
             var xcenter = bbox_left + abs(bbox_left - bbox_right) / 2;
             var ycenter = bbox_top + abs(bbox_top - bbox_bottom) / 2;
-            playSFX(sfxExplosion);
-            
+            playSFX(explosionSFX);
             // randomize();
             inst = instance_create(xcenter + irandom_range(-(sprite_width / 2),
                 (sprite_width / 2)),
-                ycenter + irandom_range(-(sprite_height / 2) + 16,
-                (sprite_height / 2) - 16), objBigExplosion);
+                ycenter + irandom_range(-(sprite_height / 2) - 16,
+                (sprite_height / 2) + 16), objBigExplosion);
             with (inst)
             {
                 image_speed = 1 / 3;
+                sprite_index = other.explosionSprite;
+            }
+            
+        }
+        
+        if (floor(deadTimer / deadFrameRecur) * deadFrameRecur == deadTimer)
+        {
+            if (deadFrameMax != -1)
+            {
+                if (image_index &lt; deadFrameMax)
+                {
+                    image_index ++;
+                }    
             }
         }
-        if (deadTimer &gt;= 60)
+        
+        if (deadTimer &gt;= deadTimerMax)
         {
             if (lockTransition)
             {
@@ -178,7 +247,42 @@ if (!global.frozen &amp;&amp; dead &amp;&amp; !instance_exists(objSectionSwitche
                     }
                 }
                 if (canUnlock)
+                {
                     global.lockTransition = false;
+                }
+            }
+            
+            if (finalExplosionSprite != sprMegaman)
+            {
+                //create centered explosion.
+                inst = instance_create(spriteGetXCenter(), spriteGetYCenter(),
+                        objBigExplosion);
+                        
+                if (finalExplosionSFX != noone)
+                {
+                    playSFX(finalExplosionSFX);
+                }
+                with (inst)
+                {
+                    image_speed = 1 / 3;
+                    if (other.finalExplosionSprite != noone)
+                    {
+                         sprite_index = other.finalExplosionSprite;
+                    }
+                    else
+                    {
+                        sprite_index = other.explosionSprite;
+                    }
+                }
+            }
+            else
+            {
+                var ex = getGenericSFX(SFX_BOSSDIE);
+                if (finalExplosionSFX != noone)
+                {
+                    ex = finalExplosionSFX;
+                }
+                playerExplosion(explosionSprite,1.5,-1,ex);
             }
             instance_destroy();
         }
@@ -192,12 +296,34 @@ if (!global.frozen &amp;&amp; dead &amp;&amp; !instance_exists(objSectionSwitche
         {
             var xcenter = bbox_left + abs(bbox_left - bbox_right) / 2;
             var ycenter = bbox_top + abs(bbox_top - bbox_bottom) / 2;
-            playSFX(sfxExplosion);
-            inst = instance_create(round(xcenter - sprite_xoffset + (sprite_width / 2)), round(ycenter - sprite_yoffset + (sprite_height / 2)),
-                objBigExplosion);
-            with (inst)
+            if (doExplosion) // Read: If not Tricastle
             {
-                image_speed = 1 / 3;
+                if (finalExplosionSprite != sprMegaman)
+                {
+                    playSFX(explosionSFX);
+                    
+                    inst = instance_create(spriteGetXCenter(), spriteGetYCenter(),
+                        objBigExplosion);
+                    with (inst)
+                    {
+                        image_speed = 1 / 3;
+                        if (other.finalExplosionSprite != noone)
+                        {
+                             sprite_index = other.finalExplosionSprite;
+                        }
+                        else
+                        {
+                            sprite_index = other.explosionSprite;
+                        }
+                    }
+                }
+                else
+                {
+                    var ex = getGenericSFX(SFX_BOSSDIE);
+                    if (finalExplosionSFX != noone)
+                        ex = finalExplosionSFX;
+                    playerExplosion(explosionSprite,1.5,-1,ex);
+                }
             }
             if (lockTransition)
             {
@@ -212,8 +338,11 @@ if (!global.frozen &amp;&amp; dead &amp;&amp; !instance_exists(objSectionSwitche
                     }
                 }
                 if (canUnlock)
+                {
                     global.lockTransition = false;
+                }
             }
+
             instance_destroy();
         }
     }
@@ -225,6 +354,22 @@ else if (!killed)
 {
     deadTimer = 0;
     visible = true;
+    if (!musicChanged &amp;&amp; playBossMusic &amp;&amp; !killBossMusic)
+    {
+        with (prtMiniBoss)
+        {
+            musicStore = global.levelSong;
+            musicTypeStore = global.levelSongType;
+            musicLoopStartStore = global.levelLoopStart;
+            musicLoopEndStore = global.levelLoopEnd;
+            musicLoopStore = global.levelLoop;
+            musicVolumeStore = global.levelVolume;
+            musicTrackNumberStore = global.levelTrackNumber;
+            musicChanged = true;
+        }
+        stopMusic();
+        playMusic(music, musicType, musicTrackNumber, musicLoopSecondsStart, musicLoopSecondsEnd, musicLoop, musicVolume);
+    }
 }
 
 // Here's some, as Spin Attaxx called it, "code hoarding"
@@ -320,6 +465,22 @@ killed = false;
 xplX = x;
 xplY = y;
 killed = true;
+if (playBossMusic)
+{
+    var switchTheme = true;
+    with (prtMiniBoss)
+    {
+        if (playBossMusic &amp;&amp; !killed)
+        {
+            switchTheme = false;
+        }
+    }
+    
+    if (!switchTheme)
+    {
+        playMusic(musicStore, musicTypeStore, musicTrackNumberStore, musicLoopStartStore, musicLoopEndStore, musicLoopStore, musicVolumeStore);
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -344,6 +505,11 @@ killed = true;
             <kind>1</kind>
             <string>if(!spawned)
     exit;
+    
+//attempt at a fix to prevent mini bosses from appearing at their original position when the screen fades out
+if (dead &amp;&amp; objGlobalControl.fadetimer &gt; 0) 
+    exit;
+    
 if (introTimer &gt; 0 &amp;&amp; doesIntro)
 {
     draw_sprite_ext(introSprite, 2 - (min(2, min(introTimer, 15) / 5)), x,
@@ -361,9 +527,9 @@ else
                 flashcol = make_color_rgb(0, 120, 255);
             }
             
-            d3d_set_fog(true, flashcol, 0, 0);
+            hitFlashEffect(true,flashcol);
             drawSelf();
-            d3d_set_fog(false, 0, 0, 0);
+            hitFlashEffect(false);
             
             if (iceTimer &gt; 0)
             {
@@ -374,7 +540,16 @@ else
         }
         else
         {
-            drawSelf();
+            if (useShader)
+            {
+                shaderSetColorreplace(replaceColor[0],newColor[0],replaceColor[1],newColor[1],replaceColor[2],newColor[2],replaceColor[3],newColor[3]);
+                drawSelf();
+                shader_reset();
+            }
+            else
+            {
+                drawSelf();
+            }
         }
     }
 }

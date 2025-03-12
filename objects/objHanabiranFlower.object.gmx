@@ -122,7 +122,7 @@ if (!global.frozen)
             aimAtTarget(spd);
         }
         
-        if (!insideView || parent.dead)
+        if (!insideView() || parent.dead)
             instance_destroy();
     }
     else
@@ -166,13 +166,13 @@ if (!global.frozen)
                     flashcol = make_color_rgb(0, 120, 255);
                 }
                 
-                d3d_set_fog(true, flashcol, 0, 0);
+                hitFlashEffect(true,flashcol);
                 with (other)
                 {
                     drawSelf();
                 }
                 draw_sprite_ext(sprHanabiranOverlay, image_index - 5, round(x), round(y), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
-                d3d_set_fog(false, 0, 0, 0);
+                hitFlashEffect(false);
                 
                 if (iceTimer &gt; 0)
                 {

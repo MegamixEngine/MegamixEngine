@@ -42,7 +42,7 @@ yOffset = 0;
 
 snakeBoss = instance_nearest(x, y, objBigSnakey);
 shake = true;
-
+bubbleTimer = -1;
 if (!instance_place(x - 16, y, objSnakeBody))
 {
     getLength = 1;

@@ -3,7 +3,7 @@
   <spriteName>sprMagnetBeam</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>16</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtPlayerProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 0;
+inWater = -1;
 
 isSolid = 2;
 
@@ -46,8 +47,13 @@ extended = 0;
 timer = 0;
 deathTimer = 0;
 
+decreaseAmmoTimer = 0;
+decreaseAmmoTimerMax = 30 * ((0.25 * (global.energySaver &gt; 0)) + 1);
+
 // is currently extending
 growing = true;
+multPal[0] = $D37689;
+multPal[1] = $b0495E;
 </string>
           </argument>
         </arguments>
@@ -81,14 +87,23 @@ if (!global.frozen)
         growing = false;
         if (instance_exists(parent))
         {
+            var mu1 = multPal[0];
+            var mu2 = multPal[1];
             with (parent)
             {
-                if (global.keyShoot[playerID] &amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
+                if (global.keyShoot[playerID] &amp;&amp; ammoCanAfford(playerID))
                 {
                     if (!playerIsLocked(PL_LOCK_SHOOT))
                     {
                         // drain ammo
-                        global.ammo[playerID, global.weapon[playerID]] = max(0, global.ammo[playerID, global.weapon[playerID]] - 1 / 30 / (global.energySaver + 1));
+                        other.decreaseAmmoTimer += 1;
+                        
+                        if (other.decreaseAmmoTimer &gt;= other.decreaseAmmoTimerMax)
+                        {
+                            other.decreaseAmmoTimer = 0;
+                            
+                            ammoDecrease(playerID, 1);
+                        }
                         
                         // Shoot a dummy bullet to get Mega Man's shoot coordinates
                         i = fireWeapon(20, -3, prtPlayerProjectile, 0, 0, 0, 0);
@@ -111,7 +126,7 @@ if (!global.frozen)
         }
         
         extended += extendSpeed;
-        deathTimer = extended / 4 + (2.5 * room_speed);
+        deathTimer = extended / 4 + (2.5 * global.gameSpeed);
     }
     else
     {
@@ -148,9 +163,10 @@ if (!global.frozen)
             <kind>1</kind>
             <string>// EV_WEAPON_CONTROL
 
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+if (performShoot)
 {
     i = fireWeapon(20, -3 * image_yscale, objMagnetBeam, 3, 1, 1, 0);
+    
     if (instance_exists(i))
     {
         playSFX(sfxBlockZap);
@@ -180,7 +196,10 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weaponSetup("MAGNET BEAM", -1, -1, sprWeaponIconsMagnetBeam);
+            <string>weaponSetup("MAGNET BEAM",
+-1,//make_color_rgb(82, 89, 190), //-1,
+-1,//make_color_rgb(170, 221, 198), //-1,
+sprWeaponIconsMagnetBeam);
 </string>
           </argument>
         </arguments>
@@ -211,14 +230,26 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
         var length = abs(floor(sprite_width));
         var sLength = length;
         var img = sprite_get_width(sprite_index) - ((timer / 2) mod sprite_get_width(sprite_index));
+  
         
         while (length &gt; 0)
         {
             var draw = min(sprite_get_width(sprite_index) - img, length);
-            
+             if (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1)
+            {
+                shaderSetColorreplace(
+                    multPal[0], global.multiplayerPalette[playerID,global.weapon[playerID]],
+                    multPal[1], merge_color(global.multiplayerPalette[playerID,global.weapon[playerID]],c_black,0.34),
+                );
+            }
             draw_sprite_part_ext(sprite_index, 0, img, 0, draw, sprite_height * image_yscale, round(x) + ((sLength - length) * sign(image_xscale)), round(y), sign(image_xscale), image_yscale, global.primaryCol[playerID], 1);
+            if (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1)
+            {
+                shader_reset();
+            }
+ 
             draw_sprite_part_ext(sprite_index, 1, img, 0, draw, sprite_height * image_yscale, round(x) + ((sLength - length) * sign(image_xscale)), round(y), sign(image_xscale), image_yscale, global.secondaryCol[playerID], 1);
-            
+
             length -= draw;
             img = 0;
         }
@@ -236,8 +267,9 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
                 continue;
             }
             
-            draw_sprite_ext(sprMagnetBeamEnd, floor(timer / 4), x + xs, round(y), 1, image_yscale, image_angle, global.primaryCol[playerID], image_alpha);
+            draw_sprite_ext(sprMagnetBeamEnd, floor(timer / 4), x + xs, round(y), 1, image_yscale, image_angle, global.primaryCol[playerID], image_alpha);            
             draw_sprite_ext(sprMagnetBeamEnd, floor(timer / 4) + 1, x + xs, round(y), 1, image_yscale, image_angle, global.secondaryCol[playerID], image_alpha);
+
         }
     }
 }

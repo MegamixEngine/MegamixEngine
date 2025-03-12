@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -27,15 +27,14 @@
             <kind>1</kind>
             <string>event_inherited();
 
-respawn = false;
-
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 2;
 
+canHit = true;
 grav = 0;
 blockCollision = 0;
-
+reflectable = -1;
 //
 moveDir = 180;
 turnSpeed = 2;
@@ -81,51 +80,64 @@ pangle = 0;
 
 if (entityCanStep())
 {
-    image_index = (2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16);
+    // Animation
+    //image_index = (2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16);
     cooldownTimer += 1;
-    if (instance_exists(target))
+    if (cooldownTimer mod 8 &lt; 4)
     {
-        switch (phase)
-        {
-            // spawn grace period
-            case 0:
-                startWaitTimer -= 1;
-                if (startWaitTimer &lt;= 0)
-                {
-                    phase = 1;
-                    speed = spd;
-                    direction = point_direction(x, y, target.x, target.y);
-                }
-                break;
+        image_index = ((2 * round(direction / 45))
+            + ((cooldownTimer mod 4) / 16));
+    }
+    else
+    {
+        image_index = ((2 * round(direction / 45))
+            + ((cooldownTimer mod 4) / 16)) + 1;
+    }
+        
+    // Actual code
+    switch (phase)
+    {
+        // spawn grace period
+        case 0:
+			startWaitTimer -= 1;
+			if (startWaitTimer &lt;= 0)
+			{
+				phase = 1;
+				speed = spd;
+				if (instance_exists(target))
+					direction = point_direction(x, y, target.x, target.y);
+			}
+			break;
             
-            // chase megaman
-            case 1:
-                if (cooldownTimer == cooldownMax)
-                {
-                    /* this is kind of confusing, but basically we're seeing if the player is more or less than a certain angle away from where we're
-                currently pointing, and if they are, increase/decrease our angle by that distance */
-                    
-                    /* This is a special kind of error handler that prevents missile from moving completely straight and unable to fly towards the player
-                if the player moves directly straight against the direction missile is flying */
-                    pxd = target.x - x;
-                    pyd = target.y - y;
-                    pangle = 0;
-                    if (pxd != 0)
-                    {
-                        pangle = point_direction(x, y, target.x, target.y);
+        // chase megaman
+        case 1:
+            if (cooldownTimer == cooldownMax)
+            {
+                if (instance_exists(target))
+				{
+					/* this is kind of confusing, but basically we're seeing if the player is more or less than a certain angle away from where we're
+					currently pointing, and if they are, increase/decrease our angle by that distance */
+					
+					/* This is a special kind of error handler that prevents missile from moving completely straight and unable to fly towards the player
+					if the player moves directly straight against the direction missile is flying */
+					pxd = target.x - x;
+					pyd = target.y - y;
+					pangle = 0;
+					if (pxd != 0)
+					{
+						pangle = point_direction(x, y, target.x, target.y);
+					}
+					else
+					{
+						if (pyd &gt;= 0)
+						{
+							pangle = 270;
+						}
+						if (pyd &lt; 0)
+						{
+							pangle = 90;
+						}
                     }
-                    else
-                    {
-                        if (pyd &gt;= 0)
-                        {
-                            pangle = 270;
-                        }
-                        if (pyd &lt; 0)
-                        {
-                            pangle = 90;
-                        }
-                    }
-                    
                     // and now that we have the angle the player is facing, we take the difference of the angles
                     change = direction - pangle;
                     
@@ -140,11 +152,11 @@ if (entityCanStep())
                     }
                     
                     /* this is interesting. So, by subtracting it by 180 it sort of aligns change to be how far away our angle to megaman is from our own angle
-                we're pointing at as if our own angle is centered at 0 */
+					we're pointing at as if our own angle is centered at 0 */
                     change -= 180;
                     
                     /* and now, we just check how off mega man is, and do stuff accordingly (and also I reuse change to become the distance we change the
-                angle )*/
+					angle )*/
                     if (change &gt; rotateChange)
                     {
                         change = rotateChange;
@@ -156,9 +168,9 @@ if (entityCanStep())
                     
                     direction += change;
                     cooldownTimer = 0;
-                }
-                break;
-        }
+				}
+            }
+            break;
     }
 }
 else if (dead)
@@ -177,6 +189,29 @@ if (missileID &gt; -1)
             canCreateMissiles = 4;
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_perform_object(prtEntity,ev_other,ev_user10);
 </string>
           </argument>
         </arguments>

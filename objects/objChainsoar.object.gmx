@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// An enemy that rolls back and forth, deflecting shots to the front with its buzzsaw.
-// Killing it releases the buzzsaw, which charges straight forwards after a small delay.
+            <string>/// An enemy that rolls back and forth, deflecting shots to the front with its buzzsaw.
+/// Killing it releases the buzzsaw, which charges toward the player after a small delay.
+/// Good for being the primary threat in certain platforming and gimmick challenges, possibly supported by other enemies.
 
 event_inherited();
 

@@ -25,10 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Creation code (all optional):
-// col = &lt;number&gt; (0 = red (default); 1 = yellow)
-
-event_inherited();
+            <string>event_inherited();
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
@@ -36,20 +33,24 @@ contactDamage = 3;
 despawnRange=8;
 
 category = "aquatic, nature";
+bubbleTimer = -1;
 
 grav = 0;
 
 facePlayerOnSpawn = true;
 
 // Enemy specific code
-col = 0;
 init = 1;
-
 timer = 0;
-
-imgIndex = 0;
-imgSpd = 0.16;
 startXDir=image_xscale;
+imgIndex = 0;
+
+// Creation code (all optional):
+col = 0; // col = &lt;number&gt; (0 = red (default); 1 = yellow), set to anything else when using a custom sprite.
+imgSpd = 0.16; //animation speed
+radius= 48; // movement area width here
+spd = 1.6; //movement speed
+//image xscale sets default direction.
 </string>
           </argument>
         </arguments>
@@ -87,19 +88,19 @@ if (entityCanStep())
 {
     // animation
     imgIndex += imgSpd;
-    if (imgIndex &gt;= 4)
+    if (imgIndex &gt;= image_number)
     {
-        imgIndex = imgIndex mod 4;
+        imgIndex = imgIndex mod image_number;
     }
     
     // AI
-    range = 48; // &lt;-- movement area width here
-    if (xspeed == 0 || x &lt; xstart - range || x &gt; xstart + range)
+    
+    if (xspeed == 0 || x &lt; xstart - radius|| x &gt; xstart + radius)
     {
         image_xscale = -image_xscale;
     }
     
-    xspeed = 1.6 * image_xscale;
+    xspeed = spd * image_xscale;
 }
 
 image_index = imgIndex div 1;

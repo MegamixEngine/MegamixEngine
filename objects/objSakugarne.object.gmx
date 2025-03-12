@@ -46,6 +46,8 @@ bounce = 3;
 
 riderPhysicsAllowed = false;
 weaponsAllowed = true;
+
+autoFireSet = 32;
 </string>
           </argument>
         </arguments>
@@ -167,17 +169,14 @@ if (!global.frozen)
     
     if (active) // Riding it
     {
-        if (global.ammo[playerID, global.weapon[playerID]] &gt; 0
-            &amp;&amp; instance_exists(parent))
+        if (ammoCanAfford(playerID) &amp;&amp; instance_exists(parent))
         {
             image_xscale = parent.image_xscale;
             x = parent.x;
             y = parent.y + 10 * parent.image_yscale;
             
             // Take away ammo
-            global.ammo[playerID, global.weapon[playerID]] = max(0,
-                global.ammo[playerID, global.weapon[playerID]]
-                - (0.015 / (global.energySaver + 1)));
+            ammoDecrease(playerID, 0.015 - (.0075 * (global.energySaver &gt; 0)));
         }
         else // Teleport away if out of ammo
         {
@@ -274,7 +273,7 @@ event_user(8);
 
 if (other.reflectable == 1)
 {
-    playSFX(sfxEnemyHit);
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
     with (other)
     {
         instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
@@ -303,8 +302,7 @@ if (other.reflectable == 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT)
-&amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
+            <string>if (performShoot) &amp;&amp; ammoCanAfford(playerID)
 {
     i = fireWeapon(26, 0, objRushTeleport, 1, 0, 0, 0);
     with (i)

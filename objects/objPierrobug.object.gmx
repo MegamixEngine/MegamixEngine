@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Creation code (all optional):
+            <string>/// A stationary beetle that, on a set timer, tosses three balls at once, each moving in a slightly different arc. The ball color can be customized.
+/// Although it may not look like it, this enemy is only vulnerable when it turns to fire. It is immune to non-piercing weapons while idle. 
+/// Works well in timing-based challenges due to its predictable nature.
+
+// Creation code (all optional):
 // col = &lt;number&gt; (0 = grey ball(default); 1 = teal ball; )
 
 event_inherited();
@@ -47,6 +51,8 @@ timerAdd = 1;
 beginShoot = 0;
 objectThrown = objPierrobugBall;
 col = 0;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

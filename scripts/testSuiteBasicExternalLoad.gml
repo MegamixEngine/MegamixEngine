@@ -13,20 +13,20 @@ if (unitCase("External room loading"))
     if (unitBegin())
     {
         // load external room
-        rmUnitTestRecordBasic = roomExternalLoad("UnitTests/Rooms/rmUnitTestBasic");
+        lvlUnitTestRecordBasic = roomExternalLoad("UnitTests/Rooms/lvlUnitTestBasic");
         
         // makes sure room loaded
-        unitRequire(rmUnitTestRecordBasic >= 0);
+        unitRequire(lvlUnitTestRecordBasic >= 0);
         if (unitValid()) // ensure require did not fail
         {
-            room_goto(rmUnitTestRecordBasic);
+            room_goto(lvlUnitTestRecordBasic);
         }
     }
     
     if (unitTick())
     {
         // ensure room changed.
-        unitRequire(room == rmUnitTestRecordBasic, "Did not go to the correct room.");
+        unitRequire(room == lvlUnitTestRecordBasic, "Did not go to the correct room.");
         
         // finish test.
         unitEnd();
@@ -35,6 +35,6 @@ if (unitCase("External room loading"))
     // clean-up
     if (unitCleanUp())
     {
-        room_goto(rmUnitTest);
+        room_goto(lvlShowcaseHUB);
     }
 }

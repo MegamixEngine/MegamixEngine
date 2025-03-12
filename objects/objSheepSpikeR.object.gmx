@@ -28,6 +28,8 @@
             <string>event_inherited();
 colourBlock = objSheepBlockR;
 spawn = objSpike;
+mySprite[0] = sprite_index;
+mySprite[1] = sprSheepSpikeDiamond;
 </string>
           </argument>
         </arguments>

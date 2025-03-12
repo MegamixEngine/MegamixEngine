@@ -25,8 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// creation code (all optional)
-// back = &lt;boolean&gt; (false = appears in front; true = appears behind you)
+            <string>/// A rabbit that starts skiing in one direction and then randomly decides what to do next. Flip its starting direction in the editor.
+/// It may continue skiing, jump, twirl and jump, or suddenly turn around. It will also turn around at walls, and it glides off ledges.
+/// See the creation code if using Rabbiton with the sled gimmick (Gimmicks &gt; MM8 &gt; objMegaman8Sled) or autoscrolling (Gimmicks &gt; General &gt; objAutoScroller).
+
+// creation code (all optional)
+// back = &lt;boolean&gt; (false = appears in front; true = appears behind you):
 
 event_inherited();
 

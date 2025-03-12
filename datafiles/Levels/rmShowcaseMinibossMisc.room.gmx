@@ -10,7 +10,15 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>playMusic("Mega_Man_9.nsf","VGM", 33, 0, 0, 0, 1);</code>
+  <code>var sf = choose("_OST","");
+var vol = 1;
+if (sf == "")
+{//Nerf the Wii version's volume (It's a little loud by comparison).
+    vol = .8;
+}
+playMusic("MM9/31_Special.mid","MIDI","MM9/MM9" + sf + ".sf2",true,vol);
+
+//playMusic("Mega_Man_9.nsf","VGM", 33, 0, 0, 0, 1);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

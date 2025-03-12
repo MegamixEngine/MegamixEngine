@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 0;
+inWater = -1;
 
 penetrate = 3;
 pierces = 0;
@@ -142,9 +143,10 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
-    i = fireWeapon(16, 0, objSkeletuppinPakkajoe, 1, 0.1, 2, 1);
+    var ammoCost = 0.1 - (0.05 * (global.energySaver &gt; 0));
+    i = fireWeapon(16, 0, objSkeletuppinPakkajoe, 1, ammoCost, 2, 1);
     if (instance_exists(i))
     {
         i.dir = image_xscale;
@@ -176,7 +178,7 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weaponSetup("S.PAKKAJOE", global.nesPalette[6], global.nesPalette[40], sprWeaponIconsSkeletuppinPakkajoe);
+            <string>weaponSetup("S.PAKKAJOE", global.nesPalette[$6], global.nesPalette[$30], sprWeaponIconsSkeletuppinPakkajoe);
 </string>
           </argument>
         </arguments>

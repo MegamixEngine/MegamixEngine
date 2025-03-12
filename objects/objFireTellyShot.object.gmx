@@ -47,6 +47,10 @@ image_speed = 0;
 image_index = 0;
 
 reflectable = -1;
+
+
+repeatNum = 0;
+shotsFired = 0;
 </string>
           </argument>
         </arguments>
@@ -103,7 +107,13 @@ if (global.frozen == false &amp;&amp; global.timeStopped == false)
             }
             if (imgIndex &gt;= 8)
             {
-                instance_destroy();
+                if (shotsFired &lt; repeatNum)
+                {
+                    imgIndex = 4;
+                    shotsFired ++;
+                }
+                else
+                    instance_destroy();
             }
             break;
     }

@@ -35,6 +35,8 @@ stopOnFlash = false;
 // Unique variables
 canTurn = false;
 hasTurned = false;
+explosionDamage = 5;
+explosionCount = 4;
 </string>
           </argument>
         </arguments>
@@ -71,6 +73,7 @@ if (entityCanStep())
                 yspeed = 3;
                 sprite_index = sprCommandoManBombVer;
                 playSFX(sfxCommandoBombTurn);
+                instance_create(bboxGetXCenter(),bboxGetYCenter(),objExplosion);
                 hasTurned = true;
             }
         }
@@ -85,7 +88,7 @@ if (entityCanStep())
                 if ((canHit) &amp;&amp; (iFrames == 0))
                 {
                     instance_create(x, y, objHarmfulExplosion);
-                    playSFX(sfxMM9Explosion);
+                    playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
                     with (other)
                         instance_destroy();
                 }
@@ -93,28 +96,27 @@ if (entityCanStep())
         }
     }
     
-    if ((xcoll != 0) || (ycoll != 0))
-    {
+    if ((xcoll != 0) || (ycoll != 0)) {
         // Create wall explosions
-        if (sprite_index == sprCommandoManBombHor)
-        {
-            var i = instance_create(x + 7 * image_xscale, y - 7, objCommandoBombExplosion);
-            i.image_xscale = image_xscale;
-            i.image_yscale = -1;
-            var i = instance_create(x + 7 * image_xscale, y + 7, objCommandoBombExplosion);
-            i.image_xscale = image_xscale;
-            i.image_yscale = 1;
+        if (sprite_index == sprCommandoManBombHor) {
+            for (var i = -1; i &lt;= 1; i += 2) {
+                var expl = instance_create(x + 7 * image_xscale, y + 7 * i, objCommandoBombExplosion);
+                expl.image_xscale = image_xscale;
+                expl.image_yscale = i;
+                expl.contactDamage = explosionDamage;
+                expl.shotsLeft = explosionCount;
+            }
         }
         
         // Create ground explosions
-        if (sprite_index == sprCommandoManBombVer)
-        {
-            var i = instance_create(x + 7, y + 7, objCommandoBombExplosion);
-            i.sprite_index = sprCommandoExplosionHor;
-            i.image_xscale = 1;
-            var i = instance_create(x - 7, y + 7, objCommandoBombExplosion);
-            i.sprite_index = sprCommandoExplosionHor;
-            i.image_xscale = -1;
+        if (sprite_index == sprCommandoManBombVer) {
+            for (var i = -1; i &lt;= 1; i += 2) {
+                var expl = instance_create(x + 7 * i, y + 7, objCommandoBombExplosion);
+                expl.sprite_index = sprCommandoExplosionHor;
+                expl.image_xscale = i;
+                expl.contactDamage = explosionDamage;
+                expl.shotsLeft = explosionCount;
+            }
         }
         
         playSFX(sfxCommandoBombExplode);

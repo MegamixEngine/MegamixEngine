@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A teleporting enemy that lifts into the air, disappears for a moment, and then reappears somewhere above the player before dropping back down.
+/// Depending on the architecture, Tamp may reappear immediately overhead, or on the other side of a platform, or right on top of the player.
+/// Tamp can easily be scrolled off screen before it becomes a threat, so plan your challenges accordingly. May require some trial-and-error to use effectively.
+
+event_inherited();
 
 healthpointsStart = 6;
 healthpoints = healthpointsStart;
@@ -194,6 +198,7 @@ canDamage = true;
 canHit = true;
 moveTimer = 30;
 warpDelay = 30;
+phase = 0;
 image_alpha = 1;
 </string>
           </argument>

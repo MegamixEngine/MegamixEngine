@@ -10,7 +10,7 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>playMusic("Wily4StairwaytoDarkness.ogg", "OGG", 4, 0, 40.509, true, 1);
+  <code>playMusic("MM10/32_Wily4.mid","MIDI","MM10/MM10.sf2");//"Wily4StairwaytoDarkness.ogg", "OGG", 4, 0, 40.509, true, 1);
 
 with objTeleporter
 light = 2;
@@ -146,7 +146,7 @@ isTile = true;</code>
     <instance objName="objLifeEnergyBig" x="160" y="32" name="inst_D4EEE171" locked="0" code="if (global.difficulty == DIFF_EASY)&#xA;    instance_destroy();&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="80" y="32" name="inst_A899A982" locked="0" code="if (global.difficulty == DIFF_EASY)&#xA;    instance_destroy();&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="128" y="144" name="inst_2AB370BC" locked="0" code="X = 640;&#xA;Y = 352;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="592" y="304" name="inst_04C26DCC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="592" y="304" name="inst_04C26DCC" locked="0" code="name = &quot;Boss rush&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="512" y="448" name="inst_A659AE06" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="768" y="448" name="inst_9E5F884A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1024" y="448" name="inst_114380C0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -189,7 +189,7 @@ isTile = true;</code>
     <instance objName="objDestroyField" x="832" y="848" name="inst_E2B11CEB" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="8" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="864" y="832" name="inst_0BB04310" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="4" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="544" y="336" name="inst_E6E9176C" locked="0" code="X = 800;&#xA;Y = 848;&#xA;if (global.difficulty == DIFF_EASY)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="592" y="976" name="inst_736BAB2E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="592" y="976" name="inst_736BAB2E" locked="0" code="name = &quot;Completed boss rush&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="640" y="1008" name="inst_C1CB1F90" locked="0" code="if (global.difficulty == DIFF_NORMAL)&#xA;{&#xA;        X = 544;&#xA;        Y = 1312;&#xA;}&#xA;if (global.difficulty == DIFF_EASY)&#xA;{&#xA;        X = 864;&#xA;        Y = 1088;&#xA;}&#xA;if (global.difficulty == DIFF_HARD)&#xA;{&#xA;        X = 896;&#xA;        Y = 1536;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objToadMan" x="976" y="624" name="inst_5A84F2E3" locked="0" code="music = &quot;Mega_Man_4.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 17;&#xA;&#xA;itemDrop = objLifeEnergyBig;&#xA;useEndStageBehavior = false;&#xA;if (global.difficulty &gt; DIFF_EASY)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCrashMan" x="464" y="400" name="inst_43FBAAF9" locked="0" code="itemDrop = objLifeEnergyBig;&#xA;useEndStageBehavior = false;&#xA;if (global.difficulty &gt; DIFF_EASY)&#xA;    instance_destroy();" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -227,7 +227,7 @@ isTile = true;</code>
     <instance objName="objBoobeam" x="1264" y="976" name="inst_8ED1A905" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBoobeam" x="1024" y="1088" name="inst_208EEF39" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBoobeam" x="1264" y="1072" name="inst_55F3B8ED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBoobeamControl" x="1136" y="960" name="inst_ECB315D3" locked="0" code="music = &quot;Mega_Man_5GB.GBS&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 30;&#xA;&#xA;elementName = &quot;wily5&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBoobeamControl" x="1136" y="960" name="inst_ECB315D3" locked="0" code="music = &quot;Mega_Man_5GB.GBS&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 30;&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCustomSpawner" x="1216" y="896" name="inst_E186CCC2" locked="0" code="object = objWeaponEnergyBig;&#xA;startWait = 140;&#xA;spawnWait = 480;&#xA;limit = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyableBlock" x="1040" y="1072" name="inst_B91D507D" locked="0" code="grav = 0;&#xA;weakness = getWeaponID(objPharaohShot);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyableBlock" x="1216" y="1056" name="inst_A85A28C1" locked="0" code="grav = 0;&#xA;weakness = getWeaponID(objPharaohShot);" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -237,7 +237,7 @@ isTile = true;</code>
     <instance objName="objStopScrollingHorizontal" x="1024" y="1344" name="inst_CA175394" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSharkSubmarineTail" x="528" y="1440" name="inst_41521F85" locked="0" code="music = &quot;Mega_Man_9.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 30;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSharkSubmarineBody" x="272" y="1440" name="inst_41A56AC8" locked="0" code="music = &quot;Mega_Man_9.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 30;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objSharkSubmarineHead" x="240" y="1440" name="inst_DFC30794" locked="0" code="elementName = &quot;wily5&quot;;&#xA;&#xA;music = &quot;Mega_Man_9.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 30;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objSharkSubmarineHead" x="240" y="1440" name="inst_DFC30794" locked="0" code="music = &quot;Mega_Man_9.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 30;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="832" y="1536" name="inst_BD602554" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="800" y="1536" name="inst_ED8AE98F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergySmall" x="944" y="1536" name="inst_FD70C14F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

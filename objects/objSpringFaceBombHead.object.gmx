@@ -73,7 +73,7 @@ if (entityCanStep())
     {
         bwooooaaaaaaa = instance_create(x, y, objHarmfulExplosion);
         bwooooaaaaaaa.contactDamage = 3;
-        playSFX(sfxExplosion2);
+        playSFX(getGenericSFX(SFX_EXPLOSION2));
         instance_destroy();
     }
 }

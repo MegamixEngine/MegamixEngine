@@ -3,9 +3,9 @@
 
 global.unitSuiteName = argument0;
 global.unitSuiteScript = argument1;
-global.unitTestCaseNames = ds_list_create();
-global.unitTestWarns = ds_list_create();
-global.unitTestErrors = ds_list_create();
+global.unitTestCaseNames = mm_ds_list_create();
+global.unitTestWarns = mm_ds_list_create();
+global.unitTestErrors = mm_ds_list_create();
 global.unitTestsRun = 0;
 global.unitTestCase = "";
 global.unitTestAction = -1; // -1: read suite. 0: new test. 1: begin / execute. 2: tick. 3: tick-terminate. 4: terminate. 5: completed
@@ -15,7 +15,7 @@ global.unitTestAction = -1; // -1: read suite. 0: new test. 1: begin / execute. 
 // - unitTestCaseResults: a ds_list of structs containing info about each case
 global.unitTestSuiteResults = makeStruct();
 global.unitTestSuiteResults.suiteName = global.unitSuiteName;
-global.unitTestSuiteResults.unitTestCaseResults = ds_list_create();
+global.unitTestSuiteResults.unitTestCaseResults = mm_ds_list_create();
 with (global.unitTestSuiteResults)
 {
     // defer cleanup

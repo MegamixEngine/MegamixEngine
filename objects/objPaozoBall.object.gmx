@@ -44,6 +44,7 @@ blockCollision = false;
 image_speed = 0;
 parent = noone;
 canBounce = false;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

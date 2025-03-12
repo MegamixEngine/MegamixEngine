@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Creation code (all optional):
+            <string>/// A fish that moves in a slow sine wave pattern, periodically shooting bullets in 8 directions.
+/// It's effective as a standalone threat, but it also works well in challenges where the focus is more on platforming than combat.
+/// Can be used in or out of water.
+
+// Creation code (all optional):
 // image_yscale = 1 or -1 //(Use editor for this!!) // if -1, Ace Manbow will go up instead of down at beginning.
 // moveDistance = &lt;number&gt; // The distance in which Ace Manbow moves before changing direction. Default is 80 pixels. Should be divisible by spd.
 // spd = &lt;number&gt; //How fast Ace Manbow moves. Default is 0.5. Number should be divisible by 0.03125
@@ -39,6 +43,7 @@ healthpoints = healthpointsStart;
 contactDamage = 3;
 blockCollision = 0;
 category = "aquatic, nature";
+bubbleTimer = -1;
 
 grav = 0;
 facePlayerOnSpawn = true;
@@ -56,6 +61,8 @@ yspeed = 0.5;
 cooldownTimer = 0;
 cooldownMax = 128;
 col = 0;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>
@@ -98,7 +105,7 @@ if (entityCanStep())
             inst = instance_create(x, y, objMM1MetBullet);
             inst.dir = 45 * i;
             inst.xscale = image_xscale;
-            inst.sprite_index = sprEnemyBullet;
+            inst.sprite_index = sprEnemyBulletMM5;
             playSFX(sfxEnemyShootClassic);
         }
     }
@@ -177,26 +184,12 @@ else if (dead)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Ace Manbow is always drawn upright, regardless of what Image_Yscale says. Image_yscale is used to determine which direction it moves in.
-if (!dead)
-{
-    draw_sprite_ext(sprite_index, image_index, round(x), floor(y), image_xscale, 1, image_angle, image_blend, image_alpha);
-}
-if ((iFrames == 1 || iFrames == 3) || (iceTimer &gt; 0))
-{
-    var flashcol = c_white;
-    if (iceTimer &gt; 0)
-        flashcol = make_color_rgb(0, 120, 255);
-    d3d_set_fog(true, flashcol, 0, 0);
-    draw_sprite_ext(sprite_index, image_index, round(x), floor(y), image_xscale, 1, image_angle, image_blend, image_alpha);
-    d3d_set_fog(false, 0, 0, 0);
-    if (iceTimer &gt; 0)
-    {
-        draw_set_blend_mode(bm_add);
-        draw_sprite_ext(sprite_index, image_index, round(x), floor(y), image_xscale, 1, image_angle, image_blend, image_alpha);
-        draw_set_blend_mode(bm_normal);
-    }
-}
+            <string>var ysc = image_yscale;
+image_yscale = 1;
+
+event_inherited();
+
+image_yscale = ysc;
 </string>
           </argument>
         </arguments>

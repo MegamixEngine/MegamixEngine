@@ -40,6 +40,8 @@ shiftVisible = 1;
 despawnRange = -1;
 respawnRange = -1;
 
+initEmergencyTimer = 5;
+
 image_speed = 0;
 
 // Enemy-specific variables
@@ -62,6 +64,14 @@ yMax = -1;
 
 // @cc if false, this object's positon will not get reset upon leaving the screen
 resetMe = true;
+deadCheck = false;
+
+// @cc move another controllable lift with this one
+pairID = noone;
+
+// @cc snap to player position when spawning
+snapSpawn = false;
+snapSpawnOffset = 0;
 </string>
           </argument>
         </arguments>
@@ -86,6 +96,18 @@ resetMe = true;
             <kind>1</kind>
             <string>event_inherited();
 
+if (snapSpawn &amp;&amp; initEmergencyTimer &gt; 0 &amp;&amp; insideSection(x, y))
+{
+    var myTarget = target;
+    if (!instance_exists(target))
+        myTarget = instance_find(objMegaman, 0);
+    
+    if (instance_exists(myTarget))
+        y = clamp(myTarget.y + snapSpawnOffset, yMin, yMax);
+    initEmergencyTimer --;
+    event_user(15);
+}
+
 if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
 {
     if (child == noone)
@@ -93,6 +115,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         child = instance_create(x, y, objControllableLiftOverlay);
         child.parent = id;
     }
+    deadCheck = true;
     
     if (yMax == -1)
     {
@@ -100,15 +123,17 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     }
     if (!active)
     {
+        var strSpd = spd;
         with (objMegaman)
         {
             if (!playerIsLocked(PL_LOCK_MOVE) &amp;&amp; ground)
             {
-                if (place_meeting(other.x, other.y - gravDir, other.id)
+                if (place_meeting(x, y + gravDir, other.id)
                     &amp;&amp; !place_meeting(x, y, other.id))
                 {
                     if (global.keyUp[playerID] || global.keyDown[playerID])
                     {
+                        
                         with (other)
                         {
                             dir = (global.keyDown[other.playerID] - global.keyUp[other.playerID]);
@@ -116,13 +141,24 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                             // if its already at its max for that position...Dont
                             // OR! don't... if megaman isnt fully on the elevator
                             if ((dir == -1 &amp;&amp; y &lt;= yMin) || (dir == 1 &amp;&amp; y &gt;= yMax)
-                                || (other.bbox_left &lt; x) || (other.bbox_right + 1 &gt; x + sprite_width))
+                                || (other.bbox_left - 2 &lt; x) || (other.bbox_right + 9 &gt; x + sprite_width))  || (dir == 0)
                             {
                                 exit;
                             }
-                            
+                            coopWarp(other.playerID,false,ceil(48/strSpd),true,false);
                             other.xspeed = 0;
                             active = true;
+                            
+                            if (pairID != noone)
+                            {
+                                with (pairID)
+                                {
+                                    dir = other.dir;
+                                    active = true;
+                                }
+                            }
+                            
+                            dispelUtilities();
                             
                             // lock player movement
                             lockPool = lockPoolLock(
@@ -163,11 +199,17 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                     y = yMax;
                 }
             }
-            
+            with (objCoOpWarpStar)
+            {
+                y += other.yspeed;
+                event_user(EV_DEATH);
+                
+            }
             // stop
             yspeed = 0;
             lockPool = lockPoolRelease(lockPool);
             lockPool = -1;
+            
             
             // reset
             if (!resetMe)
@@ -186,11 +228,53 @@ else if (dead)
     {
         instance_destroy();
     }
+    if (deadCheck)
+    {
+        with (objCoOpWarpStar)
+        {
+            y += other.yspeed;
+            event_user(EV_DEATH);
+            
+        }
+        deadCheck = false;
+    }
     child = noone;
     active = false;
     dir = 0;
     lockPool = -1;
     deltaY = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+
+if (spawned &amp;&amp; snapSpawn)
+{
+    setTargetStep();
+    if (instance_exists(target))
+    {
+        y = clamp(target.y + snapSpawnOffset, yMin, yMax);
+    }
 }
 </string>
           </argument>

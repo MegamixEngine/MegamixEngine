@@ -35,6 +35,7 @@ healthpointsStart = 15;
 healthpoints = healthpointsStart;
 contactDamage = 5;
 category = "bulky, nature";
+explosionSFX = sfxMM9ExplosionAlt;
 
 // Creation code
 
@@ -48,6 +49,8 @@ image_speed = 0;
 phase = 0;
 timer = 0;
 suckTimer = -1;
+//explosionSprite = sprExplosion;
+finalExplosionSprite = sprBigExplosion;
 </string>
           </argument>
         </arguments>

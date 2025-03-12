@@ -77,18 +77,20 @@ else
 }
 
 // Health Bar
-healthBarPrimaryColor[1] = 27;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $2C;
+healthBarSecondaryColor[1] = $30;
 
 // Music
-music = "Mega_Man_10.nsf";
-musicType = "VGM";
-musicTrackNumber = 18;
+music = "MM10/17_Boss.mid";
+musicType = "MIDI";
+musicTrackNumber = "MM10/MM10.sf2";
 
 // Damage Table
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -99,6 +101,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objBreakDash, 5);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -134,15 +140,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 1);
 
 // Misc.
 enemyDamageValue(objPowerStone, 2);
 enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -166,7 +173,7 @@ enemyDamageValue(objIceSlasher, 1);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>cS = instance_create(x + (24 * image_xscale), y + 3, objChillSpike);
+            <string>cS = instance_create(x + (24 * image_xscale), y + 3, objChillSpikeBoss);
 cS.image_xscale = image_xscale;
 cS.toWall = true;
 </string>
@@ -211,7 +218,7 @@ cS.toWall = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>cS = instance_create(x + (24 * image_xscale), y + 3, objChillSpike);
+            <string>cS = instance_create(x + (24 * image_xscale), y + 3, objChillSpikeBoss);
 cS.image_xscale = image_xscale;
 cS.yspeed = -3;
 </string>
@@ -513,7 +520,7 @@ if (entityCanStep())
                     if (attackTimer &gt; 15 &amp;&amp; attackTimer mod 4 == 0
                         &amp;&amp; shotsFired &lt; 5)
                     {
-                        playSFX(sfxChillShoot);
+                        playSFX(sfxChillGloop);
                         cG = instance_create(x, y, objChillSpikeGenerator);
                         cG.cooldownTimer = 16 * (shotsFired + 1);
                         cG.spike = 4 - shotsFired;
@@ -552,6 +559,33 @@ if (entityCanStep())
 }
 else
 { }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
+{
+    sprite_index = sprChillJump;
+}
 </string>
           </argument>
         </arguments>
@@ -606,7 +640,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (objChillSpike)
+            <string>with (objChillSpikeBoss)
     instance_destroy();
 with (objChillSpikeSpike)
     instance_destroy();

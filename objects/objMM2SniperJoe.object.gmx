@@ -44,6 +44,21 @@ shootAmount = 0;
 
 respawnRange = -16;
 despawnRange = 16;
+
+
+//creation code
+
+waitShoot = 90; //how long a inactive sniper joe takes to fire
+initShoot = true; //whether or not the sniper joe starts firing
+
+jumpSpeed = -3; //how high sniper joe initially jumps
+bulletObject = -1; //if not -1, spawn specific projectile, otherwise basic projectile
+// in order for bullets to work it will need code in the bullet based off its x and y image scales.
+bulletSprite = sprFlashShot; // enemy bullet sprite;
+bulletDamage = -1; // if -1 then the base object shoots bullet damage, otherwise set to this.
+bulletMask = -1; //if not -1 then change mask
+shootTarget = 3; //how many shots sniper joe makes
+shootTimerMax = 32; //how fast sniper joe shoots 
 </string>
           </argument>
         </arguments>
@@ -75,7 +90,7 @@ if (entityCanStep())
     {
         image_index = 0;
         shootTimer += 1;
-        if (shootTimer &gt;= 90)
+        if (shootTimer &gt;= waitShoot)
         {
             shooting = true;
             shootTimer = 0;
@@ -85,18 +100,51 @@ if (entityCanStep())
     {
         image_index = 1;
         shootTimer += 1;
-        if (shootTimer &gt;= 32)
+        if (shootTimer &gt;= shootTimerMax)
         {
-            if (shootAmount &lt; 3)
+            if (shootAmount &lt; shootTarget)
             {
-                shootTimer = 0;
-                i = instance_create(x + 6 * image_xscale, y - 9,
+                if (bulletObject == -1)
+                {
+                    i = instance_create(x + 6 * image_xscale, y - 9,
                     objEnemyBullet);
-                i.xspeed = image_xscale * 2;
-                playSFX(sfxEnemyShootClassic);
+                    i.xspeed = image_xscale * 2;
+                    i.sprite_index = bulletSprite;
+                    if (bulletMask != -1)
+                        i.mask_index = bulletMask;
+                    else
+                        i.mask_index = bulletSprite;
+                    playSFX(sfxEnemyShootClassic);
+                    
+                    if (bulletDamage != -1)
+                    {
+                        i.contactDamage = bulletDamage;
+                    }
+                }
+                else
+                {
+                    i = instance_create(x + 6 * image_xscale, y - 9, bulletObject);
+                    i.image_xscale = image_xscale;
+                    i.image_yscale = image_yscale;
+                    if (bulletSprite != -1)
+                    {
+                        i.sprite_index = bulletSprite;
+                        if (bulletMask != -1)
+                            i.mask_index = bulletMask;
+                        else
+                            i.mask_index = bulletSprite;
+                    }
+                    
+                    if (bulletDamage != -1)
+                    {
+                        i.contactDamage = bulletDamage;
+                    }
+                }
+                shootTimer = 0;
+                
                 shootAmount += 1;
             }
-            if (shootAmount &gt;= 3)
+            if (shootAmount &gt;= shootTarget)
             {
                 shootTimer = 0;
                 shootAmount = 0;
@@ -108,10 +156,10 @@ if (entityCanStep())
 else if (dead)
 {
     shootTimer = 0;
-    shooting = true;
+    shooting = initShoot;
     shootAmount = 0;
     image_index = 1;
-    yspeed = -3;
+    yspeed = jumpSpeed;
 }
 </string>
           </argument>

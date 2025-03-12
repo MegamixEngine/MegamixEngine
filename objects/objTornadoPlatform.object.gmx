@@ -25,7 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// Players who land on this platform will stick to it, moving up and down as it rotates. Depending on their position, pressing JUMP will make them jump up or fall down.
+/// By default, this platform moves horizontally along a track, but it can be made stationary with creation code (mySpeed = 0).
+/// Use horizontal rails and bumpers (Gimmicks &gt; General &gt; Invisible Rails) to build the track. Rails are required even if the platform is stationary.
+/// If desired, place tiles (e.g. Tilesets &gt; MM9 &gt; tstTornadoman) onto the rail objects to show players where the track is.
+/// Can be difficult to use in a non-frustrating way, and utilizes unique player sprites that most sprite artists find challenging to draw.
+
+event_inherited();
 canHit = false;
 
 image_speed = 0.1;
@@ -45,10 +51,10 @@ mySpeed = 1;
 // Enemy-specific code
 spinRate = (1 / 3);
 spinMod = 10;
-spinTimer = 0;
 
 for (i = 0; i &lt; global.playerCount; i += 1)
 {
+    spinTimer[i] = 0; 
     attached[i] = false;
     attachX[i] = x;
     offset[i] = 0;
@@ -94,7 +100,7 @@ with (objMegaman)
             other.image_yscale = 1;
             
             sprx = (animOffset[other.playerID] * 3);
-            spry = 12;
+            spry = 13;
             
             with (other)
             {
@@ -164,102 +170,105 @@ if (!global.frozen &amp;&amp; !dead)
     }
     
     // Rotate this absolute madman if they're touching the platform
-    with (objMegaman)
+    for (var i = 0; i &lt; global.playerCount; i ++)
     {
-        with (other)
+        with (instance_find(objMegaman, i))
         {
-            // Check if the player is touching the platform or is already attached
-            if ((place_meeting(x, y - other.gravDir * 2, other) &amp;&amp; !place_meeting(x, y, other) &amp;&amp; other.ground)
-                || attached[other.playerID])
+            with (other)
             {
-                // If they're not attached, start ROTATING
-                if (!attached[other.playerID])
+                // Check if the player is touching the platform or is already attached
+                if ((place_meeting(x, y - other.gravDir * 2, other) &amp;&amp; !place_meeting(x, y, other) &amp;&amp; other.ground)
+                    || attached[other.playerID])
                 {
-                    attached[other.playerID] = true;
-                    with (other)
-                        other.shootLock[playerID] = lockPoolLock(localPlayerLock[PL_LOCK_SHOOT]);
-                    attachX[other.playerID] = other.x - x; // set x rotation origin
-                    
-                    spinTimer = 0; // reset timer
-                    
-                    // based on where they land on the platform, set the proper Stuff
-                    if (other.y &gt; y + 8)
+                    // If they're not attached, start ROTATING
+                    if (!attached[other.playerID])
                     {
-                        offset[other.playerID] = 1;
-                        animOffset[other.playerID] = 0;
-                        playerDir[other.playerID] = -1;
-                    }
-                    else
-                    {
-                        offset[other.playerID] = 0;
-                        animOffset[other.playerID] = 0;
-                        playerDir[other.playerID] = 1;
-                    }
-                } // Actual rotating code
-                else if (attached[other.playerID])
-                {
-                    // Update position + variables
-                    
-                    // Rotate UNLESS the platform is over a drop rail
-                    if (image_speed &gt; 0)
-                    {
-                        spinTimer += 1;
+                        attached[other.playerID] = true;
+                        with (other)
+                            other.shootLock[playerID] = lockPoolLock(localPlayerLock[PL_LOCK_SHOOT]);
+                        attachX[other.playerID] = other.x - x; // set x rotation origin
                         
-                        if (spinTimer mod spinMod == 0)
+                        spinTimer[other.playerID] = 0; // reset timer
+                        
+                        // based on where they land on the platform, set the proper Stuff
+                        if (other.y &gt; y + 8)
                         {
-                            offset[other.playerID] += spinRate * playerDir[other.playerID];
-                            animOffset[other.playerID] += spinRate;
-                        }
-                    }
-                    
-                    // handle playerDirection spinning when going under the platform etc
-                    if (offset[other.playerID] &gt;= 1)
-                    {
-                        offset[other.playerID] = 1;
-                        animOffset[other.playerID] = 1;
-                        playerDir[other.playerID] = -1;
-                    }
-                    if (offset[other.playerID] &lt;= 0)
-                    {
-                        offset[other.playerID] = 0;
-                        animOffset[other.playerID] = 0;
-                        playerDir[other.playerID] = 1;
-                    }
-                    
-                    // handle depth of player
-                    depth = other.depth - playerDir[other.playerID];
-                    
-                    // Jumping off the platform
-                    if (global.keyJumpPressed[other.playerID])
-                    {
-                        if (offset[other.playerID] &gt; 0.5)
-                        {
-                            other.yspeed = other.jumpSpeed;
-                            other.canMinJump = true;
+                            offset[other.playerID] = 1;
+                            animOffset[other.playerID] = 0;
+                            playerDir[other.playerID] = -1;
                         }
                         else
                         {
-                            other.yspeed = -other.jumpSpeed;
-                            other.canMinJump = true;
+                            offset[other.playerID] = 0;
+                            animOffset[other.playerID] = 0;
+                            playerDir[other.playerID] = 1;
                         }
-                        attached[other.playerID] = false;
+                    } // Actual rotating code
+                    else if (attached[other.playerID])
+                    {
+                        // Update position + variables
                         
-                        // It was easier to just flip the players sprites temporarily for this
-                        other.image_yscale = other.gravDir;
-                        shootLock[other.playerID] = lockPoolRelease(shootLock[other.playerID]);
+                        // Rotate UNLESS the platform is over a drop rail
+                        if (image_speed &gt; 0)
+                        {
+                            spinTimer[other.playerID] += 1;
+                            
+                            if (spinTimer[other.playerID] mod spinMod == 0)
+                            {
+                                offset[other.playerID] += spinRate * playerDir[other.playerID];
+                                animOffset[other.playerID] += spinRate;
+                            }
+                        }
+                        
+                        // handle playerDirection spinning when going under the platform etc
+                        if (offset[other.playerID] &gt;= 1)
+                        {
+                            offset[other.playerID] = 1;
+                            animOffset[other.playerID] = 1;
+                            playerDir[other.playerID] = -1;
+                        }
+                        if (offset[other.playerID] &lt;= 0)
+                        {
+                            offset[other.playerID] = 0;
+                            animOffset[other.playerID] = 0;
+                            playerDir[other.playerID] = 1;
+                        }
+                        
+                        // handle depth of player
+                        depth = other.depth - playerDir[other.playerID];
+                        
+                        // Jumping off the platform
+                        if (global.keyJumpPressed[other.playerID])
+                        {
+                            if (offset[other.playerID] &gt; 0.5)
+                            {
+                                other.yspeed = other.jumpSpeed;
+                                other.canMinJump = true;
+                            }
+                            else
+                            {
+                                other.yspeed = -other.jumpSpeed;
+                                other.canMinJump = true;
+                            }
+                            attached[other.playerID] = false;
+                            
+                            // It was easier to just flip the players sprites temporarily for this
+                            other.image_yscale = other.gravDir;
+                            shootLock[other.playerID] = lockPoolRelease(shootLock[other.playerID]);
+                        }
+                        
+                        // no land sound pls
+                        if (instance_exists(target))
+                            target.playLandSound = 0;
                     }
-                    
-                    // no land sound pls
-                    if (instance_exists(target))
-                        target.playLandSound = 0;
                 }
-            }
-            else
-            {
-                // This replicates the flicker effect seen in MM9
-                depth *= -1;
-                if (depth == 0)
-                    depth = 1;
+                else
+                {
+                    // This replicates the flicker effect seen in MM9
+                    depth *= -1;
+                    if (depth == 0)
+                        depth = 1;
+                }
             }
         }
     }

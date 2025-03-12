@@ -36,7 +36,7 @@ respawn = false;
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 2;
-
+bubbleTimer = -1;
 // enemy specific
 calibrateDirection();
 </string>

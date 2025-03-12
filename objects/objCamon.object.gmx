@@ -36,7 +36,17 @@ category = "grounded";
 facePlayerOnSpawn = true;
 
 // Enemy specific code
+hasFired = false;
+shotBool = false;
+attackTimer = 0;
+
+//creation code
 image_speed = 0.125;
+slowdown = 0; // if 1, then reduce camon speed after its initial speed is set
+turnRound = true; //if false, dont turn when hitting wall
+attackTimerMax = 0; //if set, how long camon waits before moving again, if at xspeed 0. set to -1 to never make it move again.
+spd = 1.5; //speed of movement
+jumpY = 0; //'jump speed' when spawning
 </string>
           </argument>
         </arguments>
@@ -63,23 +73,72 @@ image_speed = 0.125;
 
 if (entityCanStep())
 {
-    if (!ground)
+    if (attackTimer &gt;= attackTimerMax &amp;&amp; attackTimerMax != -1)
     {
-        xspeed = 0;
+        hasFired = false;
+        attackTimer = 0;
+        if (!turnRound)
+            calibrateDirection();
     }
     
-    if (xspeed == 0 &amp;&amp; yspeed == 0 &amp;&amp; ground)
+    if (!ground &amp;&amp; !hasFired)
     {
-        xspeed = 1.5 * image_xscale;
+        if (jumpY == 0 || shotBool)
+            xspeed = 0;
     }
     
-    xSpeedTurnaround();
+    if (xspeed == 0 &amp;&amp; yspeed == 0 &amp;&amp; ground &amp;&amp; !hasFired)
+    {
+        xspeed = spd * image_xscale;
+        if (slowdown)
+        {
+            hasFired = true;
+        }
+    }
+    
+    if (ground)
+    {
+        shotBool = true;
+    }
+    
+    if (turnRound)
+    {
+        xSpeedTurnaround();
+        if (attackTimerMax &gt; 0)
+        {
+            hasFired = true;
+            xspeed = 0;
+        }
+        
+    }
+    else 
+    {
+        if (xcoll != 0)
+        {
+            xspeed = 0;
+            hasFired = true;
+        }
+    }
+        
+    if (hasFired)
+    {
+        var newSpeed = min(0,abs(xspeed) - 0.04);
+        xspeed = newSpeed * image_xscale; 
+        if (image_xscale &gt;= 1 &amp;&amp; xspeed &lt;= 0 || image_xscale &lt;= -1 &amp;&amp; xspeed &gt;= 0)
+        {
+            attackTimer ++;
+            xspeed = 0;
+        }
+    }
 }
 else if (dead)
 {
     xspeed = 0;
     yspeed = 0;
     image_index = 0;
+    hasFired = false;
+    attackTimer = 0;
+    shotBool = false;
 }
 </string>
           </argument>
@@ -107,7 +166,9 @@ else if (dead)
 
 if (spawned)
 {
-    xspeed = 1.5 * image_xscale;
+    xspeed = spd * image_xscale;
+    yspeed = jumpY * image_yscale;
+    attackTimer = 0;
 }
 </string>
           </argument>

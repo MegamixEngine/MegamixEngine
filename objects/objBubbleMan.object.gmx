@@ -53,8 +53,8 @@ animBack = false;
 child = noone;
 
 // Health Bar
-healthBarPrimaryColor[1] = 22;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $19;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_2.nsf";
@@ -65,6 +65,8 @@ musicTrackNumber = 17;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 4);
@@ -76,6 +78,10 @@ enemyDamageValue(objThunderBeam, 4);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -113,13 +119,13 @@ enemyDamageValue(objHomingSniper, 1);
 // MaG48MML
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 1);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 2);
 </string>
           </argument>
@@ -185,8 +191,7 @@ if (entityCanStep())
             
             if (sprite_index != idleSprite) &amp;&amp; (!instance_exists(child))
             {
-                child = instance_create(x, y, objBubbleManWaterSprout);
-                child.parent = id;
+                child = entityCreateChild(0, 0, objBubbleManWaterSprout);
             }
             else if (sprite_index == idleSprite)
             {
@@ -218,11 +223,10 @@ if (entityCanStep())
                         imgIndex += 0.1;
                         if (imgIndex == 1)
                         {
-                            var i = instance_create(x, bbox_top, objBubbleManLead);
+                            var i = entityCreateChild(0, 0, objBubbleManLead);
+                            i.y = bbox_top;
                             i.xspeed = 1 * image_xscale;
                             i.yspeed = -2;
-                            i.image_xscale = image_xscale;
-                            i.parent = id;
                         }
                         else if (imgIndex == 2)
                         {
@@ -248,26 +252,25 @@ if (entityCanStep())
                             bubbleLimit = choose(0, 1, 2);
                             
                             // Fire a shot
-                            var i = instance_create(x + 16 * image_xscale, y, objBubbleBullet);
-                            i.image_xscale = image_xscale;
-                            i.xspeed = 2 * image_xscale;
-                            i.parent = id;
-                            
-                            if (inWater)
+                            with (entityCreateChild(16, 0, objBubbleBullet))
                             {
-                                i.sprite_index = sprBubbleManShot;
-                            }
-                            else
-                            {
-                                i.sprite_index = sprBubbleManShotLand;
+                                xspeed = 2 * image_xscale;
+                                inWater = -1;
+                                if (place_meeting(x,y,objWater))//(inWater)
+                                {
+                                    sprite_index = sprBubbleManShot;
+                                }
+                                else
+                                {
+                                    sprite_index = sprBubbleManShotLand;
+                                }
                             }
                             
                             // Fire one more Bubble Lead before swimming
-                            var i = instance_create(x, bbox_top, objBubbleManLead);
+                            var i = entityCreateChild(0, 0, objBubbleManLead);
+                            i.y = bbox_top;
                             i.xspeed = 1 * image_xscale;
                             i.yspeed = -2;
-                            i.image_xscale = image_xscale;
-                            i.parent = id;
                         } // Do nothing if player dies
                         else
                         {
@@ -279,7 +282,7 @@ if (entityCanStep())
                 break;
             // Swim towards player
             case 1:
-                imgIndex += 0.2;
+                imgIndex += 0.15; //0.2;
                 
                 // Stop shooting if target X is reached
                 if (floor(x) == targX)
@@ -296,15 +299,18 @@ if (entityCanStep())
                 yCount += 0.5;
                 if ((yCount == 16) &amp;&amp; (sprite_index == sprBubbleShoot))
                 {
-                    var i = instance_create(x + 16 * image_xscale, y, objBubbleBullet);
-                    i.image_xscale = image_xscale;
-                    i.xspeed = 2 * image_xscale;
-                    i.parent = id;
-                    
-                    if (inWater)
+                    with (entityCreateChild(16, 0, objBubbleBullet))
                     {
-                        i.sprite_index = sprBubbleManShot;
-                        i.image_speed = 0.2;
+                        xspeed = 2 * image_xscale;
+                        inWater = -1;
+                        if (place_meeting(x,y,objWater))//(inWater)
+                        {
+                            sprite_index = sprBubbleManShot;
+                        }
+                        else
+                        {
+                            sprite_index = sprBubbleManShotLand;
+                        }
                     }
                     yCount = 0;
                 }
@@ -322,7 +328,7 @@ if (entityCanStep())
             case 2:
                 if (!ground)
                 {
-                    imgIndex += 0.2;
+                    imgIndex += 0.15; //0.2;
                 }
                 else
                 {
@@ -330,15 +336,18 @@ if (entityCanStep())
                     attackTimer++;
                     if (attackTimer == 1) &amp;&amp; (bubbleLimit != 0)
                     {
-                        var i = instance_create(x + 16 * image_xscale, y, objBubbleBullet);
-                        i.image_xscale = image_xscale;
-                        i.xspeed = 2 * image_xscale;
-                        i.parent = id;
-                        
-                        if (inWater)
+                        with (entityCreateChild(16, 0, objBubbleBullet))
                         {
-                            i.sprite_index = sprBubbleManShot;
-                            i.image_speed = 0.2;
+                            xspeed = 2 * image_xscale;
+                            inWater = -1; // Thanks, Stove.
+                            if (place_meeting(x,y,objWater))//(inWater)
+                            {
+                                sprite_index = sprBubbleManShot;
+                            }
+                            else
+                            {
+                                sprite_index = sprBubbleManShotLand;
+                            }
                         }
                     }
                     
@@ -383,7 +392,7 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (other.object_index == objWaterShield)
+            <string>if (other.object_index == objWaterShield) || (other.object_index == objWaterWave)
 {
     iFrames = 0;
     with (other)
@@ -417,7 +426,7 @@ if (entityCanStep())
             <kind>1</kind>
             <string>event_inherited();
 
-with (objEnemyBullet)
+with (objBubbleBullet)
 {
     if (parent == other.id)
     {

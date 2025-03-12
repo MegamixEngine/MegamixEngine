@@ -40,7 +40,7 @@ beginAttackTimer = false;
 imageTimer = 0;
 imageTimerMax = 99;
 
-// this is the minmum image_indexs of crash man for any given animation. imageNoMin is what the image_index is set to when plant man has finished an animation.
+// this is the minmum image_indexs of dangan man for any given animation. imageNoMin is what the image_index is set to when plant man has finished an animation.
 imageNoMin = 0;
 attackTimerMax = 145;
 phase = 0;
@@ -49,23 +49,24 @@ delay = 0;
 hasFired = false;
 setY = 0;
 setX = 0;
-introType = 2;
+//introType = 2;
 
 // health bar variables
-healthBarPrimaryColor[1] = 16;
-healthBarSecondaryColor[1] = 27;
+healthBarPrimaryColor[1] = $13;
+healthBarSecondaryColor[1] = $21;
 
 // Music
-music = "RnFBossNES.ogg";
-musicType = "OGG";
-musicLoopSecondsStart = 55.70;
-musicLoopSecondsEnd = 79.70;
-musicVolume = 0.8;
+music = "MegamixBossThemes.nsf";
+musicType = "VGM";
+musicVolume = 1;
+musicTrackNumber = 2;
 
 // Damage Table
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -76,6 +77,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 4);
 enemyDamageValue(objBreakDash, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -111,15 +116,16 @@ enemyDamageValue(objConcreteShot, 4);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 2);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 6);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -149,6 +155,8 @@ event_inherited();
 // all of dangan man's events trigger when the game isn't frozen.
 if (entityCanStep())
 {
+    if (isIntro) &amp;&amp; ((introType &lt; 2) &amp;&amp; (!quickSpawn))
+        sprite_index = pose;
     if (isFight == true)
     {
         image_speed = 0;
@@ -177,14 +185,14 @@ if (entityCanStep())
             }
         }
         
-        // resets the image timer if crash man ever changes poses
+        // resets the image timer if dangan man ever changes poses
         if (pose != sprite_index)
         {
             pose = sprite_index;
             imageTimer = 0;
         }
         
-        // these control various timers crash man uses - attackTimer and delay.
+        // these control various timers dangan man uses - attackTimer and delay.
         // attackTimer can trigger an attack to occur after a certain amount of ticks.
         // Delay - Delay is useful to use to stop code from firing too quickly.
         attackTimer += 1;
@@ -289,7 +297,7 @@ if (entityCanStep())
                     for (var i = 0; i &lt; 3; i += 1)
                     {
                         var inst;
-                        inst = instance_create(x + 4 * image_xscale, y + 2, objDanganBullet);
+                        inst = instance_create(x + 4 * image_xscale, y + 3, objDanganBullet);
                         inst.xspeed = (1.5 + i * 1.5) * image_xscale;
                         inst.storeX = abs(xspeed);
                         inst.image_xscale = image_xscale;
@@ -429,10 +437,61 @@ if (sprite_index == sprDanganRocket)
           <argument>
             <kind>1</kind>
             <string>with (objDanganBullet)
+{
+    instance_create(bboxGetXCenter(),bboxGetYCenter(),objExplosion);
     instance_destroy();
+}
 with (objHarmfulExplosion)
     instance_destroy();
 event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!dead)
+{
+    if (drawBoss)
+    {
+        if ((iFrames mod 4) &lt;= 2) || (!iFrames)
+        {
+            drawSelf();
+        }
+        else // Fixing hitspark position for bullet form
+        {
+            switch (sprite_index)
+            {
+                case sprDanganTransform1:
+                case sprDanganTransform2:
+                    draw_sprite_ext(sprHitspark,0,spriteGetXCenter(),spriteGetYCenter()+8,1,1,0,c_white,1);
+                    break;
+                case sprDanganRocket:
+                    draw_sprite_ext(sprHitspark,0,spriteGetXCenter(),spriteGetYCenter()+16,1,1,0,c_white,1);
+                    break;
+                default:
+                    draw_sprite_ext(sprHitspark,0,spriteGetXCenter(),spriteGetYCenter(),1,1,0,c_white,1);
+                    break;
+            }
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

@@ -1,0 +1,1 @@
+"GMSCacheManager/bin/Debug/netcoreapp3.1/GMSCacheManager.exe" -runLast

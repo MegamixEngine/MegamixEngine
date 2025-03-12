@@ -82,7 +82,7 @@ if (entityCanStep())
             {
                 with (other)
                 {
-                    if (abs(other.y - y) &lt; 40)
+                    if (abs(other.y - y) &lt; 40 &amp;&amp; !goup)
                     {
                         fallen = true;
                         xspeed = 1.5 * image_xscale;

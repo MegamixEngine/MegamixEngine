@@ -101,8 +101,12 @@ else if (dead == true)
 {
     with (other)
     {
-    if (!instance_exists(objGloop))
-        instance_create(x, y, objGloop);
+        if (!instance_exists(objGloop))
+        {
+            a = instance_create(x, y, objGloop);
+            a.playerID = playerID;
+			a.grav *= gravDir;
+        }
     }
     instance_destroy();
 }

@@ -80,6 +80,12 @@ global.dll_FMODSoundAdd = external_define("GMFMODSimple.dll", "FMODSoundAdd",
 if (WTF)
     show_message("Defined: FMODSoundAdd");
 
+// export double FMODMIDIAdd(LPCSTR soundfile, double threed, double streamed,LPCSTR soundfontFile)
+global.dll_FMODMIDIAdd = external_define("GMFMODSimple.dll", "FMODMIDIAdd",
+    dll_stdcall, ty_real, 4, ty_string, ty_real, ty_real, ty_string);
+if (WTF)
+    show_message("Defined: FMODMIDIAdd");
+
 
 // export double FMODMasterSetVolume(double volume)
 global.dll_FMODMasterSetVolume = external_define("GMFMODSimple.dll",

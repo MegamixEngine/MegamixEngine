@@ -26,17 +26,19 @@
           <argument>
             <kind>1</kind>
             <string>/// variables
+playMusic("Mega_Man_2.nsf", "VGM", 19, 0, 0, true, 1);
 
-controlsLocked = false; // controls are locked when switching menu modes
+optionText[0] = "CONTINUE";
+optionText[1] = "STAGE SELECT";
+optionText[2] = "TITLE SCREEN";
+
+//don't edit
+phase = 0;
+phaseTimer = 0;
 selection = 0;
 
-playMusic("Mega_Man_2.nsf", "VGM", 13, 0, 0, true, 1);
+global.livesRemaining = global.defaultLives;
 
-optionText[0] = "Return to Hub";
-optionText[1] = "Try Again";
-
-global.livesRemaining = 2;
-global.checkpoint = false;
 </string>
           </argument>
         </arguments>
@@ -59,46 +61,81 @@ global.checkpoint = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!controlsLocked)
+            <string>var currentPhase = phase;
+
+phaseTimer++;
+
+switch (phase)
 {
-    var selectionCount = 2;
-    
-    // switch selection
-    var yDir = 0;
-    for (var i = 0; i &lt; global.playerCount; i++)
-    {
-        yDir += global.keyDownPressed[i] - global.keyUpPressed[i];
-    }
-    selection = (selection + yDir) mod selectionCount;
-    selection = selection + selectionCount;
-    selection = selection mod selectionCount;
-    
-    if (yDir != 0)
-        playSFX(sfxMenuMove);
-    
-    var selected = false;
-    for (var i = 0; i &lt; global.playerCount; i++)
-    {
-        selected = selected || global.keyPausePressed[i];
-    }
-    
-    // select an option
-    if (selected)
-    {
-        stopMusic();
-        if (selection == 0)
+    case 0: //Wait before scrolling
+        if (phaseTimer == 150)
         {
-            // quit:
-            returnFromLevel();
-            lockControls = true;
+            phase = 1;
         }
-        else
+        break;
+    
+    case 1: //Scroll
+        if (phaseTimer == 4)
         {
-            // try stage again
-            goToLevel(global.stageStartRoom, false);
+            if (view_xview &lt; 256)
+            {
+                view_xview += 8;
+                phaseTimer = 0;
+            }
+            else
+            {
+                playMusic("Mega_Man_2.nsf", "VGM", 13, 0, 0, true, 1);
+                phase = 2;
+            }
         }
-        playSFX(sfxMenuSelect);
-    }
+        break;
+    
+    case 2: //Select option
+        // switch selection
+        var selected = false;
+        var yDir = 0;
+        
+        var selectionCount = array_length_1d(optionText);
+        
+        for (var i = 0; i &lt; global.playerCount; i++)
+        {
+            yDir += (global.keyDownPressed[i] - global.keyUpPressed[i]);
+            
+            selected = (selected || global.keyPausePressed[i]);
+        }
+        
+        if (yDir != 0)
+        {
+            selection = modf((selection + yDir), selectionCount);
+            
+            playSFX(sfxMenuMove);
+        }
+        
+        // select an option
+        if (selected)
+        {
+            stopMusic();
+            
+            switch (selection)
+            {
+                case 0: goToLevel(global.stage, false);  break; // try stage again
+                case 1: returnFromLevel();               break; // quit :(
+                case 2: global.nextRoom = rmTitleScreen; break; // exit to title screen
+            }
+            
+            playSFX(sfxMenuSelect);
+            phase = 3;
+        }
+        break;
+    
+    case 3: //Transitioning (no input)
+        //SORRY NOTHING
+        break;
+}
+
+if (currentPhase != phase)
+{
+    phaseTimer = 0;
 }
 </string>
           </argument>
@@ -122,25 +159,23 @@ global.checkpoint = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_white);
-draw_set_alpha(1);
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
-for (var i = 0; i &lt; 2; i++)
+            <string>clearDrawState();
+
+draw_text(96, 112, "GAME OVER");
+
+for (var i = 0; i &lt; array_length_1d(optionText); i++)
 {
-    var draw_y = 48 + i * 12;
+    var draw_y = 96 + (i * 16);
     
     // draw cursor
-    if (i == selection)
-        draw_sprite(sprOptionsCursor, 0, 24, draw_y);
+    if (i == selection) and (phase == 2)
+    {
+        draw_sprite(sprOptionsCursor, 0, 328, draw_y);
+    }
     
     // option text
-    draw_text(48, draw_y, optionText[i]);
+    draw_text(344, draw_y, optionText[i]);
 }
-
-draw_set_alpha(0.3);
-draw_text(0, 0, "Game Over#Make a better screen!#objGameOver :)");
-draw_set_alpha(1);
 </string>
           </argument>
         </arguments>

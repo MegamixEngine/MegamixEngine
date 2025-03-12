@@ -45,6 +45,9 @@ blockCollision = false;
 grav = 0;
 doesIntro = false;
 noFlicker = true;
+explosionSFX = sfxMM9Explosion;
+rescursiveExplosion = false;
+doExplosion = false;
 
 // Enemy specific code
 leftTower = noone;
@@ -53,6 +56,8 @@ center = noone;
 shooter = noone;
 flagYO = 0;
 flagImage = 0;
+drawDoor = true;
+drawFlag = false;
 
 // AI
 phase = 0;
@@ -90,14 +95,14 @@ if (entityCanStep())
 {
     if (phase == 0) // alive
     {
-        if (masterTimer == -1)
+        /*if (masterTimer == -1)
         {
             event_user(0);
             masterTimer = startTime;
             center.anim = 0;
             center.timer = 0;
             center.phase = 0;
-        }
+        }*/
         masterTimer += 1;
         
         if (masterTimer &gt; 60 * 9)
@@ -154,13 +159,15 @@ if (entityCanStep())
                 if (masterTimer &gt; 60 &amp;&amp; masterTimer &lt;= 60 * 3.5)
                 {
                     animFrame += 0.15;
-                    if (floor(animFrame) &gt; 4)
+                    if ((floor(animFrame) &gt; 4) &amp;&amp; !drawDoor) || ((floor(animFrame) &gt;= 5) &amp;&amp; drawDoor)
                     {
                         animFrame = 4;
+                        drawDoor = false;
                     }
                 }
                 else if (masterTimer &gt; 60 * 3.5 &amp;&amp; animFrame != 0)
                 {
+                    drawDoor = true;
                     animFrame += 0.15;
                     if (floor(animFrame) &gt; 7)
                     {
@@ -168,7 +175,7 @@ if (entityCanStep())
                     }
                 }
                 if (floor(animFrame) != floor(prevAnimFrame))
-                    playSFX(sfxDoor);
+                    playSFX(sfxDoorClassic);
             }
         }
     }
@@ -178,21 +185,30 @@ if (entityCanStep())
         phase = 1;
         timer = -1;
         flagYO = 0;
+        if (instance_exists(objTricastlePlatform))
+        {
+            with (objTricastlePlatform)
+            {
+                instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
+                instance_destroy();
+            }
+        }
     }
     
     if (phase == 0)
     {
+        if (timer &gt; -1)
+        {
+            timer += 1;
+        }
+        if (timer &gt; 60){
+            timer = -1;
+        }
         if (timer == -2) // Start throwing platforms
         {
             platHeight = choose(0, 1);
             timer = 0;
         }
-        if (timer &gt; -1)
-        {
-            timer += 1;
-        }
-        if (timer &gt; 60)
-            timer = -1;
         var p = noone;
         if (timer == 1)
         {
@@ -227,7 +243,7 @@ if (entityCanStep())
                 calibrateDirection();
         }
     }
-    else if (phase == 1) /// Dying
+    else if (phase == 1) /// Raise flag
     {
         if (timer == -1)
         {
@@ -235,33 +251,41 @@ if (entityCanStep())
             flagImage = 0;
         }
         timer += 1;
-        flagImage += 0.1;
-        if (flagImage &gt; 3)
-            flagImage = 0;
-        flagYO -= 1;
-        if (flagYO &lt; -16)
-            flagYO = -16;
-        if (timer &gt; 120)
+        if (timer &gt;= 60)
+        {
+            drawFlag = true;
+            flagImage += 0.1;
+            if (flagImage &gt; 3)
+                flagImage = 0;
+            flagYO -= 1;
+            if (flagYO &lt; -16)
+                flagYO = -16;
+        }
+        if (timer &gt; 180) //120)
         {
             phase = 2;
-            healthpoints = 0;
+            /*healthpoints = 0;
             dead = true;
             image_speed = 0.05;
             hitTimer = 0;
             event_user(EV_DEATH);
-            print("Dead ");
-            timer = -1;
+            print("Dead ");*/
+            timer = 0; //-1;
             image_index = 1;
         }
     }
+    else if (phase == 2) // Dying
+    {
+        event_user(1);
+    }
 }
-else if (dead)
+/*else if (!insideView) //(dead)
 {
     leftTower = noone;
     rightTower = noone;
     center = noone;
     shooter = noone;
-    if (deadTimer != 0 &amp;&amp; phase == 2)
+    /*if (deadTimer != 0 &amp;&amp; phase == 2)
     {
         deadTimer -= 0.5;
     }
@@ -282,7 +306,117 @@ else if (dead)
         image_index = 0;
         image_speed = 0;
         visible = false;
+        masterTimer = -1;
+        event_user(0);
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
+{
+    event_user(0);
+    masterTimer = startTime;
+    center.anim = 0;
+    center.timer = 0;
+    center.phase = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Crumble
+timer++;
+flagImage += 0.1; // Animate flag
+if (flagImage &gt; 3)
+    flagImage = 0;
+switch (timer)
+{
+    case 10:
+        instance_create(x + 76, y + 51, objBigExplosion);
+        playSFX(explosionSFX);
+        screenShake(230, 1, 1);
+        break;
+    case 25:
+        instance_create(x + 24, y + 12, objBigExplosion);
+        playSFX(explosionSFX);
+        break;
+    case 40:
+        instance_create(x + 104, y + 12, objBigExplosion);
+        playSFX(explosionSFX);
+        break;
+    case 55:
+        instance_create(x + 24, y + 76, objBigExplosion);
+        playSFX(explosionSFX);
+        break;
+    case 70:
+        instance_create(x + 104, y + 76, objBigExplosion);
+        playSFX(explosionSFX);
+        break;
+    case 85:
+        playSFX(sfxStrikeManSoccerBall);
+        break;
+}
+if (timer &gt;= 90) &amp;&amp; (timer &lt; 240)
+{
+    if (timer mod 10 == 0) &amp;&amp; (drawFlag)
+        with(instance_create(irandom_range(bbox_left,bbox_right),bbox_bottom,objExplosion))
+            sprite_index = sprCrashExplosion;
+    if (timer mod 20 == 0)
+    {
+        if (image_index != 6)
+            image_index++;
+        else if (drawFlag)
+            drawFlag = false;
+    }
+}
+if (timer == 240)
+{
+    healthpoints = 0;
+    dead = true;
+    hitTimer = 0;
+    //event_user(EV_DEATH);
+    killed = true;
+    print("Dead");
+    timer = -1;
 }
 </string>
           </argument>
@@ -313,6 +447,7 @@ if (!instance_exists(center))
     center.owner = id;
     center.healthpoints = 12;
     center.healthpointsStart = 12;
+    center.explosionSFX = explosionSFX;
 }
 if (!instance_exists(leftTower))
 {
@@ -321,6 +456,7 @@ if (!instance_exists(leftTower))
     leftTower.hasCannon = true;
     leftTower.healthpoints = 7;
     leftTower.healthpointsStart = 7;
+    leftTower.explosionSFX = explosionSFX;
 }
 if (!instance_exists(rightTower))
 {
@@ -329,6 +465,7 @@ if (!instance_exists(rightTower))
     rightTower.hasCannon = true;
     rightTower.healthpoints = 7;
     rightTower.healthpointsStart = 7;
+    rightTower.explosionSFX = explosionSFX;
 }
 </string>
           </argument>
@@ -361,27 +498,34 @@ if (!instance_exists(rightTower))
             yo = 27;
             break;
         case 1:
-            yo = 43;
+            yo = 27; //43;
             break;
         case 2:
-            yo = 59;
+            yo = 43; //59;
             break;
         case 3:
-            yo = 75;
+            yo = 59; //75;
             break;
         case 4:
-            yo = 91;
+            yo = 75; //91;
+            break;
+        case 5:
+            yo = 91; //103;
+            break;
+        case 6:
+            yo = 103;
             break;
         default:
             yo = 10000;
             break;
     }
-    draw_sprite(sprTricastleFlag, floor(flagImage), bbox_left + (abs(bbox_left - bbox_right) / 2), flagYO + bbox_top + yo);
+    if (drawFlag)
+        draw_sprite(sprTricastleFlag, floor(flagImage), bbox_left + (abs(bbox_left - bbox_right) / 2), flagYO + bbox_top + yo);
 }
 drawSelf();
 if (phase == 0)
 {
-    if (instance_exists(center))
+    if (instance_exists(center)) &amp;&amp; (drawDoor)
     {
         draw_sprite(sprTricastleDoor, floor(animFrame), x + 45, bbox_top + 69);
     }

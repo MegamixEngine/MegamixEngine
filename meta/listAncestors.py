@@ -1,7 +1,9 @@
-#<parentName>prtAlwaysActive</parentName>
+import sys
+import re
+import os
 
 usage = """
-./listAncestors.py [base parents...] <GM objects/ directory>
+./listAncestors.py [base parents...] <GM project root>
 
 Applies to Game Maker Studio 2 object files only.
 """

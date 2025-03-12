@@ -44,7 +44,7 @@ yspeed = 0;
 
 imgSpd = 0.4;
 imgIndex = 0;
-animBack = false;
+//animBack = false;
 image_speed = 0;
 image_index = 0;
 </string>
@@ -94,30 +94,16 @@ if (entityCanStep())
         }
     }
     
-    if (!animBack)
-    {
-        imgIndex += imgSpd;
-        if (imgIndex &gt;= 4)
-        {
-            animBack = true;
-            imgIndex = 2 - imgIndex mod 4;
-        }
-    }
-    else
-    {
-        imgIndex -= imgSpd;
-        if (imgIndex &lt; 0)
-        {
-            animBack = false;
-            imgIndex = 1 - imgIndex; // minus because imgIndex would be negative, and we want to increase the value
-        }
-    }
+    imgIndex += imgSpd;
+    if (imgIndex &gt;= 4)
+        imgIndex = 0;
     
     xspeed = 1.6 * image_xscale;
 }
 else if (dead)
 {
     jumpCount = 0;
+    imgIndex = 0;
 }
 
 image_index = imgIndex div 1;

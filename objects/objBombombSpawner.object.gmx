@@ -43,6 +43,8 @@ timer = -1;
 col = 0;
 
 canHit = false;
+
+obj = objBombomb;
 </string>
           </argument>
         </arguments>
@@ -78,7 +80,7 @@ if (entityCanStep())
     if (timer &gt;= delay)
     {
         // used to spawn below the spawner? changed to spawn above spawner. -Zatsu
-        i = instance_create(x, y - 8, objBombomb);
+        i = instance_create(x, y - 8, obj);
         i.col = col;
         i.respawn = 0;
         i.inWater = inWater;

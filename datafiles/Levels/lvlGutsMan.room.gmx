@@ -74,8 +74,8 @@ if global.difficulty &lt; DIFF_NORMAL
     <instance objName="objVerticalScrolling" x="2304" y="960" name="inst_4B4B8559" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrollingNES" x="2816" y="960" name="inst_75AFD5CB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrollingNES" x="3584" y="960" name="inst_222149D3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="2432" y="320" name="inst_ECE064B9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="2944" y="1104" name="inst_FD93E94D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="2432" y="320" name="inst_ECE064B9" locked="0" code="name = &quot;Midway point&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="2944" y="1104" name="inst_FD93E94D" locked="0" code="name = &quot;Boss corridor&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objObjectSetter" x="16" y="256" name="inst_B81BE3AF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="48" y="256" name="inst_16B33024" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="64" y="256" name="inst_4042E365" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -103,8 +103,8 @@ if global.difficulty &lt; DIFF_NORMAL
     <instance objName="objLiftRail" x="32" y="320" name="inst_1A6F47AC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLiftHole" x="48" y="320" name="inst_8492AB06" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLiftRail" x="64" y="336" name="inst_0552C0C6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="objGutsMan" x="3776" y="1136" name="inst_21DADED4" locked="0" code="music = &quot;Mega_Man_1.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 8;&#xA;introType = 2;&#xA;&#xA;elementName = &quot;guts&quot;;&#xA;elementCode = &quot;weaponReward(objSuperArm); weaponReward(objRushJet);&quot;;&#xA;&#xA;isHard = global.difficulty == DIFF_HARD;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBGColourChanger" x="2832" y="976" name="inst_A2F819A8" locked="0" code="colour = global.nesPalette[54];&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objGutsMan" x="3776" y="1136" name="inst_21DADED4" locked="0" code="music = &quot;Mega_Man_1.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 8;&#xA;introType = 2;&#xA;&#xA;elementCode = &quot;weaponReward(objSuperArm); weaponReward(objRushJet);&quot;;&#xA;&#xA;isHard = global.difficulty == DIFF_HARD;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBGColourChanger" x="2832" y="976" name="inst_A2F819A8" locked="0" code="colour = global.nesPalette[$3F];&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSpike" x="96" y="256" name="inst_D4421D7C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLadder" x="96" y="272" name="inst_21BA351F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGutsLift" x="752" y="64" name="inst_8E44A5D7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

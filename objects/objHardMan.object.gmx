@@ -3,7 +3,7 @@
   <spriteName>sprHardMan</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtBoss</parentName>
   <maskName>mskYamato</maskName>
@@ -32,6 +32,8 @@ healthpoints = healthpointsStart;
 xOff = 0;
 contactDamage = 6;
 customPose = true;
+stopOnFlash = true;
+
 ground = false;
 attackTimer = 0;
 hasTriggeredFall = false;
@@ -41,7 +43,9 @@ bossTriggered = true;
 phase = 0;
 hasFired = false;
 grav = 0.24;
-stunLock = false;
+stunLock[0] = false;
+for (var i = 0; i &lt; MAX_PLAYERS; i ++)
+    stunLock[i] = -1;
 
 child[0] = noone;
 child[1] = noone;
@@ -51,8 +55,8 @@ strMMX = 0;
 resetGrav = -1;
 
 // Health Bar
-healthBarPrimaryColor[1] = 12;
-healthBarSecondaryColor[1] = 13;
+healthBarPrimaryColor[1] = $0C;
+healthBarSecondaryColor[1] = $10;
 
 // Music
 music = "Mega_Man_3.nsf";
@@ -63,6 +67,8 @@ musicTrackNumber = 12;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -73,6 +79,10 @@ enemyDamageValue(objThunderBeam, 0);
 enemyDamageValue(objBreakDash, 3);
 enemyDamageValue(objMagneticShockwave, 6);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 0);
@@ -108,15 +118,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG48MML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 0);
 enemyDamageValue(objSuperArmDebris, 0);
-enemyDamageValue(objChillShot, 0);
+enemyDamageValue(objChillSpike, 0);
 enemyDamageValue(objChillSpikeLanded, 1);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 0);
+enemyDamageValue(objBlockDropper, 0);
 enemyDamageValue(objIceSlasher, 0);
 </string>
           </argument>
@@ -155,13 +166,14 @@ if (!global.frozen)
         startIntro = false;
         isIntro = true;
         visible = true;
+        grav = gravAccel;
         calibrateDirection();
     }
     else if (isIntro)
     {
         // custom intro:
-        if (y &lt;= ystart &amp;&amp; !hasTriggeredFall)
-            y += 4;
+        /*if (y &lt;= ystart &amp;&amp; !hasTriggeredFall)
+            y += 4;*/
         if (y &gt;= ystart || hasTriggeredFall)
         {
             // since bosses do not have gravity during intros, we need to reuse this here.
@@ -216,25 +228,27 @@ if (entityCanStep())
                 }
                 if (attackTimer == 16)
                 {
-                    image_index = 1;
+                    image_index = 2;
                 }
                 if (attackTimer == 24)
                 {
                     hasFired = false;
                     attackTimer = 0;
-                    image_index = 2;
+                    image_index = 1;
                     phase = 1;
                 }
                 break;
             case 1: // fire hard knuckle 
                 if (attackTimer == 8)
                 {
+                    calibrateDirection();
                     image_index = 3 + 2 * shotsFired;
                 }
                 if (attackTimer == 24 &amp;&amp; shotsFired &lt; 2)
                 {
+                    calibrateDirection();
                     image_index = 4 + 2 * shotsFired;
-                    child[shotsFired] = instance_create(x, y, objHardManKnuckle);
+                    child[shotsFired] = entityCreateChild(0, 0, objHardManKnuckle);
                     shotsFired += 1;
                     
                     // playSFX(sfxEnemyShoot);
@@ -242,6 +256,7 @@ if (entityCanStep())
                 }
                 if (attackTimer == 24 &amp;&amp; shotsFired == 2)
                 {
+                    calibrateDirection();
                     image_index = 1;
                     attackTimer = 0;
                     phase = 2;
@@ -251,6 +266,7 @@ if (entityCanStep())
             case 2: // jump to mega man 
                 if (attackTimer == 32)
                 {
+                    calibrateDirection();
                     image_index = 8;
                     yspeed = -8;
                     xspeed = xSpeedAim(x, y, strMMX, y, yspeed, grav);
@@ -294,7 +310,7 @@ if (entityCanStep())
                     {
                         xspeed = 0;
                         yspeed = 0;
-                        other.stunLock = lockPoolLock(localPlayerLock[PL_LOCK_MOVE],
+                        other.stunLock[playerID] = lockPoolLock(localPlayerLock[PL_LOCK_MOVE],
                             localPlayerLock[PL_LOCK_TURN],
                             localPlayerLock[PL_LOCK_SLIDE],
                             localPlayerLock[PL_LOCK_SHOOT],
@@ -310,12 +326,14 @@ if (entityCanStep())
             case 4: // pull out of ground 
                 if (attackTimer == 64)
                 {
-                    stunLock = lockPoolRelease(stunLock);
-                    
                     image_index = 13;
-                    yspeed = -4;
+                    yspeed = -4.5;
                 }
-                if (yspeed &gt; 0 &amp;&amp; !ground)
+                if (yspeed &gt; -3.5 &amp;&amp; !ground)
+                {
+                    image_index = 11;
+                }
+                if (yspeed &gt;= 0 &amp;&amp; !ground)
                 {
                     image_index = 10;
                     attackTimer = 0;
@@ -330,8 +348,22 @@ if (entityCanStep())
                 }
                 if (ground)
                 {
-                    attackTimer = 0;
-                    phase = 0;
+                    for (var i = 0; i &lt; MAX_PLAYERS; i++)
+                    {
+                        stunLock[i] = lockPoolRelease(stunLock[i]);
+                        stunLock[i] = -1;
+                    }
+                    
+                    if (attackTimer &lt; 16)
+                    {
+                        image_index = 1;
+                    }
+                    else
+                    {
+                        image_index = 0;
+                        attackTimer = 0;
+                        phase = 0;
+                    }
                 }
                 break;
         }
@@ -367,7 +399,12 @@ else
     instance_destroy();
 }
 
-stunLock = lockPoolRelease(stunLock);
+for (var i = 0; i &lt; MAX_PLAYERS; i++)
+{
+    stunLock[i] = lockPoolRelease(stunLock[i]);
+    stunLock[i] = -1;
+
+}
 event_inherited();
 </string>
           </argument>
@@ -391,7 +428,29 @@ event_inherited();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>//event_inherited();
+if (!dead)
+{
+    if (drawBoss)
+    {
+        if ((iFrames mod 4) &lt;= 2) || (!iFrames)
+        {
+            // Special effect when invincibile
+            if (invincible == true)
+            {
+                d3d_set_fog(true, c_white, 0, 0);
+                draw_sprite_ext(sprite_index, image_index, x, y, image_xscale * 1.075 + (sin(sparkleTimer * 0.15) *.08 * sign(image_xscale)), image_yscale * 1.025 + (sin(sparkleTimer * 0.15) *.08 * sign(image_yscale)), image_angle, image_blend, image_alpha);
+                d3d_set_fog(false, 0, 0, 0);
+            }
+            
+            drawSelf();
+        }
+        else // Hitspark is drawn a bit too high otherwise
+        {
+            draw_sprite_ext(sprHitspark,0,spriteGetXCenter(),spriteGetYCenter()+4,1,1,0,c_white,1);
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

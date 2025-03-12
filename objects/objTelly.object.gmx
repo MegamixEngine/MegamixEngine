@@ -45,6 +45,8 @@ cycleHold = false;
 
 //@cc Speed the telly will come at the player in pixels per frame.
 travelSpeed = 0.25;
+
+image_speed = 0.125;
 </string>
           </argument>
         </arguments>

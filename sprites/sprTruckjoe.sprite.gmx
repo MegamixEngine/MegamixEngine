@@ -14,7 +14,7 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>88</TextureGroup0>
+    <TextureGroup0>205</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>88</width>
@@ -34,5 +34,8 @@
     <frame index="11">images\sprTruckjoe_11.png</frame>
     <frame index="12">images\sprTruckjoe_12.png</frame>
     <frame index="13">images\sprTruckjoe_13.png</frame>
+    <frame index="14">images\sprTruckjoe_14.png</frame>
+    <frame index="15">images\sprTruckjoe_15.png</frame>
+    <frame index="16">images\sprTruckjoe_16.png</frame>
   </frames>
 </sprite>

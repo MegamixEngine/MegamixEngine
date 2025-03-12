@@ -1,4 +1,4 @@
-/// rotation_movement(centerX,centerY,radius,speed)
+/// rotationMovement(centerX,centerY,radius,speed)
 // argument0: x-coordinate to orbit around
 // argument1: y-coordinate to orbit around
 // argument2: distance from orbit coordinates

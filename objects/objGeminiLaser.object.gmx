@@ -48,6 +48,8 @@ bounceCount = 0;
 savedYspeed = 0;
 
 wallCooldown = 0;
+
+autoFireSet = 12;
 </string>
           </argument>
         </arguments>
@@ -192,19 +194,15 @@ if (!global.frozen)
             <kind>1</kind>
             <string>/// Weapon Firing
 
-var xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop;
+var xOffset, yOffset, ammoCost;
 
 xOffset = 16; // x offset from center of player
 yOffset = 0; // y offset from center of player
-bulletObject = objGeminiLaser;
-bulletLimit = 3;
-weaponCost = 2;
-action = 1; // 0 - no frame; 1 - shoot; 2 - throw
-willStop = 0; // If this is 1, the player will halt on shooting ala Metal Blade.
+ammoCost = 2 - (1 * (global.energySaver &gt; 0));
 
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+if (performShoot)
 {
-    i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop);
+    i = fireWeapon(xOffset, yOffset, objGeminiLaser, 3, ammoCost, 1, 0);
     
     // set starting speed
     if (instance_exists(i))
@@ -217,6 +215,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
         }
         
         yOffset += 4 * sign(image_yscale);
+        /*
         if (climbing)
         {
             image_xscale = climbShootXscale;
@@ -226,7 +225,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
         {
             yOffset = -1 * sign(image_yscale);
         }
-        
+        */
         playSFX(sfxGeminiLaser);
         for (i = 1; i &lt; 4; i += 1)
         {

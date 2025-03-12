@@ -53,6 +53,8 @@ alarm[0] = 12;
 
 wireLock = false;
 parent.xspeed = 0;
+
+autoFireSet = 32;
 </string>
           </argument>
         </arguments>
@@ -297,17 +299,9 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop;
+            <string>var bulletObject = objWireAdapter;
 
-xOffset = -3; // x offset from center of player
-yOffset = -8; // y offset from center of player
-bulletObject = objWireAdapter;
-bulletLimit = 0;
-weaponCost = 2;
-action = 1; // 0 - no frame; 1 - shoot; 2 - throw
-willStop = 0; // If this is 1, the player will halt on shooting ala Metal Blade.
-
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+if (performShoot)
 {
     if (!instance_exists(vehicle))
     {
@@ -317,7 +311,8 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
                 &amp;&amp; ((global.keyUp[playerID] &amp;&amp; sign(grav) &gt;= 0)
                 || (global.keyDown[playerID] &amp;&amp; sign(grav) &lt; 0)))
             {
-                i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop);
+                var ammoCost = 2 - (1 * (global.energySaver &gt; 0));
+                i = fireWeapon(-3, -8, bulletObject, 0, ammoCost, 1, 0);
                 if (instance_exists(i))
                 {
                     i.yspeed = -4 * image_yscale;
@@ -339,7 +334,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
             // buster shot
             if (objWireAdapter.phase &gt;= 2)
             {
-                i = fireWeapon(16, 0, objBusterShot, 4, 0, 1, 0);
+                i = fireWeapon(18, -4, objNormalBusterShot, 4, 0, 1, 0);
                 if (i)
                 {
                     i.xspeed = image_xscale * 5;
@@ -355,7 +350,7 @@ if (!isShoot)
     if ((global.keyUp[playerID] &amp;&amp; gravDir &gt;= 0)
         || (global.keyDown[playerID] &amp;&amp; gravDir &lt; 0))
     {
-        spriteY = 7;
+        animLookUp = true;
     }
 }
 </string>

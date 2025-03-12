@@ -29,8 +29,6 @@
 
 respawn = false;
 
-calibrateDirection();
-
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 4;

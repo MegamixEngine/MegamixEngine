@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A grasshopper that constantly shoots at the player. It hops back and forth when the player is near, and it sits still if the player is too far away.
+/// Bullets fired from the ground move horizontally. Bullets fired in the air are aimed at the player.
+/// Essentially, it's a passive turret that becomes aggressive up close, which can make for some interesting setups.
+
+event_inherited();
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
@@ -49,6 +53,8 @@ imageTimer = 0;
 imageTimerMax = 5;
 activated = false;
 delay = 0;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

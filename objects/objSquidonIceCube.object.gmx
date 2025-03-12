@@ -36,7 +36,7 @@ contactDamage = 2;
 dir = 1;
 
 xspeed = 1 * dir;
-
+bubbleTimer = -1;
 image_speed = 0;
 </string>
           </argument>

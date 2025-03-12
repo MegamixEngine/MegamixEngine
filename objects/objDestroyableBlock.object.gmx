@@ -37,13 +37,35 @@ faction = 5;
 fnsolid = 2;
 dieToSpikes = false;
 
-//@cc how to use
-//@cc weakness = global.weaponID[? objWeaponObject];
-//@cc or weakness = ds_map_find_value(global.weaponID, objWeaponObject)
-//@cc To make it a reflect block, use "weakness = -1;"
-weakness = 0;
-
 timer = 0;
+costumeID = 0;
+
+
+passThrough = false;//Use to have non-affecting objects pass through.
+
+//creation code
+/* how to use
+    @cc weakness = global.weaponID[? objWeaponObject];
+        or weakness = ds_map_find_value(global.weaponID, objWeaponObject)
+        To make it a reflect block, use "weakness = -1;" 
+        If not weak to player weapon, then just use the intended object, i.e objBeakBullet or prtEnemyProjectile
+*/
+weakness = 0;
+destroyObject = false; //if set, destroy colliding weakness object (weapons always use their default behaviour if not set)
+itemDrop = noone; //if set, drop this item on destruction
+
+weakToPlayer = true; //if false, this uses another object and the following need to be defined
+//weak to alternative objects
+weaponIcon = noone //if set, use this sprite for weapon icon;
+//defined palette of weapon block
+palette[0] = make_color_rgb(0,48,248); //primary
+palette[1] = make_color_rgb(0,248,248); //secondary
+palette[2] = make_color_rgb(0,0,0); //outline
+
+
+itemCode = ""; //run code on item drop if itemDrop != noone
+itemScript = scrNoEffect; //run script
+
 </string>
           </argument>
         </arguments>
@@ -68,12 +90,42 @@ timer = 0;
             <kind>1</kind>
             <string>event_inherited();
 
+if (!weakToPlayer)
+    faction = 4;
 // increase anim timer
 if (!global.frozen)
 {
     timer += 1;
     
-    iFrames = 0; // please dont cheat the reflect blocks ;-;
+    iFrames = 0;
+    
+    if (!weakToPlayer)
+    {
+        with (instance_place(x,y,weakness))
+        {
+            if (object_index == other.weakness)
+            {
+    
+                global.damage = 1;
+                guardCancel = 0;
+                other.healthpoints -= global.damage;
+                with (other)
+                    event_user(EV_HURT)
+                
+                 if (other.healthpoints &lt;= 0)
+                 {
+                     with (other)
+                        event_user(EV_DEATH);
+                    
+                 }
+                if (other.destroyObject)
+                {
+                    event_user(EV_DEATH);
+                }
+                
+            }
+        }
+    }
 }
 </string>
           </argument>
@@ -98,10 +150,20 @@ if (!global.frozen)
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
 if (spawned)
 {
     if (weakness == -1)
+    {
         isTargetable = false;
+    }
+    if (global.characterSelected[0] == CHAR_BASS) // Set RC/RJ blocks to TB in Bass Mode
+    {
+        if (weakness == global.weaponID[? objRushCoil] || weakness == global.weaponID[? objRushJet])
+        {
+            weakness = global.weaponID[? objTrebleBoost];
+        }
+    }
 }
 </string>
           </argument>
@@ -139,18 +201,47 @@ if (global.weapon[other.parent.playerID] == weakness)
 
 with (other)
 {
-    guardCancel = 4;
-    
-    if (object_is_ancestor(object_index,prtPlayerProjectile))
+    if (!other.passThrough || blockCollision)
     {
-        if (instance_exists(parent))
+        guardCancel = 4;
+    }
+    else
+    {
+        guardCancel = 2;
+    }
+    if (other.weakToPlayer)
+    {
+        if (!other.passThrough || blockCollision)
         {
-            if (global.weapon[parent.playerID] == other.weakness &amp;&amp; (global.weapon[parent.playerID] == 0 || !object_is_ancestor(object_index, objBusterShot)))
+            guardCancel = 4;
+        }
+        else
+        {
+            guardCancel = 2;
+        }
+        
+        if (object_is_ancestor(object_index,prtPlayerProjectile))
+        {
+            if (instance_exists(parent))
             {
-                guardCancel = 0;
+                
+                if (global.weapon[parent.playerID] == other.weakness &amp;&amp; (global.weapon[parent.playerID] == 0 || !object_is_ancestor(object_index, objBusterShot)))
+                {
+                    guardCancel = 0;
+                    if (other.destroyObject)
+                    {
+                        event_user(EV_DEATH);
+                    }
+                }
             }
         }
     }
+    else
+    {
+        guardCancel = 4;
+    }
+
+    
 }
 </string>
           </argument>
@@ -176,10 +267,23 @@ with (other)
             <kind>1</kind>
             <string>event_inherited();
 
-instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objExplosion);
-instance_create(bboxGetXCenter() + 8, bboxGetYCenter() - 8, objExplosion);
-instance_create(bboxGetXCenter() - 8, bboxGetYCenter() + 8, objExplosion);
-instance_create(bboxGetXCenter() + 8, bboxGetYCenter() + 8, objExplosion);
+if (!is_undefined(bbox_left))
+{
+    instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objExplosion);
+    instance_create(bboxGetXCenter() + 8, bboxGetYCenter() - 8, objExplosion);
+    instance_create(bboxGetXCenter() - 8, bboxGetYCenter() + 8, objExplosion);
+    instance_create(bboxGetXCenter() + 8, bboxGetYCenter() + 8, objExplosion);
+}
+
+if (itemDrop &amp;&amp; itemDrop != objKey)
+{
+    myItem = itemDrop;
+    disappearTime = 105*2;
+    code = itemCode;
+    script = itemScript;
+    parentHealthPointsStart = 1;
+    event_perform_object(objExplosion, ev_other, ev_user0);
+}
 
 instance_destroy();
 </string>
@@ -204,9 +308,11 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (sprite_index != sprDestroyableNormal
+            <string>var col;
+if (sprite_index != sprDestroyableNormal
     &amp;&amp; sprite_index != sprDestroyable1632
-    &amp;&amp; sprite_index != sprDestroyable3216)
+    &amp;&amp; sprite_index != sprDestroyable3216
+    &amp;&amp; sprite_index != sprCWU01PFakeGutsBlock)
 {
     event_inherited();
 }
@@ -233,6 +339,7 @@ else
     switch (sprite_index)
     {
         case sprDestroyableNormal:
+        case sprCWU01PFakeGutsBlock:
             xoffset = 8;
             yoffset = 8;
             break;
@@ -248,44 +355,80 @@ else
     
     // check for player color
     var wac = -1;
-    
-    with (objMegaman)
+    if (weakToPlayer)
     {
-        if (global.weapon[playerID] == other.weakness)
+        with (objMegaman)
         {
-            wac = playerID;
-            break;
+            if (global.weapon[playerID] == other.weakness)
+            {
+                wac = playerID;
+                other.costumeID = costumeID;
+                break;
+            }
         }
     }
+    else   
+        wac = -2;
     
     if (wac != -1)
     {
-        var olc, prc, scc;
-        olc = global.outlineCol[wac];
-        prc = global.primaryCol[wac];
-        scc = global.secondaryCol[wac];
-        if (scc == c_white)
+        
+        if (wac != -2)
         {
-            scc = make_color_rgb(255, 217, 162);
+            col[0] = global.outlineCol[wac];
+            col[1] = global.primaryCol[wac];
+            col[2] = global.secondaryCol[wac];
+        }
+        else
+        {
+            col[0] = palette[2];
+            col[1] = palette[0];
+            col[2] = palette[1];
+        }
+        
+        if (col[2] == c_white)
+        {
+            col[2] = make_color_rgb(255, 217, 162);
         }
         
         if (timer mod 48 &lt; 6)
         {
-            prc = scc;
-            scc = c_white;
+            col[1] = col[2];
+            col[2] = c_white;
         }
         
-        draw_sprite_ext(sprite_index, 1, x, y, 1, 1, 0, olc, 1);
-        draw_sprite_ext(sprite_index, 2, x, y, 1, 1, 0, prc, 1);
-        draw_sprite_ext(sprite_index, 3, x, y, 1, 1, 0, scc, 1);
-        
-        draw_sprite_ext(global.weaponIcon[weakness], 0, x + xoffset, y + yoffset, 1, 1, 0, image_blend, 1);
-        draw_sprite_ext(global.weaponIcon[weakness], 1, x + xoffset, y + yoffset, 1, 1, 0, prc, 1);
-        draw_sprite_ext(global.weaponIcon[weakness], 2, x + xoffset, y + yoffset, 1, 1, 0, scc, 1);
+        for (var i = 0; i &lt; 3; i ++;)
+        {
+            draw_sprite_ext(sprite_index, (i + 1), x, y, 1, 1, 0, col[i], 1);
+        }
     }
-    else
+
+    col[0] = palette[0];
+    col[1] = palette[1];
+    col[2] = palette[2];
+    if (sprite_index != sprCWU01PFakeGutsBlock)
     {
-        draw_sprite_ext(global.weaponIcon[weakness], 0, x + xoffset, y + yoffset, 1, 1, 0, c_white, 1);
+        if (weakToPlayer)
+            drawWeaponIcon(weakness, max(0, wac), costumeID, (x + xoffset), (y + yoffset), (wac != -1));
+        else
+        {
+             col[0] = make_color_rgb(255, 217, 162);
+            col[1] = palette[0];
+            col[2] = palette[1];
+                
+            if (timer mod 48 &lt; 6)
+            {
+                col[1] = col[2];
+                col[2] = c_white;
+            }
+            var ic = weaponIcon;
+            if weaponIcon == noone
+                ic = sprWeaponIconsBlank
+            for (var i = 0; i &lt; 3; i ++)
+            {
+                draw_sprite_ext(ic,i,(x + xoffset), (y + yoffset),1,1,image_angle,col[i],image_alpha);
+            }
+        }
     }
 }
 </string>

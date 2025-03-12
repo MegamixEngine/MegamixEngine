@@ -33,7 +33,7 @@ contactDamage = 5;
 
 category = "big eye, bulky";
 
-facePlayer = true;
+facePlayerOnSpawn = true;
 
 // Enemy specific code
 phase = 0;
@@ -44,6 +44,8 @@ imgSpd = 0.1;
 imgIndex = 0;
 
 grav = 0;
+eyes = noone;
+drawEyes = true;
 </string>
           </argument>
         </arguments>
@@ -159,6 +161,14 @@ if (entityCanStep())
                 yspeed = 6.1;
                 imgIndex = 1;
                 playSFX(sfxEnemyDrop2);
+                if drawEyes {
+                with (instance_create(x+5*image_xscale,y-10,objPowerSlamEyes))
+                {
+                    image_xscale = other.image_xscale;
+                    with (other)
+                        eyes = id;
+                }
+                }
                 timer += 1; // used timer as a boolean
             }
             else if (timer &lt; waitTime)
@@ -209,8 +219,12 @@ image_index = imgIndex div 1;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if drawEyes {
+with (eyes)
+    instance_destroy();
+    }
 instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
-playSFX(sfxExplosion2);
+playSFX(getGenericSFX(SFX_EXPLOSION2));
 </string>
           </argument>
         </arguments>

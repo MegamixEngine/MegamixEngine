@@ -150,7 +150,7 @@ if (entityCanStep())
                             if (healthpoints &lt;= 0)
                             {
                                 event_user(EV_DEATH);
-                                playSFX(sfxEnemyHit);
+                                playSFX(getGenericSFX(SFX_ENEMYHIT));
                             }
                             else
                                 do_collision = true;
@@ -164,7 +164,7 @@ if (entityCanStep())
         {
             slowdeath_timer = 1;
             instance_create(x+25*image_xscale,choose(y+5,y+40),objBigExplosion);
-            playSFX(sfxMM9Explosion);//(sfxExplosion2);
+            playSFX(getGenericSFX(SFX_EXPLOSIONMM9));//(sfxExplosion2);
             yspeed = 0;
         }
     }
@@ -178,7 +178,7 @@ if (entityCanStep())
         if (slowdeath_timer == 10)
         {
             instance_create(x-30*image_xscale,choose(y+5,y+30),objBigExplosion);
-            playSFX(sfxMM9Explosion);
+            playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
         }
         
         if (slowdeath_timer &gt; 10)
@@ -191,7 +191,7 @@ if (entityCanStep())
             with (instance_create(bboxGetXCenter(), bboxGetYCenter(), objHarmfulExplosion))
             {
                 contactDamage = 0;
-                playSFX(sfxMM9Explosion);
+                playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
             }
             dead = true;
             visible = true;
@@ -229,7 +229,7 @@ else if (dead)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (other.object_index != objSparkShock &amp;&amp; other.object_index != objChillShot
+            <string>if (other.object_index != objSparkShock &amp;&amp; other.object_index != objChillSpike
     &amp;&amp; other.object_index != objChillSpikeLanded)
 {
     other.guardCancel = 3;
@@ -239,7 +239,7 @@ else if (other.object_index == objChillSpikeLanded)
 {
     slowdeath_timer = 1;
     instance_create(x+25*image_xscale,choose(y+5,y+40),objBigExplosion);
-    playSFX(sfxMM9Explosion);
+    playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
     yspeed = 0;
     global.damage = 4;
 }

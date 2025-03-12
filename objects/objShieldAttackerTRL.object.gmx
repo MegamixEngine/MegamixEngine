@@ -47,7 +47,7 @@ moveSprite = sprite_index;
 turnSprite = sprShieldAttackerTRLTurn;
 
 moveSpeed = 2;
-imgSpeed = 0.2;
+imgSpeed = 1 / 3;
 turnSpeed = 0.2;
 
 shieldDamageCount = 0;

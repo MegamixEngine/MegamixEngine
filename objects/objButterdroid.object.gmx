@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A butterfly that slowly chases the player. It periodically shoots a spread of two bullets at the player.
+/// It's not very threatening on its own, but it can be tricky when combined with gimmicks or other types of enemies.
+/// Also works well in a swarm, thanks to its slow movement and low health.
+
+event_inherited();
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
@@ -46,6 +50,8 @@ shootAngle = 10;
 cooldownTimer = 0;
 cooldownMax = 75;
 resetCooldown = 115;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

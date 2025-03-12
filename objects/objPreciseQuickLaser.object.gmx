@@ -290,7 +290,7 @@ if (variation == 1)
         else
         {
             iFrames = other.drainCooldown;
-            playSFX(sfxHit);
+            playSFX(getGenericSFX(SFX_HURT));
         }
     }
     

@@ -40,6 +40,7 @@ facePlayerOnSpawn = true;
 blockCollision = true;
 bounceTimes = 0;
 itemDrop = -1;
+bubbleTimer = -1;
 
 moveTimer = 60;
 canLive = 9; // time until wheel is destroyed.
@@ -116,7 +117,7 @@ if (entityCanStep())
         if (canLive == 0)
         {
             event_user(10);
-            playSFX(sfxEnemyHit);
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
         }
     }
 }

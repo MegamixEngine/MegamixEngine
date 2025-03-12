@@ -40,12 +40,60 @@ doesIntro = false;
 
 dir = image_xscale;
 
-// Enemy specific code
+
+
+// Enemy specific code, do not edit
 shootTimer = 0;
 frogAnimTimer = 0;
 frogFrame = 0;
 rideFrame = 0;
 attack = choose(0, 1);
+
+shotsFired = 0;
+thrownFired = 0;
+
+strMMX = x;
+strMMY = y;
+
+
+//creation code
+//asthetic
+frogSprite = sprGamarn; //sprite used for frog
+riderSprite = sprGamadayu; //sprite used for rider
+defineRiderX = -6 //where the rider sprite is displayed from center x
+defineRiderY = -48; //where the rider sprite is displayed from center y
+
+explosionSFX = sfxExplosion2;
+
+//attack setups
+//laser
+shotObject[0] = objGamarnLaser; //object type fired from frog, can add additional object types by adding a new array entry
+
+shotSprite[0] = sprGamarnLaser; //sprite for fired object type. MUST be defined per array entry in shotObject
+shotTimerMax[0] = 100; //how long gamarn waits before shooting lazer. CAN be defined per array entry in shotObject
+shotOffsetX[0] = 32; //how many pixels from center x the laser is created from. CAN be defined per array entry in shotObject
+shotOffsetY[0] = 10; //how many pixels from center y the laser is created from. CAN be defined per array entry in shotObject
+shotSFX[0] = noone; //what sfx is played if any when projectile is fired. CAN be defined per object
+ 
+//thrown objects
+thrownObject[0] = objGamadayuBomb; //object type thrown by rider, can add new object types
+
+itemsTossed[0] = 2; //define how many items are tossed for Gamadyu. MUST be defined per array entry in thrownObject.
+thrownSprite[0] = sprGamadayuBomb; //sprite for thrown object, MUST to be defined per array entry in thrownObject
+thrownTimerMax[0] = 100; //how long gamadayu waits before throwing object. CAN to be defined per array entry in thrownObject.
+throwOffsetX[0] = -4; //how many pixels from center x the thrown object sprite is shown from. CAN be defined per object
+throwOffsetY[0] = -48; //how many pixels from center y the thrown object sprite is shown from. CAN be defined per object
+thrownImageIndex[0] = -1; //if =1, don't shown sprite, otherwise use this image index. CAN be defined per object
+thrownSFX[0] = noone; //what sfx is played if any when projectile is thrown. CAN be defined per object
+fireTell = 20; // how long thrown frame lasts
+
+//weakpoint setup
+defineRiderHit = -28; //where the rider hitbox ends and where the eye hitbox starts
+defineEyeHit = -8; // where the eye hitbox ends
+
+guardType = 1; //0 = entire body is weakpoint, 1 == frog eyes are weakpoint, 2 = rider is weakpoint, 3 = frog body is weakpoint;
+mask_index = sprGamarnIcon; //hitbox sprite
+
 </string>
           </argument>
         </arguments>
@@ -74,54 +122,119 @@ if (entityCanStep())
 {
     shootTimer += 1;
     
+    //define shoot timer variables
+    var throwMax = thrownTimerMax[0];
+    if (array_length_1d(thrownTimerMax) &gt; 1)
+    {
+        throwMax = thrownTimerMax[thrownFired];
+    }
+    
+    var shootMax = shotTimerMax[0];
+    if (array_length_1d(shotTimerMax) &gt; 1)
+    {
+        shootMax = shotTimerMax[shotsFired];
+    }
+    
+    var thS = thrownSFX[0];
+    if (array_length_1d(thrownSFX) &gt; 1)
+    {
+        thS = thrownSFX[thrownFired];
+    }
+    
+    var shS = shotSFX[0];
+    if (array_length_1d(shotSFX) &gt; 1)
+    {
+        shS = shotSFX[shotsFired];
+    }
+    
     if (attack == 0)
     {
-        if (shootTimer == 100)
+        if (shootTimer == throwMax)
         {
             rideFrame = 1;
         }
         
-        if (shootTimer == 120)
+        if (shootTimer == throwMax + fireTell)
         {
             rideFrame = 2;
-            for (i = 1; i &lt;= 2; i += 1)
+            
+            for (i = 1; i &lt;= itemsTossed[thrownFired]; i += 1)
             {
-                bomb = instance_create(round(x - 4 * image_xscale), round(y - 48), objGamadayuBomb);
+                var sprT = thrownSprite[thrownFired]; // get object sprite
+                var bomb = instance_create(round(x + throwOffsetX[thrownFired] * image_xscale), round(y + throwOffsetY[thrownFired]), thrownObject[thrownFired]);
                 if (instance_exists(target))
                 {
+                    strMMX = target.x;
+                    strMMY = target.y;
+                    if (thS != noone)
+                    {
+                        playSFX(thS);
+                    }
                     with (bomb)
                     {
-                        xspeed = xSpeedAim(x, y, other.target.x, other.target.y, yspeed, grav);
-                        xspeed = xspeed / other.i;
+                        sprite_index = sprT;
+                        image_xscale = other.image_xscale;
+                        respawn = false;
+                        itemDrop = -1;
+                        
+                        if (grav != 0)
+                        {
+                            xspeed = xSpeedAim(x, y, other.strMMX, other.strMMY, yspeed, grav);
+                            xspeed = xspeed / other.i;
+                            yspeed = -5;
+                        
+                        }
                     }
                 }
             }
+            
+            
         }
-        if (shootTimer == 122)
+        if (shootTimer == throwMax + fireTell + 2)
         {
             rideFrame = 3;
         }
         
-        if (shootTimer == 150)
+        if (shootTimer == throwMax + (fireTell*2) + 10)
         {
             shootTimer = 0;
             rideFrame = 0;
+            thrownFired ++;
+            if (thrownFired &gt;= array_length_1d(thrownObject))
+                thrownFired = 0;
             attack = choose(0, 1);
         }
     }
     
     if (attack == 1)
     {
-        if (shootTimer == 100)
+        var iX = shotOffsetX[0];
+        var iY = shotOffsetY[0];
+        if (array_length_1d(shotOffsetX) &gt; 1)
+            iX = shotOffsetX[shotsFired];
+        if (array_length_1d(shotOffsetY) &gt; 1)
+            iY = shotOffsetY[shotsFired];
+        if (shootTimer == shootMax)
         {
+            if (shS != noone)
+            {
+                playSFX(shS);
+            }    
+        
             frogFrame += 2;
-            laser = instance_create(round(x + 32 * image_xscale), round(y + 10), objGamarnLaser);
+            var laser = instance_create(round(x + iX * image_xscale), round(y + iY), shotObject[shotsFired]);
+            laser.sprite_index = shotSprite[shotsFired];
             laser.image_xscale = image_xscale;
+            laser.respawn = false;
+            laser.itemDrop = -1;
         }
         
-        if (shootTimer == 150)
+        if (shootTimer == shootMax + (fireTell*2) + 10)
         {
+            shotsFired ++;
             shootTimer = 0;
+            if (shotsFired &gt;= array_length_1d(shotObject))
+                shotsFired = 0;
             frogFrame -= 2;
             attack = choose(0, 1);
         }
@@ -159,6 +272,8 @@ else if (!insideView())
 {
     image_index = 0;
     shootTimer = 0;
+    shotsFired = 0;
+    thrownFired = 0;
 }
 </string>
           </argument>
@@ -182,12 +297,34 @@ else if (!insideView())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>xb = bboxGetXCenterObject(other.id);
-yb = bboxGetYCenterObject(other.id);
-
-if (!(yb &lt; y - 8 &amp;&amp; yb &gt; y - 28) || !(image_xscale &lt; 0 &amp;&amp; xb &lt; x || image_xscale &gt; 0 &amp;&amp; xb &gt; x))
+            <string>if (guardType == 0)
+    exit;
+else
 {
-    other.guardCancel = 1;
+    var xb = bboxGetXCenterObject(other.id);
+    var yb = bboxGetYCenterObject(other.id);
+    
+    if (guardType == 1) //default
+    {
+        if (!(yb &lt; y + defineEyeHit &amp;&amp; yb &gt; y  + defineRiderHit) || !(image_xscale &lt; 0 &amp;&amp; xb &lt; x || image_xscale &gt; 0 &amp;&amp; xb &gt; x))
+        {
+            other.guardCancel = 1;
+        }
+    }
+    if (guardType == 2) //guard is weakpoint
+    {
+        if (yb &gt; y + defineRiderHit)
+        {
+            other.guardCancel = 1;
+        }
+    }
+    if (guardType == 3) //entire frog is weakpoint
+    {
+        if (yb &lt; y  + defineRiderHit)
+        {
+            other.guardCancel = 1;
+        }
+    }
 }
 </string>
           </argument>
@@ -211,20 +348,42 @@ if (!(yb &lt; y - 8 &amp;&amp; yb &gt; y - 28) || !(image_xscale &lt; 0 &amp;&am
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (iFrames == 1 || iFrames == 3)
+            <string>if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(true, c_white, 0, 0);
+    hitFlashEffect(true,c_white);
+    //d3d_set_fog(true, c_white, 0, 0);
 }
 
-draw_sprite_ext(sprGamarn, frogFrame, round(x), round(y), image_xscale,
+draw_sprite_ext(frogSprite, frogFrame, round(x), round(y), image_xscale,
     image_yscale, image_angle, image_blend, image_alpha);
-draw_sprite_ext(sprGamadayu, rideFrame, round(x - 6 * image_xscale),
-    round(y - 48), image_xscale, image_yscale, image_angle, image_blend,
+draw_sprite_ext(riderSprite, rideFrame, round(x + (defineRiderX * image_xscale)),
+    round(y + defineRiderY), image_xscale, image_yscale, image_angle, image_blend,
     image_alpha);
 
-if (iFrames == 1 || iFrames == 3)
+var tX = throwOffsetX[0]; 
+var tY = throwOffsetY[0]; 
+var tI = thrownImageIndex[0];     
+    
+if (array_length_1d(throwOffsetX) &gt; 1)
+    tX = throwOffsetX[thrownFired];
+
+if (array_length_1d(throwOffsetY) &gt; 1)
+    tY = throwOffsetY[thrownFired];    
+
+if (array_length_1d(thrownImageIndex) &gt; 1)
+    tI = thrownImageIndex[thrownFired];
+    
+if (tI != -1 &amp;&amp; rideFrame == 1) //show thrown object
 {
-    d3d_set_fog(false, 0, 0, 0);
+    draw_sprite_ext(thrownSprite[thrownFired], tI, round(x + tX * image_xscale),
+    round(y + tY), image_xscale, image_yscale, image_angle, image_blend,
+    image_alpha);
+}
+    
+if (iFrames mod 2 == 1)
+{
+    hitFlashEffect(false);
+    //d3d_set_fog(false, 0, 0, 0);
 }
 </string>
           </argument>

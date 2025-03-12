@@ -27,13 +27,18 @@
             <kind>1</kind>
             <string>/// Initial spawn location
 
+// flip it horizontally in the room editor to set the direction Mega Man faces on spawning
+
 //@cc 0 = teleport land, 1 = teleport in, 2 = fall in, 3 = Jump in, 4 = stand there (set showDuringReady to true), 8 = Skull elevator
 respawnAnimation = 0;
 
 //@cc play the animation sequence while ready's being displayed
 showDuringReady = false;
 
-
+if (global.recordInputMode != 0)//This must be placed before everything else, as we establish it in the last room but need it ASAP for the current room thanks to ERL.
+{
+    random_set_seed_safe(global.recordInputRandomSeed);
+}
 // since this object is the first in the resource tree,
 // and is ubiquitous among levels, it must help bootstrap
 // the external room loader

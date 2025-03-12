@@ -29,7 +29,7 @@
 
 sprite_index = sprMinoanMount;
 
-image_xscale = -1;
+image_xscale = 1; //-1;
 dir = 1;
 
 respawn = true;
@@ -38,6 +38,8 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 category = "nature, shielded";
+
+behaviourType = 1;
 
 // Enemy specific code
 xspeed = 0;
@@ -80,8 +82,10 @@ if (entityCanStep())
         if (minoanID == -20 || !instance_exists(minoanID))
         {
             canCreateMinoan = false;
-            minoanID = instance_create(x, y + 15, objMinoanFan);
+            minoanID = instance_create(x, bbox_top + 16, objMinoanFan);
             minoanID.mountID = id;
+            minoanID.image_xscale = image_xscale;
+            minoanID.despawnRange = 40;
         }
     }
 }

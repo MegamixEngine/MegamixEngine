@@ -72,8 +72,8 @@ while (true)
             defer(ev_destroy, ev_destroy, 0, dsDestroy, makeArray(global.unitTestWarns, ds_type_list));
             defer(ev_destroy, ev_destroy, 0, dsDestroy, makeArray(global.unitTestErrors, ds_type_list));
         }
-        global.unitTestWarns = ds_list_create();
-        global.unitTestErrors = ds_list_create();
+        global.unitTestWarns = mm_ds_list_create();
+        global.unitTestErrors = mm_ds_list_create();
         continue;
     }
     

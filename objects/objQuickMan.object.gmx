@@ -66,9 +66,15 @@ jump_x_offset[0] = -32;
 jump_x_offset[1] = 0;
 jump_x_offset[2] = 32;
 
+// can Quick Man deflect weapons?
+canGuard = true;
+
+// how long Quick Man guards for (if applicable)
+guardTime = 60;
+
 // Health Bar
-healthBarPrimaryColor[1] = 18;
-healthBarSecondaryColor[1] = 34;
+healthBarPrimaryColor[1] = $15;
+healthBarSecondaryColor[1] = $28;
 
 // Music
 music = "Mega_Man_2.nsf";
@@ -79,6 +85,9 @@ musicTrackNumber = 17;
 enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
+enemyDamageValue(objBusterShotHalfChargedProto, 2);
+enemyDamageValue(objBusterShotChargedProto, 4);
+enemyDamageValue(objNormalBusterShot, 2);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 4);
@@ -89,6 +98,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objBreakDash, 2);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -124,15 +137,16 @@ enemyDamageValue(objConcreteShot, 2);
 enemyDamageValue(objHomingSniper, 6);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 2);
 enemyDamageValue(objSuperArmBlockProjectile, 2);
 enemyDamageValue(objSuperArmDebris, 2);
-enemyDamageValue(objChillShot, 2);
+enemyDamageValue(objChillSpike, 2);
 enemyDamageValue(objChillSpikeLanded, 4);
 
 // Misc.
 enemyDamageValue(objPowerStone, 2);
 enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -265,10 +279,8 @@ if (entityCanStep())
                     var i;
                     for (i = 0; i &lt; 3; i += 1)
                     {
-                        with (instance_create(x, y, objQuickManBoomerang))
+                        with (entityCreateChild(0, 0, objQuickManBoomerang))
                         {
-                            faction = other.faction;
-                            target = other.target;
                             var dir = point_direction(x, y, target.x, target.y);
                             xspeed = cos(degtorad(dir)) * _speed * (0.5 + i / 2);
                             yspeed = -sin(degtorad(dir)) * _speed;
@@ -303,7 +315,7 @@ if (entityCanStep())
                 if (phaseTimer &gt; run_time)
                 {
                     phase = 0;
-                    
+                    xDistanceTravelled = 0;
                     // trigger AI bug:
                     if (aiBug) // sometimes jumps fewer times
                     // must be next to a tall wall to trigger:
@@ -312,6 +324,14 @@ if (entityCanStep())
                             bugActive = true;
                             y += 16; // sink into floor
                         }
+                }
+                break;
+            case 2: // Weapon Deflection
+                if (!ground)
+                    phaseTimer--;
+                if (phaseTimer &gt;= guardTime)
+                {
+                    phase = 0;
                 }
                 break;
         }
@@ -353,7 +373,7 @@ if (global.timeStopped)
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="24">
+    <event eventtype="7" enumb="21">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -370,44 +390,20 @@ if (global.timeStopped)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (canGuard)
 {
-    i = fireWeapon(24, 1, objQuickMan, 3, 2, 2, 1);
-    if (instance_exists(i))
+    if (global.damage == 0)
     {
-        // instance_create(i.x, i.y, objExplosion);
-        i.isFight = 1;
-        i.startIntro = 0;
-        i.faction = 2;
-        i.pierces = 2;
-        i.grav = 0.25;
-        i.phase = 1;
-        i.drawBoss = 1;
+        xspeed = 0;
+        yspeed = 0;
+        phase = 2;
+        image_index = 12;
+        phaseTimer = 0;
+        has_fired = false;
+        jump_count = 0;
+        xDistanceTravelled = 0;
     }
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="22">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>// weaponSetup("QUICK MAN", make_color_rgb(231, 0, 90), make_color_rgb(255, 189, 0), sprWeaponIconsMetalBlade);
 </string>
           </argument>
         </arguments>

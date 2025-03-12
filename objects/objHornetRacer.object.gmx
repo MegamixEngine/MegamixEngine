@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Creation code (all optional):
+            <string>/// A hornet that hovers in place, suddenly launches itself at the player at high speed, and quickly moves back to a stationary position nearby.
+/// Almost immediately after appearing on screen, it begins attacking relentlessly, with no audio or visual cue to indicate when it's about to strike.
+/// Even a single one of these can be extremely dangerous and infuriatingly unfair. Consider increasing the attack timer with creation code.
+
+// Creation code (all optional):
 // attackTimerMax = &lt;number&gt; how long Hornet Racer waits for. default is 70.
 // image_yscale = 1 or -1 //(Use editor for this!!) // if -1, and placed below where Mega Man will be - Hornet Racer will jump up rather than jump down will go up instead of down at beginning.
 
@@ -45,6 +49,8 @@ timerMax = 70;
 hasFired = false;
 targetX=0;
 targetY=0;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

@@ -49,6 +49,8 @@ attackTimer = 0;
 attackTimerMax = 90;
 bullet = noone;
 
+explosionSprite = sprExplosion;
+deadTimerRecur = 8;
 // creation code variables
 
 //@cc if 0, shiro will use both attacks, otherwise if 1 he'll only use the ice ball attack.
@@ -203,6 +205,13 @@ if (entityCanStep()
     
     
     }
+}
+else if (dead)
+{
+    if (deadTimer mod 2 == 0)
+        x = xstart + choose(-1,1);
+    else
+        x = xstart;
 }
 else if (!insideView())
 {

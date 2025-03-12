@@ -10,7 +10,17 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>playMusic("Mega_Man_9.nsf", "VGM", 28, 0, 0, 0, 1);</code>
+  <code>//Randomize between Wii and OST versions.
+var sf = choose("_OST","");
+var vol = 1;
+if (sf == "")
+{//Nerf the Wii version's volume (It's a little loud by comparison).
+    vol = .8;
+}
+
+playMusic("MM9/27_Wily4.mid","MIDI","MM9/MM9" + sf + ".sf2",true,vol);
+
+//playMusic("Mega_Man_9.nsf", "VGM", 28, 0, 0, 0, 1);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -141,11 +151,11 @@
     <instance objName="objSolid" x="128" y="400" name="inst_43B42E64" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="112" y="400" name="inst_FE7C630E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="128" y="400" name="inst_83252AFD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="128" y="592" name="inst_EDE8A23E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="640" y="592" name="inst_160DD265" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1152" y="624" name="inst_9D1A3429" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1664" y="848" name="inst_843A6A24" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1248" y="848" name="inst_5CD5560E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="128" y="592" name="inst_EDE8A23E" locked="0" code="name = &quot;Hornet Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="640" y="592" name="inst_160DD265" locked="0" code="name = &quot;Hunter A&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1152" y="624" name="inst_9D1A3429" locked="0" code="name = &quot;Guts Tank&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1664" y="848" name="inst_843A6A24" locked="0" code="name = &quot;Splash Woman&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1248" y="848" name="inst_5CD5560E" locked="0" code="name = &quot;Kamegoro Maker&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="48" y="592" name="inst_30FF9FFB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="96" y="592" name="inst_C58192AC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="592" y="592" name="inst_87EEFD5D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -193,7 +203,7 @@
     <instance objName="objBossBarrier" x="1040" y="944" name="inst_E0532BFE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeftScrolling" x="768" y="896" name="inst_4B023904" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeftScrolling" x="512" y="896" name="inst_7EA500C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="896" y="1040" name="inst_ABD5473C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="896" y="1040" name="inst_ABD5473C" locked="0" code="name = &quot;Honey Woman&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHoneyWoman" x="560" y="1072" name="inst_31BBDDE0" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="320" y="992" name="inst_D554B49D" locked="0" code="myRoom = lvlShowcaseHUB;&#xA;pressUp = 1;&#xA;newStage = 1;&#xA;&#xA;light = 1;&#xA;lighty = -35;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="304" y="48" name="inst_7DFB8D91" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -233,7 +243,7 @@
     <instance objName="objSolid" x="272" y="256" name="inst_6FB0317E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="272" y="240" name="inst_BE6782C6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="272" y="224" name="inst_10AA6CA5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objWater" x="1536" y="672" name="inst_E16401F4" locked="0" code="" scaleX="16" scaleY="14" colour="4294967295" rotation="0"/>
+    <instance objName="objWater" x="1520" y="672" name="inst_E16401F4" locked="0" code="" scaleX="16" scaleY="14" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="528" y="160" name="inst_209FA0B5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="544" y="160" name="inst_487B575B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="560" y="160" name="inst_7D472E0C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

@@ -50,6 +50,7 @@ dir = 1;
 getX = x;
 getY = y;
 spd = 0;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

@@ -62,7 +62,7 @@ sinkin = 1;
             <kind>1</kind>
             <string>event_inherited();
 
-if (!global.frozen &amp;&amp; !global.timeStopped)
+if (!global.frozen)
 {
     if (ground)
     {

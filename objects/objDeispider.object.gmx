@@ -51,6 +51,8 @@ ceilingAnimSpeed = 0.1;
 landAnimSpeed = 0.35;
 healthpointsStart = 2;
 healthpoints = 2;
+
+behaviourType = 1;
 </string>
           </argument>
         </arguments>

@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A cloud-themed enemy. When the player gets close, it appears from the bottom of the screen, rises most of the way to the top, then zig-zags back down.
+/// When it reaches its apex, it will shoot a pillar of electricity straight down if specified in the creation code, or if it is raining or snowing due to Tel Tel weather.
+/// Note that you can place it at any height in the room editor; it will function the same way regardless. You also don't need to hide it in a pit, so be creative!
+
+event_inherited();
 
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
@@ -38,6 +42,8 @@ blockCollision = 0;
 
 despawnRange = 48;
 respawnRange = 48;
+
+behaviourType = 1;
 
 // Enemy specific code
 image_speed = 0;

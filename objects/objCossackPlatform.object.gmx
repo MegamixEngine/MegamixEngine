@@ -82,7 +82,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     // Check for MM and if he's standing on it
     with (target)
     {
-        if (ground &amp;&amp; !isSlide)
+        if (ground)
         {
             if (place_meeting(x, y + 2*gravDir, other.id))
             {

@@ -47,23 +47,26 @@ delay = 0;
 lookFired = 0;
 hasFired = false;
 shotsFired = 0;
-introType = 2;
+//introType = 2;
 
 // health bar variables
-healthBarPrimaryColor[1] = 25;
-healthBarSecondaryColor[1] = 0;
+healthBarPrimaryColor[1] = $1C;
+healthBarSecondaryColor[1] = $00;
 
 // Music
-music = "RnFBossNES.ogg";
-musicType = "OGG";
-musicLoopSecondsStart = 55.70;
-musicLoopSecondsEnd = 79.70;
-musicVolume = 0.8;
+music = "MegamixBossThemes.nsf";
+musicType = "VGM";
+musicVolume = 1;
+musicTrackNumber = 2;
+
+changesStates = true;
 
 // Damage Table
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 3);
@@ -74,6 +77,10 @@ enemyDamageValue(objThunderBeam, 4);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 1);
 enemyDamageValue(objBreakDash, 0);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -109,15 +116,16 @@ enemyDamageValue(objConcreteShot, 2);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 2);
 enemyDamageValue(objSuperArmDebris, 2);
-enemyDamageValue(objChillShot, 0);
+enemyDamageValue(objChillSpike, 0);
 enemyDamageValue(objChillSpikeLanded, 0);
 
 // Misc.
 enemyDamageValue(objPowerStone, 2);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -147,6 +155,11 @@ event_inherited();
 // all of devils's events trigger when the game isn't frozen. he isn't weak to flash stopper, so no need to check whether that is used or not!
 if (entityCanStep())
 {
+    if (isIntro) &amp;&amp; ((introType &lt; 2) &amp;&amp; (!quickSpawn))
+    {
+        sprite_index = pose;
+        y = ystart;
+    }
     if (isFight == true)
     {
         // this sets up crash man's movement variables.
@@ -240,7 +253,7 @@ if (entityCanStep())
                 {
                     with (objGreyDevilGloop)
                     {
-                        instance_create(x, y, objExplosion);
+                        instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
                         instance_destroy();
                     }
                     
@@ -272,7 +285,7 @@ if (entityCanStep())
                     for (var i = 0; i &lt; 3; i += 1)
                     {
                         var inst;
-                        inst = instance_create(x, y - 24, objGreyDevilGloop);
+                        inst = instance_create(x, y - 23, objGreyDevilGloop);
                         if (shotsFired mod 3 == 0 || shotsFired mod 3 == 1)
                             inst.xspeed = (1.24 + (1 * i)) * image_xscale;
                         else
@@ -287,6 +300,7 @@ if (entityCanStep())
 }
 else
 { }
+
 </string>
           </argument>
         </arguments>
@@ -312,7 +326,10 @@ else
             <string>with (objGloop)
     instance_destroy();
 with (objGreyDevilGloop)
+{
+    instance_create(bboxGetXCenter(),bboxGetYCenter(),objExplosion);
     instance_destroy();
+}
 event_inherited();
 </string>
           </argument>

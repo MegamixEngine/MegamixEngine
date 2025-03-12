@@ -3,7 +3,7 @@
   <spriteName>sprMegamanTeleport</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-2000</depth>
   <persistent>0</persistent>
   <parentName>prtEffect</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -40,21 +40,20 @@ cid = 0;
 myRoom = -1;
 X = -1;
 Y = -1;
+dir = 1;
 newStage = false;
 returnToHub = true;
 isExternal = false;
+
+// not necessary -- can just set myRoom if it's in a typical level location (Levels/, Entries/, SubLevels/)
 externalRoomFilename = "";
 
 teleportLock = -1;
 
-if (global.teleportSound)
-{
-    warpOutSFX = sfxTeleportOutClassic;
-}
-else
-{
-    warpOutSFX = sfxTeleportOut;
-}
+warpOutSFX = getGenericSFX(SFX_TELEOUT);
+
+didEvent = 0;
+
 </string>
           </argument>
         </arguments>
@@ -77,16 +76,82 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
-
-if (((isExternal&amp;&amp;externalRoomFilename=="")||(!isExternal &amp;&amp; myRoom &lt;= 0)) &amp;&amp; !returnToHub)
+            <string>with (objCoOpWarpStar)
 {
-    global.frozen = false;
+    event_user(EV_DEATH);
+}
+
+if (type != 1)
+{
+    instance_destroy();
+}
+
+//Get our room
+if (!isExternal) //Internal
+{
+    if (is_string(myRoom) &amp;&amp; myRoom != "")
+    {
+        // 'isExternal' is not always set reliably -- this is just for safety.
+        myRoom = getRoom(myRoom);
+    }
+}
+else //External
+{
+    if (externalRoomFilename != "")
+    {
+        myRoom = externalRoomFilename;
+        //roomExternalClear(externalRoomFilename);
+        /*MaGMML3-&gt;Megamix 1.9 bug: Above seems to crash on ShowcaseHUB teleporters, potentially due to trying to clear and reload while anotherERL object is already avtive.
+        */
+        myRoom = roomExternalLoad(externalRoomFilename);
+    }
+}
+
+if (returnToHub) // Back to the hub
+{
+    returnFromLevel(true, true);
+}
+else if (myRoom &gt;= 0) // Go to another room 
+{
+    global.hasTeleported = 1;
+    global.teleportX     = X;
+    global.teleportY     = Y;
+    global.teleportDir   = dir;
     
+    global.usedDoor = (type == 3);
+    
+    if (!global.usedDoor &amp;&amp; global.respawnAnimation == 4)
+    {
+        global.respawnAnimation = 0;
+    }
+    
+    if (newStage) // Begin new a stage
+    {
+        goToLevel(myRoom, true);
+    }
+    else // Just go to the room
+    {
+        global.nextRoom = myRoom;
+    }
+}
+else //Just go to another position in the room
+{
+
+    global.frozen = false;
+    var txt = "";
+    var add = 0;
+    
+    var firstID = 0;
+
     with (objMegaman)
     {
         x = other.X;
         y = other.Y;
+        txt += string(x) + "x / " + string(y) + "y #";
+        image_xscale = other.dir;
+        //add ++;
+        if (firstID == 0)
+            firstID = id;
         
         xspeed = 0;
         yspeed = 0;
@@ -96,14 +161,38 @@ if (((isExternal&amp;&amp;externalRoomFilename=="")||(!isExternal &amp;&amp; myR
         mask_index = mskMegaman;
         slideTimer = 0;
         isShoot = false;
+        dieToPit = false;
+        if (global.playerHealth[playerID] &gt; 0)
+        {
+            visible = 1;
+            dead = false;
+        }
         
-        visible = 1;
+        var myPlayer = 0;
+        if (playerID == other.pid)
+        {
+            myPlayer = playerID;
+        }
         
-        setSection(x, y, 1);
-        playerCamera(1);
-        reAndDeactivateObjects(1, 1);  
-        
-        if (other.type &lt; 3)
+    }
+    with (objMegaman)
+    {
+        //if (add == global.playerCount)
+        if (firstID == id)
+        {
+            setSection(other.X, other.Y, 1);
+            playerCamera(1);
+            reAndDeactivateObjects(1, 1);
+        }
+        if (global.playerHealth[playerID] &gt; 0)
+        {
+            visible = 1;
+            dead = false;
+        }
+    }
+    with (objMegaman)
+    {
+        if (other.type &lt; 3 &amp;&amp; global.playerHealth[playerID] &gt; 0)
         {
             teleporting = 1;
             teleportTimer = 0;
@@ -121,38 +210,13 @@ if (((isExternal&amp;&amp;externalRoomFilename=="")||(!isExternal &amp;&amp; myR
                 localPlayerLock[PL_LOCK_SLIDE],
                 );
         }
+        dieToPit = true;
+        
+        
     }
-}
-else
-{
-    if (newStage)
-    {
-        // begin new a stage
-        assert((myRoom != -1 || (isExternal&amp;&amp;(externalRoomFilename!=""))), "mega man exit set to go to a new stage but didn't set the room.");
-        if(isExternal)
-        {
-            roomExternalClear(externalRoomFilename);
-            myRoom = roomExternalLoad(externalRoomFilename);
-        }
-        goToLevel(myRoom, true);
-    }
-    else if (myRoom != -1 || (isExternal&amp;&amp;(externalRoomFilename!="")))
-    {
-        // do not start new level -- just teleport
-        global.hasTeleported = 1;
-        global.teleportX = X;
-        global.teleportY = Y;
-        if(isExternal)
-        {
-            roomExternalClear(externalRoomFilename);
-            myRoom = roomExternalLoad(externalRoomFilename);
-        }
-        global.nextRoom = myRoom;
-    }
-    else if (returnToHub)
-    {
-        returnFromLevel();
-    }
+            
+    
+   // clipboard_set_text(txt);
 }
 </string>
           </argument>
@@ -176,7 +240,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>timer += 1;
+            <string>timer ++;
 
 var t = floor(timer * 0.3);
 
@@ -214,8 +278,14 @@ if (type &lt; 3)
 }
 else
 {
-    var ximg = 0 + min(4, t);
-    var yimg = 11;
+    var ximg = 3;//0 + min(4, t);
+    var yimg = 6;//11;
+    
+    if (type == 4)
+    {
+        ximg = 0;
+        yimg = 0;
+    }
     
     if (t == 0)
     {
@@ -226,9 +296,20 @@ else
     }
 }
 
-if (t == 9)
+if (!didEvent)
 {
-    event_user(0);
+    if (t == 9)
+    {
+        if (audio_is_playing(warpOutSFX) &amp;&amp; (myRoom != -1))
+        {
+            timer --;
+        }
+        else
+        {
+            event_user(0);
+            didEvent = 1;
+        }
+    }
 }
 
 if (drawMe)
@@ -237,7 +318,7 @@ if (drawMe)
 }
 
 // stop moving pls
-with objMegaman
+with (objMegaman)
 {
     xspeed = 0;
     yspeed = 0;

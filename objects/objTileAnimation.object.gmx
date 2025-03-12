@@ -55,6 +55,21 @@ animationLayer=100000;
 timer = 0;
 tileID = 0;
 init=1;
+
+doPrint = false;
+file = -1;
+printIterate = 0;
+if (DEBUG_ENABLED)
+{
+    if (global.keyUp[0] &amp;&amp; global.keyLeft[0] &amp;&amp; global.keyMap[0])
+    {
+        doPrint = true;
+        file = file_text_open_write(working_directory + "AutoTilerDump/" + roomExternalGetName(room) + "_TA.txt");
+    }
+}
+isBaked = false;//Use after running/implementing the baking script to allow animation, without genning tiles on init.
+bakeAsLayer=true;
+
 </string>
           </argument>
         </arguments>
@@ -82,52 +97,104 @@ init=1;
 if(init)
 {
     print("Animating");
-    var tiles = tile_get_ids_at_depth(animationLayer);
-    var total = array_length_1d(tiles);
-    if(total&lt;=0)
+    if (!isBaked)
     {
-        init=0;
-        instance_destroy();
-        exit;
-    }
-    
-    for (var i = 0; i &lt; total; i+=1)
-    {
-        var tile = tiles[i];
-        var bg=tile_get_background(tile);
-        var skip=true;
-        var k=0;
-        for(var j=0; j&lt;animLength;j+=1;)
+        var tiles = tile_get_ids_at_depth(animationLayer);
+        var total = array_length_1d(tiles);
+        if(total&lt;=0)
         {
-            if(bg==animID[j])
+            init=0;
+            instance_destroy();
+            exit;
+        }
+        
+        for (var i = 0; i &lt; total; i+=1)
+        {
+            var tile = tiles[i];
+            var bg=tile_get_background(tile);
+            var skip=true;
+            var k=0;
+            for(var j=0; j&lt;animLength;j+=1;)
             {
-                skip=false;
-                k=j+1;
-                break;
+                if(bg==animID[j])
+                {
+                    skip=false;
+                    k=j+1;
+                    break;
+                }
             }
-        }
-        if(skip)
-            continue;
-        if(k&gt;=animLength)
-        {
-            k=0;
-        }
-        for(var j=1;j&lt;animLength;j++)
-        {
-            tile_add(animID[k], tile_get_left(tile),
-                tile_get_top(tile), 16,
-                16, tile_get_x(tile), tile_get_y(tile),
-                animationLayer + j);
-            ++k;
+            if(skip)
+                continue;
             if(k&gt;=animLength)
             {
                 k=0;
             }
+            for(var j=1;j&lt;animLength;j++)
+            {
+                var t = tile_add(animID[k], tile_get_left(tile),
+                    tile_get_top(tile), tile_get_width(tile),
+                    tile_get_height(tile), tile_get_x(tile), tile_get_y(tile),
+                    animationLayer + j);
+                if (doPrint)
+                {
+                    var p = true;
+                    if (bakeAsLayer)
+                    {
+                        for (var q = 1; q &lt; j; q++)
+                        {
+                            if (q != j &amp;&amp; animID[q] == animID[j])
+                            {
+                                p = false;
+                            }
+                        }
+                    }
+                    if (p)
+                    {
+                        assert(tile_get_blend(t) == c_white &amp;&amp; tile_get_alpha(t) == 1, "Non-default colors for tiles not supported!");
+                        file_text_write_string(file,
+                            '    &lt;tile bgName="' + string(background_get_name(tile_get_background(t)))
+                            + '" x="' + string(tile_get_x(t))
+                            + '" y="' + string(tile_get_y(t))
+                            + '" w="' + string(tile_get_width(t))
+                            + '" h="' + string(tile_get_height(t))
+                            + '" xo="' + string(tile_get_left(t))
+                            + '" yo="' + string(tile_get_top(t))
+                            + '" id="' +  string(t)//Make sure this is OK!
+                            + '" name="' + "ANIM_" + string(printIterate)
+                            + '" depth="' + string(tile_get_depth(t))
+                            + '" locked="0'
+                            + '" colour="' +  "4294967295"
+                            + '" scaleX="' + string(tile_get_xscale(t))
+                            + '" scaleY="' + string(tile_get_yscale(t))
+                            + '"/&gt;'
+                            );
+                            file_text_writeln(file);
+                            printIterate++;
+                    }
+                }
+    
+                ++k;
+                if(k&gt;=animLength)
+                {
+                    k=0;
+                }
+            }
+        }
+        for(var i =1;i&lt;animLength;i++)
+            tile_layer_hide(animationLayer+i);
+        init=false;
+        if (doPrint)
+        {
+            file_text_close(file);
+            print("Anim file written to",WL_SHOW);
         }
     }
-    for(var i =1;i&lt;animLength;i++)
-        tile_layer_hide(animationLayer+i);
-    init=false;
+    else
+    {
+        init = 0;
+        for(var i =1;i&lt;animLength;i++)
+            tile_layer_hide(animationLayer+i);
+    }
     exit;
 }
 
@@ -159,6 +226,7 @@ else
         tile_layer_show(animationLayer + tileID);
     }
 }
+
 
 </string>
           </argument>

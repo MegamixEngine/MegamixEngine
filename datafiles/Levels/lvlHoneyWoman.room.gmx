@@ -17,7 +17,17 @@
           instance_destroy();
     }
 }
-playMusic("HoneyWoman.ogg", "OGG", 1, 06.398, 51.199, true, 0.75);</code>
+//Randomize between Wii and OST versions.
+var sf = choose("_OST","");
+var vol = 1;
+if (sf == "")
+{//Nerf the Wii version's volume (It's a little loud by comparison).
+    vol = .8;
+}
+
+playMusic("MM9/13_HornetMan.mid","MIDI","MM9/MM9" + sf + ".sf2",true,vol);
+//Old CC below.
+//"HoneyWoman.ogg", "OGG", 1, 06.398, 51.199, true, 0.75);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -118,7 +128,7 @@ playMusic("HoneyWoman.ogg", "OGG", 1, 06.398, 51.199, true, 0.75);</code>
     <instance objName="objBossDoor" x="336" y="272" name="inst_3653D5EC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBokazurahPlatform" x="224" y="272" name="inst_AA8890C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="0" y="448" name="inst_A411AAB9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objHoneyWoman" x="3536" y="1744" name="inst_C252CE96" locked="0" code="elementName = &quot;honey&quot;;&#xA;elementCode = &quot;weaponReward(objHornetChaser);&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHoneyWoman" x="3536" y="1744" name="inst_C252CE96" locked="0" code="elementCode = &quot;weaponReward(objHornetChaser);&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHornetRoll" x="1376" y="1216" name="inst_7B462AFF" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;timeRestExtend = 45;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHornetRoll" x="1536" y="1216" name="inst_57A8DE0B" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;timeRestExtend = 45;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHornetRoll" x="1696" y="1184" name="inst_B8DC3868" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;timeRestExtend = 45;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -182,7 +192,7 @@ playMusic("HoneyWoman.ogg", "OGG", 1, 06.398, 51.199, true, 0.75);</code>
     <instance objName="objBossBarrier" x="1040" y="1104" name="inst_45497E1C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="1056" y="1104" name="inst_C71B3636" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="1072" y="1104" name="inst_38932C54" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1152" y="1264" name="inst_DEA11EC0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1152" y="1264" name="inst_DEA11EC0" locked="0" code="name = &quot;Midway point&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objScissascissor" x="1552" y="1280" name="inst_4A531801" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objScissascissor" x="1616" y="1152" name="inst_8B6180AC" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objScissascissor" x="2000" y="1240" name="inst_3657E0F1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -209,7 +219,7 @@ playMusic("HoneyWoman.ogg", "OGG", 1, 06.398, 51.199, true, 0.75);</code>
     <instance objName="objBokazurahPlatform" x="1168" y="112" name="inst_B646C884" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBokazurahPlatform" x="1200" y="112" name="inst_209324C3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBokazurahPlatform" x="1216" y="112" name="inst_646606B5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="3200" y="1712" name="inst_E071E32F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="3200" y="1712" name="inst_E071E32F" locked="0" code="name = &quot;Boss corridor&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBoltSmall" x="2528" y="1600" name="inst_7ECE468E" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBoltSmall" x="2544" y="1600" name="inst_2B9D2D34" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBoltSmall" x="2560" y="1600" name="inst_DF94127D" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

@@ -44,6 +44,8 @@ timer = 0;
 isWave = false;
 
 playSFX(sfxSolarBlaze);
+
+autoFireSet = 12;
 </string>
           </argument>
         </arguments>
@@ -114,19 +116,11 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop;
+            <string>var ammoCost = 1 - (0.5 * (global.energySaver &gt; 0));
 
-xOffset = 16; // x offset from center of player
-yOffset = 0; // y offset from center of player
-bulletObject = objSolarBlaze;
-bulletLimit = 2;
-weaponCost = 1;
-action = 1; // 0 - no frame; 1 - shoot; 2 - throw
-willStop = 0; // If this is 1, the player will halt on shooting ala Metal Blade.
-
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+if (performShoot)
 {
-    var i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop);
+    var i = fireWeapon(16, 0, objSolarBlaze, 2, ammoCost, 1, 0);
     if (instance_exists(i))
     {
         i.xspeed = image_xscale * 4.25; // zoom

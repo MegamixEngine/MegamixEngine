@@ -40,6 +40,8 @@ boomerangBack = false;
 image_speed = 0.15;
 
 playSFX(sfxMagicCard);
+
+autoFireSet = 10;
 </string>
           </argument>
         </arguments>
@@ -176,9 +178,10 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
-    i = fireWeapon(16, 2, objMagicCard, 3, 1, 2, 1);
+    var ammoCost = 1 - (0.5 * (global.energySaver &gt; 0));
+    i = fireWeapon(16, 2, objMagicCard, 3, ammoCost, 2, 1);
     if (instance_exists(i))
     {
         if ((global.keyUp[playerID] &amp;&amp; gravDir == 1) || (global.keyDown[playerID] &amp;&amp; gravDir == -1))

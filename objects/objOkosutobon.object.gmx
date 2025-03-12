@@ -32,6 +32,7 @@ contactDamage = 3;
 healthpointsStart = 2;
 itemDrop = -1;
 grav = 0;
+bubbleTimer = -1;
 
 //@cc How fast it can move
 speedLimit = 2.5;
@@ -53,6 +54,9 @@ deathTime = 60 * 4; // Explode in 4 seconds
 
 animFrame = 0;
 animOffset = 0;
+
+// This kills it in MM9
+enemyDamageValue(objBlackHoleBomb, 3);
 </string>
           </argument>
         </arguments>
@@ -123,7 +127,7 @@ if (entityCanStep())
             dead = true;
             var i = instance_create(x, y, objHarmfulExplosion);
             i.damageEnemies = harmEnemies;
-            playSFX(sfxMM9Explosion);
+            playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
         }
         else
         {

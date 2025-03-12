@@ -59,7 +59,7 @@ if (global.frozen == false)
     if (ground)
     {
         instance_create(x, y, objExplosion);
-        playSFX(sfxExplosion);
+        playSFX(getGenericSFX(SFX_EXPLOSION));
         instance_destroy();
     }
 }

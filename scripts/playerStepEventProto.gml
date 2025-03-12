@@ -1,4 +1,5 @@
 var protoShieldCreated = 0;
+//DELETE THIS! No longer used.
 //THE ACTUAL STEP EVENT
 if (!global.frozen && !frozen)
 {

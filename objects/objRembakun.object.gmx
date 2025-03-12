@@ -41,6 +41,8 @@ facePlayerOnSpawn = true;
 // Enemy specific code
 missileDrop = -1;
 moveDelay = 0;
+imgIndex = 0;
+imgSpd = 0.25;
 
 // shooting variables
 cooldownTimer = 0;
@@ -74,8 +76,16 @@ direct = -1;
 if (entityCanStep())
 {
     moveDelay += 1;
+    imgIndex += imgSpd;
+    
     if (missileDrop &gt; 0)
-        image_index = (2 * missileDrop) + (moveDelay * 0.25);
+    {
+        image_index = ((imgIndex mod 2) + 2 * missileDrop)
+    }
+    else
+    {
+        image_index = imgIndex mod 2;
+    }
     
     // Rembakun moves an additional pixel extra every few frames. this replicates that.
     if (moveDelay == 0)
@@ -126,16 +136,14 @@ if (entityCanStep())
         canShoot = false;
     }
 }
-else
+else if (dead)
 {
-    if (dead == true)
-    {
-        direct = 1 * image_xscale;
-        cooldownTimer = 0;
-        missileDrop = -1;
-        moveDelay = 0;
-        image_index = 0;
-    }
+    direct = 1 * image_xscale;
+    cooldownTimer = 0;
+    missileDrop = -1;
+    moveDelay = 0;
+    image_index = 0;
+    imgIndex = 0;
 }
 </string>
           </argument>

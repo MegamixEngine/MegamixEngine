@@ -1,7 +1,7 @@
 /// checkSolid(deltaX, deltaY,[noSlopeConditions],[alwaysCheckSolids])
 // Check for solid if placed at the given offset from the current (x,y) coords
 // noSlopeConditions: default false
-// alwaysCheckSolids: defaul false, if true, solid entities will be detected even if the object calling the script is already colliding with it
+// alwaysCheckSolids: default false, if true, solid entities will be detected even if the object calling the script is already colliding with it
 
 var _xs = argument[0];
 var _ys = argument[1];
@@ -72,7 +72,7 @@ with (prtEntity)
         {
             if (alwaysCheckSolids || object_index == objBossDoor || object_index == objBossDoorVertical || !place_meeting(x, y + cgrav, myid))
             {
-                if (isSolid != 2 || place_meeting(x - _xs, y - cgrav * abs(_ys), myid))
+                if (isSolid != 2 || (place_meeting(x - _xs, y - cgrav * abs(_ys), myid) && object_index != objDanganPlatform))
                 {
                     if (!fnsolid)
                     {

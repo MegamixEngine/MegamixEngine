@@ -56,7 +56,7 @@ stopOnFlash = false;
             <string>event_inherited();
 if (!global.frozen)
 {
-    xspeed = cos(degtorad(dir)) * 2 * image_xscale;
+    xspeed = cos(degtorad(dir)) * 2;// * image_xscale;
     yspeed = -sin(degtorad(dir)) * 2;
     image_index += 0.25;
 }

@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -34,6 +34,7 @@ calibrateDirection();
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 3;
+canHit = true;
 
 // enemy specific
 variation = -1;
@@ -42,6 +43,7 @@ killTimer = 0;
 xspeed = 0;
 yspeed = 0;
 grav = 0.2;
+dir = 1;
 
 animBack = false;
 imgSpd = 0.2;
@@ -82,7 +84,8 @@ if (entityCanStep())
     // BOING gubye wall
     if (xspeed == 0)
     {
-        image_xscale = -image_xscale;
+        //image_xscale = -image_xscale;
+        dir = -dir;
     }
     
     // do teh ting (woop woop)
@@ -93,11 +96,11 @@ if (entityCanStep())
     
     if (variation == 0)
     {
-        xspeed = 2 * image_xscale;
+        xspeed = 2 * dir;
     }
     else if (variation == 1)
     {
-        xspeed = 1 * image_xscale;
+        xspeed = 1 * dir;
     }
     
     // ded temer
@@ -139,6 +142,29 @@ if (variation == -1)
 {
     variation = choose(0, 1);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_perform_object(prtEntity,ev_other,ev_user10);
 </string>
           </argument>
         </arguments>

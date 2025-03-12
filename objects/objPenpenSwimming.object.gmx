@@ -45,6 +45,8 @@ image_speed = 0.2;
 
 sinCounter = 0;
 homing = 0;
+
+behaviourType = 1;
 </string>
           </argument>
         </arguments>

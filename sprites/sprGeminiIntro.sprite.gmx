@@ -2,22 +2,22 @@
 <sprite>
   <type>0</type>
   <xorig>15</xorig>
-  <yorigin>12</yorigin>
+  <yorigin>11</yorigin>
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>0</bbox_left>
-  <bbox_right>34</bbox_right>
+  <bbox_right>33</bbox_right>
   <bbox_top>0</bbox_top>
   <bbox_bottom>27</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>5</TextureGroup0>
+    <TextureGroup0>201</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>35</width>
+  <width>34</width>
   <height>28</height>
   <frames>
     <frame index="0">images\sprGeminiIntro_0.png</frame>
@@ -29,5 +29,7 @@
     <frame index="6">images\sprGeminiIntro_6.png</frame>
     <frame index="7">images\sprGeminiIntro_7.png</frame>
     <frame index="8">images\sprGeminiIntro_8.png</frame>
+    <frame index="9">images\sprGeminiIntro_9.png</frame>
+    <frame index="10">images\sprGeminiIntro_10.png</frame>
   </frames>
 </sprite>

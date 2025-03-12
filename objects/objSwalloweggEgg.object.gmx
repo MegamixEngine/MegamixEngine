@@ -245,6 +245,7 @@ if (entityCanStep())
 {
     birdInstanceStore.hasEgg = false;
 }
+event_inherited();
 </string>
           </argument>
         </arguments>

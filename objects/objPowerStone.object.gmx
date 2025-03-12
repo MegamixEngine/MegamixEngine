@@ -111,11 +111,12 @@ if (!global.frozen &amp;&amp; canDamage)
             <kind>1</kind>
             <string>// EV_WEAPON_CONTROL
 
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; !instance_exists(objPowerStone))
+if (performShoot &amp;&amp; !instance_exists(objPowerStone))
 {
     for (var angle = 0; angle &lt; 360; angle += 120)
     {
-        i = fireWeapon(cos(degtorad(angle)) * 16, -(sin(degtorad(angle)) * 16), objPowerStone, 3, (1 / 3), 0, 0);
+        var ammoCost = (1 / 3) - ((1 / 6) * (global.energySaver &gt; 0));
+        i = fireWeapon(cos(degtorad(angle)) * 16, -(sin(degtorad(angle)) * 16), objPowerStone, 3, ammoCost, 0, 0);
         if (i) // set starting speed
         {
             i.angle = angle;

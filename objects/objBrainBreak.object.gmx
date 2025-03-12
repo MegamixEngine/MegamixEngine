@@ -39,6 +39,9 @@ phase = 1;
 smokeTimer = 0;
 explodeTimer = 0;
 
+shineEffect = 0;
+glassesTimer = 0;
+
 xSpd = 1.2;
 jumpXSpd = 0;
 ySpd = 5;
@@ -97,6 +100,17 @@ if (entityCanStep())
                 }
             }
             
+            // Evil anime glasses shine
+            if (glassesTimer == 4)
+            {
+                glassesTimer = 0;
+                if (!shineEffect)
+                    shineEffect = 1;
+                else
+                    shineEffect = 0;
+            }
+            glassesTimer++;
+            
             // Turn around
             if (ground)
             {
@@ -108,23 +122,23 @@ if (entityCanStep())
             }
             break;
         
-        // ATTACK THE SHIT OUTA MEGA MEONG BWOBWOBWOBWOBWOBWO
+        // ATTACK
         case 2: // Animation 
             if (!animBack)
             {
                 imgIndex += imgSpd * 2;
-                if (imgIndex &gt;= 6)
+                if (imgIndex &gt;= 9)
                 {
-                    imgIndex = 5 - imgIndex mod 6;
+                    imgIndex = 8 - imgIndex mod 9;
                     animBack = true;
                 }
             }
             else
             {
                 imgIndex -= imgSpd * 2;
-                if (imgIndex &lt;= 3)
+                if (imgIndex &lt;= 6)
                 {
-                    imgIndex = 4; // Not sure how to carry over the extra value. Oh well.
+                    imgIndex = 7; // Not sure how to carry over the extra value. Oh well.
                     animBack = false;
                 }
             }
@@ -174,6 +188,7 @@ if (entityCanStep())
             {
                 dead = true;
                 instance_create(bboxGetXCenter(), bboxGetYCenter(), objHarmfulExplosion);
+                playSFX(getGenericSFX(SFX_EXPLOSION2));
             }
             break;
     }
@@ -186,9 +201,11 @@ else if (dead)
     explodeTimer = 0;
     imgIndex = 0;
     animBack = false;
+    shineEffect = 0;
+    glassesTimer = 0;
 }
 
-image_index = imgIndex div 1;
+image_index = imgIndex + ((3 * shineEffect) * (phase == 1)) div 1;
 </string>
           </argument>
         </arguments>
@@ -243,13 +260,15 @@ if (spawned)
 
 if phase != 2
 {
+    glassesTimer = 0;
+    shineEffect = 0;
     phase = 2;
-    imgIndex = 3;
+    imgIndex = 6;
     animBack = false;
 
     calibrateDirection();
 
-    with (instance_create(x, y, objBrainBreakGlasses))
+    with (instance_create(x, y+6, objBrainBreakGlasses))
     {
         image_xscale = other.image_xscale;
         xspeed = -other.image_xscale;

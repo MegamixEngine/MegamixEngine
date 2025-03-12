@@ -110,35 +110,19 @@ if (entityCanStep())
         xspeed = 0;
     }
     
-    // play animation forwards or backwards depending on the direction dachone is moving and what direction the sprite is facing.
+    // play animation forwards - it never plays in reverse
     if (xspeed != 0)
     {
         imageTimer += 1;
-        if (imageTimer == 12)
+        if (imageTimer == 8)
         {
-            var tgx = x + 12;
-            if (instance_exists(target))
-                tgx = target.x;
-            imageTimer = 0;
-            if (moveDir &gt; 0 &amp;&amp; tgx &gt; x || moveDir &lt; 0 &amp;&amp; tgx &lt; x)
-            {
-                imageOffset += 1;
-            }
-            
-            if (moveDir &gt; 0 &amp;&amp; tgx &lt; x || moveDir &lt; 0 &amp;&amp; tgx &gt; x)
-            {
-                imageOffset -= 1;
-            }
+           imageOffset += 1;
+           imageTimer = 0;
         }
         
-        if (imageOffset &gt;= 4)
+        if (imageOffset &gt;= 6)
         {
             imageOffset = 0;
-        }
-        
-        if (imageOffset &lt; 0)
-        {
-            imageOffset = 3;
         }
     }
     
@@ -216,7 +200,8 @@ if (spawned)
             <kind>1</kind>
             <string>event_inherited();
 instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
-playSFX(sfxExplosion2);
+stopSFX(getGenericSFX(SFX_ENEMYHIT));
+playSFX(getGenericSFX(SFX_EXPLOSION2));
 </string>
           </argument>
         </arguments>

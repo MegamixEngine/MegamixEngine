@@ -35,6 +35,7 @@ blockCollision = 0;
 canHit = true;
 grav = 0;
 despawnRange = 0;
+reflectable = -1;
 
 // Enemy specific code
 timer = 0;
@@ -131,7 +132,7 @@ if (entityCanStep())
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-stopSFX(sfxEnemyHit);
+stopSFX(getGenericSFX(SFX_ENEMYHIT));
 instance_create(x, y, objExplosion);
 </string>
           </argument>

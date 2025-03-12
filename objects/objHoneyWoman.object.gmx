@@ -48,18 +48,25 @@ imgSpd = 0.4;
 image_index = 14; // falling sprite from intro
 
 // healthbar
-healthBarPrimaryColor[1] = 34;
-healthBarSecondaryColor[1] = 40;
+manualColors = true;
+healthBarPrimaryColor[1] = make_colour_rgb(228,92,16);
+healthBarSecondaryColor[1] = make_colour_rgb(236,184,68);
 
 // Music
-music = "Mega_Man_9.nsf";
-musicType = "VGM";
-musicTrackNumber = 16;
-
+music = "MM9/16_Boss.mid";
+musicType = "MIDI";
+var sf = choose("","_OST");
+musicTrackNumber = "MM9/MM9" + sf + ".sf2";
+if (sf == "")
+{
+    musicVolume = .8;
+}
 // Damage Table
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -70,6 +77,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objBreakDash, 2);
 enemyDamageValue(objMagneticShockwave, 1);
 enemyDamageValue(objIceWall, 4);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -105,15 +116,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 2);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 3);
+enemyDamageValue(objChillSpike, 3);
 enemyDamageValue(objChillSpikeLanded, 6);
 
 // Misc.
 enemyDamageValue(objPowerStone, 4);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 4);
+enemyDamageValue(objBlockDropper, 4);
 enemyDamageValue(objIceSlasher, 4);
 </string>
           </argument>

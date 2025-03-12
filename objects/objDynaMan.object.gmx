@@ -30,8 +30,8 @@
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
 
-healthBarPrimaryColor[1] = 22;
-healthBarSecondaryColor[1] = 52;
+healthBarPrimaryColor[1] = $19;
+healthBarSecondaryColor[1] = $3C;
 
 customPose = true;
 introType = 0;
@@ -62,10 +62,14 @@ music = "Mega_Man_5GB.gbs";
 musicType = "VGM";
 musicTrackNumber = 5;
 
+doPlayerExplosion = false;
+
 // Damage Table
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -76,6 +80,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objMagneticShockwave, 4);
 enemyDamageValue(objIceWall, 1);
 enemyDamageValue(objBreakDash, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -111,15 +119,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 4);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 0);
+enemyDamageValue(objChillSpike, 0);
 enemyDamageValue(objChillSpikeLanded, 0);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 2);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -157,12 +166,13 @@ if (!global.frozen)
         startIntro = false;
         isIntro = true;
         visible = true;
+        grav = gravAccel;
         calibrateDirection();
     }
     else if (isIntro)
     {
-        if (y &lt;= ystart &amp;&amp; !hasTriggeredFall)
-            y += 4;
+        /*if (y &lt;= ystart &amp;&amp; !hasTriggeredFall)
+            y += 4;*/
         if (y &gt;= ystart || hasTriggeredFall)
         {
             sprite_index = sprDynaManIntro;
@@ -309,7 +319,7 @@ if (entityCanStep())
                         yspeed = 6;
                     }
                 }
-                playSFX(sfxEnemyDrop);
+                playSFX(sfxDynaManThrow);
             }
             else if (smallJumps &lt;= jumpCounter &amp;&amp; yspeed &gt;= 0)
             {
@@ -372,7 +382,9 @@ smallJumps = 3 + irandom(4);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (objDynaDynamite)
+            <string>event_inherited();
+
+with (objDynaDynamite)
 {
     instance_create(x, y, objExplosion);
     instance_destroy();
@@ -381,7 +393,10 @@ with (objHarmfulExplosion)
 {
     instance_destroy();
 }
-event_inherited();
+if (!quickSpawn)
+    playerExplosion(sprExplosionClassic,1.3,-1,sfxMMDosDeath,global.nesPalette[$2C],global.nesPalette[$36]);
+else
+    instance_create(x,y,objBigExplosion);
 </string>
           </argument>
         </arguments>

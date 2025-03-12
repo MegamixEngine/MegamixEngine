@@ -3,7 +3,7 @@
   <spriteName>sprPropellerEyePropeller1</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -36,7 +36,8 @@ category = "cluster, flying, shielded";
 blockCollision = false;
 grav = 0;
 
-facePlayerOnSpawn = true;
+facePlayerOnSpawn = false;
+image_xscale = -1;
 
 // Enemy specific code
 phase = 0;
@@ -111,7 +112,7 @@ if (entityCanStep())
                         imgIndex = 2;
                         animBack = false;
                         chase = true;
-                        calibrateDirection();
+                        //calibrateDirection();
                         
                         if (instance_exists(target))
                         {
@@ -172,6 +173,7 @@ else
         animBack = false;
         imgIndex = 0;
         propellerTimer = 0;
+        image_xscale = -1;
     }
 }
 

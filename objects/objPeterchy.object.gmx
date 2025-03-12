@@ -40,7 +40,13 @@ facePlayerOnSpawn = true;
 // Enemy specific code
 turnTimer = 0;
 
-image_speed = 12 / 60;
+// @cc - Changes colour (0 = red (default); 1 = hot pink; -1 = not applied)
+col = 0;
+
+imgIndex = 0;
+imgSpd = 12 / 60;
+
+turnTimerMax = 20;
 </string>
           </argument>
         </arguments>
@@ -73,7 +79,7 @@ if (entityCanStep())
     }
     
     turnTimer += 1;
-    if (turnTimer &gt;= 20)
+    if (turnTimer &gt;= turnTimerMax)
     {
         turnTimer = 0;
         if (instance_exists(target))
@@ -90,11 +96,22 @@ if (entityCanStep())
     }
     
     xspeed = image_xscale * 0.5;
+    
+    // Animation
+    imgIndex += imgSpd;
+    if (imgIndex &gt;= 5)
+    {
+        imgIndex = 0;
+    }
 }
 else if (dead)
 {
-    image_index = 0;
+    imgIndex = 0;
 }
+if (col &gt; -1)
+    image_index = floor(imgIndex) + (5 * col);
+else
+    image_index = floor(imgIndex);
 </string>
           </argument>
         </arguments>

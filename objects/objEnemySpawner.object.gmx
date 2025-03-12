@@ -55,6 +55,14 @@ dir = 1;
 stopOnFlash = false;
 
 spawntime = 56;
+
+overrideSprite = -2;
+overrideImg = -2;
+overrideXScale = -2;
+overrideYScale = -2;
+
+enemyFaceOnSpawn = false;
+code = "";
 </string>
           </argument>
         </arguments>
@@ -89,12 +97,28 @@ if (entityCanStep())
         {
             other.enx = bboxGetXCenter();
             other.eny = bboxGetYCenter();
-            other.sprite_index = sprite_index;
-            other.image_index = image_index;
-            other.image_xscale = image_xscale;
-            other.image_yscale = image_yscale;
+            
+            if (other.overrideSprite == -2)
+                other.sprite_index = sprite_index;
+            if (other.overrideImg == -2)
+                other.image_index = image_index;
+            if (other.overrideXScale == -2)
+                other.image_xscale = image_xscale;
+            if (other.overrideYScale == -2)
+                other.image_yscale = image_yscale;
+            
             instance_destroy();
         }
+        
+        // wow, this sucks
+        if (overrideSprite != -2)
+            sprite_index = overrideSprite;
+        if (overrideImg != -2)
+            image_index = overrideImg;
+        if (overrideSprite != -2)
+            image_xscale = overrideXScale;
+        if (overrideSprite != -2)
+            image_yscale = overrideYScale;
     }
     
     if (alarmTime &gt;= spawntime)
@@ -107,7 +131,22 @@ if (entityCanStep())
             {
                 despawnRange += sprite_height;
             }
+            
+            if (other.code != "")
+                stringExecutePartial(other.code);
+                
+            if (other.enemyFaceOnSpawn)
+                calibrateDirection();
         }
+        
+        if (overrideSprite != -2)
+            i.sprite_index = overrideSprite;
+        if (overrideImg != -2)
+            i.image_index = overrideImg;
+        if (overrideSprite != -2)
+            i.image_xscale = overrideXScale;
+        if (overrideSprite != -2)
+            i.image_yscale = overrideYScale;
         
         obj = i.object_index;
         

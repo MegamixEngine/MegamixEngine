@@ -30,6 +30,41 @@
 parent = 0;
 faction = 2;
 canDamage = false;
+playerID = 0;
+
+/*if (DEBUG_ENABLED)
+{
+    visible = true;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (parent)
+{
+    if (lastanimation == "Normal")
+    {
+        playerHandleSprites("Proto Jump");
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -52,19 +87,34 @@ canDamage = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if instance_exists(parent)
+            <string>if (instance_exists(parent))
 { 
     x = parent.x + 10*parent.image_xscale;
     y = parent.y + 2*parent.image_yscale;
     image_xscale = parent.image_xscale;
     image_yscale = parent.image_yscale;
-    if (parent.ground == false &amp;&amp; parent.isShoot == false &amp;&amp; parent.isSlide == false &amp;&amp; parent.isHit == false &amp;&amp; parent.isShocked == false &amp;&amp; parent.climbing == false &amp;&amp; parent.teleporting == false &amp;&amp; parent.isFrozen == 0 &amp;&amp; parent.vehicle == noone) //Big boy if statement
+    mask_index = mskProtoShield;
+    if (parent.isSlide == false &amp;&amp; 
+    parent.isHit == false &amp;&amp; parent.isShocked == false &amp;&amp; parent.climbing == false &amp;&amp; 
+    parent.teleporting == false &amp;&amp; parent.isFrozen == 0 &amp;&amp; parent.vehicle == noone) //Big boy if statement
     {
-        canDamage = true;
+        if (parent.ground == false &amp;&amp; parent.isShoot == false)
+        {
+            canDamage = true;
+        }
+        else
+        {
+            canDamage = false;
+        }
     }
     else
     {
         canDamage = false;
+    }
+
+    if (global.characterSelected[playerID] != CHAR_PROTOMAN)
+    {
+        instance_destroy();
     }
 }
 else
@@ -107,7 +157,8 @@ if (canDamage)
             exit;
             break;
         case -1:
-            playSFX(sfxEnemyHit);
+            //hasParried = true;
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
             with (other)
             {
                 i = instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
@@ -115,7 +166,8 @@ if (canDamage)
             }
             break;
         case 1:
-            playSFX(sfxEnemyHit);
+            //hasParried = true;
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
             with (other)
             {
                 faction = other.faction;
@@ -123,11 +175,48 @@ if (canDamage)
                 yspeed *= -1;
                 hspeed *= -1;
                 vspeed *= -1;
+                speed *= -1;
                 direction += 180;
+                if (variable_instance_exists(id,"dir"))
+                    dir += 180;
                 image_xscale *= -1;
+                if (image_angle != 0)
+                    image_angle += 180;
                 pierces = 0;
             }
             break;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///NOT ENABLED IN RETAIL (...by that I mean outside debug mode. We are not selling this game).
+event_inherited();
+//draw_rectangle(view_xview,view_yview,view_xview+64,view_yview+64,false);
+if (DEBUG_ENABLED)
+{
+    if (objDebugMenu.viewCollision &amp;&amp; canDamage)
+    {
+        draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,false);
     }
 }
 </string>

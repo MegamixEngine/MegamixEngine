@@ -146,7 +146,7 @@ else if (dead)
             <string>instance_create(x, y, objExplosion);
 if (hitByBear)
 {
-    playSFX(sfxEnemyHit);
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
 }
 instance_destroy();
 </string>

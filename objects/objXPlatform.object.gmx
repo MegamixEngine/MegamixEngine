@@ -94,7 +94,7 @@ if (entityCanStep())
     }
     
     moved = false;
-    with (target)
+    with (objMegaman)
     {
         if (ground)
         {

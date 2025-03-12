@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// An unused enemy from GB I. Hovers in place when the player is far away; continuously drops to the ground and rises back up when the player is close.
+/// The top of the enemy is a solid platform, but the bottom still does damage.
+/// Suitable for puzzle-platforming or for surprising players with attacks from above.
+
+event_inherited();
 
 respawn = true;
 
@@ -38,9 +42,33 @@ isSolid = 2;
 
 grav = 0;
 
+behaviourType = 1;
+
 // Enemy specific code
-image_speed = 0.2;
+image_speed = 0;
 alarmStop = 0;
+imgTimer = 0;
+img = 0;
+phase = 0;
+ys = 0;
+
+//creation code - change the ai of the enemy here.
+radius = 48; //how large the detection radius of drillun
+attackTimerMax = 21; //how long it waits before rising.
+dropSpeed = 2.5; //how fast this drops
+retreatSpeed = -0.5; //how fast this retreat to start location.
+imgTimerMax = 5; //how many frames till animation image changes
+
+animationLength = 2; //how many frames of animation this sprite uses per cycle
+inactiveStart = 0; //the image index of the start of 'inactive' animation
+activeStart = 0; //the image index of the start of 'active and falling' animation
+retreatStart = 0;//the image index of the start of 'returning to start' animation
+
+childObject = objSlideDust; //if set, these objects are created when hitting ground
+twinObjects = true; //if true, creates objects either side, otherwise create one object aimed towards target
+childXOffset = 5;//how far away the child object is created
+childSprite = noone; //if set, set the sprite of object when hitting ground
+
 </string>
           </argument>
         </arguments>
@@ -69,13 +97,31 @@ event_inherited();
 
 if (entityCanStep())
 {
+    imgTimer ++;
+    if (imgTimer &gt;= imgTimerMax)
+    {
+        img ++;
+        if (img &gt;= animationLength)
+        {
+            img = 0;
+        }
+        imgTimer = 0;
+    }
+    switch (phase)
+    {
+        case 0: default: image_index = inactiveStart + img; break;
+        case 1: image_index = activeStart + img; break;
+        case 2: image_index = retreatStart + img; break;
+    }
+
     if (instance_exists(target))
     {
-        if (abs(target.x - x) &lt; 48)
+        if (abs(target.x - x) &lt; radius)
         {
-            if (y == ystart)
+            if (abs(y-ystart) &lt; 1)
             {
-                yspeed = 2.5;
+                yspeed = dropSpeed;
+                phase = 1;
             }
         }
     }
@@ -83,10 +129,11 @@ if (entityCanStep())
     if (alarmStop)
     {
         alarmStop += 1;
-        if (alarmStop == 21)
+        if (alarmStop == attackTimerMax)
         {
-            yspeed = -0.5;
+            yspeed = retreatSpeed;
             alarmStop = 0;
+            phase = 2;
         }
     }
     
@@ -95,11 +142,30 @@ if (entityCanStep())
         if (ys &gt; 0)
         {
             alarmStop = 1;
-            repeat (2)
+            if (childObject != noone)
             {
-                image_xscale *= -1;
-                i = instance_create(x + 5 * image_xscale, bbox_bottom - 1, objSlideDust);
-                i.image_xscale = -image_xscale;
+                if (twinObjects)
+                {
+                    repeat (2)
+                    {
+                        image_xscale *= -1;
+                        var i = instance_create(x + childXOffset * image_xscale, bbox_bottom - 1, childObject);
+                        if (childSprite != noone)
+                            i.sprite_index = childSprite;
+                        i.image_xscale = -image_xscale;
+                    }
+                }
+                else
+                {
+                    var storeXS = image_xscale;
+                    calibrateDirection();
+                    var i = instance_create(x + childXOffset * image_xscale, bbox_bottom - 1, childObject);
+                    if (childSprite != noone)
+                        i.sprite_index = childSprite;
+                    i.image_xscale = image_xscale;
+                    
+                    image_xscale = storeXS;
+                }
             }
         }
     }
@@ -110,12 +176,16 @@ if (entityCanStep())
         {
             shiftObject(0, ystart - y, 1);
             y=ystart;
+            phase = 0;
         }
     }
 }
 else if (dead)
 {
     alarmStop = 0;
+    img = 0;
+    imgTimer = 0;
+    phase = 0;
 }
 </string>
           </argument>
@@ -144,9 +214,9 @@ else if (dead)
     exit;
 }
 
-if (iFrames == 1 || iFrames == 3)
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(true, c_white, 0, 0);
+    hitFlashEffect(true,c_white);//d3d_set_fog(true, c_white, 0, 0);
 }
 
 if (!ground)
@@ -159,9 +229,9 @@ else
         sprite_height - 2, x - sprite_xoffset, y - sprite_yoffset);
 }
 
-if (iFrames == 1 || iFrames == 3)
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(false, 0, 0, 0);
+    hitFlashEffect(false);//d3d_set_fog(false, 0, 0, 0);
 }
 </string>
           </argument>

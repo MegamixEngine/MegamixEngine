@@ -43,6 +43,7 @@ doesIntro = false;
 
 // Enemy specific code
 dir = image_xscale;
+explosionSFX = sfxExplosion2;
 
 //@cc object_index to use as first option
 met1 = objMetallRunAndGun;
@@ -52,6 +53,8 @@ met2 = objMetallJump;
 
 shootTimer = 0;
 met = noone;
+
+code = "";
 </string>
           </argument>
         </arguments>
@@ -104,6 +107,14 @@ if (entityCanStep())
         if (met.object_index == objMetallJump)
         {
             met.radius = 256;
+        }
+        
+        if (code != "")
+        {
+            with (met)
+            {
+                stringExecutePartial(other.code);
+            }
         }
         
         shootTimer = 0;

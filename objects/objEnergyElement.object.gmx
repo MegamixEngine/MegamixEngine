@@ -27,32 +27,129 @@
             <kind>1</kind>
             <string>event_inherited();
 
+// prtEntity variables
 despawnRange = -1;
-
 faction = 3;
 contactDamage = 0;
 canHit = false;
-
 stopOnFlash = false;
+bubbleTimer = -1;
 
+// prtItem variables
 respawnupondeath = 1;
 grabable = 0;
 
-jumped = 0;
+// name of the element (will be stored in the playe's save file)
+name = roomExternalGetName(room) + "0";
 
-sparkletimer = 0;
+// colours &amp; sparkles
+alreadyCollected = false; // Element will be grey if already collected
+sparkletimer = -1;
 primarycol = 0;
 secondarycol = 0;
 
-timer = 0;
+// failsafes
+jumped = 0;
+triggerFailsafe = 0; // Only activate when dropped by boss
+emergencyTimer = 0;
 
-name = "";
-
-alreadyCollected = false;
-energyElementLock = false;
-
+// do anything once this Element is collected?
 script = scrNoEffect;
 code = "";
+
+// what to do once collected?
+isCollected = false;
+musicTimer = 5;// Used to wait until music is done. This requires a *slight* window for MIDI files to actually start playing.
+minimumWaitTime = 180;//@cc Regardless of the music track chosen, there'll be a 3-second window before you can leave.
+vgm_WaitTime = 280;//@cc We can't calculate how long a VGM track takes to finish, so use this value to specify the song length as needed.
+
+energyElementLock = false;
+canBeamOut = false;
+victoryPoseDone = false;
+victoryPoseTimer = 0;
+
+// music that plays once the element is collected
+// (not applicable if custom costume victory music is being used, and customVictoryTheme is true.
+music = "Mega_Man_3.nsf";
+musicType = "VGM";
+musicTrackNumber = 56; // only applicable for VGM tracks
+musicVolume = 1;
+musicLoop = false; // only applicable for OGG tracks, but should be `false` anyways
+musicLoopSecondsStart = 0; // only applicable for OGG tracks
+musicLoopSecondsEnd = 3.896; // only applicable for OGG tracks
+// If true and there's a custom costume, all the variables above will be pointless, as the player's custom costume will provide the music
+customVictoryMusic = true;//@cc whether to allow custom victory music or not.
+
+confettiTimer = 0;
+
+checkMidiFinished = false;
+
+//animTimer = 0;
+
+checkMidiFinished = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+
+if (!entityCanStep() || victoryPoseDone || !canBeamOut)
+    exit;
+    
+var pose_cancel = true;
+
+with (objMegaman) {
+    if (!(global.customCostumeVictoryPose[playerID] &amp;&amp; global.customCostumeEquipped[playerID]))
+        continue;
+    
+    playerHandleSprites("VictoryPose");
+    
+    switch (other.victoryPoseTimer) {
+        case 15:
+            playSFX(getGenericSFX(SFX_VICTORY));  
+        case 16:
+        case 17:
+        case 18:
+            global.outlineCol[playerID] = c_white;
+            break;
+        
+        case 19:
+        case 20:
+        case 21:
+        case 22:
+            global.outlineCol[playerID] = global.nesPalette[$10];
+            break;
+        
+        case 23:
+            global.outlineCol[playerID] = c_black;
+            break;
+    }
+    
+    pose_cancel = false;
+}
+
+if (victoryPoseTimer &gt;= 75 || pose_cancel)
+    victoryPoseDone = true;
+
+victoryPoseTimer++;
 </string>
           </argument>
         </arguments>
@@ -77,102 +174,170 @@ code = "";
             <kind>1</kind>
             <string>event_inherited();
 
-if (entityCanStep())
+if (!entityCanStep())
+    exit;
+
+if (yspeed &gt; 0)
+    jumped = 0;
+    
+if (y &gt;= global.sectionBottom - 8)
 {
-    if (yspeed &gt; 0)
+    yspeed = -9;
+    jumped = 1;
+}
+
+// Oh boy, time for some mad science
+if (triggerFailsafe &amp;&amp; !isCollected) {
+    if ((x &lt;= global.sectionLeft - 8) || (x &gt;= global.sectionRight + 8)
+    || (y &lt;= global.sectionTop - 8) || (y &gt;= global.sectionBottom + 8) || (emergencyTimer &gt; 0))
     {
-        jumped = 0;
-    }
-    
-    if (y &gt;= global.sectionBottom - 8)
-    {
-        yspeed = -9;
-        jumped = 1;
-    }
-    
-    if (instance_exists(target))
-    {
-        if (xspeed == 0)
-        {
-            if (jumped &amp;&amp; yspeed &lt; 0)
-            {
-                xspeed = arcCalcXspeed(yspeed, grav, bboxGetXCenter(), bboxGetYCenter(), target.x, target.y);
+        emergencyTimer++;
+        
+        if (emergencyTimer &gt;= 150 &amp;&amp; instance_exists(objMegaman)) {
+            emergencyTimer = 0;
+            x = objMegaman.x;
+            y = objMegaman.y - 96;
+            
+            playSFX(sfxEnkerCharge);
+            
+            // Mick Effect Trademark
+            for (var i = 0; i &lt; 360; i += 30) {
+                var a = instance_create(x+8, y+8, objExplosion);
+                a.speed = 4;
+                a.direction = i;
             }
         }
-        
-        // move to player if inside solid object
-        if (checkSolid(0, 0,1,1))
-        {
-            aimAtPoint(4, view_xview + (view_wview/2), view_yview + (view_hview/2));
-            /*var cy = y - target.y;
-            var cx = x - target.x;
-            
-            if (abs(cy) &gt; 4)
-            {
-                y -= cy;
-            }
-            else if (abs(cx) &gt; 4)
-            {
-                x -= cx;
-            }*/
-        }
+    }
+}
+
+// Aim the element towards the player if it has jumped
+if (instance_exists(target))
+{
+    if (xspeed == 0 &amp;&amp; jumped &amp;&amp; yspeed &lt; 0)
+    {
+        xspeed = arcCalcXspeed(yspeed, grav, bboxGetXCenter(), bboxGetYCenter(), target.x, target.y);
     }
     
-    if (!timer)
+    // move to player if inside solid object
+    if (checkSolid(0, 0, 1, 1))
     {
-        if (!(sparkletimer mod 6))
-        {
-            if (!indexOf(global.elementsCollected, name))
-            {
-                primarycol = choose(global.primaryCol[0], global.secondaryCol[0], c_white, make_color_rgb(255, 228, 164));
-                do
-                {
-                    secondarycol = choose(global.primaryCol[0], global.secondaryCol[0], c_white, make_color_rgb(255, 228, 164));
-                }
-                    until (primarycol != secondarycol)
-                
-                if (!(sparkletimer mod 12))
-                {
-                    with (instance_create(bboxGetXCenter(), bboxGetYCenter(), objSlideDust))
-                    {
-                        sprite_index = sprShine;
-                        image_xscale = choose(1, -1);
-                        direction = irandom(360);
-                        rotationMovement(xstart, ystart, irandom_range(5, 12), 0);
-                    }
-                }
-            }
-            else // element already collected
-            {
-                alreadyCollected = true;
-                primarycol = global.nesPalette[0];
-                secondarycol = global.nesPalette[13];
-            }
-        }
-        
-        sparkletimer++;
+        aimAtPoint(4, view_xview + (view_wview / 2), view_yview + (view_hview / 2));
     }
-    else
+}
+if (checkMidiFinished)
+{
+    if (Fluwiidi_IsPlayingInstance(global.tempSongData_MIDI))
     {
-        timer++;
-        
-        if (timer &gt;= 360) // players beam out
+        musicTimer++;
+    }
+}
+if (!isCollected) { // Sparkle sparkle sparkle
+    event_user(1);
+} else {
+    musicTimer--;
+with (objMegaman)
+{canHit = false;   }
+    event_user(2); // Check `canBeamOut` status
+    
+    //Double check with `victoryPoseDone`, since we can cancel it above.
+    if (canBeamOut &amp;&amp; victoryPoseDone)
+    {
+        playerFreeMovement(energyElementLock);
+            
+        with (objMegaman)
         {
-            playerFreeMovement(energyElementLock);
+            canHit = true;
+            var i = instance_create(x, y, objMegamanExit);
+            i.image_xscale = image_xscale;
+            i.pid = playerID;
+            i.cid = costumeID;
             
-            with (objMegaman)
-            {
-                i = instance_create(x, y, objMegamanExit);
-                i.pid = playerID;
-                i.cid = costumeID;
-                
-                visible = 0;
-                instance_destroy();
-            }
-            
+            visible = 0;
             instance_destroy();
         }
+        
+        instance_destroy();
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Check canBeamOut status
+var victory_music = getGenericSFX(SFX_VICTORYMUS);
+
+// If &gt;= 0, that means custom victory music is playing
+if (victory_music &gt;= 0 &amp;&amp; customVictoryMusic) {
+    canBeamOut = isCollected &amp;&amp; minimumWaitTime-- &lt;= 0 &amp;&amp; !audio_is_playing(victory_music);
+    exit;
+}
+
+// ...otherwise, it's the standard victory tune.
+canBeamOut = musicTimer &lt;= 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Idle State (Not Collected)
+sparkletimer++;
+
+if (sparkletimer mod 6)
+    exit
+
+if (!indexOf(global.elementsCollected, name)) {
+    primarycol = choose(global.primaryCol[0], global.secondaryCol[0], c_white, make_color_rgb(255, 228, 164));
+    do {
+        secondarycol = choose(global.primaryCol[0], global.secondaryCol[0], c_white, make_color_rgb(255, 228, 164));
+    } until (primarycol != secondarycol);
+    
+    if (!(sparkletimer mod 12)) {
+        with (instance_create(bboxGetXCenter(), bboxGetYCenter(), objSlideDust)) {
+            sprite_index = sprShine;
+            image_xscale = choose(1, -1);
+            direction = irandom(360);
+            rotationMovement(xstart, ystart, irandom_range(5, 12), 0);
+        }
+    }
+} else { // element already collected
+    alreadyCollected = true;
+    primarycol = global.nesPalette[$0];
+    secondarycol = global.nesPalette[$10];
 }
 </string>
           </argument>
@@ -196,40 +361,80 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!timer)
+            <string>/// Collected By Player
+if (isCollected)
+    exit;
+    
+var xx = bboxGetXCenter();
+var yy = bboxGetYCenter();
+    
+instance_create(xx, yy, objExplosion);
+
+for (var i = 0; i &lt; 4; i ++;)
 {
-    playMusic('Mega_Man_10.nsf', "VGM", 19, 0, 0, false, 1);
-    playSFX(sfxElementGrab);
-    
-    for (j = 0; j &lt; global.playerCount; j += 1) // Refill stuff
+    with (instance_create(xx, yy, objSmallParticle))
     {
-        global.playerHealth[j] = 28;
-        for (i = 0; i &lt;= global.totalWeapons; i += 1)
-        {
-            global.ammo[j, i] = 28;
-        }
+        phase = 2;
+        image_speed = 0.4;
+        sprite_index = sprExplosion;
+        speed = 2;
+        direction = 45 + (90 * i);
     }
-    
-    energyElementLock = playerLockMovement();
-    
-    
-    visible = 0;
-    timer = 1;
-    
-    // global effect of attaining the element
-    if (!alreadyCollected)
-    {
-        arrayAppend(global.elementsCollected, name);
-        script_execute(script);
-        stringExecutePartial(code);
-        
-        // update count of number of elements collected:
-        global.energyElements = array_length_1d(global.elementsCollected) - numberOf(global.elementsCollected, "");
-    }
-    
-    // save the game file
-    saveLoadGame(true);
 }
+
+// global effect of attaining the element
+if (!alreadyCollected)
+{
+    arrayAppendUnique(global.elementsCollected, name);
+    
+    // update count of number of elements collected:
+    global.energyElements = array_length_1d(global.elementsCollected) - numberOf(global.elementsCollected, "");
+}
+script_execute(script);
+stringExecutePartial(code);
+
+// Play the correct track
+if (getGenericSFX(SFX_VICTORYMUS) == -1 || !customVictoryMusic) {
+    playMusic(music, musicType, musicTrackNumber, musicLoopSecondsStart, musicLoopSecondsEnd, musicLoop, musicVolume);
+    
+    if (musicType == "OGG") {
+        musicTimer += ceil(musicLoopSecondsEnd * room_speed);
+    }
+    else if (musicType == "MIDI")
+    {
+        /*var ticks = Fluwiidi_GetTotalTicksInstance(global.tempSongData_MIDI);
+        var bpm = Fluwiidi_GetBPMInstance(global.tempSongData_MIDI);
+        var tempo = Fluwiidi_GetTempoInstance(global.tempSongData_MIDI);
+        var division = Fluwiidi_GetDivisionInstance(global.tempSongData_MIDI);
+        Couldn't do it this way; Fluwiidi lacks a way to find PPQ.
+        */
+        musicTimer += 1;
+        checkMidiFinished = true;
+    }
+    else {
+        musicTimer += vgm_WaitTime/60*room_speed;
+        //Sadly there's no easy way to calculate this for VGM.
+    }
+} else {
+    stopMusic();
+    var mySound = audio_play_sound(getGenericSFX(SFX_VICTORYMUS), 50, 0);
+    audio_sound_gain(mySound, soundGetVolume(0), 0);
+}
+playSFX(sfxElementGrab);
+
+// Refill stuff
+for (var j = 0; j &lt; global.playerCount; j++) {
+    global.playerHealth[j] = 28;
+    for (var i = 0; i &lt;= global.totalWeapons; i++)
+        global.ammo[j, i] = 28;
+}
+
+isCollected = true;
+
+
+
+stageVictory(name);
+
 </string>
           </argument>
         </arguments>
@@ -252,12 +457,16 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!dead)
+            <string>if (!isCollected)
 {
-    drawSelf();
-    draw_sprite_ext(sprite_index, 1, round(x), round(y), image_xscale, image_yscale, image_angle, primarycol, image_alpha);
-    draw_sprite_ext(sprite_index, 2, round(x), round(y), image_xscale, image_yscale, image_angle, secondarycol, image_alpha);
+    if (!dead)
+    {
+        drawSelf();
+        draw_sprite_ext(sprite_index, 1, round(x), round(y), image_xscale, image_yscale, image_angle, primarycol, image_alpha);
+        draw_sprite_ext(sprite_index, 2, round(x), round(y), image_xscale, image_yscale, image_angle, secondarycol, image_alpha);
+    }
 }
+
 </string>
           </argument>
         </arguments>

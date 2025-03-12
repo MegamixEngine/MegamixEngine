@@ -39,6 +39,11 @@ bubbleTimer = -1;
 gravMultiplier = 1;
 
 shiftVisible = 1;
+
+playSound = true;
+
+killMe = false;
+mySFX = sfxGravityFlip;
 </string>
           </argument>
         </arguments>
@@ -77,9 +82,14 @@ shiftVisible = 1;
                     exit;
                 }
                 gravfactor = other.gravMultiplier;
-                playSFX(sfxGravityFlip);
+                if (other.playSound)
+                    playSFX(other.mySFX);
                 other.blink = 3;
-                
+                if (other.killMe)
+                {
+                    with (other)
+                        instance_destroy();
+                }
                 // other.depth = -10000;
             }
         }

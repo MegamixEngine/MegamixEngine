@@ -78,7 +78,7 @@ if (entityCanStep())
         {
             for (var i = 0; i &lt; 4; i++)
             {
-                spawnFire[i] = instance_create(x, y, object_index);
+                spawnFire[i] = entityCreateChild(0, 0, object_index);
                 with (spawnFire[i])
                 {
                     style = 1;

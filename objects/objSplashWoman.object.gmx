@@ -77,18 +77,26 @@ fishSpawnX = 0;
 fishSpawnY = 0;
 
 // Health Bar
-healthBarPrimaryColor[1] = 14;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $11;
+healthBarSecondaryColor[1] = $30;
 
 // Music
-music = "Mega_Man_9.nsf";
-musicType = "VGM";
-musicTrackNumber = 16;
+music = "MM9/16_Boss.mid";
+musicType = "MIDI";
+var sf = choose("","_OST");
+musicTrackNumber = "MM9/MM9" + sf + ".sf2";
+if (sf == "")
+{
+    musicVolume = .8;
+}
 
 // Damage Table
 enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
+enemyDamageValue(objBusterShotHalfChargedProto, 2);
+enemyDamageValue(objBusterShotChargedProto, 4);
+enemyDamageValue(objNormalBusterShot, 2);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 5);
@@ -99,6 +107,10 @@ enemyDamageValue(objThunderBeam, 4);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 1);
 enemyDamageValue(objIceWall, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+    enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 4);
@@ -134,15 +146,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 4);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 1);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 4);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -350,6 +363,9 @@ if (entityCanStep())
                             objSplashFlounder);
                         fish.image_xscale = fishDirection;
                         fish.respawn = false;
+                        
+                        if (faction &gt;= 8) // For the Credits
+                            fish.faction = faction;
                     }
                     fishCreated += 1;
                     fishDirection = fishDirection * -1;
@@ -408,8 +424,7 @@ if (entityCanStep())
                 // fire laser trident
                 if (image_index == 6)
                 {
-                    lT = instance_create(x + (4 * image_xscale), y + 10,
-                        objSplashTrident);
+                    lT = entityCreateChild(4, 10, objSplashTrident);
                     playSFX(sfxLaserTrident);
                     shotsFired += 1;
                 }
@@ -530,6 +545,7 @@ with (objSplashNote)
     instance_destroy();
 with (objSplashWallDetector)
     instance_destroy();
+stopSFX(sfxSplashSing);
 event_inherited();
 </string>
           </argument>

@@ -40,6 +40,8 @@ stateTimer = 0;
 animTimer = 0;
 
 isLightning = false;
+
+autoFireSet = 12;
 </string>
           </argument>
         </arguments>
@@ -192,9 +194,10 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
-    i = fireWeapon(16, -1, objThunderWool, 2, 2, 1, 0);
+    var ammoCost = 2 - (1 * (global.energySaver &gt; 0));
+    i = fireWeapon(16, -1, objThunderWool, 2, ammoCost, 1, 0);
     if (i) // set starting speed
     {
         i.xspeed = 1 * image_xscale;

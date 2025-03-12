@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A platform on a chain that swings back and forth based on the player's momentum.
+/// The longer you walk on the platform, the farther it swings. Keep moving back and forth for larger swings, or stop moving to let it slow to a halt.
+/// Best used as the main focus of a challenge, either with enemy combat or tricky platforming.
+
+event_inherited();
 canHit = false;
 
 isSolid = true;
@@ -92,10 +96,16 @@ if (!global.frozen)
     // mega man gives boost:
     var accel = false
         ;
+        
+    // weird execution because of co-op
+    var resetSFX = true;
+ 
+    // physics
     with (objMegaman)
     {
         if (ground &amp;&amp; place_meeting(x, y + 2*gravDir, other))
         {
+            resetSFX = false;
             var xDir = global.keyRight[playerID] - global.keyLeft[playerID];
             if ((stepTimer &gt;= stepFrames &amp;&amp; !playerIsLocked(PL_LOCK_MOVE) &amp;&amp; ground &amp;&amp; (xDir == image_xscale)) || isSlide)
             {
@@ -116,7 +126,7 @@ if (!global.frozen)
                 }
             }
         }
-        else
+        else if resetSFX
         {
             other.playedSFX = 0;
         }

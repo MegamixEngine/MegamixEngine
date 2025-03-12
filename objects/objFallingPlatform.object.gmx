@@ -47,6 +47,7 @@ active = false;
 count = 1;
 
 shiftVisible = 1;
+behaviourType = 1;
 
 if (!place_meeting(x - 1, y, objFallingPlatform))
 {

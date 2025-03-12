@@ -120,7 +120,7 @@ else if (dead)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var ball = instance_create(x + image_xscale * 10, y + 5, objMechaPitchanBall);
+            <string>var ball = instance_create(x + image_xscale * 10, y + 7, objMechaPitchanBall);
 
 playSFX(sfxMechaPitchanDrop);
 

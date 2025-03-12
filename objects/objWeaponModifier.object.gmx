@@ -57,6 +57,7 @@ destroyIfUnlocked = false;
 
 // other variables
 flashTimer = 0;
+costumeID = 0;
 </string>
           </argument>
         </arguments>
@@ -81,7 +82,7 @@ flashTimer = 0;
             <kind>1</kind>
             <string>event_inherited();
 
-if (destroyIfUnlocked &amp;&amp; !global.weaponLocked[global.weaponID[? weapon]])
+if (destroyIfUnlocked &amp;&amp; (global.weaponLocked[global.weaponID[? weapon]] == 0))
 {
     instance_destroy();
 }
@@ -117,19 +118,16 @@ if (levelReward)
 }
 
 // lock all weapons
-if (lockToWeapon)
-{
-    for (i = 0; i &lt;= global.totalWeapons; i += 1)
-    {
-        if ((i == 0 &amp;&amp; lockBuster) || (i != 0))
-        {
-            global.weaponLocked[i] = true;
-        }
+if (lockToWeapon){
+    if(lockBuster){
+        lockAllWeapons(true, true);
+    }else{
+        lockAllWeapons();
     }
 }
 
 // unlock the capsule's weapon
-global.weaponLocked[weaponID] = lockWeapon;
+setWeaponLocked(weapon, lockWeapon);
 
 // set infinite energy
 if (infiniteEnergy)
@@ -140,7 +138,16 @@ if (infiniteEnergy)
 // set players to use the weapon
 with (objMegaman)
 {
-    global.weapon[playerID] = other.weaponID;
+    if (other.lockWeapon)
+    {
+        global.keyWeaponSwitchRight[playerID] = true;
+        playerSwitchWeapons();
+    }
+    else
+    {
+        global.weapon[playerID] = other.weaponID;
+        //setWeapon(other.weaponID, playerID); // uhh this swaps weapon sets lol
+    }
     playerPalette();
 }
 
@@ -173,20 +180,8 @@ if (!dead)
 {
     if (sprite_index == sprWeaponIconsMegaBuster)
     {
-        var icon = global.weaponIcon[weaponID];
-        
-        // original sprite
-        draw_sprite_ext(icon, 0, x, y, image_xscale, image_yscale, image_angle, c_white, 1);
-        
-        if (!lockWeapon)
-        {
-            // whitemasks
-            draw_sprite_ext(icon, 1, x, y, image_xscale, image_yscale, image_angle, global.weaponPrimaryColor[weaponID], 1);
-            draw_sprite_ext(icon, 2, x, y, image_xscale, image_yscale, image_angle, global.weaponSecondaryColor[weaponID], 1);
-            
-            // extra
-            draw_sprite_ext(icon, 3, x, y, image_xscale, image_yscale, image_angle, c_white, 1);
-        }
+        // sprite
+        drawWeaponIcon(weaponID, 0, global.costumeID[? global.costumeSelected[0]], x, y, !lockWeapon);
         
         // flash if it's a locker
         if (lockToWeapon)

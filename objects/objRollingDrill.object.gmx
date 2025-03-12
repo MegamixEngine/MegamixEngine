@@ -46,6 +46,8 @@ calibrated = 0;
 mysolid = -1;
 
 spd = 1;
+
+enemyDamageValue(objWaterWave, 3);
 </string>
           </argument>
         </arguments>
@@ -120,7 +122,7 @@ if (entityCanStep())
             else
             {
                 instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
-                playSFX(sfxEnemyHit);
+                playSFX(getGenericSFX(SFX_ENEMYHIT));
                 instance_create(x, y, objRollingDrillField);
                 instance_deactivate_object(id);
             }
@@ -198,7 +200,7 @@ else
             <string>dead = 1;
 
 instance_create(bboxGetXCenter(), bboxGetYCenter(), objBigExplosion);
-playSFX(sfxExplosion);
+playSFX(getGenericSFX(SFX_EXPLOSIONMM5));
 </string>
           </argument>
         </arguments>

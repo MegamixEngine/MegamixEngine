@@ -41,6 +41,7 @@ respawnRange = -1;
 despawnRange = -1;
 itemDrop = -1;
 lockTransition = false;
+explosionSFX = sfxMM9ExplosionAlt;
 
 phaseMultiple = 7; // 8;
 
@@ -54,6 +55,9 @@ cannonIndex = 0;
 enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
+enemyDamageValue(objBusterShotHalfChargedProto, 2);
+enemyDamageValue(objBusterShotChargedProto, 4);
+enemyDamageValue(objNormalBusterShot, 2);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -64,6 +68,10 @@ enemyDamageValue(objThunderBeam, 3);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 3);
 enemyDamageValue(objIceWall, 0);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -99,15 +107,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 3);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 0);
+enemyDamageValue(objChillSpike, 0);
 enemyDamageValue(objChillSpikeLanded, 0);
 
 // Misc.
 enemyDamageValue(objPowerStone, 2);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 0);
 </string>
           </argument>
@@ -320,11 +329,11 @@ iFrames = max(1, hitInvun);
                     }
                 }
                 
-                d3d_set_fog(true, flashcol, 0, 0);
+                hitFlashEffect(true,flashcol);
                 draw_sprite_ext(sprSharkSubmarineCannon, cannonIndex, x, round(y),
                     headShark.image_xscale, headShark.image_yscale,
                     image_angle, image_blend, image_alpha);
-                d3d_set_fog(false, 0, 0, 0);
+                hitFlashEffect(false);
                 
                 if (iceTimer &gt; 0 &amp;&amp; (iceTimer &gt; iceBlinkTime || (iceTimer &lt;= iceBlinkTime &amp;&amp; iceTimer mod 4 == 0)))
                 {

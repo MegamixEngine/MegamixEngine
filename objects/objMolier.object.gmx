@@ -19,7 +19,7 @@
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>other</whoName>
+        <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
@@ -76,7 +76,7 @@ if (entityCanStep())
     if (xcoll != 0)
     {
         instance_create(x, y, objBigExplosion);
-        playSFX(sfxExplosion2);
+        playSFX(getGenericSFX(SFX_EXPLOSION2));
         healthpoints = 0;
         itemDrop = -1;
         
@@ -126,14 +126,25 @@ if (entityCanStep())
             imgIndex = imgIndex mod 2;
         }
     }
+    
+    // Play audio as long as Molier can move
+    if (!audio_is_playing(sfxHeliButonHover))
+    {
+        playSFX(sfxHeliButonHover);
+    }
 }
-else if (dead)
+else 
 {
-    timer = 60;
-    knocked = 0;
-    itemDrop = -1;
-    xspeed = 0;
-    yspeed = 0;
+    // Stop audio if time is stopped/Molier is dead
+    //audio_stop_sound(sfxHeliButonHover);
+    if (dead)
+    {
+        timer = 60;
+        knocked = 0;
+        itemDrop = -1;
+        xspeed = 0;
+        yspeed = 0;
+    }
 }
 
 image_index = imgIndex div 1;
@@ -219,7 +230,8 @@ if (spawned)
             <kind>1</kind>
             <string>event_inherited();
 instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
-playSFX(sfxExplosion2);
+stopSFX(sfxEnemyHit);
+playSFX(getGenericSFX(SFX_EXPLOSION2));
 </string>
           </argument>
         </arguments>

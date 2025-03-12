@@ -1,0 +1,16 @@
+Manual changes made to the soundfont include:
+- Remove duplicate regions in instruments
+- Multiply decay by 24
+- Divide attack by 2
+- Fix loop points of pulse and triangle samples
+- Adjust tuning of pulse and triangle samples
+
+Manual changes made to the MIDI files include:
+- Correct maximum/minimum pitch bends flipped in conversion process
+- Correct loop points
+- Slight pitch bend on Concrete Man's echo section
+- Create new Weapon Get MIDI by stripping Rush Jet
+
+The music in MM9 differs between console releases, as well as OST's. In particular, the Wii and PS3 verison tend to contain less accurate NES instrumentation, and slightly differing songs, while the 360 version, as well as those in the OST and Legacy Collection 2, use a more accurate instrument set.
+
+The base rips in this folder are of the Wiiware version, as all future releases used streamed audio. However, variants of the instrument set (and specific tracks) have been added, utilizng the Mega Man 10 Wiiware instrument set as a base, resulting in an accuracy very close to that of the later releases. These variants are marked with "_OST" at the end of the file name.

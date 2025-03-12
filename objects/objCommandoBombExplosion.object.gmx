@@ -67,6 +67,7 @@ if (entityCanStep())
                 var i = instance_create(x + 9 * image_xscale, y, objCommandoBombExplosion);
                 i.image_xscale = image_xscale;
                 i.sprite_index = sprCommandoExplosionHor;
+                i.contactDamage = contactDamage;
                 i.shotsLeft = shotsLeft - 1;
             } // If I'm on a wall...
             else if ((sprite_index == sprCommandoExplosionVer) &amp;&amp; (!positionCollision(x - (image_xscale == 1) * 2, y + 9 * image_yscale)))
@@ -74,6 +75,7 @@ if (entityCanStep())
                 var i = instance_create(x, y + 9 * image_yscale, objCommandoBombExplosion);
                 i.image_xscale = image_xscale;
                 i.image_yscale = image_yscale;
+                i.contactDamage = contactDamage;
                 i.shotsLeft = shotsLeft - 1;
             }
         }

@@ -99,7 +99,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                     {
                         // Need to figure out how to make this not repeat when dead.
                         event_user(EV_DEATH);
-                        playSFX(sfxEnemyHit);
+                        playSFX(getGenericSFX(SFX_ENEMYHIT));
                     }
                 }
                 with (objCyberGabyoall)
@@ -108,7 +108,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                         &amp;&amp; !dead)
                     {
                         event_user(EV_DEATH);
-                        playSFX(sfxEnemyHit);
+                        playSFX(getGenericSFX(SFX_ENEMYHIT));
                     }
                 }
                 for (var i = 0; i &lt; array_length_1d(spinesToKill); i++)
@@ -118,7 +118,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                         if (place_meeting(x, bbox_bottom + 2, other) &amp;&amp; !dead)
                         {
                             event_user(EV_DEATH);
-                            playSFX(sfxEnemyHit);
+                            playSFX(getGenericSFX(SFX_ENEMYHIT));
                         }
                     }
                 }

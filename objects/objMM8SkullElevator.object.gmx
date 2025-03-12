@@ -52,6 +52,7 @@ exitTimer = 60;
 myRoom = room;
 X = -1;
 Y = -1;
+//@cc 0 = Nothing(?), 1 = Sink into ground, 2 = Rise upwards
 exitType = 0;
 
 //@cc 0 = teleport land, 1 = teleport in, 2 = fall in, 3 = Jump in, 4 = stand there (set showDuringReady to true), 8 = Skull elevator
@@ -122,6 +123,10 @@ if ((!global.frozen || active) &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             active = true;
             global.frozen = true;
             player.visible = false;
+            if (!instance_exists(objCoOpWarpStar))
+            {
+                coopWarp(player.playerID,false,10,false);
+            }
         }
     }
     
@@ -141,11 +146,15 @@ if ((!global.frozen || active) &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         }
         else
         {
+            
             global.hasTeleported = 1;
             global.teleportX = X;
             global.teleportY = Y;
             global.nextRoom = myRoom;
             global.respawnAnimation = respawnAnimation;
+            with (objCoOpWarpStar)
+                event_user(EV_DEATH);
+            
         }
     }
 }
@@ -184,12 +193,12 @@ else if (dead)
 // Draw the shaft rising upwards
 if (y &lt; ystart)
 {
-    draw_sprite_part(sprSkullElevatorShaft, 0, 0, 0, 48, (ystart - y) mod 16, x - 28, ystart - ((ystart - y) mod 16));
+    draw_sprite_part(sprSkullElevatorShaft, 0, 0, 0, 48, (ystart - y) mod 16, x - 23, ystart - ((ystart - y) mod 16)); // x - 28
     
     if ((ystart - y) &gt;= 16)
     {
         for (i = 0; i &lt; floor((ystart - y) / 16); i++)
-            draw_sprite(sprSkullElevatorShaft, 0, x - 4, y + i * 16);
+            draw_sprite(sprSkullElevatorShaft, 0, x + 1, y + i * 16); //x - 4
     }
 }
 </string>

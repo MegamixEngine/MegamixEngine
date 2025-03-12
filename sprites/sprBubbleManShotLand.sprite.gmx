@@ -9,7 +9,7 @@
   <bboxmode>0</bboxmode>
   <bbox_left>8</bbox_left>
   <bbox_right>13</bbox_right>
-  <bbox_top>2</bbox_top>
+  <bbox_top>0</bbox_top>
   <bbox_bottom>7</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
@@ -21,5 +21,7 @@
   <height>8</height>
   <frames>
     <frame index="0">images\sprBubbleManShotLand_0.png</frame>
+    <frame index="1">images\sprBubbleManShotLand_1.png</frame>
+    <frame index="2">images\sprBubbleManShotLand_2.png</frame>
   </frames>
 </sprite>

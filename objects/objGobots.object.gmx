@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Creation code (all optional):
+            <string>/// This enemy flies forward in a sine wave. That's pretty much it.
+/// However, the creation code is highly flexible, so you can tailor the specifics to your liking.
+/// Not much of a challenge on its own, but it combines well with basically any enemy or gimmick, and it makes a good swarm.
+
+// Creation code (all optional):
 // cDistance = &lt;number&gt;; // how far on a sinewave the gobot moves
 // cAngle = &lt;number&gt;; // the starting sine angle on which the gobot starts.
 // addAngle = &lt;number&gt;; // how quickly the gobot moves on the sinewave
@@ -56,6 +60,7 @@ cDistance = 40;
 cAngle = 90;
 addAngle = 1;
 spd = 0.75;
+flameVisible = true; 
 
 animTimer = 0;
 imgOffset = 0;
@@ -84,10 +89,10 @@ propellerStatus = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (resetAngle == -9999) // intialize object creation code
+            <string>/*if (resetAngle == -9999) // intialize object creation code
 {
     resetAngle = cAngle;
-}
+}*/
 
 event_inherited();
 
@@ -132,6 +137,11 @@ if (entityCanStep())
     
     image_index = imgOffset + (propellerStatus * 4);
     flameImg += 0.325;
+    
+    if (blockCollision)
+    {
+        xSpeedTurnaround();
+    }
 }
 else if (dead)
 {
@@ -147,6 +157,37 @@ else if (dead)
     
     flameImg = 0;
     cAngle = resetAngle;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
+{
+    if (resetAngle == -9999) // intialize object creation code
+    {
+        resetAngle = cAngle;
+    }
+    y = resetY + sin(degtorad(cAngle)) * cDistance;
 }
 </string>
           </argument>
@@ -170,7 +211,7 @@ else if (dead)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!iFrames &amp;&amp; !dead)
+            <string>if (!iFrames &amp;&amp; !dead &amp;&amp; flameVisible)
 {
     draw_sprite_ext(sprGobotsFire, flameImg, round(x - 10 * image_xscale), round(y - 6), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 }

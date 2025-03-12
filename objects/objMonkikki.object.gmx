@@ -25,12 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A monkey that throws a banana aimed at the player at specified intervals. The banana can be destroyed.
+/// When the player is far away, it stands still. When the player is close, it jumps up and down continuously.
+/// Benefits from setups where it can't be destroyed immediately, so that it has time to fire more than one projectile and establish itself as a threat.
+
+event_inherited();
 
 healthpointsStart = 4;
 contactDamage = 4;
 
-categories = "nature, primate";
+category = "nature, primate";
 
 jumpHeight = 48;
 
@@ -43,6 +47,8 @@ throwTimer = 0;
 breatheTimer = 0;
 
 grav = 0.2;
+
+bananananaSprite = sprBanana;
 </string>
           </argument>
         </arguments>
@@ -134,7 +140,7 @@ if (entityCanStep())
             image_xscale = other.image_xscale;
             contactDamage = 2;
             canHit = true;
-            sprite_index = sprBanana;
+            sprite_index = other.bananananaSprite;
             target = other.target;
             if (instance_exists(other.target))
             {

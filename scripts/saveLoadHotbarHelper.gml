@@ -1,9 +1,9 @@
 /// save/load weapon hotbar configuration
-
+global.sl_hotbarMode = true;
 for (var i = 1; i <= global.totalWeapons; i++)
 {
     var weapon_name = object_get_name(global.weaponObject[global.weaponHotbar[i]]);
-    weapon_name = sl(weapon_name, "HOTBAR_" + string(i));
+    weapon_name = sl(weapon_name, weapon_name, "HOTBAR_" + string(i));
     var asset_index = asset_get_index(weapon_name);
     
     // validate input
@@ -54,3 +54,4 @@ for (var i = 0; i <= global.totalWeapons; i++)
         global.weaponHotbar[indexOf(global.weaponHotbar, -1)] = i;
     }
 }
+global.sl_hotbarMode = false;

@@ -3,9 +3,9 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1000000000</depth>
-  <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <depth>-10000000</depth>
+  <persistent>-1</persistent>
+  <parentName>prtAlwaysActive</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,38 +25,122 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// this boy is about to pop up and be a menu
-global.frozen = true;
+            <string>
+/////////////////////////////////////////////////////////////////////
+// Look!! The debug menu!! It's actually kind of okay now!! Woah!! //
+/////////////////////////////////////////////////////////////////////
 
-// playSFX(sfxDebugMenu); 2 cr3epy 4 me
+bossAutoPrint = false;
+bossAutoPrint_LastBoss = noone;
+
 global.levelRunValid = false;
 global.levelRunInvalidReason = "debug menu";
 
+if !DEBUG_ENABLED exit;//Precautionary above, just in case I missed some code somewhere that makes this semi-usable.
+//objDebugging_MemoryTestSuite
+
 playerID = 0;
 
-// controls
-pauseLock = lockPoolLock(global.playerLock[PL_LOCK_PAUSE]);
-option = 0;
-quickScrollTimer = 25;
-endy = 10;
-mode = 0; // 0: normal. 1: record input menu
+//Search feature
+canSearch = 1;
+searching = false
+searchStr = ""
 
-optionText = "ROOM SELECT#
-AMMO REFILL#
-INVINCIBILITY#
-INFINITE HEALTH#
-SWAP GRAVITY#
-COSTUME CHANGE#
-RECORD INPUT#
-VISIBLE COLLISION#
-PRESS 2#
-KILL ONSCREEN ENTITIES";
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+quickScrollTimer = 0;
+
+visibleOptions = 15;
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+enum debugMenus {
+    MAIN = 0,
+    RECORDING = 1,
+    UPGRADES = 2,
+    SAVE = 3,
+    CHEATS = 4,
+    COSTUME_VIEW = 5,
+    ROOMS = 6,
+    OBJECTS = 7,
+    CONSOLE = 8,
+    CUTSCENES = 9,
+    SPRITES = 10,
+    COSTUME_UNLOCK = 111,
+    SOUNDS = 12,
+    WEAPONS = 13,
+    EXTRAS = 14,
+    CHECKPOINT_WARP = 15
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+subMenu = -1;
+subMenuSwitchTo = -1;
+subMenuInit = 1;
+
+option = 0;
+optionCount = 0;
+subOption = 0;
+
+optionOffset = 0;
+
+menuLayers = 0;
+menuLayerPos[0] = 0;
+menuLayerSub[0] = 0;
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+scrollTimer = 0;
+// Individual options
+selectedElement = 0;
+toggleState = 0;
+cutsceneAddID = 0;
+
+subMenuSaveFlag = false;
+
+viewCostumeID = 0;
+viewMode = false;
+viewSpriteX = 0;
+viewSpriteY = 0;
+
+viewSpriteID = 0;
+viewSpriteImage = 0;
+viewSpriteSpeed = 0;
+viewSpriteTimer = 0;
+
+viewSoundID = 0;
+
+colorsOn = false;
+viewCol[0] = 14;
+viewCol[1] = 38;
+viewCol[2] = 54;
+
+inkedMode = false;
+
+viewCollision = 0;
+
+forceOption = "";
+
+consoleLog = array_create(0);
+consolePrompt = "";
+consoleScope = noone;
+consoleCursorPosition = 0;
+consoleLogPosition = -1;
+consoleQuickStart = false;
+consoleBackspaceTimer = 30;
+
+customCostumeError = 99;//No report.
+customCostumePlayerID = 0;
+
+frameByFrame = false;
+enableView = true;
+frameCounter = 0;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="1" enumb="0">
+    <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -73,8 +157,168 @@ KILL ONSCREEN ENTITIES";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>lockPoolRelease(pauseLock);
-global.frozen = false;
+            <string>///MOVE / SEARCH
+if DEBUG_ENABLED
+{
+    if (frameByFrame) exit;
+    if (subMenu &gt;= 0)
+    {
+        var length = optionCount;
+        
+        // - - - - -
+    
+        var change = (global.keyDown[playerID] - global.keyUp[playerID]);
+    
+        change += (10 * (global.keyWeaponSwitchRight[playerID] - global.keyWeaponSwitchLeft[playerID]));
+    
+        change *= !viewMode; //Can't move in view-mode
+        
+        // - - - - -
+    
+        var scrollInterval = 6;
+        var scrollIntervalWait = (4 * scrollInterval);
+    
+        if (change != 0 &amp;&amp; (length &gt; 0))
+        {
+            if ((scrollTimer mod scrollInterval) == 0)
+            {
+                if ((scrollTimer == 0) || (scrollTimer &gt;= scrollIntervalWait))
+                {
+                    var oldOption = option;
+    
+                    option += change;
+    
+                    if (scrollTimer &lt;= 1) //Wrap
+                    {
+                        option = modf(option, length);
+                    }
+                    else //Don't Wrap
+                    {
+                        option = clamp(option, 0, (length - 1));
+                    }
+    
+                    // Support for "line breaks"
+                    while (options[option] == "")
+                    {
+                        option += sign(change);
+                        option = modf(option, length);
+                    }
+    
+                    if (option != oldOption) //Position changed
+                    {
+                        playSFX(sfxMenuMove);
+                        subOption = 0;
+                    }
+                }
+            }
+    
+            scrollTimer ++;
+        }
+        else
+        {
+            scrollTimer = 0;
+        }
+    
+        if (canSearch &amp;&amp; subMenu != 10)
+        {
+            //Search function
+            if (searching)
+            {
+                if (keyboard_check_pressed(vk_escape) || keyboard_check_pressed(vk_enter)
+                || global.keyUpPressed[0] || global.keyDownPressed[0] || global.keyJumpPressed[0] || global.keyPausePressed[0])
+                {
+                    searching = false;
+                }
+                else
+                {
+                    searchStr = string_lower(keyboard_string);
+                    closestPos = -1;
+    
+                    for (var i = 0; i &lt; length; i ++;)
+                    {
+                        var text = string_lower(options[i]);
+                        var stringPos = string_pos(searchStr, text);
+    
+                        if (stringPos != 0)
+                        {
+                            if ((closestPos == -1) || (stringPos &lt; closestPos))
+                            {
+                                closestPos = stringPos;
+                                option = i;
+                            }
+                        }
+                    }
+                }
+                exit;
+            }
+            else
+            {
+                //Start searching
+                if (keyboard_check(vk_lcontrol) &amp;&amp; keyboard_check_pressed(ord('F')))
+                {
+                    searching = true;
+                    keyboard_string = "";
+                }
+            }
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Frame by frame analysis
+if (keyboard_check(vk_f11))
+{
+    if (enableView)
+    {
+        enableView = false;
+    }
+    
+}
+else
+{
+    if (!enableView)
+    {
+        enableView = true;
+    }
+}
+if (keyboard_check_pressed(vk_f12))
+{
+    if (!frameByFrame)
+    {
+        print("Frame-by-frame enabled.",WL_SHOW);
+        frameByFrame = true;
+        global.frozen = false;
+        frameCounter = 0;
+    }
+    else if (frameByFrame)
+    {
+        print("Frame-by-frame disabled.",WL_SHOW);
+        frameByFrame = false;
+        global.frozen = true;
+    }
+    
+}
+frameCounter++;
 </string>
           </argument>
         </arguments>
@@ -97,106 +341,394 @@ global.frozen = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var _endy = endy;
-if (mode == 1)
+            <string>///main (Formerly objDebugControl stuff)
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+// Infinite health
+if (global.alwaysHealth)
 {
-    _endy = 3;
+    with (objMegaman)
+    {
+        global.playerHealth[playerID] = 28;
+    }
 }
 
-// change option up or down
-if (global.keyUpPressed[playerID] || (global.keyUp[playerID] &amp;&amp; quickScrollTimer &lt;= 0))
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+if ((subMenu &lt; 0) &amp;&amp; !global.frozen)
 {
-    option -= 1;
-    if (option &lt; 0)
+    var key;
+    var keyPress = -1;
+
+    for (var i = 0; i &lt; 10; i ++;)
     {
-        option = _endy - 1;
+        key = ord(string(i));
+        if (keyboard_check_pressed(key))
+        {
+            keyPress = i;
+        }
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    switch(keyPress)
+    {
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        case 0: // Room Selector
+
+            subMenu = debugMenus.ROOMS;
+
+            break;
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        case 1: // Free Movement
+
+            subMenu = debugMenus.MAIN;
+            forceOption = "FREE MOVEMENT";
+
+            break;
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        case 2: // Debug Menu
+
+            subMenu = debugMenus.MAIN;
+
+            break;
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        case 3: //Object Viewer
+
+            subMenu = debugMenus.OBJECTS;
+
+            break;
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        case 4: //Restart Section
+
+            subMenu = debugMenus.MAIN;
+            forceOption = "RESTART SECTION";
+
+            break;
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        case 5: //Instant Clear
+
+            subMenu = debugMenus.MAIN;
+            forceOption = "INSTANT CLEAR";
+
+            break;
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        case 6: //Kill Entities
+
+            subMenu = debugMenus.MAIN;
+            forceOption = "KILL ENTITIES";
+
+            break;
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+         case 7: //Checkpoint Warp
+
+            subMenu = debugMenus.CHECKPOINT_WARP;
+
+            break;
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        // At the moment, the 8 key is free.
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        case 9: //Console
+
+            //mm_printManager();
+            subMenu = 0;
+            forceOption = "CONSOLE";
+            break;
+    }
+    /////
+
+    // Quick access to the room select
+    if (global.keySlidePressed[0] &amp;&amp; room == rmTitleScreen)
+        subMenu = debugMenus.ROOMS;
+
+    /////
+
+    if (subMenu &gt;= 0)
+    {
+        subMenuSwitchTo = subMenu;
+
+
+        global.frozen = 1;
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///BASIC CONTROL
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+if (subMenu &gt;= 0)
+{
+    //Prevent the title screen from taking input while the debug menu is active
+    with (objTitleScreen)
+    {
+        wait = 16;
     }
     
-    playSFX(sfxMenuMove);
-}
-
-if (global.keyDownPressed[playerID] || (global.keyDown[playerID] &amp;&amp; quickScrollTimer &lt;= 0))
-{
-    option += 1;
-    if (option &gt;= _endy)
+    //Go to other sub-menu
+    if (subMenuSwitchTo != subMenu)
     {
+        playSFX(sfxMenuSelect);
+
+        menuLayerPos[menuLayers] = option;
         option = 0;
-    }
-    
-    playSFX(sfxMenuMove);
-}
+        optionCount = 0;
+        optionOffset = 0;
+        
+        menuLayerSub[menuLayers] = subMenu;
+        subMenu = subMenuSwitchTo;
+        subMenuInit = 1;
+        
+        canSearch = 1;
 
-// do quick scroll timer
-if ((global.keyUp[playerID] ^^ global.keyDown[playerID]) // only do quick scroll when pressing one direction
-&amp;&amp; !(option &lt;= 0 &amp;&amp; global.keyUp[playerID]) &amp;&amp; !(option &gt;= _endy - 1 &amp;&amp; global.keyDown[0])) // don't loop with quick scroll
-{
-    if (quickScrollTimer &lt;= 0) // slight pause between scrolls
-    {
-        quickScrollTimer = 8; // &lt;-- time until quick scroll here
+        selectedElement = 0;
+
+        menuLayers ++;
     }
-    
-    quickScrollTimer--;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    dir = 0;
+    start = 0;
+    basicToggle = 0;
+    backOut = 0;
+
+    if ((global.nextRoom &lt;= 0) &amp;&amp; !searching &amp;&amp; !viewMode)
+    {
+        dir = sign(-sign(global.keyLeftPressed[playerID]) + sign(global.keyRightPressed[playerID]));
+        start = (global.keyJumpPressed[playerID] || global.keyPausePressed[playerID]);
+        basicToggle = (start || (dir != 0));
+        backOut = ((global.keyShootPressed[playerID] &amp;&amp; subMenu != debugMenus.CONSOLE) || keyboard_check_pressed(vk_escape));
+
+        // close the debug menu
+        if (!subMenuInit) {
+            if (keyboard_check_pressed(ord('2')) &amp;&amp; (subMenu != debugMenus.CONSOLE || keyboard_check(vk_alt))) {
+                event_user(0); //Close menu
+            }
+        }
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    //Back out
+    if (backOut)
+    {
+        if (menuLayers) //Return to previous
+        {
+            menuLayers --;
+
+            option  = menuLayerPos[menuLayers];
+            subMenu = menuLayerSub[menuLayers];
+            selectedElement = 0;
+            
+            canSearch = 1;
+            
+            optionCount = 0;
+            subMenuInit = 1;
+        }
+        else //Close
+        {
+            event_user(0); //Close menu
+        }
+
+        subMenuSwitchTo = subMenu;
+    }
+
 }
 else
 {
-    quickScrollTimer = 25; // &lt;-- time until quick scroll here
+    searching = 0;
+    viewMode = 0;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///MAIN MENU
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
 
-// Functions for each option
-if (mode == 0)
+if (subMenu == debugMenus.MAIN)
 {
-    if (global.keyPausePressed[playerID] || global.keyLeftPressed[playerID] || global.keyRightPressed[playerID])
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
     {
-        switch (option)
-        {
-            // Room Select
-            case 0:
-                if (global.keyPausePressed[playerID])
+        header[subMenu] = "DEBUG MENU";
+        
+        options[(optionCount ++)] = "ROOM SELECT";
+        options[(optionCount ++)] = ""; // line break
+        options[(optionCount ++)] = "FREE MOVEMENT";
+        options[(optionCount ++)] = "AMMO REFILL";
+        options[(optionCount ++)] = "INVINCIBILITY";
+        options[(optionCount ++)] = "INFINITE HEALTH";
+        options[(optionCount ++)] = "PRESS 2";
+        options[(optionCount ++)] = "GRAVITY FLIP";
+        options[(optionCount ++)] = "CHARACTER SWAP";
+        options[(optionCount ++)] = "COSTUME SWAP";
+        options[(optionCount ++)] = "COSTUME VIEWER";
+        options[(optionCount ++)] = "SPRITE VIEWER";
+        options[(optionCount ++)] = "SOUND TEST";
+        options[(optionCount ++)] = ""; // line break
+        options[(optionCount ++)] = "RESTART LEVEL";
+        options[(optionCount ++)] = "RESTART SECTION";
+        options[(optionCount ++)] = "SET CHECKPOINT";
+        options[(optionCount ++)] = "CHECKPOINT WARP";
+        options[(optionCount ++)] = "INSTANT CLEAR";
+        options[(optionCount ++)] = ""; // line break
+        options[(optionCount ++)] = "OBJECT VIEWER";
+        options[(optionCount ++)] = "VIEW COLLISION";
+        options[(optionCount ++)] = "KILL ENTITIES";
+        options[(optionCount ++)] = "GAME SPEED";
+        options[(optionCount ++)] = ""; // line break
+        options[(optionCount ++)] = "SAVE EDITOR";
+        options[(optionCount ++)] = ""; // line break
+        options[(optionCount ++)] = "RECORD INPUT";
+        options[(optionCount ++)] = "EXTRA FUNCTIONALITY";
+        options[(optionCount ++)] = "CONSOLE";
+    
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    var checkOption = options[option];
+    
+    if (forceOption != "")
+    {
+        checkOption = forceOption;
+        forceOption = "";
+        start = 1;
+    }
+    
+    switch (checkOption)
+    {
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Room Select
+        case "ROOM SELECT":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.ROOMS;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Ammo Refill
+        case "AMMO REFILL":
+    
+            if (start)
+            {
+                playSFX(sfxYasichi);
+    
+                for (i = 0; i &lt;= global.totalWeapons; i ++;)
                 {
-                    playSFX(sfxMenuSelect);
-                    global.roomReturn = rmRoomSelect;
-                    global.roomReturnIsHub = false;
-                    returnFromLevel();
-                }
-                instance_destroy();
-                break;
-            
-            // Ammo Refill
-            case 1:
-                if (global.keyPausePressed[playerID])
-                {
-                    playSFX(sfxYasichi);
-                    for (i = 0; i &lt;= global.totalWeapons; i += 1)
+                    for (j = 0; j &lt; global.playerCount; j ++;)
                     {
-                        global.ammo[i] = 28;
+                        global.ammo[j, i] = 28;
                     }
                 }
-                break;
-            
-            // Invincibility
-            case 2:
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Invincibility
+        case "INVINCIBILITY":
+    
+            if (basicToggle)
+            {
                 if (instance_exists(objMegaman))
                 {
-                    if (objMegaman.canHit == true)
+                    with (objMegaman)
                     {
-                        playSFX(sfxImportantItem);
-                        objMegaman.canHit = false;
-                    }
-                    else
-                    {
-                        playSFX(sfxHit);
-                        objMegaman.canHit = true;
+                        canHit = !canHit;
+        
+                        if (canHit)
+                        {
+                            playSFX(sfxHit);
+                        }
+                        else
+                        {
+                            playSFX(sfxImportantItem);
+                        }
                     }
                 }
                 else
                 {
                     playSFX(sfxError);
                 }
-                break;
-            
-            // Infinite Health
-            case 3:
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Always health
+        case "INFINITE HEALTH":
+    
+            if (basicToggle)
+            {
                 global.alwaysHealth = !global.alwaysHealth;
+    
                 if (!global.alwaysHealth)
                 {
                     playSFX(sfxHit);
@@ -205,10 +737,17 @@ if (mode == 0)
                 {
                     playSFX(sfxEnergyRestore);
                 }
-                break;
-            
-            // Swap Gravity
-            case 4:
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Gravity flip
+        case "GRAVITY FLIP":
+    
+            if (basicToggle)
+            {
                 if (instance_exists(objMegaman))
                 {
                     with (objMegaman)
@@ -224,108 +763,439 @@ if (mode == 0)
                 {
                     playSFX(sfxError);
                 }
-                break;
+            }
+    
+            break;
             
-            // Costumes
-            case 5:
-                if (global.keyLeftPressed[playerID] &amp;&amp; !global.keyRightPressed[playerID])
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Character swap
+        case "CHARACTER SWAP":
+            if (dir != 0 &amp;&amp; instance_exists(objMegaman))
+            {
+                playSFX(sfxTrebleBoost);
+    
+                with (objMegaman)
                 {
-                    // Costumes
-                    playSFX(sfxUnlocked);
-                    with (objMegaman)
-                    {
-                        costumeID--;
-                        if (costumeID &lt; 0)
-                        {
-                            costumeID = global.playerSpriteMax - 1;
-                        }
-                        playerPalette();
-                    }
+                    global.characterSelected[playerID] += other.dir;
+                    global.characterSelected[playerID] = modf(global.characterSelected[playerID], MAX_PLAYERS);
+                    
+                    weaponSetup();
+                    playerPalette();
+                    
+                    bassModeHandleSupports(true);
+                    print("Weapon locks until retry may not be accurate!");
                 }
-                else if (global.keyRightPressed[playerID] &amp;&amp; !global.keyLeftPressed[playerID])
+            }
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Costume swap
+        case "COSTUME SWAP":
+    
+            if (dir != 0 &amp;&amp; instance_exists(objMegaman))
+            {
+                playSFX(sfxMenuMove);
+    
+                with (objMegaman)
                 {
-                    playSFX(sfxUnlocked);
-                    with (objMegaman)
-                    {
-                        costumeID++;
-                        if (costumeID &gt;= global.playerSpriteMax)
-                        {
-                            costumeID = 0;
-                        }
-                        playerPalette();
-                    }
+                    costumeID += other.dir;
+                    costumeID = modf(costumeID, global.playerSpriteMax - 1);
+    
+                    global.costumeSelected[playerID] = global.costumeName[costumeID];
+    
+                    playerPalette();
                 }
-                break;
-            
-            // record input
-            case 6:
-                switch (global.recordInputMode)
-                {
-                    case 0:
-                        if (instance_exists(objMegaman))
-                        {
-                            mode = 1;
-                            playSFX(sfxMenuSelect);
-                            option = 0;
-                            exit;
-                        }
-                        break;
-                    case 1:
-                        global.recordInputEnd = true;
-                        break;
-                    default:
-                        playSFX(sfxError);
-                }
-                break;
-            
-            // visible solids
-            case 7:
-                with (objSolid)
-                    visible ^= true;
-                with (objLadder)
-                    visible ^= true;
-                with (objTopSolid)
-                    visible ^= true;
-                with (objBossDoor)
-                    visible ^= true;
-                with (objFallingTower)
-                    visible ^= true;
-                break;
-            
-            // PRESS 2
-            case 8:
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Visible collision
+        case "VIEW COLLISION":
+    
+            if (dir != 0)
+            {
+                viewCollision += dir;
+                
+                viewCollision = modf(viewCollision, 3);
+    
+                playSFX(sfxClamp);
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Object viewer
+        case "OBJECT VIEWER":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.OBJECTS;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Game speed
+        case "GAME SPEED":
+    
+            if (dir != 0)
+            {
+                playSFX(sfxMenuMove);
+    
+                room_speed = clamp(room_speed + ((1 + (9 * (global.keyJump[playerID]))) * dir), 1, 600);
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Press 2!!
+        case "PRESS 2":
+    
+            if (start)
+            {
                 for (i = 0; i &lt;= 8; i += 1)
                 {
                     global.playerHealth[i] = 0;
                 }
-                instance_destroy();
-                break;
-            
-            // instakill entities
-            case 9:
-                playSFX(sfxExplosion2);
-                with prtEntity
+    
+                event_user(0); //Close menu
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Kill entities
+        case "KILL ENTITIES":
+    
+            if (start)
+            {
+                playSFX(getGenericSFX(SFX_EXPLOSION2));
+    
+                with (prtEntity)
                 {
-                    if canHit &amp;&amp; object_index != objMegaman
+                    if (!dead &amp;&amp; canHit &amp;&amp; (object_index != objMegaman))
                     {
                         healthpoints = 0;
                         event_user(EV_DEATH);
                     }
                 }
-                break;
-        }
+    
+                event_user(0); //Close menu
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Instant clear
+        case "INSTANT CLEAR":
+    
+            var total = 1; // Since there's no setup with how many elements a level has,
+                           // I'm just setting this to 1 for now
+    
+            if (start)
+            {
+                if (total &gt;= 1)
+                {
+                    playSFX(sfxElementGrab);
+    
+                    var name = global.stage + "0";
+    
+                    arrayAppendUnique(global.elementsCollected, name);
+    
+                    // update count of number of elements collected:
+                    global.energyElements = array_length_1d(global.elementsCollected) - numberOf(global.elementsCollected, "");
+    
+                    // save the game file
+                    saveLoadGame(true);
+    
+                    returnFromLevel();
+                }
+                else
+                {
+                    playSFX(sfxError);
+                }
+    
+                event_user(0); //Close menu
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Record input
+        case "RECORD INPUT":
+    
+            if (start)
+            {
+                switch (global.recordInputMode)
+                {
+                    case 0:
+    
+                        if (instance_exists(objMegaman))
+                        {
+                            subMenuSwitchTo = debugMenus.RECORDING;
+                        }
+    
+                        break;
+    
+                    case 1:
+    
+                        global.recordInputEnd = true;
+    
+                        break;
+    
+                    default:
+    
+                        playSFX(sfxError);
+    
+                        break;
+                }
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Costume viewer
+        case "COSTUME VIEWER":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.COSTUME_VIEW;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Save editor menu
+        case "SAVE EDITOR":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.SAVE;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        case "FREE MOVEMENT":
+    
+            if (start)
+            {
+                global.levelRunValid = false;
+                global.levelRunInvalidReason = "free movement debug";
+    
+                playSFX(sfxSkullAmulet);
+    
+                global.freeMovement = !global.freeMovement;
+    
+                if (instance_exists(objMegaman))
+                {
+                    with (objMegaman)
+                    {
+                        if (global.freeMovement == false)
+                        {
+                            iFrames = 0;
+                            blockCollision = true;
+                            visible = true;
+                        }
+    
+                        spriteX = 0;
+                        spriteY = 0;
+                    }
+                }
+    
+                event_user(0); //Close menu
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        case "RESTART LEVEL":
+    
+            if (start)
+            {
+                goToLevel(getRoom(global.stage), 0);
+    
+                event_user(0); //Close menu
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        case "RESTART SECTION":
+    
+            if (start)
+            {
+                var restartSection = 0;
+                var restartx = 0;
+                var restarty = 0;
+    
+                with (objMegaman)
+                {
+                    if (playerID == 0)
+                    {
+                        restartSection = 1;
+                        restartx = sectionStartx;
+                        restarty = sectionStarty;
+                    }
+                }
+    
+                if (restartSection)
+                {
+                    with (objMegaman)
+                    {
+                        x = restartx;
+                        y = restarty;
+    
+                        xspeed = 0;
+                        yspeed = 0;
+    
+                        if (playerID == 0)
+                        {
+                            setSection(x, y, 1);
+                            playerCamera(1);
+                            reAndDeactivateObjects(1, 1);
+                        }
+                    }
+                }
+    
+                event_user(0); //Close menu
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        case "SET CHECKPOINT":
+    
+            if (start)
+            {
+                with (objMegaman)
+                {
+                    if (playerID == 0)
+                    {
+                        setCheckpoint(1, x, y, image_xscale, 0, 1);
+                    }
+                }
+            }
+    
+            break;
+    
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        case "CHECKPOINT WARP":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.CHECKPOINT_WARP;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        case "CONSOLE":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.CONSOLE;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        case "SPRITE VIEWER":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.SPRITES;
+            }
+    
+            break;
+            
+        case "SOUND TEST":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.SOUNDS;
+            }
+    
+            break;
+        case "EXTRA FUNCTIONALITY":
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.EXTRAS;
+            }
+        break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
     }
+
 }
-else if (mode == 1)
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///RECORDING
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.RECORDING)
 {
-    // recording menu
-    if (global.keyPausePressed[playerID])
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
     {
-        switch (option)
-        {
-            case 0:
-            case 1:
+        header[subMenu] = "RECORD INPUT";
+        
+        options[(optionCount ++)] = "RECORD-HERE";
+        options[(optionCount ++)] = "RECORD-RESET";
+    
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    switch (option)
+    {
+        case 0:
+        case 1:
+    
+            if (start)
+            {
                 var filename = get_save_filename("Mega Man Recording|*.mrc", "");
+    
                 if (filename != "")
                 {
                     if (option == 0)
@@ -337,27 +1207,2518 @@ else if (mode == 1)
                         objGlobalControl.fadetimer = -5;
                         objGlobalControl.fadetimer -= 1; // I'm not sure why but recording requires an extra frame to sync up.
                         objGlobalControl.fadeAlpha = 1;
+    
                         recordInputToFile(filename, global.checkpoint);
                     }
-                    instance_destroy();
-                    exit;
+    
+                    event_user(0); //Close menu
                 }
-                playSFX(sfxError);
-                break;
-            case 2:
-                option = 6;
-                mode = 0;
-                playSFX(sfxMenuSelect);
-                exit;
+                else
+                {
+                    playSFX(sfxError);
+                }
+            }
+            break;
+    }
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///UPGRADE TOGGLE
+if !DEBUG_ENABLED exit;
+    if (subMenu == debugMenus.UPGRADES)
+    {
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
+    {
+        header[subMenu] = "UPGRADE TOGGLE";
+    
+        options[optionCount ++] = "TOGGLE ALL";
+    
+        var item = 0;
+        var stopCount = 0;
+    
+        //Register items
+        while (true)
+        {
+            var itemName = itemData(item, "NAME");
+    
+            if (!is_string(itemName))
+            {
+                stopCount ++;
+    
+                if (stopCount &gt;= 10)
+                {
+                    break;
+                }
+                else
+                {
+                    item ++;
+                    continue;
+                }
+            }
+            else
+            {
+                options[optionCount] = itemName;
+                uVar[optionCount] = itemData(item, "VAR");
+    
+                optionCount ++;
+                item ++;
+            }
         }
+    
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    var refreshWeapons = 0;
+    
+    switch (option)
+    {
+        // toggle all
+        case 0:
+    
+            if (start)
+            {
+                toggleState = !toggleState;
+    
+                for (var h = 1; h &lt; array_length_1d(uVar); h ++)
+                {
+                    variable_global_set(uVar[h], toggleState);
+                }
+    
+                if (toggleState)
+                {
+                    playSFX(sfxUnlocked);
+                }
+                else
+                {
+                    playSFX(sfxClamp);
+                }
+    
+                refreshWeapons = 1;
+                subMenuSaveFlag = true;
+            }
+    
+            break;
+    
+        // toggle one
+        default:
+    
+            if (dir != 0)
+            {
+                var variable = uVar[option];
+                var result = clamp(variable_global_get(variable) + dir, -1, 1);
+    
+                variable_global_set(variable, result);
+    
+                playSFX(sfxWeaponSwitch);
+    
+                subMenuSaveFlag = true;
+            }
+    
+            break;
+    
+    }
+    
+    if (refreshWeapons)
+    {
+        mm_ds_map_destroy(global.weaponID);
+        weaponSetup();
+    }
+    
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///SAVE EDITOR
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.SAVE)
+{
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
+    {
+        header[subMenu] = "SAVE EDITOR";
+        
+        optionCount = 0;
+        
+        options[(optionCount ++)] = "BOLTS";
+        options[(optionCount ++)] = "E-TANKS";
+        options[(optionCount ++)] = "W-TANKS";
+        options[(optionCount ++)] = "M-TANKS";
+        options[(optionCount ++)] = ""; // line break
+        options[(optionCount ++)] = "ENERGY ELEMENTS";
+        options[(optionCount ++)] = "UPDATE EE COUNTER";
+        options[(optionCount ++)] = "";
+        options[(optionCount ++)] = "DIFFICULTY";
+        options[(optionCount ++)] = "LIVES";
+        options[(optionCount ++)] = "ENABLE LIVES";
+        options[(optionCount ++)] = "CHEAT FILE";
+        options[(optionCount ++)] = "";
+        options[(optionCount ++)] = "WEAPON UNLOCK TOGGLE";
+        options[(optionCount ++)] = "UPGRADE TOGGLE";
+        options[(optionCount ++)] = "COSTUME TOGGLE";
+        options[(optionCount ++)] = "CUTSCENE TRACKER";
+        options[(optionCount ++)] = "CHEAT TOGGLE";
+        options[(optionCount ++)] = "";
+        options[(optionCount ++)] = "CLEAR CUTSCENES";
+    
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    var change = dir;
+    if (global.keyJump[playerID])
+    {
+        change *= 10;
+    }
+    
+    if (dir != 0 || global.keyPausePressed[0])
+    {
+        subMenuSaveFlag = true;
+    }
+    
+    switch (options[option])
+    {
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // bolts
+        case "BOLTS":
+    
+            if (dir != 0)
+            {
+                playSFX(sfxBolt);
+    
+                global.bolts = clamp((global.bolts + (change * 10)), 0, global.maxBolts);
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // etanks
+        case "E-TANKS":
+    
+            if (dir != 0)
+            {
+                playSFX(sfxWeaponSwitch);
+    
+                global.eTanks = clamp((global.eTanks + dir), 0, global.maxETanks);
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // wtanks
+        case "W-TANKS":
+    
+            if (dir != 0)
+            {
+                playSFX(sfxWeaponSwitch);
+    
+                global.wTanks = clamp((global.wTanks + dir), 0, global.maxWTanks);
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // mtanks
+        case "M-TANKS":
+    
+            if (dir != 0)
+            {
+                playSFX(sfxWeaponSwitch);
+    
+                global.mTanks = clamp((global.mTanks + dir), 0, global.maxMTanks);
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // EE count edit
+        case "ENERGY ELEMENTS":
+    
+            if (dir != 0)
+            {
+                playSFX(sfxElementGrab);
+    
+                global.energyElements += change;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // fix count
+        case "UPDATE EE COUNTER":
+    
+            if (start)
+            {
+                playSFX(sfxLargeClamp);
+    
+                global.energyElements  = array_length_1d(global.elementsCollected) - numberOf(global.elementsCollected, "");
+            }
+    
+            break;
+            
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // lives
+        case "ENABLE LIVES":
+    
+            if (basicToggle)
+            {
+                playSFX(sfxWeaponSwitch);
+    
+                global.livesEnabled = !global.livesEnabled;
+            }
+    
+            break;
+            
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // difficulty
+        case "DIFFICULTY":
+    
+            if (basicToggle)
+            {
+                if (dir != 0)
+                {
+                    global.difficulty += dir;
+                    global.difficulty = modf(global.difficulty, 3);
+        
+                    playSFX(sfxClamp);
+                }
+                playSFX(sfxWeaponSwitch);
+            }
+    
+            break;
+            
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // lives
+        case "LIVES":
+    
+            if (dir != 0)
+            {
+                playSFX(sfxWeaponSwitch);
+    
+                global.livesRemaining = clamp((global.livesRemaining + dir), 0, global.maxLives);
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        // cheat file?
+        case "CHEAT FILE":
+    
+            if (basicToggle)
+            {
+                playSFX(sfxWeaponSwitch);
+    
+                global.isCheatFile = !global.isCheatFile;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // cutscenes
+        case "CLEAR CUTSCENES":
+    
+            if (start)
+            {
+                playSFX(sfxDeath);
+    
+                global.cutscenesPlayed = makeArray(-1);
+            }
+    
+            break;
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // cutscene editor
+        case "CUTSCENE TRACKER":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.CUTSCENES;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Upgrade toggle menu
+        case "UPGRADE TOGGLE":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.UPGRADES;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Cheat toggle menu
+        case "CHEAT TOGGLE":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.CHEATS;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Cheat toggle menu
+        case "COSTUME TOGGLE":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.COSTUME_UNLOCK;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+        // Cheat toggle menu
+        case "WEAPON UNLOCK TOGGLE":
+    
+            if (start)
+            {
+                subMenuSwitchTo = debugMenus.WEAPONS;
+            }
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        // line breaks
+        default:
+    
+            // nothing
+    
+            break;
+    
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///CHEAT TOGGLE
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.CHEATS)
+{
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
+    {
+        header[subMenu] = "CHEAT TOGGLE";
+        
+        // Include list of all cheats here (FOLLOW ENUM ORDER)
+        cheatNames = makeArray(
+            "Invincibility",
+            "Infinite Weapons",
+            "Double Jump",
+            "Burst Chaser",
+            "Air Sliding",
+            "Moonwalk",
+            "Perma Low Gravity",
+            "Perma High Gravity",
+            "Instant Death Mode", 
+            "No I-Frames",
+            "No Boss I-Frames",
+            "Invisible Player",
+            "Invisible Healthbars",
+            "Crazy Drop Rate",
+            "Lingering Weapons",
+            "Huge Weapons",
+            "No Bullet Limits",
+            "Gravity Flip",
+            "All Boss Explosions",
+            "Hyper Knockback",
+            "Mirror Mode",
+            "Ignore Weapon Locks", 
+            "Perma Ice Physics",
+            "Hold Slide",
+            "No Item Drops",
+            "2x Enemy Health",
+            "Instant Charge",
+            "MM9/10 Physics", 
+            "Infinite Tanks",
+            "Buddha",
+            "Permanent Ink",
+        );
+        
+        for (var cheat = 0; cheat &lt; cheatEnums.length; cheat ++)
+        {
+            options[optionCount] = cheatNames[cheat];
+            cVar[optionCount++] = cheat;
+        }
+    
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    switch (option)
+    {
+        // toggle one
+        default:
+    
+            if (dir != 0)
+            {
+                subMenuSaveFlag = true;
+    
+                var result = clamp((global.cheats[cVar[option]] + dir), -1, 1);
+                global.cheats[cVar[option]] = result;
+    
+                playSFX(sfxWeaponSwitch);
+            }
+    
+            break;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///COSTUME VIEWER
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.COSTUME_VIEW)
+{
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
+    {
+        header[subMenu] = "COSTUME VIEWER";
+    
+        options[0] = "COSTUME";
+        options[1] = "VIEW MODE";
+        options[2] = "COLOR OVERRIDE";
+        options[3] = "PRIMARY COLOR";
+        options[4] = "SECONDARY COLOR";
+        options[5] = "OUTLINE COLOR";
+        options[6] = "INKED MODE";
+        
+        optionCount = 7;
+        
+        canSearch = 0;
+        
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    switch (option)
+    {
+        // switch option
+        case 0:
+            if (dir != 0)
+            {
+                playSFX(sfxMenuMove);
+                viewCostumeID += dir;
+                if (viewCostumeID &lt; 0)
+                    viewCostumeID = global.playerSpriteMax - 1;
+                else if (viewCostumeID &gt;= global.playerSpriteMax)
+                    viewCostumeID = 0;
+            }
+            break;
+    
+        // toggle view mode
+        case 1:
+            if (!viewMode &amp;&amp; global.keyPausePressed[playerID])
+            {
+                playSFX(sfxMenuSelect);
+                viewMode = true;
+                exit;
+            }
+            else if (viewMode)
+            {
+                if (global.keyPausePressed[playerID])
+                {
+                    playSFX(sfxClamp);
+                    viewMode = false;
+                }
+                else if (global.keyJumpPressed[playerID])
+                {
+                    playSFX(sfxEnemyShootClassic);
+                    viewSpriteX = 0;
+                    viewSpriteY = 0;
+                }
+                else
+                {
+                    //X
+                    var vdir = sign(-sign(global.keyLeftPressed[playerID]) + sign(global.keyRightPressed[playerID]));
+                    if (vdir != 0)
+                    {
+                        viewSpriteX = modf((viewSpriteX + vdir), 18);
+                        playSFX(sfxWeaponSwitch);
+                    }
+    
+                    //Y
+                    var vdir = sign(-sign(global.keyUpPressed[playerID]) + sign(global.keyDownPressed[playerID]));
+                    if (vdir != 0)
+                    {
+                        viewSpriteY = modf((viewSpriteY + vdir), 13);
+                        playSFX(sfxWeaponSwitch);
+                    }
+                }
+            }
+            break;
+    
+        // toggle color override
+        case 2:
+            if (global.keyPausePressed[playerID] || dir != 0)
+            {
+                playSFX(sfxWeaponSwitch);
+                colorsOn = !colorsOn;
+            }
+            break;
+    
+        // primary secondary outline change
+        case 3:
+        case 4:
+        case 5:
+            if (dir != 0 &amp;&amp; colorsOn)
+            {
+                playSFX(sfxWeaponSwitch);
+    
+                viewCol[option - 3] += dir;
+                if (viewCol[option - 3] &lt; 0)
+                    viewCol[option - 3] = array_length_1d(global.nesPalette) - 1;
+                else if (viewCol[option - 3] &gt;= array_length_1d(global.nesPalette))
+                    viewCol[option - 3] = 0;
+            }
+            break;
+    
+        // inked mode
+        case 6:
+            if (global.keyPausePressed[playerID] || dir != 0)
+            {
+                playSFX(sfxSplash);
+                inkedMode = !inkedMode;
+    
+                colorsOn = false;
+            }
+            break;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///ROOM SELECT
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.ROOMS)
+{
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
+    {
+        header[subMenu] = "ROOM SELECT";
+    
+        options[optionCount] = "Title Screen";
+        rVar[optionCount++] = rmTitleScreen;
+        options[optionCount] = "@Load External...";
+        rVar[optionCount++] = -1;
+        options[optionCount] = "@Play Recording...";
+        rVar[optionCount++] = -2;
+        options[optionCount] = "@Start Example Game...";
+        rVar[optionCount++] = -3;
+    
+        // Get lvl-rooms
+        var name;
+        var roomNameMaxLength = ((view_wview[0] / 8) - 4);
+        var add;
+        
+        for (var ii = 0; ii &lt; 2; ii ++;)
+        {
+            options[optionCount] = ""; //Line break
+            rVar[optionCount++] = 0;
+            
+            for (var i = 0; i &lt;= room_last; i ++;)
+            {
+                if (room_exists(i))
+                {
+                    name = roomExternalGetName(i);
+                    add = 0;
+                    
+                    if (ii == 0) //First register rooms that begin with 'lvl'
+                    {
+                        if (string_pos('lvl', name) == 1)
+                        {
+                            name = string_replace(name, 'lvl', '');
+                            add = 1;
+                        }
+                    }
+                    else //Then the others
+                    {
+                        if (string_pos('rm', name) == 1)
+                        {
+                            name = string_replace(name, 'rm', '');
+                            add = 1;
+                        }
+                    }
+                    
+                    if (add) //Add room
+                    {
+                        if (string_length(name) &gt; 18)
+                        {
+                            name = string_copy(name, 0, roomNameMaxLength);
+                        }
+        
+                        options[optionCount] = name;
+                        rVar[optionCount++] = i;
+                    }
+                }
+            }
+        }
+    
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    var value = rVar[option];
+    
+    if( start&amp;&amp;(value!=0) ){
+        event_user(0);
+        stopMusic();
+    }
+    
+    switch (value)
+    {
+        // Nothing
+        case 0:
+    
+            break;
+    
+        // Load External
+        case -1:
+    
+            if (start)
+            {
+                var filename = "+" + get_open_filename("Game Maker Rooms|*.room.gmx", "");
+    
+                if (filename != "+" &amp;&amp; stringEndsWith(filename, ".room.gmx"))
+                {
+                    roomExternalClear(filename);
+    
+                    var rmExt = roomExternalLoad(filename);
+                    if (rmExt &gt;= 0)
+                    {
+                        goToLevel(rmExt);
+                        global.returnLayers = 0;
+    
+                        playSFX(sfxMenuSelect);
+    
+                        event_user(0); //Close menu
+                    }
+                }
+            }
+    
+            break;
+    
+        // Play Recording
+        case -2:
+    
+            if (start)
+            {
+                var filename = get_open_filename("Mega Man Recording|*.mrc", "");
+    
+                if (filename != "")
+                {
+                    recordInputPlayback(filename);
+    
+                    event_user(0); //Close menu
+                }
+            }
+    
+            break;
+            
+        // Example game
+        case -3:
+            if (start)
+            {
+                global.livesEnabled = 1;
+                
+                toggleWeaponSet(6, 0);
+                
+                for (var i = 1; i &lt;= global.totalWeapons; i ++)
+                {
+                    if (arrayContains(global.weaponSet[global.equippedWeaponSet], global.weaponObject[i]) &amp;&amp; global.weaponObject[i] != objRushCoil)
+                        global.weaponLocked[i] = 2;
+                }
+                
+                global.nextRoom = rmStageSelect;
+                global.endStageOnRoomEnd = global.inGame;
+                
+                playSFX(sfxTeleportOut);
+                
+                global.returnLayers = 0;
+                global.endMusicOnRoomEnd = 1;
+    
+                event_user(0); //Close menu
+            }
+            break;
+    
+        // Go to room
+        default:
+    
+            if (start)
+            {
+                var name = room_get_name(value);
+    
+                if (string_pos("rm", name) == 1) // non-level
+                {
+                    global.nextRoom = value;
+                    global.endStageOnRoomEnd = global.inGame;
+                }
+                else // stage level
+                {
+                    goToLevel(value);
+                }
+    
+                playSFX(sfxMenuSelect);
+                
+                global.returnLayers = 0;
+                global.endMusicOnRoomEnd = 1;
+    
+                event_user(0); //Close menu
+            }
+    
+            break;
+    
+    }
+
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///OBJECT VIEWER
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.OBJECTS)
+{    
+    if (subMenuInit || start)
+    {
+        header[subMenu] = "OBJECT VIEWER";
+    
+        //
+    
+        var _index, _name;
+        var _registerd = 0;
+        var _startRegister = 0;
+    
+        groups = makeArray(prtEntity, prtAlwaysActive, all);
+        groupNames = makeArray("ENTITIES", "ALWAYS ACTIVE", "MISC.");
+    
+        for (var _ii = 0; _ii &lt; 3; _ii ++;)
+        {
+            if (_ii &gt; 0)
+            {
+                options[_registerd] = "";
+                instanceNumber[  _registerd] = "";
+                _registerd ++;
+            }
+    
+            options[_registerd] = groupNames[_ii];
+            instanceNumber[  _registerd] = "";
+            _registerd ++;
+    
+            _startRegister = _registerd;
+    
+            //
+    
+            with (groups[_ii])
+            {
+                _index = object_index;
+                _name  = "  " + string_delete(object_get_name(_index), 1, 3);
+                _register = 1;
+    
+                for (var _i = 0; _i &lt; _registerd; _i ++;)
+                {
+                    if (other.options[_i] == _name)
+                    {
+                        _register = 0;
+    
+                        if (_i &gt;= _startRegister)
+                        {
+                            other.instanceNumber[_i] ++;
+                        }
+                    }
+                }
+    
+                if (_register)
+                {
+                    other.options[_registerd] = _name;
+                    other.instanceNumber[_registerd] = 1;
+    
+                    _registerd ++;
+                }
+            }
+        }
+        
+        optionCount = _registerd;
+    
+        subMenuInit = 0;
+    }
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///CONSOLE
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.CONSOLE)
+{
+    var scope = "GLOBAL";
+    if (consoleScope != noone &amp;&amp; instance_exists(consoleScope))
+    {
+        scope = string(object_get_name(consoleScope.object_index));
+        if (consoleScope.object_index == consoleScope)
+        {
+            scope += "(Class)";
+        }
+    }
+    header[subMenu] = "CONSOLE#SCOPE: " + scope;
+    if (subMenuInit)// || start) Breaks the z key for some reason.
+    {
+
+
+        canSearch = 0;
+
+        subMenuInit = 0;
+        
+        keyboard_string = "";
+        
+    }
+    else
+    {
+
+        var scoped = false;
+        if (true)//insideView(mouse_x,mouse_y))
+        {
+            with (prtEntity)
+            {
+                if (point_in_rectangle(mouseGetPosition(),mouseGetPosition(true),bbox_left,bbox_top,bbox_right,bbox_bottom))
+                {
+                    if (mouse_check_button_pressed(mb_left))//By individual object.
+                    {
+                        scoped = true;
+                        other.consoleScope = id;
+                        break;
+                    }
+                    else if (mouse_check_button_pressed(mb_right))//By object type.
+                    {
+                        scoped = true;
+                        other.consoleScope = object_index;
+                    }
+                }
+
+
+            }
+
+            if (!scoped &amp;&amp; mouse_check_button_pressed(mb_left))
+            {
+                consoleScope = noone;
+            }
+        }
+        consolePrompt = string_insert(keyboard_string,consolePrompt,consoleCursorPosition+1);//keyboard_string;
+        consoleCursorPosition += string_length(keyboard_string);
+        keyboard_string = "";
+        
+        if ((keyboard_check_pressed(vk_backspace) || !consoleBackspaceTimer) &amp;&amp; string_length(consolePrompt) &gt; 0)
+        {
+            consolePrompt = string_delete(consolePrompt,consoleCursorPosition,1);
+            consoleCursorPosition--;
+        }
+        if (keyboard_check(vk_backspace) &amp;&amp; consoleBackspaceTimer &gt; -1)
+        {
+            consoleBackspaceTimer--;
+            if (consoleBackspaceTimer &lt; 0)
+            {
+                consoleBackspaceTimer = 5;
+            }
+        }
+        else
+        {
+            consoleBackspaceTimer = 30;
+        }
+        if (keyboard_check_pressed(vk_left))
+        {
+            consoleCursorPosition = max(0,consoleCursorPosition-1);
+        }
+        if (keyboard_check_pressed(vk_right))
+        {
+            consoleCursorPosition = min(string_length(consolePrompt),consoleCursorPosition+1);
+        }
+        var a = keyboard_check_pressed(vk_down) - keyboard_check_pressed(vk_up);
+        if (a != 0)
+        {
+
+            var index = 0;
+            if (consoleLogPosition != -1)
+            {
+                index = wrapNumber(consoleLogPosition+a,0,array_length_1d(consoleLog)-1);//(array_length_1d(consoleLog) - (consoleLogPosition+a))-1;
+            }
+            else if (a &lt; 0)
+            {
+                index = array_length_1d(consoleLog)-1;
+            }
+            consoleLogPosition = index;
+            consolePrompt = consoleLog[consoleLogPosition];
+            /*
+            if (inRange(index,0,array_length_1d(consoleLog)))
+            {
+                consoleLogPosition += a;
+                consolePrompt = consoleLog[consoleLogPosition];
+
+            }*/
+            //printErr(index);
+            //printErr(consoleLogPosition);
+            //printErr(consoleLog);
+            consoleCursorPosition = string_length(consolePrompt);
+        }
+
+        if (keyboard_check_released(vk_enter))//Pressed doesn't work for some reason. Can't debug so OOPS OH WELL
+        {
+            var DONTTOUCH = conCom;//In order to prevent Featherweight from deleting conCom, I refer to it here.
+
+            arrayAppend(consoleLog,consolePrompt);//Store without conversion of ~'s
+            
+            consolePrompt = conCom_Parse(consolePrompt);
+            if (!is_string(consolePrompt))
+            {
+                print("Unequal tildes. Could not compile conCom code.",WL_SHOW,c_white,true);
+            }
+            print(consolePrompt,WL_SHOW,c_white,true);
+            if (consoleScope != noone)
+            {
+                with (consoleScope)
+                {
+                    stringExecutePartial(other.consolePrompt);
+                }
+            }
+            else
+            {
+                stringExecutePartial(consolePrompt);
+            }
+            playSFX(sfxImportantItem);
+
+            consolePrompt = "";
+            consoleCursorPosition = 0;
+            if (global.fullscreenBorder)
+            {
+                print("",WL_SHOW);//Clear the last line for prompt.
+            }
+            consoleLogPosition = -1;
+        }
+        
     }
 }
 
-// close the debug menu
-if (keyboard_check_pressed(ord('2')))
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///CUTSCENE EDITOR
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.CUTSCENES)
 {
-    instance_destroy();
+    if (subMenuInit)
+    {
+        header[subMenu] = "CUTSCENE EDITOR";
+        
+        options[0] = "ADD CUTSCENE";
+        options[1] = "SORT CUTSCENE IDS";
+        options[2] = "CLEAR ALL CUTSCENES";
+        options[3] = "";
+        options[4] = "- PLAYED CUTSCENES -";
+        
+        optionCount = 5;
+        
+        // Starting at -1 because the first cutscene ID should be -1,
+        // which is a dummy value only there to initialise the array
+        for (var i = 1; i &lt; array_length_1d(global.cutscenesPlayed); i++)
+        {
+            options[i + 4] = "ID " + string(global.cutscenesPlayed[i]);
+            optionCount ++;
+        }
+        
+        subMenuInit = 0;
+    }
+    
+    switch (option)
+    {
+        case 0: // Add a cutscene ID
+            if (dir != 0) {
+                var change = dir;
+                if (global.keyMap[0])
+                    change *= 20;
+                if (global.keySlide[0])
+                    change *= 5;
+                
+                cutsceneAddID = max(0, cutsceneAddID + change);
+            }
+            
+            if (start) {
+                if (arrayContains(global.cutscenesPlayed, cutsceneAddID)) {
+                    playSFX(sfxError);
+                    print("Cutscene already played");
+                } else {
+                    playSFX(sfxElementGrab);
+                    arrayAppendUnique(global.cutscenesPlayed, cutsceneAddID);
+                    options[array_length_1d(global.cutscenesPlayed) + 3] = "ID " + string(cutsceneAddID);
+                }
+            }
+            break;
+        
+        case 1: // Sort the IDs in ascending order
+            if (start) {
+                playSFX(sfxGravityFlip);
+                quickSort(global.cutscenesPlayed);
+                
+                // Refresh the list
+                for (var i = 1; i &lt; array_length_1d(global.cutscenesPlayed); i++)
+                    options[i + 4] = "ID " + string(global.cutscenesPlayed[i]);
+            }
+            break;
+        
+        case 2: // Clear all cutscenes
+            if (start) {
+                global.cutscenesPlayed = makeArray(-1);
+                playSFX(getGenericSFX(SFX_PLAYERDIE));
+                
+                for (var i = 5; i &lt; array_length_2d(options, subMenu); i++)
+                    options[i] = "";
+            }
+            break;
+        
+        case 3: // The line break
+        case 4: // Subheader
+            // Nothing at all
+            break;
+        
+        default: // Removing an individual cutscene ID
+            if (start) {
+                options[array_length_1d(global.cutscenesPlayed) + 3] = "";
+                
+                var _deleted_id = global.cutscenesPlayed[option - 4],
+                    _new_array = makeArray(-1);
+                
+                for (var i = 0; i &lt; array_length_1d(global.cutscenesPlayed); i++) {
+                    if (global.cutscenesPlayed[i] == _deleted_id)
+                        continue;
+                    arrayAppendUnique(_new_array, global.cutscenesPlayed[i]);
+                }
+                
+                global.cutscenesPlayed = _new_array;
+                print(global.cutscenesPlayed);
+                playSFX(getGenericSFX(SFX_HURT));
+                
+                while (option &gt;= array_length_1d(global.cutscenesPlayed) + 4)
+                    option--;
+            }
+            break;
+    }
 }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///SPRITE VIEWER
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.SPRITES)
+{
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
+    {
+        header[subMenu] = "SPRITE VIEWER";
+    
+        canSearch = 0;
+        
+        viewSpriteID = 0;
+        vuewSpriteImage = 0;
+        viewSpriteSpeed = 0;
+        viewSpriteTimer = 0;
+        
+        // Get sprites
+        /*var name;
+        var roomNameMaxLength = ((view_wview[0] / 8) - 4);
+        var add;
+        
+        for (var i = 0; i &lt;= sprFINALSPRITE_DONTMOVE; i ++;)
+        {
+            if (sprite_exists(i))
+            {
+                name = sprite_get_name(i);
+                
+                name = string_replace(name, 'spr', '');
+                
+                add = 1;
+                
+                if (add) //Add sprite
+                {
+                    if (string_length(name) &gt; 18)
+                    {
+                        name = string_copy(name, 0, roomNameMaxLength);
+                    }
+    
+                    options[optionCount++] = name;
+                    //rVar[c++] = i;
+                }
+            }
+        }*/
+        
+        options[optionCount++] = "ID";
+        options[optionCount++] = "IMAGE";
+        options[optionCount++] = "SPEED";
+        
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    switch (option)
+    {
+    
+        case 0:
+        
+            if (dir != 0)
+            {
+                playSFX(sfxMenuMove);
+                
+                var change = dir;
+    
+                if (global.keyMap[0])
+                {
+                    change *= 20;
+                }
+                if (global.keySlide[0])
+                {
+                    change *= 5;
+                }
+                
+                viewSpriteID += change;
+                viewSpriteImage = 0;
+            }
+            
+            break;
+            
+        case 1:
+        
+            if (dir != 0)
+            {
+                playSFX(sfxMenuMove);
+                
+                viewSpriteImage += dir;
+            }
+            
+            break;
+            
+        case 2:
+        
+            if (dir != 0)
+            {
+                playSFX(sfxMenuMove);
+                
+                viewSpriteSpeed += dir;
+            }
+            
+            break;
+            
+    }
+    
+    viewSpriteSpeed = modf(viewSpriteSpeed, 60);
+    
+    var sprites = sprFINALSPRITE_DONTMOVE;
+    
+    viewSpriteID = modf(viewSpriteID, sprites);
+    
+    var images = sprite_get_number(viewSpriteID);
+    
+    viewSpriteTimer += viewSpriteSpeed;
+    
+    if (viewSpriteTimer &gt;= 100)
+    {
+        viewSpriteTimer = 0;
+        viewSpriteImage += 1;
+    }
+    
+    viewSpriteImage = modf(viewSpriteImage, images);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///COSTUME TOGGLE
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.COSTUME_UNLOCK)
+{    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
+    {
+        header[subMenu] = "COSTUME TOGGLE";
+    
+        options[optionCount ++] = "TOGGLE ALL";
+        
+        //Register costumes
+        for (var i = 0; i &lt; global.playerSpriteMax; i++;)
+        {
+            options[optionCount ++] = global.costumeName[i];
+        }
+    
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    switch (option)
+    {
+        // toggle all
+        case 0:
+    
+            if (start)
+            {
+                toggleState = !toggleState;
+    
+                for (var i = 0; i &lt; global.playerSpriteMax; i++;)
+                {
+                    global.costumePurchased[i] = toggleState;
+                }
+    
+                if (toggleState)
+                {
+                    playSFX(sfxUnlocked);
+                }
+                else
+                {
+                    playSFX(sfxClamp);
+                }
+                
+                subMenuSaveFlag = true;
+            }
+    
+            break;
+            
+        // toggle one
+        default:
+    
+            if (dir != 0)
+            {
+                var index = (option - 1);
+                var value = global.costumePurchased[index];
+                var result = clamp(value + dir, -1, 1);
+    
+                global.costumePurchased[index] = result;
+                
+                
+                playSFX(sfxWeaponSwitch);
+    
+                subMenuSaveFlag = true;
+            }
+    
+            break;
+    
+    }
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///SOUND TEST
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.SOUNDS)
+{
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
+    {
+        header[subMenu] = "SOUND TEST";
+    
+        canSearch = 0;
+        viewSoundID = 0;
+        
+        options[optionCount++] = "SOUND";
+        
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    switch (option)
+    {
+    
+        case 0:
+        
+            if (dir != 0)
+            {
+                playSFX(sfxMenuMove);
+                
+                var change = sign(dir);
+    
+                if (global.keyMap[0])
+                {
+                    change *= 20;
+                }
+                if (global.keySlide[0])
+                {
+                    change *= 5;
+                }
+                
+                viewSoundID += change;
+                
+            }
+            if (global.keyJumpPressed[0])
+            {
+                playSFX(real(viewSoundID));
+            }
+            break;
+            
+    }
+    
+    viewSpriteSpeed = modf(viewSpriteSpeed, 60);
+    
+    var sprites = sprFINALSPRITE_DONTMOVE;
+    
+    viewSpriteID = modf(viewSpriteID, sfxFINALSOUND_DONTMOVE);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///WEAPON UNLOCK TOGGLE
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.WEAPONS)
+{ 
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
+    {
+        header[subMenu] = "WEAPON UNLOCK TOGGLE";
+    
+        options[optionCount ++] = "EQUIPPED SET";
+        options[optionCount ++] = "TOGGLE ALL";
+        
+        //Register weapons
+        for (var i = 0; i &lt;= global.totalWeapons; i++)
+        {
+            options[optionCount ++] = global.weaponName[i];
+        }
+    
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    switch (option)
+    {
+        // equipped set
+        case 0:
+            if (dir != 0)
+            {
+                playSFX(sfxMenuSelect);
+                var newVal = global.equippedWeaponSet + dir;
+                newVal = modf(newVal, array_length_1d(global.weaponSet));
+                toggleWeaponSet(newVal, 1);
+            }
+            break;
+        
+        // toggle all
+        case 1:
+    
+            if (start)
+            {
+                toggleState = !toggleState;
+                
+                for (var i = 0; i &lt; global.totalWeapons; i++;)
+                {
+                    global.weaponLocked[i] = toggleState;
+                }
+    
+                if (toggleState)
+                {
+                    playSFX(sfxUnlocked);
+                }
+                else
+                {
+                    playSFX(sfxClamp);
+                }
+                
+                subMenuSaveFlag = true;
+            }
+    
+            break;
+            
+        // toggle one
+        default:
+    
+            if (dir != 0)
+            {
+                var index = (option - 2);
+                var value = global.weaponLocked[index];
+                var result = clamp(value + dir, 0, 3);
+                
+                global.weaponLocked[index] = result;
+                
+                playSFX(sfxWeaponSwitch);
+                
+                subMenuSaveFlag = true;
+            }
+    
+            break;
+    
+    }
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///EXTRAS MENU
+if !DEBUG_ENABLED exit;if (frameByFrame) exit;
+
+if (subMenu == debugMenus.EXTRAS)
+{ 
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
+    {
+        header[subMenu] = "EXTRA FUNCTIONALITY";
+        
+        options[optionCount ++] = "Load Custom Costume from#AppData for Player";
+        options[optionCount ++] = "";
+        options[optionCount ++] = "Import Custom Costume#from MaGMML 1R/2/48H/3";
+        options[optionCount ++] = "";
+        options[optionCount ++] = "";
+        options[optionCount ++] = "Costume Error Log: ";
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    switch (option)
+    {
+        // toggle all
+        case 0:
+    
+            if (dir != 0)
+            {
+                customCostumePlayerID = max(0,min(MAX_PLAYERS,customCostumePlayerID+dir));
+            }
+            if (start)
+            {
+                stopMusic();
+                //var cFile = "";
+                /*do{get_open_filename_ext("*.png", "", working_directory, "Load a custom costume.");
+                }
+                until ()
+                */
+                var cFile = get_string("Specify your costume's save location (Relative to the Costumes folder)","Sample/Sample.png");
+                
+                customCostumeError = loadCustomCostume("Costumes/" + cFile,customCostumePlayerID);
+                if (customCostumeError == 0)
+                {
+                    global.customCostumeFilename[customCostumePlayerID] = "Costumes/" + cFile;
+                    var name = filename_name(cFile);
+                    global.characterSelected[customCostumePlayerID] = string_copy(1,name,string_length(name)-4);
+                            
+                    global.customCostumeEquipped[customCostumePlayerID] = true;
+                    with (objMegaman)
+                    {
+                        if (playerID == other.customCostumePlayerID)
+                        {
+                            costumeID = global.customCostumeIndex+playerID;
+                            event_user(15);
+                        }
+                    }
+                    
+                    saveLoadGame(true);
+                    
+                    playSFX(sfxMenuSelect);
+                }
+                resumeMusic();
+                
+                subMenuSaveFlag = true;
+            }
+    
+            break;
+        case 2:
+            if (start)
+            {
+                stopMusic();
+                customCostumeError = 10+customCostume_ImportFromGame(get_open_filename_ext("*.png", "", working_directory, "Load costume from prior MaGMML game."));
+                resumeMusic();
+                
+            }
+        break;
+        case 4:
+            if (dir != 0)
+            {
+                global.equippedWeaponSet = max(0,min(array_length_1d(global.weaponSet),global.equippedWeaponSet+dir));//global.weaponSet
+                playSFX(sfxMetalBlade);
+                
+            }
+        break;
+        // toggle one
+    
+    }
+
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///CHECKPOINT WARP
+if !DEBUG_ENABLED exit;
+
+if (subMenu == debugMenus.CHECKPOINT_WARP)
+{ 
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (subMenuInit)
+    {
+        header[subMenu] = "CHECKPOINT WARP";
+        
+        //init arrays
+        checkpointIDs = makeArray(noone);
+        var sortQueue = mm_ds_priority_create();
+        
+        //Define the objects that can be warped to
+        var checkpointObjects = makeArray(objCheckpoint,objCheckpointTouch);
+        
+        //Sort all the objects into a priority queue, since otherwise the checkpoint listing will be a completely random mess
+        //Currently the x position is used as the priority/means of sorting
+        for (var i = 1; i &lt; array_length_1d(checkpointObjects); i++)
+        {
+            with (checkpointObjects[i-1])
+            {
+                ds_priority_add(sortQueue,id,x);
+            }
+        }
+        
+        //Now, itterate through all the objects
+        while (!ds_priority_empty(sortQueue))
+        {
+            with (ds_priority_delete_min(sortQueue))
+            {
+                //Get the teleport position and the checkpoint's name
+                var xPos = variable_instance_get(id,"xx");
+                var yPos = variable_instance_get(id,"yy");
+                
+                var checkpointName = variable_instance_get(id,"name");
+                
+                //If neither are existant variables, default to the x/y position and/or the internal object name
+                if (xPos == undefined)
+                {
+                    xPos = x;
+                    yPos = y;
+                }
+                
+                if (checkpointName == undefined) or (checkpointName == "")
+                {
+                    checkpointName = object_get_name(object_index);
+                }
+                
+                //Finally add the actual menu option
+                other.options[other.optionCount] = "X:" + string(xPos) + " Y:" + string(yPos) + " " + checkpointName;
+                other.checkpointIDs[other.optionCount++] = id;
+            }
+        }
+        
+        mm_ds_priority_destroy(sortQueue);
+        
+        subMenuInit = 0;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (start) and (checkpointIDs[option] != noone)
+    {
+        with (checkpointIDs[option])
+        {
+            switch (object_index)
+            {
+                case objCheckpoint:
+                    xx = x;
+                    yy = y;
+                    //lack of break here is intentional
+                    
+                case objCheckpointTouch:
+                    setCheckpoint(1, xx, yy, sign(image_xscale), respawnAnimation, saveCheckpoint);
+                    break;
+            }
+        }
+        
+        playSFX(getGenericSFX(SFX_TELEOUT));
+        
+        global.nextRoom = room;
+        global.endMusicOnRoomEnd = 1;
+        event_user(0); //Close menu
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if !DEBUG_ENABLED exit;
+
+switch (subMenu)
+{
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    // Base menu
+    case debugMenus.MAIN:
+
+        switch (options[checkOption])
+        {
+            // invincibility
+            case "INVINCIBILITY":
+
+                with (objMegaman)
+                {
+                    if (playerID == 0)
+                    {
+                        other.str += ternary(canHit, "OFF", "ON");
+                    }
+                }
+
+                break;
+
+            // infinite health
+            case "INFINITE HEALTH":
+                str += ternary(global.alwaysHealth, "ON", "OFF");
+                break;
+
+            // gravity
+            case "GRAVITY FLIP":
+
+                with (objMegaman)
+                {
+                    if (playerID == 0)
+                    {
+                        other.str += string(gravDir);
+                    }
+                }
+
+                break;
+                
+            // characters
+            case "CHARACTER SWAP":
+
+                switch (global.characterSelected[0])
+                {
+                    case CHAR_MEGAMAN:
+                        str += "Mega Man";
+                        break;
+                    case CHAR_PROTOMAN:
+                        str += "Proto Man";
+                        break;
+                    case CHAR_BASS:
+                        str += "Bass";
+                        break;
+                }
+
+                break;
+
+            // costume
+            case "COSTUME SWAP":
+
+                with (objMegaman)
+                {
+                    if (playerID == 0)
+                    {
+                        var displayName = global.costumeNameShort[costumeID];
+                        
+                        other.str += displayName + " " + string(costumeID);
+                    }
+                }
+
+                break;
+
+            // game speed
+            case "GAME SPEED":
+
+                if (global.keyJump[playerID])
+                {
+                    str += "[!] ";
+                }
+
+                str += string(room_speed);
+
+                break;
+
+            case "ROOM SELECT":
+
+                str += "(0)";
+
+                break;
+
+            case "FREE MOVEMENT":
+
+                str += "(1)";
+
+                break;
+
+            case "OBJECT VIEWER":
+
+                str += "(3)";
+
+                break;
+
+            case "RESTART SECTION":
+
+                str += "(4)";
+
+                break;
+
+            // instant clear
+            case "INSTANT CLEAR":
+
+                str += "(5)";
+
+                break;
+
+            case "KILL ENTITIES":
+
+                str += "(6)";
+
+                break;
+                
+            case "CHECKPOINT WARP":
+
+                str += "(7)";
+
+                break;
+
+            case "VIEW COLLISION":
+
+                switch(viewCollision)
+                {
+                    case 0:
+                        str += "OFF";
+                        break;
+                        
+                    case 1:
+                        str += "BLOCK";
+                        break;
+                        
+                    case 2:
+                        str += "HITBOX";
+                        break;
+                }
+
+                break;
+
+        }
+
+        break;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    // Record inputs
+    case debugMenus.RECORDING:
+
+        switch (checkOption)
+        {
+            case 0:
+                str += "[UNSTABLE!]";
+                break;
+
+            case 1:
+                str += "[SAFE]";
+                break;
+        }
+
+        break;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    // Upgrade toggle
+    case debugMenus.UPGRADES:
+
+        switch (checkOption)
+        {
+            case 0:
+                // nothing
+                break;
+
+            default:
+
+                var result = variable_global_get(uVar[checkOption]);
+
+                if (result == 0)
+                {
+                    str += "LOCKED";
+                }
+                else if (result == -1)
+                {
+                    str += "OFF";
+                }
+                else
+                {
+                    str += "ON";
+                }
+
+                break;
+        }
+
+        break;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    // Save editor
+    case debugMenus.SAVE:
+
+        switch (options[checkOption])
+        {
+            // bolts
+            case "BOLTS":
+                if (global.keyJump[playerID])
+                {
+                    str += "[!] ";
+                }
+
+                str += string(global.bolts);
+                break;
+
+            // etanks
+            case "E-TANKS":
+                str += string(global.eTanks);
+                break;
+
+            // wtanks
+            case "W-TANKS":
+                str += string(global.wTanks);
+                break;
+
+            // mtanks
+            case "M-TANKS":
+                str += string(global.mTanks);
+                break;
+
+            // EE total
+            case "ENERGY ELEMENTS":
+                if (global.keyJump[playerID])
+                {
+                    str += "[!] ";
+                }
+
+                str += string(global.energyElements);
+                break;
+
+            // Cheat file
+            case "CHEAT FILE":
+                str += ternary(global.isCheatFile, "YES", "NO");
+                break;
+                
+            // lives
+            case "LIVES":
+                str += string(global.livesRemaining);
+                break;
+                
+            // Lives enabled
+            case "ENABLE LIVES":
+                str += ternary(global.livesEnabled, "YES", "NO");
+                break;
+                
+            // difficulty
+            case "DIFFICULTY":
+                if (global.difficulty == DIFF_EASY)
+                {
+                    str += "EASY";
+                }
+                else if (global.difficulty == DIFF_NORMAL)
+                {
+                    str += "NORMAL";
+                }
+                else
+                {
+                    str += "HARD";
+                }
+                break;
+        }
+
+        break;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    // Cheat toggle
+    case debugMenus.CHEATS:
+
+        switch (checkOption)
+        {
+            default:
+
+                var result = global.cheats[cVar[checkOption]];
+
+                if (result == 0)
+                {
+                    str += "LOCKED";
+                }
+                else if (result == -1)
+                {
+                    str += "OFF";
+                }
+                else
+                {
+                    str += "ON";
+                }
+
+                break;
+        }
+
+        break;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    // Costume viewer
+    case debugMenus.COSTUME_VIEW:
+
+        switch (checkOption)
+        {
+            // costume
+            case 0:
+                var displayName = global.costumeNameShort[viewCostumeID];
+
+                str += displayName + " " + string(viewCostumeID);
+
+                break;
+
+            // view mode
+            case 1:
+                str += ternary(viewMode, "ON", "OFF");
+                break;
+
+            // colors override
+            case 2:
+                str += ternary(colorsOn, "ON", "OFF");
+                break;
+
+            // primary/secondary/outline color
+            case 3:
+            case 4:
+            case 5:
+                str += ternary(colorsOn, viewCol[(checkOption) - 3], "XXX");
+                break;
+
+            // inked mode
+            case 6:
+                str += ternary(inkedMode, "ON", "OFF");
+                break;
+        }
+
+        break;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    case debugMenus.OBJECTS:
+
+        str += string(instanceNumber[checkOption]);
+
+        break;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    case debugMenus.CUTSCENES:
+    
+        if (checkOption == 0)
+        {
+            str += string(cutsceneAddID);
+        }
+        
+        break;
+
+    case debugMenus.SPRITES: //SPRITE VIEWER
+        
+        switch (checkOption)
+        {
+            case 0:
+                str += string(viewSpriteID);
+                break;
+                
+            case 1:
+                str += string(viewSpriteImage);
+                break;
+                
+            case 2:
+                str += string(viewSpriteSpeed);
+                break;
+        }
+        
+        break;
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    // Costume toggle
+    case debugMenus.COSTUME_UNLOCK:
+
+        switch (checkOption)
+        {
+            case 0:
+                // nothing
+                break;
+
+            default:
+                
+                var result = global.costumePurchased[(checkOption - 1)];
+                
+                if (result == 0)
+                {
+                    str += "LOCKED";
+                }
+                else if (result == -1)
+                {
+                    str += "HIDDEN";
+                }
+                else
+                {
+                    str += "OBTAINED";
+                }
+
+                break;
+        }
+
+        break;
+        
+    // Sound test
+    case debugMenus.SOUNDS:
+        switch (checkOption)
+        {
+            case 0:
+                str += string(viewSoundID);
+                break;
+        }
+    
+    // Weapon toggle
+    case debugMenus.WEAPONS:
+
+        switch (checkOption)
+        {
+            case 0:
+                str += string(global.equippedWeaponSet);
+                break;
+                
+            case 1:
+                // nothing
+                break;
+
+            default:
+                
+                var result = global.weaponLocked[(checkOption - 2)];
+                
+                switch(result)
+                {
+                    case 0:
+                        str += "UNLOCKED";
+                        break;
+                    
+                    case 1:
+                        str += "DISABLED";
+                        break;
+                    
+                    case 2:
+                        str += "HIDDEN";
+                        break;
+                        
+                    case 3:
+                        str += "HIDE+DISABLE";
+                        break;
+                }
+
+                break;
+        }
+
+        break;
+        
+    break;
+    
+    case debugMenus.EXTRAS:
+        switch (checkOption)
+        {
+            case 0:
+                str += string(customCostumePlayerID+1);//"Load Custom Costume from AppData";
+                break;
+            case 2:
+                //str += "Import Custom Costume from MaGMML 1R/2/48H/3";
+                break;
+            case 4:
+            var nl = global.newLine;
+            str += nl;
+                switch (customCostumeError)
+                    {
+                        case 0:
+                            str += "Load successful!";
+                        break;
+                        case -1:
+                            str += "Invalid Sprite (Not an image?)";
+                        break;
+                        case -2:
+                            str += "Incorrect dimensions.";
+                        break;
+                        case 8://-2
+                            str += "Imported costume already exists!";
+                        break;
+                        case 9://-1
+                            str += "Imported costume's directory already exists!";
+                        break;
+                        case 10://Importer adds 10 to the value to differentiate.
+                        case 11:
+                        case 12:
+                        case 13:
+                        case 13.5:
+                        case 14:
+                            var game = makeArray("48H","1R","2","3","2FM");
+                            str += "Import from " + game[floor(customCostumeError)-10] + " successful!";
+                            if (floor(customCostumeError)-10 == 3)
+                            {
+                                
+                                if (customCostumeError-10 == 3.5)
+                                {
+                                    str += nl + "Custom sounds were copied, or at least attempted to."
+                                }
+                                else
+                                {
+                                    if (!directory_exists(working_directory + "ImportStorage"))
+                                    {
+                                        directory_create(working_directory + "ImportStorage");
+                                    }
+                                    str += nl + "Custom sounds were not found if they existed." + nl + "Place the costume in AppData/" + game_project_name + "/ImportStorage" + nl + " to copy sounds automatically when importing.";
+                                }
+                            }
+                        break;
+                    }
+            break;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///EXIT DEBUG MENU
+if !DEBUG_ENABLED exit;
+
+global.frozen = false;
+
+if (subMenuSaveFlag)
+{
+    saveLoadGame(true);
+    subMenuSaveFlag = false;
+}
+
+subMenu = -1;
+subMenuSwitchTo = -1;
+menuLayers = 0;
+
+subMenuInit = 1;
+option = 0;
+options = "None";
+optionCount = 0;
+subOption = 0;
+
 </string>
           </argument>
         </arguments>
@@ -380,62 +3741,618 @@ if (keyboard_check_pressed(ord('2')))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_valign(fa_top);
-draw_sprite_ext(sprDot, 0, view_xview, view_yview, view_wview, view_hview, 0, c_gray, 0.5);
-
-// text time
-draw_set_color(c_white);
-draw_set_halign(fa_center);
-draw_text(view_xview[0] + 128, view_yview[0] + 4, "DEBUG MENU");
-draw_set_halign(fa_left);
-if (mode == 0)
-    draw_text(view_xview[0] + 20, view_yview[0] + 24, optionText);
-else
-    draw_text(view_xview[0] + 20, view_yview[0] + 24, "RECORD-HERE [UNSTABLE!]##RECORD-RESET [SAFE]##BACK####'RECORD HERE' MUST ONLY#BE USED IN A SCREEN#WITHOUT GIMMICKS OR ENEMIES");
-draw_sprite(sprOptionsCursor, 0, view_xview[0] + 8, view_yview[0] + 24 + (option * 16));
-
-// specific text for options
-draw_set_halign(fa_right);
-if (mode == 0)
-    for (i = 24; i &lt;= endy * 16; i += 16)
+            <string>///VIEW COLLISION
+if DEBUG_ENABLED
+{
+    if (viewCollision)
     {
-        switch ((i - 24) / 16)
+        
+        //draw_sprite_ext(sprDot, 0, view_xview[0], view_yview[0], view_wview[0], view_hview[0], 0, c_black, 0.33);
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        var viewLeft = view_xview[0];
+        var viewRight = (viewLeft + view_wview[0]);
+        var viewTop = view_yview[0];
+        var viewBottom = (viewTop + view_hview[0]);
+        
+        var boxesToDraw = 0;
+        
+        box[0, 0] = 0;
+        box[0, 1] = c_white;
+        
+        var bcol = c_white;
+        
+        var sat = 255;
+        var lum = 255;
+        
+        var add = 0;
+        var mode = viewCollision;
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        with (objSolid)
         {
-            // invincibility
-            case 2:
-                if (objMegaman.canHit)
+            bcol = make_colour_hsv(colour_get_hue(c_blue), sat, lum);
+            add = isSolid;
+            
+            if ((object_index == objSpike) || (object_get_parent(object_index) == objSpike))
+            {
+                bcol = make_colour_hsv(colour_get_hue(c_red), sat, lum);
+            }
+            else
+            {
+                if (mode == 2)
                 {
-                    draw_text(view_xview[0] + 256 - 8, view_yview[0] + i, "OFF");
+                    add = 0;
+                }
+            }
+            
+            if (add)
+            {
+                other.box[boxesToDraw, 0] = id;
+                other.box[boxesToDraw, 1] = bcol;
+                
+                boxesToDraw ++;
+            }
+        }
+        
+        if (mode == 1)
+        {
+            with (objTopSolid)
+            {
+                bcol = make_colour_hsv(colour_get_hue(c_green), sat, lum);
+                
+                if (isSolid)
+                {
+                    other.box[boxesToDraw, 0] = id;
+                    other.box[boxesToDraw, 1] = bcol;
+                    
+                    boxesToDraw ++;
+                }
+            }
+            
+            with (objGenericStopper)
+            {
+                bcol = make_colour_hsv(colour_get_hue(c_purple), sat, lum);
+                
+                other.box[boxesToDraw, 0] = id;
+                other.box[boxesToDraw, 1] = bcol;
+                
+                boxesToDraw ++;
+            }
+        }
+        
+        with (prtEntity)
+        {
+            add = 0;
+            bcol = c_white;
+            
+            if (!dead)
+            {
+                if (mode == 1)
+                {
+                    if (blockCollision)
+                    {
+                        add = 1;
+                    }
+                    
+                    if (isSolid)
+                    {
+                        add = 1;
+                        
+                        bcol = make_colour_hsv(colour_get_hue(c_orange), sat, lum);
+                    }
+                }
+                else if (mode == 2)
+                {
+                    if (contactDamage &gt; 0)
+                    {
+                        add = 1;
+                        bcol = make_colour_hsv(colour_get_hue(c_red), sat, lum);
+                        
+                        if (canHit)
+                        {
+                            bcol = make_colour_hsv(colour_get_hue(c_purple), sat, lum);
+                        }
+                    }
+                    else
+                    {
+                        if (canHit)
+                        {
+                            add = 1;
+                            bcol = make_colour_hsv(colour_get_hue(c_blue), sat, lum);
+                        }
+                    }
+                }
+            }
+            
+            if (add)
+            {
+                other.box[boxesToDraw, 0] = id;
+                other.box[boxesToDraw, 1] = bcol;
+                
+                boxesToDraw ++;
+            }
+        }
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        if (boxesToDraw &gt; 0)
+        {
+            var bID, bcol, x1, x2, y1, y2, bw, bh;
+            
+            var surf = mm_surface_create(1, 1);
+            
+            var bAlpha = (3 + (abs(sin(global.roomTimer / 48)))) / 4;
+            
+            for (var i = 0; i &lt; boxesToDraw; i ++;)
+            {
+                bID = box[i, 0];
+                bcol = box[i, 1];
+                
+                with (bID)
+                {
+                    x1 = bbox_left;
+                    y1 = bbox_top;
+                    x2 = bbox_right;
+                    y2 = bbox_bottom;
+                    
+                    bw = (bbox_right - bbox_left) + 1;
+                    bh = (bbox_bottom - bbox_top) + 1;
+                    
+                    if ((bw &gt;= 1) || (bh &gt;= 1))
+                    {
+                        if ((x1 &lt;= viewRight) &amp;&amp; (y1 &lt;= viewBottom) &amp;&amp; (x2 &gt;= viewLeft) &amp;&amp; (y2 &gt;= viewTop))
+                        {
+                            surface_resize(surf, bw, bh);
+                            
+                            surface_set_target(surf);
+                            
+                            draw_clear_alpha(c_black, 0.5);
+                            
+                            draw_set_color(bcol);
+                            
+                            draw_set_alpha(0.75);
+                            draw_rectangle(0, 0, (bw - 1), (bh - 1), 0);
+                            draw_set_alpha(1);
+                            
+                            draw_rectangle(0, 0, (bw - 1), (bh - 1), 1);
+                            
+                            draw_set_color(c_white);
+                            
+                            surface_reset_target();
+                            
+                            //
+                            
+                            bxx = bbox_left;
+                            byy = bbox_top;
+                            
+                            draw_surface_ext(surf, bxx, byy, 1, 1, image_angle, c_white, bAlpha);
+                        }
+                    }
+                }
+            }
+            
+            mm_surface_free(surf);
+        }
+        
+    }
+
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///DRAW DEBUG MENU
+if (DEBUG_ENABLED)
+{
+    if (!enableView || frameByFrame)
+    {
+        exit;//No draw mode for frame-by-frame analysis.
+    }
+    if (subMenu == debugMenus.CONSOLE)
+    {
+        if (consoleScope != noone)
+        {
+            with (consoleScope)
+            {
+                draw_set_alpha(.5);
+                draw_set_color(c_yellow);
+                
+                if (id == other.consoleScope)//We are a specific instance scope.
+                {
+                    draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,false);
+                }
+                else//We are a class scope.
+                {
+                    //Easier to see.
+                    draw_line_width(bbox_left,bbox_top,bbox_right,bbox_top,1);
+                    draw_line_width(bbox_left,bbox_bottom,bbox_right,bbox_bottom,1);
+                    draw_line_width(bbox_left,bbox_top,bbox_left,bbox_bottom,1);
+                    draw_line_width(bbox_right,bbox_top,bbox_right,bbox_bottom,1);
+                    //draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,true);
+                }
+                draw_set_alpha(1);
+                draw_set_color(c_white);
+                
+                //Slowly flashing opaque red and blue dot on the object's exacto coordinates.
+                var c = c_blue;
+                if (floor(global.roomTimer/15)%2)
+                    c = c_red;
+                draw_sprite_ext(sprDot,0,x,y,1,1,0,c,1);
+            }
+            
+        }
+        
+    }
+    if (subMenu &gt;= 0)
+    {
+    
+        draw_set_valign(fa_top);
+        draw_sprite_ext(sprDot, 0, view_xview[0], view_yview[0], view_wview[0], view_hview[0], 0, c_black, 0.7);
+        
+        // text time
+        draw_set_color(c_white);
+        draw_set_halign(fa_center);
+        
+        var headerString = "- " + header[subMenu] + " -";
+        draw_text((view_xview[0] + 128), (view_yview[0] + 4), headerString);
+        
+        draw_set_halign(fa_left);
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        // Option names
+        var length = optionCount;
+        str = "";
+        
+        var xx = (view_xview[0] + 16);
+        var xr = (view_xview[0] + (view_wview[0] - 16));
+        
+        var yy = (view_yview[0] + 24);
+        
+        optionOffset = min((option - floor(visibleOptions / 2)), (length - visibleOptions));
+        optionOffset = max(optionOffset, 0);
+        
+        var optionEnd = (optionOffset + visibleOptions)
+        optionEnd = max(0, min(optionEnd, length));
+        
+        highlightPos = -1;
+        
+        for (var i = optionOffset; i &lt; optionEnd; i ++;)
+        {
+            if (i == option)
+            {
+                draw_sprite_ext(sprDot, 0, (xx - 4), (yy - 3), (view_wview[0] - 24), 14, 0, c_white, 0.7);
+                draw_sprite_ext(sprDot, 0, (xx - 3), (yy - 2), (view_wview[0] - 26), 12, 0, c_black, 0.5);
+            }
+        
+            //
+        
+            str = options[i];
+        
+            draw_set_halign(fa_left);
+            draw_text(xx, yy, str);
+        
+            //
+        
+            str = '';
+            checkOption = i;
+            event_user(3);
+            
+            if (subMenu == debugMenus.WEAPONS &amp;&amp; checkOption &gt;= 2)
+            {
+                if (global.weaponHidden[(checkOption - 2)])
+                    draw_set_color(global.nesPalette[$2D]);
+            }
+        
+            draw_set_halign(fa_right);
+            draw_text(xr, yy, str);
+            
+            draw_set_color(c_white);
+        
+            //
+        
+            yy += 12;
+        }
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        if ((length &gt; 0) &amp;&amp; canSearch)
+        {
+            yy += 4;
+        
+            //Searching
+            draw_set_halign(0);
+            draw_set_halign(0);
+            draw_set_color(c_white);
+        
+            var xx = view_xview[0] + 8;
+            
+            if (searching)
+            {
+                draw_text(xx, yy, "FIND: ");
+                draw_text((xx + 48), yy, keyboard_string);
+            }
+            else
+            {
+                draw_text(xx, yy, "Ctrl+F: SEARCH");
+            }
+        }
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        // extra information
+        switch (subMenu)
+        {
+            case debugMenus.RECORDING: //RECORD
+        
+                draw_text(view_xview[0] + 256 - 8, view_yview[0] + 64, "'RECORD HERE' MUST ONLY#BE USED IN A SCREEN#WITHOUT GIMMICKS OR ENEMIES");
+        
+                break;
+        
+            case debugMenus.COSTUME_VIEW: //COSTUME VIEWER
+        
+                var drawXCoord = (view_xview[0] + (view_wview[0] / 2));
+                var drawYCoord = (view_yview[0] + (view_hview[0] * 0.75));
+        
+                if (!colorsOn)
+                {
+                    if (!inkedMode)
+                    {
+                        drawCostume(global.playerSprite[viewCostumeID], viewSpriteX, viewSpriteY, drawXCoord, drawYCoord, 1, 1,
+                            c_white, global.costumePrimaryColor[viewCostumeID],
+                            global.costumeSecondaryColor[viewCostumeID], c_black, 1, 1, 1, 1);
+                    }
+                    else
+                    {
+                        drawPlayerInk(viewCostumeID, viewSpriteX, viewSpriteY, drawXCoord, drawYCoord, 1, 1);
+                    }
                 }
                 else
                 {
-                    draw_text(view_xview[0] + 256 - 8, view_yview[0] + i, "ON");
+                    drawCostume(global.playerSprite[viewCostumeID], viewSpriteX, viewSpriteY, drawXCoord, drawYCoord, 1, 1,
+                        c_white, global.nesPalette[viewCol[0]],
+                        global.nesPalette[viewCol[1]], global.nesPalette[viewCol[2]], 1, 1, 1, 1);
                 }
-                break;
-            // infinite health
-            case 3:
-                if (global.alwaysHealth)
+        
+                if (viewMode)
                 {
-                    draw_text(view_xview[0] + 256 - 8, view_yview[0] + i, "ON");
+                    var buttonx = (drawXCoord - 4);
+                    var buttony = (drawYCoord - 4);
+                    var buttonDis = 32;
+                    var buttons = makeArray("right", "up", "left", "down");
+                    var bx, by, bDir;
+        
+                    for (var i = 0; i &lt; 4; i ++;)
+                    {
+                        bDir = (i * 90);
+                        bx = (buttonx + lengthdir_x(buttonDis, bDir));
+                        by = (buttony + lengthdir_y(buttonDis, bDir));
+        
+                        drawButtonPrompt(buttons[i], bx, by);
+                    }
+        
+                    var bx = (view_xview[0] + 8)
+                    var by = ((view_yview[0] + view_hview[0]) - 12)
+        
+                    drawButtonPrompt("jump", bx, by);
+        
+                    bx += 12;
+                    draw_text(bx, by, "RESET");
+        
+                    bx += 96;
+                    draw_text(bx, by, ("X: " + string(viewSpriteX)));
+        
+                    bx += 48;
+                    draw_text(bx, by, ("Y: " + string(viewSpriteY)));
                 }
-                else
+        
+                break;
+        
+            case debugMenus.OBJECTS: //OBJECT VIEWER
+        
+                draw_set_halign(2);
+        
+                //Total object number
+                draw_text(xr, (view_yview[0] + 12), string(instance_number(all)));
+        
+                break;
+                
+            case debugMenus.CONSOLE: //CONSOLE
+            
+                var cursor = "";
+                var txt = consolePrompt;
+                if (global.gameTimer % 60 &lt; 30)
                 {
-                    draw_text(view_xview[0] + 256 - 8, view_yview[0] + i, "OFF");
+                    txt = string_insert("|",txt,consoleCursorPosition+1);
                 }
+                draw_set_font(global.font);//Small);
+                draw_text_transformed(xx-16,yy+224-24-8,"&gt;" + txt,.5,.5,0);
+                draw_set_font(global.font);
+                /*for (var i = 0; i &lt; array_length_1d(consoleLog); i++)
+                {
+                    draw_text(xx-8,yy+224-24-8-8*i,consoleLog);
+                }*/
+                
                 break;
-            // grav dir
-            case 4:
-                draw_text(view_xview[0] + 256 - 8, view_yview[0] + i, string(objMegaman.gravDir));
+            
+            case debugMenus.SPRITES: //SPRITE VIEWER
+            
+                var spr = viewSpriteID;
+                var img = viewSpriteImage;
+                
+                var xx = middleXview();
+                var yy = middleYview() + 24;
+                
+                xx += sprite_get_xoffset(spr);
+                yy += sprite_get_yoffset(spr);
+                
+                xx -= (sprite_get_width(spr) / 2);
+                yy -= (sprite_get_height(spr) / 2);
+                
+                draw_sprite(spr, img, xx, yy);
+                
+                draw_set_halign(1);
+                draw_set_valign(2);
+                
+                var name = sprite_get_name(spr);
+                var nameLength = string_length(name);
+                
+                for (var ii = 0; ii &lt; nameLength; ii += 26;)
+                {
+                    name = string_insert("#", name, ii);
+                    ii ++;
+                }
+                
+                var xx = middleXview();
+                var yy = ((view_yview[0] + view_hview[0]) - 8);
+                
+                draw_text(xx, yy, name);
+                
+                draw_set_halign(0);
+                draw_set_valign(0);
+                
                 break;
-            // costumes
-            case 5:
-                draw_text(view_xview[0] + 256 - 8, view_yview[0] + i, string(objMegaman.costumeID));
+                
+            case debugMenus.SOUNDS: //SOUND TEST
+                var spr = viewSoundID;
+                
+                var xx = middleXview();
+                var yy = middleYview() + 24;
+                
+                xx += sprite_get_xoffset(spr);
+                yy += sprite_get_yoffset(spr);
+                
+                xx -= (sprite_get_width(spr) / 2);
+                yy -= (sprite_get_height(spr) / 2);
+                
+                draw_text(xx, yy,audio_get_name(spr));//draw_sprite(spr, img, xx, yy);
+        
+                
+                draw_set_halign(0);
+                draw_set_valign(0);
+                
                 break;
+            break;
+        }
+        
+        draw_set_halign(fa_left);
+        
+        //---------------------------------------------------------
+        
+        //Scrollbar
+        if (length &gt; visibleOptions)
+        {
+            var xx = view_xview[0] + 6;
+            var yy = view_yview[0] + 23;
+            var height = ((visibleOptions * 12) - 2);
+        
+            var barheight = round(height * (visibleOptions / length));
+            var bary = round((yy - 2) + ((height - barheight) * clamp(optionOffset / (length - visibleOptions), 0, 1)));
+            var baryEnd = (bary + barheight + 4);
+        
+            draw_sprite_ext(sprDot, 0, (xx - 3), bary, 6, (barheight + 4), 0, c_white, 0.7);
+            draw_sprite_ext(sprDot, 0, (xx - 2), (bary + 1), 4, (barheight + 2), 0, c_black, 0.5);
+        
+            var barh = (bary - yy);
+        
+            if (barh &gt; 0)
+            {
+                draw_sprite_ext(sprDot, 0, (xx - 1), yy, 2, barh, 0, c_white, 0.7);
+            }
+        
+            var barh = ((yy + height) - baryEnd);
+        
+            if (barh &gt; 0)
+            {
+                draw_sprite_ext(sprDot, 0, (xx - 1), baryEnd, 2, barh, 0, c_white, 0.7);
+            }
+        }
+    
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Recording / playback sign
+if (!DEBUG_ENABLED) exit;
+
+if (global.recordInputMode &gt; 0)
+{
+    if ((global.recordInputFrame mod 30) &gt;= 15)
+    {
+        draw_set_halign(fa_right);
+
+        if (global.recordInputFidelity &gt;= 0)
+        {
+            if (global.recordInputMessage == 0)
+            {
+                draw_sprite(sprRecPlay, global.recordInputMode - 1,
+                    view_xview[0] + view_wview[0] - 32,
+                    view_yview[0] + view_hview[0] - 48);
+
+                draw_text(
+                    view_xview[0] + view_wview[0] - 64,
+                    view_yview[0] + view_hview[0] - 16,
+                    global.recordInputFrame);
+            }
+            else
+            {
+                draw_text(
+                    view_xview[0] + view_wview[0] - 32,
+                    view_yview[0] + view_hview[0] - 48,
+                    global.recordInputMessage);
+            }
+        }
+        else
+        {
+            draw_set_color(c_yellow);
+            draw_text(
+                view_xview[0] + view_wview[0] - 32,
+                view_yview[0] + view_hview[0] - 48,
+                "LO-FI");
         }
     }
-draw_set_halign(fa_left);
+}
 
-draw_text(view_xview[0] + 256 - 8, view_yview[0] + 224 - 8, string(global.aliveBosses));
+draw_set_color(c_white);
 </string>
           </argument>
         </arguments>

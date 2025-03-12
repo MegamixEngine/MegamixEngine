@@ -203,7 +203,7 @@ if (init &amp;&amp; insideSection(x + 8, y))
 {
     // Extend horizontally
     while (insideSection(x - 16, y)
-        &amp;&amp; tile_layer_find(myTile, x - 16, y - (1 * (sign(image_yscale) == -1)))
+        &amp;&amp; findTileWithSplit(myTile, x - 16, y - (1 * (sign(image_yscale) == -1)))
         &amp;&amp; x &gt; 0)
     {
         x -= 16;
@@ -211,7 +211,7 @@ if (init &amp;&amp; insideSection(x + 8, y))
     width = 1;
     
     while (insideSection(x + (width * 16), y)
-        &amp;&amp; tile_layer_find(myTile, x + (width * 16), y - (1 * (sign(image_yscale) == -1)))
+        &amp;&amp; findTileWithSplit(myTile, x + (width * 16), y - (1 * (sign(image_yscale) == -1)))
         &amp;&amp; x + (width * 16) &lt; room_width)
     {
         width += 1;
@@ -222,14 +222,14 @@ if (init &amp;&amp; insideSection(x + 8, y))
     
     // sign(image_yscale) is used here so you can make reverse grav towers.
     while (insideSection(x, y - 16 * sign(image_yscale))
-        &amp;&amp; tile_layer_find(myTile, x, y - (16 * sign(image_yscale)) + (1 * (sign(image_yscale) == -1))) &amp;&amp; y &gt; 0)
+        &amp;&amp; findTileWithSplit(myTile, x, y - (16 * sign(image_yscale)) + (1 * (sign(image_yscale) == -1))) &amp;&amp; y &gt; 0)
     {
         y -= 16 * sign(image_yscale);
     }
     height = 1 * sign(image_yscale);
     
     while (insideSection(x, y + height * 16)
-        &amp;&amp; tile_layer_find(myTile, x, y - (1 * (sign(image_yscale) == -1)) + height * 16)
+        &amp;&amp; findTileWithSplit(myTile, x, y - (1 * (sign(image_yscale) == -1)) + height * 16)
         &amp;&amp; y + (height * 16 * sign(image_yscale)) &lt; room_height)
     {
         height += 1 * sign(image_yscale);

@@ -74,9 +74,10 @@ if (!global.frozen &amp;&amp; !global.timeStopped &amp;&amp; !dead)
     if (timer &gt;= interval) // spawn bullet
     {
         timer = 0;
-        i = instance_create(x + 8, y + 8, objEnemyBullet);
-        i.image_speed = 0.5;
+        i = instance_create(x + 8, y + 8, objCrystal);
+        i.imgSpd = 0.2; //0.5;
         i.sprite_index = sprCrystal;
+        i.imgIndex = 3;
         i.grav = 0.25;
     }
     

@@ -3,7 +3,7 @@
   <spriteName>sprPunk</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>prtBoss</parentName>
   <maskName>mskPunk1</maskName>
@@ -48,8 +48,8 @@ shotsFired = 0;
 grav = 0.25;
 
 // Health Bar
-healthBarPrimaryColor[1] = make_colour_rgb(216, 40, 0);
-healthBarSecondaryColor[1] = make_colour_rgb(248, 248, 248);
+healthBarPrimaryColor[1] = make_colour_rgb(217, $29, 0);
+healthBarSecondaryColor[1] = make_colour_rgb(248, 185, $147);
 
 // Music
 music = "Mega_Man_3GB.gbs";
@@ -60,6 +60,8 @@ musicTrackNumber = 9;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -70,6 +72,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objBreakDash, 4);
 enemyDamageValue(objMagneticShockwave, 6);
 enemyDamageValue(objIceWall, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -105,15 +111,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 0);
+enemyDamageValue(objChillSpike, 0);
 enemyDamageValue(objChillSpikeLanded, 0);
 
 // Misc.
 enemyDamageValue(objPowerStone, 0);
 enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 0);
+enemyDamageValue(objBlockDropper, 0);
 enemyDamageValue(objIceSlasher, 0);
 </string>
           </argument>
@@ -190,7 +197,7 @@ if (!global.frozen)
                         {
                             instance_create(bboxGetXCenter(), bboxGetYCenter(),
                                 objExplosion);
-                            playSFX(sfxEnemyHit);
+                            playSFX(getGenericSFX(SFX_ENEMYHIT));
                             playSFX(sfxPunkEntrance);
                             instance_create(x, y, objRollingDrillField);
                             instance_deactivate_object(id);
@@ -231,10 +238,10 @@ if (!global.frozen)
                 canFillHealthBar = true;
                 if (attackTimer == 1015 || attackTimer == 1055)
                     image_index = 0;
-                if (attackTimer == 1025 || attackTimer == 1045 || attackTimer == 1080)
-                    image_index = 1;
                 if (attackTimer == 1035)
                     image_index = 2;
+                if (attackTimer == 1080)
+                    image_index = 1;
                 if (attackTimer &gt; 1090)
                 {
                     attackTimer = 0;
@@ -255,8 +262,11 @@ if (!global.frozen)
             case 0: // stand 
                 switch (attackTimer) // setup punk animation
                 {
+                    case 8:
+                        image_index = 0;
+                        break;
                     case 40:
-                        image_index = 1;
+                        //image_index = 1;
                         setY = choose(0, 1, 2); // choose which height punk will fly across with.
                         storeY = y; // store punk's current y co-ordinate for comparsion's sake.
                         break;
@@ -352,15 +362,15 @@ if (!global.frozen)
                 }
                 if (ground)
                     image_index = 1;
-                if (ground &amp;&amp; attackTimer &gt; 56 - (setY * 10))
+                if (ground &amp;&amp; attackTimer &gt; (56 - (setY * 10)) + ((setY == 2) * 20))
                 {
                     phase = 2;
-                    image_index = 2;
+                    image_index = 0;//2;
                     attackTimer = -8;
                 }
                 break;
             case 2: // throw screw crusher 
-                if (ground &amp;&amp; yspeed &gt;= 0 &amp;&amp; attackTimer &gt;= 0)
+                if (ground &amp;&amp; yspeed &gt;= 0 &amp;&amp; (attackTimer &gt;= 0 &amp;&amp; shotsFired &gt; 0) || (attackTimer &gt;= 8 &amp;&amp; shotsFired == 0))
                     image_index = 1;
                 if (ground &amp;&amp; yspeed &gt;= 0 &amp;&amp; attackTimer &gt;= 16)
                 {
@@ -386,7 +396,7 @@ if (!global.frozen)
                         shotsFired = 0;
                         attackTimer = 0;
                         phase = 0;
-                        image_index = 0;
+                        image_index = 1;//0;
                     }
                     attackTimer = 0;
                 }
@@ -448,8 +458,10 @@ if (image_index &gt;= 7)
             <string>event_inherited();
 
 with (objPunkScrewCrusher)
+{
     instance_create(x, y, objExplosion);
-instance_destroy();
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>
@@ -472,7 +484,21 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>//event_inherited();
+if (!dead)
+{
+    if (drawBoss)
+    {
+        if ((iFrames mod 4) &lt;= 2) || (!iFrames)
+        {
+            drawSelf();
+        }
+        else // Punk your hitspark is too high, go on a diet
+        {
+            draw_sprite_ext(sprHitspark,0,spriteGetXCenter(),spriteGetYCenter()+8,1,1,0,c_white,1);
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

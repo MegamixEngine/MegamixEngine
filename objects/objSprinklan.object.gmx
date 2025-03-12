@@ -35,6 +35,7 @@ event_inherited();
 healthpointsStart = 256; // placeholder
 healthpoints = healthpointsStart;
 contactDamage = 3;
+behaviourType = 1;
 
 // Enemy specific code
 col = 0; // 0 = blue; 1 = purple; 2 = orange
@@ -306,7 +307,7 @@ if (animFrame == 2)
     dir = 1;
 else
     dir = -1;
-var bullet = instance_create(x + 7 * dir, y - 16, objEnemyBullet);
+var bullet = instance_create(x + 7 * dir, y - 14, objEnemyBullet);
 bullet.xspeed = dir * 2;
 bullet.grav = 0.25;
 bullet.yspeed = -2 - irandom(2);

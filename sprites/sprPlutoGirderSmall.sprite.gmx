@@ -8,18 +8,19 @@
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>0</bbox_left>
-  <bbox_right>14</bbox_right>
+  <bbox_right>15</bbox_right>
   <bbox_top>0</bbox_top>
   <bbox_bottom>8</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>76</TextureGroup0>
+    <TextureGroup0>191</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>15</width>
+  <width>16</width>
   <height>9</height>
   <frames>
     <frame index="0">images\sprPlutoGirderSmall_0.png</frame>
+    <frame index="1">images\sprPlutoGirderSmall_1.png</frame>
   </frames>
 </sprite>

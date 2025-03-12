@@ -51,8 +51,8 @@ timeStopLock = false;
 grav = 0.25;
 
 // Health Bar
-healthBarPrimaryColor[1] = 7;
-healthBarSecondaryColor[1] = 21;
+healthBarPrimaryColor[1] = $07;
+healthBarSecondaryColor[1] = $18;
 
 // Music
 music = "Mega_Man_5GB.gbs";
@@ -63,6 +63,8 @@ musicTrackNumber = 6;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 0);
@@ -73,6 +75,10 @@ enemyDamageValue(objThunderBeam, 4);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 2);
 enemyDamageValue(objBreakDash, 0);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -108,15 +114,16 @@ enemyDamageValue(objConcreteShot, 4);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 0);
+enemyDamageValue(objChillSpike, 0);
 enemyDamageValue(objChillSpikeLanded, 2);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 2);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -186,7 +193,7 @@ if (!global.frozen)
             }
             if (attackTimer == 17)
                 image_index = 2;
-            if (attackTimer == 25)
+            if (attackTimer == 22) //25
                 image_index = 3;
             if (attackTimer == 40)
             {
@@ -458,7 +465,21 @@ event_inherited();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>//event_inherited();
+if (!dead)
+{
+    if (drawBoss)
+    {
+        if ((iFrames mod 4) &lt;= 2) || (!iFrames)
+        {
+            drawSelf();
+        }
+        else // Because Saturn's sprite origin is disgusting
+        {
+            draw_sprite_ext(sprHitspark,0,bboxGetXCenter(),bboxGetYCenter() - (8 * (image_index == 5 || image_index == 6)),1,1,0,c_white,1);
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

@@ -35,7 +35,7 @@ contactDamage = 0;
 penetrate = 0;
 pierces = 0;
 
-playSFX(sfxBuster);
+playSFX(getGenericSFX(SFX_BUSTER));
 
 timer = 5;
 </string>
@@ -93,7 +93,8 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>/*if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))*/
+if (global.keyShoot[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 {
     i = fireWeapon(16, 0, objGloopBreaker, 0, 0, 2, 0);
 }

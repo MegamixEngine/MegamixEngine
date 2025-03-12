@@ -3,7 +3,7 @@
   <spriteName>sprAirTiki</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -30,6 +30,7 @@ event_inherited();
 
 isSolid = 1;
 isTargetable = false;
+bubbleTimer = false;
 
 grav = 0;
 blockCollision = 0;
@@ -46,6 +47,13 @@ gremlinDir = -1;
 gremlinArray[0] = noone;
 gremlinArray[1] = noone;
 gremlinArray[2] = noone;
+
+objectDrop = objGremlin;
+
+//Unhardcoding
+gremlinSpriteOverride = false;
+gremlinSprite = sprGremlin;
+tikiSprite = sprTikiHorn;
 </string>
           </argument>
         </arguments>
@@ -111,11 +119,17 @@ gremlinArray[2] = noone;
     {
         if (gremlinDir == 1)
         {
-            i = instance_create(x + sprite_width - 20, y + 39, objGremlin);
+            i = instance_create(x + sprite_width - 20, y + 39, objectDrop);
+            if gremlinSpriteOverride {
+            i.sprite_index = gremlinSprite;
+            }
         }
         else
         {
-            i = instance_create(x - 4 + 8, y + 39, objGremlin);
+            i = instance_create(x - 4 + 8, y + 39, objectDrop);
+            if gremlinSpriteOverride {
+            i.sprite_index = gremlinSprite;
+            }
         }
         i.respawn = false;
         i.gremlinDir = gremlinDir;
@@ -195,8 +209,10 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     if ((image_index == 0 || image_index == 1) &amp;&amp; popped &amp;&amp; !triggered)
     {
         triggered = true;
-        instance_create(x + 12, y, objTikiHorn);
-        instance_create(x + sprite_width - 12, y, objTikiHorn);
+        hornA = instance_create(x + 12, y, objTikiHorn);
+        hornA.sprite_index = tikiSprite;
+        hornB = instance_create(x + sprite_width - 12, y, objTikiHorn);
+        hornB.sprite_index = tikiSprite;
     }
     
     if (collision_rectangle(x, y - 8, x + sprite_width, y + 4, target, false,

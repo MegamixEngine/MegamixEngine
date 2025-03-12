@@ -108,7 +108,7 @@ if (entityCanStep())
         hasFired = true;
         var ID;
         ID = instance_create(x - (image_xscale * 10), y - 5, objectThrown);
-        ID.xscale = image_xscale;
+        ID.image_xscale = image_xscale;
         ID.col = col;
     }
 }

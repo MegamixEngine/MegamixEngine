@@ -29,10 +29,14 @@
 event_inherited();
 
 respawn = true;
+              
+killOverride = false;
 
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+
+killOverride = false;
 
 category = "nature";
 
@@ -98,7 +102,7 @@ if (entityCanStep())
         if (shootTimer == 60)
         {
             image_index = 2;
-            a = instance_create(x + 4 * image_xscale, y + 8, objSnakeyBullet);
+            instance_create(x + 3 * image_xscale, y + 9, objSnakeyBullet);
         }
         if (shootTimer == 70)
         {
@@ -136,11 +140,11 @@ else if (dead)
             <kind>1</kind>
             <string>event_inherited();
 
-mypillar = instance_position(bboxGetXCenter(), bbox_bottom + 8,
+var myPillar = instance_position(bboxGetXCenter(), bbox_bottom + 8,
     objPetitSnakeyPillar);
-if (mypillar)
+if (myPillar)
 {
-    with (mypillar)
+    with (myPillar)
     {
         if (object_index == objPetitSnakeyPillar)
         {

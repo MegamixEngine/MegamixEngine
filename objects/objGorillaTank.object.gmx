@@ -40,10 +40,13 @@ doesIntro = false;
 
 // creation code
 dir = image_xscale;
+explosionSFX = sfxExplosion2;
 
 // Enemy specific code
 shootTimer = 0;
 image_speed = 0;
+
+deadFrame = 4;
 
 hand = noone;
 recoil = false;
@@ -119,7 +122,7 @@ if (entityCanStep())
             if (shootTimer == floor(shootTimer / 8) * 8)
             {
                 playSFX(sfxEnemyShoot);
-                shoot = instance_create(x + 16 * image_xscale, y - 10, objEnemyBullet);
+                shoot = instance_create(x + 18 * image_xscale, y - 15, objEnemyBullet);
                 with (shoot)
                 {
                     var spd;
@@ -190,7 +193,10 @@ else if (!insideView())
 
 if (entityCanStep())
 {
-    introTimer -= 1;
+    if (introTimer &gt; 0)
+    {
+        introTimer--;
+    }
     if (introTimer == 1)
     {
         if (!instance_exists(hand))
@@ -253,6 +259,8 @@ if (entityCanStep())
             <kind>1</kind>
             <string>event_inherited();
 
+shootTimer = 0; // Stops jaw being drawn over death sprite
+
 if (instance_exists(hand))
 {
     with (hand)
@@ -282,9 +290,9 @@ if (instance_exists(hand))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (iFrames == 1 || iFrames == 3)
+            <string>if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(true, c_white, 0, 0);
+    hitFlashEffect(true,c_white);
 }
 
 if (introTimer == 0)
@@ -305,9 +313,9 @@ else
         1 - ((floor(introTimer / (30 / 2)) * (30 / 2)) / 30));
 }
 
-if (iFrames == 1 || iFrames == 3)
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(false, 0, 0, 0);
+    hitFlashEffect(false);
 }
 </string>
           </argument>

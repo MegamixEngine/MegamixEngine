@@ -97,8 +97,8 @@ if (entityCanStep())
         calibrateDirection();
         xs = choose(1.5, 3) * image_xscale; // choose saved xspeed variable
         xspeed = xs;
-        image_xscale = 1;
         timer = 0;
+        mask_index = mskFleaJump;
     }
     
     if (ycoll &gt; 0) // if it's on the ground in this frame, reset everything
@@ -106,6 +106,7 @@ if (entityCanStep())
         xspeed = 0;
         xs = 0;
         timer = 0;
+        mask_index = sprite_index;
     }
     if (xs != 0)
     {

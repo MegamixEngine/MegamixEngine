@@ -57,8 +57,10 @@ sprite = noone;
 
 //@cc if false no sound will play once it appears (optional)
 doSFX = true;
+yokuSFX = sfxYokuBlock;
 
 spike = false; // don't set creation code to make yoku spikes, use the objYokuSpike object
+topsolid = false;
 
 timer = 0;
 phase = 0; // 0 = waiting to appear; 1 = active; 2 = waiting to reappear after disappearing; 3 = inactive;
@@ -131,11 +133,12 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 phase = 1;
                 image_index = 0;
                 
-                event_user(0); // shunt mega man
+                if (!topsolid)
+                    event_user(0); // shunt mega man
                 
                 if (insideView() &amp;&amp; doSFX)
                 {
-                    playSFX(sfxYokuBlock);
+                    playSFX(yokuSFX);
                 }
             }
             break;
@@ -149,7 +152,10 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 {
                     if (!spike)
                     {
-                        mySolid = instance_create(x, y, objSolid);
+                        if (topsolid)
+                            mySolid = instance_create(x, y, objTopSolid);
+                        else
+                            mySolid = instance_create(x, y, objSolid);
                     }
                     else
                     {
@@ -199,7 +205,7 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                 
                 if (insideView() &amp;&amp; doSFX)
                 {
-                    playSFX(sfxYokuBlock);
+                    playSFX(yokuSFX);
                 }
             }
             break;

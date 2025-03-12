@@ -36,7 +36,7 @@ stopOnFlash = false;
 
 attackTimer = 0;
 hasTriggeredFall = false;
-introType = 1;
+introType = 0;
 
 phase = 0;
 realXSpeed = 0; // Use this to remember xspeed
@@ -69,18 +69,20 @@ hasFired = false;
 
 // Health Bar
 manualColors = true;
-healthBarPrimaryColor[1] = make_colour_rgb(200, 72, 8); // Orange
+healthBarPrimaryColor[1] = make_colour_rgb(200, $072, 8); // Orange
 healthBarSecondaryColor[1] = make_colour_rgb(240, 184, 56); // Yellow
 
 // Music
-music = "Mega_Man_10.nsf";
-musicType = "VGM";
-musicTrackNumber = 18;
+music = "MM10/17_Boss.mid";
+musicType = "MIDI";
+musicTrackNumber = "MM10/MM10.sf2";
 
 // Damage Table
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -91,6 +93,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -126,15 +132,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 5);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 1);
 
 // Misc.
 enemyDamageValue(objPowerStone, 4);
 enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 4);
+enemyDamageValue(objBlockDropper, 4);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -176,7 +183,7 @@ if (!global.frozen)
     else if (isIntro)
     {
         // custom intro:
-        if (attackTimer == 0) &amp;&amp; (introType == 1)
+        if (attackTimer == 0)
         {
             image_index = 1;
         }
@@ -194,14 +201,14 @@ if (!global.frozen)
                 image_index = 3;
             if (attackTimer == 50)
             {
-                instance_create(x + 5 * image_xscale, y - 10, objSolarSun);
+                instance_create(x + 6 * image_xscale, y - 7, objSolarSun); //x + 5, y - 10
                 playSFX(sfxSolarManSun);
             }
             if (attackTimer &gt; 50)
             {
                 with (objSolarSun)
                 {
-                    if (y &gt; other.y - 13)
+                    if (y &gt; other.y - 11) //y - 13
                     {
                         y--;
                     }
@@ -368,8 +375,9 @@ if (entityCanStep())
                                     image_speed = 0.2;
                                     
                                     // Fire Solar Blaze
-                                    var i = instance_create(x, y, objSolarManBlaze);
+                                    var i = entityCreateChild(0, 0, objSolarManBlaze);
                                     i.size = objSolarSun.curSunLevel;
+                                    i.image_xscale = 1;
                                     
                                     // Reduce size if larger than sunLevel
                                     if (objSolarSun.curSunLevel &gt; sunLevel)
@@ -409,8 +417,9 @@ if (entityCanStep())
                                     image_speed = 0.2;
                                     
                                     // Fire Solar Blaze
-                                    var i = instance_create(x, y, objSolarManBlaze);
+                                    var i = entityCreateChild(0, 0, objSolarManBlaze);
                                     i.size = objSolarSun.curSunLevel;
+                                    i.image_xscale = 1;
                                     
                                     // Reduce size if larger than sunLevel
                                     if (objSolarSun.curSunLevel &gt; sunLevel)
@@ -497,7 +506,8 @@ if (entityCanStep())
                 {
                     if (!instance_exists(objSolarSun))
                     {
-                        instance_create(x, y - 13, objSolarSun);
+                        var i = entityCreateChild(0, -13, objSolarSun);
+                        i.image_xscale = 1;
                         playSFX(sfxSolarManSun);
                     }
                     else
@@ -537,9 +547,10 @@ if (entityCanStep())
                                 with (objSolarSun)
                                 {
                                     // Fire Solar Blaze
-                                    var i = instance_create(x, y, objSolarManBlaze);
+                                    var i = entityCreateChild(0, 0, objSolarManBlaze);
                                     i.size = curSunLevel;
                                     i.isFlying = true;
+                                    i.image_xscale = 1;
                                     
                                     // Reduce size if larger than sunLevel
                                     if (curSunLevel &gt; objSolarMan.sunLevel)

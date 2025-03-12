@@ -36,6 +36,7 @@ healthpoints = healthpointsStart;
 contactDamage = 3;
 blockCollision = 0;
 grav = 0;
+bubbleTimer = -1;
 
 // Enemy specific code
 imageOffset = 0;

@@ -118,7 +118,7 @@ if (entityCanStep())
             <kind>1</kind>
             <string>event_inherited();
 instance_create(bbox_left + (bbox_right - bbox_left) / 2, bbox_top + (bbox_bottom - bbox_top) / 2, objExplosion);
-playSFX(sfxEnemyHit);
+playSFX(getGenericSFX(SFX_ENEMYHIT));
 </string>
           </argument>
         </arguments>

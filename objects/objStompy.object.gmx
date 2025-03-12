@@ -52,6 +52,10 @@ findYSpeed = false;
 
 attackTimer = 0;
 attackTimerMax = 40;
+
+explosionSprite = sprExplosionWonderswan;
+deadTimerMax = 88;
+deadTimerRecur = 8;
 </string>
           </argument>
         </arguments>
@@ -105,10 +109,16 @@ if (entityCanStep()
                 setY -= 32;
                 break;
             }
+            else if (y - setY &lt; screenTop(32))
+            {
+                setY -= 4;
+                break;
+            }
             else
             {
                 setY += 1;
             }
+            
         }
         yspeed = ySpeedAim(y, y - setY, grav);
         findYSpeed = false;

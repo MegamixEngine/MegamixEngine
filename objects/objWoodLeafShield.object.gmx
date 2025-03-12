@@ -41,6 +41,7 @@ contactDamage = 4;
 blockCollision = 0;
 rotationTimer = 0;
 grav = 0;
+myObject = 0;
 
 x = round(xs + 22 * cos(direction / 57));
 y = round(ys + 22 * sin((direction + 180) / 57));
@@ -71,13 +72,13 @@ y = round(ys + 22 * sin((direction + 180) / 57));
 if (entityCanStep())
 {
     // sticks to wood man
-    if (instance_exists(objWoodMan))
+    if (instance_exists(myObject))
     {
         if (followWood)
         {
-            xs = bboxGetXCenterObject(objWoodMan);
-            ys = bboxGetYCenterObject(objWoodMan);
-            image_xscale = other.image_xscale;
+            xs = bboxGetXCenterObject(myObject);
+            ys = bboxGetYCenterObject(myObject);
+            //image_xscale = myObject.image_xscale;
         }
     }
     else
@@ -92,7 +93,10 @@ if (entityCanStep())
     y = round(ys + 22 * sin((direction + 180) / 57));
     if rotationTimer &gt;= 3
     {
-        direction += 22.5;
+        if (image_index == 4)
+            direction -= 22.5;
+        else if (image_index == 0)
+            direction += 22.5;
         rotationTimer = 0;
     }
     else
@@ -100,29 +104,6 @@ if (entityCanStep())
         rotationTimer++
     }
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="40">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>instance_destroy();
 </string>
           </argument>
         </arguments>

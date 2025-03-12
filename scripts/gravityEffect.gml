@@ -10,6 +10,17 @@ if (!ground)
     {
         grav = (gravAccel * gravfactor * gravDir) * !playerIsLocked(PL_LOCK_GRAVITY);
         waterGrav = (gravWater * gravfactor * gravDir) * !playerIsLocked(PL_LOCK_GRAVITY);
+        if (checkCheats(cheatEnums.permaLowGravity) || checkCheats(cheatEnums.permaHighGravity))
+        {
+            if (checkCheats(cheatEnums.permaLowGravity))
+            {
+                gravfactor = 0.4
+            }
+            else if (checkCheats(cheatEnums.permaHighGravity))
+            {
+                gravfactor = 1.9
+            }
+        }
     }
     
     if (inWater)

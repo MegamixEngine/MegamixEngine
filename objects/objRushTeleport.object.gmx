@@ -33,10 +33,26 @@ type = 'coil';
 
 dir = 1;
 
+col[1] = -1;
+col[2] = -1;
+col[3] = -1;
+
 with (parent)
 {
     other.dir = image_xscale;
+    if object_index == objMegaman &amp;&amp; other.type != 'sakugarne'
+    {
+        
+        other.col[1] = global.primaryCol[playerID];
+        other.col[2] = global.secondaryCol[playerID];
+        
+        if (inked) // Set outline to grey if we're inked
+            other.col[3] = global.nesPalette[$2D];
+        playerID = other.playerID;
+        costumeID = other.costumeID;
+    }
 }
+
 
 despawnRange = -1;
 
@@ -52,16 +68,13 @@ upordown = 'down';
 alarm[0] = 1;
 
 //Play correct sounds
-if (global.teleportSound)
-{
-    warpInSFX = sfxTeleportInClassic;
-    warpOutSFX = sfxTeleportOutClassic;
-}
-else
-{
-    warpInSFX = sfxTeleportIn;
-    warpOutSFX = sfxTeleportOut;
-}
+
+
+
+warpInSFX = -99;
+warpOutSFX = -99;
+
+costumeID = 0;//Only used for custom costume drawing.
 </string>
           </argument>
         </arguments>
@@ -118,13 +131,64 @@ with (objRushTeleportBlock)
 }
 else
 {
-    yspeed = mySpeed * image_yscale;
+    yspeed = mySpeed * sign(image_yscale);
     
     with (parent)
     {
         var i = instance_create(x - 8 - 16, y, objRushTeleportBlock);
         i.image_xscale = 3;
-        i.image_yscale = image_yscale;
+        i.image_yscale = sign(image_yscale);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (warpInSFX == -99)
+{
+    var typeID = 0;
+    switch (type)
+    {
+        case "coil":
+            typeID = 0;
+        break;
+        case "jet":
+            typeID = 1;
+        break;
+        case "cycle":
+            typeID = 2;
+        break;
+        
+    }
+    var tpID = global.customCostumeRushTPs[playerID];
+    if (global.customCostumeEquipped[playerID] &amp;&amp; tpID[typeID])
+    {
+
+        warpInSFX = getGenericSFX(SFX_TELEIN,playerID);
+        warpOutSFX = getGenericSFX(SFX_TELEOUT,playerID);
+    }
+    else//Teleport sounds should only apply to Mega Man.
+    {
+        warpInSFX = getGenericSFX(SFX_TELEIN,-1);
+        warpOutSFX = getGenericSFX(SFX_TELEOUT,-1);
     }
 }
 </string>
@@ -167,7 +231,7 @@ if (!global.frozen)
             {
                 with (objRushTeleportBlock)
                 {
-                    y = round(other.parent.y + 14 * other.image_yscale);
+                    y = round(other.parent.y + 14 * sign(other.image_yscale));
                 }
             }
         }
@@ -193,6 +257,26 @@ if (!global.frozen)
                     canNeverLand = 1;
                 }
             }
+        }
+        if (type == 'boost' &amp;&amp; collision_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,parent,true,true) 
+        &amp;&amp; ammoCanAfford(playerID))
+        {
+            global.playerProjectileCreator = parent;
+            i = instance_create(x, y, objTrebleBoost);
+                    
+            if (i)
+            {
+                i.image_xscale = dir + (3 * sign(dir) * (checkCheats(cheatEnums.hugeWeapons)));
+                i.image_yscale = image_yscale;
+                i.parent = parent;
+                with (i)
+                {
+                    event_user(1);
+                }
+                instance_destroy();
+                exit;
+            }
+            
         }
     }
     else
@@ -238,12 +322,22 @@ if (!global.frozen)
                 {
                     i = instance_create(x, y - 16 * image_yscale, objSakugarne);
                 }
+                if (type == 'boost')
+                {
+                    i = instance_create(x, y, objTrebleBoost);
+                }
                 if (i)
                 {
-                    i.image_xscale = dir;
+                    i.image_xscale = dir + (3 * sign(dir) * (checkCheats(cheatEnums.hugeWeapons)));;
                     i.image_yscale = image_yscale;
                     i.grav *= sign(image_yscale);
                     i.parent = parent;
+                    
+                    i.playerID = playerID;
+                    i.costumeID = costumeID;
+                    
+                    for (var j = 1; j &lt;= 3; j ++)
+                        i.col[j] = col[j];
                 }
                 instance_destroy();
             }
@@ -269,22 +363,67 @@ if (!global.frozen)
             }
             else if (teleportTimer == 13)
             {
-                yspeed = -mySpeed * image_yscale;
+                yspeed = -mySpeed * sign(image_yscale);
             }
         }
         teleportTimer += 1;
     }
 }
-
-if (global.teleportSound)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (instance_exists(parent) &amp;&amp; parent.object_index == objMegaman &amp;&amp; global.customCostumeEquipped[playerID])
 {
-    warpInSFX = sfxTeleportInClassic;
-    warpOutSFX = sfxTeleportOutClassic;
+    var typeID = 0;
+    switch (type)
+    {
+        case "cycle":typeID++;
+        case "jet":typeID++;
+        case "coil":
+            var tpID = global.customCostumeRushTPs[playerID];
+            if (tpID[typeID])
+            {//Note for Megamix 2.0: Base teleport sprite has a funky offset compared to player sprite's that should be corrected for.
+                drawPlayer(playerID,costumeID,image_index+10,8,round(x)-1*image_xscale,round(y)-18*image_yscale + (3*(image_index &gt; 0))*image_yscale,image_xscale,image_yscale);
+                exit;
+                
+            }
+            
+        break;
+        
+    }
 }
-else
+
+event_inherited();
+if col[1] != -1
 {
-    warpInSFX = sfxTeleportIn;
-    warpOutSFX = sfxTeleportOut;
+    draw_sprite_ext(sprite_index, image_index + 3, round(x), round(y), image_xscale, image_yscale, image_angle, col[1], image_alpha)
+}
+if col[2] != -1
+{
+    draw_sprite_ext(sprite_index, image_index + 6, round(x), round(y), image_xscale, image_yscale, image_angle, col[2], image_alpha)
+}
+if col[3] != -1
+{
+    draw_sprite_ext(sprite_index, image_index + 9, round(x), round(y), image_xscale, image_yscale, image_angle, col[3], image_alpha)
 }
 </string>
           </argument>

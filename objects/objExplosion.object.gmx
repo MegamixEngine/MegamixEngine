@@ -32,6 +32,13 @@ image_speed = 1 / 3;
 alarm[0] = ((1 / image_speed) * image_number) - 1;
 
 myItem = -1;
+code = "";
+script = scrNoEffect;
+disappearTime = 105*2;
+parentHealthPointsStart = 0;
+
+myPal[0] = global.nesPalette[$37];
+myPal[1] = c_white;
 </string>
           </argument>
         </arguments>
@@ -92,48 +99,229 @@ if (myItem &gt;= 0)
 {
     var item = myItem;
     
+    //Cheat for disabling drops
+    if (checkCheats(cheatEnums.noItemDrops))
+    {
+        if (item == 0)
+        {
+            item = -1;
+        }
+        
+    }
+    
+    var hp = floor(parentHealthPointsStart);
+    
+    //Get random item
     if (item == 0)
     {
-        if (!irandom(4096)) // The shiniest shiny of all shinies
+        if ((hp &gt;= 2) &amp;&amp; (!irandom(4096))) // The shiniest shiny of all shinies
         {
             item = objYashichi;
         }
-        else
+        else //Everything else
         {
+            //Base drop rate
             var randItem = floor(random(600));
-            randItem *= 1 - (global.dropUpgrade * 0.33) - (global.converter * 0.1);
             
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            
+            //Cheat drop rate
+            if (checkCheats(cheatEnums.crazyDropRate))
+            {
+                randItem *= 0.4;
+            }
+            
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            
+            //Modify drop rate based on enemy hp
+            var percentage = 1; //Default = 100%
+            var hpDefault = 3;
+            var hpSoftCap = 7;
+            var hpHardCap = 20;
+            
+            //Less than default get penalized
+            percentage -= ((hp &lt;= 2) * 0.1)
+            percentage -= ((hp &lt;= 1) * 0.15)
+            percentage -= ((hp &lt;= 0) * 0.25)
+            
+            //Until we reach the softcap each hp gives + 25%
+            percentage += (max(0, (min(hp, hpSoftCap) - hpDefault)) * 0.25)
+            
+            //After softcap - Until we reach the hardcap each hp gives + 50%
+            percentage += (max(0, (min(hp, hpHardCap) - hpSoftCap)) * 0.5);
+            
+            //printErr(string(hp));
+            //printErr(string(percentage * 100) + "%");
+            
+            randItem /= percentage;
+            
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            
+            //Possible drops
             if (randItem &lt; 4)
             {
                 item = objLife;
             }
-            else if (randItem &lt; 45)
+            else if (randItem &lt; 45 - (15 * (global.payday &gt; 0))) //Big
             {
                 item = choose(objLifeEnergyBig, objWeaponEnergyBig);
             }
-            else if (randItem &lt; 120)
+            else if (randItem &lt; 120 - (30 * (global.payday &gt; 0))) //Small
             {
                 item = choose(objLifeEnergySmall, objWeaponEnergySmall, objBoltBig);
+            }
+            else if (randItem &lt; 130 &amp;&amp; (global.payday &gt; 0))
+            {
+                item = objBoltBig;
             }
             else if (randItem &lt; 240)
             {
                 item = objBoltSmall;
             }
         }
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        //Downgrade if cannon-fodder enemy
+        if (hp &lt; 3)
+        {
+            if ((item == objLife) || (item == objLifeEnergyBig))
+            {
+                item = objLifeEnergySmall;
+            }
+            
+            if (item == objWeaponEnergyBig)
+            {
+                item = objWeaponEnergySmall;
+            }
+            
+            if ((item == objBoltBig))
+            {
+                item = objBoltSmall;
+            }
+        }
+        
+        //Apply converter
+        if (global.converter)
+        {
+            var fullHealth = false;
+            var fullEnergy = true;
+            
+            for (var h = 0; h &lt; global.playerCount; h ++)
+            {
+                for (var j = 1; j &lt;= global.totalWeapons; j ++)
+                {
+                    if (global.ammo[h, global.weaponHotbar[j]] &lt; 28)
+                        fullEnergy = false;
+                }
+                
+                if (ceil(global.playerHealth[h]) &gt;= 28)
+                {
+                    fullHealth = true;
+                }
+            }
+            
+            //Big
+            if ((item == objLifeEnergyBig) || (item == objWeaponEnergyBig))
+            {
+                if (fullHealth &amp;&amp; fullEnergy)
+                {
+                    item = objBoltBig;
+                }
+                else if (!fullHealth &amp;&amp; fullEnergy)
+                {
+                    item = objLifeEnergyBig;
+                }
+                else if (fullHealth &amp;&amp; !fullEnergy)
+                {
+                    item = objWeaponEnergyBig;
+                }
+            }
+            
+            //Small
+            if ((item == objLifeEnergySmall) || (item == objWeaponEnergySmall))
+            {
+                if (fullHealth &amp;&amp; fullEnergy)
+                {
+                    item = objBoltSmall;
+                }
+                else if (!fullHealth &amp;&amp; fullEnergy)
+                {
+                    item = objLifeEnergySmall;
+                }
+                else if (fullHealth &amp;&amp; !fullEnergy)
+                {
+                    item = objWeaponEnergySmall;
+                }
+            }
+        }
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
     }
-    
+
+    //Spawn item
     if (item)
     {
         i = instance_create(x, y, item);
         i.respawn = false;
         i.x += bboxGetXCenter() - bboxGetXCenterObject(i);
         i.y += bboxGetYCenter() - bboxGetYCenterObject(i);
-        i.disappear = 105 * 2;
+        i.disappear = disappearTime;
+        
         if (i.grav != 0)
         {
             i.yspeed = -2;
         }
+        
+        with (i)
+        {
+            if(other.script != scrNoEffect)
+            {
+                script_execute(other.script);
+            }
+            if (other.code != "")
+            {
+                stringExecutePartial(other.code);
+            }
+        }
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (sprite_index != sprExplosionClassic)
+{
+    event_inherited();
+}
+else
+{
+    var imgs = floor(image_number / 4);
+    
+    image_index = image_index mod imgs;
+    
+    drawSelf();
+    draw_sprite_ext(sprite_index, image_index + imgs, round(x), round(y), image_xscale, image_yscale, image_angle, myPal[0], image_alpha);
+    draw_sprite_ext(sprite_index, image_index + imgs * 2, round(x), round(y), image_xscale, image_yscale, image_angle, myPal[1], image_alpha);
 }
 </string>
           </argument>

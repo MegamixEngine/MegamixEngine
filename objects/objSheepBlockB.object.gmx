@@ -46,6 +46,12 @@ disappearTimer = 96;
 active = true;
 
 recurseDepth = 0;
+
+// @cc - Default Sheep Block sprite
+mySprite[0] = sprite_index;
+// @cc - Colorblind Sheep Block sprite
+mySprite[1] = sprSheepBlockCircle;
+
 </string>
           </argument>
         </arguments>
@@ -68,7 +74,13 @@ recurseDepth = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (entityCanStep())
+            <string>
+if (global.colorBlindSheepBlocks)
+{
+	sprite_index = mySprite[global.colorBlindSheepBlocks];
+}
+
+if (entityCanStep())
 {
     if (timer == 0)
     {
@@ -125,6 +137,9 @@ recurseDepth = 0;
 
 if (entityCanStep())
 {
+    
+    
+    
     if (timer &gt; 0)
     {
         timer += 1;

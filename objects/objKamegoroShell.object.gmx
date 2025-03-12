@@ -42,6 +42,8 @@ attackTimer = 0;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 3);
@@ -52,6 +54,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objBreakDash, 3);
 enemyDamageValue(objMagneticShockwave, 1);
 enemyDamageValue(objIceWall, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -68,13 +74,13 @@ enemyDamageValue(objWireAdapter, 1);
 enemyDamageValue(objMetalBlade, 1);
 enemyDamageValue(objGeminiLaser, 1);
 enemyDamageValue(objSolarBlaze, 1);
-enemyDamageValue(objTopSpin, 3);
+enemyDamageValue(objTopSpin, 4);
 enemyDamageValue(objThunderWool, 2);
 enemyDamageValue(objPharaohShot, 1);
 enemyDamageValue(objBlackHoleBomb, 2);
 enemyDamageValue(objMagicCard, 2);
 
-// MaG48MML
+// MaG48HMML
 enemyDamageValue(objFlameMixer, 1);
 enemyDamageValue(objRainFlush, 1);
 enemyDamageValue(objSparkShock, 0);
@@ -86,16 +92,17 @@ enemyDamageValue(objSaltWater, 1);
 enemyDamageValue(objConcreteShot, 3);
 enemyDamageValue(objHomingSniper, 1);
 
-// MaG48MML
+// MaG24HMML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 2);
 enemyDamageValue(objSuperArmDebris, 2);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 1);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>

@@ -1,7 +1,7 @@
 /// mathTableSetup(); (Only run once at the start of the game)
 
 // trig tables ( value of the table at index 45 for instance gives cos(degtorad(45)) )
-global.sinTableID = ds_list_create();
+global.sinTableID = mm_ds_list_create();
 
 for (var i = 0; i < 24; i++)
 {

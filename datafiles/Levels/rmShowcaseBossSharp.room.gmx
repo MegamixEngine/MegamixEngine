@@ -163,10 +163,10 @@
     <instance objName="objLifeEnergyBig" x="1152" y="400" name="inst_7B90CED6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergyBig" x="904" y="144" name="inst_1699CBA0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="656" y="400" name="inst_F6F00B20" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1840" y="176" name="inst_180897CE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="704" y="400" name="inst_E1D7BAF5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1840" y="176" name="inst_180897CE" locked="0" code="name = &quot;Top Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="704" y="400" name="inst_E1D7BAF5" locked="0" code="name = &quot;Yamato Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeftScrolling" x="256" y="224" name="inst_4CA61229" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objTeleporter" x="48" y="400" name="inst_03C433F9" locked="0" code="myRoom = lvlShowcaseHUB;&#xA;light = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objTeleporter" x="48" y="400" name="inst_03C433F9" locked="0" code="myRoom = lvlShowcaseHUB;&#xA;light = 4;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="32" y="368" name="inst_BE6F3138" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="48" y="368" name="inst_418AD181" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="32" y="416" name="inst_8850F876" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

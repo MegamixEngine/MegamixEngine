@@ -31,6 +31,7 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 blockCollision = 0;
 killOverride = false;
+reflectable = -1;
 respawn = false;
 contactDamage = 4;
 grav = 0;

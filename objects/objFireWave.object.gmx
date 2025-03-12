@@ -88,7 +88,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
                 instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
                 instance_destroy();
             }
-            playSFX(sfxEnemyHit);
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
             instance_create(x, y, objBubblePopEffect);
             instance_destroy();
         }

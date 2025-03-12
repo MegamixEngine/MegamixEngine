@@ -2,7 +2,7 @@
 <sprite>
   <type>0</type>
   <xorig>11</xorig>
-  <yorigin>5</yorigin>
+  <yorigin>21</yorigin>
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>-1</sepmasks>
@@ -14,7 +14,7 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>22</TextureGroup0>
+    <TextureGroup0>195</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>23</width>

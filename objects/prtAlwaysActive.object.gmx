@@ -28,6 +28,13 @@
             <string>frozen = 0;
 
 image_speed = 0;
+
+//game pause values - initialized here to prevent crashes
+pre_hsp = 0;
+pre_vsp = 0;
+pre_spe = 0;
+pre_isp = 0;
+pre_tmlrun = 0;
 </string>
           </argument>
         </arguments>

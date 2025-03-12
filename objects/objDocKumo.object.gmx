@@ -40,6 +40,10 @@ facePlayerOnSpawn = true;
 
 category = "grounded";
 
+explosionSprite = sprExplosionWonderswan;
+deadTimerMax = 88;
+deadTimerRecur = 8;
+
 // Enemy specific code
 image_speed = 0;
 image_index = 0;
@@ -258,10 +262,10 @@ else
                 flashcol = make_color_rgb(0, 120, 255);
             }
             
-            d3d_set_fog(true, flashcol, 0, 0);
+            hitFlashEffect(true,flashcol);
             draw_sprite_ext(sprDocKumoLight, lightImg, round(x), round(y + lightOffset[image_index] * image_yscale), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
             drawSelf();
-            d3d_set_fog(false, 0, 0, 0);
+            hitFlashEffect(false);
             
             if (iceTimer &gt; 0)
             {

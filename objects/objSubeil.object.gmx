@@ -46,7 +46,16 @@ imageTimerMax = 8;
 
 col = 0;
 
-calibrateDirection();
+//calibrateDirection();
+image_xscale = 1;
+dir = 1;
+if (instance_exists(target))
+{
+    if (target.x &gt;= x)
+        dir = 1;
+    else
+        dir = -1;
+}
 </string>
           </argument>
         </arguments>
@@ -80,7 +89,11 @@ if (entityCanStep())
             activated = true;
             imageOffset = 2;
             mask_index = sprMousubeil; // REUSING ASSETS CLAP EMOJI
-            calibrateDirection();
+            //calibrateDirection();
+            if (target.x &gt;= x)
+                dir = 1;
+            else
+                dir = -1;
         }
     }
     
@@ -105,15 +118,38 @@ if (entityCanStep())
     }
     
     // animation setup
-    if (imageTimer == imageTimerMax &amp;&amp; imageOffset &gt; 1 &amp;&amp; imageOffset &lt; 5)
+    if (imageTimer == imageTimerMax &amp;&amp; imageOffset &gt; 1 &amp;&amp; imageOffset &lt; 3)
     {
         imageOffset += 1;
         imageTimer = 0;
     }
-    if (imageTimer == imageTimerMax &amp;&amp; imageOffset == 5)
+    // Change animation direction based on direction
+    switch (dir)
     {
-        imageOffset = 3;
-        imageTimer = 0;
+        case 1:
+            if (imageTimer == imageTimerMax &amp;&amp; imageOffset &gt; 2 &amp;&amp; imageOffset &lt; 5)
+            {
+                imageOffset += 1;
+                imageTimer = 0;
+            }
+            if (imageTimer == imageTimerMax &amp;&amp; imageOffset == 5)
+            {
+                imageOffset = 3;
+                imageTimer = 0;
+            }
+            break;
+        case -1:
+            if (imageTimer == imageTimerMax &amp;&amp; imageOffset &gt; 3)// &amp;&amp; imageOffset &lt; 5)
+            {
+                imageOffset -= 1;
+                imageTimer = 0;
+            }
+            if (imageTimer == imageTimerMax &amp;&amp; imageOffset == 3)
+            {
+                imageOffset = 5;
+                imageTimer = 0;
+            }
+            break;
     }
     
     if (!ground)
@@ -126,17 +162,31 @@ if (entityCanStep())
         {
             if (xspeed == 0 &amp;&amp; yspeed == 0)
             {
-                xspeed = 2 * image_xscale;
+                xspeed = 2 * dir; //image_xscale;
             }
         }
     }
     
     // turn around on hitting a wall
-    xSpeedTurnaround();
+    //xSpeedTurnaround();
+    if (xcoll != 0)
+    {
+        xspeed = -xcoll;
+        dir = sign(xspeed);
+    }
 }
 else if (dead)
 {
-    calibrateDirection();
+    //calibrateDirection();
+    image_xscale = 1;
+    dir = 1;
+    if (instance_exists(target))
+    {
+        if (target.x &gt;= x)
+            dir = 1;
+        else
+            dir = -1;
+    }
     xspeed = 0;
     yspeed = 0;
     imageOffset = 0;

@@ -55,6 +55,14 @@ dir = "Left";
     ID = instance_create(x + 8, y, objWaveManWarp);
     ID.dir = dir;
     ID.spd = spd;
+    if (!instance_exists(objCoOpWarpStar))
+    {
+        with (instance_place(x,y,objMegaman))
+        {
+            coopWarp(playerID,false,24);
+        }
+    
+    }
 }
 </string>
           </argument>

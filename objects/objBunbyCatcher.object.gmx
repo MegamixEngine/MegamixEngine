@@ -47,6 +47,8 @@ category = "flying";
 blockCollision = 0;
 grav = 0;
 
+behaviourType = 1;
+
 // Enemy specific code
 despawnRange = 32;
 respawnRange = 32;
@@ -259,7 +261,8 @@ image_index = (imageOffset + (grabbedPlayer * 2)) + (col * 4);
 
 if (poppedUp)
 {
-    if (grabbedPlayer &amp;&amp; (other.object_index == objBusterShot || other.object_index == objBusterShotHalfCharged || other.object_index = objBusterShotCharged))
+    if (grabbedPlayer &amp;&amp; (other.object_index == objBusterShot || other.object_index == objBusterShotHalfCharged || other.object_index = objBusterShotCharged
+        || other.object_index == objBusterShotHalfChargedProto || other.object_index = objBusterShotChargedProto))
     {
         other.guardCancel = 3;
     }

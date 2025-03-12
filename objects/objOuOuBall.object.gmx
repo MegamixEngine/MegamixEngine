@@ -32,6 +32,7 @@ grav = 0.11;
 yStart = 0;
 respawn = false;
 blockCollision = false;
+inFlight = false;
 </string>
           </argument>
         </arguments>
@@ -54,7 +55,10 @@ blockCollision = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>other.guardCancel = 1;
+            <string>if (!inFlight)
+    other.guardCancel = 3;
+else
+    other.guardCancel = 1;
 </string>
           </argument>
         </arguments>

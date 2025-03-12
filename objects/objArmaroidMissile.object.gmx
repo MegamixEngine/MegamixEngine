@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -30,10 +30,13 @@
 healthpoints = 1;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+canHit = true;
 
 respawn = false;
 grav = 0;
 blockCollision = false;
+reflectable = -1;
+bubbleTimer = -1;
 
 parent = noone;
 phase = 0;
@@ -43,6 +46,7 @@ startWait = 15;
 speed = 1.4;
 rotateChange = 2;
 totalChange = 0;
+direction = 0;
 </string>
           </argument>
         </arguments>
@@ -69,26 +73,26 @@ totalChange = 0;
 
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
-        {
-            case 0:
-                if (startWait &gt; 0)
-                {
-                    startWait--;
-                }
-                else
-                {
-                    phase = 1;
-                }
+        case 0:
+            if (startWait &gt; 0)
+            {
+                startWait--;
+            }
+            else
+            {
+                phase = 1;
+            }
+            break;
+        case 1:
+            if (waitTimer &lt; 15)
+            {
+                waitTimer++;
                 break;
-            case 1:
-                if (waitTimer &lt; 15)
-                {
-                    waitTimer++;
-                    break;
-                }
+            }
+            if (instance_exists(target))
+            {
                 pxd = target.x - x;
                 pyd = target.y - y;
                 pangle = 0;
@@ -150,16 +154,16 @@ if (entityCanStep())
                 waitTimer = 0; // set cooldown
                 
                 totalChange += abs(change);
-                
-                break;
-        }
-        
-        image_index = round((direction) / 45);
+            }
+            break;
     }
-    if (!instance_exists(parent))
+        
+    image_index = round((direction) / 45);
+
+    /*if (!instance_exists(parent))
     {
         dead = true;
-    }
+    }*/
 }
 /*else if (dead)
 {
@@ -167,6 +171,29 @@ if (entityCanStep())
     instance_create(x, y, objExplosion);
     playSFX(sfxEnemyHit);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_perform_object(prtEntity,ev_other,ev_user10);
 </string>
           </argument>
         </arguments>

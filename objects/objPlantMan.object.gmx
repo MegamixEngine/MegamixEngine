@@ -53,8 +53,8 @@ guard = 0;
 randomiser = -1;
 
 // Health Bar
-healthBarPrimaryColor[1] = 16;
-healthBarSecondaryColor[1] = 35;
+healthBarPrimaryColor[1] = $13;
+healthBarSecondaryColor[1] = $29;
 
 // Music
 music = "Mega_Man_6.nsf";
@@ -65,6 +65,8 @@ musicTrackNumber = 12;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -75,6 +77,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 4);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 4);
@@ -110,15 +116,16 @@ enemyDamageValue(objConcreteShot, 3);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 2);
+enemyDamageValue(objChillSpike, 2);
 enemyDamageValue(objChillSpikeLanded, 4);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 4);
 </string>
           </argument>
@@ -195,9 +202,10 @@ if (entityCanStep())
                     var i;
                     for (i = 0; i &lt; 4; i += 1)
                     {
-                        WS = instance_create(x, y, objPlantBarrierBoss);
+                        WS = entityCreateChild(0, 0, objPlantBarrierBoss);
                         WS.cAngle = degtorad(90 * i);
                         WS.image_xscale = image_xscale;
+                        WS.parent = id;
                     }
                     playSFX(sfxBlizzardAttack);
                 }
@@ -373,6 +381,8 @@ if (guard)
           <argument>
             <kind>1</kind>
             <string>with (objPlantBarrierBoss)
+    instance_destroy();
+with (objEnemyBullet)
     instance_destroy();
 event_inherited();
 </string>

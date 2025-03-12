@@ -96,65 +96,61 @@ myTile = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!global.frozen &amp;&amp; !global.timeStopped &amp;&amp; createTime &gt; 1)
+            <string>
+if (instance_exists(objSectionSwitcher) || (createTime &lt;= 0))
 {
-    if (active)
+    image_alpha = active;
+}
+
+///////////////////////
+
+if (!global.frozen &amp;&amp; !global.timeStopped &amp;&amp; (createTime &gt; 1))
+{
+    image_alpha += ((active - !active) * 0.1);
+    image_alpha = clamp(image_alpha, 0, 1);
+}
+
+if (active)
+{
+    if (((image_alpha &gt;= 0.5 || object != noone)
+        || createTime &lt; 3) &amp;&amp; myinstance == noone &amp;&amp; myindex != noone)
     {
-        image_alpha = min(image_alpha + 0.1, 1);
-        if (((image_alpha &gt;= 0.5 || object != noone)
-            || createTime &lt; 3) &amp;&amp; myinstance == noone &amp;&amp; myindex != noone)
+        // activate object:
+        myinstance = instance_create(x, y, myindex);
+        
+        // ladders need special treatment
+        if (myindex == objLadder)
         {
-            // activate object:
-            myinstance = instance_create(x, y, myindex);
-            
-            // ladders need special treatment
-            if (myindex == objLadder)
-            {
-                combineObjects(objLadder, false, true);
-            }
-            
-            // custom creation code
-            if (otheruptag != noone)
-            {
-                myinstance.uptag = otheruptag;
-            }
-            if (otherstate != noone)
-            {
-                myinstance.state = otherstate;
-            }
-            
+            combineObjects(objLadder, false, true);
         }
-    }
-    else
-    {
-        image_alpha = max(image_alpha - 0.1, 0);
-        if ((image_alpha &lt; 0.5 &amp;&amp; object == noone)
-            || (image_alpha == 0 &amp;&amp; object != noone)
-            &amp;&amp; instance_exists(myinstance))
+        
+        // custom creation code
+        if (otheruptag != noone)
         {
-            with (myinstance)
-            {
-                instance_destroy();
-            }
-            myinstance = noone;
+            myinstance.uptag = otheruptag;
         }
+        if (otherstate != noone)
+        {
+            myinstance.state = otherstate;
+        }
+        
     }
-    
-    // custom objects set alpha:
-    if (object != noone &amp;&amp; instance_exists(myinstance))
+}
+else
+{
+    if ((image_alpha &lt; 0.5 &amp;&amp; object == noone)
+        || (image_alpha == 0 &amp;&amp; object != noone)
+        &amp;&amp; instance_exists(myinstance))
     {
-        myinstance.image_alpha = image_alpha;
+        with (myinstance)
+        {
+            instance_destroy();
+        }
+        myinstance = noone;
     }
 }
 
-if (instance_exists(objSectionSwitcher))
-{
-    image_alpha = active;
-    if (object != noone &amp;&amp; instance_exists(myinstance))
-    {
-        myinstance.image_alpha = image_alpha;
-    }
-}
+///////////////////////
 
 createTime += 1;
 depth = tile_depth;
@@ -163,6 +159,15 @@ if (myTile &gt;= 0)
 {
     tile_set_alpha(myTile, image_alpha);
 }
+
+if (object != noone)
+{
+    if (instance_exists(myinstance))
+    {
+        myinstance.image_alpha = image_alpha;
+    }
+}
+
 </string>
           </argument>
         </arguments>
@@ -186,10 +191,7 @@ if (myTile &gt;= 0)
           <argument>
             <kind>1</kind>
             <string>/// find tile underneath
-t = tile_layer_find(tile_depth, x + 8, y + 8);
-splitTile(t);
-
-t = tile_layer_find(tile_depth, x + 8, y + 8);
+t = findTileWithSplit(tile_depth, x + 8, y + 8);
 myTile = t;
 </string>
           </argument>
@@ -372,9 +374,9 @@ event_user(2);
           <argument>
             <kind>1</kind>
             <string>// propagate tags
-print("leverfield");
 if (id == object_index.id)
 {
+    print("leverfield");
     while (true)
     {
         global.leverPropagated = false;

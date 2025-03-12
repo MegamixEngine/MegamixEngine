@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>// creation code (all optional)
-// col = &lt;number&gt;
+
 
 event_inherited();
 
@@ -36,21 +36,47 @@ contactDamage = 3;
 
 category = "cannons";
 
-facePlayerOnSpawn = true;
 
-// Enemy specific code
-col = 0;
-startFacingPlayer = true;
+
+
+
+
 
 phase = 0;
-shootWait = 160;
-turnAroundWaitDiff = 40;
-shootTimer = 0;
+attackTimer = 0;
+
+shotsFired = 0;
 
 imgSpd = 0.1;
 imgIndex = 0;
 
-calibrateDirection();
+// Enemy creation code
+facePlayerOnSpawn = true;
+facePlayer = false;
+
+attackTimerMax = 160; //how long the enemy waits to shoot
+turnAroundWaitDiff = 40; //how long the enemy waits before turning around. set to -1 to never turn around.
+// col = &lt;number&gt; (0 = purple (default); 1 = blue; 2 = light blue) 
+col = 0; //set to -1 to use custom sprite
+
+originX = sprite_width * 0.4; //bullet creation x offset;
+originY = -3; //bullet creation y offset
+
+//bullet setup
+childSound[0] = sfxEnemyShoot; //what sound the bullet makes when shot. can be array;
+childSmoke[0] = noone; //if defined, create this secondary object ('smoke', doesn't pass other values)
+childObject[0] = objEnemyBullet; //what child object to shoot. can be array.
+childDamage[0] = 3; //what child damage. can be array. set to 'noone' to use object defaults
+childXSpd[0] = 1.4;// &lt;--set child x speed here. can be array to make pattern
+childYSpd[0] = 0; //set this or above to 'noone' to use object defaults
+childGrav[0] = 0; //set if child gravity is here. can be array. set to 'noone' to use object default
+childSprite[0] = noone; //if defined, override Tadahou sprite defaults
+childImageSpeed[0] = noone; //if defined, overide object defaults
+
+//Unhardcoding
+customCol = sprTadahouPurple
+customBullet = sprTadahouShotPurple
+
 </string>
           </argument>
         </arguments>
@@ -78,50 +104,101 @@ calibrateDirection();
 if (entityCanStep())
 {
     // shooting
-    if (shootTimer == shootWait)
+    if (attackTimer == attackTimerMax)
     {
-        shot = instance_create(x + sprite_width * 0.4, y - 4, objEnemyBullet);
-        shot.xspeed = 1.4 * image_xscale; // &lt;-- bullet speed here
-        shot.contactDamage = 3; // &lt;-- bullet damage here
-        
-        switch (col)
+        var shotXMod = array_length_1d(childXSpd);
+        var shotYMod = array_length_1d(childYSpd);
+        var gravMod = array_length_1d(childGrav);
+        var iMod = array_length_1d(childImageSpeed);
+        var damMod = array_length_1d(childDamage);
+        if (childObject[shotsFired mod (array_length_1d(childObject))] != noone)
         {
-            case 0:
-                shot.sprite_index = sprTadahouShotPurple;
-                break;
-            case 1:
-                shot.sprite_index = sprTadahouShotBlue;
-                break;
-            case 2:
-                shot.sprite_index = sprTadahouShotLightBlue;
-                break;
+            var shot = instance_create(x + (originX*image_xscale), y +(originY*image_yscale), childObject[shotsFired mod (array_length_1d(childObject))]);
+            
+            if (childSmoke[shotsFired mod (array_length_1d(childSmoke))] != noone)
+            {
+                with (shot)
+                {
+                    instance_create(x,y,other.childSmoke[other.shotsFired mod (array_length_1d(other.childSmoke))])
+                }
+            }
+            shot.depth = depth + 1;
+            if (childXSpd[shotsFired mod shotXMod] != noone)
+                shot.xspeed = childXSpd[shotsFired mod shotXMod] * image_xscale; 
+            if (childYSpd[shotsFired mod shotYMod] != noone)
+                shot.yspeed = childYSpd[shotsFired mod shotYMod] * image_yscale; 
+            if (childDamage[shotsFired mod damMod] != noone)
+                shot.contactDamage = childDamage[shotsFired mod damMod]; 
+            if (childGrav[shotsFired mod gravMod] != noone)
+                shot.grav = childGrav[shotsFired mod gravMod]; 
+            if (childImageSpeed[shotsFired mod iMod] != noone)
+                shot.image_speed = childImageSpeed[shotsFired mod iMod];
+            if (childSprite[shotsFired mod (array_length_1d(childSprite))] == noone)
+            {
+                switch (col)
+                {
+                    case 0:
+                        shot.sprite_index = sprTadahouShotPurple;
+                        break;
+                    case 1:
+                        shot.sprite_index = sprTadahouShotBlue;
+                        break;
+                    case 2:
+                        shot.sprite_index = sprTadahouShotLightBlue;
+                        break;
+                    case 3:
+                        shot.sprite_index = customBullet;
+                        break;
+                }
+            }
+            else
+            {
+                shot.sprite_index = childSprite[shotsFired mod (array_length_1d(childSprite))];
+            }
+        }
+        else
+        {
+            if (childSmoke[shotsFired mod (array_length_1d(childSmoke))] != noone)
+            {
+
+                instance_create(x + (originX*image_xscale), y +(originY*image_yscale),other.childSmoke[other.shotsFired mod (array_length_1d(other.childSmoke))])
+                
+            }
+        }
+        if (childSound[shotsFired mod (array_length_1d(childSound))] != noone)
+        {
+            playSFX(childSound[shotsFired mod (array_length_1d(childSound))]);
         }
         
-        playSFX(sfxEnemyShoot);
+        shotsFired ++;
+        
         
         imgIndex = 1;
         
-        shootTimer += 1;
+        attackTimer += 1;
     }
-    else if (shootTimer &lt; shootWait)
+    else if (attackTimer &lt; attackTimerMax)
     {
-        shootTimer += 1;
+        attackTimer += 1;
     }
     
     // turn around stuff
-    if (shootTimer == shootWait - turnAroundWaitDiff)
+    if (turnAroundWaitDiff != -1)
     {
-        calibrateDirection();
+        if (attackTimer == attackTimerMax - turnAroundWaitDiff)
+        {
+            calibrateDirection();
+        }
     }
     
     // shoot animation
-    if (shootTimer &gt;= shootWait + 1)
+    if (attackTimer &gt;= attackTimerMax + 1)
     {
         imgIndex += imgSpd;
         if (imgIndex &gt;= 2)
         {
             imgIndex = 0;
-            shootTimer = 0;
+            attackTimer = 0;
         }
     }
     else
@@ -144,8 +221,9 @@ if (entityCanStep())
 }
 else if (dead)
 {
-    shootTimer = 0;
+    attackTimer = 0;
     imgIndex = 0;
+    shotsFired = 0;
 }
 
 image_index = imgIndex div 1;
@@ -174,6 +252,8 @@ image_index = imgIndex div 1;
             <string>/// creation code setup
 switch (col)
 {
+    default:
+    break;
     case 0:
         sprite_index = sprTadahouPurple;
         break;
@@ -182,6 +262,9 @@ switch (col)
         break;
     case 2:
         sprite_index = sprTadahouLightBlue;
+        break;
+    case 3:
+        sprite_index = customCol;
         break;
 }
 </string>

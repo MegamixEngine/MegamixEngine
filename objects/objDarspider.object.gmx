@@ -58,7 +58,7 @@ prevWaitTime = 5;
 // Optional Creation Code
 leftLimit = 9999;
 rightLimit = 9999;
-
+alarmDie = -1; //if set, destroy
 
 // Setup
 ceilingSpeed = 1.25;
@@ -102,6 +102,20 @@ if(!onCeiling)
 
 if (entityCanStep())
 {
+    if (alarmDie &gt; 0 &amp;&amp; !onCeiling)
+    {
+        alarmDie --;
+        if (alarmDie &lt; 16)
+        {
+            visible = !visible;
+        }
+    }
+    else if (alarmDie == 0)
+    {
+        itemDrop = -1;
+        explosionSprite = sprSlideDust;
+        event_user(EV_DEATH);
+    }
     var hasTarget = instance_exists(target);
     var tx = 0;
     var ty = 0;

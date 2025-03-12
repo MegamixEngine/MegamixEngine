@@ -41,6 +41,8 @@ shooting = false;
 
 enemy[1] = 0;
 enemy[2] = 0;
+
+wormSprite = sprSchwormWorm
 </string>
           </argument>
         </arguments>
@@ -103,6 +105,7 @@ if (entityCanStep())
             }
             enemy[i] = instance_create(x + 8, bbox_bottom - 1, objSchwormWorm);
             enemy[i].yspeed = -4.5;
+            enemy[i].sprite_index = wormSprite
             image_index = 0;
         }
         if (actionTimer == 40)

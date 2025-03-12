@@ -9,4 +9,8 @@ xspeed = 0;
 yspeed = 0;
 grav = 0;
 
-playSFX(sfxBuster);
+isBoost = false;
+dir = 0;
+
+playSFX(sfxBusterClassic);
+graphicsOverride = false;

@@ -39,79 +39,24 @@ moving = 0;
 blowSpeed = -0.5;
 shiftVisible = 3;
 
+spawnedRain = false;
+
 imgalarm = 0;
 img = 1;
 
 // mylayer = 1000000-1000;
 mylayer = -100;
 
-alarm[0] = 1;
-
 bg = bgToadRain;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>setSection(x + 8, y + 8, 0);
 
-xscale = -sign(blowSpeed);
-if (xscale == 0)
-{
-    xscale = 1;
-}
+// dumb new settings for working in the rain
+useView = false;
+parentAnimSync = true;
 
-for (x = sectionLeft; x &lt; sectionRight; x += 16)
-{
-    for (y = sectionTop; y &lt; sectionBottom; y += 16)
-    {
-        if (!tile_layer_find(1000000, x, y))
-        {
-            t = instance_create(x, y, objToadRain);
-            t.blowSpeed = blowSpeed;
-            t.parent=id;
-            
-            if (place_meeting(x, y + 8, objSolid)
-                || place_meeting(x, y + 16, objTopSolid))
-            {
-                top = 16;
-            }
-            else
-            {
-                top = 0;
-            }
-            
-            for (i = 0; i &lt;= 2; i += 1)
-            {
-                t = tile_add(bg, 0 + 16 * i, top, 16, 16, x + (xscale == -1) * 16, y, mylayer + i);
-                tile_set_scale(t, xscale, 1);
-            }
-        }
-    }
-}
-
-tile_layer_hide(mylayer + 1);
-tile_layer_hide(mylayer + 2);
-
-x = xstart;
-y = ystart;
+manualLeft = -1;
+manualRight = -1;
+manualTop = -1;
+manualBottom = -1;
 </string>
           </argument>
         </arguments>
@@ -137,8 +82,14 @@ y = ystart;
             <string>event_inherited();
 
 if ((!global.frozen &amp;&amp; !dead || instance_exists(objSectionSwitcher))
-&amp;&amp; insideSection(x, y))
+&amp;&amp; ((insideSection(x, y) &amp;&amp; !useView) || (insideView() &amp;&amp; useView)))
 {
+    if (spawnedRain = false)
+    {
+        event_user(0);
+        spawnedRain = true;
+    }
+    
     with (objMegaman)
     {
         if (instance_exists(objSectionSwitcher))
@@ -146,7 +97,7 @@ if ((!global.frozen &amp;&amp; !dead || instance_exists(objSectionSwitcher))
             exit;
         }
         
-        if (place_meeting(x, y, objToadRain) &amp;&amp; !instance_exists(objWireAdapter))
+        if (place_meeting(x, y, objToadRain) &amp;&amp; !instance_exists(objWireAdapter) &amp;&amp; !climbing)
         {
             if (ground)
             {
@@ -210,6 +161,93 @@ if ((!global.frozen &amp;&amp; !dead || instance_exists(objSectionSwitcher))
         }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (useView)
+{
+    sectionLeft = manualLeft;
+    sectionRight = manualRight;
+    sectionTop = manualTop;
+    sectionBottom = manualBottom;
+    
+    if (parentAnimSync)
+    {
+        img = instance_nearest(global.sectionLeft, global.sectionTop, objToadRainCtrl).img;
+        imgalarm = instance_nearest(global.sectionLeft, global.sectionTop, objToadRainCtrl).imgalarm;
+    }
+}
+else
+{
+    setSection(x + 8, y + 8, 0);
+}
+
+xscale = -sign(blowSpeed);
+if (xscale == 0)
+{
+    xscale = 1;
+}
+
+for (x = sectionLeft; x &lt; sectionRight; x += 16)
+{
+    for (y = sectionTop; y &lt; sectionBottom; y += 16)
+    {
+        if (!tile_layer_find(1000000, x, y))
+        {
+            t = instance_create(x, y, objToadRain);
+            t.blowSpeed = blowSpeed;
+            t.parent=id;
+            
+            if (place_meeting(x, y + 8, objSolid)
+                || place_meeting(x, y + 16, objTopSolid))
+            {
+                top = 16;
+            }
+            else
+            {
+                top = 0;
+            }
+            
+            for (i = 0; i &lt;= 2; i += 1)
+            {
+                t = tile_add(bg, 0 + 16 * i, top, 16, 16, x + (xscale == -1) * 16, y, mylayer + i);
+                tile_set_scale(t, xscale, 1);
+                
+                if (i &gt;= 1)
+                {
+                    tile_set_visible(t, false);
+                }
+            }
+        }
+    }
+}
+
+//tile_layer_hide(mylayer + 1);
+//tile_layer_hide(mylayer + 2);
+
+x = xstart;
+y = ystart;
+
+combineObjects(objToadRain);
 </string>
           </argument>
         </arguments>

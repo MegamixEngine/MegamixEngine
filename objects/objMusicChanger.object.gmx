@@ -26,10 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>//@cc the path of the music file inside the music folder
-fileName = "Showcase.ogg";
+fileName = "Mega_Man_1.nsf";
 
 //@cc "OGG" for ogg files, "VGM" for raw audio
-musicType = "OGG";
+musicType = "VGM";
 
 //@cc VGM
 trackNumber = 0;
@@ -63,15 +63,25 @@ songVolume = 1;
             <string>// Change music
 if (place_meeting(x, y, objMegaman))
 {
-    if (fileName == "")
+    var isDead = true;
+    for (var i = 0; i &lt; global.playerCount; i ++)
     {
-        stopMusic();
+        if (global.playerHealth[i] &gt; 0)
+            isDead = false;
     }
-    else
+    
+    if (!isDead)
     {
-        if (global.levelSong != fileName || (musicType == "VGM" &amp;&amp; trackNumber != global.levelTrackNumber))
+        if (fileName == "")
         {
-            playMusic(fileName, musicType, trackNumber, loopPoint, songLength, true, songVolume);
+            stopMusic();
+        }
+        else
+        {
+            if (global.levelSong != fileName || (musicType == "VGM" &amp;&amp; trackNumber != global.levelTrackNumber))
+            {
+                playMusic(fileName, musicType, trackNumber, loopPoint, songLength, true, songVolume);
+            }
         }
     }
 }

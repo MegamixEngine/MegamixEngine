@@ -3,7 +3,7 @@
   <spriteName>sprSharkSubmarineTail</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>2</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <parentName>prtSharkSubmarine</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -37,6 +37,8 @@ siloIndex = 0; // The index of the silo to hit.
 missile1 = noone;
 missile2 = noone;
 missile3 = noone;
+
+playBossMusic = true;
 </string>
           </argument>
         </arguments>
@@ -63,7 +65,7 @@ missile3 = noone;
 
 if (entityCanStep() &amp;&amp; !killed &amp;&amp; !stop)
 {
-    if (isFight)
+    if (isFight) &amp;&amp; (!isDying)
     {
         attackTimer++;
         if (attackTimer == missileInterval * 0.25)
@@ -125,10 +127,41 @@ if (entityCanStep() &amp;&amp; !killed &amp;&amp; !stop)
         }
     }
 }
-else if (dead)
+if (isDying)//(killed)//
 {
-    hatchIndex = 2;
-    siloIndex = 4;
+    if (!global.frozen)
+    {
+        slowdeathTimer++
+        if (slowdeathTimer == 20)//15
+        {
+            instance_create(x - 5*image_xscale, y+14, objBigExplosion);
+            playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+        }
+        if (slowdeathTimer == 40)//30
+        {
+            instance_create(x + 10*image_xscale, y-14, objBigExplosion);
+            playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+            if (!finalDeath)
+            {
+                event_user(EV_DEATH);
+            }
+        }
+        if (finalDeath)
+        {
+            if (slowdeathTimer &gt;= 41) &amp;&amp; (slowdeathTimer &lt; 155)
+            {
+                if (slowdeathTimer mod 20 == 0)
+                {
+                    instance_create(random_range(x,x+114*image_xscale),random_range(y-57,y+55),objBigExplosion);
+                    playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+                }
+            }
+            
+            if (slowdeathTimer == 160)
+                with(prtSharkSubmarine)
+                    event_user(EV_DEATH);
+        }
+    }
 }
 </string>
           </argument>
@@ -185,7 +218,23 @@ if (hatchIndex == 2 &amp;&amp; collision_rectangle(x - 8 * image_xscale, y - 17,
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(missile1))
+            <string>hatchIndex = 2;
+siloIndex = 4;
+canHit = false;
+if (!isDying)
+{
+    instance_create(x, y + 7, objBigExplosion);
+    playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+    isDying = true;
+    iFrames = 0;
+    stopSFX(getGenericSFX(SFX_ENEMYHIT));
+}
+else
+{
+    event_inherited();
+}
+
+if (instance_exists(missile1))
 {
     with (missile1)
     {
@@ -209,7 +258,6 @@ if (instance_exists(missile3))
         instance_destroy();
     }
 }
-event_inherited();
 </string>
           </argument>
         </arguments>

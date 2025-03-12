@@ -78,56 +78,62 @@ for (i = 0; i &lt; menuWidth; i++)
     {
         itemUnavailable[i, j] = 0; // 0 = available, 1 = sold out, 2 = hidden 
         itemIcon[i, j] = noone;
+        itemSubimg[i, j] = noone;
+        itemXOffset[i, j] = 0;
+        itemYOffset[i, j] = 0;
         itemPrice[i, j] = noone;
         itemName[i, j] = noone;
         itemDescription[i, j] = noone;
-        //itemPurchaseAction[i, j] = ""; // put arbitrary code here. Note that stringExecutePartial cannot handle a lot of GML functions.
+        itemPurchaseAction[i, j] = ""; // put arbitrary code here.
     }
 }
 
 // setup shop contents
 itemUnavailable[0, 0] = global.livesRemaining &gt;= global.maxLives; // cannot buy lives if you have max
 itemIcon[0, 0] = sprLife;
+itemYOffset[0, 0] = -1;
 itemPrice[0, 0] = 20;
 itemName[0, 0] = "Life";
 itemDescription[0, 0] = "Gives you an extra try at beating a stage."
-//itemPurchaseAction[0, 0] = "global.livesRemaining++; if (global.livesRemaining &gt;= global.maxLives) { itemUnavailable[0, 0] = 1; }";
+itemPurchaseAction[0, 0] = "global.livesRemaining++; if (global.livesRemaining &gt;= global.maxLives) { itemUnavailable[0, 0] = 1; }";
 
 itemUnavailable[1, 0] = global.energySaver &gt; 0;
-itemIcon[1, 0] = sprEnergySaver;
+itemIcon[1, 0] = sprUpgrades;
+itemSubimg[1, 0] = 1;
+itemYOffset[1, 0] = 1;
 itemPrice[1, 0] = 200;
 itemName[1, 0] = "Energy Saver";
 itemDescription[1, 0] = "Lowers the amount of weapon energy that's consumed when using weapons."
-//itemPurchaseAction[1, 0] = "global.energySaver = true; itemUnavailable[1, 0] = 1;";
+itemPurchaseAction[1, 0] = "global.energySaver = true; itemUnavailable[1, 0] = 1;";
 
 itemUnavailable[2, 0] = global.weaponLocked[global.weaponID[? objRushCycle]] == 0;
-itemIcon[2, 0] = sprRushBikeShopIcon;
+itemIcon[2, 0] = sprWeaponIconsRushCycle;
+itemYOffset[2, 0] = 1;
 itemPrice[2, 0] = 100;
 itemName[2, 0] = "Rush Bike";
-itemDescription[2, 0] = "Turns rush into a motorcycle, allowing you to travel at high speeds!";
-//itemPurchaseAction[2, 0] = "global.weaponLocked[global.weaponID[? objRushCycle]] = false; itemUnavailable[2, 0] = true;";
+itemDescription[2, 0] = "Turns Rush into a motorcycle, allowing you to travel at high speeds!";
+itemPurchaseAction[2, 0] = "global.weaponLocked[global.weaponID[? objRushCycle]] = false; itemUnavailable[2, 0] = true;";
 
 itemUnavailable[0, 1] = global.eTanks &gt;= global.maxETanks;
 itemIcon[0, 1] = sprETank;
 itemPrice[0, 1] = 30;
 itemName[0, 1] = "E-Tank";
 itemDescription[0, 1] = "Completely refills your health upon use.";
-//itemPurchaseAction[0, 1] = "global.eTanks++; if (global.eTanks &gt;= global.maxETanks) { itemUnavailable[0, 1] = 1; }";
+itemPurchaseAction[0, 1] = "global.eTanks++; if (global.eTanks &gt;= global.maxETanks) { itemUnavailable[0, 1] = 1; }";
 
 itemUnavailable[1, 1] = global.wTanks &gt;= global.maxWTanks;
 itemIcon[1, 1] = sprWTank;
 itemPrice[1, 1] = 30;
 itemName[1, 1] = "W-Tank";
 itemDescription[1, 1] = "Completely refills the energy of all of your weapons upon use.";
-//itemPurchaseAction[1, 1] = "global.wTanks++; if (global.wTanks &gt;= global.maxWTanks) { itemUnavailable[1, 1] = 1; }";
+itemPurchaseAction[1, 1] = "global.wTanks++; if (global.wTanks &gt;= global.maxWTanks) { itemUnavailable[1, 1] = 1; }";
 
 itemUnavailable[2, 1] = global.mTanks &gt;= global.maxMTanks;
 itemIcon[2, 1] = sprMTank;
 itemPrice[2, 1] = 50;
 itemName[2, 1] = "M-Tank";
 itemDescription[2, 1] = "Completely refills both your health and the energy for all of your weapons upon use."
-//itemPurchaseAction[2, 1] = "global.mTanks++; if (global.mTanks &gt;= global.maxMTanks) { itemUnavailable[2, 1] = 1; }";;
-
+itemPurchaseAction[2, 1] = "global.mTanks++; if (global.mTanks &gt;= global.maxMTanks) { itemUnavailable[2, 1] = 1; }";;
 
 // hacky way to make sure the player palettes are set
 for (i = 0; i &lt; global.playerCount; i++)
@@ -200,56 +206,13 @@ with (objMegaman)
     {
         if (global.bolts &gt;= itemPrice[cursorX, cursorY] &amp;&amp; itemUnavailable[cursorX, cursorY] == 0)
         { // buy the item
-            if (cursorX == 0 &amp;&amp; cursorY == 0)
-            { // life
-                global.livesRemaining++;
-                if (global.livesRemaining &gt;= global.maxLives)
-                {
-                    itemUnavailable[0, 0] = 1;
-                }
-            }
-            else if (cursorX == 1 &amp;&amp; cursorY == 0)
-            { // energy saver
-                global.energySaver = true;
-                itemUnavailable[1, 0] = 1;
-            }
-            else if (cursorX == 2 &amp;&amp; cursorY == 0)
-            { // rush cycle
-                global.weaponLocked[global.weaponID[? objRushCycle]] = false;
-                itemUnavailable[2, 0] = true;
-            }
-            else if (cursorX == 0 &amp;&amp; cursorY == 1)
-            { // etank
-                global.eTanks++;
-                if (global.eTanks &gt;= global.maxETanks)
-                {
-                    itemUnavailable[0, 1] = 1;
-                }
-            }
-            else if (cursorX == 1 &amp;&amp; cursorY == 1)
-            { // wtank
-                global.wTanks++;
-                if (global.wTanks &gt;= global.maxWTanks)
-                {
-                    itemUnavailable[1, 1] = 1;
-                }
-            }
-            else if (cursorX == 2 &amp;&amp; cursorY == 1)
-            { // mtank
-                global.mTanks++;
-                if (global.mTanks &gt;= global.maxMTanks)
-                {
-                    itemUnavailable[2, 1] = 1;
-                }
-            }
-            
-            //stringExecutePartial(itemPurchaseAction[cursorX, cursorY]);
+            stringExecutePartial(itemPurchaseAction[cursorX, cursorY]);
             
             global.bolts -= itemPrice[cursorX, cursorY];
             targetBolts = global.bolts;
             playSFX(sfxMenuSelect);
         }
-        else if (itemUnavailable[cursorX, cursorY] != 2)
+        else if (itemUnavailable[cursorX, cursorY] || global.bolts &lt; itemPrice[cursorX, cursorY])
         { // unable to buy the item
             playSFX(sfxError);
         }
@@ -309,8 +272,37 @@ for (i = 0; i &lt; menuWidth; i++)
             // item icon
             if (itemIcon[i, j] != noone)
             {
-                draw_sprite(itemIcon[i, j], 0, view_xview[0] + iconsXOffset + i * iconsXSpacing
-                    , view_yview[0] + iconsYOffset + j * iconsYSpacing);
+                if (itemUnavailable[i, j] == 1)
+                {
+                    var _grayLevels = makeArray(0.0, 0.4705, 0.7372, 0.9882); //arrays apparently cannot be initialized directly in a shader
+                    shader_set(shPaletteMonochrome);
+                    shader_set_uniform_f_array(shader_get_uniform(shPaletteMonochrome, "grayLevels"), _grayLevels);
+                }
+                
+                // weapons
+                if (string_count("sprWeaponIcons", sprite_get_name(itemIcon[i, j])) &gt; 0) 
+                {
+                    // only check once
+                    if (itemSubimg[i, j] == noone)
+                    {
+                        for (var h = 0; h &lt;= global.totalWeapons; h ++)
+                        {
+                            if (itemIcon[i, j] == global.weaponIcon[h])
+                                itemSubimg[i, j] = h;
+                        }
+                    }
+                
+                    drawWeaponIcon(itemSubimg[i, j], 0, global.costumeID[? global.costumeSelected[0]], view_xview[0] + iconsXOffset + i * iconsXSpacing + itemXOffset[i, j]
+                        , view_yview[0] + iconsYOffset + j * iconsYSpacing + itemYOffset[i, j], 1);
+                }
+                // regular icon
+                else
+                {
+                    draw_sprite(itemIcon[i, j], itemSubimg[i, j], view_xview[0] + iconsXOffset + i * iconsXSpacing + itemXOffset[i, j]
+                        , view_yview[0] + iconsYOffset + j * iconsYSpacing + itemYOffset[i, j]);
+                }
+                
+                shader_reset();
             }
             
             // name and description
@@ -365,7 +357,7 @@ for (var i = 0; i &lt; global.playerCount; i++)
 }
 
 // exit notification
-draw_sprite(sprButtonPrompts, 5, 144, 96);
+drawButtonPrompt("shoot", 144, 96);
 draw_text(154, 96, ":EXIT");
 
 </string>

@@ -38,9 +38,13 @@ isSolid = 2;
 bubbleTimer = 0;
 
 decreaseAmmoTimer = 0;
-decreaseAmmoTimerMax = 60;
+decreaseAmmoTimerMax = 60 * ((0.25 * (global.energySaver &gt; 0)) + 1);
 
 maxSpd = 1.2;
+if (checkCheats(cheatEnums.wiiPhysics))
+{
+    maxSpd = 1.3;
+}
 spd = maxSpd;
 canJet = true;
 
@@ -49,6 +53,13 @@ timer = 4 * 60;
 rushJetLock = false;
 
 climbSlope = 0.5; // slope of ascent/descent when holding up
+autoFireSet = 32;
+
+col[1] = -1;
+col[2] = -1;
+col[3] = -1;
+
+parentOnboard = false;
 </string>
           </argument>
         </arguments>
@@ -128,16 +139,18 @@ if (!global.frozen)
             if (decreaseAmmoTimer &gt;= decreaseAmmoTimerMax)
             {
                 decreaseAmmoTimer = 0;
-                global.ammo[playerID, global.weapon[playerID]] -= 1;
-                if (global.ammo[playerID, global.weapon[playerID]] &lt;= 0)
+                
+                ammoDecrease(playerID, 1);
+                
+                if (!ammoCanAfford(playerID))
                 {
-                    global.ammo[playerID, global.weapon[playerID]] = 0;
                     timer = 1;
                 }
             }
             
             if (place_meeting(x, y - parent.gravDir, parent) &amp;&amp; parent.ground)
             {
+                parentOnboard = true;
                 // lock player movement
                 if (!rushJetLock)
                 {
@@ -180,6 +193,7 @@ if (!global.frozen)
             }
             else
             {
+                parentOnboard = false;
                 // not on player
                 event_perform(ev_destroy, 0);
                 yspeed = 0;
@@ -198,11 +212,20 @@ if (!global.frozen)
         timer -= 1;
         if (!timer)
         {
-            // Teleport away
-            i = instance_create(x, y + 8 * image_yscale, objRushTeleport);
-            i.upordown = 'up';
-            i.parent = parent;
-            i.image_yscale = image_yscale;
+            if (global.characterSelected[playerID] == CHAR_PROTOMAN)
+            {
+                instance_create(x, y + 8 * image_yscale, objExplosion);
+            }
+            else
+            {
+                // Teleport away
+                i = instance_create(x, y + 8 * image_yscale, objRushTeleport);
+                i.upordown = 'up';
+                i.parent = parent;
+                i.image_xscale = image_xscale;
+                i.image_yscale = image_yscale;
+                i.col = col;
+            }
             
             instance_destroy();
         }
@@ -230,30 +253,45 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>
+if (performShoot)
 {
-    if (!instance_exists(objRushJet) &amp;&amp; !instance_exists(objRushTeleport)
-    &amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
+    var canSpawn = true;
+    if (instance_exists(objRushJet) || instance_exists(objRushTeleport)) // check if rush exists 
+    {
+        with (prtPlayerProjectile)
+        {
+            if (playerID == other.playerID)
+                canSpawn = false;
+        }
+    }
+    
+    if (canSpawn &amp;&amp; ammoCanAfford(playerID))
     {
         i = fireWeapon(26, 0, objRushTeleport, 4, 0, 0, 0);
+        
         with (i)
         {
             type = 'jet';
             y = view_yview;
-            if (image_yscale &lt; 0)
+            
+            if (image_yscale[0] &lt; 0)
             {
-                y += view_hview;
+                y += view_hview[0];
             }
         }
     }
-    else
+    else // else player can fire
     {
-        with (fireWeapon(16, 0, objBusterShot, 4, 0, 1, 0))
+        i = fireWeapon(16, 0, objBusterShot, 4 + (12 * (global.shotUpgrade &gt; 0)), 0, 1, 0);
+        
+        if (i)
         {
-            xspeed = other.image_xscale * 5;
+            i.xspeed = (image_xscale * 5);
         }
     }
 }
+
 </string>
           </argument>
         </arguments>
@@ -276,7 +314,10 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weaponSetup("RUSH JET", -2, -2, sprWeaponIconsRushJet);
+            <string>if (global.characterSelected[0] == CHAR_PROTOMAN)
+    weaponSetup("PROTO JET", -3, -3, sprWeaponIconsProtoJet);
+else
+    weaponSetup("RUSH JET", -3, -3, sprWeaponIconsRushJet);
 </string>
           </argument>
         </arguments>
@@ -299,7 +340,7 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>drawPlayer(0, costumeID, floor(15 + image_index), 9, x, y - 4 * image_yscale, image_xscale, image_yscale);
+            <string>drawPlayer(playerID, costumeID, floor(15 + image_index), 9, x, y - 4 * image_yscale, image_xscale, image_yscale);
 </string>
           </argument>
         </arguments>

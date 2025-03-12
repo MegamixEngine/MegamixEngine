@@ -420,6 +420,7 @@ for (var k = 0; k &lt; array_length_1d(convertObject); k++)
                 converted.stopOnFlash = true;
                 converted.respawnRange = -1;
                 converted.despawnRange = -1;
+                converted.inWater = -1;
                 converted.isSolid = convertIsSolid[k];
                 other.child[other.childCount] = converted;
                 other.childMovementType[other.childCount] = other.MVT_SPEED; // xspeed/yspeed

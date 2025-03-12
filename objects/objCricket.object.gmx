@@ -32,6 +32,7 @@ canHit = false;
 
 grav = 0;
 blockCollision = 0;
+behaviourTypes = 1;
 
 isSolid = 2;
 

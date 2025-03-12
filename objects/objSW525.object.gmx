@@ -38,6 +38,8 @@ category = "grounded";
 
 facePlayerOnSpawn = true;
 
+behaviourType = 1;
+
 // Enemy specific code
 startDir = -1;
 image_yscale = startDir;
@@ -150,7 +152,7 @@ if (entityCanStep())
             healthpoints = 0;
             event_user(EV_DEATH);
             
-            playSFX(sfxExplosion2);
+            playSFX(getGenericSFX(SFX_EXPLOSION2));
         }
     }
     

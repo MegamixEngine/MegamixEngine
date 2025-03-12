@@ -46,7 +46,8 @@ counter = 0;
 
 spd = 3;
 
-image_speed = 0.3;
+imgIndex = 0;
+imgSpd = 0.3;
 </string>
           </argument>
         </arguments>
@@ -103,6 +104,7 @@ if (entityCanStep())
             {
                 timer = 0;
                 phase++;
+                playSFX(sfxHornetChaser);
                 
                 if (instance_exists(target))
                 {
@@ -131,6 +133,9 @@ if (entityCanStep())
             }
             break;
     }
+    imgIndex += imgSpd;
+    if (imgIndex &gt;= 2)
+        imgIndex = 0;
 }
 else if (dead)
 {
@@ -144,6 +149,7 @@ else
     // don't move when we're not suppose to be able to do anything
     speed = 0;
 }
+image_index = imgIndex div 1;
 </string>
           </argument>
         </arguments>
@@ -169,10 +175,12 @@ else
             <string>specialDamageValue(objBusterShot, 1);
 specialDamageValue(objBusterShotHalfCharged, 1);
 specialDamageValue(objBusterShotCharged, 2);
+specialDamageValue(objBusterShotHalfChargedProto, 1);
+specialDamageValue(objBusterShotChargedProto, 2);
 specialDamageValue(objPharaohShot, 2);
 specialDamageValue(objPharaohShot, max(2, global.damage / 5));
 specialDamageValue(objSolarBlaze, 3);
-specialDamageValue(objChillShot, 3);
+specialDamageValue(objChillSpike, 3);
 specialDamageValue(objChillSpikeLanded, 3);
 </string>
           </argument>

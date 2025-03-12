@@ -73,23 +73,26 @@ if (entityCanStep())
         instance_destroy();
     if (ground)
     {
-        playSFX(sfxClassicExplosion);
-        for (var i = 0; i &lt; 8; i += 1)
+        playSFX(getGenericSFX(SFX_EXPLOSIONCLASSIC));
+        
+        for (var i = 0; i &lt; 8; i ++;)
         {
-            with (instance_create(x, y, objBombManBlast))
+            with (entityCreateChild(0, 0, objBombManBlast))
             {
                 dir = 45 * i;
                 spd = 1.75;
             }
+            
             if (i mod 2 == 0)
             {
-                with (instance_create(x, y, objBombManBlast))
+                with (entityCreateChild(0, 0, objBombManBlast))
                 {
                     dir = 45 * i;
                     spd = 1;
                 }
             }
         }
+        
         instance_destroy();
     }
 }

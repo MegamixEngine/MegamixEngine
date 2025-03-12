@@ -33,6 +33,9 @@ sfx = noone;
 //@cc if 0, play once (reset off-screen)
 interval = -1;
 
+//@cc the volume the sound plays at (SHOULD BE BETWEEN 0 and 1)
+volume = 1;
+
 timer = 0;
 play = false;
 </string>
@@ -67,7 +70,7 @@ play = false;
         timer++;
         if (timer &gt;= interval &amp;&amp; play)
         {
-            playSFX(sfx);
+            playSFX(sfx,volume);
             timer = 0;
         }
         if (!play)
@@ -85,7 +88,7 @@ play = false;
         }
         else if (timer == 0)
         {
-            playSFX(sfx);
+            playSFX(sfx,volume);
             timer = -1;
         }
     }
@@ -98,7 +101,7 @@ play = false;
         {
             if (!audio_is_playing(sfx))
             {
-                loopSFX(sfx);
+                loopSFX(sfx,volume);
             }
         }
         else

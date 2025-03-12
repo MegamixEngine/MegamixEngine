@@ -58,9 +58,22 @@ heavy = 1;
 
 if (global.mTanks &lt; global.maxMTanks)
 {
-    global.mTanks += 1;
+    global.mTanks ++;
 }
-playSFX(sfxImportantItem);
+else
+{
+    var pid = collectPlayer.playerID;
+    
+    with (objGlobalControl)
+    {
+        increaseAmmo   = 28;
+        increaseHealth = 28;
+        increaseWeapon = -1;
+        increasePID    = pid;
+    }
+}
+
+playSFX(getGenericSFX(SFX_TANK));
 </string>
           </argument>
         </arguments>

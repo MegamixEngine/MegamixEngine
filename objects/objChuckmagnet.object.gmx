@@ -25,8 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// It occurs to me that this enemy is really similar to the Bullet Bill in how it moves,
-// but I'm going to write this boy from scratch
+            <string>/// A flat panel with a face on it. Moves in a sine wave pattern.
+/// The panel rotates while moving. When facing the player, it can be hit. When facing the screen, shots fly past it.
+/// Although it appears to be weak, actually landing a hit can be very difficult, so be judicious about how you use it.
+
 event_inherited();
 respawn = true;
 healthpointsStart = 1;
@@ -38,6 +40,8 @@ image_index = 0;
 image_speed = 0;
 xspeedCM = 0;
 cosCounter = 0;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

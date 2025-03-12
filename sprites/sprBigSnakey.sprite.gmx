@@ -14,7 +14,7 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>78</TextureGroup0>
+    <TextureGroup0>193</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>72</width>
@@ -24,5 +24,6 @@
     <frame index="1">images\sprBigSnakey_1.png</frame>
     <frame index="2">images\sprBigSnakey_2.png</frame>
     <frame index="3">images\sprBigSnakey_3.png</frame>
+    <frame index="4">images\sprBigSnakey_4.png</frame>
   </frames>
 </sprite>

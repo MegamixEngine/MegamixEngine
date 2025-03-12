@@ -14,7 +14,7 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>13</TextureGroup0>
+    <TextureGroup0>201</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>16</width>
@@ -23,5 +23,6 @@
     <frame index="0">images\sprTopmanTop_0.png</frame>
     <frame index="1">images\sprTopmanTop_1.png</frame>
     <frame index="2">images\sprTopmanTop_2.png</frame>
+    <frame index="3">images\sprTopmanTop_3.png</frame>
   </frames>
 </sprite>

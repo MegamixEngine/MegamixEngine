@@ -25,7 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A laser emitter that shoots a large heat laser at specified intervals. The emitter will blink as a warning before firing.
+/// If the player stands too close, the laser will generate harmless sparks. The laser can be frozen solid (and then destroyed) with specific weapons.
+/// See the User Defined 11 event of objMagmaBeam (Gimmicks &gt; MM9 &gt; Do Not Use) for the weapons that freeze the laser, and that destroy a frozen laser.
+/// Rotate the emitter in the editor. Adjust tile depth as needed if you want the laser to go behind or in front of the architecture.
+
+event_inherited();
 
 canHit = false;
 
@@ -39,6 +44,7 @@ despawnRange = -1;
 timer = 0;
 
 shiftVisible = 1;
+soundRange = true; //if false then sound plays even off screen.
 
 // edit these with creation code
 timerInitial = x;
@@ -84,7 +90,7 @@ if (entityCanStep())
     }
     if (timer == timerShoot)
     {
-        if (insideView())
+        if (insideView() || !soundRange)
         {
             sound_stop(sfxMagmaBeam);
             playSFX(sfxMagmaBeam);

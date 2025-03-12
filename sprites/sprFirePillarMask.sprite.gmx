@@ -14,7 +14,7 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>42</TextureGroup0>
+    <TextureGroup0>187</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>16</width>
@@ -23,6 +23,5 @@
     <frame index="0">images\sprFirePillarMask_0.png</frame>
     <frame index="1">images\sprFirePillarMask_1.png</frame>
     <frame index="2">images\sprFirePillarMask_2.png</frame>
-    <frame index="3">images\sprFirePillarMask_3.png</frame>
   </frames>
 </sprite>

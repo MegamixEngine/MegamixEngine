@@ -48,6 +48,8 @@ levelStartScript = scrNoEffect;
 //@cc script that runs when the level ends
 levelEndScript = scrNoEffect;
 
+setStartingWeapon = false;
+
 for (var j = 0; j &lt;= global.totalWeapons; j++)
 {
     global.infiniteEnergy[j] = false;
@@ -79,6 +81,33 @@ for (var j = 0; j &lt;= global.totalWeapons; j++)
     global.weaponLocked[0] = false;
     global.lockBuster = true;
 }
+
+// change starting weapon if buster is locked
+if (setStartingWeapon &lt; 5)
+{
+    if (global.lockBuster)
+    {
+        var next = 0;
+        for (var i = 1; i &lt; global.totalWeapons; i++)
+        {
+            if (!global.weaponLocked[global.weaponHotbar[i]])
+            {
+                next = global.weaponHotbar[i];
+                break;
+            }
+        }
+        
+        for (var p = 0; p &lt; global.playerCount; p++)
+        {
+            if (global.weapon[p] == 0)
+            {
+                global.weapon[p] = next;
+            }
+        }
+    }
+    
+    setStartingWeapon++;
+}
 </string>
           </argument>
         </arguments>
@@ -106,11 +135,16 @@ if(!onlyUnlockOnLevelEnd)
     exit;
 global.lockBuster = false;
 
-for (i = 0; i &lt;= global.totalWeapons; i += 1)
+for (var i = 0; i &lt;= global.totalWeapons; i += 1)
 {
-    global.weaponLocked[i] = false;
+    if (indexOf(global.weaponSet[global.equippedWeaponSet], global.weaponObject[i]) &lt;= -1)
+        global.weaponLocked[i] = 2;
+    else
+        global.weaponLocked[i] = false;
     global.infiniteEnergy[i] = false;
 }
+
+//bassModeHandleSupports();
 </string>
           </argument>
         </arguments>
@@ -165,9 +199,14 @@ global.lockBuster = false;
 
 for (i = 0; i &lt;= global.totalWeapons; i += 1)
 {
-    global.weaponLocked[i] = false;
+    if (indexOf(global.weaponSet[global.equippedWeaponSet], global.weaponObject[i]) &lt;= -1)
+        global.weaponLocked[i] = 2;
+    else
+        global.weaponLocked[i] = false;
     global.infiniteEnergy[i] = false;
 }
+
+//bassModeHandleSupports();
 </string>
           </argument>
         </arguments>

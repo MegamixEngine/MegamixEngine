@@ -69,18 +69,22 @@ randomiser = irandom_range(1, 4);
 timeStopLock = false;
 
 // Health Bar
-healthBarPrimaryColor[1] = 35;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $29;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_6.nsf";
 musicType = "VGM";
 musicTrackNumber = 12;
 
+changesStates = true;
+
 // Damage Table
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -91,6 +95,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objBreakDash, 2);
 enemyDamageValue(objMagneticShockwave, 1);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 0);
@@ -124,15 +132,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 4);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
-enemyDamageValue(objChillSpikeLanded, 4);
+enemyDamageValue(objChillSpike, 1);
+enemyDamageValue(objChillSpikeLanded, 2);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -229,6 +238,11 @@ else
     y = objCentaurDetector.y;
     x = objCentaurDetector.x;
     drawBoss = true;
+}
+else
+{
+calibrateDirection();
+drawBoss = true;
 }
 </string>
           </argument>
@@ -435,7 +449,7 @@ if (entityCanStep())
                 {
                     attackTimer = 0;
                     sprite_index = sprCentaurTeleport;
-                    playSFX(sfxCentaurTeleport);
+                    playSFX(sfxCentaurTeleportOut);
                     imageTimerMax = 2;
                     hasFired = true;
                 }
@@ -473,10 +487,6 @@ if (entityCanStep())
                         view_yview + (view_hview / 2), objCentaurFlash);
                     hasFired = true;
                     timeStopLock = playerTimeStopped();
-                    with (objWheelCutter)
-                    {
-                        attached = false;
-                    }
                     delay = 55;
                     hasCentaurFlashed = true;
                 }
@@ -493,6 +503,7 @@ if (entityCanStep())
 }
 else
 { }
+
 </string>
           </argument>
         </arguments>
@@ -522,6 +533,7 @@ with (objCentaurShot)
 {
     instance_destroy();
 }
+
 with (objCentaurSecondaryBullet)
 {
     instance_destroy();

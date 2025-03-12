@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>// Creation code (all optional):
-// col = &lt;number&gt; (0 = green (default); 1 = orange;)
+// col = &lt;number&gt; (0 = green (default); 1 = orange; 2 = green and orange [Game Gear colours])
 
 event_inherited();
 
@@ -131,6 +131,7 @@ if (entityCanStep())
                 spriteGetYCenter() - 3, objEnemyBullet);
             {
                 ID.xspeed = image_xscale * 2;
+                ID.sprite_index = sprEnemyBulletMM5;
                 ID.contactDamage = 4;
             }
             playSFX(sfxEnemyShootClassic);

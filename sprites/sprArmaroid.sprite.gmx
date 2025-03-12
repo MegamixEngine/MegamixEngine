@@ -10,11 +10,11 @@
   <bbox_left>4</bbox_left>
   <bbox_right>33</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>22</bbox_bottom>
+  <bbox_bottom>21</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>78</TextureGroup0>
+    <TextureGroup0>198</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>36</width>
@@ -28,5 +28,7 @@
     <frame index="5">images\sprArmaroid_5.png</frame>
     <frame index="6">images\sprArmaroid_6.png</frame>
     <frame index="7">images\sprArmaroid_7.png</frame>
+    <frame index="8">images\sprArmaroid_8.png</frame>
+    <frame index="9">images\sprArmaroid_9.png</frame>
   </frames>
 </sprite>

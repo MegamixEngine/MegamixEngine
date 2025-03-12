@@ -50,6 +50,7 @@ getX = x;
 getY = y;
 
 image_xscale = -1;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>
@@ -112,7 +113,7 @@ if (entityCanStep())
             var angle;
             angle = floor(point_direction(spriteGetXCenter(),
                 spriteGetYCenter(), spriteGetXCenterObject(target),
-                spriteGetYCenterObject(target)) / 45) * 45;
+                spriteGetYCenterObject(target)+8) / 45) * 45;
             
             xspeed = cos(degtorad(angle)) * spd;
             yspeed = -sin(degtorad(angle)) * spd;

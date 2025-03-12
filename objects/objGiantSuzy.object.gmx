@@ -35,8 +35,8 @@ event_inherited();
 healthpointsStart = 28;
 healthpoints = healthpointsStart;
 
-healthBarPrimaryColor[1] = 18;
-healthBarSecondaryColor[1] = 45;
+healthBarPrimaryColor[1] = $15;
+healthBarSecondaryColor[1] = $35;
 
 imageOffset = 0;
 contactDamage = 4;
@@ -70,6 +70,9 @@ musicTrackNumber = 9;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
+
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -80,6 +83,10 @@ enemyDamageValue(objThunderBeam, 4);
 enemyDamageValue(objBreakDash, 2);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -115,15 +122,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 1);
 
 // Misc.
 enemyDamageValue(objPowerStone, 2);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -157,13 +165,15 @@ if (!init)
         // Red colours (default)
         case 0:
             sprite_index = sprGiantSuzy;
-            healthBarPrimaryColor[1] = 18;
-            healthBarSecondaryColor[1] = 45;
+            healthBarPrimaryColor[1] = $15;
+            healthBarSecondaryColor[1] = $35;
+            break;
         // Official art colours
         case 1:
             sprite_index = sprGiantSuzyArtColours;
-            healthBarPrimaryColor[1] = 28;
-            healthBarSecondaryColor[1] = 42;
+            healthBarPrimaryColor[1] = $22;
+            healthBarSecondaryColor[1] = $32;
+            break;
     }
     init++;
 }
@@ -206,7 +216,7 @@ if (!global.frozen)
             {
                 if (ground) // shunt mega man off the floor to prevent sliding and break dash
                 {
-                    y -= 1.5 * (irandom(3) + 1);
+                    y -= (1.5 * (irandom(3) + 1)) * image_yscale;
                 }
             }
         }

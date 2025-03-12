@@ -172,9 +172,10 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
-    i = fireWeapon(5, -2, objTenguBlade, 1, 1, 1, 1);
+    var ammoCost = 1 - (0.5 * (global.energySaver &gt; 0));
+    i = fireWeapon(5, -2, objTenguBlade, 1, ammoCost, 1, 1);
     if (instance_exists(i))
     {
         i.xs = i.x - x;
@@ -195,15 +196,15 @@ else
     }
 }
 
-if (global.ammo[playerID, global.weapon[playerID]] &gt; 0)
+if (ammoCanAfford(playerID))
 {
     if (isSlide &amp;&amp; notDashing)
     {
         slideSpeed = 3;
+        var ammoCost = 1 - (0.5 * (global.energySaver &gt; 0));
         a = instance_create(x, y, objTenguDash);
         a.image_xscale = image_xscale;
-        global.ammo[playerID, global.weapon[playerID]] = max(0,
-            global.ammo[playerID, global.weapon[playerID]] - 1);
+        ammoDecrease(playerID, ammoCost);
         notDashing = false;
     }
     else if (!isSlide)

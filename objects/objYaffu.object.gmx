@@ -167,7 +167,8 @@ image_index = imgIndex div 1;
             <kind>1</kind>
             <string>event_inherited();
 instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
-playSFX(sfxExplosion2);
+stopSFX(getGenericSFX(SFX_ENEMYHIT));
+playSFX(getGenericSFX(SFX_EXPLOSION2));
 </string>
           </argument>
         </arguments>

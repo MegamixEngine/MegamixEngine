@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -27,15 +27,15 @@
             <kind>1</kind>
             <string>event_inherited();
 
-respawn = false; // can totally use this just by itself seperate from have su bee
-
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 2;
 grav = 0;
 blockCollision = 0;
 
+canHit = true;
 despawnRange = 0;
+reflectable = -1;
 
 dir = 1;
 
@@ -54,6 +54,7 @@ jetTimer = 0;
 imgIndex = 0;
 image_speed = 0;
 image_index = 0;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>
@@ -163,6 +164,29 @@ else
 }
 
 image_index = imgIndex div 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_perform_object(prtEntity,ev_other,ev_user10);
 </string>
           </argument>
         </arguments>

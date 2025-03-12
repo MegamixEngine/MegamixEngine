@@ -47,6 +47,8 @@ init = 1;
 
 //@cc - Change colour: 0 (default) = brown rock, 1 = white rock
 col = 0;
+
+behaviourType = 1;
 </string>
           </argument>
         </arguments>

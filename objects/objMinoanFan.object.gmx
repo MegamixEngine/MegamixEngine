@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 
-image_xscale = -1;
+image_xscale = 1; //-1;
 dir = 1;
 
 respawn = false;
@@ -35,6 +35,7 @@ respawn = false;
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+category = "nature, shielded";
 
 // Enemy specific code
 xspeed = 0;
@@ -86,7 +87,7 @@ if (entityCanStep())
             }
             else
             {
-                y = mountID.bbox_top + 15 + floor(mountID.image_index) + sprite_yoffset;
+                y = mountID.bbox_top + 16 + floor(mountID.image_index) + sprite_yoffset;
                 
                 if (instance_exists(target))
                 {
@@ -151,11 +152,7 @@ if (entityCanStep())
             if (ground == true)
             {
                 xspeed = image_xscale * 1;
-                if (xcoll != 0)
-                {
-                    image_xscale *= -1;
-                    xspeed *= -1;
-                }
+                xSpeedTurnaround();
             }
             else
             {

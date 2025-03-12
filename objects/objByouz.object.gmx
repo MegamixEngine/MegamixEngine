@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A springy boi that walks on ceilings and jumps up (down?) to stab Mega Man when above him.
+            <string>/// A springy boi that walks back and forth on ceilings and jumps up (down?) to stab the player when passing above (below?).
+/// The player may be able to bypass detection by sliding.
+/// Plan your architecture around the use of this enemy, and change the creation code as needed to suit your challenge.
 
 event_inherited();
 
@@ -35,7 +37,9 @@ contactDamage = 4;
 
 category = "grounded";
 
-grav = -grav;
+behaviourType = 1;
+
+grav = -grav * image_yscale;
 facePlayerOnSpawn = true;
 mask_index = sprByouzMask;
 
@@ -50,6 +54,9 @@ moveSpeed = 1;
 
 // @cc - use this to change how low Byouz jumps
 jumpSpeed = 5;
+
+// @cc - radius to detect mega man
+radius = 0;
 </string>
           </argument>
         </arguments>
@@ -83,7 +90,8 @@ if (entityCanStep())
             {
                 xspeed = moveSpeed * image_xscale;
                         
-                if (!positionCollision(x + 8 * image_xscale, bbox_top - 2))
+                if ((!positionCollision(x + 8 * image_xscale, bbox_top - 2)) &amp;&amp; (image_yscale == 1))
+                    || ((!positionCollision(x + 8 * image_xscale, bbox_bottom + 2)) &amp;&amp; (image_yscale == -1))
                 {
                     image_xscale *= -1;
                 }
@@ -123,7 +131,7 @@ if (entityCanStep())
             {
                 if (instance_exists(target))
                 {
-                    if (floor(target.x) == x)
+                    if (abs(floor(target.x) - x) &lt;= radius)
                     {
                         image_index = 1;
                         xspeed = 0;
@@ -144,12 +152,12 @@ if (entityCanStep())
             if (moveTimer &lt;= 0)
             {
                 image_index = 4;
-                yspeed = jumpSpeed;
+                yspeed = jumpSpeed * image_yscale;
                 phase = 2;
             }
             break;
         case 2:
-            if (yspeed &lt;= 0)
+            if (yspeed &lt;= 0) &amp;&amp; (image_yscale == 1) || (yspeed &gt;= 0) &amp;&amp; (image_yscale == -1)
             {
                 image_index = 5;
                 if (ground)

@@ -58,6 +58,7 @@ attackTimer = 0;
 attackTimerMax = 24;
 
 moveDir = image_xscale;
+deathFrame = 22;
 
 //@cc if set to 1, mad grinder does not use his fireball attack that was exclusive to power fighters and the intro to MM7.
 variant = 0;
@@ -108,17 +109,17 @@ if (entityCanStep()
     // animation setup
     if (xspeed != 0)
     {
-        jitterFrame += 0.25 * sign(xspeed);
+        jitterFrame += (0.25 * sign(xspeed)) * sign(image_xscale);
         if (jitterFrame &gt;= 2)
             jitterFrame -= 2;
         else if (jitterFrame &lt; 0)
             jitterFrame += 2;
-        wheelFrame += 0.125 * sign(xspeed);
+        wheelFrame += (0.125 * sign(xspeed)) * sign(image_xscale);
         if (wheelFrame &gt;= 3)
             wheelFrame -= 3;
         else if (wheelFrame &lt; 0)
             wheelFrame += 3;
-        rollerFrame += 0.25 * sign(xspeed);
+        rollerFrame += (0.25 * sign(xspeed)) * sign(image_xscale);
         if (rollerFrame &gt;= 8)
             rollerFrame -= 8;
         else if (rollerFrame &lt; 0)
@@ -361,9 +362,12 @@ event_inherited();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sprite_index, 1 + clamp(jitterFrame, 0, 2 + mouthOpen), round(x), round(y), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
-draw_sprite_ext(sprite_index, 8 + clamp(rollerFrame, 0, 8), round(x), round(y) - (image_index - 2), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
-draw_sprite_ext(sprite_index, 5 + clamp(wheelFrame, 0, 3), round(x), round(y) - (image_index - 2), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+            <string>if (deadTimer == 0)
+    draw_sprite_ext(sprite_index, 1 + clamp(jitterFrame, 0, 2 + mouthOpen), round(x), round(y), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+else
+    draw_sprite_ext(sprite_index, deathFrame, round(x), round(y), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+draw_sprite_ext(sprite_index, 8 + clamp(rollerFrame, 0, 8), round(x), round(y), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+draw_sprite_ext(sprite_index, 5 + clamp(wheelFrame, 0, 3), round(x), round(y) - (image_index - 1), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 draw_sprite_ext(sprite_index, 4, round(x), round(y) - round(clamp(jitterFrame, 0, 2)), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 if (hasCutter)
     draw_sprite_ext(sprite_index, 16 + cutterFrame mod 6, round(x), round(y) - (image_index - 2), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
@@ -418,9 +422,9 @@ else
                 flashcol = make_color_rgb(0, 120, 255);
             }
             
-            d3d_set_fog(true, flashcol, 0, 0);
+            hitFlashEffect(true,flashcol);
             event_user(2);
-            d3d_set_fog(false, 0, 0, 0);
+            hitFlashEffect(false);
             
             if (iceTimer &gt; 0)
             {

@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A big soap bubble that hangs on ceilings until Mega Man gets close. It then drops down
-// and jumps after him constantly.
+            <string>/// A soap bubble that hangs on ceilings until the player gets close. It then drops down and jumps toward the player.
+/// It will continue jumping at set intervals as long as the player is close. If the player is too far away, it stops moving.
+/// Works as both a sneaky surprise and as a not-so-sneaky component of a "look, then act" platforming challenge.
 
 event_inherited();
 

@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A sports-themed robot that lies in wait, lifting its head to shoot one horizontal bullet at a time. Only its head is vulnerable to non-piercing weapons.
+/// When the player gets close, it leaps toward the player, shaking the ground when it lands.
+/// Depending on the setup, this enemy can be treated as the main focus of a challenge, or as a normal turret that makes the difficulty spike if you get too close.
+
+event_inherited();
 
 healthpointsStart = 3;
 healthpoints = healthpointsStart;
@@ -98,9 +102,11 @@ if (entityCanStep())
                                 
                                 if (shootTimer == 0)
                                 {
-                                    var i = instance_create(x + 12 * image_xscale, y + 9, objEnemyBullet);
+                                    var i = instance_create(x + 12 * image_xscale, y + 8, objEnemyBullet);
                                     i.xspeed = 2 * image_xscale;
                                     i.contactDamage = 3;
+                                    i.sprite_index = sprShuhornBullet;
+                                    i.image_xscale = image_xscale;
                                     playSFX(sfxEnemyShootClassic);
                                 }
                                 
@@ -227,14 +233,14 @@ if (floor(imgIndex &gt; 1))
 {
     if ((floor(imgIndex == 2)) || (floor(imgIndex == 3)))
     {
-        if (!collision_rectangle(x - 11 * image_xscale, y-7, x+9 * image_xscale, y+4, other, false, true))
+        if (!collision_rectangle(x - 11 * image_xscale, y-8, x+9 * image_xscale, y+3, other, false, true))
         {
             other.guardCancel = 1;
         }
     }
     else if (floor(imgIndex == 4))
     {
-        if (collision_rectangle(x - 11 * image_xscale, y-14, x + 9 * image_xscale, y-4, other, false, true))
+        if (collision_rectangle(x - 11 * image_xscale, y-15, x + 9 * image_xscale, y-3, other, false, true))
         {
             other.guardCancel = 0;
         }
@@ -245,7 +251,7 @@ if (floor(imgIndex &gt; 1))
     }
     else if (floor(imgIndex == 5))
     {
-        if (collision_rectangle(x - 11 * image_xscale, y-22, x + 9 * image_xscale, y-12, other, false, true))
+        if (collision_rectangle(x - 11 * image_xscale, y-23, x + 9 * image_xscale, y-13, other, false, true))
         {
             other.guardCancel = 0;
         }

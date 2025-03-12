@@ -33,12 +33,13 @@ event_inherited();
 healthpointsStart = 256; // placeholder
 healthpoints = healthpointsStart;
 contactDamage = 3;
+behaviourType = 1;
 
 facePlayerOnSpawn = true;
 
 // Enemy specific code
 
-//@cc 0 = red (default); 1 = orange; 2 = blue
+//@cc 0 = orange (default); 1 = blue
 col = 0;
 init = 1;
 
@@ -214,6 +215,7 @@ specialDamageValue(objBreakDash, 3);
 specialDamageValue(objThunderBeam, 3);
 specialDamageValue(objTornadoBlow, 3);
 specialDamageValue(objIceWall, 3);
+specialDamageValue(objWaterWave, 3);
 specialDamageValue(objChillSpikeLanded, 3);
 specialDamageValue(objConcreteShot, 3);
 specialDamageValue(objSearchSnake, 3);
@@ -245,14 +247,14 @@ specialDamageValue(objSkeletuppinPakkajoe, 3);
             <string>if (global.damage &gt; 0)
 {
     healthpoints = global.damage;
-    playSFX(sfxEnemyHit);
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
 }
 else
 {
     alarmStop = 60;
     stopped = true;
     xspeed = 0;
-    playSFX(sfxEnemyHit);
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
     if (other.penetrate &lt; 1)
     {
         other.dead = true;

@@ -33,6 +33,8 @@ event_inherited();
 category = "semi bulky";
 
 objectThrown = objThrownBomb;
+objectSprite = sprThrownBomb;
+
 
 col = 0;
 </string>

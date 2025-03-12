@@ -25,9 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Whatever this freaky thing from Venus is, it flies around and splits into two smaller
-// variants when destroyed. This is the smallest variant, so, uh... disregard that "splitting"
-// thing.
+            <string>/// A flying enemy that moves in a sine wave.
+/// This "Small" version is what the "Medium" Baby Flies splits into. When destroyed, it simply dies; it is too small to split into smaller versions. Very sad.
+/// Unlike most flying enemies, Baby Flies cannot pass through solid objects, so it's best used in either open spaces or carefully planned enclosed spaces.
 
 event_inherited();
 

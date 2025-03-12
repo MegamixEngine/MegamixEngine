@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>objEnemyBullet</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -32,6 +32,7 @@ grav = 0;
 blockCollision = false;
 reflectable = false;
 stopOnFlash = false;
+reflectable = 0;
 
 calibrateDirection();
 
@@ -62,8 +63,10 @@ aimAtTarget(5);
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (!global.frozen)
+if (!global.frozen) 
+{
     image_index += 0.15;
+}
 </string>
           </argument>
         </arguments>

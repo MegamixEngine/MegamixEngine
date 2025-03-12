@@ -149,7 +149,6 @@ else
 {
     image_speed = 0;
 }
-print(noRain);
 </string>
           </argument>
         </arguments>

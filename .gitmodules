@@ -1,0 +1,3 @@
+[submodule "meta/GMSCacheManager"]
+	path = meta/GMSCacheManager
+	url = https://github.com/Gannio/GMSCacheManager

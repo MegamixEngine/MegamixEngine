@@ -36,6 +36,9 @@ category = "nature";
 facePlayer = true;
 
 // Enemy Specific code
+// @cc- How high I can jump (IMPORTANT - make this a negative number!)
+jumpSpeed = -5;
+
 attackTimer = 0;
 attackTime = 60;
 animSpeed = 0.2;
@@ -87,7 +90,9 @@ if (entityCanStep())
     else
         canShoot = false;
     
-    if (sign(prevYspeed) == -1 &amp;&amp; yspeed &gt;= 0 &amp;&amp; floor(animFrame != 0))
+    if (((sign(prevYspeed) == -1 &amp;&amp; yspeed &gt;= 0 &amp;&amp; sign(image_yscale == 1))
+        || (sign(prevYspeed) == 1 &amp;&amp; yspeed &lt;= 0 &amp;&amp; sign(image_yscale == -1)))
+        &amp;&amp; floor(animFrame != 0))
     {
         event_user(0);
         animFrame = 3;
@@ -111,7 +116,7 @@ if (entityCanStep())
         }
         else if (ground &amp;&amp; floor(animFrame == 2))
         {
-            yspeed = -5;
+            yspeed = jumpSpeed * image_yscale;
             attackTimer = 0;
         }
     }
@@ -205,10 +210,15 @@ for (var i = -1; i &lt; 2; i += 2)
     var bullet = instance_create(x, y, objEnemyBullet);
     bullet.sprite_index = sprBombomboyBullet;
     bullet.x = x;
-    bullet.y = bbox_top + 2;
-    bullet.yspeed = -3;
+    if (sign(image_yscale) == 1)
+    {
+        bullet.y = bbox_top + 2;
+        bullet.yspeed = -3;
+    }
+    else
+        bullet.y = bbox_bottom + 2;
     bullet.xspeed = i * 1.3;
-    bullet.image_xscale = i;
+    //bullet.image_xscale = i;
     bullet.contactDamage = 4;
     bullet.blockCollision = false;
     bullet.grav = 0.25;

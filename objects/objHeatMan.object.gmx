@@ -43,7 +43,7 @@ targetX = 0;
 
 // Health Bar
 healthBarPrimaryColor[1] = 18;
-healthBarSecondaryColor[1] = 34;
+healthBarSecondaryColor[1] = $28;
 
 // Music
 music = "Mega_Man_2.nsf";
@@ -54,6 +54,11 @@ musicTrackNumber = 17;
 enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
+enemyDamageValue(objBusterShotHalfChargedProto, 2);
+enemyDamageValue(objBusterShotChargedProto, 4);
+enemyDamageValue(objNormalBusterShot, 2);
+
+// MaGMML3
 enemyDamageValue(objSparkChaser, 1);
 enemyDamageValue(objLaserTrident, 2);
 enemyDamageValue(objWaterShield, 5);
@@ -62,6 +67,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objMagneticShockwave, 1);
 enemyDamageValue(objIceWall, 5);
 enemyDamageValue(objBreakDash, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaG48HMML
 // Flame Mixer heals Heat Man
@@ -99,15 +108,16 @@ enemyDamageValue(objBlackHoleBomb, 2);
 enemyDamageValue(objMagicCard, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 6);
 enemyDamageValue(objSuperArmBlockProjectile, 2);
 enemyDamageValue(objSuperArmDebris, 2);
-enemyDamageValue(objChillShot, 2);
+enemyDamageValue(objChillSpike, 2);
 enemyDamageValue(objChillSpikeLanded, 4);
 
 // Misc.
 enemyDamageValue(objPowerStone, 2);
 enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 4);
 </string>
           </argument>
@@ -209,7 +219,7 @@ if (entityCanStep())
                             break;
                         for (var i = 0; i &lt; 3; i++)
                         {
-                            with (instance_create(x + 8 * image_xscale, y, objHeatManFire))
+                            with (entityCreateChild(8, 0, objHeatManFire))
                             {
                                 var offs = other.image_xscale * (other.target.x - x) + offset[i];
                                 var destX = x + offs * other.image_xscale;

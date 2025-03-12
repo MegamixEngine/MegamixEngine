@@ -40,7 +40,12 @@ category = "shielded";
 facePlayerOnSpawn = true;
 
 // Enemy specific code
-image_speed = 0.15; // Using this variable is not recommended, please avoid it
+//image_speed = 0.15; // Using this variable is not recommended, please avoid it
+imgIndex = 0;
+imgSpd = 0.15;
+frameTracker = 0;
+canBlink = false;
+blinkCounter = 0;
 
 collapseTimer = 180;
 collapsed = false;
@@ -97,7 +102,29 @@ if (init)
 
 if (entityCanStep())
 {
-    image_speed = 0.15;
+    if (!collapsed)
+    {
+        // Animation
+        var animTable = makeArray(1+(2*canBlink),0,1,2);
+        imgIndex = animTable[frameTracker div 1];
+        frameTracker += imgSpd;
+        
+        if (frameTracker &gt;= 4) // Keep track of when to blink
+        {
+            if (canBlink == false)
+            {
+                blinkCounter++;
+                if (blinkCounter == 2)
+                    canBlink = true;
+            }
+            else
+            {
+                canBlink = false;
+                blinkCounter = 0;
+            }
+            frameTracker = 0;
+        }
+    }
     if (xcoll != 0)
     {
         image_xscale *= -1;
@@ -125,14 +152,16 @@ if (entityCanStep())
                 sprite_index = sprBlocky;
                 break;
         }
-        image_index = 0;
-        image_speed = 0.15;
+        canBlink = false;
+        blinkCounter = 0;
+        frameTracker = 0;
+        imgIndex = 2;
         calibrateDirection();
     }
     
     if (ground &amp;&amp; (sprite_index == sprBlockySpray || sprite_index == sprBlockySprayGray))
     {
-        image_index = 1;
+        imgIndex = 1;
         collapseTimer -= 1;
         if (collapseTimer == 30 || collapseTimer == 20 || collapseTimer == 10)
         {
@@ -155,10 +184,7 @@ if (entityCanStep())
         }
     }
 }
-else
-{
-    image_speed = 0;
-}
+image_index = imgIndex div 1;
 </string>
           </argument>
         </arguments>
@@ -194,8 +220,10 @@ switch (col)
         sprite_index = sprBlocky;
         break;
 }
-image_index = 0;
-image_speed = 0.15;
+imgIndex = 1;
+frameTracker = 0;
+canBlink = false;
+blinkCounter = 0;
 collapseTimer = 180;
 collapsed = false;
 catchTimes = 0;
@@ -221,12 +249,12 @@ catchTimes = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!(sprite_index == sprBlockySpray || sprite_index == sprBlockySprayGray) &amp;&amp; (bboxGetYCenterObject(other.id) &gt;= y + 16
-    &amp;&amp; bboxGetYCenterObject(other.id) &lt;= y + 32))
+            <string>if (!(sprite_index == sprBlockySpray || sprite_index == sprBlockySprayGray) &amp;&amp; (bboxGetYCenterObject(other.id) &gt;= y + 17
+    &amp;&amp; bboxGetYCenterObject(other.id) &lt;= y + 33) &amp;&amp; (other.object_index != objTornadoBlow))
 {
     if (other.object_index != objSparkShock)
     {
-        playSFX(sfxEnemyHit);
+        playSFX(getGenericSFX(SFX_ENEMYHIT));
         if (healthpoints == 2)
         {
             i = instance_create(x, y + 16, objBlockySpray);
@@ -314,6 +342,8 @@ catchTimes = 0;
 }
 else
 {
+    if (other.object_index == objTornadoBlow)
+        exit;
     global.damage = 0;
     other.guardCancel = 1;
     if (other.penetrate &gt; 1)

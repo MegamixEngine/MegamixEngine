@@ -36,6 +36,8 @@ category = "mets, flying";
 
 facePlayerOnSpawn = true;
 
+behaviourType = 1;
+
 // Enemy specific code
 radius = 5 * 16; // Five blocks; the radius that MM needs to enter to trigger the shooting of the met
 cooldownTimer = 0;
@@ -86,7 +88,7 @@ if (entityCanStep())
     
     if (!canShoot)
     {
-        if (animTimer == 0 &amp;&amp; cooldownTimer &lt;= 120)
+        if (animTimer &lt;= 0) //==0 &amp;&amp; cooldownTimer &lt;= 120)
         {
             animTimer = 6;
             if (image_index == 5)

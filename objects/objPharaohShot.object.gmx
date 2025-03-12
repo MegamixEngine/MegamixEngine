@@ -41,6 +41,8 @@ charging = true;
 extraDamage = 0;
 
 despawnRange = 48; // don't die when going above the screen ;_;
+
+autoFireSet = 12;
 </string>
           </argument>
         </arguments>
@@ -65,8 +67,7 @@ despawnRange = 48; // don't die when going above the screen ;_;
             <kind>1</kind>
             <string>event_inherited();
 
-var ammo = global.ammo[playerID, global.weapon[playerID]];
-if (ammo &lt;= 0 &amp;&amp; charging)
+if (!ammoCanAfford(playerID) &amp;&amp; charging)
 {
     instance_destroy();
     exit;
@@ -97,10 +98,10 @@ if (!global.frozen)
         {
             canHit = true;
             canDamage = 1;
-            if (ammo &gt;= 2)
+            if (ammoCanAfford(playerID,2))
             {
                 image_speed = 1 / 7;
-                if (ammo == 2 &amp;&amp; floor(image_index) &gt; 6)
+                if (global.ammo[playerID, global.weapon[playerID]] == 2 &amp;&amp; floor(image_index) &gt; 6)
                     image_index = 5;
                 if (sprite_index == sprPharaohShotCharging) // After fully charging, change sprites
                 {
@@ -144,7 +145,7 @@ if (!global.frozen)
                 {
                     playSFX(sfxPharaohShot);
                     sprite_index = sprPharaohShot;
-                    cost = 1;
+                    cost = 1 - (0.5 * (global.energySaver &gt; 0));
                 }
                 else
                 {
@@ -152,12 +153,18 @@ if (!global.frozen)
                     image_speed = (1 / 7);
                     bulletLimitCost = 3;
                     pierces = 1;
-                    cost = 3;
+                    cost = 3 - (1.5 * (global.energySaver &gt; 0));
                 }
-                
-                if (global.ammo[playerID, global.weapon[playerID]] &gt; 0)
+                with (parent)
                 {
-                    global.ammo[playerID, global.weapon[playerID]] -= (cost / (global.energySaver + 1));
+                    shootStandStillLock = lockPoolRelease(shootStandStillLock);
+                    xspeed = 0;
+                    shootStandStillLock = lockPoolLock(localPlayerLock[PL_LOCK_MOVE]);
+                    
+                }
+                if (ammoCanAfford(playerID))
+                {
+                    ammoDecrease(playerID, cost);
                 }
                 
                 // Set speed regardless of charge level
@@ -189,8 +196,7 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShoot[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT)
-&amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
+            <string>if (performShoot &amp;&amp; ammoCanAfford(playerID))
 {
     fireWeapon(0, 0, objPharaohShot, 2, 0, 0, 0);
 }
@@ -257,7 +263,7 @@ if (charging)
 {
     if (global.ammo[playerID, global.weapon[playerID]] &gt; 0)
     {
-        global.ammo[playerID, global.weapon[playerID]] -= (cost / (global.energySaver + 1));
+        global.ammo[playerID, global.weapon[playerID]] -= (cost - ((cost * 0.5) * (global.energySaver &gt; 0)));
     }
 }
 

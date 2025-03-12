@@ -36,6 +36,9 @@ healthpoints = healthpointsStart;
 contactDamage = 6;
 category = "aquatic, bulky";
 grav = 0;
+bubbleTimer = -1;
+
+explosionSFX = sfxExplosion2;
 
 // Enemy specific code
 dir = image_xscale;
@@ -52,6 +55,12 @@ yspeed = -0.1;
 image_speed = 0.15;
 
 attack = choose(0, 1);
+
+missileChild = noone;
+bombChild[0] = noone;
+bombChild[1] = noone;
+bombChild[2] = noone;
+bombChild[3] = noone;
 </string>
           </argument>
         </arguments>
@@ -118,6 +127,7 @@ if (entityCanStep() &amp;&amp; introTimer &lt;= 0)
                 objMobbyMissle);
             myAttack.image_xscale = image_xscale;
             myAttack.xspeed = myAttack.spd * image_xscale;
+            missileChild = myAttack;
         }
         else
         {
@@ -126,6 +136,7 @@ if (entityCanStep() &amp;&amp; introTimer &lt;= 0)
                 myAttack = instance_create(x - 8 * image_xscale, y - 32,
                     objMobbyBomb);
                 myAttack.getX = x + (40 + (i * 40)) * image_xscale;
+                bombChild[i] = myAttack;
             }
             shootTimer += 1;
         }
@@ -142,6 +153,37 @@ else if (!insideView())
     image_index = 0;
     shootTimer = 0;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (missileChild)
+    instance_destroy();
+for (i = 0; i &lt;= 3; i++;)
+{
+    with (bombChild[i])
+        instance_destroy();
+}
+
+event_inherited();
 </string>
           </argument>
         </arguments>
@@ -165,9 +207,9 @@ else if (!insideView())
           <argument>
             <kind>1</kind>
             <string>// Glow white when hit
-if (iFrames == 1) || (iFrames == 3)
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(true, c_white, 0, 0);
+    hitFlashEffect(true,c_white);
 }
 
 // Draw code
@@ -202,9 +244,9 @@ else
 }
 
 // End white when hit
-if (iFrames == 1) || (iFrames == 3)
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(false, 0, 0, 0);
+    hitFlashEffect(false);
 }
 </string>
           </argument>

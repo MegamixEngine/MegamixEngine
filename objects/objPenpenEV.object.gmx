@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A rocket-powered penguin that rotates in place until suddenly flopping on its belly and launching itself toward the player.
+/// Glides off ledges and bounces off walls. Also bounces off other Penpen EVs, sending them backward! Hitting one while it's stationary will also push it back.
+/// Be sure to design the architecture to take full advantage of its movement physics, otherwise a Roader-type enemy might be more appropriate.
+
+event_inherited();
 
 respawn = true;
 
@@ -88,6 +92,7 @@ if (entityCanStep())
         {
             xspeed = -prevXSpeed;
             bounced = true;
+            image_xscale = -image_xscale;
         }
         
         // ram other Penpen EVs
@@ -155,9 +160,9 @@ if (entityCanStep())
         case 0: // bouncing done near the top
         // animate 
             imgIndex += imgSpd / 2 + (abs(xspeed) / 4);
-            if (imgIndex &gt;= 8)
+            if (imgIndex &gt;= 12)
             {
-                imgIndex = imgIndex - 8;
+                imgIndex = imgIndex - 12;
                 
                 if (xspeed == 0 &amp;&amp; yspeed == 0)
                 {
@@ -194,20 +199,20 @@ if (entityCanStep())
             {
                 phase = 2;
                 timer = 0;
-                imgIndex = 8;
+                imgIndex = 12;
             }
             
             break;
         
         // go on the side and wait a bit
         case 2:
-            if (imgIndex &lt; 9)
+            if (imgIndex &lt; 13)
             {
                 imgIndex += imgSpd;
             }
             else
             {
-                imgIndex = 9;
+                imgIndex = 13;
                 
                 if (timer == 0)
                 {
@@ -219,7 +224,7 @@ if (entityCanStep())
                 {
                     phase = 3;
                     timer = 0;
-                    imgIndex = 10;
+                    imgIndex = 14;
                 }
             }
             
@@ -228,11 +233,11 @@ if (entityCanStep())
         // extend booster
         case 3:
             imgIndex += imgSpd;
-            if (imgIndex &gt;= 14)
+            if (imgIndex &gt;= 18)
             {
                 phase = 4;
                 xspeed = 3 * image_xscale;
-                imgIndex = 14;
+                imgIndex = 18;
                 playSFX(sfxEnemyBoost);
             }
             
@@ -241,9 +246,9 @@ if (entityCanStep())
         // boost
         case 4: // bouncing done near the top 
             imgIndex += imgSpd;
-            if (imgIndex &gt;= 17)
+            if (imgIndex &gt;= 21)
             {
-                imgIndex = 14 + imgIndex mod 17;
+                imgIndex = 18 + imgIndex mod 21;
             }
             
             // show_debug_message("bounced: " + string(bounced));
@@ -257,7 +262,7 @@ if (entityCanStep())
                 phase = 5;
                 timer = 0;
                 xspeed = 0;
-                imgIndex = 13;
+                imgIndex = 17;
                 bounced = false;
             }
             
@@ -266,7 +271,7 @@ if (entityCanStep())
         // retract booster and get back up
         case 5:
             imgIndex -= imgSpd;
-            if (imgIndex &lt; 8)
+            if (imgIndex &lt; 12)
             {
                 phase = 0;
                 imgIndex = 2;

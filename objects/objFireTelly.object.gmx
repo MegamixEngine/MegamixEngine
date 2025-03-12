@@ -48,6 +48,13 @@ keptYSpeed = 0;
 
 imgSpd = 0.10;
 imgIndex = 0;
+
+//creation code (all optional)
+shotObject = objFireTellyShot;
+shotSprite = sprFireTellyShot;
+shotSFX = sfxFireTelly; //if set play sound
+shotXSpeed = 0; //if set, set xspeed and yspeed to shot
+shotYSpeed = 0;
 </string>
           </argument>
         </arguments>
@@ -134,9 +141,16 @@ if (entityCanStep())
                     imgIndex = 4;
                     xspeed = 0;
                     yspeed = 0;
-                    
-                    with (instance_create(x, y + sprite_height / 2, objFireTellyShot))
+                    if (shotSFX != noone)
+                        playSFX(shotSFX);
+                    with (instance_create(x, y + sprite_height / 2, shotObject))
+                    {
                         parent = other.id;
+                        sprite_index = other.shotSprite;
+                        xspeed = other.shotXSpeed;
+                        yspeed = other.shotYSpeed;
+                        respawn = false;
+                    }
                 }
             }
             

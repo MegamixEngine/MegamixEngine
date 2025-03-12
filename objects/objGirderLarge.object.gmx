@@ -36,6 +36,9 @@ bubbleTimer = -1;
 contactDamage = 4;
 faction = 0;
 
+// @cc - 0 = Pluto (default), 1 = Wily Star
+col = 0;
+
 phase = 0;
 moveTimer = 60;
 origX = x;
@@ -126,13 +129,38 @@ if ((!global.frozen) &amp;&amp; (!dead) &amp;&amp; (!global.timeStopped))
             break;
     }
 }
-else if (dead)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
 {
     phase = 0;
     moveTimer = 60;
     shakeDir = 0;
     shakeTimer = 4;
     grav = 0;
+    if (col)
+        image_index = 1;
 }
 </string>
           </argument>

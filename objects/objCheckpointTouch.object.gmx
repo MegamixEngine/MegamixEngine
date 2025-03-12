@@ -31,6 +31,8 @@
 /// note: the tile whose X &amp; Y are what you set mega man to spawn at will be at the bottom-right of where megaman spawns
 /// stretch the object in the editor to cover the area you want to trigger the checkpoint
 
+// flip it horizontally in the room editor to set the direction Mega Man faces on respawning
+
 //@cc (the X position in pixels Mega Man should spawn at when using the checkpoint)
 xx = x + 8;
 
@@ -42,6 +44,11 @@ respawnAnimation = 0;
 
 //@cc play the animation sequence while ready's being displayed
 showDuringReady = false;
+
+name = "";
+
+silentCheckpoint = false;
+saveCheckpoint = true;
 </string>
           </argument>
         </arguments>

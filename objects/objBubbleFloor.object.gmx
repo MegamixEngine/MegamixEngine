@@ -41,20 +41,17 @@ dir = .25;
 
 doesTransition = false;
 
-bounceForce = 0;
+myLock = -1;
 
 spriteFrame = 0;
 spriteTimer = 0;
 image_speed = 0;
-
-yspeed_map = ds_map_create();
-
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -91,59 +88,75 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         image_index = spriteFrame;
     
     yspeed = dir;
-    if (y &lt; ystart)
+    if (y &lt; ystart &amp;&amp; image_yscale &gt; 0) || (y &lt; ystart - 4 &amp;&amp; image_yscale &lt; 0)
         dir = .25;
-    if (y &gt; ystart + 4)
+    if (y &gt; ystart + 4 &amp;&amp; image_yscale &gt; 0) || (y &gt; ystart &amp;&amp; image_yscale &lt; 0)
         dir = -.25;
     
     with (objMegaman)
     {
-        var ysp = other.yspeed * (other.yspeed*gravDir&gt;0) + yspeed*(yspeed*gravDir&gt;0);
-        if (place_meeting(x, y + 2 * gravDir + ysp, other.id))
+        if (!teleporting &amp;&amp; !showReady)
         {
-            var bounciness, jumpPower;
-
-            with (other)
-                other.prevYspeed = yspeed_map[? other.id];
+            var ysp = other.yspeed * (other.yspeed*gravDir&gt;0) + yspeed*(yspeed*gravDir&gt;0);
+            if (place_meeting(x, y + 2 * gravDir + ysp, other.id))
+            {
+                var bounciness, jumpPower;
+                with (other)
+                    other.prevYspeed = other.yspeed * other.gravDir;
+                var xscl = sign(other.image_xscale); // Detect big/small bubbles
+                var onBigBubble;
+                if(xscl&gt;0) // Big bubble on left (default)
+                    onBigBubble = x&lt;other.bbox_left || ((floor(x-other.bbox_left) mod 32)&lt; 16 &amp;&amp; x&lt;other.bbox_right);
+                else // Big bubble on right
+                    onBigBubble = x&gt;=other.bbox_right || ((floor(x-other.bbox_left) mod 32)&gt;= 16 &amp;&amp; x&gt;=other.bbox_left);
                 
-            var xscl = sign(other.image_xscale);
-            var onBigBubble;
-            if(xscl&gt;0)
-            {
-                onBigBubble = x&lt;other.bbox_left || ((floor(x-other.bbox_left) mod 32)&lt; 16 &amp;&amp; x&lt;other.bbox_right);
-            }
-            else
-            {
-                onBigBubble = x&gt;=other.bbox_right || ((floor(x-other.bbox_left) mod 32)&gt;= 16 &amp;&amp; x&gt;=other.bbox_left);
-            }
-            
-            if (!onBigBubble)
-            {
-                bounciness = .5;
-                jumpPower = 1.0;
-            }
-            else
-            {
-                bounciness = .75;
-                jumpPower = 3.0;
-            }
-            
-            if (!is_undefined(prevYspeed) &amp;&amp; abs(prevYspeed) &gt; 1.75)
-            {
-                ground = 0;
-                yspeed = (-prevYspeed * bounciness) - (global.keyJump[playerID] * jumpPower * gravDir);
-                if(yspeed*sign(grav)&gt;0)
+                if (!onBigBubble)
                 {
-                    yspeed=0;
+                    bounciness = .5;
+                    jumpPower = 1;
+                }
+                else
+                {
+                    bounciness = .75;
+                    jumpPower = 3;
+                }
+                if (!is_undefined(prevYspeed))
+                {
+                    if (abs(prevYspeed) &gt; 1.75)
+                    {
+                        ground = 0;
+                        yspeed = (-prevYspeed * bounciness) * gravDir;
+                    }
+                    else if (abs(prevYspeed) &lt;= 1.75)
+                    {
+                        if (other.myLock == -1) // Lock normal jump
+                        {
+                            other.myLock = lockPoolLock(localPlayerLock[PL_LOCK_JUMP]);
+                        }
+                        if (global.keyJumpPressed[playerID] &amp;&amp; (yDir != gravDir))
+                        {
+                            yspeed = -(4.5 + jumpPower) * gravDir;
+                            if (other.myLock != -1)
+                            {
+                                lockPoolRelease(other.myLock);
+                                other.myLock = -1;
+                            }
+                        }
+                    }
+                }
+            }
+            else // Unlock jump when we're off bubble
+            {
+                if (other.myLock != -1)
+                {
+                    lockPoolRelease(other.myLock);
+                    other.myLock = -1;
                 }
             }
         }
-        
-        with (other)
-            yspeed_map[? other.id] = other.yspeed;
     }
     
-    with (prtEntity)
+    with (prtEntity) // Non-Mega Man entity bouncing
     {
         var ysp = other.yspeed * (other.yspeed*sign(grav)&gt;0) + yspeed*(yspeed*sign(grav)&gt;0);
         if (object_index!=objMegaman&amp;&amp; place_meeting(x, y + 2*sign(grav)+ysp, other.id) &amp;&amp; !dead &amp;&amp; !object_is_ancestor(object_index,prtPlayerProjectile)&amp;&amp; object_index!= prtPlayerProjectile)
@@ -151,18 +164,14 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             var bounciness;
             
             with (other)
-                other.prevYspeed = yspeed_map[? other.id];
+                other.prevYspeed = other.yspeed * sign(other.grav);
             
             var xscl = sign(other.image_xscale);
             var onBigBubble;
             if(xscl&gt;0)
-            {
                 onBigBubble = x&lt;other.bbox_left || ((floor(x-other.bbox_left) mod 32)&lt; 16 &amp;&amp; x&lt;other.bbox_right);
-            }
             else
-            {
                 onBigBubble = x&gt;=other.bbox_right || ((floor(x-other.bbox_left) mod 32)&gt;= 16 &amp;&amp; x&gt;=other.bbox_left);
-            }
             
             if (!onBigBubble)
                 bounciness = .5;
@@ -172,41 +181,15 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             if (!is_undefined(prevYspeed)&amp;&amp;abs(prevYspeed) &gt; 1.75)
             {
                 ground = 0;
-                yspeed = (-prevYspeed * bounciness);
-                if(yspeed*grav&gt;0)
+                yspeed = -(prevYspeed * bounciness)*sign(grav);
+                if(yspeed*sign(grav)&gt;0)
                 {
                     yspeed=0;
                 }
             }
         }
-        
-        with (other)
-            yspeed_map[? other.id] = other.yspeed;
     }
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="5">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>ds_map_destroy(yspeed_map);
 </string>
           </argument>
         </arguments>
@@ -229,7 +212,8 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var combineDir = sign(image_xscale);
+            <string>/// Combine bubbles
+var combineDir = sign(image_xscale);
 image_xscale=ceil(image_xscale);
 if(!place_meeting(x-combineDir*16,y,object_index))
 {

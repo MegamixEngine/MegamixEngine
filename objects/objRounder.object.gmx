@@ -50,6 +50,8 @@ loops = 5;
 
 blockCollision = 0;
 grav = 0;
+
+enemyDamageValue(objWaterWave,5);
 </string>
           </argument>
         </arguments>

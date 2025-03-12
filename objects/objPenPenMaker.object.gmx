@@ -39,9 +39,36 @@ contactDamage = 4;
 lockTransition = false;
 
 // Enemy specific code
-shootTimer = 0;
+
+attackTimer = 0;
 doesIntro = false;
-penRate = 0;
+shotsFired = 0;
+deadTimerRecur = 10;
+deadFrame = 8; //@cc if set, display this frame when exploding
+deadFrameMax = 11; // @cc if set, animation to this frame
+deadFrameRecur = 20;
+deadTimerMax = 70;
+explosionSFX = sfxMM3Explode;
+img = 0;
+imgMin = 0;
+
+//creation code
+imageSpd = 0.1; //speed of animation
+imageMin = 0;
+imageMax = 7;
+childObject[0] = objPenpen; //create child object, can be array
+childSprite[0] = noone; //if defined, set child sprite to this
+childSFX = noone;
+attackTimerMax = 60;
+attackTimerDelay[0] = 0;
+attackTimerDelay[1] = 30;
+shotsFiredMax = 3;
+
+//weakpoint setup
+defineGuardMin = -24; //where the guard hitbox starts
+defineGuardMax = -6; // where the guard hitbox ends
+
+guardType = 2; //0 = entire body is weakpoint, 1 == reflect shot, 2 = pass shot through;
 </string>
           </argument>
         </arguments>
@@ -68,29 +95,45 @@ penRate = 0;
 
 if (entityCanStep())
 {
-    image_index += 0.1;
-    shootTimer += 1;
-    if (shootTimer &gt;= 60)
+    if (!dead)
     {
-        penRate += 1;
-        if (penRate &lt; 3)
+        image_index = img;
+        img += imageSpd;
+        if (img &gt;= imageMax)
         {
-            shootTimer = choose(0, 30);
+            img = imageMin = 0;
+        }
+    
+    }
+    attackTimer ++;
+    if (attackTimer &gt;= attackTimerMax)
+    {
+        shotsFired += 1;
+        var mX = shotsFired mod array_length_1d(childObject);
+        if (childSFX != noone)
+            playSFX(childSFX)
+        var i = instance_create(x, y + 32, childObject[mX]);
+        if (childSprite[mX] != noone)
+            i.sprite_index = childSprite[mX];
+        i.image_xscale = image_xscale;
+        i.respawn = false;
+        
+        if (shotsFired &lt; shotsFiredMax)
+        {
+            var sf = irandom_range(0,array_length_1d(attackTimerDelay)-1);
+            attackTimer = attackTimerDelay[sf];
         }
         else
         {
-            shootTimer = 0;
-            penRate = 0;
+            attackTimer = 0;
+            shotsFired = 0;
         }
-        i = instance_create(x, y + 32, objPenpen);
-        i.image_xscale = image_xscale;
-        i.respawn = false;
     }
 }
 else if (!insideView())
 {
-    image_index = 0;
-    shootTimer = 0;
+    img = irandom_range(imageMin,imageMax - 2);
+    attackTimer = 0;
 }
 </string>
           </argument>
@@ -114,9 +157,12 @@ else if (!insideView())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (other.y &gt;= y - 6) || (other.y &lt;= y - 24)
+            <string>if (guardType != 0)
 {
-    other.guardCancel = 2;
+    if (other.y &gt;= y + defineGuardMax) || (other.y &lt;= y + defineGuardMin)
+    {
+        other.guardCancel = 2;
+    }
 }
 </string>
           </argument>

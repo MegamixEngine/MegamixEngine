@@ -185,13 +185,13 @@
     <instance objName="objMetallSwim" x="2512" y="64" name="inst_B5C64A61" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objETank" x="2464" y="144" name="inst_8F5F8595" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMetallSpin" x="2696" y="192" name="inst_5BD00DAB" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1152" y="640" name="inst_7F772D06" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1152" y="640" name="inst_7F772D06" locked="0" code="name = &quot;Midway point&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergyBig" x="528" y="304" name="inst_8A01F650" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="352" y="400" name="inst_A786A580" locked="0" code="objectToStop = objMetall;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="400" y="400" name="inst_834616B6" locked="0" code="objectToStop = objMetall;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="2336" y="0" name="inst_050C3803" locked="0" code="objectToStop = objMetallSwim;&#xA;" scaleX="12" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGenericStopper" x="2384" y="80" name="inst_963527B8" locked="0" code="objectToStop = objMetallSwim;&#xA;" scaleX="6" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="2944" y="176" name="inst_53E4EFBF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="2944" y="176" name="inst_53E4EFBF" locked="0" code="name = &quot;Boss corridor&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="1128" y="384" name="inst_E4950ED0" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDefaultSpawn" x="64" y="1136" name="inst_93F3483F" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMetallDX" x="160" y="1152" name="inst_9A572BB7" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -444,11 +444,11 @@
     <instance objName="objWeaponEnergySmall" x="2016" y="176" name="inst_1647F1EB" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="2016" y="128" name="inst_67CD596A" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="2336" y="192" name="inst_B0A21980" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();" scaleX="12" scaleY="3" colour="4294967295" rotation="0"/>
-    <instance objName="objFatool" x="176" y="416" name="inst_10E7ACB4" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objFatool" x="1232" y="832" name="inst_371B50C0" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objFatool" x="2016" y="32" name="inst_08F07FB5" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHeavyMetall" x="176" y="416" name="inst_10E7ACB4" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHeavyMetall" x="1232" y="832" name="inst_371B50C0" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objHeavyMetall" x="2016" y="32" name="inst_08F07FB5" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="1920" y="256" name="inst_316B36DF" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;    instance_destroy();&#xA;destroyTilesDepth = 999999;" scaleX="2" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMetallDaddy" x="3200" y="160" name="inst_CB9E595E" locked="0" code="elementName = &quot;wily2&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMetallDaddy" x="3200" y="160" name="inst_CB9E595E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMetallRunAndGun" x="1952" y="128" name="inst_19C8AF6C" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="48" y="1136" name="inst_A053D9FC" locked="0" code="if (global.difficulty != DIFF_EASY)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergyBig" x="64" y="1136" name="inst_5BB2A7F6" locked="0" code="if (global.difficulty != DIFF_EASY)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

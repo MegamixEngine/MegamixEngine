@@ -45,6 +45,7 @@ imageTimer = 0;
 imageTimerMax = 12;
 
 objectThrown = objThrownRock;
+objectSprite = sprRock;
 
 col = 0;
 </string>
@@ -96,6 +97,7 @@ if (entityCanStep())
         ID = instance_create(x + image_xscale, spriteGetYCenter() - 4,
             objectThrown);
         {
+            ID.sprite_index = objectSprite;
             ID.xscale = image_xscale;
             ID.col = col;
             ID.respawn=false;

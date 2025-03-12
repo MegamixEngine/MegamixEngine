@@ -4,8 +4,28 @@
 
 /// filename works as in roomExternalLoad
 
-if (!is_undefined(global.roomExternalCache[? argument0]))
+var filename = argument0;
+assert(filename != "");
+
+if (!is_undefined(global.roomExternalCache[? filename]))
 {
-    print("Clearing Cache for room " + argument0, WL_VERBOSE);
-    ds_map_delete(global.roomExternalCache, argument0);
+    print("Clearing Cache for room " + filename, WL_VERBOSE);
+    
+    // clean up room grid
+    var exrm = global.roomExternalCache[? filename];
+    var setupGrid = global.roomExternalSetupMap[? exrm];
+    assert(ds_exists(setupGrid, ds_type_grid));
+    assert(room_exists(exrm));
+    
+    room_instance_clear(exrm);
+    room_tile_clear(exrm);
+    mm_ds_grid_destroy(setupGrid);
+    
+    // remove entry from cache
+    ds_map_delete(global.roomExternalSetupMap,exrm);
+    ds_map_delete(global.roomExternalCache,filename);//global.roomExternalCache[? filename] = undefined;
+    
+    
 }
+
+

@@ -158,7 +158,7 @@ else
     }
     else
     {
-        playSFX(sfxSplash);
+        playSFX(getGenericSFX(SFX_SPLASH));
         sfc = other.id;
         sfcx = x - sfc.x;
         sfcy = y - sfc.y;

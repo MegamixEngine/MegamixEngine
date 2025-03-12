@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A pseudo Joe robot that uses electricity for a shield. For Piriparee (which does the
-// same thing but actually looks like a Joe), set col to 1 in creation code.
+            <string>/// A stationary pseudo-Joe enemy that stands idle, briefly uses electricity for a shield, and shoots a single electric bullet horizontally.
+/// For Piriparee (which does the same thing but actually looks like a Joe), change the creation code as directed.
+/// Thanks to its turret-like nature and simple pattern, it combines well with most enemies and gimmicks.
 
 event_inherited();
 

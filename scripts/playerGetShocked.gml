@@ -1,4 +1,4 @@
-/// playerGetShocked(ignore ground, additional time, mm1stun, shock time)
+/// playerGetShocked(_IgnoreGround)
 // Call it like this: with objMegaman playerGetShocked();
 // Makes the player get shocked
 
@@ -24,9 +24,12 @@ if (!isHit && (_IgnoreGround || ground))
         }
         else
         {
-            if (instance_exists(objBreakDash))
-            { 
-                xspeed = 0; //stops you dead in your tracks.
+            with (objBreakDash)
+            {
+                if (playerID == other.playerID)
+                {
+                    other.xspeed = 0;
+                }
             }
             
             shootTimer = 0;

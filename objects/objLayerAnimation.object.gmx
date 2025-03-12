@@ -30,10 +30,13 @@
 /*
 animLength = how many frames
 animTime = interval before change
-animID# = background frame (Note # goes up from 0 to animLength)
 animateOnTransition = will stop animations during the transition
-
 animationLayer = Layer animated tiles start at (your animated tiles should start on this layer)
+animationReverse = Will cause animation to go backwards upon reaching the end
+animDir = Determines if animations go forwards or backwards - maybe don't use this if animationReverse is true
+cumulativeLayers = determines if the previous layers stay visible instead of being hidden
+decreasingDepth = determines if the animation layers decrease in depth instead of increase
+
 
 Note: This only works for tiles on a 16x16 grid
 
@@ -49,9 +52,14 @@ for (i = 1; i &lt;= animLength; i += 1)
 
 animationLayer = 1;
 animateOnTransition = false;
+animationReverse = false;
+cumulativeLayers = false; // whether the previous layers of the animation stay visible instead of being hidden
+decreasingDepth = false; // whether the next layers decrease in depth instead of increase
 
 timer = 0;
 tileID = 0;
+animDir = 1;
+setup = true;
 </string>
           </argument>
         </arguments>
@@ -86,6 +94,21 @@ tileID = 0;
     }
 }
 
+if (setup)
+{
+    setup = false;
+    if (cumulativeLayers)
+    {
+        // reset all layers
+        for (var i = 0; i &lt; animLength; i++)
+        {
+            tile_layer_hide(animationLayer + i - i * 2 * decreasingDepth);
+        }
+        
+        tile_layer_show(animationLayer);
+    }
+}
+
 if (timer &lt; animTime[tileID])
 {
     timer += 1;
@@ -93,26 +116,84 @@ if (timer &lt; animTime[tileID])
 else
 {
     timer = 0;
-    if (tileID &lt; animLength - 1)
+    if (animDir == 1)
     {
-        tile_layer_hide(animationLayer + tileID);
-        tileID += 1;
-        tile_layer_show(animationLayer + tileID);
+        if (tileID &lt; animLength - 1)
+        {
+            if (!cumulativeLayers) { tile_layer_hide(animationLayer + tileID - tileID * 2 * decreasingDepth); }
+            tileID += 1;
+            tile_layer_show(animationLayer + tileID - tileID * 2 * decreasingDepth);
+        }
+        else
+        {
+            if (!cumulativeLayers)
+            {
+                tile_layer_hide(animationLayer + tileID - tileID * 2 * decreasingDepth);
+            }
+            else
+            {
+                // reset all layers
+                for (var i = 0; i &lt; animLength; i++)
+                {
+                    tile_layer_hide(animationLayer + i - i * 2 * decreasingDepth);
+                }
+            }
+            
+            if (!animationReverse)
+            {
+                tileID = 0;
+            }
+            else
+            {
+                tileID -= 1;
+                animDir = -1;
+            }
+            
+            tile_layer_show(animationLayer + tileID - tileID * 2 * decreasingDepth);
+        }
     }
     else
     {
-        tile_layer_hide(animationLayer + tileID);
-        tileID = 0;
-        tile_layer_show(animationLayer + tileID);
+        if (tileID &gt; 0)
+        {
+            if (!cumulativeLayers) { tile_layer_hide(animationLayer + tileID - tileID * 2 * decreasingDepth); }
+            tileID -= 1;
+            tile_layer_show(animationLayer + tileID - tileID * 2 * decreasingDepth);
+        }
+        else
+        {
+            if (!cumulativeLayers)
+            {
+                tile_layer_hide(animationLayer + tileID - tileID * 2 * decreasingDepth);
+            }
+            else
+            {
+                // reset all layers
+                for (var i = 0; i &lt; animLength; i++)
+                {
+                    tile_layer_hide(animationLayer + i - i * 2 * decreasingDepth);
+                }
+            }
+            
+            if (!animationReverse)
+            {
+                tileID = animLength - 1;
+            }
+            else
+            {
+                tileID += 1;
+                animDir = 1;
+            }
+            
+            tile_layer_show(animationLayer + tileID - tileID * 2 * decreasingDepth);
+        }
     }
 }
 
 /*
 animLength = how many frames
 animTime = interval before change
-animID# = background frame (Note # goes up from 0 to animLength)
 animateOnTransition = will stop animations during the transition
-
 animationLayer = Layer animated tiles start at (your animated tiles should start on this layer)
 </string>
           </argument>

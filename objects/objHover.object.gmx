@@ -34,6 +34,7 @@ canHit = false;
 
 grav = 0;
 dieToSpikes = false;
+behaviourTypes = 1;
 
 isSolid = 2;
 

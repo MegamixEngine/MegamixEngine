@@ -65,7 +65,7 @@ if (instance_exists(target))
 if (global.timeStopped)
 {
     instance_create(x, y, objExplosion);
-    playSFX(sfxEnemyHit);
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
     instance_destroy();
 }
 </string>

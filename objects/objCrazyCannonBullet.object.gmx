@@ -35,6 +35,9 @@ image_speed = 0;
 alarmDie = -2;
 xspeed = 0;
 yspeed = 0;
+
+flicker = -1;
+
 </string>
           </argument>
         </arguments>
@@ -69,7 +72,18 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
             instance_destroy();
         }
     }
+    
+    if (flicker &gt; -1)
+    {
+    	flicker ++;
+    	if (flicker mod 2 == 0)
+    		visible = false;
+    	else
+    		visible = true;
+    }
 }
+
+
 </string>
           </argument>
         </arguments>

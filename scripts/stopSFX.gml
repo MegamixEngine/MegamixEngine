@@ -1,4 +1,6 @@
-/// stopSFX(index)
+/// stopSFX(_sfx, ...)
 // Stops a sound effect
 
-audio_stop_sound(argument0);
+var _sfx = argument[0];
+
+audio_stop_sound(_sfx);

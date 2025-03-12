@@ -31,11 +31,12 @@ respawn = false;
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
+canHit = true;
 
 contactDamage = 2;
 
 grav = 0;
-blockCollision = 0;
+//blockCollision = 0;
 </string>
           </argument>
         </arguments>
@@ -62,14 +63,37 @@ blockCollision = 0;
 
 if (entityCanStep())
 {
-    if (collision_line(bbox_left, bboxGetYCenter(), bbox_right,
-        bboxGetYCenter(), objSolid, false, false))
+    if (xcoll != 0)/*(collision_line(bbox_left, bboxGetYCenter(), bbox_right,
+        bboxGetYCenter(), objSolid, false, false))*/
     {
-        instance_create(x, y, objExplosion);
-        playSFX(sfxExplosion);
+        instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM5));
         instance_destroy();
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_perform_object(prtEntity,ev_other,ev_user10);
 </string>
           </argument>
         </arguments>

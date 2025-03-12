@@ -158,9 +158,9 @@ if (entityCanStep())
 var drew;
 drew = 0;
 
-if (iFrames == 1 || iFrames == 3)
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(true, c_white, 0, 0);
+    hitFlashEffect(true,c_white);//d3d_set_fog(true, c_white, 0, 0);
 }
 
 var drew;
@@ -195,9 +195,9 @@ if (!drew)
     }
 }
 
-if (iFrames == 1 || iFrames == 3)
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(false, 0, 0, 0);
+    hitFlashEffect(false);
 }
 </string>
           </argument>

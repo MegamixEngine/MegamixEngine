@@ -76,71 +76,79 @@ imgIndex = 0;
 
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
-        {
-            // walk around
-            case 0:
+		// walk around
+		case 0:
+			imgIndex += imgSpd;
+            if (imgIndex &gt;= 6)
+            {
+                imgIndex = imgIndex mod 6;
+            }
+            if (insideView()) &amp;&amp; ((imgIndex == 1) || (imgIndex == 4))
+            {
+                playSFX(sfxTeck);
+            }
+            if (xspeed == 0 || !checkSolid(sprite_get_width(sprite_index) * 0.8 * image_xscale, bbox_top - y, 1, 1))
+            {
+                image_xscale = -image_xscale;
+            }
+            xspeed = spd * image_xscale;
+            if (instance_exists(target))
+            {
+                if (abs(target.x - x) &lt;= 58 + abs(sprite_width) / 2)
+                {
+                    phase = 1;
+                    xspeed = 0;
+                    imgIndex = 5;
+                }
+            }
+            break;
+        
+        // wait &amp; shoot
+        case 1:
+            if (timer &lt; 2)
+            {
                 imgIndex += imgSpd;
-                if (imgIndex &gt;= 6)
+                if (imgIndex &gt;= 7 &amp;&amp; timer == 0)
                 {
-                    imgIndex = imgIndex mod 6;
+                    timer = 1;
+                    shot = instance_create(x, y + sprite_height * 0.5,
+                        objEnemyBullet);
+                    shot.sprite_index = sprEnemyBulletMM6;
+                    shot.contactDamage = 4;
+                    shot.yspeed = 2.3;
+                    playSFX(sfxEnemyShoot);
                 }
-                if ((imgIndex == 1) || (imgIndex == 4))
+                
+                if (imgIndex &gt;= 8 &amp;&amp; timer == 1)
                 {
-                    playSFX(sfxTeck);
+                    timer = 2;
+                    imgIndex = 5;
                 }
-                if (xspeed == 0 || !checkSolid(sprite_get_width(sprite_index) * 0.8 * image_xscale, bbox_top - y, 1, 1))
+            }
+            else
+            {
+                timer += 1;
+                if (timer &gt; 16) // &lt;-- time waiting after shot here
                 {
-                    image_xscale = -image_xscale;
-                }
-                xspeed = spd * image_xscale;
-                if (instance_exists(target))
-                {
-                    if (abs(target.x - x) &lt;= 58 + abs(sprite_width) / 2)
+                    timer = 0;
+                    if (instance_exists(target)) // Only move if player is far away
                     {
-                        phase = 1;
-                        xspeed = 0;
-                        imgIndex = 5;
+                        if (abs(target.x - x) &gt; 58 + abs(sprite_width) / 2)
+                        {
+                            phase = 0;
+                            xspeed = spd * image_xscale;
+                        }
                     }
-                }
-                break;
-            
-            // wait &amp; shoot
-            case 1:
-                if (timer &lt; 2)
-                {
-                    imgIndex += imgSpd;
-                    if (imgIndex &gt;= 7 &amp;&amp; timer == 0)
-                    {
-                        timer = 1;
-                        shot = instance_create(x, y + sprite_height * 0.5,
-                            objEnemyBullet);
-                        shot.sprite_index = sprEnemyBulletMM6;
-                        shot.contactDamage = 4;
-                        shot.yspeed = 2.3;
-                        playSFX(sfxEnemyShoot);
-                    }
-                    
-                    if (imgIndex &gt;= 8 &amp;&amp; timer == 1)
-                    {
-                        timer = 2;
-                        imgIndex = 5;
-                    }
-                }
-                else
-                {
-                    timer += 1;
-                    if (timer &gt; 16) // &lt;-- time waiting after shot here
+                    else // Resume walking if player is dead
                     {
                         phase = 0;
-                        timer = 0;
                         xspeed = spd * image_xscale;
                     }
                 }
-                break;
-        }
+            }
+            break;
     }
 }
 else if (dead)

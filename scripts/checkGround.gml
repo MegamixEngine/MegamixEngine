@@ -125,6 +125,10 @@ if (place_free(x, y))
                 if jumpCounter == 0
                 {
                     jumpCounter += 1;
+                    if (global.characterSelected[playerID] == CHAR_BASS && isSlide)
+                    {
+                        dashJumped = true;
+                    }
                 }
             }
         }

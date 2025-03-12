@@ -76,7 +76,7 @@ collapse = false;
 if (!dead &amp;&amp; global.timeStopped)
 {
     event_user(EV_DEATH);
-    playSFX(sfxEnemyHit);
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
 }
 
 if (entityCanStep())
@@ -211,6 +211,7 @@ for (i = 0; i &lt;= 4000; i += 1)
 
 // now set the weaknesses
 specialDamageValue(objBusterShotCharged, 3);
+specialDamageValue(objBusterShotChargedProto, 3);
 specialDamageValue(objTornadoBlow, 1);
 specialDamageValue(objLaserTrident, 2);
 specialDamageValue(objSlashClaw, 2);

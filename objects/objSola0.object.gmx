@@ -37,6 +37,8 @@ timer = 0;
 anim = -1;
 animFrame = 0;
 animSpeed = 0;
+
+beamSprite = sprSola0Beam;
 </string>
           </argument>
         </arguments>
@@ -134,6 +136,7 @@ if (entityCanStep())
     
     image_index = floor(animFrame);
 }
+
 </string>
           </argument>
         </arguments>
@@ -210,7 +213,7 @@ anim = -1;
 var i = instance_create(x, y, objEnemyBullet);
 with (i)
 {
-    sprite_index = sprSola0Beam;
+    sprite_index = other.beamSprite;
     image_speed = 0.35;
     image_xscale = other.image_xscale;
     image_yscale = other.image_yscale;
@@ -246,6 +249,30 @@ playSFX(sfxSola0Shoot);
             <string>/// Start Over
 anim = -1;
 timer = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (image_yscale &lt;= -1)
+    grav = -0.25;
 </string>
           </argument>
         </arguments>

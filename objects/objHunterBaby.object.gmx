@@ -147,14 +147,14 @@ dead = true;
             <kind>1</kind>
             <string>// Hunter Baby, regardless of what Image_Yscale and Image_xscale says. Image_yscale is used to determine which direction it moves in.
 draw_sprite_ext(sprite_index, image_index, round(x), floor(y), 1, 1, image_angle, image_blend, image_alpha);
-if (((iFrames == 1 || iFrames == 3) &amp;&amp; canflash) || (iceTimer &gt; 0))
+if (((iFrames mod 2 == 1) &amp;&amp; canflash) || (iceTimer &gt; 0))
 {
     var flashcol = c_white;
     if (iceTimer &gt; 0)
         flashcol = make_color_rgb(0, 120, 255);
-    d3d_set_fog(true, flashcol, 0, 0);
+    hitFlashEffect(true,flashcol);
     draw_sprite_ext(sprite_index, image_index, round(x), floor(y), 1, 1, image_angle, image_blend, image_alpha);
-    d3d_set_fog(false, 0, 0, 0);
+    hitFlashEffect(false);
     if (iceTimer &gt; 0)
     {
         draw_set_blend_mode(bm_add);

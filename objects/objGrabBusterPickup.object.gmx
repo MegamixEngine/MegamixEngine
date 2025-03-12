@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtPlayerProjectile</parentName>
+  <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -38,6 +38,24 @@ canHit = false;
 gotomega = 0;
 
 is1Up = false;
+
+// player projectile stuff
+faction = 2;
+stopOnFlash = 0;
+killOverride = false;
+
+canHit = false;
+penetrate = 0;
+pierces = 0;
+respawn = false;
+killOverride = false;
+
+grav = 0;
+dieToSpikes = 0;
+blockCollision = 0;
+bubbleTimer = -1;
+
+parent = global.playerProjectileCreator;
 </string>
           </argument>
         </arguments>

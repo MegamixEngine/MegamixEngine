@@ -42,7 +42,7 @@ attackDelay = 8;
 timer = 0;
 raining = false;
 
-playSFX(sfxBuster);
+playSFX(getGenericSFX(SFX_BUSTER));
 </string>
           </argument>
         </arguments>
@@ -69,6 +69,7 @@ playSFX(sfxBuster);
 
 if (!global.frozen)
 {
+
     if (!raining)
     {
         if (abs(yspeed) &lt; 5)
@@ -83,6 +84,7 @@ if (!global.frozen)
             visible = false;
             raining = true;
         }
+        
     }
     else
     {
@@ -114,7 +116,7 @@ if (!global.frozen)
             {
                 with (prtEntity)
                 {
-                    if (insideView()&amp;&amp;global.factionStance[other.faction, faction] &amp;&amp; canHit &amp;&amp; !dead &amp;&amp; !iFrames)
+                    if (global.factionStance[other.faction, faction] &amp;&amp; canHit &amp;&amp; !dead &amp;&amp; !iFrames)
                     {
                         with (other)
                         {
@@ -150,9 +152,10 @@ if (!global.frozen)
             <kind>1</kind>
             <string>// EV_WEAPON_CONTROL
 
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+if (performShoot &amp;&amp; !instance_exists(objRainFlush))
 {
-    i = fireWeapon(4, -16, objRainFlush, 1, 4, 2, 0);
+    var ammoCost = 4 - (2 * (global.energySaver &gt; 0));
+    i = fireWeapon(4, -16, objRainFlush, 1, ammoCost, 2, 1);
     if (i) // set starting speed
     {
         i.yspeed = -0.5;
@@ -231,23 +234,9 @@ specialDamageValue("fire", 4);
             <string>if (raining)
 {
     for (i = 1; i &lt;= 16; i += 1)
-    {
-        // regular grav
-        if sign(image_yscale) == 1
-        {
-            draw_sprite(sprite_index, -1,
-                view_xview + view_wview - ((timer * 4 + i * 64) mod view_wview),
-                view_yview + ((timer * 4 + i * 128) mod view_hview));
-        }
-        // reverse grav
-        else
-        {
-            draw_sprite_ext(sprite_index, -1,
-                view_xview + view_wview - ((timer * 4 + i * 64) mod view_wview),
-                view_yview + view_hview - ((timer * 4 + i * 128) mod view_hview),
-                1, -1, image_angle, image_blend, image_alpha);
-        }
-    }
+        draw_sprite(sprite_index, -1,
+            view_xview + view_wview - ((timer * 4 + i * 64) mod view_wview),
+            view_yview + ((timer * 4 + i * 128) mod view_hview));
 }
 else
 {

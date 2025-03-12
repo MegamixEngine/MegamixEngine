@@ -99,7 +99,7 @@ if (entityCanStep())
                     instance_create(x, y, objExplosion);
                     healthpoints = 0;
                     event_user(EV_DEATH);
-                    playSFX(sfxEnemyHit);
+                    playSFX(getGenericSFX(SFX_ENEMYHIT));
                 }
             }
             else
@@ -180,7 +180,7 @@ if (entityCanStep())
                 
                 healthpoints = 0;
                 event_user(EV_DEATH);
-                playSFX(sfxEnemyHit);
+                playSFX(getGenericSFX(SFX_ENEMYHIT));
             }
             break;
     }

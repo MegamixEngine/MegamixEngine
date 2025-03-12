@@ -155,6 +155,7 @@ else if (!instance_exists(objMegaman))
           <argument>
             <kind>1</kind>
             <string>/// nope
+
 </string>
           </argument>
         </arguments>

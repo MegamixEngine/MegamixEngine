@@ -31,6 +31,19 @@ targetX = x;
 targetY = y;
 
 timer = 0;
+
+//Shader options. Note this will likely be readjusted in 2.0, this is just a simple setup.
+useShader = false;
+
+replaceColor[0] = c_black;
+replaceColor[1] = c_black;
+replaceColor[2] = c_black;
+replaceColor[3] = c_black;
+newColor[0] = c_black;
+newColor[1] = c_black;
+newColor[2] = c_black;
+newColor[3] = c_black;
+
 </string>
           </argument>
         </arguments>
@@ -72,6 +85,38 @@ timer = 0;
     
     // if this object somehow cannot find its way to the void after 2 seconds...mercy kill
     timer += 1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (useShader)
+{
+    shaderSetColorreplace(replaceColor[0],newColor[0],replaceColor[1],newColor[1],replaceColor[2],newColor[2],replaceColor[3],newColor[3]);
+    drawSelf();
+    shader_reset();
+}
+else
+{
+    drawSelf();
 }
 </string>
           </argument>

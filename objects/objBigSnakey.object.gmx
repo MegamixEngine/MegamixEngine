@@ -46,6 +46,11 @@ endTimer = 60;
 doesIntro = false;
 
 bodySolid = noone;
+deadFrame = 4;
+deadTimerMax = 24;
+deadTimerRecur = 4;
+explosionSprite = sprExplosion;
+explosionSFX = sfxMM3Explode;
 </string>
           </argument>
         </arguments>
@@ -153,9 +158,9 @@ else
             <kind>1</kind>
             <string>// event_inherited();
 
-if (iFrames == 1 || iFrames == 3)
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(true, c_white, 0, 0);
+    hitFlashEffect(true,c_white);
 }
 
 drawSelf();
@@ -174,9 +179,9 @@ if (length &gt; 0)
     }
 }
 
-if (iFrames == 1 || iFrames == 3)
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(false, 0, 0, 0);
+    hitFlashEffect(false);
 }
 </string>
           </argument>

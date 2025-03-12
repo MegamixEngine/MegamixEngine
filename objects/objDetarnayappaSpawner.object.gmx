@@ -31,6 +31,9 @@ canDamage = false;
 blockCollision = false;
 grav = 0;
 visible = 0;
+bubbleTimer = -1;
+
+behaviourType = 1;
 
 // Creation code
 interval = 120;

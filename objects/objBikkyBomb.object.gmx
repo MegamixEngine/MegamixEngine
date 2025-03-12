@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A lotto wheel enemy from Mars's stage that spins, tosses bombs, and jumps towards you.
-// While spinning, it reflects non-piercing weapons.
+            <string>/// A lotto wheel enemy that spins, tosses a bouncing bomb, and jumps toward the player. While spinning, it is immune to non-piercing weapons.
+/// The bomb does two low bounces, then once high bounce, repeating that pattern until it eventually disappears. The bomb can also be damaged.
+/// When using this enemy, be sure to design the architecture around where it can jump and where its bombs might bounce.
 
 event_inherited();
 
@@ -136,16 +137,16 @@ if (entityCanStep())
             {
                 if (jumps &lt; 3)
                 {
+                    calibrateDirection();
                     yspeed = -4;
                     xspeed = 1 * image_xscale;
                     phase = 3;
-                    calibrateDirection();
                 }
                 else
                 {
+                    calibrateDirection();
                     phase = 0;
                     jumps = 0;
-                    calibrateDirection();
                 }
             }
             break;

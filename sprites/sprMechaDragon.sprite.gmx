@@ -14,7 +14,7 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>81</TextureGroup0>
+    <TextureGroup0>201</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>114</width>
@@ -22,5 +22,11 @@
   <frames>
     <frame index="0">images\sprMechaDragon_0.png</frame>
     <frame index="1">images\sprMechaDragon_1.png</frame>
+    <frame index="2">images\sprMechaDragon_2.png</frame>
+    <frame index="3">images\sprMechaDragon_3.png</frame>
+    <frame index="4">images\sprMechaDragon_4.png</frame>
+    <frame index="5">images\sprMechaDragon_5.png</frame>
+    <frame index="6">images\sprMechaDragon_6.png</frame>
+    <frame index="7">images\sprMechaDragon_7.png</frame>
   </frames>
 </sprite>

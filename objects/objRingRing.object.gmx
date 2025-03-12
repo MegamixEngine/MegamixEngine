@@ -39,10 +39,16 @@ blockCollision = 0;
 facePlayerOnSpawn = true;
 
 // Enemy specific code
-image_speed = 0.15;
+imgIndex = 0;
+
+// @cc - Changes colour (0 = pink (default); 1 = red)
+col = 0;
 
 megax = -1;
 megay = -1;
+
+//Needed to have Bakery Man variant use old animation code for "correct" timings
+isDonutSeeker = false;
 </string>
           </argument>
         </arguments>
@@ -69,7 +75,17 @@ megay = -1;
 
 if (entityCanStep())
 {
-    image_speed = 0.15;
+if !isDonutSeeker{
+    imgIndex += 0.15;
+if (imgIndex mod 4 == 0.05)
+    {
+        imgIndex = 0;
+    }
+}
+
+if isDonutSeeker {
+image_speed = 0.15;
+}
     megax = -1;
     if (instance_exists(target))
     {
@@ -87,14 +103,17 @@ if (entityCanStep())
 }
 else
 {
-    image_speed = 0;
     if (dead)
     {
         megax = -1;
         megay = -1;
+imgIndex = 0;
     }
     
     speed = 0;
+}
+if !isDonutSeeker{
+image_index = imgIndex + (4 * col);
 }
 </string>
           </argument>

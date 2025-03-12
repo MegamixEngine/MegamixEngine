@@ -29,7 +29,7 @@
 // Note: his creation code variables for his movement have no unit, they're just proportional
 event_inherited();
 respawn = true;
-introSprite = sprChangkeyDragonEyes;
+//introSprite = sprChangkeyDragonEyes;
 healthpointsStart = 15;
 healthpoints = healthpointsStart;
 contactDamage = 3;
@@ -42,23 +42,10 @@ xspeed = 0;
 yspeed = 0;
 
 category = "fire, flying";
+explosionSFX = sfxMM9ExplosionAlt;
 
 sprite_index = sprChangkeyDragonHead;
 // Enemy-specific code
-
-// Customizable Constants
-
-//@cc how wide his movement looks
-waveWidth = 28;
-
-//@cc How low he reaches
-waveHeight = 48;
-
-//@cc the horizontal speed of the dragon
-waveSpeed = 1.45;
-
-//@cc Interval between shots
-shootTime = 26;
 
 introTimer = 60;
 dir = image_xscale;
@@ -74,9 +61,75 @@ canRegen = true;
 shootTimer = 30;
 
 animTimer = 10;
-shootLimit = 0;
+shotsFired = 0;
+shotMax = 3;
 _hitTimer = 0;
 lastXscale = -1;
+waitTimer = -1;
+
+//creation code for boss setup (all optional)
+//@cc how wide his movement looks
+waveWidth = 28;
+
+//@cc How low he reaches
+waveHeight = 48;
+
+//@cc the horizontal speed of the dragon
+waveSpeed = 1.45;
+
+//@cc Interval between shots
+shootTime = 26;
+
+//@cc
+waitOffscreen = -1; //if set to higher than -1, then changkey dragon waits this long off screen before returning
+
+//@cc body mask
+maskObject = objChangkeyDragonMask;
+maskObjectSprite = sprChangkeyDragonMask;
+
+//@cc tail setup
+hasTail = true; //if false then durgon has no tail
+tailObject = objChangkeyDragonTailFire;
+tailSprite = sprChangkeyDragonFire;
+tailImgMin = 2;
+tailImgMax = 3;
+
+//@ccbody part setup
+childObject = objChangkeyDragonTackleFire;
+childSprite = sprChangkeyDragonFire;
+childImgMin = 6; //@ccthe image minimum and maximum
+childImgMax = 7;
+childCount = 6; //@ccamount of parts created. needs a entry in the table below (can use fewer)
+//@cc table of offset body parts positions
+cOffsetX[0] = 28;
+cOffsetY[0] = 3;
+cOffsetX[1] = 44;
+cOffsetY[1] = 11;
+cOffsetX[2] = 60;
+cOffsetY[2] = 11;
+cOffsetX[3] = 76;
+cOffsetY[3] = 3;
+cOffsetX[4] = 92;
+cOffsetY[4] = -5;
+cOffsetX[5] = 108;
+cOffsetY[5] = -5;
+
+//@cc other sprites
+headSprite = sprChangkeyDragonHead;
+maskSprite = sprChangkeyDragonPreview;
+eyesSprite = sprChangkeyDragonEyes;
+limbSprite = sprChangkeyDragonLimbs;
+
+//@cc projectile 
+shotObject[0] = objChangkeyDragonFire;
+shotSprite[0] = sprChangkeyDragonFire;
+shotSFX[0] = sfxChangkeyDragonBreath;
+shotContactDamage[0] = 3;
+shotImageSpeed[0] = -1; //if greater than -1, set image speed of projectile to it.
+shotTimerMax[0] = 60;
+setShotSpeed[0] = true;
+shotXSpeed[0] = 3.5;
+shotYSpeed[0] = 3;
 </string>
           </argument>
         </arguments>
@@ -103,77 +156,30 @@ lastXscale = -1;
 
 if (entityCanStep())
 {
+    // Intro stuff
     introTimer--;
     if (introTimer == 0)
     {
         introDone = true;
         canHit = true;
     }
-    if (introDone == true)
+    if (introDone == true) // Actual fight
     {
-        if (!instance_exists(objChangkeyDragonMask))
+        if (!instance_exists(maskObject))
         {
-            var mask = instance_create(x, y, objChangkeyDragonMask);
+            var mask = instance_create(x, y, maskObject);
             mask.contactDamage = contactDamage;
             mask.parent = id;
+            mask.sprite_index = maskObjectSprite;
         }
         
         xspeed = waveSpeed * image_xscale;
         sineCounter += (pi * 2) / ((pi * 2) / (waveSpeed / waveWidth));
-        sineCounter2 += 0.27;
         yspeed = (sin(sineCounter) * waveSpeed * (waveHeight / waveWidth));
         
         if (_hitTimer &gt; 0)
         {
             _hitTimer -= 1;
-        }
-        
-        if ((changkeyNumber != 6) &amp;&amp; (canRegen == true))
-        {
-            var i;
-            var oy1 = 5;
-            var oy2 = 10;
-            var oy3 = 0;
-            for (i = 0; i &lt; 6; i++)
-            {
-                var fire = instance_create(x - 30 * image_xscale, y - 14, objChangkeyDragonTackleFire);
-                switch (i)
-                {
-                    case 0:
-                        fire.offsetX = 28;
-                        fire.offsetY = 3;
-                        break;
-                    case 1:
-                        fire.offsetX = 44;
-                        fire.offsetY = 11;
-                        break;
-                    case 2:
-                        fire.offsetX = 60;
-                        fire.offsetY = 11;
-                        break;
-                    case 3:
-                        fire.offsetX = 76;
-                        fire.offsetY = 3;
-                        break;
-                    case 4:
-                        fire.offsetX = 92;
-                        fire.offsetY = -5;
-                        break;
-                    case 5:
-                        fire.offsetX = 108;
-                        fire.offsetY = -5;
-                        break;
-                }
-                fire.parent = id;
-                fire.index = i;
-                var tail = instance_create(x, y, objChangkeyDragonTailFire);
-                tail.offsetX = 144;
-                tail.offsetY = 8;
-                tail.parent = id;
-                
-                changkeyNumber = 6;
-                canRegen = false;
-            }
         }
         
         if (image_index == 1)
@@ -190,8 +196,9 @@ if (entityCanStep())
         if ((x &lt;= view_xview - 145) || (x &gt;= view_xview + view_wview + 145))
         {
             shootTimer = shootTime - 5;
-            shootLimit = 0;
-            if ((canRegen == false) &amp;&amp; (changkeyNumber != 6))
+            shotsFired = 0;
+            waitTimer = waitOffscreen;
+            if ((canRegen == false) &amp;&amp; (changkeyNumber != childCount))
             {
                 canRegen = true;
             }
@@ -211,31 +218,100 @@ if (entityCanStep())
         }
         else
         {
-            canFlip = true;
-            
-            // Fire
-            shootTimer--;
-            if ((shootTimer &lt;= 0) &amp;&amp; (shootLimit &lt; 3) &amp;&amp; (instance_exists(objChangkeyDragonTackleFire)))
+            if (waitTimer &gt; 0)
             {
-                var shot = instance_create(x, y, objChangkeyDragonFire);
-                shot.xspeed = 3.5 * image_xscale;
-                if (shootLimit mod 2)
-                    shot.yspeed = 3;
-                else
-                    shot.yspeed = 4.5;
-                playSFX(sfxChangkeyDragonBreath);
-                image_index = 1;
-                shootTimer = 60;
-                shootLimit += 1;
+                visible = false;
+                canDamage = false;
+                canHit = false;
+                waitTimer --;
+            }   
+            else if (waitTimer == 0)
+            {
+                visible = true;
+                canDamage = true;
+                canHit = true;
+                waitTimer = -1;
+            }
+            else
+            {
+                canFlip = true;
+                
+                // Fire
+                shootTimer--;
+                var sh = shotsFired mod array_length_1d(shotObject);
+                if ((shootTimer &lt;= 0) &amp;&amp; (shotsFired &lt; shotMax) &amp;&amp; (instance_exists(childObject)))
+                {
+                    var shot = instance_create(x, y, shotObject[sh]);
+                    shot.sprite_index = shotSprite[sh];
+                    if (setShotSpeed[sh])
+                    {
+                        shot.xspeed = shotXSpeed[sh] * image_xscale;
+                        if (shotsFired mod 2)
+                            shot.yspeed = shotYSpeed[sh];
+                        else
+                            shot.yspeed = shotYSpeed[sh] + (shotYSpeed[sh]*0.5);
+                    }
+                    if (shotSFX[sh] != noone)
+                        playSFX(shotSFX[sh]);
+                    image_index = 1;
+                    shootTimer = shotTimerMax[sh];
+                    shotsFired += 1;
+                    shot.contactDamage = shotContactDamage[sh];
+                    if (shotImageSpeed[sh] &gt; -1)
+                    {
+                        shot.image_speed = shotImageSpeed[sh];
+                    }
+                }
             }
         }
     }
     lastXscale = image_xscale;
+    
+    // Animation + Changkey stuff
+    sineCounter2 += 0.27;
+    if ((changkeyNumber != childCount) &amp;&amp; (canRegen == true))
+    {
+        var i;
+        var oy1 = 5;
+        var oy2 = 10;
+        var oy3 = 0;
+        for (i = 0; i &lt; childCount; i++)
+        {
+            var fire = instance_create(x - 30 * image_xscale, y - 14, childObject);
+            fire.offsetX = cOffsetX[i];
+            fire.offsetY = cOffsetY[i];
+
+            fire.parent = id;
+            fire.index = i;
+            fire.sprite_index = childSprite;
+            fire.imgMin = childImgMin;
+            fire.imgMax = childImgMax;
+            
+            
+            changkeyNumber = childCount;
+            canRegen = false;
+        }
+        var tail = instance_create(x, y, tailObject);
+        tail.sprite_index = tailSprite;
+        tail.offsetX = 144;
+        tail.offsetY = 8;
+        tail.parent = id;
+        tail.imgMin = tailImgMin;
+        tail.imgMax = tailImgMax;
+            
+        
+    }
 }
-else if (dead)
+else if (!insideView())
 {
-    image_xscale = lastXscale;
+    //image_xscale = lastXscale;
     canFlip = false;
+    //mask_index = maskSprite;
+    sprite_index = headSprite;
+}
+if (killed) // change mask on death to fit explosion animation
+{
+    mask_index = maskSprite;
 }
 </string>
           </argument>
@@ -260,6 +336,8 @@ else if (dead)
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+sprite_index = headSprite;
+mask_index = headSprite;
 
 /// spawn
 canHit = false;
@@ -311,108 +389,100 @@ _hitTimer = 10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (iFrames == 1 || iFrames == 3)
+            <string>var imgAlph = (1 - ((floor(introTimer / (30 / 2)) * (30 / 2)) / 30));
+
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(true, c_white, 0, 0);
+    hitFlashEffect(true,c_white);
 }
 
-
-if (introDone == true)
+var ox = cos(sineCounter2 + 0.5);
+var oy = sin(sineCounter2 + 0.5);
+if (image_index == 1)
 {
-    var ox = cos(sineCounter2 + 0.5);
-    var oy = sin(sineCounter2 + 0.5);
-    if (image_index == 1)
+    ox = -1;
+    oy = -2;
+}
+    
+// Right Arm
+draw_sprite_ext(limbSprite, 0, (x - 22 * image_xscale) + floor(image_xscale * ox), (y + 10) + floor(oy), image_xscale, image_yscale, image_angle,
+    image_blend, imgAlph);
+
+// Right Leg
+    
+ox = cos(sineCounter2 + 3);
+oy = sin(sineCounter2 + 3);
+if (image_index == 1)
+{
+    ox = -1;
+    oy = -2;
+}
+    
+draw_sprite_ext(limbSprite, 2, (x - 89 * image_xscale) + floor(image_xscale * ox), (y + 18) + floor(oy), image_xscale, image_yscale, image_angle,
+    image_blend, imgAlph);
+    
+// Body
+draw_sprite_ext(sprite_index, image_index, round(x), round(y), image_xscale, image_yscale, image_angle,
+    image_blend, imgAlph);
+with (childObject)
+{
+    if (parent == other.id)
     {
-        ox = -1;
-        oy = -2;
+        visible = true;
+        event_perform(ev_draw, 0);
+        visible = false;
     }
+}
+
+// Left Arm
+
+ox = cos(sineCounter2 + 5);
+oy = sin(sineCounter2 + 6);
+if (image_index == 1)
+{
+    ox = -1;
+    oy = -2;
+}
+
+draw_sprite_ext(limbSprite, 1, (x - 42 * image_xscale) + floor(image_xscale * ox), (y + 6) + floor(oy), image_xscale, image_yscale, image_angle,
+    image_blend, imgAlph);
     
-    // Right Arm
-    draw_sprite_ext(sprChangkeyDragonLimbs, 0, (x - 22 * image_xscale) + floor(image_xscale * ox), (y + 10) + floor(oy), image_xscale, image_yscale, image_angle,
-        image_blend, image_alpha);
+// Left Leg
+ox = cos(sineCounter2 + 7);
+oy = sin(sineCounter2 + 7);
+if (image_index == 1)
+{
+    ox = -1;
+    oy = -2;
+}
+
+draw_sprite_ext(limbSprite, 3, (x - 110 * image_xscale) + floor(image_xscale * ox), (y + 20) + floor(oy), image_xscale, image_yscale, image_angle,
+    image_blend, imgAlph);
     
-    // Right Leg
-    
-    ox = cos(sineCounter2 + 3);
-    oy = sin(sineCounter2 + 3);
-    if (image_index == 1)
-    {
-        ox = -1;
-        oy = -2;
-    }
-    
-    draw_sprite_ext(sprChangkeyDragonLimbs, 2, (x - 89 * image_xscale) + floor(image_xscale * ox), (y + 18) + floor(oy), image_xscale, image_yscale, image_angle,
-        image_blend, image_alpha);
-    
-    // Body
-    drawSelf();
-    with (objChangkeyDragonTackleFire)
-    {
-        if (parent == other.id)
-        {
-            visible = true;
-            event_perform(ev_draw, 0);
-            visible = false;
-        }
-    }
-    
-    // Left Arm
-    
-    ox = cos(sineCounter2 + 5);
-    oy = sin(sineCounter2 + 6);
-    if (image_index == 1)
-    {
-        ox = -1;
-        oy = -2;
-    }
-    
-    draw_sprite_ext(sprChangkeyDragonLimbs, 1, (x - 42 * image_xscale) + floor(image_xscale * ox), (y + 6) + floor(oy), image_xscale, image_yscale, image_angle,
-        image_blend, image_alpha);
-    
-    // Left Leg
-    ox = cos(sineCounter2 + 7);
-    oy = sin(sineCounter2 + 7);
-    if (image_index == 1)
-    {
-        ox = -1;
-        oy = -2;
-    }
-    
-    draw_sprite_ext(sprChangkeyDragonLimbs, 3, (x - 110 * image_xscale) + floor(image_xscale * ox), (y + 20) + floor(oy), image_xscale, image_yscale, image_angle,
-        image_blend, image_alpha);
-    
-    // Draw eyes
-    if (!dead)
-    {
-        var frame = 1;
-        if (_hitTimer &gt; 0)
-            frame = 2;
-        if (changkeyNumber &lt;= 3)
-            frame = 3;
+// Draw eyes
+if (!killed)
+{
+    var frame = 1;
+    if (_hitTimer &gt; 0)
+        frame = 2;
+    if (changkeyNumber &lt;= 3)
+        frame = 3;
         
-        draw_sprite_ext(sprChangkeyDragonEyes, frame, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
-    }
-    else //if ((iFrames &gt; 0) || (dead))
-    {
-        draw_sprite_ext(sprChangkeyDragonEyes, 2, x, y, image_xscale, image_yscale, image_angle,
-            image_blend, image_alpha);
-    }
+    draw_sprite_ext(eyesSprite, frame, scrRoundProperly(x), scrRoundProperly(y), image_xscale, image_yscale, image_angle, image_blend, imgAlph);
 }
-else // Intro animation
+else //if ((iFrames &gt; 0) || (dead))
 {
-    draw_sprite_ext(sprChangkeyDragonEyes, 0, round(x), round(y), image_xscale, image_yscale, image_angle,
+    draw_sprite_ext(eyesSprite, 2, scrRoundProperly(x), scrRoundProperly(y), image_xscale, image_yscale, image_angle,
         image_blend, image_alpha);
-    draw_sprite_ext(sprite_index, -1, round(x), round(y), image_xscale,
-        image_yscale, image_angle, image_blend,
-        1 - ((floor(introTimer / (30 / 2)) * (30 / 2)) / 30));
-    draw_sprite_ext(sprChangkeyDragonEyes, 1, round(x), round(y), image_xscale,
-        image_yscale, image_angle, image_blend,
-        1 - ((floor(introTimer / (30 / 2)) * (30 / 2)) / 30));
 }
 
-if (iFrames == 1 || iFrames == 3)
+if (!introDone) // Draw eyes in intro
+    draw_sprite_ext(eyesSprite, 0, x, y, image_xscale, image_yscale, image_angle,
+        image_blend, image_alpha);
+
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(false, 0, 0, 0);
+    hitFlashEffect(false);
 }
 </string>
           </argument>

@@ -36,6 +36,8 @@ obj = objSwallowegg;
 delay = 64;
 timer = delay;
 col = 0;
+inWater = false;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

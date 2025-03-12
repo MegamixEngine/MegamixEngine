@@ -2,12 +2,15 @@
 
 var ladder = collision_line(bboxGetXCenter(), bbox_top + 2, bboxGetXCenter(), bbox_bottom, objLadder, false, false);
 
+var ladderUp = instance_position(spriteGetXCenter(), ((bbox_top * (gravDir < 0)) + (bbox_bottom * (gravDir > 0))) - gravDir, objLadder);
 var ladderDown = instance_position(spriteGetXCenter(), ((bbox_top * (gravDir < 0)) + (bbox_bottom * (gravDir > 0))) + gravDir, objLadder);
+
+var trueClimbSpeed = climbSpeed + (.7 * (global.stepBooster > 0));
 
 if (!playerIsLocked(PL_LOCK_CLIMB))
 {
     if (((instance_exists(ladder) && gravDir == -yDir)
-        || (instance_exists(ladderDown) && gravDir == yDir && ground))
+        || (instance_exists(ladderDown) && !instance_exists(ladderUp) && gravDir == yDir && ground))
         && !climbing)
     {
         // begin climbing:
@@ -19,7 +22,8 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
             isSlide = false;
             mask_index = mskMegaman;
             slideTimer = 0;
-            shiftObject(0, -gravDir, 1);
+
+            shiftObject(0, -gravDir, 0);
         }
         
         climbing = true;
@@ -37,7 +41,7 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
             // this could potentially cause us to phase into a solid
             // if one overlapped the ladder. :/
             x = ladderDown.x + 8;
-            y += climbSpeed * gravDir;
+            y += trueClimbSpeed * gravDir;
         }
         
         if (climbing)
@@ -47,10 +51,22 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
                 localPlayerLock[PL_LOCK_GRAVITY],
                 localPlayerLock[PL_LOCK_TURN]);
             ground = false;
+            
             if jumpCounter == 0
             {
                 jumpCounter += 1;
             }
+            
+            if (global.characterSelected[playerID] == CHAR_BASS)
+            {
+                dashJumped = false;
+            }
+            
+            if (checkCheats(cheatEnums.airSliding))
+            {
+                airDashed = false;
+            }
+            
             yspeed = 0;
             ladderXScale = image_xscale;
             climbShootXscale = ladderXScale;
@@ -59,14 +75,12 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
     
     if (climbing) // While climbing
     {
-        if (yDir != 0 && !isShoot) // Movement
+        if (yDir != 0 && (!isShoot || (isShoot == 4 && global.characterSelected[playerID] != CHAR_BASS))) // Movement
         {
-            yspeed = climbSpeed * yDir;
+            yspeed = trueClimbSpeed * yDir;
+
             climbSpriteTimer += 1;
-            if (!(climbSpriteTimer mod 8))
-            {
-                image_xscale = -image_xscale;
-            }
+            climbSpriteTimer = climbSpriteTimer mod 16;
         }
         else
         {
@@ -99,7 +113,7 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
             var climbedUp=false;
             if (!place_meeting(x, y, objLadder))
             {
-                if (place_meeting(x, y + (gravDir * climbSpeed), objLadder))
+                if (place_meeting(x, y + (gravDir * trueClimbSpeed), objLadder))
                 {   
                     playLandSound=0;
                     ground=false;  
@@ -115,8 +129,9 @@ if (!playerIsLocked(PL_LOCK_CLIMB))
             image_xscale = ladderXScale;
             if(climbedUp)
             {
-                yspeed = gravDir*climbSpeed;
-                event_inherited();
+                yspeed = gravDir*trueClimbSpeed;
+                event_perform_object(prtEntity, ev_step, ev_step_normal);
+                //event_inherited();
             }
         }
     }

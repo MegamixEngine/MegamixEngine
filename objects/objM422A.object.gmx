@@ -36,6 +36,7 @@ isTargetable = false;
 category = "aquatic";
 
 grav = 0;
+bubbleTimer = -1;
 
 // Enemy specific code
 image_speed = 0.1;

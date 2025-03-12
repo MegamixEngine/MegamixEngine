@@ -10,7 +10,7 @@
   <persistent>0</persistent>
   <colour>14854720</colour>
   <showcolour>-1</showcolour>
-  <code>playMusic("Rockboard.nsf","VGM",9,0,0);</code>
+  <code>playMusic("Rockboard.nsf", "VGM", 9, 0, 0, 0, 1);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

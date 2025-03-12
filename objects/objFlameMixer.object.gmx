@@ -57,6 +57,11 @@ drainDelay = 64;
 
 shiftVisible = 2;
 despawnRange = -1;
+
+if (checkCheats(cheatEnums.hugeWeapons))
+{
+    noFlicker = true;
+}
 </string>
           </argument>
         </arguments>
@@ -88,13 +93,17 @@ event_inherited();
 
 if (!global.frozen)
 {
+
     if (instance_exists(parent))
     {
         image_index += 0.325;
         drainDelay -= 1;
         
         image_yscale = parent.image_yscale;
-        
+        if (checkCheats(cheatEnums.hugeWeapons))
+        {
+            image_yscale *= 4;
+        }
         if (cDistance &lt; 24)
         {
             cDistance += 0.5;
@@ -102,10 +111,10 @@ if (!global.frozen)
         
         if (moveY == 0 || sourceX == -1)
         {
-            if (global.ammo[playerID, global.weapon[playerID]] &gt; 0 &amp;&amp; original &amp;&amp; drainDelay &lt;= 0) // drain weapon energy
+            if (ammoCanAfford(playerID) &amp;&amp; original &amp;&amp; drainDelay &lt;= 0 &amp;&amp; !checkCheats(cheatEnums.infiniteWeapons)) // drain weapon energy
             {
-                global.ammo[playerID, global.weapon[playerID]] -= 1 / 48 / (global.energySaver + 1);
-                if (global.ammo[playerID, global.weapon[playerID]] &lt;= 1 / 48 / (global.energySaver + 1) &amp;&amp; drainDelay &lt;= 0)
+                global.ammo[playerID, global.weapon[playerID]] -= 1 / 48 / ((global.energySaver + 1) + (global.energySaver == -1));
+                if (global.ammo[playerID, global.weapon[playerID]] &lt;= 1 / 48 / ((global.energySaver + 1) + (global.energySaver == -1)) &amp;&amp; drainDelay &lt;= 0)
                 {
                     global.ammo[playerID, global.weapon[playerID]] = 0;
                 }
@@ -124,7 +133,7 @@ if (!global.frozen)
             }
             
             
-            if (global.ammo[playerID, global.weapon[playerID]] == 0 &amp;&amp; drainDelay &lt;= 0)
+            if (!ammoCanAfford(playerID) &amp;&amp; drainDelay &lt;= 0)
             {
                 instance_create(x, y, objExplosion);
                 instance_destroy();
@@ -136,7 +145,8 @@ if (!global.frozen)
             cAngle += addAngle * postRotate;
         }
         
-        if (!global.keyShoot[playerID] &amp;&amp; moveY == 0)
+        if (((!global.keyShoot[playerID] &amp;&amp; !global.holdToggle) || (global.keyShootPressed[playerID] &amp;&amp; global.holdToggle))
+        &amp;&amp; moveY == 0)
         {
             moveY = -2 * sign(image_yscale);
         }
@@ -207,9 +217,10 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; !instance_exists(objSectionSwitcher))
+            <string>if (performShoot &amp;&amp; !instance_exists(objSectionSwitcher))
 {
-    j = fireWeapon(0, 0, objFlameMixer, 1, 2, 0, 0);
+    var ammoCost = 2 - (1 * (global.energySaver &gt; 0));
+    var j = fireWeapon(0, 0, objFlameMixer, 1, ammoCost, 0, 0);
     if (j)
     {
         with (j)
@@ -227,6 +238,11 @@ if (!global.frozen)
             inst.orgID = j.id;
             inst.postRotate = j.parent.image_xscale;
             inst.image_yscale = j.parent.image_yscale;
+            if (global.cheats[cheatEnums.hugeWeapons])
+            {
+                inst.image_xscale = sign(inst.image_xscale)*4;
+                //inst.image_yscale *= 4;
+            }
         }
     }
 }
@@ -300,10 +316,12 @@ specialDamageValue("ice", 4);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(x, y, objExplosion);
+            <string>
+instance_create(x, y, objExplosion);
 playSFX(sfxReflect);
 
 event_user(EV_DEATH);
+
 </string>
           </argument>
         </arguments>

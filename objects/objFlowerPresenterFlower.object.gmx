@@ -5,7 +5,7 @@
   <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -27,15 +27,14 @@
             <kind>1</kind>
             <string>event_inherited();
 
-respawn = false;
-
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 0;
+canHit = true;
 
 blockCollision = 0;
 grav = 0;
-
+reflectable = -1;
 despawnRange = 0;
 
 dir = 1;
@@ -58,6 +57,8 @@ image_speed = 0;
 image_index = 0;
 
 col = 0;
+
+isBakeryMan = 0;
 </string>
           </argument>
         </arguments>
@@ -189,6 +190,7 @@ if (entityCanStep())
         if (jetTimer &gt;= 4)
         {
             // &lt;-- jet animation speed here
+            if !isBakeryMan {
             if (sprite_index == sprFlowerPresenterFlowerOn)
             {
                 sprite_index = sprFlowerPresenterFlowerOff;
@@ -196,6 +198,18 @@ if (entityCanStep())
             else
             {
                 sprite_index = sprFlowerPresenterFlowerOn;
+            }
+            }
+            
+            if isBakeryMan {
+            if (sprite_index == sprdarkohexar_ToastOn)
+            {
+                sprite_index = sprdarkohexar_ToastOff;
+            }
+            else
+            {
+                sprite_index = sprdarkohexar_ToastOn;
+            }
             }
             
             jetTimer = 0;
@@ -218,6 +232,29 @@ else
 image_index = (imgIndex div 1) + (col * 8);
 contactDamage = 3;
 visible = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_perform_object(prtEntity,ev_other,ev_user10);
 </string>
           </argument>
         </arguments>

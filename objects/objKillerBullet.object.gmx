@@ -132,13 +132,8 @@ else if (dead)
             <kind>1</kind>
             <string>event_inherited();
 
-with (instance_create(bboxGetXCenter(), bboxGetYCenter(), objHarmfulExplosion))
-{
-    sprite_index = sprBombManBlast;
-    image_speed = 1;
-    image_index = 0;
-    playSFX(sfxClassicExplosion);
-}
+instance_create(bboxGetXCenter(), bboxGetYCenter(), objBombManBlast);
+playSFX(getGenericSFX(SFX_EXPLOSIONCLASSIC));
 </string>
           </argument>
         </arguments>

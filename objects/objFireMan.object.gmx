@@ -46,8 +46,8 @@ spriteShoot = sprFireManShoot;
 moveTimer = 30;
 
 // Health Bar
-healthBarPrimaryColor[1] = 18;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $15;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_1.nsf";
@@ -58,6 +58,9 @@ musicTrackNumber = 8;
 enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
+enemyDamageValue(objBusterShotHalfChargedProto, 2);
+enemyDamageValue(objBusterShotChargedProto, 4);
+enemyDamageValue(objNormalBusterShot, 2);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -69,9 +72,13 @@ enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 4);
 
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
+
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
-enemyDamageValue(objJewelSatellite, 6);
+enemyDamageValue(objJewelSatellite, 4);
 enemyDamageValue(objGrabBuster, 1);
 enemyDamageValue(objTripleBlade, 2);
 enemyDamageValue(objSlashClaw, 2);
@@ -103,15 +110,16 @@ enemyDamageValue(objConcreteShot, 4);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 6);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 2);
+enemyDamageValue(objChillSpike, 2);
 enemyDamageValue(objChillSpikeLanded, 4);
 
 // Misc
 enemyDamageValue(objPowerStone, 2);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 4);
 </string>
           </argument>
@@ -200,6 +208,7 @@ if (entityCanStep())
                         calibrateDirection();
                         xspeed = 0;
                         sprite_index = spriteShoot;
+                        image_index = 0;
                         phase = 1;
                     }
                     else
@@ -217,14 +226,21 @@ if (entityCanStep())
                 moveTimer--;
                 if (moveTimer == 29)
                 {
-                    var i = instance_create(x, y, objFireManStorm);
-                    i.image_xscale = image_xscale;
+                    entityCreateChild(6, -3, objFireManStorm);
+                    sprite_index = sprFireManShootNoArm;
                 }
+                if (moveTimer == 4)
+                    sprite_index = spriteShoot;
                 if (moveTimer &lt;= 0)
                 {
                     moveTimer = 40;
-                    phase = 0;
-                    image_xscale *= -1;
+                    if ((instance_exists(target)) &amp;&amp; (abs(round(target.x) - x) != 95))
+                        || (!instance_exists(target))
+                    {
+                        phase = 0;
+                        sprite_index = spriteRun;
+                        image_xscale *= -1;
+                    }
                 }
                 break;
         }

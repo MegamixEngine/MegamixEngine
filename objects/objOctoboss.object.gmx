@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>/// Big cctopus enemy that sinks into the ground
+//cc = col = 0 = NES palette &amp; green highlights, 1 for Game Gear palette &amp; blue highlights;
+//bulletSprite = sprite_index; if -1, define by colour or object, otherwise set bullet to this sprite.
 
 event_inherited();
 
@@ -37,10 +39,14 @@ healthpoints = healthpointsStart;
 contactDamage = 6;
 category = "aquatic, bulky";
 
+image_speed = 0;
+
+inWater = -1;
+
 yspeed = -0.5;
 yOffset = 36;
 yOffsetMax = 36;
-
+bubbleTimer = -1;
 detectorXOffset = 40;
 detectorYOffset = 32;
 detectorMOffset = 24;
@@ -130,6 +136,7 @@ if(spawned)
     yspeed = -0.5;
     yOffset = yOffsetMax;
     imageTimer = 1;
+    drawDelay = 4;
 }
 </string>
           </argument>
@@ -188,11 +195,16 @@ if (b &gt;= bbox_bottom - yOffset)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(!spawned)
+            <string>if(!spawned || drawDelay &gt; 0)
     exit;
-if (iFrames == 1 || iFrames == 3)
+var ii = image_index;
+var offset = 0;
+
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(true, c_white, 0, 0);
+
+    ii = 2 + offset;
+
 }
 
 // makes octoboss face its spawned direction, regardless of other scripts.
@@ -201,7 +213,7 @@ if (iFrames == 1 || iFrames == 3)
 if (xscaleStorage &lt;= 0)
 {
     image_xscale = 1;
-    draw_sprite_part_ext(sprite_index, image_index, 0, 0, sprite_width,
+    draw_sprite_part_ext(sprite_index, ii, 0, 0, sprite_width,
         sprite_height - yOffset, round(x - 24) + sprite_width, round(y - 24),
         -image_xscale, image_yscale, image_blend, image_alpha);
     image_xscale = -1;
@@ -209,7 +221,7 @@ if (xscaleStorage &lt;= 0)
 else
 {
     image_xscale = 1;
-    draw_sprite_part_ext(sprite_index, image_index, 0, 0, sprite_width,
+    draw_sprite_part_ext(sprite_index, ii, 0, 0, sprite_width,
         ceil(sprite_height - yOffset), round(x - 24), round(y - 24),
         image_xscale, image_yscale, image_blend, image_alpha);
 }
@@ -222,10 +234,6 @@ if (imageTimer == 1)
     imageTimer = 0;
 }
 
-if (iFrames == 1 || iFrames == 3)
-{
-    d3d_set_fog(false, 0, 0, 0);
-}
 </string>
           </argument>
         </arguments>

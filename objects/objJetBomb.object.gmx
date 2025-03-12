@@ -86,7 +86,7 @@ if (entityCanStep())
         ID = instance_create(spriteGetXCenter(), spriteGetYCenter(),
             objExplosion);
         ID.xscale = image_xscale;
-        playSFX(sfxMinorExplosion);
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM5));
         
         // If megaman exists, grab his angle, otherwise grab some random different angle.
         if (instance_exists(target))
@@ -219,8 +219,8 @@ for (var i = 0; i &lt; 4; i++)
     ID.image_speed = 0;
     ID.moveAtSpeed = 2;
 }
-stopSFX(sfxEnemyHit);
-playSFX(sfxExplosion);
+stopSFX(getGenericSFX(SFX_ENEMYHIT));
+playSFX(getGenericSFX(SFX_EXPLOSIONMM5));
 </string>
           </argument>
         </arguments>

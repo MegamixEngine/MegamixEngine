@@ -38,6 +38,7 @@ contactDamage = 0;
 
 respawn = false;
 itemDrop = -1;
+killOverride = false;
 
 // dont use
 canHit = true;
@@ -46,7 +47,7 @@ spd = 0.5;
 
 despawnRange = 48;
 respawnRange = 48;
-
+bubbleTimer = -1;
 if (instance_exists(objKabatoncuePlatform))
 {
     parent = instance_nearest(x, y, objKabatoncuePlatform);
@@ -54,6 +55,39 @@ if (instance_exists(objKabatoncuePlatform))
 else
 {
     parent = noone;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (entityCanStep())
+{
+    if (!place_meeting(x, y - 1, objKabatoncuePlatform)
+        &amp;&amp; !place_meeting(x, y - 1, objKabatoncuePlatformPiece))
+    {
+        if (offset &gt; 0) // Offset for draw event
+            offset -= spd;
+        y -= spd;
+    }
 }
 </string>
           </argument>
@@ -85,10 +119,11 @@ if (entityCanStep())
     if (!instance_exists(parent))
     {
         instance_destroy();
+        exit;
     }
     
     // :aesthetics:
-    if (place_meeting(x, y - 5, objKabatoncuePlatform))
+    if (place_meeting(x, y - 4, objKabatoncuePlatform))
     {
         image_index = 0;
     }
@@ -102,17 +137,13 @@ if (entityCanStep())
     {
         if (offset &gt; 0)
             offset -= spd;
-        yspeed = -spd;
-    }
-    else
-    {
-        yspeed = 0;
+        y -= spd;
     }
     
     if (!place_meeting(x, y + 4, objSolid)
         &amp;&amp; !place_meeting(x, y + 4, objKabatoncuePlatformPiece))
     {
-        y += 16;
+        shiftObject(0, 16, 1);
         while (place_meeting(x, y, objSolid)
             || place_meeting(x, y, objKabatoncuePlatformPiece))
             y -= 1;
@@ -142,7 +173,7 @@ if (entityCanStep())
             <kind>1</kind>
             <string>event_inherited();
 
-if (other.penetrate &lt; 2 &amp;&amp; other.pierces &lt; 2 &amp;&amp; other.object_index != objBusterShotCharged)
+if (other.penetrate &lt; 2 &amp;&amp; other.pierces &lt; 2 &amp;&amp; other.object_index != objBusterShotCharged &amp;&amp; other.object_index != objBusterShotChargedProto)
 {
     other.penetrate = 0;
     other.pierces = 0;

@@ -36,6 +36,9 @@ category = "mets, aquatic";
 facePlayerOnSpawn = true;
 
 grav = 0.1;
+//bubbleSpawnX = x+8*image_xscale;
+
+behaviourType = 1;
 
 // Enemy specific code
 radius = 4 * 16; // Four blocks; the radius that MM needs to enter to trigger the shooting of the met
@@ -89,22 +92,22 @@ if (entityCanStep())
     
     if (yspeed &gt; 0 &amp;&amp; image_index == 5)
     {
-        image_index = 4;
+        image_index = 3;
     }
     
-    if (ground &amp;&amp; image_index &gt; 3)
+    if (ground &amp;&amp; image_index &gt; 2)
     {
         canShoot = true;
         cooldownTimer = -70;
         xspeed = 0;
-        animTimer = 24;
-        image_index = 3;
+        animTimer = 16;
+        image_index = 2;
     }
     if (animTimer &gt; 0)
     {
         animTimer -= 1;
     }
-    if (animTimer == 16 || animTimer == 8 || animTimer == 1)
+    if (animTimer == 8 || animTimer == 1)
     {
         image_index -= 1;
     }

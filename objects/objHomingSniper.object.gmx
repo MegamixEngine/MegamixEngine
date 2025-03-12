@@ -46,6 +46,8 @@ newAngle = 0;
 angle = 0;
 animFrame = 0;
 spd = 3;
+
+autoFireSet = 14;
 </string>
           </argument>
         </arguments>
@@ -68,13 +70,19 @@ spd = 3;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (image_xscale == -1)
+            <string>
+if (image_xscale &lt; 0)
 {
     image_xscale = 1;
     angle = 180;
 }
-
 image_yscale = 1;
+
+if (global.cheats[cheatEnums.hugeWeapons])
+{
+    image_xscale = sign(image_xscale)*4;
+    image_yscale = sign(image_yscale)*4;
+}
 
 event_inherited();
 
@@ -141,63 +149,66 @@ if (isController) // Code for the controller
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>other</whoName>
+        <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
-
-if (!global.frozen &amp;&amp; !global.switchingSections)
+            <string>with (other)
 {
-    if (!isController) // Code for the missiles
+    event_inherited();
+    
+    if (!global.frozen &amp;&amp; !global.switchingSections)
     {
-        // behaviourType = 4;
-        
-        target = controllerTargets[0];
-        
-        if (!instance_exists(target))
+        if (!isController) // Code for the missiles
         {
-            event_user(0);
-        }
-        else if (target.dead || !target.canHit)
-        {
-            event_user(0);
-        }
-        
-        if (target != controllerTargets[0])
-        {
-            controllerTargets[0] = target;
-            crosshairFrame[0] = 0;
-        }
-        
-        timer++;
-        
-        if (instance_exists(target)) // Aiming
-        {
-            var newAngle = point_direction(x, y, bboxGetXCenterObject(target), bboxGetYCenterObject(target));
-            newAngle = wrapAngle(floor(newAngle / 30) * 30);
+            // behaviourType = 4;
             
-            if (!(timer mod 4))
+            target = controllerTargets[0];
+            
+            if (!instance_exists(target))
             {
-                if (angle != newAngle)
+                event_user(0);
+            }
+            else if (target.dead || !target.canHit)
+            {
+                event_user(0);
+            }
+            
+            if (target != controllerTargets[0])
+            {
+                controllerTargets[0] = target;
+                crosshairFrame[0] = 0;
+            }
+            
+            timer++;
+            
+            if (instance_exists(target)) // Aiming
+            {
+                var newAngle = point_direction(x, y, bboxGetXCenterObject(target), bboxGetYCenterObject(target));
+                newAngle = wrapAngle(floor(newAngle / 30) * 30);
+                
+                if (!(timer mod 4))
                 {
-                    var delta = 360 - angle;
-                    var nangl = (newAngle + delta) % 360;
-                    var rotDir = 1 - ((nangl &gt;= 180) * 2);
-                    
-                    angle = wrapAngle(angle + 30 * rotDir);
+                    if (angle != newAngle)
+                    {
+                        var delta = 360 - angle;
+                        var nangl = (newAngle + delta) % 360;
+                        var rotDir = 1 - ((nangl &gt;= 180) * 2);
+                        
+                        angle = wrapAngle(angle + 30 * rotDir);
+                    }
                 }
             }
+            
+            xspeed = cos(degtorad(angle)) * spd;
+            yspeed = -sin(degtorad(angle)) * spd;
+            
+            animFrame = (animFrame + 0.25) mod 2;
+            
+            image_index = floor(animFrame) * 8 + floor(((angle div 45) * 45) / 45);
         }
-        
-        xspeed = cos(degtorad(angle)) * spd;
-        yspeed = -sin(degtorad(angle)) * spd;
-        
-        animFrame = (animFrame + 0.25) mod 2;
-        
-        image_index = floor(animFrame) * 8 + floor(((angle div 45) * 45) / 45);
     }
 }
 </string>
@@ -222,7 +233,7 @@ if (!global.frozen &amp;&amp; !global.switchingSections)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.ammo[playerID, global.weapon[playerID]] &lt;= 0)
+            <string>if (!ammoCanAfford(playerID))
 {
     with (objHomingSniper)
     {
@@ -235,12 +246,12 @@ if (!global.frozen &amp;&amp; !global.switchingSections)
 }
 
 var bulletLimit = 6;
-var weaponCost = 1;
+var ammoCost = 1 - (0.5 * (global.energySaver &gt; 0));
 var action = 1; // 0 - no frame; 1 - shoot; 2 - throw
 var willStop = 0; // If this is 1, the player will halt on shooting ala Metal Blade.
 
-var chargeTime = 60; // Set charge time for this weapon
-var initChargeTime = 20;
+chargeTime = 60; // Set charge time for this weapon
+initChargeTime = 20;
 
 if (global.enableCharge &amp;&amp; !playerIsLocked(PL_LOCK_CHARGE))
 {
@@ -254,7 +265,7 @@ if (global.enableCharge &amp;&amp; !playerIsLocked(PL_LOCK_CHARGE))
         }
     }
     
-    if (!hasController &amp;&amp; (global.keyShoot[playerID]))
+    if (!hasController) &amp;&amp; (performShoot)
     {
         i = fireWeapon(16, 0, objHomingSniper, 1, 0, 0, willStop);
         if (i)
@@ -265,18 +276,18 @@ if (global.enableCharge &amp;&amp; !playerIsLocked(PL_LOCK_CHARGE))
             i.respawnRange = -1;
             i.despawnRange = -1;
         }
+    //}
     }
 }
 
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+if (performShoot &amp;&amp; !releaseCharge)
 {
-    i = fireWeapon(16, 0, objHomingSniper, bulletLimit, weaponCost, action, willStop);
+    i = fireWeapon(16, 0, objHomingSniper, bulletLimit, ammoCost, action, willStop);
     if (i)
     {
         i.xspeed = 1.5 * image_xscale;
+        autoFireDelay = i.autoFireSet;
         playSFX(sfxMissileLaunch);
-        
-        // playSFX(choose(sfxHomingSniper,sfxHomingSniper2,sfxHomingSniper3));
     }
 }
 
@@ -286,139 +297,47 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 
 if (global.enableCharge)
 {
-    if ((global.keyShoot[playerID] || (isSlide &amp;&amp; chargeTimer &gt; 0))
-        &amp;&amp; !playerIsLocked(PL_LOCK_CHARGE))
+    if (releaseCharge &amp;&amp; !isSlide)
     {
-        if (!isShoot)
+        /////////////////////
+        // ACTUAL SHOOTING //
+        /////////////////////
+        var controller = noone;
+        with (objHomingSniper)
         {
-            isCharge = true;
-            
-            if (!isSlide)
+            if (isController &amp;&amp; parent == other.id)
             {
-                initChargeTimer += 1;
-            }
-            
-            if (initChargeTimer &gt;= initChargeTime)
-            {
-                if (!chargeTimer)
-                {
-                    playSFX(sfxCharging);
-                }
-                
-                chargeTimer++;
-                
-                if (chargeTimer &lt; chargeTime)
-                {
-                    var chargeTimeDiv, chargeCol;
-                    chargeTimeDiv = round(chargeTime / 3);
-                    
-                    if (chargeTimer &lt; chargeTimeDiv)
-                    {
-                        chargeCol = make_color_rgb(168, 0, 32); // Dark red
-                    }
-                    else if (chargeTimer &lt; chargeTimeDiv * 2)
-                    {
-                        chargeCol = make_color_rgb(228, 0, 88); // Red (dark pink)
-                    }
-                    else
-                    {
-                        chargeCol = make_color_rgb(248, 88, 152); // Light red (pink)
-                    }
-                    
-                    if (chargeTimer mod 6 &gt;= 0 &amp;&amp; chargeTimer mod 6 &lt; 3)
-                    {
-                        global.outlineCol[playerID] = chargeCol;
-                    }
-                    else
-                    {
-                        global.outlineCol[playerID] = c_black;
-                    }
-                }
-                else
-                {
-                    if (chargeTimer == chargeTime)
-                    {
-                        audio_stop_sound(sfxCharging);
-                        playSFX(sfxCharged);
-                    }
-                    if (!inked)
-                    {
-                        switch (floor(chargeTimer / 3 mod 3))
-                        {
-                            case 0: // Light blue helmet, black shirt, blue outline 
-                                global.primaryCol[playerID] = make_color_rgb(0, 232, 216);
-                                global.secondaryCol[playerID] = c_black;
-                                global.outlineCol[playerID] = make_color_rgb(172, 124, 0);
-                                break;
-                            case 1: // Black helmet, blue shirt, light blue outline 
-                                global.primaryCol[playerID] = c_black;
-                                global.secondaryCol[playerID] = make_color_rgb(172, 124, 0);
-                                global.outlineCol[playerID] = make_color_rgb(0, 232, 216);
-                                break;
-                            case 2: // Blue helmet, light blue shirt, blue outline 
-                                global.primaryCol[playerID] = make_color_rgb(172, 124, 0);
-                                global.secondaryCol[playerID] = make_color_rgb(0, 232, 216);
-                                global.outlineCol[playerID] = c_black;
-                                break;
-                        }
-                    }
-                }
+                controller = id;
+                break;
             }
         }
-    }
-    else // Release the charge shot
-    {
-        if (!playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; chargeTimer != 0 &amp;&amp; !isSlide)
+        
+        if (controller)
         {
-            /////////////////////
-            // ACTUAL SHOOTING //
-            /////////////////////
-            var controller = noone;
-            with (objHomingSniper)
+            for (var z = 0; z &lt; array_length_1d(controller.controllerTargets); z++)
             {
-                if (isController &amp;&amp; parent == other.id)
+                if (instance_exists(controller.controllerTargets[z]))
                 {
-                    controller = id;
-                    break;
-                }
-            }
-            
-            if (controller)
-            {
-                for (var z = 0; z &lt; array_length_1d(controller.controllerTargets); z++)
-                {
-                    if (instance_exists(controller.controllerTargets[z]))
+                    i = fireWeapon(16, 0, objHomingSniper, bulletLimit + 1, ammoCost, action, willStop);
+                    if (i)
                     {
-                        i = fireWeapon(16, 0, objHomingSniper, bulletLimit + 1, weaponCost, action, willStop);
-                        if (i)
+                        if (!z)
                         {
-                            if (!z)
-                            {
-                                playSFX(sfxMissileLaunch);
-                                
-                                // playSFX(choose(sfxHomingSniper,sfxHomingSniper2,sfxHomingSniper3));
-                            }
-                            i.controllerTargets[0] = controller.controllerTargets[z];
-                            i.crosshairFrame[0] = 2;
+                            playSFX(sfxMissileLaunch);
                         }
-                        else
-                        {
-                            break;
-                        }
+                        i.controllerTargets[0] = controller.controllerTargets[z];
+                        i.crosshairFrame[0] = 2;
+                    }
+                    else
+                    {
+                        break;
                     }
                 }
-                with (controller)
-                {
-                    instance_destroy();
-                }
             }
-            
-            // Reset all charging stuff
-            chargeTimer = 0;
-            initChargeTimer = 0;
-            audio_stop_sound(sfxCharged);
-            audio_stop_sound(sfxCharging);
-            playerPalette(); // Reset the colors
+            with (controller)
+            {
+                instance_destroy();
+            }
         }
     }
 }
@@ -493,6 +412,7 @@ instance_create(x, y, objExplosion);
           <argument>
             <kind>1</kind>
             <string>event_user(EV_DEATH);
+playSFX(sfxReflect);
 </string>
           </argument>
         </arguments>
@@ -536,9 +456,24 @@ with (object_index)
     }
 }
 
-with (objDestroyableBlock)
+/*with (objDestroyableBlock)
 {
     if (weakness != other.object_index)
+        canHit *= -1;
+}*/
+
+with (objDestroyableBlock)
+{
+    if (object_index != objSecurityCrystal)
+    {
+        if (weakness != other.object_index)
+            canHit *= -1;
+    }
+}
+
+with (objSecurityCrystal)
+{
+    if (weakness != global.weaponID[? other.object_index])
         canHit *= -1;
 }
 
@@ -613,9 +548,24 @@ if (!instance_exists(target) &amp;&amp; targetsToIgnore[0] != -1) // Find the le
     }
 }
 
-with (objDestroyableBlock)
+/*with (objDestroyableBlock)
 {
     if (weakness != other.object_index)
+        canHit *= -1;
+}*/
+
+with (objDestroyableBlock)
+{
+    if (object_index != objSecurityCrystal)
+    {
+        if (weakness != other.object_index)
+            canHit *= -1;
+    }
+}
+
+with (objSecurityCrystal)
+{
+    if (weakness != global.weaponID[? other.object_index])
         canHit *= -1;
 }
 </string>
@@ -676,7 +626,9 @@ for (var i = 0; i &lt; array_length_1d(controllerTargets); i++)
         var lastFrame = crosshairFrame[i];
         crosshairFrame[i] = min(img, crosshairFrame[i] + 0.4);
         
-        draw_sprite(sprHomingSniperCrosshair, floor(crosshairFrame[i]),
+        var spr = sprHomingSniperCrosshair;
+        
+        draw_sprite(spr, floor(crosshairFrame[i]),
             bboxGetXCenterObject(controllerTargets[i]),
             bboxGetYCenterObject(controllerTargets[i]));
         

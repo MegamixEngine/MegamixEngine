@@ -40,6 +40,8 @@ grav = 0;
 bubbleTimer = -1;
 
 initImageIndex = -1;
+
+behaviourType = 1;
 </string>
           </argument>
         </arguments>

@@ -39,14 +39,15 @@ phaseShieldTimer = 90;
 shield = 0;
 leafTimer = 0;
 phaseShieldTimerStart = phaseShieldTimer;
+hasJumped = false;
 
 _im = 0; // required for animationLoop()
 stopOnFlash = true;
 category = "nature";
 
 // Health Bar
-healthBarPrimaryColor[1] = 20;
-healthBarSecondaryColor[1] = 46;
+healthBarPrimaryColor[1] = $17;
+healthBarSecondaryColor[1] = $36;
 
 // Music
 music = "Mega_Man_2.nsf";
@@ -57,6 +58,8 @@ musicTrackNumber = 17;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -67,6 +70,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 0);
 enemyDamageValue(objIceWall, 4);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -102,15 +109,16 @@ enemyDamageValue(objConcreteShot, 2);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 2);
+enemyDamageValue(objChillSpike, 2);
 enemyDamageValue(objChillSpikeLanded, 4);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 4);
 </string>
           </argument>
@@ -170,23 +178,30 @@ if (entityCanStep())
                         var i;
                         for (i = 0; i &lt; 8; i += 1)
                         {
-                            shield = instance_create(x, y, objWoodLeafShield);
-                            shield.image_xscale = image_xscale;
+                            shield = entityCreateChild(0, 0, objWoodLeafShield);
+                            shield.myObject = id;
                             shield.direction = i * 45;
                             shield.despawnRange = -1;
+                            shield.reflectable = 0;
                             with (shield)
                             {
+                                if (image_xscale &gt; 0)
+                                        image_index = 4;
+                                else if (other.image_xscale &lt; 0)
+                                        image_index = 0;
                                 if (direction / 90 != floor(direction / 90))
                                 {
                                     visible = false;
+									killOverride = false;
                                 }
                             }
                         }
                     }
+                    
                     animationLoop(1, 2, poseImgSpeed);
                     if (leafTimer &lt;= 0)
                     {
-                        instance_create(x, y - 16, objWoodRisingLeaves);
+                        entityCreateChild(0, -16, objWoodRisingLeaves);
                         leafTimer = 30;
                     }
                 }
@@ -210,21 +225,43 @@ if (entityCanStep())
                         image_index = 4;
                         if instance_exists(objWoodLeafShield)
                         {
-                            objWoodLeafShield.xspeed = 3.5 * image_xscale;
-                            objWoodLeafShield.yspeed = 0;
-                            objWoodLeafShield.followWood = false;
-                            objWoodLeafShield.despawnRange = 4;
+                            with objWoodLeafShield
+                            {
+                                if myObject == other.id
+                                {
+                                    xspeed = 3.5 * other.image_xscale;
+                                    yspeed = 0;
+                                    if (other.image_xscale &gt; 0)
+                                        image_index = 4;
+                                    else if (other.image_xscale &lt; 0)
+                                        image_index = 0;
+                                    followWood = false;
+                                    despawnRange = 4;
+                                }
+                            }
                         }
                         for (i = 1; i &lt; 5; i += 1)
                         {
+                            var xx = view_xview[0];
+                            var yy = view_yview[0] + 16;
+                            
                             if (image_xscale &lt; 0)
                             {
-                                instance_create(view_xview[0] + 48 * i, view_yview[0] + 16, objWoodFallingLeaves);
+                                xx += (48 * i);
                             }
                             else
                             {
-                                instance_create(view_xview[0] + view_wview[0] - 48 * i, view_yview[0] + 16, objWoodFallingLeaves);
+                                xx += (view_wview[0] - (48 * i));
                             }
+                            
+                            with (entityCreateChild(0, 0, objWoodFallingLeaves))
+                            {
+                                x = xx;
+                                xstart = x;
+                                y = yy;
+                                ystart = y;
+                            }
+                            
                         }
                         phase = 3;
                         leafTimer = 15; // reusing this again
@@ -256,11 +293,25 @@ if (entityCanStep())
                     leafTimer -= 1;
                     if (leafTimer &lt;= 0)
                     {
-                        sprite_index = sprWoodMan; // not sure as to why but this needs to be here
-                        image_index = 6;
-                        yspeed = -5;
-                        xspeed = 1 * image_xscale;
-                        leafTimer = 0;
+                        if (!hasJumped)
+                        {
+                            sprite_index = sprWoodMan; // not sure as to why but this needs to be here
+                            image_index = 6;
+                            yspeed = -5;
+                            xspeed = 1 * image_xscale;
+                            leafTimer = 8;
+                            hasJumped = true;
+                        }
+                        else
+                        {
+                            sprite_index = sprWoodMan;
+                            image_index = 0;
+                            xspeed = 0;
+                            yspeed = 0;
+                            leafTimer = 0;
+                            hasJumped = false;
+                            phase = 4;
+                        }
                     }
                 }
                 else if (image_index == 6)
@@ -268,10 +319,9 @@ if (entityCanStep())
                     if (ground)
                     {
                         sprite_index = sprWoodMan;
-                        image_index = 0;
+                        image_index = 5;
                         xspeed = 0;
                         yspeed = 0;
-                        phase = 4
                     }
                 }
                 break;
@@ -322,8 +372,11 @@ with (objWoodRisingLeaves)
 }
 with (objWoodLeafShield)
 {
-    instance_create(x, y, objExplosion);
-    instance_destroy();
+    if (visible) &amp;&amp; (myObject == other.id)
+    {
+        instance_create(x, y, objExplosion);
+        instance_destroy();
+    }
 }
 event_inherited();
 </string>

@@ -39,6 +39,8 @@ healthpointsStart = healthpoints;
 contactDamage = 0;
 
 shiftVisible = 1;
+killOverride = false;
+canIce = false;
 
 // super arm interaction
 category = "superArmTarget";

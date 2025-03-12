@@ -30,6 +30,7 @@ event_inherited();
 
 grav = 0;
 blockCollision = 0;
+bubbleTimer = -1;
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;

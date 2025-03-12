@@ -133,13 +133,13 @@
     <instance objName="objRightScrolling" x="2560" y="0" name="inst_D0A66D19" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="4096" y="224" name="inst_AC7A0D2E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="4352" y="224" name="inst_33378FE4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="880" y="384" name="inst_03F1B74D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1408" y="192" name="inst_B931DE2C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1920" y="176" name="inst_6BECA96D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="2432" y="176" name="inst_38D7DAFE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="2944" y="176" name="inst_A18C8FDC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="3456" y="176" name="inst_AC5E8704" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="3952" y="176" name="inst_6C138854" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="880" y="384" name="inst_03F1B74D" locked="0" code="name = &quot;Sonic Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1408" y="192" name="inst_B931DE2C" locked="0" code="name = &quot;Toad Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1920" y="176" name="inst_6BECA96D" locked="0" code="name = &quot;Mercury&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="2432" y="176" name="inst_38D7DAFE" locked="0" code="name = &quot;Oil Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="2944" y="176" name="inst_A18C8FDC" locked="0" code="name = &quot;Ice Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="3456" y="176" name="inst_AC5E8704" locked="0" code="name = &quot;Blizzard Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="3952" y="176" name="inst_6C138854" locked="0" code="name = &quot;Chill Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="4320" y="384" name="inst_4F3DE13B" locked="0" code="light = 1;&#xA;myRoom = lvlShowcaseHUB;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objETank" x="368" y="384" name="inst_3F9CEFD0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="896" y="384" name="inst_F9FF827E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

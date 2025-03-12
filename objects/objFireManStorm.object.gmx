@@ -107,14 +107,8 @@ if (entityCanStep())
                         instance_destroy();
                     }
                 }
-                if (image_xscale == -1)
-                {
-                    instance_create(x + xspeed, y, objFireFlame);
-                }
-                if (image_xscale == 1)
-                {
-                    instance_create(x - xspeed, y, objFireFlame);
-                }
+                
+                entityCreateChild(-xspeed, 4, objFireFlame);
                 
                 // flameTimer = 0;
                 //}

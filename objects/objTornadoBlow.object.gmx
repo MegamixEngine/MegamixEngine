@@ -30,6 +30,7 @@
 bulletLimitCost = 1;
 
 contactDamage = 4;
+inWater = -1;
 
 image_speed = 0.2;
 
@@ -46,6 +47,10 @@ hasDoneGrav = false;
 
 init = 0;
 location = 0;
+attackTimer = choose(0,1,2);
+activated = false;
+multPal[0] = $1aAC00;
+multPal[1] = $8b423d
 
 playSFX(sfxTornadoBlow);
 </string>
@@ -72,12 +77,18 @@ playSFX(sfxTornadoBlow);
             <kind>1</kind>
             <string>event_inherited();
 
-// restore normal grav
-if (location == 4)
+// restore normal grav if last tornado blow
+if (instance_exists(parent))
 {
     with (parent)
     {
-        gravfactor = (gravfactor / (0.6));
+        gravfactor = global.tornadoBlow;
+    }
+    
+    with (objMegaman)
+    {
+        if (id != other.parent.id)
+            gravfactor = other.parent.gravfactor;
     }
 }
 </string>
@@ -106,6 +117,7 @@ if (location == 4)
 
 if (!global.frozen)
 {
+    attackTimer ++;
     if (!init)
     {
         x = view_xview;
@@ -134,22 +146,34 @@ if (!global.frozen)
                 y += 128 * image_yscale;
                 break;
         }
+        
         init = 1;
     }
     
     if (instance_exists(parent))
     {
+        if (activated)
+        {
         if (!hasDoneGrav &amp;&amp; location == 4)
         {
             parent.gravfactor *= 0.6;
             hasDoneGrav = true;
+            
         }
         
+        with (objMegaman)
+        {
+            if (id != other.parent.id)
+                gravfactor = other.parent.gravfactor;
+        }
+        
+        }
         if ((image_yscale &gt; 0 &amp;&amp; y &lt; view_yview)
             || (image_yscale &lt; 0 &amp;&amp; y &gt; view_yview + view_hview))
         {
             event_user(EV_DEATH);
         }
+        
     }
 }
 </string>
@@ -174,14 +198,41 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
+     var tornadoBlow = false;
+        if (!instance_exists(objTornadoBlow))
+        tornadoBlow = true;
+        
+    var ammoCost = 7 - (2 * (global.energySaver &gt; 0));
+    
     for (var z = 1; z &lt;= 4; z++)
     {
-        i = fireWeapon(0, 0, objTornadoBlow, (z == 1), (7 * (z == 1)), 1, 0);
+        i = fireWeapon(0, 0, objTornadoBlow, (z == 1), (ammoCost * (z == 1)), 1, 0);
+        
         if (instance_exists(i))
         {
             i.location = z;
+            
+            i.activated = tornadoBlow;
+            if (tornadoBlow)
+            global.tornadoBlow = gravfactor;
+            //i.startgravfactor = gravfactor;
+            
+            
+            if (instance_exists(objToxinHandler)) // Nibul and Fooley wuz here
+            {
+            if (tornadoBlow)
+            global.tornadoBlow = objToxinHandler.gravOriginal;
+                //i.startgravfactor = objToxinHandler.gravOriginal;
+            }
+            
+            /*if (z == 4)
+            {
+                gravfactor *= 0.6;
+            }*/
+            
+            i.visible = false;
         }
         else
         {
@@ -259,7 +310,9 @@ specialDamageValue("floating", 6);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (other)
+            <string>event_inherited();
+
+with (other)
 {
     par = object_is_ancestor(object_index, prtMiniBoss) || (boss == 1);
     if (par || !canHit || !killOverride)
@@ -273,16 +326,32 @@ specialDamageValue("floating", 6);
         
         var copy = instance_copy(false);
         _i.sprite_index = sprite_index;
+        _i.image_xscale = image_xscale;
+        _i.image_yscale = image_yscale;
         copy.sprite_index = sprite_index;
         copy.image_index = image_index;
         copy.image_xscale = image_xscale;
         copy.image_yscale = image_yscale;
         copy.mask_index = sprDot;
+        if (object_index == objShadowClone) // yay woohoo clone hell
+        {
+            _i.spriteX = spriteX;
+            _i.spriteY = spriteY;
+            _i.targetCID = targetCID;
+            copy.spriteX = spriteX;
+            copy.spriteY = spriteY;
+            copy.targetCID = targetCID;
+        }
+        if (object_index == objCamouflametall) // Camouflametall disguise
+        {
+            _i.targetCID = player_costume_id;
+            copy.targetCID = player_costume_id;
+        }
         _i.objectCopy = copy;
         
         instance_deactivate_object(copy);
         
-        playSFX(sfxEnemyHit);
+        playSFX(getGenericSFX(SFX_ENEMYHIT));
     }
 }
 </string>
@@ -309,6 +378,39 @@ specialDamageValue("floating", 6);
             <kind>1</kind>
             <string>// Nothing
 playSFX(sfxReflect);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1)
+{
+    shaderSetColorreplace(
+        multPal[0], global.multiplayerPalette[playerID,global.weapon[playerID]]
+    );
+}
+event_inherited();
+if (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1)
+{
+    shader_reset();
+}
 </string>
           </argument>
         </arguments>

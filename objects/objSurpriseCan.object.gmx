@@ -30,9 +30,16 @@
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 
+image_speed = 0.1;
+killOverride = false;
+
+// @cc - Sets item inside. By default, it will pick an item at random.
 myItem = 0;
 
 isSolid = 1;
+bubbleTimer = -1;
+
+respawnupondeath = true;
 </string>
           </argument>
         </arguments>
@@ -75,6 +82,14 @@ if (myItem == 0)
     else
     {
         ex.myItem = choose(objLifeEnergyBig, objWeaponEnergyBig);
+    }
+}
+
+if (!respawnupondeath) // Keeps it from reappearing after a death
+{
+    if (respawn)
+    {
+        disableRespawn(id);
     }
 }
 

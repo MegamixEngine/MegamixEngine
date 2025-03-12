@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>// Creation code (all optional):
-// col = &lt;number&gt; (0 = green (default); 1 = pink;)
+// col = &lt;number&gt; (0 = green (default); 1 = pink; 2 = green + purple [Game Gear colours])
 
 event_inherited();
 
@@ -38,6 +38,8 @@ category = "flying";
 
 blockCollision = 0;
 grav = 0;
+
+behaviourType = 1;
 
 // Enemy specific code
 imageOffset = 0;
@@ -121,7 +123,10 @@ if (entityCanStep())
     
     if (cooldownTimer &gt;= cooldownMax)
     {
-        instance_create(x * image_xscale, y, objCannonjoeBullet);
+        with (instance_create(x * image_xscale, y, objCannonjoeBullet))
+        {
+            sprite_index = sprEnemyBulletMM5;
+        }
         cooldownTimer = 0;
     }
 }

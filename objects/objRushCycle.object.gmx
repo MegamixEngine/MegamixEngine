@@ -34,6 +34,9 @@ contactDamage = 0;
 blockCollision = 1;
 grav = 0.25;
 bubbleTimer = 0;
+if (global.characterSelected[playerID] == CHAR_PROTOMAN)
+    bubbleTimer = -1;
+despawnRange = -1;
 
 canHit = -1;
 
@@ -49,6 +52,9 @@ shootTimer = 0;
 
 turning = 0;
 
+decreaseAmmoTimer = 0;
+decreaseAmmoTimerMax = 60 * ((0.25 * (global.energySaver &gt; 0)) + 1);
+
 // vehicle vars
 weaponsAllowed = true;
 shootYOffset = 9;
@@ -58,6 +64,12 @@ physicsLock = false;
 
 dustTimer = 0;
 trailTimer = 0;
+
+autoFireSet = 32;
+
+col[1] = -1;
+col[2] = -1;
+col[3] = -1;
 </string>
           </argument>
         </arguments>
@@ -118,6 +130,9 @@ if (!instance_exists(parent))
     exit;
 }
 
+var hasAmmo = (ammoCanAfford(playerID));
+var i = playerID;
+
 if (!global.frozen)
 {
     // Mount Wario- I mean Mount Ru- I MEAN, GET ON THE RUSH CYCLE
@@ -130,12 +145,13 @@ if (!global.frozen)
                 rider = parent.id;
                 active = true;
                 
-                shiftVisible = 2;
+                // NOTE FROM PMB: Changed to prevent lock pool bug issues with maze warp.
+                shiftVisible = 3;//2;
                 timer = -1;
                 
                 grav = 0;
                 
-                playSFX(sfxLargeClamp);
+                playSFX(getGenericSFX(SFX_RUSHBIKE_START));
                 
                 // lock controls + give spike immunity
                 rider.dieToSpikes = 0;
@@ -168,12 +184,34 @@ if (!global.frozen)
     if (active &amp;&amp; !isGlobalLocked)
     {
         // Drain energy
-        if (global.ammo[playerID, global.weapon[playerID]] &gt; 0 &amp;&amp; instance_exists(rider))
+        if (hasAmmo &amp;&amp; instance_exists(rider))
         {
+            // turning failsafe thingy (you suck flashman &gt;:C)
+            if (turning &amp;&amp; rider.xDir == 0)
+            {
+                image_xscale = -image_xscale;
+                xspeed *= 1.25;
+                turning = 0;
+            }
+            
+            //toggle between dash and no dash, if accessibility options are enabled.
+            if (instance_exists(rider))
+            {
+                if (global.keySlidePressed[rider.playerID] &amp;&amp; global.holdToggle)
+                {
+                    rider.fireHeld = !rider.fireHeld;
+                }
+            }
+            
+            decreaseAmmoTimer ++;
+            
             // Take away ammo
-            global.ammo[playerID, global.weapon[playerID]] = max(0,
-                global.ammo[playerID, global.weapon[playerID]]
-                - ((1 / 60) / (global.energySaver + 1)));
+            if (decreaseAmmoTimer &gt;= decreaseAmmoTimerMax)
+            {
+                ammoDecrease(playerID, 1);
+                
+                decreaseAmmoTimer = 0;
+            }
             
             turning = 0;
             
@@ -202,12 +240,16 @@ if (!global.frozen)
                         var i = instance_create(x - 14 * image_xscale, y, objSlideDust);
                         i.image_xscale = image_xscale;
                         i.image_yscale = image_yscale;
-                        playSFX(sfxRushCycle1);
+                        playSFX(getGenericSFX(SFX_RUSHBIKE_JUMP));
                     }
                 }
                 
                 // Check for boost inputs
-                var boosting = (global.keySlide[rider.playerID] || global.keyDown[rider.playerID]);
+                var boosting = (global.keySlide[rider.playerID] &amp;&amp; !global.holdToggle || 
+                    (global.keyDown[rider.playerID] &amp;&amp; rider.image_yscale &gt; 0) || 
+                    (global.keyUp[rider.playerID] &amp;&amp; rider.image_yscale &lt; 0) || 
+                    rider.fireHeld);
+                
                 
                 // set speed, including the boosts
                 var spd = 3.15 + (2 * boosting);
@@ -230,8 +272,8 @@ if (!global.frozen)
                         a.drawingPlayer = true;
                         a.parent = rider;
                         a.spriteX = 10 + currentImg;
-                        a.spriteY = 11;
-                        a.image_xscale = image_xscale;
+                        a.spriteY = 12;
+                        a.image_xscale = rider.image_xscale;
                         a.image_yscale = rider.image_yscale;
                     }
                 }
@@ -239,9 +281,9 @@ if (!global.frozen)
                 // detect turning
                 if (rider.xDir == -image_xscale &amp;&amp; rider.ground)
                 {
-                    if (!audio_is_playing(sfxRushCycle2))
+                    if (!audio_is_playing(getGenericSFX(SFX_RUSHBIKE_SKID)))
                     {
-                        playSFX(sfxRushCycle2);
+                        playSFX(getGenericSFX(SFX_RUSHBIKE_SKID));
                     }
                     turning = 1;
                 }
@@ -259,15 +301,18 @@ if (!global.frozen)
                     {
                         if (place_meeting(x, y + image_yscale * 2, objSpike))
                         {
-                            if global.infiniteEnergy[global.weaponID[? objRushCycle]]
+                            if (global.infiniteEnergy[global.weaponID[? objRushCycle]] || (checkCheats(cheatEnums.infiniteWeapons)))
                             { 
                                 global.playerHealth[playerID] = max(0, global.playerHealth[playerID] - 1);
                             }
                             else
                             {
-                                global.ammo[playerID, global.weapon[playerID]] = max(0, global.ammo[playerID, global.weapon[playerID]] - 1);
+                                ammoDecrease(playerID, 1);
                             }
-                            playSFX(sfxHit);
+                            
+                            playSFX(getGenericSFX(SFX_HURT));
+                            
+                            
                             iFrames = 8;
                         }
                     }
@@ -275,10 +320,30 @@ if (!global.frozen)
                 
                 if (!other.turning) // jumping:
                 {
-                    if (global.keyJumpPressed[playerID] &amp;&amp; ground /* checkSolid(0, gravDir * 2 )*/ )
+                    if (global.keyJumpPressed[playerID]/* checkSolid(0, gravDir * 2 )*/ )
                     {
-                        playSFX(sfxRushCycle1);
-                        yspeed = -4 * gravDir;
+                        if (ground)
+                        {
+                            playSFX(getGenericSFX(SFX_RUSHBIKE_JUMP));
+                            yspeed = -4 * gravDir;
+                        }
+                        else
+                        {
+                            if (checkCheats(cheatEnums.VVVVV))
+                            {
+                                yspeed /= 2;
+                                y = y-5*-image_yscale;
+                                //shiftObject(0, -5*-image_yscale, 1);
+                                image_yscale *= -1;
+                                while (checkSolid(0, sign(image_yscale)) &amp;&amp; !ground)
+                                    y -= sign(image_yscale);
+                                    
+                                //y += sprite_get_yoffset(mask_index);
+                                
+                                playSFX(sfxGravityFlip);
+                                gravDir *= -1;
+                            }
+                        }
                     }
                 }
             }
@@ -337,11 +402,26 @@ if (!global.frozen)
         timer -= 1;
         if (!timer)
         {
-            // Teleport away
-            i = instance_create(x, y - 12, objRushTeleport);
-            i.upordown = 'up';
-            i.parent = parent;
-            i.image_yscale = image_yscale;
+            if (global.characterSelected[playerID] == CHAR_PROTOMAN)
+            {
+                instance_create(x, bboxGetYCenter(), objExplosion);
+            }
+            else
+            {
+                // Teleport away
+                i = instance_create(x, y, objRushTeleport); // y - 12
+                i.upordown = 'up';
+                i.parent = parent;
+                i.image_xscale = image_xscale;
+                i.image_yscale = image_yscale;
+                i.col = col;
+                
+                // Added by PMB to have Rush Bike teleport properly after gravity is flipped. 
+                if (instance_exists(rider))
+                {
+                    i.image_yscale = rider.image_yscale;
+                }
+            }
             
             instance_destroy();
         }
@@ -351,15 +431,18 @@ if (!global.frozen)
 // sprite setting
 if (active)
 {
-    if (global.ammo[playerID, global.weapon[playerID]] &gt; 0 &amp;&amp; instance_exists(rider))
+    if (hasAmmo &amp;&amp; instance_exists(rider))
     {
         with (rider)
         {
             vehicle = other.id;
             playerHandleSprites("Cycle");
         }
+        
         x = rider.x;
         y = rider.y + 15 * rider.image_yscale;
+        
+        blockCollision = 0;
     }
 }
 </string>
@@ -384,47 +467,68 @@ if (active)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
-    if (!instance_exists(objRushCycle) &amp;&amp; !instance_exists(objRushTeleport)
-    &amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
+    var canSpawn = true;
+    
+    if (instance_exists(objRushCycle) || instance_exists(objRushTeleport)) // check if rush exists 
     {
-        i = fireWeapon(26, 0, objRushTeleport, 1, 0, 0, 0);
+        with (prtPlayerProjectile)
+        {
+            if (playerID == other.playerID)
+            {
+                canSpawn = false;
+            }
+        }
+    }
+    
+    if (canSpawn &amp;&amp; ammoCanAfford(playerID))
+    {
+        i = fireWeapon(26, 0, objRushTeleport, 4, 0, 0, 0);
+        
         with (i)
         {
             type = 'cycle';
             y = view_yview;
-            if (image_yscale &lt; 0)
-            {
-                y += view_hview;
-            }
-        }
-    } // buster shot if cycle is on
-    else if (instance_exists(vehicle))
-    {
-        if (!vehicle.turning)
-        {
-            with (vehicle)
-            {
-                shootTimer = 20;
-                if (currentImg &lt; 4 &amp;&amp; ground)
-                {
-                    currentImg += 2;
-                }
-            }
             
-            i = fireWeapon(13, 4, objBusterShot, 3, 0, 1, 0);
-            if (instance_exists(i))
+            if (image_yscale[0] &lt; 0)
             {
-                i.xspeed = objRushCycle.image_xscale * 6.5;
+                y += view_hview[0];
             }
         }
     }
-    else
+    else // else player can fire
     {
-        with (fireWeapon(16, 0, objBusterShot, 4, 0, 1, 0))
+        if (instance_exists(vehicle))
         {
-            xspeed = other.image_xscale * 5;
+            if (vehicle.object_index != objRushCycle)
+                exit;
+                
+            if (!vehicle.turning)
+            {
+                with (vehicle)
+                {
+                    shootTimer = 20;
+                    if (currentImg &lt; 4 &amp;&amp; ground)
+                    {
+                        currentImg += 2;
+                    }
+                }
+                
+                i = fireWeapon(13, 4, objBusterShot, 3 + (12 * (global.shotUpgrade &gt; 0)), 0, 1, 0);
+                
+                if (i)
+                {
+                    i.xspeed = image_xscale * 6.5;
+                }
+            }
+        }
+        else
+        {
+            with (fireWeapon(16, 0, objBusterShot, 4 + (12 * (global.shotUpgrade &gt; 0)), 0, 1, 0))
+            {
+                xspeed = (other.image_xscale * 5);
+            }
         }
     }
 }
@@ -450,7 +554,12 @@ if (active)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weaponSetup("RUSH BIKE", -2, -2, sprWeaponIconsRushCycle);
+            <string>if (global.characterSelected[0] == CHAR_BASS)
+    weaponSetup("TREBLE CHASER", -5, -5, sprWeaponIconsTrebleCycle);
+else if (global.characterSelected[0] == CHAR_PROTOMAN)
+    weaponSetup("PROTO BIKE", -5, -5, sprWeaponIconsProtoCycle);
+else
+    weaponSetup("RUSH BIKE", -5, -5, sprWeaponIconsRushCycle);
 </string>
           </argument>
         </arguments>
@@ -475,7 +584,7 @@ if (active)
             <kind>1</kind>
             <string>if (!active)
 {
-    drawPlayer(0, costumeID, 10 + currentImg, 11, x, y - 16 * image_yscale, image_xscale, image_yscale);
+    drawPlayer(playerID, costumeID, 10 + currentImg, 12, x, y - 16 * image_yscale, image_xscale, image_yscale);
 }
 </string>
           </argument>

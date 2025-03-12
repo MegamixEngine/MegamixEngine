@@ -36,7 +36,8 @@ blockCollision = 0;
 grav = 0;
 bubbleTimer = -1;
 
-playerMet[global.playerCount] = true;
+playerMet = allocateArray(global.playerCount, false);
+
 drawarrow = 0;
 
 permalock = 0;
@@ -55,12 +56,20 @@ X = -1;
 //@cc where to teleport to
 Y = -1;
 
+//@cc direction to face Mega Man towards at the destination
+dir = 1;
+
 //@cc have to press up to use? If not you will teleport as soon as you touch it
 pressUp = 0;
 
 //@cc is the teleporter locked when there's enemies in the room?
 enemyLock = false;
 keylock = false;
+
+ignoreLock = false; //ignore movement lock or not
+
+//@cc FOR WEAPON TUTORIALS. Only checks for security crystals. 
+crystalLock = false;
 
 //@cc only usable once?
 teleportOnce = false;
@@ -76,18 +85,32 @@ returnToHub = false;
 
 lightSprite = sprTeleporterLight;
 
-//@cc isExternal
+//@cc isExternal -- only set this if you're using externalRoomFilename. Don't set it for if you set myRoom to a string (even if it's an externally-loaded room).
 isExternal = false;
 
-//@cc externalRoomFilename
+//@cc externalRoomFilename (optional -- you can just set myRoom to a string.)
 externalRoomFilename = "";
 
-//@cc[1,6] what blinking light to use for the teleporter tiles behind the object (number corresponds with the teleporter's game)
+//@cc[1,7] what blinking light to use for the teleporter tiles behind the object (number corresponds with the teleporter's game)
 light = 0;
 
 lightx = 0;
 lighty = -32;
 lightsp = 1 / 12;
+
+author = "";
+drawauthor = 0;
+
+playerID = 0;
+choosePlayer = 0;
+
+//auto trigger - if true, ignore player positioning or collision when determining teleporter. use for creating teleporters on top of player
+autoTrigger = false;
+//cc if these are true, mega man exit object is created at the player x/y position rather than the teleporter's.
+setPlayerX = false; 
+setPlayerY = false;
+
+shrineTeleporter = false;
 </string>
           </argument>
         </arguments>
@@ -114,114 +137,218 @@ lightsp = 1 / 12;
 
 lock = 0;
 
-if (enemyLock) // If enemy is alive -&gt; lock teleporter
+if (enemyLock) { // If enemy is alive -&gt; lock teleporter
+    with (prtEntity) {
+        if (dead)
+            continue;
+        
+        if ((contactDamage != 0 || canHit) &amp;&amp; global.factionStance[faction, 1]) {
+            other.lock = 1;
+            break;
+        }
+    }
+}
+
+if (crystalLock) { // FOR WEAPON TUTORIALS. 
+    with (objSecurityCrystal) {
+        if (!dead) {
+            other.lock = 1;
+            break;
+        }
+    }
+}
+
+if (permalock)
 {
-    with (prtEntity)
-    {
-        if (!dead)
-        {
-            if (contactDamage != 0 || canHit)
+    lock = 1;
+}
+
+var metReset = 1;
+
+
+if (!global.frozen) {
+    metReset = 0;
+    lightt += lightsp;
+    
+    if (!lock) {
+        choosePlayer = instance_nearest(x,y,objMegaman);
+        var storeType = object_index;
+        with (objMegaman) {
+            other.image_yscale = gravDir;
+            
+            if (other.autoTrigger &amp;&amp; id != other.choosePlayer)
             {
-                if (global.factionStance[faction, 1])
-                {
-                    other.lock = 1;
+                continue;
+            }
+            
+            if (showReady || teleporting)
+            {
+                continue;
+            }
+            
+            if (playerIsLocked(PL_LOCK_MOVE) &amp;&amp; playerIsLocked(PL_LOCK_SLIDE) &amp;&amp; !other.ignoreLock) {
+                other.playerMet[playerID] = true;
+                continue;
+            }
+            
+            if (!place_meeting(x, y, other.id) || global.playerHealth[playerID] &lt;= 0) {
+                other.playerMet[playerID] = 0;
+                continue;
+            }
+            
+
+            if (!ground || abs(other.x - x) &gt; 5 || abs(other.y - y) &gt; 2)
+                continue;
+            
+            
+            other.drawarrow = 1;
+            other.drawauthor = 1;
+            if (other.autoTrigger || ((yDir == -gravDir &amp;&amp; other.pressUp) || (!other.playerMet[playerID] &amp;&amp; !other.pressUp)))
+            {            
+                if (other.keylock) {
+                    if (global.keyNumber) {
+                        global.keyNumber--;
+                        other.keylock = 0;
+                        playSFX(sfxWheelCutter2);
+                    }
+                    
                     break;
                 }
-            }
-        }
-    }
-}
-
-if (!global.frozen)
-{
-    lightt += lightsp;
-}
-
-if (!global.frozen &amp;&amp; !lock)
-{
-    with (objMegaman)
-    {
-        other.image_yscale = gravDir;
-        
-        if (!playerIsLocked(PL_LOCK_MOVE))
-        {
-            if (place_meeting(x, y, other.id))
-            {
-                if (abs(other.x - x) &lt;= 5 &amp;&amp; ground &amp;&amp; abs(other.y - y) &lt;= 2)
+                
+                var nx = other.x;
+                var ny = other.y;
+                
+                if (other.setPlayerX) nx = x;
+                if (other.setPlayerY) ny = y;
+                
+                if (!instance_exists(objMegamanExit))
                 {
-                    other.drawarrow = 1;
+                    var i = instance_create(nx, ny, objMegamanExit);
+                    i.pid = playerID;
+                    if (!instance_exists(objCoOpWarpStar))
+                        coopWarp(playerID,false,24,false,false);
+                    i.cid = costumeID;
+                    i.type = 2 + other.isDoor;
+                    i.image_xscale = image_xscale;
+                    i.image_yscale = image_yscale;
                     
-                    if ((yDir == -gravDir &amp;&amp; other.pressUp)
-                        || (!other.playerMet[playerID] &amp;&amp; !other.pressUp))
-                    {
-                        if (other.keylock)
-                        {
-                            if (global.keyNumber)
-                            {
-                                global.keyNumber -= 1;
-                                other.keylock = 0;
-                                playSFX(sfxWheelCutter2);
-                            }
-                            break;
-                        }
+                    with (other) {
+                        i.myRoom = myRoom;
                         
-                        i = instance_create(x, y, objMegamanExit);
-                        i.pid = playerID;
-                        i.cid = costumeID;
-                        i.type = 2 + other.isDoor;
-                        i.image_xscale = image_xscale;
-                        i.image_yscale = image_yscale;
+                        i.X = X;
+                        i.Y = Y;
+                        i.dir = dir;
+                        i.newStage = newStage;
+                        i.returnToHub = returnToHub;
+                        i.isExternal = isExternal;
+                        i.externalRoomFilename = externalRoomFilename;
                         
-                        i.myRoom = other.myRoom;
-                        i.X = other.X;
-                        i.Y = other.Y;
-                        i.newStage = other.newStage;
-                        i.returnToHub = other.returnToHub;
-                        i.isExternal = other.isExternal;
-                        i.externalRoomFilename = other.externalRoomFilename;
+                        global.lastTeleporterX = x;
+                        global.lastTeleporterY = y;
 
-                        with (objMegaman)
-                        {
-                            visible = 0;
-                            yDir = 0;
-                            xspeed = 0;
-                            yspeed = 0;
-                        }
+                        if (global.stageIsHub &amp;&amp; !returnToHub)
+                            setReturnPoint(x, y, dir);
                         
-                        global.frozen = true;
-                        
-                        with (other)
+                        if (teleportOnce)
+                            instance_destroy();
+
+                        if (DEBUG_ENABLED)
                         {
-                            global.lastTeleporterX = x;
-                            global.lastTeleporterY = y;
-                            
-                            if (teleportOnce)
+                            if (myRoom == noone)
                             {
-                                instance_destroy();
+                                printErr("Room does not exist in this featherweight!");   
                             }
                         }
-                        break;
                     }
                 }
+                
+                with (objMegaman) {
+                    isSlide = 0;
+                    slideLock = lockPoolRelease(slideLock);
+                    slideChargeLock = lockPoolRelease(slideChargeLock);
+                    mask_index = mskMegaman;
+                    visible = 0;
+                    yDir = 0;
+                    xspeed = 0;
+                    yspeed = 0;
+                    dieToPit = false;
+                }
+                
+                global.frozen = true;
+                
+                break;
             }
-            else
-            {
-                other.playerMet[playerID] = 0;
-            }
-        }
-        else
-        {
-            other.playerMet[playerID] = true;
         }
     }
 }
-else
-{
-    for (var i = 0; i &lt; global.playerCount; i += 1)
-    {
+
+if (metReset || lock) {
+    for (var i = 0; i &lt; global.playerCount; i++)
         playerMet[i] = true;
-    }
 }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>for (var i = 0; i &lt; global.playerCount; i++)
+    playerMet[i] = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+
+if (drawauthor)
+{
+    if (author != "")
+    {
+        draw_set_color(c_white);
+        draw_text(view_xview + 128, view_yview + 12, "NEXT ROOM BY:");
+        draw_text(view_xview + 128, view_yview + 22, author);
+    }
+    
+    drawauthor = 0;
+}
+
+clearDrawState();
 </string>
           </argument>
         </arguments>
@@ -249,17 +376,25 @@ draw_set_color(c_white);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
-if (!lock)
+if (!lock &amp;&amp; light != -1 &amp;&amp; !floor(lightt mod 2))
+    draw_sprite(lightSprite, light, x + lightx, y + lighty);
+var mePlayer = instance_nearest(x,y,objMegaman);
+if !instance_exists(objMegaman)
 {
-    if (light != -1 &amp;&amp; !floor(lightt mod 2))
-    {
-        draw_sprite(lightSprite, light, x + lightx, y + lighty);
-    }
+    mePlayer = 0;
+    exit;
 }
+    
+if (pressUp &amp;&amp; drawarrow) {
+    var prompt = "up";
+    var xx = x - 4;
+    var yy = y - (22 * image_yscale)
+    
+    if (image_yscale == -1)
+        prompt = "down";
 
-if (pressUp &amp;&amp; drawarrow)
-{
-    draw_sprite(sprPressUp, (image_yscale == -1), x, y - 22 * image_yscale);
+    drawButtonPrompt(prompt, xx, yy, 1,mePlayer.playerID);
+    
     drawarrow = 0;
 }
 </string>

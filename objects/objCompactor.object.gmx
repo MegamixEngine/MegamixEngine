@@ -36,6 +36,7 @@ action = 1;
 actionTimer = 0;
 
 alarmTime = 80;
+maxTimer = 80;
 mySpeed = 3.5;
 
 respawnRange = -1;
@@ -44,6 +45,8 @@ despawnRange = -1;
 shiftVisible = 1;
 
 alarm[0] = 1;
+
+topSprite = sprCompactorTop;
 </string>
           </argument>
         </arguments>
@@ -151,7 +154,7 @@ if (entityCanStep())
             }*/
             break;
         case 3: // wait again 
-            if (actionTimer == 80)
+            if (actionTimer == maxTimer)
             {
                 action += 1;
                 actionTimer = 0;
@@ -199,7 +202,7 @@ else if (dead)
             <kind>1</kind>
             <string>drawSelf();
 
-draw_sprite(sprCompactorTop, 0, x, ceil(bbox_bottom - 14));
+draw_sprite(topSprite, 0, x, ceil(bbox_bottom - 14));
 </string>
           </argument>
         </arguments>

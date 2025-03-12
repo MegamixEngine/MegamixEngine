@@ -3,7 +3,7 @@
   <spriteName>sprMetallDaddy</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtBoss</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -61,6 +61,17 @@ freeMegaman = 0;
 hatFrame = 3;
 directX = 1;
 
+stunLock[0] = noone;
+for (var i = 0; i &lt; MAX_PLAYERS; i++)
+{
+    stunLock[i] = noone;
+
+}
+// Death anmation variables
+doPlayerExplosion = false;
+isDying = false;
+explodeTimer = 0;
+
 // met falling patterns
 met1[0] = 48;
 met2[0] = 112;
@@ -76,8 +87,8 @@ met3[2] = 144;
 met4[2] = 176;
 
 // Health Bar
-healthBarPrimaryColor[1] = 33;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $27;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_4.nsf";
@@ -88,6 +99,8 @@ musicTrackNumber = 17;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -98,6 +111,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objBreakDash, 2);
 enemyDamageValue(objMagneticShockwave, 0);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -133,15 +150,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 2);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 2);
+enemyDamageValue(objChillSpike, 2);
 enemyDamageValue(objChillSpikeLanded, 5);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 0);
+enemyDamageValue(objBlockDropper, 0);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -204,9 +222,11 @@ if (entityCanStep())
                 storeDirection = image_xscale;
                 grav = gravStart;
                 blockCollision = blockCollisionStart;
-                with (objMegaman)
+                for (var i = 0; i &lt; MAX_PLAYERS; i++)
                 {
-                    stunLock = noone;
+                    stunLock[i] = lockPoolRelease(stunLock[i]);
+                    stunLock[i] = -1;
+                
                 }
             }
         }
@@ -274,7 +294,7 @@ if (entityCanStep())
                 }
                 if (attackTimer == 80 - ((global.difficulty == DIFF_HARD) * 40))
                 {
-                    var inst = instance_create(x, y + 32, objExplosion);
+                    var inst = instance_create(x, y + 19, objExplosion);
                     inst.sprite_index = sprMetallDaddyJump;
                     yspeed = -3.5 - choose(0, 1, 1.5);
                     if (instance_exists(target))
@@ -305,7 +325,7 @@ if (entityCanStep())
                             {
                                 xspeed = 0;
                                 yspeed = 0;
-                                stunLockP = lockPoolLock(localPlayerLock[PL_LOCK_MOVE],
+                                other.stunLock[playerID] = lockPoolLock(localPlayerLock[PL_LOCK_MOVE],
                                     localPlayerLock[PL_LOCK_TURN],
                                     localPlayerLock[PL_LOCK_SLIDE],
                                     localPlayerLock[PL_LOCK_SHOOT],
@@ -313,7 +333,7 @@ if (entityCanStep())
                                     localPlayerLock[PL_LOCK_SPRITECHANGE],
                                     localPlayerLock[PL_LOCK_GRAVITY],
                                     localPlayerLock[PL_LOCK_JUMP]);
-                                stunLock = stunLockP;
+                                //stunLock = stunLockP;
                             }
                         }
                         screenShake(72, 2, 2);
@@ -362,7 +382,11 @@ if (entityCanStep())
                 {
                     if (other.attackTimer == 88 || isHit)
                     {
-                        stunLock = lockPoolRelease(stunLock);
+                        
+                            other.stunLock[playerID] = lockPoolRelease(other.stunLock[playerID]);
+                            other.stunLock[playerID] = -1;
+                        
+                       
                     }
                 }
                 
@@ -420,6 +444,32 @@ if (entityCanStep())
                 break;
         }
     }
+    // Death Animation
+    if (isDying)
+    {
+        explodeTimer++;
+        if (explodeTimer == 2)
+        {
+            instance_create(x-16*image_xscale,y+29*image_yscale,objBigExplosion);
+            playSFX(getGenericSFX(SFX_EXPLOSION2));
+        }
+        if (explodeTimer == 12)
+        {
+            instance_create(x-16*image_xscale,y+1*image_yscale,objExplosion);
+            playSFX(getGenericSFX(SFX_EXPLOSION2));
+        }
+        if (explodeTimer &gt; 12) &amp;&amp; (explodeTimer mod 12 == 0)
+        {
+            instance_create(irandom_range(bbox_left,bbox_right),irandom_range(y+hatOffset,bbox_bottom),objBigExplosion);
+        }
+        if (explodeTimer mod 40 == 0)
+            playSFX(getGenericSFX(SFX_EXPLOSION2)); // Constant explosion
+        if (explodeTimer &gt;= 120)
+        {
+            screenFlash(2);
+            event_user(EV_DEATH);
+        }
+    }
 }
 else
 { }
@@ -445,8 +495,16 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (collision_rectangle(x - 40, y + hatOffset,
+            <string>// -- NOTE FROM PMB: CHANGED TO FIX A BUG WITH BANSHEE WAIL NOT HITTING THIS. --
+/*if (collision_rectangle(x - 40, y + hatOffset,
     x + 40, y - 8, other.id, false, false))
+{
+    other.guardCancel = 3;
+}*/
+
+if (hatOffset &gt;= 40 || 
+    !collision_rectangle(x - 40, y + hatOffset, x + 40, bbox_bottom, 
+    other.id, false, false))
 {
     other.guardCancel = 3;
 }
@@ -476,12 +534,35 @@ else
     instance_destroy();
 with (objMetallDaddyChild)
 {
-    instance_create(x, y, objExplosion);
+    instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
     instance_destroy();
 }
-with (objMegaman)
-    stunLock = lockPoolRelease(stunLock);
-event_inherited();
+for (var i = 0; i &lt; MAX_PLAYERS; i++)
+{
+    stunLock[i] = lockPoolRelease(stunLock[i]);
+    stunLock[i] = -1;
+
+}
+if (!isDying)
+{
+    xspeed = 0;
+    yspeed = 0;
+    grav = 0;
+    isFight = false;
+    canHit = false;
+    contactDamage = 0;
+    isDying = true;
+    iFrames = 180; //Do this to keep blinking
+    stopSFX(getGenericSFX(SFX_ENEMYHIT));
+    instance_create(x,y+11,objExplosion);
+    playSFX(getGenericSFX(SFX_EXPLOSION2));
+}
+else
+{
+    event_inherited();
+    instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
+    playSFX(getGenericSFX(SFX_EXPLOSION2));
+}
 </string>
           </argument>
         </arguments>
@@ -534,15 +615,29 @@ draw_sprite_ext(sprite_index, hatFrame, round(x), round(y + hatOffset), 1, image
 {
     if (drawBoss) // actually draw itself
     {
-        if ((iFrames mod 4) &lt; 2 || !iFrames)
+        if (!isDying)
         {
-            event_user(2);
+            if ((iFrames mod 4) &lt; 2 || !iFrames)
+            {
+                event_user(2);
+            }
+            else // Hitspark
+            {
+                sprite_index = sprMetallDaddyHurt;
+                event_user(2);
+                sprite_index = sprMetallDaddy;
+            }
         }
-        else // Hitspark
+        else // Blinking when dying
         {
-            d3d_set_fog(true, c_white, 0, 0);
-            event_user(2);
-            d3d_set_fog(false, 0, 0, 0);
+            if ((iFrames mod 16) &lt; 8 || !iFrames)
+                event_user(2);
+            else
+            {
+                hitFlashEffect(true,c_white);
+                event_user(2);
+                hitFlashEffect(false);
+            }
         }
     }
 }

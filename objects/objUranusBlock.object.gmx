@@ -49,12 +49,13 @@ tileNumber = 0;
 thrownSign = 0;
 thrown = false;
 
+
 // code stolen from NaOH. grabs the tile underneath it and makes it the graphic for the block.
 for (getX = 0; getX * 16 &lt; image_xscale * sprite_get_width(sprite_index); getX += 1)
 {
     for (getY = 0; getY * 16 &lt; image_yscale * sprite_get_height(sprite_index); getY += 1)
     {
-        myTile = tile_layer_find(depth, x + 8 + 16 * getX, y + 8 + 16 * getY);
+        myTile = findTileWithSplit(depth, x + 8 + 16 * getX, y + 8 + 16 * getY);
         if (tile_exists(myTile))
         {
             tileBG[tileNumber] = tile_get_background(myTile);

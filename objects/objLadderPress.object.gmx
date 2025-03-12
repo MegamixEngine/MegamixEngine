@@ -25,13 +25,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// An invincible ladder trap. It slides up and down them and slams shut at regular intervals
+event_inherited();
 
 healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
 isTargetable = false;
+bubbleTimer = -1;
+
+// @cc - Change colour (0 = red (default); 1 = yellow; 2 = green;)
+col = 0;
+imgIndex = 0;
 
 grav = 0;
 blockCollision = false;
@@ -91,9 +97,9 @@ if (entityCanStep())
     {
         // clamp down
         yspeed = 0;
-        var animTable = makeArray(1, 2, 3, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0);
-        image_index = animTable[(phaseTimer - clampTime) div 4];
-        if (image_index == 0)
+        var animTable = makeArray(1, 2, 3, 4, 3, 3, 3, 3, 3, 3, 5, 5, 0); //makeArray(1, 2, 3, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0);
+        imgIndex = animTable[(phaseTimer - clampTime) div 4];
+        if (imgIndex == 0)
             phaseTimer = 0;
     }
     else
@@ -116,6 +122,7 @@ if (entityCanStep())
         }
     }
 }
+image_index = imgIndex + (6 * col);
 </string>
           </argument>
         </arguments>

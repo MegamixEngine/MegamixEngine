@@ -33,6 +33,8 @@ healthpointsStart = 8;
 healthpoints = healthpointsStart;
 contactDamage = 3;
 
+bubbleTimer = -1;
+
 // enemy specific
 dir = 0;
 spd = 1;

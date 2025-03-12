@@ -25,10 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Creation code (all optional):
-// col = &lt;number&gt; (0 = red (default); 1 = yellow)
-
-event_inherited();
+            <string>event_inherited();
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
@@ -41,15 +38,21 @@ blockCollision = false;
 grav = 0;
 inWater = -1; // isn't effected by water
 
-// Enemy specific code
-col = 0;
-init = 1;
 
+// Enemy specific code
+init = 1;
 phase = 0;
 timer = 0;
-
 imgIndex = 0;
-imgSpd = 0.16;
+
+
+// Creation code (all optional):
+col = 0; // col = &lt;number&gt; (0 = red (default); 1 = yellow), set to anything else when using a custom sprite.
+radius = 32; // &lt;-- detection range here
+delayMax = 90; //how long the fish waits between jumps
+heightLimit = 0; //if less than 0, then limits gabgyo's speed to junping to this height
+spawnSFX = getGenericSFX(SFX_SPLASH); //if set, play sound when jumping
+imgSpd = 0.16; //animation speed
 </string>
           </argument>
         </arguments>
@@ -103,7 +106,7 @@ if (entityCanStep())
         case 0:
             if (instance_exists(target))
             {
-                if (abs(target.x - x) &lt; 32) // &lt;-- detection range here
+                if (abs(target.x - x) &lt; radius) 
                 {
                     phase = 1;
                     
@@ -114,12 +117,18 @@ if (entityCanStep())
                     grav = gravAccel;
                     contactDamage = ogContactDamage;
                     
-                    playSFX(sfxSplash);
+                    if (spawnSFX != noone)
+                        playSFX(spawnSFX);
                     
                     if (instance_exists(target))
                     {
                         yspeed = ySpeedAim(y, target.y, grav);
                         yspeed -= 0.8; // little extra height
+                        if (heightLimit &lt; 0)
+                        {
+                            if (yspeed &lt; heightLimit)
+                                yspeed = heightLimit;
+                        }
                     }
                 }
             }
@@ -162,9 +171,10 @@ if (entityCanStep())
         // cooldown
         case 2:
             timer += 1;
-            if (timer &gt;= 90)
+            if (timer &gt;= delayMax)
             {
                 phase = 0;
+                visible = false;
                 timer = 0;
             }
             
@@ -176,12 +186,13 @@ else if (dead)
     if (phase == 1)
     {
         timer += 1;
-        if (timer &gt;= 96)
+        if (timer &gt;= delayMax + 6)
         {
             phase = 0;
             timer = 0;
             
             dead = false;
+            visible = false;
             beenOutsideView = false;
         }
     }

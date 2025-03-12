@@ -37,10 +37,13 @@ category = "fire, floating";
 grav = 0;
 blockCollision = 0;
 
+behaviourType = 1;
+
 // Enemy specific code
 phase = 0;
 radius = 4.5 * 16;
 dipTimer = 0;
+moveDir = 0;
 
 image_speed = 0.1;
 
@@ -94,7 +97,9 @@ if (entityCanStep())
             if (instance_exists(target))
             {
                 calibrateDirection();
-                xspeed = 1 * image_xscale;
+                moveDir = image_xscale;
+                image_xscale = 1;
+                xspeed = 1 * moveDir;
                 phase = 1;
             }
             break;
@@ -105,7 +110,7 @@ if (entityCanStep())
                 if (abs(target.x - x) &lt;= radius)
                 {
                     phase = 2;
-                    xspeed = 1.5 * image_xscale;
+                    xspeed = 1.5 * moveDir;
                     yspeed = 2;
                 }
             }
@@ -135,6 +140,7 @@ else if (dead)
 {
     phase = 0;
     dipTimer = 0;
+    moveDir = 0;
 }
 </string>
           </argument>

@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// When on screen, it slowly flies ahead while lifting Mega Man off the ground. Hitting it
-// stuns it, and it drops Mega Man until he hits the ground again.
+            <string>/// This enemy slowly flies forward while lifting the player off the ground. Hitting it stuns it, dropping the the player back to the ground.
+/// Touching the ground always restarts the lifting effect. The player will continue to rise until hitting a ceiling or the top of the screen, and then fall back down.
+/// It's best to treat this enemy as a destructible gimmick.
 
 event_inherited();
 
@@ -37,15 +38,19 @@ contactDamage = 2;
 category = "flying";
 
 facePlayerOnSpawn = true;
+blockCollision = 0;
+
+grav = 0;
 
 // Enemy Specific code
+// @cc - how quickly does Mega Man rise when my antigravity is in effect?
+// (MUST BE NEGATIVE VALUE TO RISE UPWARDS)
+liftSpeed = -0.5;
+
 phase = 0;
-grav = 0;
 imgSpd = 0.16;
 moveTimer = 10; // Do not colide with solids
 canMove = true; // Delay anti-grav countdown
-
-blockCollision = 0;
 </string>
           </argument>
         </arguments>
@@ -96,7 +101,7 @@ if (entityCanStep())
                 {
                     if (!target.ground)
                     {
-                        target.yspeed = -(target.grav) * 2;
+                        target.yspeed = liftSpeed * target.gravDir; //-(target.grav) * 2;
                     }
                 }
             }
@@ -114,10 +119,11 @@ if (entityCanStep())
             {
                 with (target)
                 {
-                    yspeed -= 0.25;
+                    yspeed = other.liftSpeed * gravDir; //-grav * 2;
                 }
                 
-                if ((sign(target.ycoll) == -1) || (target.y &lt;= view_yview[0] + 4))
+                if (target.gravDir == 1 &amp;&amp; ((sign(target.ycoll) == -1) || (target.y &lt;= view_yview[0] + 4)))
+                || (target.gravDir == -1 &amp;&amp; ((sign(target.ycoll) == 1) || (target.y &gt;= view_yview+view_hview - 4)))
                 {
                     with (target)
                     {
@@ -132,12 +138,34 @@ if (entityCanStep())
             break;
     }
 }
-else if (dead)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
 {
     phase = 0;
     xspeed = 0;
     image_index = 0;
-    healthpoints = healthpointsStart;
     moveTimer = 10;
 }
 </string>

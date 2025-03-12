@@ -86,7 +86,7 @@ if (xspeed != 0)
     {
         with (objTopSolid)
         {
-            solid=0;
+            solid = 0;
             if (place_meeting(x - other.xspeed, y, myid))
             {
                 if (!place_meeting(x - other.xspeed, y + slp, myid)
@@ -157,6 +157,8 @@ if (xspeed != 0)
         xspeed = 0;
 
         // Slope code
+        // -- NOTE FROM PMB: Remove the Flashman exception if the Magnet Beam --
+        // -- glitch of getting shunted through via low ceiling gets fixed. --
         if (!noSlopeEffect)
         {
             if (xcoll != 0)
@@ -303,9 +305,19 @@ if (dieToSpikes)
         if (spSolid)
         {
             global.damage = spSolid.contactDamage;
+            
+            // hghghghg editing devkit objects for final release
+            var ignoreKill = false;
+
+            if ((checkCheats(cheatEnums.buddha)) && object_index == objMegaman)
+                ignoreKill = true;
+            
+            global.damage = spSolid.contactDamage;
             healthpoints -= global.damage;
 
-            if (healthpoints <= 0)
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
+
+            if (healthpoints <= 0 && !ignoreKill)
             {
                 event_user(EV_DEATH);
             }
@@ -313,7 +325,11 @@ if (dieToSpikes)
             {
                 x = xprevious;
                 y = yprevious;
+                hitterID = spSolid;
                 event_user(EV_HURT);
+                
+                if (global.damagePopup)
+                    instance_create(bboxGetXCenter(), bbox_top + 4, objDamagePopup);
             }
         }
     }

@@ -74,11 +74,15 @@ if (entityCanStep())
     {
         i = instance_create(x, y + 9, objEnemyBullet);
         i.yspeed = 2;
+        i.sprite_index = sprHaehaeyBullet;
+        i.image_xscale = image_xscale;
     }
     else if (actionTimer == 100)
     {
         i = instance_create(x, y + 9, objEnemyBullet);
         i.yspeed = 2;
+        i.sprite_index = sprHaehaeyBullet;
+        i.image_xscale = image_xscale;
         actionTimer = -30;
     }
     

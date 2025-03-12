@@ -25,12 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// An aquatic enemy that swims slowly towards the player.
+            <string>/// An aquatic enemy that launches itself horizontally and slightly vertically toward the player. It moves quickly and then drifts to a stop.
+/// It will often overshoot its target, so it tends to change directions frequently. Solid objects block its movement.
+/// Can be used in or out of water.
+
 event_inherited();
 
 healthpointsStart = 2;
 contactDamage = 3;
 grav = 0;
+bubbleTimer = -1;
 
 category = "aquatic";
 facePlayerOnSpawn = true;
@@ -169,8 +173,9 @@ image_index = imgIndex div 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// On spawn
-xspeed = 3 * image_xscale;
+            <string>event_inherited();
+if (spawned)
+    xspeed = 3 * image_xscale;
 </string>
           </argument>
         </arguments>

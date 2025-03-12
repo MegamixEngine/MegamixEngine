@@ -32,6 +32,7 @@ healthpoints = healthpointsStart;
 contactDamage = 4;
 
 category = "aquatic, nature";
+bubbleTimer = -1;
 
 grav = 0;
 blockCollision = 0;
@@ -92,6 +93,7 @@ if (entityCanStep())
 }
 else if (dead)
 {
+    image_index = 0;
     actionTimer = 0;
     xspeed = image_xscale;
     yspeed = 0;

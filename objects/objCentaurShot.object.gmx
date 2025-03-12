@@ -28,16 +28,15 @@
             <string>event_inherited();
 
 stopOnFlash = false;
-
 grav = 0;
-
 contactDamage = 4;
-
 xspeed = 0;
 yspeed = 0;
-
-
 reflectable = 0;
+
+// Custom Variables
+splitDamage = 4;
+splitSpeed = 1.5;
 </string>
           </argument>
         </arguments>
@@ -67,16 +66,18 @@ if (global.frozen == false)
     if (xcoll != 0)
     {
         playSFX(sfxEnemyShoot);
-        var i;
-        for (i = 0; i &lt;= 8; i += 1)
-        {
-            cS = instance_create(x, y, objCentaurSecondaryBullet);
+        
+        for (var i = 0; i &lt;= 8; i += 1) {
+            var cS = instance_create(x, y, objCentaurSecondaryBullet);
             cS.dir = 90 + (22.5 * i);
+            cS.spd = splitSpeed;
             cS.image_xscale = image_xscale;
             cS.xscale = cS.image_xscale;
-            cS.contactDamage = 4;
-            cS.reflectable = 0;
+            cS.contactDamage = splitDamage;
+            cS.reflectable = reflectable;
+            cS.stopOnFlash = stopOnFlash;
         }
+        
         instance_destroy();
     }
 }

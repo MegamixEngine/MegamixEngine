@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Creation code (all optional):
+            <string>/// A bird that flies horizontally until it gets near the player, then zigs diagonally downward in the opposite direction, then zags forward again.
+/// Use creation code to have additional birds following in formation. If you've played Gradius or similar games, you've seen enemy swarms like this.
+/// When placing this enemy, think about how the player might respond to its movement pattern, especially if other birds are following behind.
+
+// Creation code (all optional):
 // extraBirds = 1; - creates additional birds behind the starting bird
 
 event_inherited();

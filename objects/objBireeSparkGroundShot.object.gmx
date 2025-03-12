@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -43,6 +43,8 @@ _velX = 0;
 _velY = 0;
 _prevCollision = 0;
 itemDrop = -1;
+
+isTargetable = false;
 </string>
           </argument>
         </arguments>

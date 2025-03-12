@@ -51,6 +51,11 @@ attackTimer = 0;
 attackTimerMax = 8;
 bullet = noone;
 
+explosionSprite = sprExplosionWonderswan;
+deadTimerMax = 88;
+deadTimerRecur = 8;
+deadFrame = 3;
+
 // creation code variables
 
 // setting up movement pattern:

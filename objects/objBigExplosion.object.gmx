@@ -27,7 +27,6 @@
             <kind>1</kind>
             <string>event_inherited();
 
-playSFX(sfxMM3Explode);
 </string>
           </argument>
         </arguments>

@@ -33,7 +33,7 @@ attackTimer = 0;
 phase = 0;
 big = false; // For use when Mercury is using his bouncing pattern
 blobID = 0; // Used to establish "dominant" blob when bouncing
-image_speed = 0.25;
+image_speed = 0.2;//5;
 trigBlob = false;
 </string>
           </argument>

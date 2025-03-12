@@ -141,7 +141,7 @@ if (entityCanStep())
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-stopSFX(sfxEnemyHit);
+//stopSFX(sfxEnemyHit);
 instance_create(x, y, objExplosion);
 </string>
           </argument>

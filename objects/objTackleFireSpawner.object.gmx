@@ -50,6 +50,7 @@ alarmDrop = 60;
 timer = -1;
 
 canHit = false;
+obj = objTackleFire;
 </string>
           </argument>
         </arguments>
@@ -80,12 +81,14 @@ if (entityCanStep())
     {
         for (var n = 0; n &lt; num; n++)
         {
-            var i = instance_create(x, y, objTackleFire);
+            var i = instance_create(x, y, obj);
             i.popDelay = spacing * n;
             i.alarmDrop = alarmDrop + spacing * (num - 1) - (spacing * n);
             i.randomOffset = 1;
             i.respawn = 0;
             i.inWater = inWater;
+            if (obj == objTackleFire)
+                i.image_xscale = -1;
         }
     }
     if (timer &gt;= startWait + spawnWait)

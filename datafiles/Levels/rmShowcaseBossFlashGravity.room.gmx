@@ -140,9 +140,9 @@
     <instance objName="objDownScrolling" x="512" y="672" name="inst_421D862C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSectionFreeVerticalScrolling" x="1280" y="672" name="inst_16CBE27F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objETank" x="984" y="256" name="inst_64E382FE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="640" y="640" name="inst_FE8E29B1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="824" y="832" name="inst_EB4D5F1E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1328" y="800" name="inst_E062018C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="640" y="640" name="inst_FE8E29B1" locked="0" code="name = &quot;Centaur Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="824" y="832" name="inst_EB4D5F1E" locked="0" code="name = &quot;Saturn&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1328" y="800" name="inst_E062018C" locked="0" code="name = &quot;Gravity Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSurpriseCan" x="552" y="528" name="inst_1E1E16DD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSurpriseCan" x="712" y="528" name="inst_91F5207E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWeaponEnergySmall" x="920" y="816" name="inst_A65E3C60" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -169,7 +169,7 @@
     <instance objName="objBossDoorVertical" x="1360" y="432" name="inst_0BB8E00B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoorVertical" x="1344" y="432" name="inst_DF18F556" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objKeyBarrier" x="1520" y="336" name="inst_F95EA67E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1576" y="368" name="inst_06566B3A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1576" y="368" name="inst_06566B3A" locked="0" code="name = &quot;Air Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1280" y="448" name="inst_6AC43FED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1280" y="224" name="inst_5DD1FEF4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1536" y="448" name="inst_9939F03D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

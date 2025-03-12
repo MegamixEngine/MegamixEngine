@@ -38,14 +38,16 @@ ground = false;
 attackTimer = 0;
 jumpTimer = 0;
 jumpAmount = 0;
+landDelay = 4; // Stupid hotfix to make his land animation last longer - Spin
 canInitShoot = true;
 phase = 0; // 0 = nothing; 1 = jumping; 2 = dancing;
 
 startXspeed = xspeed;
 
 // Health Bar
-healthBarPrimaryColor[1] = 35;
-healthBarSecondaryColor[1] = 48;
+manualColors = true;
+healthBarPrimaryColor[1] = make_color_rgb(128, $178, $0C); //35;
+healthBarSecondaryColor[1] = make_color_rgb(248, 224, 160); //48;
 
 // Music
 music = "Mega_Man_4.nsf";
@@ -56,6 +58,8 @@ musicTrackNumber = 17;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -66,6 +70,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objBreakDash, 4);
 enemyDamageValue(objMagneticShockwave, 1);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -88,7 +96,7 @@ enemyDamageValue(objPharaohShot, 1);
 enemyDamageValue(objBlackHoleBomb, 1);
 enemyDamageValue(objMagicCard, 2);
 
-// MaG48MML
+// MaG48HMML
 enemyDamageValue(objFlameMixer, 2);
 enemyDamageValue(objRainFlush, 1);
 enemyDamageValue(objSparkShock, 2);
@@ -100,16 +108,17 @@ enemyDamageValue(objSaltWater, 2);
 enemyDamageValue(objConcreteShot, 3);
 enemyDamageValue(objHomingSniper, 2);
 
-// MaG48MML
+// MaG24HMML
+enemyDamageValue(objWaterWave, 2);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 4);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 4);
 </string>
           </argument>
@@ -165,7 +174,10 @@ if (entityCanStep())
             
             case 1: // Jumping 
                 if (attackTimer &lt;= 0)
+                {
                     attackTimer = 45;
+                    calibrateDirection();
+                }
                 if (attackTimer == 30)
                 {
                     if (instance_exists(target))
@@ -199,6 +211,7 @@ if (entityCanStep())
                     {
                         startXScale = image_xscale;
                         startXspeed = 0;
+                        yspeed = -6.5;
                     }
                 }
                 
@@ -232,11 +245,20 @@ if (entityCanStep())
                 // When grounded, end the jump
                 if (ground == true &amp;&amp; attackTimer &lt;= 1)
                 {
-                    attackTimer = 30;
+                    /*attackTimer = 30;
                     phase = 0;
-                    sprite_index = sprToadIdle;
+                    sprite_index = sprToadIdle;*/
                     xspeed = 0;
                     yspeed = 0;
+                    landDelay--;
+                    if (!landDelay)
+                    {
+                        attackTimer = 30;
+                        phase = 0;
+                        sprite_index = sprToadIdle;
+                        landDelay = 4;
+                        calibrateDirection();
+                    }
                 }
                 break;
             
@@ -253,9 +275,11 @@ if (entityCanStep())
                     image_speed = 0;
                 }
                 image_index += 0.2;
-                if (round(image_index) &gt;= image_number)
+                if (floor(image_index) &gt;= image_number)
                     image_index = image_number - 2;
                 attackTimer -= 1;
+                if (attackTimer == 70)
+                    image_index = 1;
                 if (attackTimer == 60)
                 {
                     instance_create(x, y, objToadRainParticle);
@@ -278,13 +302,14 @@ if (entityCanStep())
                 {
                     phase = 0;
                     attackTimer = 30;
+                    calibrateDirection();
                 }
                 break;
         }
         
         
         // Face the player
-        calibrateDirection();
+        //calibrateDirection();
     }
 }
 else

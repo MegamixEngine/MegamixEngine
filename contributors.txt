@@ -1,6 +1,6 @@
 ﻿## Programming
 WreckingPrograms (creator of Mega Engine)
-SnoruntPyro
+snoruntpyro
 ACESpark
 Stove Guy
 ThatEntityGuy
@@ -15,6 +15,9 @@ PhazonMotherBrain
 Duan'duliir
 Mick Galbani
 MiniMacro
+Gannio
+InUniverse
+Yoshiatom
 
 ## Testing
 Flashman85

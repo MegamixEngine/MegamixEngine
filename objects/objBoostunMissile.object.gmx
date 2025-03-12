@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -32,12 +32,15 @@ canHit = true;
 contactDamage = 6;
 grav = 0;
 dir = 0;
+reflectable = -1;
 
 respawn = false;
 blockCollision = 0;
 parent = noone;
 
 jetTimer = 0;
+imgIndex = 0;
+jet = 0;
 </string>
           </argument>
         </arguments>
@@ -71,14 +74,10 @@ if (entityCanStep())
     jetTimer += 1;
     if (jetTimer &gt;= 4)
     {
-        if (sprite_index == sprBoostunMissile)
-        {
-            sprite_index = sprBoostunMissile2;
-        }
+        if (!jet)
+            jet = true;
         else
-        {
-            sprite_index = sprBoostunMissile;
-        }
+            jet = false;
         
         jetTimer = 0;
     }
@@ -96,6 +95,7 @@ else if (dead)
         shootTimer = 60;
     }
 }
+image_index = imgIndex div 1 + (5 * jet);
 </string>
           </argument>
         </arguments>
@@ -118,15 +118,7 @@ else if (dead)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
-instance_create(x, y, objExplosion);
-playSFX(sfxEnemyHit);
-
-/* with (parent)
-{
-    flyTimer = 30;
-    shootTimer = 60;
-}
+            <string>event_perform_object(prtEntity,ev_other,ev_user10);
 </string>
           </argument>
         </arguments>

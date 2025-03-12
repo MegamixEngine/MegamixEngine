@@ -34,6 +34,7 @@ parent = noone;
 grav = 0;
 
 moveTimer = 30;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

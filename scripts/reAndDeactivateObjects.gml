@@ -10,7 +10,7 @@ var sw = global.switchingSections;
 
 if (deac)
 {
-    if (DEBUG_SPAWN)
+    if (DEBUG_SPAWN && DEBUG_ENABLED)
     {
         show_debug_message("Instance deactivation");
     }
@@ -113,7 +113,7 @@ if (reac)
         abs(global.sectionRight - global.sectionLeft) - 1,
         abs(global.sectionBottom - global.sectionTop) - 1, true);
     
-    if (DEBUG_SPAWN)
+    if (DEBUG_SPAWN && DEBUG_ENABLED)
     {
         show_debug_message("Instance activation");
     }

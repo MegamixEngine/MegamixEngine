@@ -28,6 +28,8 @@
             <string>event_inherited();
 colourBlock = objSheepBlockY;
 spawn = objSpike;
+mySprite[0] = sprite_index;
+mySprite[1] = sprSheepSpikeSquare;
 </string>
           </argument>
         </arguments>

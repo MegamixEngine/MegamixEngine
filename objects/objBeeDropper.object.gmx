@@ -142,9 +142,11 @@ image_index = imgIndex div 1;
             <string>specialDamageValue(objBusterShot, 1);
 specialDamageValue(objBusterShotHalfCharged, 1);
 specialDamageValue(objBusterShotCharged, 2);
+specialDamageValue(objBusterShotHalfChargedProto, 1);
+specialDamageValue(objBusterShotChargedProto, 2);
 specialDamageValue(objPharaohShot, max(2, floor(global.damage / 5)));
 specialDamageValue(objSolarBlaze, 3);
-specialDamageValue(objChillShot, 3);
+specialDamageValue(objChillSpike, 3);
 specialDamageValue(objChillSpikeLanded, 3);
 </string>
           </argument>

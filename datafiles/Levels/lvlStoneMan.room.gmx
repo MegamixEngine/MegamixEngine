@@ -213,7 +213,7 @@ with (objDestroyField)
     <instance objName="objHirarian427" x="2912" y="1008" name="inst_2570B6EC" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRockThrown" x="2984" y="1104" name="inst_9825997E" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMTank" x="3024" y="1104" name="inst_602D0426" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="2688" y="896" name="inst_170CADF4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="2688" y="896" name="inst_170CADF4" locked="0" code="name = &quot;Midway point&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLyric" x="2832" y="848" name="inst_C68175E6" locked="0" code="col = 1;&#xA;if (global.difficulty = DIFF_HARD)&#xA;healthpointsStart = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLyric" x="2832" y="800" name="inst_74C3E62C" locked="0" code="col = 1;&#xA;if (global.difficulty = DIFF_HARD)&#xA;healthpointsStart = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLyric" x="2968" y="816" name="inst_A78C55F5" locked="0" code="col = 1;&#xA;if (global.difficulty = DIFF_HARD)&#xA;healthpointsStart = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -261,8 +261,8 @@ with (objDestroyField)
     <instance objName="objLyric" x="5008" y="136" name="inst_C1AF67C6" locked="0" code="col = 1;&#xA;if (global.difficulty = DIFF_HARD)&#xA;healthpointsStart = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLyric" x="5240" y="88" name="inst_503942B9" locked="0" code="col = 1;&#xA;if (global.difficulty = DIFF_HARD)&#xA;healthpointsStart = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMetallMommy" x="5240" y="144" name="inst_8A87A832" locked="0" code="if (global.difficulty = DIFF_HARD)&#xA;    itemDrop = objBabyMetall;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objStoneMan" x="5848" y="176" name="inst_D4E8ABC0" locked="0" code="music = &quot;Mega_Man_5.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 10;&#xA;&#xA;elementName = &quot;stone&quot;;&#xA;elementCode = &quot;weaponReward(objPowerStone);&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="5504" y="176" name="inst_3A4DF861" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objStoneMan" x="5848" y="176" name="inst_D4E8ABC0" locked="0" code="music = &quot;Mega_Man_5.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 10;&#xA;&#xA;elementCode = &quot;weaponReward(objPowerStone);&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="5504" y="176" name="inst_3A4DF861" locked="0" code="name = &quot;Boss corridor&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="1792" y="1440" name="inst_3356A6EC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingNES" x="3072" y="960" name="inst_3AC1E5D9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="3136" y="912" name="inst_BF953EA1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -449,7 +449,7 @@ with (objDestroyField)
     <instance objName="objReflectBlockSmall" x="1232" y="1712" name="inst_0A54AF34" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objReflectBlockSmall" x="1232" y="1728" name="inst_840D97B3" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;    instance_destroy();&#xA;grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="608" y="2064" name="inst_96CEC1A5" locked="0" code="destroyTilesDepth = 999990;&#xA;" scaleX="1" scaleY="6" colour="4294967295" rotation="0"/>
-    <instance objName="objWeaponModifier" x="1424" y="1872" name="inst_7BF37532" locked="0" code="weapon = objMagnetBeam;&#xA;levelReward = true;&#xA;sprite_index = sprMagnetBeamPickup;&#xA;destroyIfUnlocked = true;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWeaponModifier" x="1424" y="1874" name="inst_7BF37532" locked="0" code="weapon = objMagnetBeam;&#xA;sprite_index = sprMagnetBeamPickup;&#xA;destroyIfUnlocked = true;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyableBlock" x="1248" y="1872" name="inst_B2F7ECCB" locked="0" code="weakness = getWeaponID(objPlantBarrier);&#xA;" scaleX="1" scaleY="0.5" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>

@@ -129,7 +129,7 @@ if (entityCanStep())
                     if (place_meeting(x, y, other))
                     {
                         event_user(EV_DEATH);
-                        playSFX(sfxEnemyHit);
+                        playSFX(getGenericSFX(SFX_ENEMYHIT));
                     }
                 }
             }

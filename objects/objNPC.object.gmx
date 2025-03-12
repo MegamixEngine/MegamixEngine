@@ -41,17 +41,18 @@ canHit = false;
 
 active = false;
 
-//@cc sets the name in their dialogue box
+//@cc sets the name in their dialogue box (if none is provided, the textbox is compressed)
 name = 'Volt Man';
 
 //@cc sets the color of the name in their dialogue box
 name_color = c_white;
 
-//@cc sets the text in their dialogue box
+//@cc sets the text in their dialogue box (can support an array of text)
 text = 'I have nothing to say.';
 
 //@cc sets the sprite used for the mugshot in the dialogue box
-mugshot_sprite = sprMugshots;
+ //NOTE: if this is set to sprMegaman, then the textbox name and mugshot is overridden by the player's name and mugshot
+mugshot_sprite = sprGenericMugshots; //
 
 //@cc the starting frame of the mugshot animation
 mugshot_start = 0;
@@ -62,11 +63,45 @@ mugshot_end = 0;
 //@cc the speed of the mugshot animation
 mugshot_speed = 0;
 
+//Used for conversations in same npc
+
+//@cc alt name for 2nd person talking
+name_alt = getPlayerName("Mega Man");
+
+//@cc alt name color for 2nd person talking
+name_color_alt = getPlayerNameColor();
+
+//@cc sets the sprite used for 2nd mugshot in dialogue box
+mugshot_sprite_alt = -1;
+
+//@cc the starting frame of the 2nd mugshot animation
+mugshot_start_alt = 0;
+
+//@cc the ending frame of the 2nd mugshot animation
+mugshot_end_alt = 0;
+
+//@cc the speed of the 2nd mugshot animation
+mugshot_speed_alt = 0;
+
+//@cc the skin for their textbox
+textbox_skin = "regular";
+
+//@cc sfx when text is typing (-1 = no sound)
+text_blip = -1;
+
+//@cc how fast their text gets typed (0.5 means it takes 2 frames for one char to get typed)
+text_speed = 0.5;
+
+//@cc set the position of the textbox (0 - top, 1- bottom)
+text_position = 0;
+
+//@cc can advance in text manually
+text_can_skip = true;
+
 // options;
-for (i = 0; i &lt;= 4; i += 1)
-{
+for (var i = 0; i &lt;= 4; i += 1) {
     option[i] = "";
-    option_text[i] = "";
+    option_text[i] = ""; // Array of text supported here too
     option_script_on_talk_start[i] = 0;
     option_script_on_talk_end[i] = 0;
     option_code_on_talk_start[i] = "";
@@ -101,6 +136,9 @@ talk_end = sprite_get_number(talk_sprite) - talk_start;
 //@cc the speed of the talk animation
 talk_speed = idle_speed;
 
+//@cc if the talk animation will loop or not
+talk_loop = true;
+
 // collision
 
 //@cc sets the mask used for collision (default: knight man)
@@ -134,6 +172,12 @@ code_on_talk_start = "";
 //@cc code to execute when finished talking
 code_on_talk_end = "";
 
+//@cc if set, save to cutscene enum block. Make sure they're added to the cutscene script.
+// Cutscenes.CUTSCENE_NAME
+save_on_talk_end = -1;
+//@cc sets the text in their dialogue box to change afters if not -1(can support an array of text)
+save_text_change = -1;
+
 // private:
 
 _prev_direction = 1;
@@ -146,6 +190,45 @@ _im = 0;
 
 showarrow = 0;
 npcID = id;
+
+playerID = 0;
+behaviourType = 1;
+//@cc
+arrow_x = 0; // if not 0, then the arrow is drawn in a certain position instead of automatically determined.
+arrow_y = 0; // if not 0, then the arrow is drawn in a certain position instead of automatically determined.
+
+text_array_pos = 0;
+option_text_array_pos = 0;
+animationOverride = false; //if you need a npc to override the npc animation code, set to true;
+
+
+enemyLock = noone; //if set to a object, npc location is set;
+lockX = true; // lock to above x
+lockY = false; //lock to above y;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
 </string>
           </argument>
         </arguments>
@@ -168,89 +251,195 @@ npcID = id;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>
+event_inherited();
 
-if (!global.frozen &amp;&amp; !dead)
+if (!global.frozen &amp;&amp; !dead) 
 {
-    // Idle animation / facing the player (only stationary npcs)
-    if (object_get_name(object_index) != "objNPCMobile")
+    if (instance_exists(enemyLock))
     {
-        if (face_player)
-        {
+        if (lockX)
+            x = enemyLock.x;
+        if (lockY)
+            y = enemyLock.y;
+    }
+    // Idle animation / facing the player (only stationary npcs)
+    if (object_get_name(object_index) != "objNPCMobile") {
+        if (face_player) {
             xtarg = x;
+            
             if (instance_exists(target))
-            {
                 xtarg = target.x;
-            }
+            
             if (abs(x - xtarg) &gt; face_player_distance)
-            {
                 calibrateDirection();
-            }
         }
     }
     
-    with (target) // Initiate talking
-    {
-        if (!playerIsLocked(PL_LOCK_PAUSE))
-        {
-            if (place_meeting(x + (other.talk_distance * image_xscale), y, other))
-            {
-                with (other)
-                {
-                    var talkable = ground;
-                    
-                    if (!standardPhysics)
-                    {
-                        talkable++;
-                    }
-                    
-                    if (talkable)
-                    {
-                        if (global.keyUpPressed[other.playerID] &amp;&amp; !other.climbing)
-                        {
-                            spawnTextBoxSingleString(name, name_color, text);
-                            addMugshot(mugshot_sprite, mugshot_start, mugshot_end, mugshot_speed);
-                            var i = 0;
-                            while (option[i] != "" &amp;&amp; i &lt;= 4)
+    with (target) { // Initiate talking
+        if (!playerIsLocked(PL_LOCK_PAUSE)) {
+            if (place_meeting(x + (other.talk_distance * image_xscale), y, other)) {
+                with (other) {
+                    if (ground || !standardPhysics) {
+                        if (global.keyUpPressed[other.playerID] &amp;&amp; !other.climbing) {
+                            var textbox;
+                            
+                            playerID = other.playerID;
+                            text_array_pos = 0;
+                            option_text_array_pos = 0;
+                            
+                            /*if (is_array(text))
+                                textbox = spawnTextBoxUsingArray(text_position, 0, name, name_color, text);
+                            else
+                                textbox = spawnTextBoxSingleString(text_position, 0, name, name_color, text);*/
+                            
+                             
+                            if (mugshot_sprite != sprMegaman)
                             {
-                                addChoice(i, option[i]);
-                                i += 1;
+                                if (is_array(text))
+                                {
+                                    if (!is_array(text[0]))
+                                        textbox = spawnTextBoxUsingArray(text_position, 0, name, name_color, text);
+                                    else
+                                        textbox = spawnTextBoxUsingArray(text_position, 0, name, name_color, text[0]);
+                                }
+                                else
+                                    textbox = spawnTextBoxSingleString(text_position, 0, name, name_color, text);
+                                    
+                                addMugshot(mugshot_sprite, mugshot_start, mugshot_end, mugshot_speed);
+                                
                             }
+                            else
+                            {
+                                if (is_array(text))
+                                {
+                                    if (!is_array(text[0]))
+                                        textbox = spawnTextBoxUsingArray(text_position, 0, getPlayerName("Mega Man"), getPlayerNameColor(), text);
+                                    else
+                                        textbox = spawnTextBoxUsingArray(text_position, 0, getPlayerName("Mega Man"), getPlayerNameColor(), text[0]);
+                                }
+                                else
+                                    textbox = spawnTextBoxSingleString(text_position, 0, getPlayerName("Mega Man"), getPlayerNameColor(), text);
+                                    
+                                addMugshot(-1, 0, 0, 0);
+                                
+                            }
+                            setTextboxSkin(textbox_skin);
+                            setTextboxTyping(text_speed, 4, text_blip);
+                            if (!text_can_skip)
+                                textbox.canSkipText = false;
+                            textbox.playerID = other.playerID;
+                            
+                            if !(is_array(text) &amp;&amp; is_array(text[0]))
+                            {
+                                var option_count = array_length_1d(option);
+                                for (var i = 0; i &lt; option_count; i++) {
+                                    if (option[i] == "")
+                                        break;
+                                    
+                                    addChoice(option[i]);
+                                }
+                            }
+                            
                             active = true;
                             option_spoken = false;
                             _prev_direction = image_xscale;
                             
                             if (face_player_on_talk)
-                            {
                                 calibrateDirection();
+                            with (objMegaman)
+                            {
+                                if (playerID == other.playerID)
+                                    calibrateDirection();
                             }
                             
                             event_user(1); // start dialogue
-                            global.frozen = 1;
+                            //global.frozen = 1; // this is redundant...
                         }
-                    }
-                    else
-                    {
-                        arrowDraw = false;
                     }
                 }
             }
         }
     }
 }
-if (!active)
+
+if (!animationOverride)
 {
-    sprite_index = idle_sprite;
-    if (!global.frozen)
+    if (!active) 
     {
-        animationLoop(idle_start, idle_end, idle_speed);
+        if (object_index != objNPCMobile &amp;&amp; !object_is_ancestor(object_index, objNPCMobile))
+        {
+            sprite_index = idle_sprite;
+            
+            if (!global.frozen)
+                animationLoop(idle_start, idle_end, idle_speed);
+        }
+    }
+    else 
+    {
+        sprite_index = talk_sprite;
+        
+        if (talk_loop || (image_index &lt; talk_end &amp;&amp; !talk_loop))
+            animationLoop(talk_start, talk_end, talk_speed);
     }
 }
-else
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Handle two-person option text
+var chosen_option_text = option_text[option_chosen],
+    textbox;
+
+if (is_array(chosen_option_text))
 {
-    sprite_index = talk_sprite;
-    animationLoop(talk_start, talk_end, talk_speed);
+    if (is_array(chosen_option_text[0]))
+    {
+        option_text_array_pos ++;
+        if (option_text_array_pos &lt; array_length_1d(chosen_option_text))
+        {
+            canSpawnOptionTextbox = false;
+            
+            if (option_text_array_pos % 2 == 0)
+            {
+                textbox = spawnTextBoxUsingArray(text_position, 3, name, name_color, chosen_option_text[option_text_array_pos]);
+                addMugshot(mugshot_sprite, mugshot_start, mugshot_end, mugshot_speed, textbox);
+            }
+            else
+            {
+                textbox = spawnTextBoxUsingArray(text_position, 3, name_alt, name_color_alt, chosen_option_text[option_text_array_pos]);
+                addMugshot(mugshot_sprite_alt, mugshot_start_alt, mugshot_end_alt, mugshot_speed_alt, textbox);
+            }
+            
+            setTextboxSkin(textbox_skin, textbox);
+            setTextboxTyping(text_speed, 4, text_blip, textbox);
+            
+            textbox.image_index = prev_index;
+            textbox.playerID = playerID;
+        }
+    }
 }
+
+active = false;
+global.frozen = false;
 </string>
           </argument>
         </arguments>
@@ -273,34 +462,65 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var canExecute = false;
-var executeLocked = false;
-if (option_text[0] != "" &amp;&amp; option_spoken == true &amp;&amp; !global.frozen &amp;&amp; !executeLocked &amp;&amp; !active)
-{
+            <string>/// on dialogue box destroyed
+var canExecute = false,
+    executeLocked = false;
+    
+if (option_text[0] != "" &amp;&amp; option_spoken &amp;&amp; !global.frozen &amp;&amp; !executeLocked &amp;&amp; !active) {
     executeLocked = true;
     canExecute = true;
 }
+
+if (is_array(text))
+{
+    if (is_array(text[0]))
+    {
+        if (text_array_pos &lt; array_length_1d(text))
+            exit;
+    }
+}
+
+if (option_spoken)
+{
+    var chosen_option_text = option_text[option_chosen];
+
+    if (is_array(chosen_option_text))
+    {
+        if (is_array(chosen_option_text[0]))
+        {
+            if (option_text_array_pos &lt; array_length_1d(chosen_option_text))
+                exit;
+        }
+    }
+}
+
 active = 0;
 global.frozen = 0;
-    
+
 // return to previous orientation, whether it was the same or not -- unless face_player is true
 if (!face_player)
-{
     image_xscale = _prev_direction;
-}
     
 if (script_on_talk_end != 0 &amp;&amp; option_chosen == -1)
     script_execute(script_on_talk_end);
 else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_script_on_talk_end[option_chosen] != 0 &amp;&amp; canExecute)
-{
     script_execute(option_script_on_talk_end[option_chosen]);
-}
-        
+
 if (code_on_talk_end != "" &amp;&amp; option_chosen == -1)
     stringExecutePartial(code_on_talk_end);
 else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_code_on_talk_end[option_chosen] != "" &amp;&amp; canExecute)
-{
     stringExecutePartial(option_code_on_talk_end[option_chosen]);
+    
+if (save_on_talk_end != -1)
+{
+    arrayAppendUnique(global.cutscenesPlayed, save_on_talk_end);
+    saveLoadGame(true, false, false);
+    save_on_talk_end = -1;
+    if (save_text_change != -1)
+    {
+        text = save_text_change;
+    }
+    //playSFX(sfxHonk);
 }
 </string>
           </argument>
@@ -330,14 +550,11 @@ else if (option_chosen != -1 &amp;&amp; option_spoken &amp;&amp; option_code_on_
 active = true;
 
 if (script_on_talk_start != 0)
-{
     script_execute(script_on_talk_start);
-}
 
 if (code_on_talk_start != "")
-{
     stringExecutePartial(code_on_talk_start);
-}
+
 global.frozen = true;
 </string>
           </argument>
@@ -362,21 +579,105 @@ global.frozen = true;
           <argument>
             <kind>1</kind>
             <string>/// end dialogue
+var canSpawnOptionTextbox = true;
 
-if (option_chosen != -1 &amp;&amp; !option_spoken &amp;&amp; option_text[option_chosen] != "")
+if (is_array(text))
 {
-    spawnTextBoxSingleString(name, name_color, option_text[option_chosen]);
-    addMugshot(mugshot_sprite, mugshot_start, mugshot_end, mugshot_speed);
-    with (objDialogueBox)
+    if (is_array(text[0]))
     {
-        alarm[0] = 0;
-        boxOffset = 0;
-        showtext = 1;
-        alarm[1] = 14;
-        itext = ds_list_find_value(text, 0);
-        image_index = other.prev_index;
+        text_array_pos ++;
+        if (text_array_pos &lt; array_length_1d(text))
+        {
+            canSpawnOptionTextbox = false;
+            
+            if (text_array_pos % 2 == 0)
+            {
+                textbox = spawnTextBoxUsingArray(text_position, 0, name, name_color, text[text_array_pos]);
+                addMugshot(mugshot_sprite, mugshot_start, mugshot_end, mugshot_speed, textbox);
+                active = true;
+            }
+            else
+            {
+                textbox = spawnTextBoxUsingArray(text_position, 0, name_alt, name_color_alt, text[text_array_pos]);
+                addMugshot(mugshot_sprite_alt, mugshot_start_alt, mugshot_end_alt, mugshot_speed_alt, textbox);
+            }
+            
+            if (text_array_pos == array_length_1d(text) - 1)
+            {
+                var option_count = array_length_1d(option);
+                for (var i = 0; i &lt; option_count; i++) {
+                    if (option[i] == "")
+                        break;
+                                    
+                    addChoice(option[i], textbox);
+                }
+            }
+            
+            setTextboxSkin(textbox_skin, textbox);
+            setTextboxTyping(text_speed, 4, text_blip, textbox);
+            
+            textbox.image_index = prev_index;
+            textbox.playerID = playerID;
+            
+            global.frozen = 1;
+        }
     }
+}
+
+if (option_chosen != -1 &amp;&amp; !option_spoken &amp;&amp; option_text[option_chosen] != "" &amp;&amp; canSpawnOptionTextbox)
+{
+    var chosen_option_text = option_text[option_chosen],
+        textbox;
+    
+    /*if (is_array(chosen_option_text))
+        textbox = spawnTextBoxUsingArray(text_position, 0, name, name_color, chosen_option_text);
+    else
+        textbox = spawnTextBoxSingleString(text_position, 0, name, name_color, chosen_option_text);
+    
+    addMugshot(mugshot_sprite, mugshot_start, mugshot_end, mugshot_speed, textbox);*/
+    
+    if (mugshot_sprite != sprMegaman)
+    {
+        if (is_array(chosen_option_text))
+        {
+            if (is_array(chosen_option_text[0]))
+                textbox = spawnTextBoxUsingArray(text_position, 3, name, name_color, chosen_option_text[0]);
+            else
+                textbox = spawnTextBoxUsingArray(text_position, -1, name, name_color, chosen_option_text);
+        }
+        else
+            textbox = spawnTextBoxSingleString(text_position, -1, name, name_color, chosen_option_text);
+        
+        addMugshot(mugshot_sprite, mugshot_start, mugshot_end, mugshot_speed, textbox);
+        
+    }
+    else
+    {
+        if (is_array(chosen_option_text))
+        {
+            if (is_array(chosen_option_text[0]))
+                textbox = spawnTextBoxUsingArray(text_position, 3, getPlayerName("Mega Man"), getPlayerNameColor(), chosen_option_text[0]);
+            else
+                textbox = spawnTextBoxUsingArray(text_position, -1, getPlayerName("Mega Man"), getPlayerNameColor(), chosen_option_text);
+        }
+        else
+            textbox = spawnTextBoxSingleString(text_position, -1, getPlayerName("Mega Man"), getPlayerNameColor(), chosen_option_text);
+            
+        addMugshot(-1, 0, 0, 0);
+        
+    }
+    
+    setTextboxSkin(textbox_skin, textbox);
+    setTextboxTyping(text_speed, 4, text_blip, textbox);
+    
+    dispelUtilities();
+    
+    textbox.boxOffset = 0;
+    textbox.image_index = prev_index;
+    textbox.playerID = playerID;
+    
     option_spoken = true;
+    
     if (option_script_on_talk_start[option_chosen] != 0)
         script_execute(option_script_on_talk_start[option_chosen]);
         
@@ -385,6 +686,8 @@ if (option_chosen != -1 &amp;&amp; !option_spoken &amp;&amp; option_text[option_
         
     active = true;
     global.frozen = 1;
+    
+
     // exit;
 }
 </string>
@@ -411,29 +714,24 @@ if (option_chosen != -1 &amp;&amp; !option_spoken &amp;&amp; option_text[option_
             <kind>1</kind>
             <string>// creation code setup stuff
 if (string_length(name) &gt; 27)
-{
     name = string_copy(name, 0, 27);
-}
 
 // make custom idle sprites the default sprites for unset sprites
-if (idle_sprite != sprVoltIdle)
-{
+if (idle_sprite != sprVoltIdle) {
     if (talk_sprite == sprVoltThrowShield)
-    {
         talk_sprite = idle_sprite;
-    }
     
     // Changes the sprite so we don't see the NPC as Volt Man.
     if (sprite_index == sprVoltIdle)
-    {
         sprite_index = idle_sprite;
-    }
     
     // set the mask
     if (mask != maskNPC)
-    {
         mask_index = mask;
-    }
+        
+    image_index = idle_start;
+    if (face_player)
+        calibrateDirection();
 }
 </string>
           </argument>
@@ -458,19 +756,30 @@ if (idle_sprite != sprVoltIdle)
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-with (target) // Initiate talking
-{
+var mePlayer = instance_nearest(x,y,objMegaman);
+with (target)
+{ // Initiate talking
     if (!playerIsLocked(PL_LOCK_PAUSE))
     {
         if (place_meeting(x + (other.talk_distance * image_xscale), y, other))
         {
             with (other)
             {
-                draw_sprite(sprPressUp, 0, bboxGetXCenter(), bbox_top - 12);
+                var prompt = "up";
+                var xx = bboxGetXCenter() - 4;
+                if (arrow_x != 0)
+                    xx = arrow_x;
+                
+                var yy = bbox_top - 12;
+                if (arrow_y != 0)
+                    yy = arrow_y;
+                
+                drawButtonPrompt(prompt, xx, yy, 1,mePlayer.playerID);
             }
         }
     }
 }
+
 </string>
           </argument>
         </arguments>

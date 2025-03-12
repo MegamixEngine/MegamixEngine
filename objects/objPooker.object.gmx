@@ -42,6 +42,10 @@ getY = y;
 yOffset = 0;
 lock = false;
 platTarget = noone;
+
+dpsTimer = 0;
+flipDamageCount = 0;
+flipDPS = 5;
 </string>
           </argument>
         </arguments>
@@ -85,6 +89,13 @@ if (entityCanStep())
                 timer = 0;
                 image_index = 0;
             }
+            
+            if (dpsTimer &gt; 0) // Bass Mode failsafe
+            {
+                dpsTimer -= 1;
+                if (dpsTimer == 0)
+                    flipDamageCount = 0;
+            }
             break;
         
         // flip over after being hit by a charge shot
@@ -125,8 +136,7 @@ if (entityCanStep())
                 yspeed = 0;
                 
                 instance_create(x, y, objBigExplosion);
-                audio_stop_sound(sfxMM3Explode);
-                playSFX(sfxExplosion);
+                playSFX(getGenericSFX(SFX_EXPLOSION2));
                 
                 dead = true;
                 
@@ -311,6 +321,9 @@ if (instance_exists(target))
 }
 
 contactDamage = contactStart;
+canDamage = true;
+dpsTimer = 0;
+flipDamageCount = 0;
 </string>
           </argument>
         </arguments>
@@ -335,9 +348,19 @@ contactDamage = contactStart;
             <kind>1</kind>
             <string>if (phase == 0)
 {
-    if (other.object_index == objBusterShotCharged || other.object_index == objBreakDash)
+    if (other.sprite_index == sprBassBullet) // Bass Mode failsafe
+    {
+        if (dpsTimer == 0)
+            dpsTimer = 60;
+        flipDamageCount += 1;
+    }
+    
+    if (other.object_index == objBusterShotCharged || other.object_index == objBreakDash
+        || other.object_index == objBusterShotChargedProto
+        || (other.object_index == objBusterShot &amp;&amp; flipDamageCount &gt;= flipDPS))
     {
         phase = 1;
+        canDamage = false;
         yspeed = -3;
         y += yspeed; // so it doesn't immediately detect the ground and try to explode
         ground = false;
@@ -362,14 +385,15 @@ contactDamage = contactStart;
         image_xscale = dir;
     }
     
-    if (other.penetrate &gt;= 2 || other.object_index == objChillSpikeLanded)
+    other.guardCancel = 3;
+    /*if (other.penetrate &gt;= 2 || other.object_index == objChillSpikeLanded)
     {
         other.guardCancel = 2;
     }
     else
     {
         other.guardCancel = 1;
-    }
+    }*/
 }
 else
 {

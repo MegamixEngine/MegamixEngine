@@ -58,6 +58,20 @@ maxSpeed = 4;
           <argument>
             <kind>1</kind>
             <string>defaultSpeed = maxSpeed;
+
+//align the camera within the softborder bounds on room start
+if (collision_rectangle(bbox_left, y, bbox_right, y + (view_wview / 2) * sign(image_yscale), objMegaman, 0, 1)
+    &amp;&amp; !collision_rectangle(bbox_left, y, bbox_right, y + deactivationDistance * sign(image_yscale), objMegaman, 0, 1))
+{
+    if (image_yscale &gt; 0)
+    {
+        global.borderLockTop = y;
+    }
+    else
+    {
+        global.borderLockBottom = y;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -122,6 +136,15 @@ else if (active
             active = false;
             maxSpeed = defaultSpeed;
         }
+    }
+}
+
+//if view player dies, unset active.
+if (viewPlayer != noone)
+{
+    if (!instance_exists(viewPlayer) &amp;&amp; global.playerCount &gt; 1)
+    {
+        active = false;
     }
 }
 </string>

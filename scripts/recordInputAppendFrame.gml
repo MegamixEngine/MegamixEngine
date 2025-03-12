@@ -43,7 +43,45 @@ for (var i = 0; i < global.playerCount; i++)
         flags += "}";
     if (global.keyWeaponSwitchRight[i])
         flags += "]";
-    if (global.keyPausePressed[i] || global.keyPause[i])
+    if (global.keyPausePressed[i])
+    {
+        flags += "P";
+    }
+    if (global.keyPause[i])
+    {
+        flags += "p";
+    }
+    if (global.keyMapPressed[i])
+    {
+        flags += "M";
+    }
+    if (global.keyMap[i])
+    {
+        flags += "m";
+    }
+    if (global.keyWheelSwitchPressed[i])
+    {
+        flags += "W";
+    }
+    if (global.keyWheelSwitch[i])
+    {
+        flags += "w";
+    }
+    var stick = "";
+    var doWrite = false;
+    for (var j = 0; j < 2; j++)
+    {
+        stick += "," + string(global.analogStickDirection[i,j]) + "," + string(global.analogStickTilt[i,j]);
+        if (global.analogStickDirection[i,j] != 0 || global.analogStickTilt[i,j] != 0)
+        {
+            doWrite = true;
+        }
+    }
+    if (doWrite)//Only add stick to the file if the stick values are not complete 0 (deadzone).
+    {
+        flags += stick;
+    }
+    if ((global.keyPausePressed[i] || global.keyPause[i]) && (global.keyMapPressed[i] || global.keyMap[i]))
     {
         global.recordInputEnd = true;
         global.keyPausePressed[i] = false;

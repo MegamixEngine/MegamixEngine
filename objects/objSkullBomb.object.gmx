@@ -62,7 +62,7 @@ if (global.frozen == false &amp;&amp; global.timeStopped == false)
     if (ground == true)
     {
         instance_create(x, y, objExplosion);
-        playSFX(sfxExplosion);
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM5));
         instance_destroy();
     }
 }

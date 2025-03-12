@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -36,6 +36,7 @@ size = 0;
 isWave = 0;
 isFlying = 0;
 isBomb = 0; // Detonate when at Mega Man's Y?
+reflectable = 1;
 </string>
           </argument>
         </arguments>

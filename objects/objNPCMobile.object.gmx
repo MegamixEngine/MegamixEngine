@@ -70,6 +70,13 @@ walk_speed = idle_speed;
 jump_start = 0;
 
 only_jumps = false;
+walk_as_jump = false; //if true, ingore jump frames
+
+turnAround = false;
+
+//if not -1 this is the limit of NPC movement, set both
+minX = -1;
+maxX = -1;
 
 // private:
 mode = 0;
@@ -77,6 +84,9 @@ mode_timer = 0;
 mode_timer_end = 0;
 standardPhysics = false;
 despawnRange = 700000;
+
+
+
 </string>
           </argument>
         </arguments>
@@ -111,7 +121,21 @@ if (!global.frozen &amp;&amp; !global.timeStopped &amp;&amp; !dead)
 {
     // select behaviour:
     mode_timer += 1;
-    if (mode_timer &gt; mode_timer_end &amp;&amp; ground)
+    
+    //if not -1 this is the limit of NPC movement, set both
+    if (minX != -1 &amp;&amp; maxX != -1)
+    {
+        if ((image_xscale &gt; 0 &amp;&amp; x &gt;= maxX) || (image_xscale &lt; 0 &amp;&amp; x &lt;= minX))
+        {
+            var xD = xspeed;
+            image_xscale *= -1;
+            xspeed = -xD;
+        }
+        
+    }
+
+    
+    if (mode_timer &gt; mode_timer_end &amp;&amp; (ground || grav == 0))
     {
         mode_timer = 0;
         if (behaviour == "restless")
@@ -190,6 +214,18 @@ if (!global.frozen &amp;&amp; !global.timeStopped &amp;&amp; !dead)
             {
                 calibrateDirection();
             }
+            
+            if (walk_as_jump)
+            {
+                sprite_index = jump_sprite;
+                animationLoop(walk_start, walk_end, walk_speed);
+            }
+            else if (!ground)
+            {
+                // jumping animation
+                sprite_index = jump_sprite;
+                image_index = jump_start;
+            }
             break;
         case 1: // walk 
             if (!only_jumps)
@@ -212,7 +248,12 @@ if (!global.frozen &amp;&amp; !global.timeStopped &amp;&amp; !dead)
                     xspeed = 0;
                 }
             }
-            if (!ground)
+            if (walk_as_jump)
+            {
+                sprite_index = jump_sprite;
+                animationLoop(walk_start, walk_end, walk_speed);
+            }
+            else if (!ground)
             {
                 // jumping animation
                 sprite_index = jump_sprite;
@@ -239,7 +280,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped &amp;&amp; !dead)
                         image_xscale *= -1;
                     }
                 }
-                else if (checkSolid(xspeed * 18, 0))
+                else if (checkSolid(xspeed * 18, 0) &amp;&amp; jump_speed != 0)
                 {
                     // see if it is possible to jump
                     // wall in front
@@ -298,6 +339,13 @@ if (!global.frozen &amp;&amp; !global.timeStopped &amp;&amp; !dead)
                 {
                     yspeed = -abs(jump_speed);
                 }
+            }
+            
+            // turnaround
+            if (xcoll != 0 &amp;&amp; turnAround)
+            {
+                xspeed = -xcoll;
+                image_xscale = -image_xscale;
             }
             break;
     }
@@ -399,6 +447,16 @@ if (idle_sprite != sprNPCKnightmanIdle)
     {
         jump_sprite = idle_sprite;
     }
+	
+	// Changes the sprite so we don't see the NPC as Knight Man.
+    if (sprite_index == sprNPCKnightmanIdle)
+        sprite_index = idle_sprite;
+    
+    // set the mask
+    if (mask != maskNPC)
+        mask_index = mask;
+        
+    image_index = idle_start;
 }
 
 if (move_speed == noone)

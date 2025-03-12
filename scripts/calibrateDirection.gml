@@ -14,12 +14,9 @@ else
 
 if (instance_exists(_targ))
 {
-    if (x > _targ.x)
+    var aimDir = _targ.x-x;
+    if(aimDir!=0 && (sign(aimDir)!= sign(image_xscale)))
     {
-        image_xscale = -1;
-    }
-    else
-    {
-        image_xscale = 1;
+        image_xscale*=-1;
     }
 }

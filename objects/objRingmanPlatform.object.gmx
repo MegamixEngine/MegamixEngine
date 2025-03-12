@@ -40,15 +40,18 @@ mySpeed = 2;
 
 //@cc
 platformSprite = noone;
+platformTrail = noone;
 
-if (startLen &gt; 0)
-{
-    platformSprite = sprRingManPlatformBridge;
-}
-else
-{
-    platformSprite = sprRingManPlatformRainbow;
-}
+targetObject = objMegaman; //the object that activates this
+//0 = right, 1 = left
+mySprite[0] = sprRingManPlatformBridge;
+mySprite[1] = sprRingManPlatformRainbow;
+myTrail[0] = noone; //if not set, platform has no trail
+myTrail[1] = sprRingManPlatformTrail;
+
+repeatActive = false; //if true, once activated it never deactivates
+
+shockDebug = false;
 </string>
           </argument>
         </arguments>
@@ -76,12 +79,15 @@ else
     imgIndex += image_speed;
     
     // if a player lands on the platform, activate
-    with (objMegaman)
+    if (targetObject != noone)
     {
-        if (place_meeting(x, y + gravDir, other)
-            &amp;&amp; !place_meeting(x, y, other))
+        with (targetObject)
         {
-            other.active = true;
+            if (place_meeting(x, y + gravDir, other)
+                &amp;&amp; !place_meeting(x, y, other))
+            {
+                other.active = true;
+            }
         }
     }
     
@@ -104,10 +110,88 @@ else
         if (image_xscale * sign(startLen) &lt;= -startLen * sign(startLen))
         {
             x = xstart;
-            active = false;
+            active = repeatActive;
             image_xscale = startLen;
         }
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///debug
+// to help with debugging shocked enemy placement, left click on enemies to shock them
+// this will be disabled in the final level.
+
+//This crashed one of our playtesters so I'm shutting it down.
+exit;
+
+
+if (!shockDebug)
+    exit;
+
+if (mouse_x &gt;= bbox_left &amp;&amp; mouse_x &lt;= bbox_right &amp;&amp; mouse_y &gt;= bbox_top &amp;&amp; mouse_y &lt;= bbox_bottom)
+{
+    playSFX(sfxCricket);
+    active = true;
+    repeatActive = true;
+    image_speed = 0.65;
+    with (parent)
+    {
+        shockTimer = shockTimerSet;
+        //sprite_index = sprCollisionOther;
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (startLen &gt; 0)
+{
+    platformSprite = mySprite[0];
+    platformTrail = myTrail[0];
+}
+else
+{
+    platformSprite = mySprite[1];
+    platformTrail = myTrail[1];
 }
 </string>
           </argument>
@@ -136,7 +220,7 @@ else
     var posOffset = max(sign(image_xscale), 0), negOffset = min(sign(image_xscale), 0);
     
     // body
-    for (i = -negOffset; i &lt; floor(abs(image_xscale)) - negOffset; i++)
+    for (var i = -negOffset; i &lt; floor(abs(image_xscale)) - negOffset; i++)
     {
         draw_sprite(platformSprite, floor(imgIndex), floor(x + (i * 16) * sign(image_xscale)), floor(y));
     }
@@ -146,9 +230,9 @@ else
     draw_sprite_part(platformSprite, floor(imgIndex), floor((16 * (1 - tileOffset)) * abs(negOffset)), 0, floor(16 * tileOffset), 16, floor(x + floor(image_xscale) * 16 - (16 - tileOffset * 16) * negOffset), floor(y));
     
     // sparkle tail for rainbow roa- bridge
-    if (platformSprite == sprRingManPlatformRainbow &amp;&amp; image_xscale != startLen)
+    if (platformTrail != noone &amp;&amp; image_xscale != startLen)
     {
-        draw_sprite_ext(sprRingManPlatformTrail, floor(imgIndex), floor(x + image_xscale * 16), floor(y), sign(image_xscale), image_yscale, image_angle, image_blend, image_alpha);
+        draw_sprite_ext(platformTrail, floor(imgIndex), floor(x + image_xscale * 16), floor(y), sign(image_xscale), image_yscale, image_angle, image_blend, image_alpha);
     }
 }
 </string>

@@ -40,8 +40,8 @@ timer = 0;
 maxTimer = 40;
 
 // Health Bar
-healthBarPrimaryColor[1] = 32;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $26;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_3.nsf";
@@ -52,6 +52,9 @@ musicTrackNumber = 12;
 enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
+enemyDamageValue(objBusterShotHalfChargedProto, 2);
+enemyDamageValue(objBusterShotChargedProto, 4);
+enemyDamageValue(objNormalBusterShot, 2);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -62,6 +65,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objBreakDash, 4);
 enemyDamageValue(objMagneticShockwave, 1);
 enemyDamageValue(objIceWall, 5);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -97,15 +104,16 @@ enemyDamageValue(objConcreteShot, 5);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG48MML
+enemyDamageValue(objWaterWave, 4);
 enemyDamageValue(objSuperArmBlockProjectile, 2);
 enemyDamageValue(objSuperArmDebris, 2);
-enemyDamageValue(objChillShot, 2);
-enemyDamageValue(objChillSpikeLanded, 5);
+enemyDamageValue(objChillSpike, 1);
+enemyDamageValue(objChillSpikeLanded, 2);
 
 // Misc.
 enemyDamageValue(objPowerStone, 4);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -142,25 +150,17 @@ if (entityCanStep())
                 if (floor(image_index) == 2 &amp;&amp; didShoot == false)
                 {
                     didShoot = true;
-                    var ID;
-                    ID = instance_create(x + image_xscale
-                        * (-sprite_get_xoffset(sprite_index) + 10),
-                        y - sprite_get_yoffset(sprite_index) + 8,
-                        objTopmanTop);
-                    ID.image_xscale = image_xscale;
-                    ID.number = 0;
-                    ID = instance_create(x + image_xscale
-                        * (-sprite_get_xoffset(sprite_index) + 10),
-                        y - sprite_get_yoffset(sprite_index) + 8,
-                        objTopmanTop);
-                    ID.image_xscale = image_xscale;
-                    ID.number = 1;
-                    ID = instance_create(x + image_xscale
-                        * (-sprite_get_xoffset(sprite_index) + 10),
-                        y - sprite_get_yoffset(sprite_index) + 8,
-                        objTopmanTop);
-                    ID.image_xscale = image_xscale;
-                    ID.number = 2;
+                    
+                    for (var i = 0; i &lt; 3; i ++;)
+                    {
+                        with (entityCreateChild(
+                        (12 - sprite_get_xoffset(sprite_index)),
+                        (8 - sprite_get_yoffset(sprite_index)),
+                        objTopmanTop))
+                        {
+                            number = i;
+                        }
+                    }
                 }
                 else if (image_index &gt;= image_number - image_speed)
                 {
@@ -286,7 +286,10 @@ if (sprite_index == sprTopSpin)
           <argument>
             <kind>1</kind>
             <string>with (objTopmanTop)
+{
+    instance_create(bboxGetXCenter(),bboxGetYCenter(),objExplosion);
     instance_destroy();
+}
 event_inherited();
 </string>
           </argument>

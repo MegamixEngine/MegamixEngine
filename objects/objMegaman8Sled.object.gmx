@@ -37,13 +37,19 @@ xspeed = 0;
 yspeed = 0;
 viewX = view_xview[0];
 roundAlt = false;
-playerProjectiles = ds_list_create(); // to keep track of which projecitles have been speed increased
+
+playerProjectiles = mm_ds_list_create(); // to keep track of which projecitles have been speed increased
+projectileIgnoreGroup = makeArray(objTornadoBlow, objMagneticShockwave, objIceWall, objWaterShield,
+    objMagnetBeam, objRushTeleport, objRushCoil, objRushJet, objRushCycle, objTrebleBoost, objSakugarne,
+    objSuperArrow, objChillSpikeLanded, objSearchSnake, objBlockDropper); // things that shouldn't get sled momentum
 
 // vehicle vars
 rider = noone;
 weaponsAllowed = true;
 riderPhysicsAllowed = true;
 shootYOffset = 5;
+
+setPlayer = -1;
 </string>
           </argument>
         </arguments>
@@ -66,7 +72,7 @@ shootYOffset = 5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_list_destroy(playerProjectiles);
+            <string>mm_ds_list_destroy(playerProjectiles);
 </string>
           </argument>
         </arguments>
@@ -98,7 +104,7 @@ shootYOffset = 5;
         {
             for (var i = 1; i &lt; global.playerCount; i += 1)
             {
-                with (instance_create(x + 4 * i * dir, y, object_index))
+                with (instance_create(x + 4 * i * image_xscale, y, object_index))
                 {
                     init = 0;
                     image_xscale = other.image_xscale;
@@ -138,6 +144,7 @@ shootYOffset = 5;
                         active = true;
                         image_speed = 1;
                         viewX = view_xview[0];
+                        
                     }
                     else
                     {
@@ -177,6 +184,10 @@ shootYOffset = 5;
                 {
                     proj = instance_find(prtPlayerProjectile, i);
                     exception = false;
+                    
+                    if (xprevious == x)
+                        exception = true;
+                    
                     if (proj.object_index == objJewelSatellite)
                     {
                         if (proj.followPlayer)
@@ -184,6 +195,10 @@ shootYOffset = 5;
                             exception = true; // because any speed would be immediately overwritten if still following the player
                         }
                     }
+                    
+                    if (arrayContains(projectileIgnoreGroup, proj.object_index))
+                        exception = true;
+                    
                     if (ds_list_find_index(playerProjectiles, proj) == -1
                         &amp;&amp; !exception)
                     {

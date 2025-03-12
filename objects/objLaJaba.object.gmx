@@ -25,14 +25,21 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// An accordion that lurches toward the player by hopping, usually small hops but sometimes a big hop, occasionally pausing to taunt.
+/// Its movement pattern feels more unpredictable than it actually is, thanks in part to the wiggly way its sprite is animated.
+/// If you want to distract or disorient players in a challenge that requires focus, this is a good enemy to be the center of attention.
+
+event_inherited();
+
+respawn = true;
+facePlayerOnSpawn = true;
 
 healthpointsStart = 5;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 category = "semi bulky";
 
-facePlayerOnSpawn = true;
+//facePlayerOnSpawn = true;
 phase = 0;
 
 // @cc - use this to change how fast La Jaba's horizontal movement is.
@@ -45,7 +52,6 @@ image_index = 2;
 imgSpd = 0.1;
 moveTimer = 0;
 tauntCount = 0;
-mask_index = sprLaJabaSmallMask;
 </string>
           </argument>
         </arguments>
@@ -106,6 +112,8 @@ if (entityCanStep())
                     image_index = 0;
                 }
             }
+            
+            calibrateDirection();
             break;
         // Small Jump - Air
         case 1:
@@ -146,6 +154,17 @@ if (entityCanStep())
                         {
                             phase = 0;
                         }
+                    }
+                }
+                else // So we're not static if player is dead/hasn't spawned
+                {
+                    xspeed = 0;
+                    yspeed = 0;
+                    image_index = 2;
+                    moveTimer--;
+                    if (moveTimer == 0)
+                    {
+                        phase = 0;
                     }
                 }
             }
@@ -212,16 +231,36 @@ if (entityCanStep())
             break;
     }
 }
-else if (dead)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
 {
-    healthpoints = healthpointsStart;
     moveTimer = 0;
     image_index = 2;
     phase = 0;
-    xspeed = 0;
-    yspeed = 0;
-    facePlayer = false;
     tauntCount = 0;
+    xspeed = 0;
 }
 </string>
           </argument>

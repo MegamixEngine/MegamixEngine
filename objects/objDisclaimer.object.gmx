@@ -34,8 +34,8 @@ timer = 0;
 timerMax = 420;
 
 disclaimerText = "MEGA MAN AND ALL#
-RELATED CONTENT (C) CAPCOM 2018###
-THIS GAME IS A NON-PROFIT EFFORT#
+RELATED CONTENT (C) CAPCOM 2025###
+THIS GAME IS A NONPROFIT EFFORT#
 BY FANS. IT IS NOT FOR SALE.##
 MADE WITH THE MEGAMIX ENGINE,#
 A FORK OF THE MEGA ENGINE.#
@@ -71,7 +71,7 @@ timer += 1;
 if (global.keyPausePressed[0] || global.keyJumpPressed[0]
     || global.keyShootPressed[0] || timer &gt;= timerMax)
 {
-    global.nextRoom = rmTitleScreen;
+    global.nextRoom = rmExtensionCheck;
 }
 </string>
           </argument>

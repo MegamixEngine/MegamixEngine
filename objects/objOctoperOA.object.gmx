@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>//cc = col = 0 = NES palette &amp; green highlights, 1 for Game Gear palette &amp; blue highlights;
+//bulletSprite = sprite_index; if -1, define by colour or object, otherwise set bullet to this sprite.
+event_inherited();
 
 respawn = true;
 doesIntro = false;
@@ -34,9 +36,16 @@ healthpointsStart = 20;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 category = "aquatic, bulky";
+bubbleTimer = -1;
 
 blockCollision = 0;
 grav = 0;
+explosionSFX = sfxMinorExplosion;
+
+
+inWater = -1;
+bubbleTimer = -1;
+drawDelay = 6;
 
 // Enemy specific code
 dir = image_xscale;
@@ -71,6 +80,37 @@ detectorMXScale = 7;
 detectorMYScale = 8;
 turnRoundLong = 128;
 turnRoundShort = 64;
+
+
+
+//creation code
+col = 0;
+bulletSprite = -1; //if -1, define by colour, otherwise set to this sprite
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>image_index = col;
+event_inherited();
+
 </string>
           </argument>
         </arguments>
@@ -97,6 +137,7 @@ turnRoundShort = 64;
 
 if (entityCanStep())
 {
+    drawDelay --;
     // move y.
     if (healthpoints &gt; 10 || object_index != objOctoboss)
         yOffset += yspeed;
@@ -247,10 +288,24 @@ if (entityCanStep())
         yspeed = spdY;
         if (instance_exists(target))
         {
+            var inst;
             if (object_index != objOctoboss)
-                instance_create(x + 37 * image_xscale, y + 40, objOctoperOABullet1);
+                inst = instance_create(x + 37 * image_xscale, y + 40, objOctoperOABullet1);
             else
-                instance_create(x + 16 * image_xscale, y + 20, objOctobossBullet);
+               inst = instance_create(x + 16 * image_xscale, y + 20, objOctobossBullet);
+               
+            if (bulletSprite != -1)
+            {
+                inst.sprite_index = bulletSprite;
+                inst.mask_index = bulletSprite;
+            }
+            else
+            {
+                if (inst.object_index == objOctoperOABullet1 &amp;&amp; col == 1)
+                {
+                    inst.sprite_index = sprOctoperBullet2;
+                }
+            }
         }
     }
     
@@ -336,6 +391,7 @@ if(spawned)
     yspeed = -1;
     yOffset = yOffsetMax;
     imageTimer = 1;
+    drawDelay = 4;
 }
 </string>
           </argument>
@@ -393,18 +449,21 @@ if (b &gt;= bbox_bottom - yOffset)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(!spawned)
+            <string>if(!spawned || drawDelay &gt; 0)
     exit;
-if (iFrames == 1 || iFrames == 3)
+var ii = image_index;
+var offset = 0;
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(true, c_white, 0, 0);
+    ii = 2 + offset;
+
 }
 
 // makes octoper face its spawned direction, regardless of other scripts.
 if (xscaleStorage &lt;= 0)
 {
     image_xscale = 1;
-    draw_sprite_part_ext(sprite_index, image_index, 0, 0, sprite_width,
+    draw_sprite_part_ext(sprite_index, ii, 0, 0, sprite_width,
         sprite_height - yOffset, round(x - 56) + sprite_width,
         round(y - 64), -image_xscale, image_yscale, image_blend,
         image_alpha);
@@ -413,7 +472,7 @@ if (xscaleStorage &lt;= 0)
 else
 {
     image_xscale = 1;
-    draw_sprite_part_ext(sprite_index, image_index, 0, 0, sprite_width,
+    draw_sprite_part_ext(sprite_index, ii, 0, 0, sprite_width,
         sprite_height - yOffset, round(x - 56), round(y - 64),
         image_xscale, image_yscale, image_blend, image_alpha);
 }
@@ -424,10 +483,6 @@ if (imageTimer == 1)
     imageTimer = 0;
 }
 
-if (iFrames == 1 || iFrames == 3)
-{
-    d3d_set_fog(false, 0, 0, 0);
-}
 </string>
           </argument>
         </arguments>

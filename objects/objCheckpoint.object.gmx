@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>/// Place this exactly where you want Megaman to spawn
 // the checkpoint will be triggered when this object just comes onto screen
+//
+// flip it horizontally in the room editor to set the direction Mega Man faces on respawning
 
 image_speed = 0;
 
@@ -35,6 +37,11 @@ respawnAnimation = 0;
 
 //@cc play the animation sequence while ready's being displayed
 showDuringReady = false;
+
+name = "";
+
+silentCheckpoint = false;
+saveCheckpoint = true;
 </string>
           </argument>
         </arguments>
@@ -89,11 +96,30 @@ showDuringReady = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.checkpoint = room;
-global.checkpointX = xx;
-global.checkpointY = yy;
+            <string>if ((global.checkpointX != xx) 
+ || (global.checkpointY != yy))
+{
+    if (global.checkpointNotification) &amp;&amp; !silentCheckpoint
+    {
+        with (objGlobalControl)
+        {
+            checkpointTimer = 1;
+        }
+        
+        playSFX(sfxElementGrab);
+    }
+    
+    if (global.trickleCharge &amp;&amp; !silentCheckpoint)
+    {
+        with (objGlobalControl)
+        {
+            trickleChargeMode = 4;
+        }
+    }
+    
+    setCheckpoint(1, xx, yy, sign(image_xscale), respawnAnimation, saveCheckpoint);
+}
 
-global.respawnAnimation = respawnAnimation;
 if (instance_exists(objMegaman))
 {
     objMegaman.showDuringReady = showDuringReady;

@@ -77,6 +77,10 @@ spd = 2;
 
 nearInst = noone;
 
+explosionSprite = sprExplosionWonderswan;
+deadTimerMax = 88;
+deadTimerRecur = 8;
+deadFrame = 0;
 
 // creation code variables
 acceptableTarget[0] = objKnuckleDusterPlatform;
@@ -271,7 +275,7 @@ if (entityCanStep())
                 y = oldY;
             }
             instance_deactivate_object(nearInst);
-            playSFX(sfxEnemyHit);
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
             grabbedObject = false;
         }
     }

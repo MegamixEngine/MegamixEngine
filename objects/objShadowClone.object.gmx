@@ -95,6 +95,7 @@ if (entityCanStep())
                 phaseTimer = 0;
                 phase = 1;
             }
+            sparkleTimer = 0;
             break;
         case 1:
             grav = .25;
@@ -195,11 +196,35 @@ visible = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// TODO: proper skin colour palette remapping (this doesn't draw quite accurately.)
-if (!dead)
+            <string>if (!dead)
 {
-    drawCostume(global.playerSprite[targetCID], spriteX, spriteY, x, y, image_xscale, image_yscale,
-        c_ltgray, c_black, global.nesPalette[39], c_black);
+    if (invincible)
+    {
+        d3d_set_fog(true, c_white, 0, 0);
+        
+        var _ixscale = (image_xscale * 1.075) + (sin(sparkleTimer * 0.15) *.08 * sign(image_xscale));
+            _ixscale = roundTo(_ixscale, (1 / sprite_get_width(sprite_index)));
+        
+        var _iyscale = (image_yscale * 1.025) + (sin(sparkleTimer * 0.15) *.08 * sign(image_yscale));
+            _iyscale = roundTo(_iyscale, (1 / sprite_get_height(sprite_index)));
+        
+        var _ix = x;
+            _ix -= (0.5 - (sprite_get_xoffset(sprite_index) / sprite_get_width(sprite_index))) * ((_ixscale - image_xscale) * sprite_get_width(sprite_index));
+        
+        var _iy = y;
+            _iy -= (0.5 - (sprite_get_yoffset(sprite_index) / sprite_get_height(sprite_index))) * ((_iyscale - image_yscale) * sprite_get_height(sprite_index));
+                
+        drawCostume(global.playerSprite[targetCID], spriteX, spriteY, round(_ix), round(_iy), _ixscale, _iyscale,
+            c_white, c_white, c_white, c_white);
+        d3d_set_fog(false, 0, 0, 0);
+    }
+    
+    drawCostume_Shadow(global.playerSprite[targetCID], spriteX, spriteY, x, y, image_xscale, image_yscale,
+        c_ltgray, c_black, make_color_rgb(111,111,111), c_black);
+        
+        
+        
+        
 }
 </string>
           </argument>

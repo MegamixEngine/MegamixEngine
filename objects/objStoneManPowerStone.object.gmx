@@ -37,6 +37,8 @@ addAngle = 4;
 addDistance = 1;
 despawnRange = 64;
 image_speed = 0;
+animDone = false;
+imgIndex = 0;
 </string>
           </argument>
         </arguments>
@@ -62,11 +64,18 @@ image_speed = 0;
             <string>event_inherited();
 if (!global.frozen)
 {
-    if (image_index &lt; image_number - 1)
-        image_index += 0.25;
+    if (!animDone) //(image_index &lt; image_number - 1)
+    {
+        imgIndex += 0.25;
+        if (imgIndex &gt;= image_number)
+        {
+            imgIndex = 3;
+            animDone = true;
+        }
+    }
     x = xstart + cos(degtorad(cAngle)) * cDistance;
     y = ystart + sin(degtorad(cAngle)) * cDistance;
-    if (image_index &gt;= image_number - 1)
+    if (animDone) //(image_index &gt;= image_number - 1)
     {
         cAngle += addAngle;
         if (cAngle &gt;= 360)
@@ -74,6 +83,7 @@ if (!global.frozen)
         cDistance += addDistance;
     }
 }
+image_index = imgIndex div 1;
 </string>
           </argument>
         </arguments>

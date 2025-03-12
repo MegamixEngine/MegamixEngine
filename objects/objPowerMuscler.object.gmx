@@ -45,6 +45,16 @@ slamTimer = 0;
 imageOffset = 0;
 
 col = 0;
+
+smokeOrJet = 0; //if 1 , then attach jet
+child[0] = noone;
+child[1] = noone;
+
+jumpSpeed = -5;
+slamSpeed = 5;
+horSpeed = 2;
+waitMax = 80;
+ignoreWall = false; // if true then power mascler keeps its xspeed even if it hits a wall, making it much more annoying
 </string>
           </argument>
         </arguments>
@@ -71,37 +81,52 @@ col = 0;
 
 if (entityCanStep())
 {
+    if (!ignoreWall)
+        xSpeedTurnaround();
+    else
+    {
+        if (yspeed &lt; 0 &amp;&amp; image_yscale == 1 || yspeed &gt; 0 &amp;&amp; image_yscale == -1) // game gear power musclers ignore turning around when hitting walls because of course they do
+        {
+            xspeed = horSpeed * image_xscale;
+        }
+        else //when falling, game gear power mascler can THEN turn when hitting wall
+            xSpeedTurnaround();
+    }
     // turn around on hitting a wall
-    xSpeedTurnaround();
+    
     
     actionTimer += 1;
     
-    if (actionTimer == 80)
+    if (actionTimer == waitMax)
     {
+        calibrateDirection();
         dummyTimer = 0;
         imageOffset = 1;
-        y -= 6;
-        yspeed = -5;
-        xspeed = 2 * image_xscale;
+        y -= (abs(jumpSpeed) + 1) * image_yscale;
+        yspeed = jumpSpeed * image_yscale;
+        xspeed = horSpeed * image_xscale;
     }
     
-    if (ground &amp;&amp; imageOffset == 1 &amp;&amp; actionTimer &gt; 85)
+    if (ground &amp;&amp; imageOffset == 1 &amp;&amp; actionTimer &gt; waitMax + 5)
     {
         playSFX(sfxPowerLand);
         slamTimer = 0;
         imageOffset = 2;
         xspeed = 0;
-        calibrateDirection();
+        //calibrateDirection();
         actionTimer = 0;
     }
+    
+    
+    
     if (ground &amp;&amp; imageOffset != 1)
     {
         dummyTimer += 1;
-        if (dummyTimer &gt; 10)
+        if (dummyTimer &gt; 20)
         {
             imageOffset = 0;
         }
-        else if (dummyTimer &lt; 10 &amp;&amp; dummyTimer &gt; 4)
+        else if (dummyTimer &lt; 10 &amp;&amp; dummyTimer &gt; 4) || (dummyTimer &lt; 20 &amp;&amp; dummyTimer &gt; 14)
         {
             imageOffset = 2;
         }
@@ -120,21 +145,44 @@ if (entityCanStep())
             xspeed = 0;
             slamTimer = 120;
             
+            var sprT = objPowerMusclerSmoke;
+            
+            if (smokeOrJet)
+            {
+                sprT = objPowerMasclerGGSmoke;
+            }    
+            
             if (image_xscale == 1)
             {
-                instance_create(x - 12, y - 67, objPowerMusclerSmoke);
-                instance_create(x + 6, y - 67, objPowerMusclerSmoke);
+                child[0] = instance_create(x - 14, y - 71*image_yscale, sprT);
+                child[1] = instance_create(x + 4, y - 71*image_yscale, sprT);
             }
             else
             {
-                instance_create(x - 14, y - 67, objPowerMusclerSmoke);
-                instance_create(x + 4, y - 67, objPowerMusclerSmoke);
+                child[0] = instance_create(x - 4, y - 71*image_yscale, sprT)
+                child[1] = instance_create(x + 14, y - 71*image_yscale, sprT)
+   
+            }
+            
+            for (var i = 0; i &lt; 2; i ++)
+            {
+                if (instance_exists(child[i]))
+                {
+                    child[i].image_xscale = image_xscale;
+                    child[i].parent = id;
+                    child[i].image_yscale = image_yscale;
+                    child[i].col = col;
+                    if (child[i].object_index == objPowerMasclerGGSmoke)
+                    {
+                        child[i].image_index = (3 * col);
+                    }
+                }
             }
         }
         
         if (slamTimer == 105)
         {
-            yspeed = 5;
+            yspeed = slamSpeed * image_yscale;
         }
     }
     if (slamTimer &gt; 0)
@@ -177,8 +225,36 @@ image_index = (3 * col) + imageOffset;
             <string>event_inherited();
 if (spawned)
 {
-    imageOffser = 0;
+    imageOffset = 0;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (child[0])
+    instance_destroy();
+with (child[1])
+    instance_destroy();
+
+event_inherited();
 </string>
           </argument>
         </arguments>

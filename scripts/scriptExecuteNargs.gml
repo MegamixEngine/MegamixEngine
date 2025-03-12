@@ -9,14 +9,15 @@ if (argument_count > 2)
     if (argn == 0)
     {
         // 0 arguments
-        script_execute(fn);
-        exit;
+        return script_execute(fn);
+        
     }
     else
     {
         // crop args to arg_num
         var _arg = arg;
-        arg = makeArray(0);
+        arg = -1;
+        arg[0] = 0;
         for (var i = 0; i < argn; i++)
         {
             arg[i] = _arg[i];
@@ -27,51 +28,62 @@ if (argument_count > 2)
 switch (array_length_1d(arg))
 {
     case 0:
-        script_execute(fn);
-        exit;
+        return script_execute(fn);
+        
     case 1:
-        script_execute(fn, arg[0]);
-        exit;
+        return script_execute(fn, arg[0]);
+        
     case 2:
-        script_execute(fn, arg[0], arg[1]);
-        exit;
+        return script_execute(fn, arg[0], arg[1]);
+        
     case 3:
-        script_execute(fn, arg[0], arg[1], arg[2]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2]);
+        
     case 4:
-        script_execute(fn, arg[0], arg[1], arg[2], arg[3]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3]);
+        
     case 5:
-        script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4]);
+        
     case 6:
-        script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5]);
+        
     case 7:
-        script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6]);
+        
     case 8:
-        script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7]);
+        
     case 9:
-        script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8]);
+        
     case 10:
-        script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9]);
+        
     case 11:
-        script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10]);
+        
     case 12:
-        script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10], arg[11]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10], arg[11]);
     case 13:
-        script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10], arg[11], arg[12]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10], arg[11], arg[12]);
+        
     case 14:
-        script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10], arg[11], arg[12], arg[13]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10], arg[11], arg[12], arg[13]);
+        
     case 15:
-        script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10], arg[11], arg[12], arg[14]);
-        exit;
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10], arg[11], arg[12], arg[13], arg[14]);
+        
+    case 16:
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10], arg[11], arg[12], arg[13], arg[14], arg[15]);
+        
+    case 17:
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10], arg[11], arg[12], arg[13], arg[14], arg[15], arg[16]);
+        
+    case 18:
+        return script_execute(fn, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9], arg[10], arg[11], arg[12], arg[13], arg[14], arg[15], arg[16], arg[17]);
+        
+    default:
+        show_error("Not configured for NArgs of size "  + array_length_1d(arg),true);
+        return noone;
 }

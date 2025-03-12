@@ -34,6 +34,11 @@ grav = -0.1;
 panicTimer = 0;
 
 objectCopy = noone;
+
+// Shadow Clone variables
+spriteX = 0;
+spriteY = 0;
+targetCID = 0;
 </string>
           </argument>
         </arguments>

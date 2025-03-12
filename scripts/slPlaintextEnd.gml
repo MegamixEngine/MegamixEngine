@@ -6,7 +6,7 @@
 if (global.sl_error)
 {
     if (global.sl_map >= 0)
-        ds_map_destroy(global.sl_map);
+        mm_ds_map_destroy(global.sl_map);
     return global.sl_error;
 }
 
@@ -22,6 +22,6 @@ else
 }
 
 if (global.sl_map >= 0)
-    ds_map_destroy(global.sl_map);
+    mm_ds_map_destroy(global.sl_map);
 
 return 0;

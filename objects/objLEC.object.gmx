@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Creation Code (All optional)
+            <string>/// The Large Enemy Crab (L.E.C) is a sturdy, stationary enemy that sends sturdy, slow-moving bubbles toward the player.
+/// Bubbles move along the ground, fall off ledges, and stop when they hit a wall. They can trap a player inside and be popped with enough damage.
+/// Functionally similar to Feeber from GB V, but heartier by default and thus harder to deal with. Players may find L.E.C tiresome unless used very creatively.
+
+// Creation Code (All optional)
 // shotMax = &lt;number&gt; // how long L.E.C waits before firing.
 event_inherited();
 
@@ -45,6 +49,12 @@ shotMax = 8;
 shooting = false;
 img = 0;
 bubble = noone;
+
+explosionSprite = sprExplosionWonderswan;
+
+nerf = 0;
+ySpeedMul = 1;
+bubblePop = 0;
 </string>
           </argument>
         </arguments>
@@ -108,7 +118,15 @@ if (entityCanStep())
         {
             image_index = 0;
             shooting = false;
-            bubble = instance_create(x, y - 16, objLECBubble);
+            bubble = instance_create(x, y - 15, objLECBubble);
+            bubble.ySpeedMul = ySpeedMul;
+            if nerf &amp;&amp; (shotTimer != 0) {
+            bubble.healthpointsStart = 5;
+            bubble.healthpoints = 5;
+            }
+            if bubblePop &amp;&amp; (shotTimer!= 0) {
+            bubble.dieToSpikes = 1;
+            }
             animTimer = 0;
         }
     }
@@ -150,8 +168,29 @@ else if (dead)
     exit;
 }
 
+// Special effect when invincibile
+if (invincible == true)
+{
+    d3d_set_fog(true, c_white, 0, 0);
+    
+    var _ixscale = (image_xscale * 1.075) + (sin(sparkleTimer * 0.15) *.08 * sign(image_xscale));
+         _ixscale = roundTo(_ixscale, (1 / sprite_get_width(sprite_index)));
+    
+    var _iyscale = (image_yscale * 1.025) + (sin(sparkleTimer * 0.15) *.08 * sign(image_yscale));
+        _iyscale = roundTo(_iyscale, (1 / sprite_get_height(sprite_index)));
+    
+    var _ix = x;
+        _ix -= (0.5 - (sprite_get_xoffset(sprite_index) / sprite_get_width(sprite_index))) * ((_ixscale - image_xscale) * sprite_get_width(sprite_index));
+    
+    var _iy = y;
+        _iy -= (0.5 - (sprite_get_yoffset(sprite_index) / sprite_get_height(sprite_index))) * ((_iyscale - image_yscale) * sprite_get_height(sprite_index));
+    
+    draw_sprite_ext(sprite_index, image_index, round(_ix), round(_iy), _ixscale, _iyscale, image_angle, image_blend, image_alpha);
+    d3d_set_fog(false, 0, 0, 0);
+}
+
 draw_sprite_ext(sprite_index, image_index, round(x), floor(y), 1, image_yscale, image_angle, image_blend, image_alpha);
-if ((iFrames == 1 || iFrames == 3) || (iceTimer &gt; 0))
+if ((iFrames mod 2 == 1) || (iceTimer &gt; 0))
 {
     var flashcol = c_white;
     if (iceTimer &gt; 0)

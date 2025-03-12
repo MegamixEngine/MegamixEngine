@@ -3,7 +3,7 @@
   <spriteName>sprKomasaburo</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -43,6 +43,8 @@ shootTimer = 0;
 top[1] = 0;
 top[2] = 0;
 top[3] = 0;
+
+topSprite = sprTop;
 </string>
           </argument>
         </arguments>
@@ -98,6 +100,7 @@ if (entityCanStep())
             image_index = 2;
             top[i] = instance_create(x + 1 * image_xscale, y - 16, objTop);
             top[i].image_xscale = image_xscale;
+            top[i].sprite_index = topSprite;
             break;
         }
     }
@@ -129,10 +132,13 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// On spawn
-shootTimer = 0;
-animEndme = 0;
-image_index = 0;
+            <string>event_inherited();
+/// On spawn
+if(spawned){
+    shootTimer = 0;
+    animEndme = 0;
+    image_index = 0;
+}
 </string>
           </argument>
         </arguments>

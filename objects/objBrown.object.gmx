@@ -35,8 +35,6 @@ category = "rocky";
 
 grav = 0;
 
-facePlayer = true;
-
 // Enemy specific code
 phase = 0;
 timer = 0;
@@ -47,6 +45,9 @@ imgIndex = 0;
 
 // set to real sprite
 sprite_index = sprBrownHead;
+containerSprite = sprBrownContainer;
+containerDir = -1;
+
 </string>
           </argument>
         </arguments>
@@ -98,6 +99,8 @@ if (entityCanStep())
         // start facing the player
         case 0:
             container = instance_create(x, y, objBrownContainer); // this is so the enemy can have seperate hitboxes
+            container.sprite_index = containerSprite;
+			container.image_xscale = containerDir;
             phase = 1;
             break;
         
@@ -125,7 +128,12 @@ if (entityCanStep())
                     playSFX(sfxEnemyDrop);
                 }
             }
-            if (container.wasHit || place_meeting(x, y, objMegaman))
+            
+            var wasHitReal = false;
+            if (instance_exists(container))
+                wasHitReal = container.wasHit;
+            
+            if (wasHitReal || place_meeting(x, y, objMegaman))
             {
                 phase = 2;
                 timer = 0;

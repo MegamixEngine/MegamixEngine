@@ -52,8 +52,8 @@ isHard = false;
 doFlash = 1;
 
 // Health Bar
-healthBarPrimaryColor[1] = 15;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $12;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_2.nsf";
@@ -64,6 +64,9 @@ musicTrackNumber = 17;
 enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
+enemyDamageValue(objBusterShotHalfChargedProto, 2);
+enemyDamageValue(objBusterShotChargedProto, 4);
+enemyDamageValue(objNormalBusterShot, 2);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -74,6 +77,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objBreakDash, 2);
 enemyDamageValue(objMagneticShockwave, 6);
 enemyDamageValue(objIceWall, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -109,15 +116,16 @@ enemyDamageValue(objConcreteShot, 2);
 enemyDamageValue(objHomingSniper, 4);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 2);
 enemyDamageValue(objSuperArmDebris, 2);
-enemyDamageValue(objChillShot, 2);
+enemyDamageValue(objChillSpike, 2);
 enemyDamageValue(objChillSpikeLanded, 4);
 
 // Misc.
 enemyDamageValue(objPowerStone, 2);
 enemyDamageValue(objPlantBarrier, 6);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 2);
 </string>
           </argument>
@@ -243,7 +251,7 @@ if (entityCanStep())
                 image_index = 11;
                 if (phaseTimer mod 6 == 2)
                 {
-                    with (instance_create(x + 24 * image_xscale, y, objEnemyBullet))
+                    with (entityCreateChild(26, 2, objEnemyBullet))
                     {
                         sprite_index = sprFlashShot;
                         xspeed = 5.5 * other.image_xscale;

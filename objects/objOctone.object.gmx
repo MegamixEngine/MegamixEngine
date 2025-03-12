@@ -33,6 +33,7 @@ healthpointsStart = 3;
 healthpoints = healthpointsStart;
 contactDamage = 3;
 category = "aquatic, nature";
+bubbleTimer = -1;
 
 // Enemy specific code
 image_speed = 0;

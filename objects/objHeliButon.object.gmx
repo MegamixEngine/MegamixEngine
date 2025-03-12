@@ -87,23 +87,23 @@ event_inherited();
 
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    if (phase == 1)
     {
-        if (phase == 1)
-        {
-            facePlayer = false;
-        }
-        else
-        {
-            facePlayer = true;
-        }
-        
-        switch (phase)
-        {
-            // pop out of foliage
-            case 0:
-                visible = false;
-                canHit = false;
+        facePlayer = false;
+    }
+    else
+    {
+        facePlayer = true;
+    }
+    
+    switch (phase)
+    {
+        // pop out of foliage
+        case 0:
+            visible = false;
+            canHit = false;
+            if (instance_exists(target))
+            {
                 if (variation == 0)
                 {
                     // setup chasing player phase
@@ -137,56 +137,59 @@ if (entityCanStep())
                         }
                     }
                 }
-                break;
-            
-            // slow down and stop
-            case 1: // animation 
-                if (imgIndex &lt; 2)
-                {
-                    imgIndex += imgSpd / 9;
-                }
-                else
-                {
-                    imgIndex += imgSpd;
-                }
-                if (imgIndex &gt;= 4)
-                {
-                    imgIndex = 2 + imgIndex mod 4;
-                }
-                if (yspeed &lt;= 0)
-                {
-                    phase = 2;
-                    
+            }
+            break;
+        
+        // slow down and stop
+        case 1: // animation 
+            if (imgIndex &lt; 2)
+            {
+                imgIndex += imgSpd / 9;
+            }
+            else
+            {
+                imgIndex += imgSpd;
+            }
+            if (imgIndex &gt;= 4)
+            {
+                imgIndex = 2 + imgIndex mod 4;
+            }
+            if (yspeed &lt;= 0)
+            {
+                phase = 2;
+                
+                if (instance_exists(target))
                     direction = point_direction(x, y, target.x, target.y);
-                }
-                yspeed -= 0.07;
-                break;
-            
-            // chase megaman
-            case 2:
-                speed = spd;
-                imgIndex += imgSpd / 4;
-                if (imgIndex &gt;= 4)
-                {
-                    imgIndex = 2 + imgIndex mod 4;
-                }
+            }
+            yspeed -= 0.07;
+            break;
+        
+        // chase megaman
+        case 2:
+            speed = spd;
+            imgIndex += imgSpd / 4;
+            if (imgIndex &gt;= 4)
+            {
+                imgIndex = 2 + imgIndex mod 4;
+            }
+            if (instance_exists(target))
+            {
                 correctDirection(round(point_direction(bboxGetXCenter(),
                     bboxGetYCenter(), bboxGetXCenterObject(target),
                     bboxGetYCenterObject(target))), 2);
-                
-                // hover sfx
-                if (!audio_is_playing(sfxHeliButonHover))
-                {
-                    loopSFX(sfxHeliButonHover);
-                }
-                break;
-        }
+            }
+            // hover sfx
+            if (!audio_is_playing(sfxHeliButonHover))
+            {
+                playSFX(sfxHeliButonHover);
+            }
+            break;
     }
 }
 else
 {
     speed = 0;
-    audio_stop_sound(sfxHeliButonHover);
+    //audio_stop_sound(sfxHeliButonHover);
     
     if (dead)
     {
@@ -206,7 +209,9 @@ else
 
 image_index = imgIndex div 1;
 
-contactDamage = 3 * visible;
+if(variation == 1){
+    contactDamage = 3 * visible;
+}
 </string>
           </argument>
         </arguments>

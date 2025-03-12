@@ -2,22 +2,22 @@
 <sprite>
   <type>0</type>
   <xorig>24</xorig>
-  <yorigin>24</yorigin>
+  <yorigin>23</yorigin>
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>9</bbox_left>
-  <bbox_right>46</bbox_right>
+  <bbox_right>48</bbox_right>
   <bbox_top>1</bbox_top>
   <bbox_bottom>39</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>59</TextureGroup0>
+    <TextureGroup0>202</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>48</width>
+  <width>49</width>
   <height>40</height>
   <frames>
     <frame index="0">images\sprGyroMan_0.png</frame>
@@ -28,5 +28,6 @@
     <frame index="5">images\sprGyroMan_5.png</frame>
     <frame index="6">images\sprGyroMan_6.png</frame>
     <frame index="7">images\sprGyroMan_7.png</frame>
+    <frame index="8">images\sprGyroMan_8.png</frame>
   </frames>
 </sprite>

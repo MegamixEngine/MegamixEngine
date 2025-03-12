@@ -40,6 +40,9 @@ offsetX = 0;
 offsetY = 0;
 index = 0;
 visible = false;
+
+imgMin = 6;
+imgMax = 7;
 </string>
           </argument>
         </arguments>
@@ -69,13 +72,13 @@ if (entityCanStep())
     // Animation
     image_index += imgSpd;
     
-    if (image_index &lt;= 5)
+    if (image_index &lt;= imgMin - 1)
     {
-        image_index = 7;
+        image_index = imgMax;
     }
-    else if (image_index &gt;= 8)
+    else if (image_index &gt;= imgMax + 1)
     {
-        image_index = 6;
+        image_index = imgMin;
     }
     
     // Movement
@@ -99,6 +102,40 @@ else if (dead)
         parent.changkeyNumber -= 1;
     }
     instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
+{
+    if (instance_exists(parent))
+    {
+        xspeed = parent.xspeed;
+        yspeed = parent.yspeed;
+        image_xscale = parent.image_xscale;
+        x = parent.x - offsetX * image_xscale;
+        y = parent.y - offsetY;
+    }
 }
 </string>
           </argument>
@@ -165,7 +202,9 @@ if (!dead)
         y += floor(1.5 * sin(parent.sineCounter2 + index * 2));
     }
     
-    drawSelf();
+    draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle,
+        image_blend, 1 - ((floor(parent.introTimer / (30 / 2)) * (30 / 2)) / 30));
+    //drawSelf();
     
     y = prvY;
 }

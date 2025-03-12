@@ -3,7 +3,7 @@
   <spriteName>sprMechaDragon</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1000</depth>
   <persistent>0</persistent>
   <parentName>prtBoss</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -38,8 +38,23 @@ jumpTimer = 0;
 jumpAmount = 0;
 canInitShoot = true;
 phase = 0;
-image_speed = 0.15;
+//image_speed = 0.15;
+imgIndex = 0;
+imgSpd = 0.2;
+moveBack = false;
 introType = 0;
+doPlayerExplosion = false;
+isDying = false;
+explodeTimer = 0;
+
+normalSprite = sprMechaDragon;
+//fireSprite = sprMechaDragonFire;
+normalHurtSprite = sprMechaDragonHurt;
+//fireHurtSprite = sprMechaDragonFireHurt;
+
+// Health Bar
+healthBarPrimaryColor[1] = $37;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_2.nsf";
@@ -50,6 +65,8 @@ musicTrackNumber = 17;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -60,6 +77,10 @@ enemyDamageValue(objThunderBeam, 4);
 enemyDamageValue(objBreakDash, 0);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 8);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -95,16 +116,18 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 4);
+enemyDamageValue(objChillSpike, 4);
 enemyDamageValue(objChillSpikeLanded, 0);
 
 // Misc.
 enemyDamageValue(objPowerStone, 0);
 enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 0);
+enemyDamageValue(objBlockDropper, 0);
 enemyDamageValue(objIceSlasher, 4);
+
 </string>
           </argument>
         </arguments>
@@ -132,7 +155,10 @@ enemyDamageValue(objIceSlasher, 4);
 // Handle Intro
 if (!global.frozen)
 {
-    image_speed = 0.15;
+    //image_speed = 0.15;
+    imgIndex += imgSpd;
+    if (imgIndex &gt;= 2)
+        imgIndex = 0;
     
     // Starting the intro animation
     if (startIntro)
@@ -185,20 +211,67 @@ if (entityCanStep())
                 if (x &gt; xstart + 16)
                     xspeed = -0.5;
                 attackTimer -= 1;
-                if (attackTimer == 50)
-                    sprite_index = sprMechaDragon;
+                /*if (attackTimer == 50)
+                    sprite_index = normalSprite*/
                 if (attackTimer &lt;= 0)
                 {
                     attackTimer = 60;
                     fire = instance_create(x + 48 * image_xscale, y - 32,
                         objMechaDragonFire);
-                    sprite_index = sprMechaDragonFire;
+                    //sprite_index = fireSprite;
                     fire.image_xscale = image_xscale;
+                    if (!instance_exists(target))
+                    {
+                        fire.xspeed = 2 * fire.image_xscale;
+                    }
                 }
                 break;
         }
+        if (sign(image_xscale) == 1) // For tail animation
+        {
+            if (sign(xspeed) == 1)
+                moveBack = false;
+            else if (sign(xspeed) == -1)
+                moveBack = true;
+        }
+        else if (sign(image_xscale) == -1)
+        {
+            if (sign(xspeed) == 1)
+                moveBack = true;
+            else if (sign(xspeed) == -1)
+                moveBack = false;
+        }
+    }
+    // Death animation
+    if (isDying)
+    {
+        var _x = random_range(bbox_left,bbox_right);
+        var _y = random_range(bbox_top,bbox_bottom);
+        
+        explodeTimer++;
+        if (explodeTimer mod 2 == 0)
+        {
+            repeat(4)
+            {
+                i = instance_create(_x, _y, objExplosion);
+                i.sprite_index = sprCrashExplosion;
+            }
+        }
+        if (explodeTimer mod 8 == 0)
+        {
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
+        }
+        if (explodeTimer mod 16 == 0)
+        {
+            i = instance_create(_x, _y, objBigExplosion);
+        }
+        if (explodeTimer == 180)
+        {
+            event_user(EV_DEATH);
+        }
     }
 }
+image_index = ((imgIndex div 1) + (2 * moveBack) + 4 * (attackTimer &gt;= 30));
 </string>
           </argument>
         </arguments>
@@ -258,7 +331,24 @@ if (entityCanStep())
     instance_create(x, y, objExplosion);
     instance_destroy();
 }
-event_inherited();
+if (!isDying)
+{
+    isFight = false;
+    isDying = true;
+    canHit = false;
+    contactDamage = 0;
+    iFrames = 0;
+    xspeed = 0;
+    yspeed = 0;
+    with(instance_create(random_range(bbox_left,bbox_right),random_range(bbox_top,bbox_bottom),objExplosion))
+        sprite_index = sprCrashExplosion;
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
+}
+else
+{
+    event_inherited();
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
+}
 </string>
           </argument>
         </arguments>
@@ -281,7 +371,38 @@ event_inherited();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>if (!dead)
+{
+    if (drawBoss)
+    {
+        if (!isDying)
+        {
+            drawSelf();
+            // Hitspark
+            if ((iFrames mod 4) &lt; 2 || !iFrames)
+            {
+                sprite_index = normalSprite;
+            }
+            else
+            {
+                sprite_index = normalHurtSprite;
+            }
+        }
+        else
+        {
+            if (explodeTimer mod 40 &lt; 10) //((iFrames mod 16) &lt; 8 || !iFrames)
+            {
+                hitFlashEffect(true,c_white);
+                drawSelf();
+                hitFlashEffect(false);
+            }
+            else
+            {
+                drawSelf();
+            }
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

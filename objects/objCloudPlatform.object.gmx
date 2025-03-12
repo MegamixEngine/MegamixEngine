@@ -3,7 +3,7 @@
   <spriteName>sprCloudPlatform</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -36,7 +36,7 @@ canHit = false;
 
 isSolid = 2;
 
-image_speed = 0.4;
+image_speed = 0.3; //0.4;
 
 respawn = false;
 alarmTurn = 16;

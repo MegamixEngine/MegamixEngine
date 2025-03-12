@@ -38,6 +38,10 @@ blockCollision = 0;
 grav = 0;
 category = "flying, nature";
 
+explosionSprite = sprExplosionWonderswan;
+deadTimerMax = 88;
+deadTimerRecur = 8;
+
 // Enemy specific code
 storeXScale = image_xscale;
 setSide = 0;

@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// A modded version of Pickelman bull, appearing in MMIII. Works nearly identically, just with slightly different movement.
+            <string>/// A modded version of Pickelman Bull from MM3. Works nearly identically, just with slightly different movement.
+/// Specifically, it cycles between gliding forward and jackhammering in place. It turns around at walls and ledges. Its weak point is its head.
+/// Combines well with platforming challenges and other enemies.
+
 event_inherited();
 
 healthpointsStart = 7;

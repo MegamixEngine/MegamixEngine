@@ -126,6 +126,8 @@ if (destroyTiles)
 
 // no need for this to stick around
 instance_destroy();
+
+
 </string>
           </argument>
         </arguments>

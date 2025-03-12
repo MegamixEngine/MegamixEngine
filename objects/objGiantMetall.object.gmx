@@ -3,7 +3,7 @@
   <spriteName>sprGiantMetall</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtMiniBoss</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -39,6 +39,12 @@ grav = 0;
 
 // creation code
 dir = image_xscale;
+
+explosionSprite = sprExplosion;
+explosionSFX = sfxMM3Explode;
+
+deadTimerMax = 32;
+deadFrame = 8;
 
 // Enemy specific code
 shootTimer = 0;
@@ -159,6 +165,7 @@ if (entityCanStep())
         }
     }
 }
+
 </string>
           </argument>
         </arguments>
@@ -247,6 +254,7 @@ for (i = -1; i &lt;= 1; i += 1)
     ball = instance_create(x + 8 * image_xscale, y + 24, objGiantMetallBall);
     ball.xspeed = (1 - (abs(i) / 2)) * image_xscale;
     ball.yspeed = i * 1;
+    ball.image_xscale = image_xscale;
 }
 
 coolDown = 60;

@@ -27,29 +27,25 @@
             <kind>1</kind>
             <string>event_inherited(); //needs to be called since parent needs to be defined for the switch statement to work
 
-if object_index == objNormalBusterShot
+inWater = -1;
+isBoost = false;//Used for TB knowing if the shot should be the TB-shot-through-walls variant.
+faceDir = 0;//For bass: Indicates what direction he was facing when firing the bullet (For wave buster cheat).
+graphicsOverride = false;
+
+if (object_index == objNormalBusterShot)
 {
     scrBusterDefault_Create();
 }
 else if instance_exists(parent) 
 {
-    switch (global.characterSelected[parent.playerID])
+    if (global.characterSelected[playerID] == CHAR_BASS &amp;&amp; object_index != objNormalBusterShot &amp;&amp;
+        global.weapon[playerID] != global.weaponID[? objRushCycle])
     {
-        //All 3 of these characters essentially have the same buster so only bass has a different one for now. I'll change Proto Man's soon actually.
-        default:
-        case "Mega Man":
-        case "Proto Man":
-        case "Roll":
-        {
-            scrBusterDefault_Create();
-            break;
-        }
-        case "Bass": 
-        {
-            scrBusterBass_Create();
-            dir = 0;
-            break;
-        }
+        scrBusterBass_Create();
+    }
+    else//Proto has no custom.
+    {
+        scrBusterDefault_Create();
     }
 }
 </string>
@@ -77,15 +73,12 @@ else if instance_exists(parent)
             <string>//This is only needed for bass currently. But this can be added to for any character.
 event_inherited();
 
-if (!global.frozen &amp;&amp; object_index != objNormalBusterShot &amp;&amp; instance_exists(parent))
+if (entityCanStep())
 {
-    switch (global.characterSelected[parent.playerID])
+    if (global.characterSelected[playerID] == CHAR_BASS &amp;&amp; object_index != objNormalBusterShot &amp;&amp;
+        global.weapon[playerID] != global.weaponID[? objRushCycle])
     {
-        case "Bass": 
-        {
-            scrBusterBass_Step();
-            break;
-        }
+        scrBusterBass_Step();
     }
 }
 </string>
@@ -114,24 +107,17 @@ if (!global.frozen &amp;&amp; object_index != objNormalBusterShot &amp;&amp; ins
     scrBusterDefault_14();
 else 
 {
-    switch (global.characterSelected[playerID])
+    if (global.characterSelected[playerID] == CHAR_BASS &amp;&amp; (!instance_exists(vehicle) || vehicle.object_index == objMegaman8Sled))
     {
-        default: //All characters besides Bass and Proto Man use the same event
-        case "Mega Man":
-        case "Roll":
-        {
-            scrBusterDefault_14();
-            break;
-        }
-        case "Bass":
-        {
-            scrBusterBass_14();
-            break;
-        }
-        case "Proto Man":
-        {
-            scrBusterProto_14();
-        }
+        scrBusterBass_14();
+    }
+    else if (global.characterSelected[playerID] == CHAR_PROTOMAN)
+    {
+        scrBusterProto_14();
+    }
+    else
+    {
+        scrBusterDefault_14();
     }
 }
 </string>
@@ -156,28 +142,43 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch (global.characterSelected[0])
+            <string>weaponSetup("MEGA BUSTER", -1, -1, sprWeaponIconsMegaBuster);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!dead)
 {
-    default:
-    case "Mega Man":
+    if (graphicsOverride)
     {
-        weaponSetup("MEGA BUSTER", -1, -1, sprWeaponIconsMegaBuster);
-        break;
+        event_inherited();
     }
-    case "Proto Man":
+    else
     {
-        weaponSetup("PROTO BUSTER", -1, -1, sprWeaponIconsMegaBuster);
-        break;
-    }
-    case "Bass":
-    {
-        weaponSetup("BASS BUSTER", -1, -1, sprWeaponIconsMegaBuster);
-        break;
-    }
-    case "Roll":
-    {
-        weaponSetup("ROLL BUSTER", -1, -1, sprWeaponIconsMegaBuster);
-        break;
+        if (global.characterSelected[playerID] == CHAR_BASS &amp;&amp; global.weapon[playerID] != global.weaponID[? objRushCycle])
+        {
+            event_inherited();
+            exit;
+        }
+        drawPlayer(playerID, costumeID, 9, 13, x, y - 4 * image_yscale, image_xscale, image_yscale);
     }
 }
 </string>

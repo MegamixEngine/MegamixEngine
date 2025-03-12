@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// When the player touches this from any angle, it will make them disappear for a moment and then teleport them to a specified location in the same room.
+/// Use creation code to set the X and Y coordinates of the destination. If that puts the player on top of another portal, the destination portal will launch them upward.
+/// You can use this to create portal pairs that send the player back and forth, or a solo portal that just launches the player upward, or a portal into mystery!
+
+event_inherited();
 
 image_speed = 0.2;
 
@@ -76,8 +80,9 @@ if (phase == 1) // Trigger teleportation
     if (place_meeting(x, y, objMegaman))
     {
         playSFX(sfxPortal);
-        player = instance_place(x, y, objMegaman);
-        with (player)
+        
+        //player = instance_place(x, y, objMegaman);
+        with (objMegaman)
         {
             visible = 0;
             xspeed = 0;
@@ -85,6 +90,11 @@ if (phase == 1) // Trigger teleportation
             x = other.x;
             y = other.y;
             frozen = 1;
+            viewPlayer = 0;
+            if (!instance_exists(objCoOpWarpStar))
+            {
+                coopWarp(playerID,false,24);
+            }
         }
         phase = 2;
     }
@@ -92,7 +102,7 @@ if (phase == 1) // Trigger teleportation
 
 if (phase == 2)
 {
-    if (instance_exists(player))
+    if (instance_exists(objMegaman))
     {
         if (timer &lt; 25)
         {
@@ -129,8 +139,13 @@ if (phase == 2)
             {
                 timer += 1;
                 
-                player.x = X;
-                player.y = Y - 20 * player.image_yscale;
+                with (objMegaman)
+                {
+                    x = other.X;
+                    y = other.Y - 20 * image_yscale;
+                }
+                with (objCoOpWarpStar)
+                    visible = false;
                 
                 if (place_meeting(X, Y, objGalaxyManPortal))
                 {
@@ -156,12 +171,15 @@ if (phase == 2)
                 
                 if (timer &gt;= 50)
                 {
-                    with (player)
+                    with (objMegaman)
                     {
                         visible = 1;
                         frozen = 0;
                         yspeed = -jumpSpeed * gravDir - 0.5;
                         canMinJump = false;
+                        viewPlayer = 1;
+                        with (objCoOpWarpStar)
+                            event_user(EV_DEATH);
                     }
                     
                     phase = 3;
@@ -174,7 +192,7 @@ if (phase == 2)
 
 if (phase == 3)
 {
-    if (!place_meeting(x, y, objMegaman))
+    if (!place_meeting(x, y, objMegaman) &amp;&amp; !instance_exists(objCoOpWarpStar))
     {
         phase = 1;
     }

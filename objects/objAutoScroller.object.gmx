@@ -94,30 +94,46 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             {
                 with (objMegaman)
                 {
-                    if (!playerIsLocked(PL_LOCK_MOVE) &amp;&amp; !teleporting &amp;&amp; !showReady)
+                    var vehicleIgnore = false;
+                    /*if (instance_exists(vehicle))
+                    {
+                        if (vehicle.object_index == objRushCycle)
+                            vehicleIgnore = true;
+                    }
+                    if (instance_exists(objBreakDash))
+                    {
+                        vehicleIgnore = true;
+                    }
+                    This is actually bugged behaviour from MaGMML3, so has been commented out.
+                    */
+                    
+                    if ((!playerIsLocked(PL_LOCK_MOVE) || vehicleIgnore) &amp;&amp; !teleporting &amp;&amp; !showReady)
                     {
                         // take camera away from player &gt;:c
                         viewPlayer = 0;
                         
-                        // increment phase + grab current section bounds
-                        with (other)
+                        if (id == other.target)
                         {
-                            phase += 1;
-                            
-                            if (dir == "h")
+                            // increment phase + grab current section bounds
+                            with (other)
                             {
-                                sL = global.sectionLeft;
-                                sR = global.sectionRight;
-                                global.sectionLeft = view_xview;
-                                global.sectionRight = view_xview + view_wview;
-                            }
-                            else if (dir == "v")
-                            {
-                                sT = global.sectionTop;
-                                sB = global.sectionBottom;
+                                phase += 1;
                                 
-                                global.sectionTop = view_yview;
-                                global.sectionBottom = view_yview + view_hview;
+                                if (dir == "h")
+                                {
+                                    sL = global.sectionLeft;
+                                    sR = global.sectionRight;
+                                    global.sectionLeft = view_xview;
+                                    global.sectionRight = view_xview + view_wview;
+                                }
+                                else if (dir == "v")
+                                {
+                                    sT = global.sectionTop;
+                                    sB = global.sectionBottom;
+                                    
+                                    global.sectionTop = view_yview;
+                                    global.sectionBottom = view_yview + view_hview;
+                                }
                             }
                         }
                     }

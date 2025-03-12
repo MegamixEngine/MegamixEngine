@@ -79,7 +79,7 @@ init = 1;
 
 if (!global.frozen)
 {
-    with (target)
+    with (objMegaman)
     {
         if (!place_meeting(x, y, other.id))
         {
@@ -124,7 +124,7 @@ if (!global.frozen)
 
 event_inherited();
 
-if (!global.frozen &amp;&amp; !dead) // If not frozen and dead...
+if (!global.frozen &amp;&amp; !global.timeStopped &amp;&amp; !dead) // If not frozen and dead...
 {
     switch (phase) // Do stuff based on phase
     {

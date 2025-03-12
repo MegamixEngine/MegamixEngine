@@ -230,16 +230,17 @@ else if (dead)
             <kind>1</kind>
             <string>event_inherited();
 
-with (instance_create(x - 16, y, objNewShotmanBullet))
+with (instance_create(x - 16, y-11, objNewShotmanBullet))
 {
-    image_xscale = -1;
+    //image_xscale = -1;
+    image_yscale = -1;
     xspeed = -1.2;
     yspeed = -2.5;
     stopAtSolid = true;
     sprite_index = sprCaricarryRock;
 }
 
-with (instance_create(x + 16, y, objNewShotmanBullet))
+with (instance_create(x + 16, y-11, objNewShotmanBullet))
 {
     image_xscale = 1;
     xspeed = 1.2;
@@ -248,7 +249,7 @@ with (instance_create(x + 16, y, objNewShotmanBullet))
     sprite_index = sprCaricarryRock;
 }
 
-with (instance_create(x - 8, y - 8, objNewShotmanBullet))
+with (instance_create(x - 8, y - 19, objNewShotmanBullet))
 {
     image_xscale = -1;
     xspeed = -0.5;
@@ -257,9 +258,10 @@ with (instance_create(x - 8, y - 8, objNewShotmanBullet))
     sprite_index = sprCaricarryRock;
 }
 
-with (instance_create(x + 8, y - 8, objNewShotmanBullet))
+with (instance_create(x + 8, y - 19, objNewShotmanBullet))
 {
-    image_xscale = 1;
+    //image_xscale = 1;
+    image_yscale = -1;
     xspeed = 0.5;
     yspeed = -4;
     stopAtSolid = true;

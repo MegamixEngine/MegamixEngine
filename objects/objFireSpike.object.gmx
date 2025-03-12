@@ -25,9 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// A flame that travels across several blocks quickly. It can be frozen, but it can still hurt Mega Man!
+event_inherited();
 
-canHit = false;
 contactDamage = 4;
 
 image_speed = 0;
@@ -117,6 +117,7 @@ if (entityCanStep())
 animTimer = 0;
 animPhase = 0;
 image_index = 0;
+iceTimer = 0;
 </string>
           </argument>
         </arguments>
@@ -139,7 +140,16 @@ image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>other.guardCancel = 2;
+            <string>if (other.object_index != objIceWall) || (iceTimer &gt; 0)
+{
+    other.guardCancel = 2;
+}
+else
+{
+    entityIceFreeze(240, false, false, 0);
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
+    global.damage = 0;
+}
 </string>
           </argument>
         </arguments>

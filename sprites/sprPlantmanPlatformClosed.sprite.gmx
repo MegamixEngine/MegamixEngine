@@ -10,15 +10,15 @@
   <bbox_left>0</bbox_left>
   <bbox_right>14</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>27</bbox_bottom>
+  <bbox_bottom>28</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>6</TextureGroup0>
+    <TextureGroup0>189</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>15</width>
-  <height>28</height>
+  <height>29</height>
   <frames>
     <frame index="0">images\sprPlantmanPlatformClosed_0.png</frame>
     <frame index="1">images\sprPlantmanPlatformClosed_1.png</frame>

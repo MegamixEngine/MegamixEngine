@@ -36,6 +36,7 @@ distanceTimer = 0;
 storeDir = image_xscale;
 
 knuckleDusterPlatform = true;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

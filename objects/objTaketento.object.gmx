@@ -153,10 +153,11 @@ if (entityCanStep())
             angle )*/
             
             // first though, we're going to animate faster if our angle offset is big enough
-            if (!(change &gt; 100 || change &lt; -100))
+            // Better idea: let's not. - Spin
+            /*if (!(change &gt; 100 || change &lt; -100))
             {
                 imgIndex += imgSpd;
-            }
+            }*/
             if (change &gt; rotateChange)
             {
                 change = rotateChange;

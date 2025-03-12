@@ -14,7 +14,7 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>57</TextureGroup0>
+    <TextureGroup0>207</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>46</width>
@@ -23,6 +23,5 @@
     <frame index="0">images\sprGotoCheckpoint_0.png</frame>
     <frame index="1">images\sprGotoCheckpoint_1.png</frame>
     <frame index="2">images\sprGotoCheckpoint_2.png</frame>
-    <frame index="3">images\sprGotoCheckpoint_3.png</frame>
   </frames>
 </sprite>

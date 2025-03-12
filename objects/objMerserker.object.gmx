@@ -42,6 +42,7 @@ category = "flying";
 isFalling = false;
 animTimer = 0;
 timer = 0;
+hasFired = false;
 
 // Customizable values
 leftLimit = 5;
@@ -54,6 +55,14 @@ moveDistance = 32; // How much it travels in a full jump
 
 // Adjust decceleration (using one of the uniform accelerated movement formulas)
 event_user(0);
+
+
+//optional shot projectile
+shotObject = noone; //if set, create a bullet when triggering
+shotSprite = sprEnemyBullet; //if set, change shot object to this
+shotSFX = noone; //if set, play this sound when shooting
+shotType = 1; //if 0, shoot at height of axe, if 1, shoot when hitting floor.
+
 </string>
           </argument>
         </arguments>
@@ -100,12 +109,35 @@ if (entityCanStep())
         if (ycoll != 0)
         {
             timer = 0;
+            
             if (isFalling)
+            {
                 playSFX(sfxMerserker);
+                
+            }
+            if (!hasFired)
+            {
+                hasFired = true;
+                if (shotObject != noone &amp;&amp; shotType == 1)
+                {
+                    with (instance_create(x+8*image_xscale,bbox_bottom,shotObject))
+                    {
+                        if (other.shotSprite != noone)
+                        {
+                            sprite_index = other.shotSprite;
+                        }
+                        if (other.shotSFX != noone)
+                            playSFX(other.shotSFX);
+                            
+                        respawn = false;
+                    }
+                }
+            }
         }
         timer += 1;
         if (timer &gt; 10)
         {
+            hasFired = false;
             yspeed = -jumpSpeed;
             isFalling = false;
             var canAdvance = true;
@@ -123,6 +155,24 @@ if (entityCanStep())
     {
         isFalling = true;
         yspeed = fallSpeed;
+        if (!hasFired)
+        {
+            hasFired = true;
+            if (shotObject != noone &amp;&amp; shotType == 0)
+            {
+                with (instance_create(x+8*image_xscale,bbox_bottom,shotObject))
+                {
+                    if (other.shotSprite != noone)
+                    {
+                        sprite_index = other.shotSprite;
+                    }
+                    if (other.shotSFX != noone)
+                        playSFX(other.shotSFX);
+                        
+                    respawn = false;
+                }
+            }
+        }
     }
     if (yspeed &gt; -jumpSpeed * 0.35 &amp;&amp; !isFalling)
     {

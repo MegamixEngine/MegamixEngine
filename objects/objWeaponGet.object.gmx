@@ -34,7 +34,6 @@ selection = 0;
 optionText[0] = "Return to Menu";
 optionText[1] = "Try Again";
 
-global.checkpoint = false;
 global.livesRemaining = max(global.defaultLives, global.livesRemaining);
 
 playMusic("Mega_Man_3.nsf", "VGM", 53, 0, 0, true, 1);
@@ -51,8 +50,10 @@ textTimer = 0;
 finalFadeOut = false;
 for (var i = 1; i &lt; array_length_1d(global.levelReward); i++)
 {
-    reward[rewardN++] = global.levelReward[i];
+    print(i);
+    reward[rewardN] = global.levelReward[i];
     setWeaponLocked(global.levelReward[i], false);
+    rewardN ++;
 }
 
 global.levelReward = makeArray(0);
@@ -197,7 +198,7 @@ spinFrame += spinSpeed;
     }
     else
     {
-        cp = global.weaponPrimaryColor[wpn];
+        cp = getWeaponPrimaryColor(wpn, global.costumeID[? global.costumeSelected[i]]);
     }
     
     if (global.weaponSecondaryColor[wpn] &lt; 0)
@@ -207,14 +208,14 @@ spinFrame += spinSpeed;
     }
     else
     {
-        cs = global.weaponSecondaryColor[wpn];
+        cs = getWeaponSecondaryColor(wpn, global.costumeID[? global.costumeSelected[i]]);
     }
     
     // draw player
-    drawCostume(global.playerSprite[i], floor(spinFrame) mod 10, 11, drawX, drawY, 1, 1, c_white, cp, cs, c_black, 1, ap, as, 1);
+    drawCostume(global.playerSprite[i], floor(spinFrame) mod 10, 12, drawX, drawY, 1, 1, c_white, cp, cs, c_black, 1, ap, as, 1);
     
     // fade darken
-    drawCostume(global.playerSprite[i], floor(spinFrame) mod 10, 11, drawX, drawY, 1, 1, c_black, c_black, c_black, c_black, p, 0, 0, 0);
+    drawCostume(global.playerSprite[i], floor(spinFrame) mod 10, 12, drawX, drawY, 1, 1, c_black, c_black, c_black, c_black, p, 0, 0, 0);
 }
 
 clearDrawState();

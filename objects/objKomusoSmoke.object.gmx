@@ -8,6 +8,41 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+
+//if using recolour shader
+useShader = false;
+replaceColor[0] = make_color_rgb(0,0,0); //black
+replaceColor[1] =$a4e4ff; //flesh
+replaceColor[2] = make_color_rgb(248,248,248); //white
+newColor[0] = $F87800;
+newColor[1] = $F8B8B8;
+newColor[2] = $F8F8F8;
+
+flicker = -1;
+imgSpd = 0.25;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -28,10 +63,55 @@
             <string>if (!global.frozen)
 {
     image_speed = 0;
-    image_index += 0.25;
+    image_index += imgSpd;
     
-    if ((image_index &gt;= image_number - 1) || (!instance_exists(objKomusoMan)))
+    if ((image_index &gt;= image_number - 1))
         instance_destroy();
+        
+    if (flicker &gt;= 0)
+    {
+        if (flicker mod 2 == 0)
+            visible = false;
+        else
+            visible = true;
+        flicker ++;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+if (useShader)
+{
+    shaderSetColorreplace(
+            replaceColor[0], newColor[0],
+            replaceColor[1], newColor[1],
+            replaceColor[2], newColor[2],
+        );
+    drawSelf();
+    shader_reset();
+}
+else{
+    event_inherited();
 }
 </string>
           </argument>

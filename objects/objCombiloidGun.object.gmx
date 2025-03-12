@@ -47,6 +47,7 @@ facePlayerOnSpawn = true;
 attackTimer = 0;
 attackTimerMax = 24;
 shotsFired = -9999;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

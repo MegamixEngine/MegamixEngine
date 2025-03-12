@@ -48,6 +48,7 @@ attackTimerMax = 4;
 shotsFired = 0;
 strMMX = -1;
 spd = 0;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>
@@ -171,7 +172,7 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>playSFX(sfxExplosion2);
+            <string>playSFX(getGenericSFX(SFX_EXPLOSION2));
 instance_create(x, y + 20, objBigExplosion);
 instance_destroy();
 </string>

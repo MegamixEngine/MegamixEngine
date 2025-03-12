@@ -40,6 +40,12 @@ blockCollision = 0;
 animTimer = 0;
 bulletID = -10;
 myGravity = 1;
+
+behaviourType = 1;
+
+//Unhard Coding
+
+projectileSprite = sprGravitronGumball;
 </string>
           </argument>
         </arguments>
@@ -70,6 +76,7 @@ if (entityCanStep())
     if (!instance_exists(bulletID))
     {
         bulletID = instance_create(x + 8, y - 4, objGravitronGumball);
+        bulletID.sprite_index = projectileSprite;
         bulletID.grav = myGravity * gravAccel;
         bulletID.yspeed = 1 * myGravity;
         bulletID.image_yscale = myGravity;

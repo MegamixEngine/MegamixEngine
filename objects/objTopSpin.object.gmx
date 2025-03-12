@@ -164,8 +164,7 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; !ground &amp;&amp; !climbing
-    &amp;&amp; global.ammo[playerID, global.weapon[playerID]] &gt; 0)
+            <string>if (performShoot &amp;&amp; !ground &amp;&amp; !climbing &amp;&amp; ammoCanAfford(playerID))
 {
     i = fireWeapon(0, 0, objTopSpin, 1, 0, 0, 0);
     if (i)
@@ -221,9 +220,10 @@ if (!global.frozen)
             <kind>1</kind>
             <string>if (global.damage != 0)
 {
-    if (global.ammo[playerID, global.weapon[playerID]] &gt; 0)
+    if (ammoCanAfford(playerID))
     {
-        global.ammo[playerID, global.weapon[playerID]] -= (2 / (global.energySaver + 1));
+        var ammoCost = 1 - (0.5 * global.energySaver &gt; 1);
+        ammoDecrease(playerID,ammoCost);
     }
 }
 </string>

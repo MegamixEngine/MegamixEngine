@@ -29,6 +29,7 @@
 LoadFMOD();
 FMODInit(5, false); // If you somehow have over 200 pieces of music, increase this number
 global.tempSongData = -1;
+global.tempSongData_MIDI = -1;
 global.songMemory = -1;
 
 // GME Init
@@ -51,7 +52,9 @@ forceReset = false;
 buffer_size = 1520; // 16384;
 
 // The number of audio buffers (five buffers will be a total of 5*2048B = 10240B ~ 10KB
-buffer_count = 7; // 3;
+buffer_count = 7;//7; // 3;
+
+refreshBuffer_count = 1;
 
 // Buffer index is used to keep track of current buffer to fill / add to queue
 buffer_index = 0;
@@ -70,20 +73,71 @@ for (var i = 0; i &lt; buffer_count; i++)
 sound_index = noone;
 trackNumber = -1;
 
-// misc
-global.levelSong = "";
-global.levelSongType = "OGG";
-global.levelTrackNumber = 0;
+event_user(0);
 
-global.levelLoopStart = 0;
-global.levelLoopEnd = 1;
+// nsf bug failsafe
+stuckTimer = 0;
+prePos = 0;
 
-global.levelLoop = 1;
-global.levelVolume = 1;
-global.songMemory = -1;
+// Fading support FINALLY
+fading = false;
+fadeFactor = 0.05;
 
-// Music volume
-audio_sound_gain(sound_index, global.levelVolume * (global.musicvolume * 0.01), 0);
+// (ike voice) prepare yourself
+alarm[0] = 1;
+
+depth = -10000000;
+
+ignorePlayback = false;//Workaround for memory leakage via double-referencing.
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Workaround attempt for VGM issues.
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// Music volume
+audio_sound_gain(sound_index, soundGetVolume(0), 0);
 </string>
           </argument>
         </arguments>
@@ -112,6 +166,45 @@ FMODUpdate();
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///CONSOLE UPDATE
+
+
+draw_set_halign(fa_left);
+draw_set_valign(fa_bottom);
+
+for (var i = 0; i &lt; CONSOLE_MAX &amp;&amp; i &lt; global.consoleN; i++)
+{
+    var messageN = global.consoleN - i - 1;
+    global.consoleTimer[messageN] += 1;
+}
+/*
+subMenuInit = 0;
+
+//End debug menu
+if (subMenuSwitchTo &lt; 0)
+{
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -131,13 +224,41 @@ FMODUpdate();
           <argument>
             <kind>1</kind>
             <string>/// GME step
+/*
+There is a known and infamous bug involving the current implementation of the
+VGM player where it can cause grating "stutters" in the audio if music is started
+when the fps is low, due to a conflict with the step event trying to fix the
+stream if it stops (due to holding the GMS window or, in the problem case, lag).
+
+
+As a workaround for 1.9, we have introduced an EXPERIMENTAL_VGMFIX constant,
+with a *potential*, but not fully tested fix, 
+Set these in the macros of your GMS project.
+
+Value 0 is the same as Megamix 1.0.3, which MaGMML games used many tricks to
+avoid stuttering happening under *most* circumstances.
+Value 1 Sets an alarm that exits the step event causing the issue for 2 frames.
+This may cause a slightly larger cut when recovering, but seems to work 
+effectively in tests.
+
+*/
+
+if (EXPERIMENTAL_VGMFIX)
+{
+    if (alarm[1] &gt;= 0)//fps &lt; 60 &amp;&amp; EXPERIMENTAL_VGMFIX)
+    {
+        exit;
+    }
+}
 
 // The following is a check to refill audio buffers
 // if playing has stopped unexpectedly from moving window etc.
-if (playing &amp;&amp; !endReached &amp;&amp; !audio_is_playing(snd_queue))
+
+if (playing &amp;&amp; !endReached &amp;&amp; snd_queue != noone &amp;&amp; !audio_is_playing(snd_queue))
 {
     // Fill all the audio buffers with song data and add to queue
-    for (var i = 0; i &lt; buffer_count; i++)
+    
+    for (var i = 0; i &lt; buffer_count; i++)//buffer_count; i++)
     {
         endReached = !GameMusicEmu_Read(bufPointer[i]);
         audio_queue_sound(snd_queue, buf[i], 0, buffer_size);
@@ -167,6 +288,51 @@ if (playing &amp;&amp; !endReached &amp;&amp; !audio_is_playing(snd_queue))
         forceReset = false;
     }
 }
+
+// restart song if the vgm player gets stuck
+if (playing &amp;&amp; !endReached &amp;&amp; snd_queue != noone)
+{
+    var pos = GME_GetPosition();
+    if (prePos == pos)
+    {
+        if (stuckTimer &gt;= 5)
+        {
+            show_debug_message("Unstuck song. Pos: " + string(pos));
+            stopMusic();
+            resumeMusic();
+            pos = 0;
+            stuckTimer = 0;
+        }
+        
+        stuckTimer++;
+    }
+    else
+    {
+        stuckTimer = 0;
+    }
+    
+    prePos = pos;
+}
+else
+{
+    prePos = 0;
+    stuckTimer = 0;
+}
+
+// Music fade
+if (fading)
+{
+    global.levelVolume -= fadeFactor;
+    
+    musicVolumeUpdate();
+    
+    if (global.levelVolume &lt;= 0)
+    {
+        global.levelVolume = 0;
+        fading = false;
+        fadeFactor = 0.05;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -189,23 +355,100 @@ if (playing &amp;&amp; !endReached &amp;&amp; !audio_is_playing(snd_queue))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Fill an audio buffer and add it to the queue
+            <string>
+if (async_load[? "queue_id"] == -72)
+{//Special ID in Fluwiidi callbacks for MIDI-based events.
+/*
+    All text events get called back by default, though future developments may
+    allow for note events to be called back as well.
 
-if (playing &amp;&amp; !endReached)
-{
-    // Fill the buffer with audio data
-    endReached = !GameMusicEmu_Read(bufPointer[buffer_index]);
+    If coding MIDIs for specialized purposes, you should use the following text
+    types to seperate their functions:
     
-    // Add the buffer to the queue
-    audio_queue_sound(snd_queue, buf[buffer_index], 0, buffer_size);
+    Text - General use case. May be used for credits text in the future.
+    Copyright - Keep as-provided. Not used for credits since the format is nonstandardized.
+    TrackName - Name first track as appropirate for the song. May be used for credits text in the future.
+    InstrumentName - Unused. Hardly used and not well documented.
+    Lyric - Use if you intend to have either a vocal track, or want to use this for kareoke. Yes that's the intended purpose.
+    Marker - Intended for async callbacks that are designed to influence the music.
+    Cue/Comment - Intended for async callbacks that trigger something in the game.
     
-    // Increase the buffer index and wrap to zero if last buffer has been queued
-    buffer_index++;
-    if (buffer_index &gt;= buffer_count)
+    Theoretically, MIDI supports additional text types beyond these 8, but most
+    MIDIEditors won't support displaying them/default to something else.
+    
+    The markers loopStart, loopEnd, and volume are handled internally by Fluwiidi.
+    Use variants of those names if you wish to parse/handle looping inside GMS,
+    such as for special loop conditions.
+    
+*/
+    if (DEBUG_ENABLED)
     {
-        buffer_index = 0;
+        /*Note that this is only a proof of concept for now. If you want to add
+        Any special events, this code will at least let you know the reading-in
+        of values is working.
+        */
+        print(string(async_load[? "datatype"]) + string(async_load[? "data"]));
     }
 }
+else
+{
+    // Fill an audio buffer and add it to the queue
+    if !EXPERIMENTAL_VGMFIX || !(snd_queue != noone &amp;&amp; !audio_is_playing(snd_queue))
+    {
+        if (playing &amp;&amp; !endReached)
+        {
+            // Fill the buffer with audio data
+            endReached = !GameMusicEmu_Read(bufPointer[buffer_index]);
+            
+            // Add the buffer to the queue
+            audio_queue_sound(snd_queue, buf[buffer_index], 0, buffer_size);
+            
+            // Increase the buffer index and wrap to zero if last buffer has been queued
+            buffer_index++;
+            if (buffer_index &gt;= buffer_count)
+            {
+                buffer_index = 0;
+            }
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///LEVEL SONG VARIABLES INIT
+
+global.levelSong = "";
+global.levelSongType = "OGG";
+global.levelSongLength = 0;
+global.levelTrackNumber = 0;
+global.levelSoundfont = "";
+
+global.levelLoopStart = 0;
+global.levelLoopEnd = 1;
+
+global.levelLoop = 1;
+global.levelVolume = 1;
+global.songMemory = -1;
+
 </string>
           </argument>
         </arguments>
@@ -229,6 +472,7 @@ if (playing &amp;&amp; !endReached)
           <argument>
             <kind>1</kind>
             <string>/// Stop all audio
+// UGGGGGH BAD CODE
 audio_stop_all();
 </string>
           </argument>
@@ -253,10 +497,386 @@ audio_stop_all();
           <argument>
             <kind>1</kind>
             <string>/// Unload possible file
+if (snd_queue != noone)
+{
+    audio_free_play_queue(snd_queue);
+}
 if (buffer_gme != noone)
 {
     GameMusicEmu_Free();
     buffer_delete(buffer_gme);
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///This exists soley to let objGlobalControl have a draw_end event without causing issues with sprite flicker.
+
+with (objGlobalControl)
+{
+    //UI Text &amp; Fade
+    var primary   = getWeaponPrimaryColor(  global.weapon[0], costume);
+    var secondary = getWeaponSecondaryColor(global.weapon[0], costume);
+    
+    draw_set_halign(fa_left);
+    draw_set_halign(fa_center);
+    draw_set_color(c_white);
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    //Controler overlay
+    if (global.showControllerOverlay &amp;&amp; global.displayCornerUI)
+    {
+        var surfWidth = 34;
+        var surfHeight = 14;
+        
+        var xx = view_xview + view_wview - surfWidth - shakex;
+        var yy = view_yview + view_hview - surfHeight - shakey;
+        
+        //draw_clear_alpha(c_white, 0);
+        
+        //
+        
+        var alpha = (1 / 1.28) * 0.9;
+        image_alpha = alpha;
+        
+        var controlCol = make_colour_rgb(0, 50, 134);
+        
+        draw_sprite_ext(sprDot, 0, xx, yy, surfWidth, surfHeight, 0, controlCol, alpha);
+        
+        draw_sprite_ext(sprDot, 0, xx + 1, yy, surfWidth - 2, 1, 0, c_white, alpha);
+        draw_sprite_ext(sprDot, 0, xx+ 1, yy + surfHeight - 1, surfWidth - 2, 1, 0, c_white, alpha);
+        
+        draw_sprite_ext(sprDot, 0, xx, yy + 1, 1, surfHeight - 2, 0, c_white, alpha);
+        draw_sprite_ext(sprDot, 0, xx + surfWidth - 1, yy + 1, 1, surfHeight - 2, 0, c_white, alpha);
+        
+        draw_sprite_ext(sprDot, 0, xx + 1, yy + 1, surfWidth - 2, 1, 0, c_black, alpha);
+        draw_sprite_ext(sprDot, 0, xx + 1, yy + 1, 1, surfHeight - 2, 0, c_black, alpha);
+
+        drawControllerOverlay(xx + 1, yy + 1);
+        
+        image_alpha = 1;
+        //drawControllerOverlay(view_xview + view_wview - 28, view_yview + view_hview);
+    }
+    
+    // Show FPS
+    if (global.showFPS &amp;&amp; global.displayCornerUI)
+    {
+        var xx = (view_xview[0] + view_wview[0]) - (34 * (global.showControllerOverlay &gt; 0)) - shakex;
+        var yy = (view_yview[0] + view_hview[0]) - shakey;
+        
+        draw_set_halign(fa_right);
+        draw_set_valign(fa_bottom);
+        
+        var fp = string(fps);
+        if (DEBUG_ENABLED)
+        {
+            if (instance_exists(objDebugMenu) &amp;&amp; objDebugMenu.frameByFrame)
+            {
+                fp = objDebugMenu.frameCounter;
+            }
+        }
+        
+        draw_text(xx, yy, fp);
+        
+        draw_set_valign(fa_top);
+        draw_set_halign(fa_center);
+    }
+    
+    // Checkpoint notification
+    if (checkpointTimer &gt;= 0)
+    {
+        var txt = "CHECKPOINT REACHED";
+        
+        var length = string_length(txt);
+        var indexStart  = max(floor(checkpointTimer - 48), 1);
+        var count       = min(checkpointTimer, (length - indexStart) + 1);
+        
+        var xx = ((view_xview[0] + 48) + (indexStart * 8)) - shakex;
+        var yy = ((view_yview[0] + 8 ) + ((global.checkpointNotification - 1) * 100)) - shakey;
+        var str = string_copy(txt, indexStart, count);
+        draw_set_halign(0);
+        draw_set_valign(1);
+        draw_text_ext(xx, yy, str, 8, view_wview[0]);
+        
+        if (str == "")
+        {
+            checkpointTimer = 0;
+        }
+        else
+        {
+            checkpointTimer += 0.4;
+        }
+    }
+    
+    // Drawing READY (We are doing this HERE for consistency)
+    with (objMegaman)
+    {
+        if (playerID == 0)//Only show the first player's ready text.
+        {
+            if (showReady)
+            {
+                //Draw the text in intervals
+                if (((readyTimer / 16) mod 1) &gt;= 0.5)
+                {
+                    draw_set_color(c_white);
+                    
+                    var xx = view_xview[0] + (view_wview[0] / 2) - objGlobalControl.shakex;
+                    var yy = view_yview[0] + (view_hview[0] / 2) - objGlobalControl.shakey;
+                    var str = global.costumeReadyText[costumeID];
+                    
+                    draw_set_halign(fa_center);
+                    //if !(global.customCostumeEquipped[playerID] &amp;&amp; global.customCostumeTextLengths[0,1])
+                    //{
+                        draw_text(xx, yy, str);
+                    /*}
+                    else
+                    {
+                        customCostume_DrawText(xx, yy,0,0,fa_center,fa_top,0);
+                        
+                    }*/
+                }
+                
+                break;
+            }
+        }
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    var xx = view_xview[0] + 20 - shakex;
+    var yy = (view_yview[0] + view_hview[0]) - 5 - shakey;
+    var str = "";
+    
+    // Save icon
+    if (saveTimer &gt;= 0)
+    {
+        str = "SAVING...";
+        
+        // Draw saving icon
+        var img = (floor(saveTimer / 4) mod 2);
+        
+        shaderSetColorreplace(  make_color_rgb(64, 64, 64), primary,
+                                make_color_rgb(128, 128, 128), secondary);
+        
+        draw_sprite(sprSavingIcon, img, (xx - 10), (yy - 4));
+        
+        shader_reset();
+
+        saveTimer -= 0.5;
+        quitTimer = 0;
+    }
+    
+    /// Quit Indicator
+    if (quitTimer)
+    {
+        str = "QUITTING";
+        
+        //Draw quitting wheel
+        var dis = 6;
+        var size = (dis + 1) * 2;
+        var halfSize = (size / 2);
+        
+        var surf = mm_surface_create(size, size);
+        
+        surface_set_target(surf);
+        draw_clear_alpha(c_white, 0);
+        
+        ///////////////////////////
+        
+        var rate = min((quitTimer / 85), 1);
+        
+        draw_primitive_begin(pr_trianglefan);
+        draw_set_color(secondary);
+        
+        var maxDirection        = roundTo((360 * rate), 5)
+        var currentDirection    = 0;
+        var drawDirection       = 0;
+        
+        draw_vertex(halfSize, halfSize);
+        
+        while (true)
+        {
+            drawDirection = (90 - currentDirection);
+            
+            draw_vertex(halfSize + lengthdir_x(dis, drawDirection),
+                        halfSize + lengthdir_y(dis, drawDirection));
+            
+            if (currentDirection == maxDirection)
+            {
+                break;
+            }
+            else
+            {
+                currentDirection = min((currentDirection + 15), maxDirection);
+            }
+        }
+        
+        draw_primitive_end();
+        draw_set_color(c_white);
+        
+        ///////////////////////////
+        
+        surface_reset_target();
+        
+        var shader = shAddPartialOutline;
+        shader_set_safe(shader);
+        
+        var col = primary;
+        shader_set_uniform_f(shader_get_uniform(shader,"u_color"), colour_get_red(col), colour_get_green(col), colour_get_blue(col));
+        
+        shader_set_uniform_f(shader_get_uniform(shader,"offsetx"), (1 / size));
+        shader_set_uniform_f(shader_get_uniform(shader,"offsety"), (1 / size));
+        
+        draw_surface(surf, (xx - 18), ((yy + 3) - size));
+        
+        mm_surface_free(surf);
+        shader_reset();
+    }
+    
+    if (str != "") //Draw the text
+    {
+        draw_set_halign(0);
+        draw_set_valign(2);
+        draw_text_ext(xx, yy, str, 8, view_wview[0]);
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    clearDrawState();
+    if (displayMusic)
+    {
+        displayMusic--;
+        var down = 0;
+        displayMusic_FadeIn++;
+        var alpha = (min(5,displayMusic)/5);
+        alpha *= (min(1,displayMusic_FadeIn/5))//min(1,(floor(displayMusic_FadeIn/5)*5)/5);
+        
+        
+        
+        for (var i = 0; i &lt; array_length_1d(global.songCredits)-1; i++)
+        {//Minus 1 to ignore the year; We really don't need that outside jukebox stuff.
+            var txt = global.songCredits[i];
+            
+            
+            if (txt != "")
+            {
+                var xOff = 8;
+                var yOff = 8;
+                if (down == 0)
+                {
+                    xOff = 20;
+                    
+                }
+                
+                var height = string_height_ext(txt,-1,view_wview-xOff);
+                
+                draw_sprite_ext(sprDot,0,view_xview,view_yview+yOff+down*12,string_width(txt)+xOff,height,0,c_black,.25*alpha);
+                if (!down)
+                {
+                    draw_sprite_ext(sprFontMusicalNote,1,view_xview+8,view_yview+yOff+down*12,1,1,0,c_white,alpha);
+                }
+                
+                draw_set_font(global.fontSmall);
+                draw_text_ext_color(view_xview+xOff,view_yview+yOff+down*12,txt,-1,view_wview-xOff,c_white,c_white,c_white,c_white,alpha);
+                
+                down += height/8;
+            }
+        }
+        
+    }
+    draw_set_font(global.font);
+    clearDrawState();
+    
+    // Screen flash
+    if (!global.frozen)
+    {
+        if (global.flashTimer &gt; 0)
+        {
+            global.flashTimer --;
+            draw_sprite_ext(sprDot, image_index, view_xview, view_yview, view_wview, view_hview, image_angle, image_blend, image_alpha);
+        }
+    }
+    
+    if (fadeAlpha &gt; 0)
+    {
+        draw_sprite_ext(sprDot, 0, view_xview, view_yview, view_wview, view_hview, 0, c_black, fadeAlpha);
+    }
+    
+    depth = depthstart;
+    
+    
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (objGlobalControl)
+{
+    var predepth = depth;
+    depth = -9999998;
+    
+    if (showhealth)
+    {
+        var drawx = view_xview+16 - shakex;
+        var drawy = view_yview+17 - shakey;
+        
+        //drawSurf = 1;
+            
+        // reset position
+        var dx = drawx;
+        var dy = drawy;
+        
+        // Keys
+        var xx = (dx + 8);
+        var yy = dy;
+        
+        for (var i = 0; i &lt; global.keyNumber; i ++;)
+        {
+            draw_sprite(sprKeyHud, 0, xx, yy);
+            
+            yy += 8;
+        }
+    }
+    
+    depth = predepth;
 }
 </string>
           </argument>

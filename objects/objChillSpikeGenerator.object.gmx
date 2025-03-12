@@ -65,7 +65,7 @@ i = 0;
     {
         if (!i)
         {
-            playSFX(sfxChillShoot);
+            //playSFX(sfxChillShoot);
             switch (spike)
             {
                 case 0: // generate spike 
@@ -104,14 +104,14 @@ i = 0;
             switch (spike)
             {
                 case 0:
-                    cS = instance_create(x, y, objChillSpike);
+                    cS = instance_create(x, y, objChillSpikeBoss);
                     cS.image_xscale = -1;
                     cS.toWall = true;
                     cS.spreadAttack = true;
                     cS.direction = 270 - 48;
                     break;
                 case 1:
-                    cS = instance_create(x, y, objChillSpike);
+                    cS = instance_create(x, y, objChillSpikeBoss);
                     cS.image_xscale = -1;
                     cS.spreadAttack = true;
                     cS.imageReset = 3;
@@ -120,7 +120,7 @@ i = 0;
                     cS.direction = 270 - 28;
                     break;
                 case 2:
-                    cS = instance_create(x, y, objChillSpike);
+                    cS = instance_create(x, y, objChillSpikeBoss);
                     cS.image_xscale = 1;
                     cS.spreadAttack = true;
                     cS.imageReset = 6;
@@ -129,7 +129,7 @@ i = 0;
                     cS.direction = 270;
                     break;
                 case 3:
-                    cS = instance_create(x, y, objChillSpike);
+                    cS = instance_create(x, y, objChillSpikeBoss);
                     cS.image_xscale = 1;
                     cS.spreadAttack = true;
                     cS.imageReset = 3;
@@ -138,7 +138,7 @@ i = 0;
                     cS.direction = 270 + 28;
                     break;
                 case 4:
-                    cS = instance_create(x, y, objChillSpike);
+                    cS = instance_create(x, y, objChillSpikeBoss);
                     cS.image_xscale = 1;
                     cS.toWall = true;
                     cS.spreadAttack = true;

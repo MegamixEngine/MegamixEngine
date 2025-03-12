@@ -44,6 +44,8 @@ shootTimer = 0;
 attachedToCloud = false;
 
 myCloud = instance_nearest(x, y, objMM2CloudPlatform);
+
+obj = objLightningLordLightning
 </string>
           </argument>
         </arguments>
@@ -104,7 +106,7 @@ if (entityCanStep())
     if (shootTimer == 150)
     {
         image_index = 2;
-        i = instance_create(x, y - 22, objLightningLordLightning);
+        i = instance_create(x, y - 22, obj);
         i.image_xscale = image_xscale;
         i.xspeed = image_xscale;
     }
@@ -151,14 +153,17 @@ else if (dead)
             <string>event_inherited();
 if (spawned)
 {
-    if (attachedToCloud &amp;&amp; instance_exists(myCloud))
+    if (attachedToCloud)
     {
-        var f = false;
-        with (myCloud)
-            f = insideView(x, y);
-        if (f)
+        if (instance_exists(myCloud))
         {
-            dead = true;
+            var f = false;
+            with (myCloud)
+                f = !insideSection(x, y);
+            if (f)
+            {
+                dead = true;
+            }
         }
     }
 }

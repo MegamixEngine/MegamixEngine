@@ -51,8 +51,48 @@ phase = 0;
 blockCollision = 0;
 grav = 0;
 init = 1;
-
+hasFired = false;
 image_speed = 0;
+
+//creation code
+useEvent2 = true; // if false then user event 2 does nothing (where conveyours are flipped by default)
+//define noises made by searchy
+alarmNoise = sfxSearchyLight;
+searchyFind = sfxSearchyFound; //doubles as shot sound if shotObject is defined below.
+
+//define searchy's light sprite;
+lightSprite = sprSearchyLight;
+
+//define searchy's detection radius. made from middle of object
+searchLeft = -11;
+searchRight = 11;
+searchTop = 11;
+searchBottom = 51;
+
+
+
+
+//by default, searchy does not attack. here you can define a bullet/object to be spawned
+shotObject = noone; //object type fired from searchy
+shotSprite = noone; //sprite for fired object type.
+
+//x and y offset if needed
+shotOffsetX = 0;
+shotOffsetY = -9;
+
+//off screen shot - alternative/additional projectile fired when searchy reaches screen edge.
+
+offScreenShot = noone; //object type fired from searchy when near screen edge
+offScreenShotSprite = noone; //sprite for above.
+offScreenRadius = 24; //how far away from screen edge before firing
+
+//x and y offset if needed
+offScreenShotOffsetX = 0;
+offScreenShotOffsetY = -9;
+
+offScreenShotSound = noone; //if defined, play sfx when firing
+
+shotSmoke = noone; //if defined, create 'smoke object';
 </string>
           </argument>
         </arguments>
@@ -90,42 +130,167 @@ if (entityCanStep())
             calibrateDirection();
             xspeed = 2 * image_xscale;
             phase = 1;
-            playSFX(sfxSearchyLight);
+            if (alarmNoise != noone)
+                playSFX(alarmNoise);
             break;
         case 1: // if the player passes through Searchy's light, they've been caught 
-            if (collision_rectangle(x - 11, y + 11, x + 11, y + 51, target, false, false))
+            if (collision_rectangle(x + searchLeft, y + searchTop, x + searchRight, y + searchBottom, target, false, false))
             {
                 phase = 2;
             }
             else
             {
                 // play Searchy's audio if it isn't playing
-                if (!audio_is_playing(sfxSearchyLight))
+                if (alarmNoise != noone)
                 {
-                    playSFX(sfxSearchyLight);
+                    if (!audio_is_playing(alarmNoise))
+                    {
+                        playSFX(alarmNoise);
+                    }
                 }
+            }
+            // Animate light
+            lightTimer += 1;
+            if (lightTimer &gt;= 2)
+            {
+                if (lightImage == 1)
+                {
+                    lightImage = 0;
+                }
+                else
+                {
+                    lightImage = 1;
+                }
+                lightTimer = 0;
+            }
+            animTimer += 1;
+            if (animTimer &gt;= 6)
+            {
+                if (searchyImage == 3)
+                {
+                    searchyImage = 0;
+                }
+                else
+                {
+                    searchyImage += 1;
+                }
+                animTimer = 0;
             }
             break;
         case 2: // stop Searchy's audio and slow to a stop 
             if (xspeed != 0)
             {
                 xspeed -= 0.1 * image_xscale;
-                if (audio_is_playing(sfxSearchyLight))
+                if (alarmNoise != noone)
                 {
-                    stopSFX(sfxSearchyLight);
+                    if (audio_is_playing(alarmNoise))
+                    {
+                        stopSFX(alarmNoise);
+                    }
+                }
+                
+                // animate light
+                animTimer += 1;
+                
+                if (animTimer &gt;= 6)
+                {
+                    if (searchyImage == 3)
+                    {
+                        searchyImage = 0;
+                    }
+                    else
+                    {
+                        searchyImage += 1;
+                    }
+                    animTimer = 0;
+                }
+            }
+            else // When stopped...
+            {
+                animTimer += 1;
+                
+                if (animTimer &gt;= 3)
+                {
+                    if (searchyImage == 4)
+                    {
+                        searchyImage = 5;
+                        phase = 3;
+                    }
+                    else
+                    {
+                        searchyImage = 4;
+                        if (searchyFind != noone)
+                            playSFX(searchyFind);
+                        if (shotObject != noone)
+                        {
+                            with (instance_create(x + shotOffsetX,y + shotOffsetY,shotObject))
+                            {
+                                if (other.shotSprite != noone)
+                                    sprite_index = other.shotSprite;
+                                depth = other.depth - 3;
+                            }   
+                        }
+                        if (shotSmoke != noone)
+                        {
+                            with (instance_create(x + shotOffsetX,y + shotOffsetY,shotSmoke))
+                            {
+                                depth = other.depth - 4;
+                            }
+                        }
+                    }
+                    animTimer = 0;
                 }
             }
             break;
         case 3: // if any conveyer belts exist, flip them backwards 
-            if (instance_exists(objMM2Conveyor))
-                with (objMM2Conveyor)
-                    dir = -dir;
-            phase = 4;
+                if (useEvent2)
+                    event_user(2);
+                phase = 4;
             break;
         case 4: // speed up and fly off screen 
             if (xspeed != 3 || xspeed != -3)
             {
                 xspeed += 0.1 * image_xscale;
+            }
+            
+            animTimer += 1; // animation
+            if (animTimer &gt;= 6)
+            {
+                if (searchyImage == 8)
+                {
+                    searchyImage = 5;
+                }
+                else
+                {
+                    searchyImage += 1;
+                }
+                animTimer = 0;
+            }
+            
+            if (offScreenShot != noone &amp;&amp; !hasFired)
+            {
+                if (x &gt;= screenRight(-offScreenRadius) || x &lt;= screenLeft(offScreenRadius))
+                {
+
+                    if (offScreenShotSound != noone)
+                        playSFX(offScreenShotSound);
+                    with (instance_create(x + offScreenShotOffsetX,y + offScreenShotOffsetY,offScreenShot))
+                    {
+                        if (other.offScreenShotSprite != noone)
+                            sprite_index = other.offScreenShotSprite;
+                        depth = other.depth - 3;
+                    }   
+                    hasFired = true;
+                    
+                
+                    if (shotSmoke != noone)
+                    {
+                        with (instance_create(x + shotOffsetX,y + shotOffsetY,shotSmoke))
+                        {
+                            depth = other.depth - 4;
+                        }
+                    }
+                }
             }
             break;
     }
@@ -135,11 +300,35 @@ else if (dead)
     animTimer = 0;
     searchyImage = 0;
     phase = 0;
-    if (audio_is_playing(sfxSearchyLight))
-    {
-        stopSFX(sfxSearchyLight);
-    }
+    hasFired = false;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Searchy Trigger
+ if (instance_exists(objMM2Conveyor))
+        with (objMM2Conveyor)
+            dir = -dir;
+    
 </string>
           </argument>
         </arguments>
@@ -167,99 +356,11 @@ else if (dead)
     exit;
 }
 
-// This code both draws Searchy and controls when it plays the flip sound
+// This code draws Searchy and its light
 
-draw_sprite(sprSearchy, searchyImage, x, y);
-
-switch (phase)
-{
-    case 0:
-        break;
-    case 1:
-        lightTimer += 1;
-        if (lightTimer &gt;= 2)
-        {
-            if (lightImage == 1)
-            {
-                lightImage = 0;
-            }
-            else
-            {
-                lightImage = 1;
-            }
-            lightTimer = 0;
-        }
-        draw_sprite(sprSearchyLight, lightImage, x, y + 11);
-        animTimer += 1;
-        if (animTimer &gt;= 6)
-        {
-            if (searchyImage == 3)
-            {
-                searchyImage = 0;
-            }
-            else
-            {
-                searchyImage += 1;
-            }
-            animTimer = 0;
-        }
-        break;
-    case 2:
-        if (xspeed == 0)
-        {
-            animTimer += 1;
-            
-            if (animTimer &gt;= 3)
-            {
-                if (searchyImage == 4)
-                {
-                    searchyImage = 5;
-                    phase = 3;
-                }
-                else
-                {
-                    searchyImage = 4;
-                    playSFX(sfxSearchyFound);
-                }
-                animTimer = 0;
-            }
-        }
-        else
-        {
-            animTimer += 1;
-            
-            if (animTimer &gt;= 6)
-            {
-                if (searchyImage == 3)
-                {
-                    searchyImage = 0;
-                }
-                else
-                {
-                    searchyImage += 1;
-                }
-                animTimer = 0;
-            }
-        }
-        break;
-    case 3:
-        break;
-    case 4:
-        animTimer += 1;
-        if (animTimer &gt;= 6)
-        {
-            if (searchyImage == 8)
-            {
-                searchyImage = 5;
-            }
-            else
-            {
-                searchyImage += 1;
-            }
-            animTimer = 0;
-        }
-        break;
-}
+draw_sprite(sprite_index, searchyImage, x, y);
+if (phase == 1)
+    draw_sprite(lightSprite, lightImage, x, y + 11);
 </string>
           </argument>
         </arguments>

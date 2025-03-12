@@ -38,6 +38,7 @@ category = "floating";
 // Enemy specific code
 phase = 0;
 phaseTimer = 0;
+doShine = true;
 
 // @cc color of the enemy. 0 = green, 1 = pink
 col = 0;
@@ -73,8 +74,6 @@ if (entityCanStep())
     switch (phase)
     {
         case 0: // move towards player for 1 second 
-            calibrateDirection();
-            imgOffset = 0;
             if (phaseTimer == 1)
             {
                 if (instance_exists(target))
@@ -90,14 +89,16 @@ if (entityCanStep())
                 yspeed = 0;
                 phase = 1;
                 phaseTimer = 0;
+                doShine = false;
+                imgOffset = 5;
+                calibrateDirection();
             }
             break;
         case 1: // animate open for 0.5 seconds
         // image_speed = 10 / 30; 
             if (imgOffset &lt; 9)
-            {
-                imgOffset += (1 / 3);
-            }
+                imgOffset += 0.2; //(1 / 3);
+            
             if (phaseTimer &gt; 30)
             {
                 phase = 2;
@@ -126,8 +127,7 @@ if (entityCanStep())
             }
             break;
         case 3: // wait around 0.4 seconds and set animation back from shoot frame 
-            imgOffset = 10;
-            if (phaseTimer == 1)
+            if (phaseTimer == 6)
             {
                 imgOffset = 9;
             }
@@ -140,22 +140,31 @@ if (entityCanStep())
         case 4: // animate closed 
             if (phaseTimer == 2)
             {
-                imgOffset = 6;
+                imgOffset = 5;
             }
             if (phaseTimer == 4)
             {
-                imgOffset = 5;
-            }
-            if (phaseTimer == 6)
-            {
                 imgOffset = 0;
             }
+            /*if (phaseTimer == 6)
+            {
+                imgOffset = 0;
+            }*/
             if (phaseTimer &gt; 36)
             {
                 phase = 0;
                 phaseTimer = 0;
             }
             break;
+    }
+    if (doShine) // Shine when reflecting shots
+    {
+        imgOffset += 0.2;
+        if (imgOffset &gt;= 5)
+        {
+            imgOffset = 0;
+            doShine = false;
+        }
     }
     phaseTimer += 1;
 }
@@ -164,6 +173,7 @@ else if (dead)
     phase = 0;
     phaseTimer = 0;
     imgOffset = 0;
+    doShine = false;
 }
 
 image_index = imgOffset + (col * 11);
@@ -175,6 +185,12 @@ image_index = imgOffset + (col * 11);
 
 // QUACK YOU FORGOT THE PINK DIARN COLOR
 //- SnoruntPyro, 7:53 PM, 6 July 2018
+
+// You both forgot the shine effect when reflecting shots
+//- Spin Attaxx, 8:10 PM BST, 27 October 2021
+
+// The great error has now been corrected in MaGMML3, three years later
+//- Spin Attaxx, 5:44 AM GMT, 19 February 2022
 </string>
           </argument>
         </arguments>
@@ -228,6 +244,7 @@ specialDamageValue(objSlashClaw, 2);
             <string>if (imgOffset &lt;= 4)
 {
     other.guardCancel = 1;
+    doShine = true; // Trigger reflect shine
 }
 </string>
           </argument>

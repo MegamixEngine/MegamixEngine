@@ -38,6 +38,8 @@ grav = 0;
 
 facePlayerOnSpawn = true;
 
+behaviourType = 1;
+
 // Enemy specific code
 calibrated = 0;
 
@@ -47,6 +49,7 @@ action = 1;
 actionTimer = imgsp;
 img = 0;
 animTimer = 0;
+moveDir = 0;
 </string>
           </argument>
         </arguments>
@@ -87,6 +90,7 @@ if (entityCanStep())
                 with (i)
                 {
                     sprite_index = spr100WattonSmoke;
+                    image_xscale = other.moveDir;
                     event_perform(ev_create, 0);
                     motion_set(45 + (image_xscale == -1) * 90, 0.5);
                 }
@@ -119,7 +123,7 @@ if (entityCanStep())
                 image_index -= 4;
                 action = 1;
                 actionTimer = 0;
-                xspeed = image_xscale * 1;
+                xspeed = moveDir * 1;
             }
         }
         animTimer += 1;
@@ -168,7 +172,9 @@ else if (dead)
 
 if (spawned)
 {
-    xspeed = image_xscale * 1;
+    moveDir = image_xscale;
+    image_xscale = 1;
+    xspeed = moveDir * 1;
 }
 </string>
           </argument>

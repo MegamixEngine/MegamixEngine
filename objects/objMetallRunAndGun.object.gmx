@@ -37,6 +37,8 @@ category = "mets";
 
 facePlayerOnSpawn = true;
 
+behaviourType = 1;
+
 // Enemy specific code
 phase = 1;
 graceWait = 60;

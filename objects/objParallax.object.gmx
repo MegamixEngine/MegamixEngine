@@ -99,6 +99,8 @@ yoff = 0;
 init = false;
 xshift = 0;
 yshift = 0;
+
+sectionOnly = false;//Speed up execution by only drawing when inside a section.
 </string>
           </argument>
         </arguments>
@@ -232,6 +234,11 @@ if (!global.frozen || instance_exists(objSectionSwitcher))
           <argument>
             <kind>1</kind>
             <string>if (!init)
+{
+    exit;
+}
+
+if (sectionOnly &amp;&amp; !insideSection(x,y))
 {
     exit;
 }

@@ -3,7 +3,7 @@
   <spriteName>sprBokazurahPlatform</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// These can only be destroyed by objBokazurahBall
+            <string>/// A solid platform that can only be destroyed by a Bokazurah ball. When building your challenge, decide whether breaking these platforms is a good thing or a bad thing.
+/// Place these on the same screen as objBokazurah (Enemies &gt; MM9), or use a custom spawner for objBokazurahBall.
+/// For more flexibility, create a modified version of this object and edit the Step event, or wait for Megamix 2.0!
 
 event_inherited();
 

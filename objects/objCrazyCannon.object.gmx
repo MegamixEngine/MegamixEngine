@@ -99,11 +99,12 @@ if (entityCanStep())
                 {
                     timer = 35;
                     playSFX(sfxEnemyShootClassic);
-                    a = instance_create(x + (6 * image_xscale), y - 12,
+                    a = instance_create(x + (17 * image_xscale), y - 13, //6
                         objCrazyCannonBullet);
                     a.xspeed = 3.5 * image_xscale;
                     a.yspeed = -2.75;
                     a.inWater = inWater;
+                    a.sprite_index = sprFlashShot;
                     bulletTimes += 1;
                 }
             }
@@ -136,11 +137,12 @@ if (entityCanStep())
                 {
                     timer = 35;
                     playSFX(sfxEnemyShootClassic);
-                    a = instance_create(x + (6 * image_xscale), y - 12,
+                    a = instance_create(x + (12 * image_xscale), y - 23, //6, 12
                         objCrazyCannonBullet);
                     a.xspeed = choose(.75, 1.25) * image_xscale;
                     a.yspeed = -4.5;
                     a.inWater = inWater;
+                    a.sprite_index = sprFlashShot;
                     bulletTimes += 1;
                 }
             }

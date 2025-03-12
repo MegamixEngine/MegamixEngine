@@ -49,7 +49,18 @@ sinCounter = 0;
 dives = 0;
 ySpePrev = 0;
 missile = noone;
+missile2 = noone;
 safety = 0;
+
+explosionSprite = sprExplosion;
+
+deadTimerMax = 48;
+deadTimerRecur = 6;
+
+//Unhardcoding
+missileSFX = sfxMissileLaunch;
+missileObject = objHyoeyMissile;
+secondMissile = false;
 </string>
           </argument>
         </arguments>
@@ -175,7 +186,7 @@ if (entityCanStep())
     {
         if (!instance_exists(missile)) &amp;&amp; (instance_exists(target))
         {
-            var i = instance_create(x + 10 * image_xscale, y + 10, objHyoeyMissile);
+            var i = instance_create(x + 10 * image_xscale, y + 10, missileObject);
             if (image_index == -1)
             {
                 i.image_index = 5;
@@ -187,6 +198,34 @@ if (entityCanStep())
             missile = i.id;
             i.parent = id;
             i.direction = point_direction(x, y, target.x, target.y);
+            if !secondMissile {
+            playSFX(missileSFX);
+            }
+            if secondMissile {
+            i.respawn = false;
+            }
+        }
+        if !secondMissile {
+        shootTimer = 180;
+        }
+    }
+        if (shootTimer == -80) &amp;&amp; secondMissile
+    {
+        
+        {
+            var i = instance_create(x + 10 * image_xscale, y + 10, missileObject);
+            if (image_index == -1)
+            {
+                i.image_index = 5;
+            }
+            else
+            {
+                i.image_index = 7;
+            }
+            missile2 = i.id;
+            i.parent = id;
+            i.direction = point_direction(x, y, target.x, target.y);
+            i.respawn = false;
             playSFX(sfxMissileLaunch);
         }
         shootTimer = 180;
@@ -195,13 +234,13 @@ if (entityCanStep())
     // Play audio as long as Hyoey can move
     if (!audio_is_playing(sfxHeliButonHover))
     {
-        loopSFX(sfxHeliButonHover);
+        playSFX(sfxHeliButonHover);
     }
 }
 else
 {
     // Stop audio if time is stopped/Hyoey is dead
-    audio_stop_sound(sfxHeliButonHover);
+    //audio_stop_sound(sfxHeliButonHover);
 }
 </string>
           </argument>

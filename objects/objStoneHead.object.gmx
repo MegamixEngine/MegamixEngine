@@ -42,6 +42,7 @@ rescursiveExplosion = false;
 iFrames = 0;
 
 category = "bulky, rocky";
+explosionSFX = sfxMM9ExplosionAlt;
 
 // Enemy specific code
 
@@ -53,6 +54,9 @@ _groundDir = 270;
 
 //@cc Interval between drops
 dropInterval = 16;
+
+// @cc - What weapons can cause Stone Head to drop early?
+earlyDrop[0] = objHornetChaser;
 
 // Don't change any of these
 
@@ -381,6 +385,42 @@ else if (!insideView())
     boulderEnd = noone;
     prevDrop = -1;
     repeatedCounter = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="21">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>for (i = 0; i &lt; array_length_1d(earlyDrop); i++)
+{
+    if (other.object_index == earlyDrop[i])
+    {
+        if (phase &gt; -1) &amp;&amp; (phase &lt; 2)
+        {
+            dropCount = 0;
+            phase = -1;
+            image_index = 0;
+            repeatedCounter = 0;
+            prevDrop = -1;
+        }
+    }
 }
 </string>
           </argument>

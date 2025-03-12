@@ -3,8 +3,8 @@
   <caption></caption>
   <width>2560</width>
   <height>2464</height>
-  <vsnap>16</vsnap>
-  <hsnap>8</hsnap>
+  <vsnap>4</vsnap>
+  <hsnap>4</hsnap>
   <isometric>0</isometric>
   <speed>60</speed>
   <persistent>0</persistent>
@@ -60,7 +60,7 @@
     <instance objName="objFluorescentBulb" x="1632" y="1968" name="inst_7657D3AB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMoveHover" x="1552" y="1968" name="inst_27C3C2BB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSuperCutterRevenge" x="1160" y="1504" name="inst_50CDE11F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objKonroPlatform" x="400" y="1632" name="inst_DCBC0064" locked="0" code="moveDist = 88;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objKonroPlatform" x="400" y="1636" name="inst_DCBC0064" locked="0" code="moveDist = 88;&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMM4ShieldAttacker" x="1192" y="416" name="inst_205143D1" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBounder" x="832" y="800" name="inst_591A4F51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objNewShieldAttacker" x="1128" y="368" name="inst_F10AC754" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -383,9 +383,9 @@
     <instance objName="objTomahawkPlatformStop" x="1720" y="688" name="inst_8ECC342A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTomahawkPlatformStop" x="1760" y="784" name="inst_5BAAA7B9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLeftScrolling" x="1536" y="672" name="inst_0A57F8C0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objJamacy" x="1416" y="800" name="inst_6DCBAB58" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objJamacyClimbing" x="1368" y="688" name="inst_43790121" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objJamacyClimbing" x="1296" y="704" name="inst_51057DD8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objJamacy" x="1400" y="792" name="inst_6DCBAB58" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objJamacyClimbing" x="1376" y="736" name="inst_43790121" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objJamacyClimbing" x="1312" y="720" name="inst_51057DD8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objJamacyClimbingTurn" x="1296" y="688" name="inst_0C6CA174" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objJamacyClimbingTurn" x="1296" y="752" name="inst_F1888F95" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="1280" y="672" name="inst_F7720836" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -518,7 +518,7 @@
     <instance objName="objStopScrollingHorizontal" x="256" y="1568" name="inst_7EB43C6C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="512" y="1568" name="inst_E6602705" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objETank" x="456" y="1408" name="inst_45D1B0D9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objKonroPlatform" x="320" y="1712" name="inst_23D3DA40" locked="0" code="moveDist = 136;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objKonroPlatform" x="320" y="1716" name="inst_23D3DA40" locked="0" code="moveDist = 136;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objVerticalScrolling" x="256" y="1792" name="inst_659917AE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objXPlatform" x="384" y="1904" name="inst_DFC80F47" locked="0" code="manualPartnerX = 440;&#xA;manualPartnerY = 1904;&#xA;blockCollision=1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="256" y="1792" name="inst_E8EEB097" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

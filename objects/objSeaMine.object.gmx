@@ -34,16 +34,55 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 6;
 
-grav = 0;
+
+bubbleTimer = -1;
 
 // Enemy specific code
 yspeed = -0.25;
 actionTimer = 0;
 action = 1;
-
-usesRng = true;
+explodeTimer = 0;
 
 inWater = -1; // shouldn't have collision with the water
+//behaviorType = 1;
+playedSFX = false;
+child = noone;
+storeRespawnRange = noone;
+
+
+//CREATION CODE
+//AI variables
+rangeX = 64; // set to -1 to not check for x range;
+rangeY = 32; // set to -1 to not check for y range;
+
+usesRng = true;// if false, then explosion check isn't rng
+randomChance = 40; // set the range of randomness. (higher means less likely)
+
+guardType = 1; // 0 = no guard, normal death, 1 = immune to everything, 2 = immune to most things, 3 = no guard, [explosive] death
+
+//movement variables
+grav = 0; // if set, mine will attempt to just hop in place
+moveTimerMax = 29; //time spent moving
+stopTimerMax = 64; //time spent stationary
+speedY = 0.25; //y speed
+speedX = 0; //x speed
+
+
+//aesthetic variables
+explosionSound = noone; //if noone and child object is objHarmful explosion, then play generic explosiion sound
+detectionSound = noone; //determine sound effect if player activates mine
+beepSound = noone; //determine sound effect if preparing to explode
+imgSpeed = 0.2; //speed of animation
+
+
+//object created upon destruction
+childObject = objHarmfulExplosion; //can create other objects!
+childContactDamage = 4; // if -1, use entity contact damage
+childSprite = noone; // if set, use custom sprite for child
+explosionTimer = 64; //how long to wait before 'exploding' after being activated
+
+
+
 </string>
           </argument>
         </arguments>
@@ -67,20 +106,36 @@ inWater = -1; // shouldn't have collision with the water
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+//init
+if (storeRespawnRange == noone)
+{
+    storeRespawnRange = respawnRange;
+}
+
+if (instance_exists(child))
+{
+    respawnRange = 999999999999999;
+}
+else
+{
+    respawnRange = storeRespawnRange;
+}
 
 if (entityCanStep())
 {
     if (instance_exists(target))
     {
-        if (abs(target.x - x) &lt; 64)
+        if (abs(target.x - x) &lt; rangeX || rangeX &lt;= -1)
         {
-            if (abs(target.y - y) &lt; 32)
+            if (abs(target.y - y) &lt; rangeY || rangeY &lt;= -1)
             {
                 if (action != 5)
                 {
-                    if (irandom(40) == 0 || !usesRng)
+                    if (irandom(randomChance) == 0 || !usesRng)
                     {
-                        image_speed = 0.2;
+                        image_speed = imgSpeed;
+                        if (detectionSound != noone)
+                            playSFX(detectionSound);
                         action = 5;
                         actionTimer = 0;
                         yspeed = 0;
@@ -92,49 +147,82 @@ if (entityCanStep())
     
     if (action)
     {
-        actionTimer += 1;
+        actionTimer ++;
         switch (action)
         {
             case 1:
-                if (actionTimer == 64)
+                if (actionTimer == moveTimerMax)
                 {
                     action += 1;
                     actionTimer = 0;
                     yspeed = 0;
+                    xspeed = 0;
                 }
                 break;
             case 2:
-                if (actionTimer == 29)
+                if (actionTimer == stopTimerMax)
                 {
                     action += 1;
                     actionTimer = 0;
-                    yspeed = 0.25;
+                    if (grav &gt; 0)
+                        yspeed = -speedY;
+                    else
+                        yspeed = speedY;
+                    xspeed = speedX;
                 }
                 break;
             case 3:
-                if (actionTimer == 64)
+                if (actionTimer == moveTimerMax)
                 {
                     action += 1;
                     actionTimer = 0;
                     yspeed = 0;
+                    xspeed = 0;
                 }
                 break;
             case 4:
-                if (actionTimer == 29)
+                if (actionTimer == stopTimerMax)
                 {
                     action = 1;
                     actionTimer = 0;
-                    yspeed = -0.25;
+                    if (grav &lt; 0)
+                        yspeed = speedY;
+                    else
+                        yspeed = -speedY;
+                    xspeed = -speedX;
                 }
                 break;
             case 5:
-                if (actionTimer == 64)
+                explodeTimer ++;
+                if (grav != 0)
+                {
+                    if (actionTimer == stopTimerMax)
+                    {
+                    
+                    actionTimer = 0;
+                    if (grav &lt; 0)
+                        yspeed = speedY;
+                    else
+                        yspeed = -speedY;
+                    }
+                }
+                
+                if (beepSound != noone)
+                {
+                    if (!playedSFX &amp;&amp; round(image_index == 1))
+                    {
+                        playedSFX = true;
+                        playSFX(beepSound);
+                    }
+                    if (round(image_index == 0))
+                        playedSFX = false;
+                }
+                
+                if (explodeTimer == explosionTimer )
                 {
                     dead = 1;
-                    visible = 0;
-                    instance_create(spriteGetXCenter(), spriteGetYCenter(),
-                        objHarmfulExplosion);
-                    playSFX(sfxExplosion2);
+                    event_user(2);
+                    
                 }
                 break;
         }
@@ -142,11 +230,17 @@ if (entityCanStep())
 }
 else if (dead)
 {
-    yspeed = -0.25;
+    yspeed = -speedY;
+    calibrateDirection();
+    xspeed = speedX * image_xscale;
+    explodeTimer = 0;
     actionTimer = 0;
+    playedSFX = false;
     action = 1;
     image_speed = 0;
     image_index = 0;
+    if (!facePlayer &amp;&amp; !facePlayerOnSpawn)
+        image_xscale = 1;
 }
 </string>
           </argument>
@@ -170,13 +264,107 @@ else if (dead)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (other.penetrate != 2)
+            <string>if (guardType == 1)
+{
+    global.damage = 0;
+    other.guardCancel = 3;
+}
+else if (guardType == 2)
+{
+    other.guardCancel = 1;
+}
+/*if (other.penetrate != 2)
 {
     other.guardCancel = 1;
 }
 else
 {
     other.guardCancel = 2;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///EV_DEATH
+
+if (guardType == 0)
+{
+    event_inherited();
+}
+else
+{
+    dead = 1;
+    event_user(2);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///explosion event
+if (childObject != objHarmfulExplosion &amp;&amp; childObject != objBigExplosion)
+{
+    instance_create(spriteGetXCenter(),spriteGetYCenter(),objExplosion);
+    if (explosionSound != noone)
+        playSFX(explosionSound);
+}
+else
+{ 
+    if (explosionSound == noone)
+    {
+        playSFX(getGenericSFX(SFX_EXPLOSION2));
+        //playSFX(sfxExplosion);
+    }
+    else
+        playSFX(explosionSound);
+}
+
+    
+if (childObject != noone)
+{    
+    child = instance_create(spriteGetXCenter(), spriteGetYCenter(),
+        childObject);
+    if (childContactDamage != -1)
+        child.contactDamage = childContactDamage;
+    if (childSprite != noone)
+        child.sprite_index = childSprite;
+    child.faction = faction;
+    child.respawn = false;
 }
 </string>
           </argument>

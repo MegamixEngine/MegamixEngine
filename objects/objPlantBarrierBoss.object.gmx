@@ -43,6 +43,7 @@ curX = x;
 curY = y;
 
 xspeed = 0;
+paarent = noone;
 
 image_speed = 0;
 </string>
@@ -71,15 +72,15 @@ image_speed = 0;
 
 if (!global.frozen)
 {
-    if (instance_exists(objPlantMan))
+    if (instance_exists(parent))
     {
         cAngle += addAngle * image_xscale;
         x = round(curX + cos(cAngle) * cDistance);
         y = round(curY + sin(cAngle) * cDistance);
         if (xspeed == 0)
         {
-            curX = objPlantMan.x;
-            curY = objPlantMan.y;
+            curX = parent.x;
+            curY = parent.y;
         }
         else
             curX += xspeed;

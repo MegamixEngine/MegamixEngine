@@ -29,6 +29,7 @@
 
 canHit = false;
 
+blockCollision = 0;
 grav = 0;
 bubbleTimer = -1;
 
@@ -67,6 +68,9 @@ startTimer = 60;
 
 //@cc
 activeTimer = 120;
+
+//@cc 0: only pushes players, 1 pushes all entities with gravity and collision detection
+mode = 0;
 
 length = 0;
 timer = 0;
@@ -137,8 +141,17 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
     }
     
     that = 0;
-    with (objMegaman)
+    var obj = objMegaman;
+    if(mode)
     {
+        obj = prtEntity;
+    }
+    with (obj)
+    {
+        if(dead || !blockCollision || grav == 0)
+        {
+            continue;
+        }
         with (other)
         {
             that = other.id;

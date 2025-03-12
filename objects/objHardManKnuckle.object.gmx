@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>-1</persistent>
+  <persistent>0</persistent>
   <parentName>objEnemyBullet</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -34,7 +34,7 @@ blockCollision = false;
 respawnRange = 0;
 despawnRange = 0;
 
-stopOnFlash = false;
+stopOnFlash = true;
 
 spd = 3;
 

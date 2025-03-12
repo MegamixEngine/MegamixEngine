@@ -38,7 +38,7 @@ windAccel = 0;
 lastPlayerCount = global.playerCount;
 
 // initialize lastPlayerX list
-lastPlayerX = ds_list_create();
+lastPlayerX = mm_ds_list_create();
 repeat (global.playerCount)
 {
     ds_list_add(lastPlayerX, 0);
@@ -68,7 +68,7 @@ event_user(0); // get initial x positions
           <argument>
             <kind>1</kind>
             <string>/// Destroy lastPlayerX list
-ds_list_destroy(lastPlayerX);
+mm_ds_list_destroy(lastPlayerX);
 </string>
           </argument>
         </arguments>

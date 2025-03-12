@@ -107,13 +107,13 @@ buttonsToPress = 5;
         }
         if (destroyTimer == 0 &amp;&amp; image_yscale &gt; 1)
         {
-            playSFX(sfxDoor);
+            playSFX(getGenericSFX(SFX_DOOR));
             image_yscale--;
             destroyTimer = 8;
         }
         else if (destroyTimer == 0)
         {
-            playSFX(sfxDoor);
+            playSFX(getGenericSFX(SFX_DOOR));
             with (mySolid)
             {
                 instance_destroy();

@@ -44,12 +44,17 @@ explodeOnDeath = false;
 imgIndex = 0;
 imgSpd = 0.2;
 moveTimer = 60;
+dropTrigger = false;
 phase = 0;
 animBack = false;
 animLoop = 0;
 rock = noone; // T. Khamen's chest rock
 lastDrop = 0;
-myLock = 0;
+stunLock[0] = -1;
+for (var i = 0; i &lt; MAX_PLAYERS; i ++)
+{
+    stunLock[i] = -1;
+}
 dropTime = 4;
 selectTime = 60;
 </string>
@@ -81,30 +86,45 @@ if (entityCanStep())
     switch (phase)
     {
         case 0:
-            if (instance_exists(target))
+            if (instance_exists(objMegaman))
             {
-                if (myLock == 0)
+                with (objMegaman)
                 {
-                    myLock = lockPoolLock(global.playerLock[PL_LOCK_SHOOT],
-                        global.playerLock[PL_LOCK_CLIMB],
-                        global.playerLock[PL_LOCK_SLIDE],
-                        global.playerLock[PL_LOCK_JUMP],
-                        global.playerLock[PL_LOCK_TURN],
-                        global.playerLock[PL_LOCK_MOVE]);
-                    target.xspeed = 0;
-                }
-                if (target.ground)
-                {
-                    moveTimer--;
-                    if (moveTimer &lt;= 30)
+                    if (other.stunLock[playerID] == 0)
                     {
-                        imgIndex = 1;
+                       
+                            other.stunLock[playerID] = lockPoolLock(global.playerLock[PL_LOCK_SHOOT],
+                                global.playerLock[PL_LOCK_CLIMB],
+                                global.playerLock[PL_LOCK_SLIDE],
+                                global.playerLock[PL_LOCK_JUMP],
+                                global.playerLock[PL_LOCK_TURN],
+                                global.playerLock[PL_LOCK_MOVE]);
+                            
+                            xspeed = 0;
                         
-                        if (moveTimer == 0)
+                    }
+                    if (ground)
+                    {
+                        other.dropTrigger = true;
+                    }
+                }
+            }
+            
+            if (dropTrigger)
+            {
+                moveTimer--;
+                if (moveTimer &lt;= 30)
+                {
+                    imgIndex = 1;
+                    
+                    if (moveTimer == 0)
+                    {
+                        phase = 1;
+                        moveTimer = 30;
+                        for (var i = 0; i &lt; MAX_PLAYERS; i ++)
                         {
-                            phase = 1;
-                            moveTimer = 30;
-                            myLock = lockPoolRelease(myLock);
+                            stunLock[i] = lockPoolRelease(stunLock[i]);
+                            stunLock[i] = -1;
                         }
                     }
                 }
@@ -257,6 +277,12 @@ if (explodeOnDeath == false)
     //instance_create (x + 20 * image_xscale, y - 18, objBigExplosion);
     i = instance_create(x, y, objTKhamenDead);
     i.image_xscale = image_xscale;
+}
+
+for (var i = 0; i &lt; MAX_PLAYERS; i ++)
+{
+    stunLock[i] = lockPoolRelease(stunLock[i]);
+    stunLock[i] = -1;
 }
 </string>
           </argument>

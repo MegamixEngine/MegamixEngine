@@ -2,7 +2,7 @@
 <sprite>
   <type>0</type>
   <xorig>28</xorig>
-  <yorigin>21</yorigin>
+  <yorigin>20</yorigin>
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
@@ -10,11 +10,11 @@
   <bbox_left>15</bbox_left>
   <bbox_right>41</bbox_right>
   <bbox_top>8</bbox_top>
-  <bbox_bottom>36</bbox_bottom>
+  <bbox_bottom>35</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>10</TextureGroup0>
+    <TextureGroup0>203</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>46</width>

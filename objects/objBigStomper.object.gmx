@@ -204,10 +204,11 @@ else if (dead)
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+stopSFX(getGenericSFX(SFX_ENEMYHIT));
 var i = instance_create(x,y,objBigExplosion);
 with (i)
 {
-    playSFX(sfxMM9Explosion);
+    playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
 }
 </string>
           </argument>

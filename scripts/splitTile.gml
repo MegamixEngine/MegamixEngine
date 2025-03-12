@@ -1,4 +1,4 @@
-/// split_tile(tile,[w=16,h=16])
+/// split_tile(tile, w=16,h=16)
 // splits the given tile into tiles of the given width and height, aligned to a w by h grid
 
 var t, // tile
@@ -23,10 +23,10 @@ else
 }
 
 if (t < 0 || _w <= 0 || _h <= 0)
-    exit;
+    return false;
 
 if (!tile_exists(t))
-    exit;
+    return false;
 
 // tile width
 var tw = tile_get_width(t);
@@ -48,12 +48,17 @@ var tT = tile_get_top(t);
 var td = tile_get_depth(t);
 var tsrc = tile_get_background(t);
 
+//Flipping
+var fX = sign(tile_get_xscale(t));
+var fY = sign(tile_get_yscale(t));
+
 if (tw == _w && th == _h && tx mod _w == 0 && ty mod _h == 0)
 {
     // tile does not need splitting; already aligned
-    exit;
+    return false;
 }
 
+var ntl;
 for (_x = floor(tx / _w) * _w; _x < ceil((tx + tw) / _w) * _w; _x += _w)
 {
     for (_y = floor(ty / _h) * _h; _y < ceil((ty + th) / _h) * _h; _y += _h)
@@ -63,9 +68,12 @@ for (_x = floor(tx / _w) * _w; _x < ceil((tx + tw) / _w) * _w; _x += _w)
         _maxx = min(_x + _w, tx + tw);
         _maxy = min(_y + _h, ty + th);
         
-        tile_add(tsrc, _minx - tx + tl, _miny - ty + tT, _maxx - _minx,
+        ntl = tile_add(tsrc, _minx - tx + tl, _miny - ty + tT, _maxx - _minx,
             _maxy - _miny, _minx, _miny, td);
+        tile_set_scale(ntl,fX,fY);
+        
     }
 }
 
 tile_delete(t);
+return true;

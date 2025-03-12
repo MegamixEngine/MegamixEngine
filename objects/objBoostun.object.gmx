@@ -25,14 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// An enemy that flies into the air when walking off a ledge. It then flies after Mega Man and fires missiles at him.
+            <string>/// An enemy that flies after the player, pausing occasionally to fire an aimed missile. When placed on the ground, it starts by walking forward. 
+/// If it gets close enough to the player or doesn't detect any ground in front of it, it flies diagonally upward and starts its pattern.
+/// Adds an extra level of complexity to any challenge, and works well in very small groups of itself.
+
 event_inherited();
 
 healthpointsStart = 3;
 contactDamage = 4;
-facePlayer = true;
+facePlayerOnSpawn = true;
 
-blockCollision = 0;
+//blockCollision = 0;
 category = "flying";
 grav = 0;
 
@@ -83,7 +86,7 @@ if (entityCanStep())
                 imgIndex += imgSpd;
                 if (imgIndex &gt;= 3)
                 {
-                    imgIndex = 1;
+                    imgIndex = 2; //1;
                     animBack = true;
                 }
             }
@@ -96,11 +99,14 @@ if (entityCanStep())
                     animBack = false;
                 }
             }
-            if ((!positionCollision(x + 12 * image_xscale, bbox_bottom + 2))
-                || (distance_to_object(target) &lt; radius))
+            xSpeedTurnaround();
+            if (!ground //(!positionCollision(x + 9 * image_xscale, bbox_bottom + 2)) //x + 12
+                || (distance_to_object(target) &lt; radius))// || (xcoll != 0))
             {
                 imgIndex = 3;
                 animBack = false;
+                facePlayer = true;
+                blockCollision = 0;
                 phase = 1;
             }
             break;
@@ -211,7 +217,7 @@ if (entityCanStep())
                     {
                         if (!instance_exists(missile))
                         {
-                            var i = instance_create(x + 4 * image_xscale, y - 9, objBoostunMissile);
+                            var i = instance_create(x + 1 * image_xscale, y - 9, objBoostunMissile); //x + 4
                             missile = i.id;
                             i.parent = id;
                             i.dir = angle;
@@ -222,62 +228,62 @@ if (entityCanStep())
                             switch (angle)
                             {
                                 case 0:
-                                    i.image_index = 0;
+                                    i.imgIndex = 0;
                                     break;
                                 case 22:
-                                    i.image_index = 1;
+                                    i.imgIndex = 1;
                                     i.image_yscale = -1;
                                     break;
                                 case 45:
-                                    i.image_index = 2;
+                                    i.imgIndex = 2;
                                     i.image_yscale = -1;
                                     break;
                                 case 67:
-                                    i.image_index = 3;
+                                    i.imgIndex = 3;
                                     i.image_yscale = -1;
                                     break;
                                 case 90:
-                                    i.image_index = 4;
+                                    i.imgIndex = 4;
                                     i.image_yscale = -1;
                                     break;
                                 case 112:
-                                    i.image_index = 3;
+                                    i.imgIndex = 3;
                                     i.image_yscale = -1;
                                     break;
                                 case 135:
-                                    i.image_index = 2;
+                                    i.imgIndex = 2;
                                     i.image_yscale = -1;
                                     break;
                                 case 158:
-                                    i.image_index = 1;
+                                    i.imgIndex = 1;
                                     i.image_yscale = -1;
                                     break;
                                 case 180:
-                                    i.image_index = 0;
+                                    i.imgIndex = 0;
                                     break;
                                 case 202:
-                                    i.image_index = 1;
+                                    i.imgIndex = 1;
                                     break;
                                 case 225:
-                                    i.image_index = 2;
+                                    i.imgIndex = 2;
                                     break;
                                 case 247:
-                                    i.image_index = 3;
+                                    i.imgIndex = 3;
                                     break;
                                 case 270:
-                                    i.image_index = 4;
+                                    i.imgIndex = 4;
                                     break;
                                 case 293:
-                                    i.image_index = 3;
+                                    i.imgIndex = 3;
                                     break;
                                 case 315:
-                                    i.image_index = 2;
+                                    i.imgIndex = 2;
                                     break;
                                 case 338:
-                                    i.image_index = 1;
+                                    i.imgIndex = 1;
                                     break;
                                 case 360:
-                                    i.image_index = 0;
+                                    i.imgIndex = 0;
                                     break;
                             }
                         }
@@ -325,6 +331,8 @@ else if (dead)
     shootTimer = 60;
     flyTimer = 30;
     angle = 0;
+    facePlayer = false;
+    blockCollision = true;
 }
 
 image_index = imgIndex div 1;

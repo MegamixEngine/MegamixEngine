@@ -31,8 +31,8 @@ healthpointsStart = 28;
 healthpoints = healthpointsStart;
 
 // Health Bar
-healthBarPrimaryColor[1] = 22;
-healthBarSecondaryColor[1] = 35;
+healthBarPrimaryColor[1] = $19;
+healthBarSecondaryColor[1] = $29;
 
 pose = sprQuintIntro;
 sprite_index = pose;
@@ -73,6 +73,8 @@ musicTrackNumber = 16; // Default track: An ode to humanity's sins
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -83,6 +85,10 @@ enemyDamageValue(objThunderBeam, 4);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -118,15 +124,16 @@ enemyDamageValue(objConcreteShot, 4);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 0);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 4);
 </string>
           </argument>
@@ -162,7 +169,7 @@ if (entityCanStep())
                 sprite_index = sprQuintJump;
                 if (ground)
                 {
-                    if (round(x) != round(teleportX))
+                    if (abs(x - teleportX) &gt;= 2)
                     {
                         yspeed = -6;
                         xspeed = arcCalcXspeed(yspeed, 0.25, round(x), y, round(teleportX),
@@ -375,7 +382,7 @@ if (teleporting &amp;&amp; isFight)
     {
         if (teleportTimer == 0)
         {
-            playSFX(sfxTeleportIn);
+            playSFX(sfxGB2Teleport);
         }
         
         // Done teleporting; play a little animation before giving Mega Man control

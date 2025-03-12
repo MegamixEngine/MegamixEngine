@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Creation code (all optional):
+            <string>/// A bat that slowly chases the player, pausing occasionally.
+/// This occasional pausing has the potential to throw off the player's timing. Try adjusting the creation code if you want it to be extra tricky.
+/// Effective in a swarm, but also useful as a distraction in smaller quantities.
+
+// Creation code (all optional):
 // attackTimerMax = &lt;number&gt; how long DocBaton moves for. default is 70.
 // attackTimerMax2 = &lt;number&gt; how long DocBaton waits for. this should be how long you want it to wait for plus the above number, default is 115 (45);
 // spd = &lt;number&gt; how fast Docbaton moves. default is 0.5;
@@ -46,6 +50,8 @@ attackTimer = 0;
 attackTimerMax = 70;
 attackTimerMax2 = 115;
 spd = 0.5;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

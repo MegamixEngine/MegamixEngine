@@ -59,7 +59,7 @@ if (instance_exists(target))
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="20">
+    <event eventtype="7" enumb="18">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -77,14 +77,18 @@ if (instance_exists(target))
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+if (!instance_exists(parent))
+    exit;
 if (parent != noone)
 {
-    with (parent)
+    if (parent.faction == faction) // Don't taunt if you're hit by your own bullet, stupid bird
     {
-        shootTimer = 0;
-        image_index = 4;
-        assTimer = 0;
+        with (parent)
+        {
+            shootTimer = 0;
+            image_index = 4;
+            assTimer = 0;
+        }
     }
 }
 </string>

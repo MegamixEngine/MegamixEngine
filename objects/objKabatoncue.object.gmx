@@ -35,7 +35,9 @@ healthpointsStart = 16;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 category = "bulky, nature, rocky";
-
+explosionSFX = sfxExplosion2;
+//explosionSprite = sprExplosion;
+finalExplosionSprite = sprBigExplosion;
 // Enemy specific code
 dir = image_xscale;
 init = 1;

@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// creation code
+            <string>/// Floating scissors that move continuously in the shape of a "plus". Starts at the center of the "plus" and moves out to each extremity and then back to center.
+/// So: left, center, down, center, right, center, up, center, repeat. If the player approaches from the right, swap left and right.
+/// Not terribly interesting on its own, but you could build some creative platforming challenges around its unique and customizable movement.
+
+// creation code
 // moveDistX = &lt;number&gt;;   - The distance the enemy moves horizontally before turning back on itself. Default is 32.;
 // moveDistY = &lt;number&gt;;   - The distance the enemy moves vertically before turning back on itself. Default is 32.;
 
@@ -54,6 +58,8 @@ moveDir = 0;
 // creation code variables
 moveDistX = 32;
 moveDistY = 32;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

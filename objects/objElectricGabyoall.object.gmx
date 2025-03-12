@@ -237,7 +237,7 @@ if (entityCanStep())
                 }
                 if (shootWaitTimer == -blinks)
                 {
-                    electricityList = ds_list_create();
+                    electricityList = mm_ds_list_create();
                     var i;
                     for (i = 1; i &lt; (height - 1); i += 1)
                     {
@@ -411,7 +411,7 @@ if (electricityList != noone)
         }
     }
     
-    ds_list_destroy(electricityList);
+    mm_ds_list_destroy(electricityList);
     electricityList = noone;
 }
 </string>

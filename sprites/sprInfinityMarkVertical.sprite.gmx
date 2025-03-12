@@ -14,12 +14,15 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>25</TextureGroup0>
+    <TextureGroup0>186</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>8</width>
   <height>25</height>
   <frames>
     <frame index="0">images\sprInfinityMarkVertical_0.png</frame>
+    <frame index="1">images\sprInfinityMarkVertical_1.png</frame>
+    <frame index="2">images\sprInfinityMarkVertical_2.png</frame>
+    <frame index="3">images\sprInfinityMarkVertical_3.png</frame>
   </frames>
 </sprite>

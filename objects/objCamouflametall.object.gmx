@@ -37,12 +37,15 @@ contactDamage = 1;
 facePlayer = true;
 category = "mets";
 
+behaviourType = 1;
+
 // Enemy specific code
 radius = 4
     * 16; // Four blocks; the radius that MM needs to enter to trigger the shooting of the met
 cooldownTimer = 0;
 canShoot = true;
 player_costume_id = 0;
+playerTimer = 0;
 </string>
           </argument>
         </arguments>
@@ -137,7 +140,7 @@ else if (dead)
 }
 
 // set sprite
-if (instance_exists(objMegaman))
+/*if (instance_exists(objMegaman))
 {
     with (objMegaman)
     {
@@ -146,7 +149,7 @@ if (instance_exists(objMegaman))
             other.player_costume_id = costumeID;
         }
     }
-}
+}*/
 </string>
           </argument>
         </arguments>
@@ -200,17 +203,36 @@ if (dead)
     exit;
 }
 
-squareSize = 48;
+/*squareSize = 48;
 col[0] = c_white;
 col[1] = global.primaryCol[0];
 col[2] = global.secondaryCol[0];
-col[3] = global.outlineCol[0];
+col[3] = global.outlineCol[0];*/
+
+if (!global.frozen)
+{
+    playerTimer++;
+}
+
+if (instance_exists(objMegaman)) // Set sprite
+    player_costume_id = global.costumeSelected[0];
+    
+var _pid = floor((playerTimer / 48) mod global.playerCount); // Multiplayer icon switch
+with (objMegaman)
+{
+    if (playerID == _pid)
+    {
+        _pid = playerID;
+        other.player_costume_id = costumeID;
+        break;
+    }
+}
 
 // make sure the target player is set the same way as a 1-up's is if that ever changes!
 if (image_index == 0)
-    drawPlayer(0, player_costume_id, 16, 12, x, y - 16 * image_yscale, image_xscale, image_yscale);
+    drawPlayer(_pid, player_costume_id, 16, 13, x, y - 16 * image_yscale, 1, image_yscale);
 else if (image_index == 1)
-    drawPlayer(0, player_costume_id, 16, 12, x - image_xscale, y - 22 * image_yscale, image_xscale, image_yscale);
+    drawPlayer(_pid, player_costume_id, 16, 13, x - image_xscale, y - 22 * image_yscale, 1, image_yscale);
 </string>
           </argument>
         </arguments>

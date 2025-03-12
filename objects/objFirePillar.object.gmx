@@ -163,7 +163,7 @@ if (entityCanStep())
             sprite_index = sprFirePillarFrozen;
         }
         
-        playSFX(sfxEnemyHit);
+        playSFX(getGenericSFX(SFX_ENEMYHIT));
     }
     
     with (other)
@@ -171,9 +171,11 @@ if (entityCanStep())
         if (pierces == 0 || pierces == 1)
         {
             event_user(EV_DEATH);
-            playSFX(sfxEnemyHit);
+            playSFX(getGenericSFX(SFX_ENEMYHIT));
         }
     }
+    
+    iFrames = 0;
 }
 
 // only Rain Flush can stop fire....even if it's invisible......

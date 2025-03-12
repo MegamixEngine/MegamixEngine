@@ -10,7 +10,17 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>playMusic("Mega_Man_9.nsf","VGM", 27, 0, 0, 0, 1);</code>
+  <code>//Randomize between Wii and OST versions.
+var sf = choose("_OST","");
+var vol = 1;
+if (sf == "")
+{//Nerf the Wii version's volume (It's a little loud by comparison).
+    vol = .8;
+}
+
+playMusic("MM9/26_Wily3.mid","MIDI","MM9/MM9" + sf + ".sf2",true,vol);
+//Old CC below.
+  //"Mega_Man_9.nsf","VGM", 27, 0, 0, 0, 1);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -152,7 +162,7 @@
     <instance objName="objLifeEnergyBig" x="1688" y="944" name="inst_D82C2D57" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;    instance_destroy();&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMTank" x="2280" y="368" name="inst_CE3E5718" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;{&#xA;instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLife" x="2072" y="96" name="inst_0B97CFFD" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="3664" y="384" name="inst_BBE3F65E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="3664" y="384" name="inst_BBE3F65E" locked="0" code="name = &quot;Boss corridor&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBigStomper" x="384" y="1280" name="inst_B6B4E9A1" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;{&#xA;healthpointsStart = 11;&#xA;}&#xA;if (global.difficulty == DIFF_EASY)&#xA;{&#xA;healthpointsStart = 10;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBigStomper" x="640" y="1264" name="inst_E8E65A10" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;{&#xA;healthpointsStart = 11;&#xA;}&#xA;if (global.difficulty == DIFF_EASY)&#xA;{&#xA;healthpointsStart = 10;&#xA;}" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPetitDevilGreen" x="816" y="976" name="inst_8012206C" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;    instance_destroy();" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -186,7 +196,7 @@
     <instance objName="objCamouflametall" x="3424" y="192" name="inst_87811565" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBigStomper" x="3664" y="112" name="inst_9CFFB432" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;{&#xA;healthpointsStart = 11;&#xA;}&#xA;if (global.difficulty == DIFF_EASY)&#xA;{&#xA;healthpointsStart = 10;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBunbyCatcher" x="2064" y="256" name="inst_AF239E55" locked="0" code="col = 1;&#xA;if (global.difficulty == DIFF_HARD)&#xA;{&#xA;catcherSpeed = 6;&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1920" y="1072" name="inst_EAF72668" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1920" y="1072" name="inst_EAF72668" locked="0" code="name = &quot;Midway point&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="3744" y="704" name="inst_13EE056D" locked="0" code="priority = 8;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="3664" y="704" name="inst_30EC4933" locked="0" code="priority = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="3632" y="704" name="inst_EAA4976B" locked="0" code="priority = 9;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -224,7 +234,7 @@
     <instance objName="objPicoBrick" x="3680" y="704" name="inst_AFAB0DC0" locked="0" code="priority = 11;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="3664" y="864" name="inst_E18781A0" locked="0" code="priority = 11;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="3616" y="752" name="inst_92D61833" locked="0" code="priority = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPicoBrick" x="3616" y="704" name="inst_96405B1A" locked="0" code="priority = -1;&#xA;&#xA;settingTransplant = true;&#xA;&#xA;elementName = &quot;wily3&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPicoBrick" x="3616" y="704" name="inst_96405B1A" locked="0" code="priority = -1;&#xA;&#xA;settingTransplant = true;&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="3648" y="704" name="inst_017DAF95" locked="0" code="priority = 14;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="3792" y="752" name="inst_AD5A7EFD" locked="0" code="priority = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objPicoBrick" x="3680" y="672" name="inst_77AF6A82" locked="0" code="priority = -1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -948,6 +958,8 @@
     <instance objName="objDestroyField" x="848" y="464" name="inst_B537C0C1" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;    instance_destroy();&#xA;destroyTilesDepth = 999999;" scaleX="10" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLife" x="2208" y="96" name="inst_A45C69F5" locked="0" code="if (global.difficulty != DIFF_EASY)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLife" x="2136" y="144" name="inst_FAC1F191" locked="0" code="if (global.difficulty != DIFF_EASY)&#xA;{&#xA;    instance_destroy();&#xA;}" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPaletteAnimation" x="112" y="1248" name="inst_DDDD71CF" locked="0" code="colorTimer = 10;&#xA;colorsToReplace = makeArray(make_color_rgb(255,0,255))&#xA;/*&#xA;TODO: If we port this level to 2.0, make this use the new palette indexes. For now, it's MM9/10 directly.&#xA;*/&#xA;&#xA;var level5 = makeArray(make_color_rgb(224,248,160));&#xA;var level4 = makeArray(make_color_rgb(128,208,16));&#xA;var level3 = makeArray(make_color_rgb(0,144,0));&#xA;var level2 = makeArray(make_color_rgb(0,64,0));&#xA;var level1 = makeArray(make_color_rgb(0,0,0));&#xA;var i = 0;&#xA;colorsToApply[i++] = level5;&#xA;colorsToApply[i++] = level4;&#xA;colorsToApply[i++] = level3;&#xA;colorsToApply[i++] = level2;&#xA;colorsToApply[i++] = level1;&#xA;colorsToApply[i++] = level2;&#xA;colorsToApply[i++] = level3;&#xA;colorsToApply[i++] = level4;&#xA;&#xA;executionType = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPaletteAnimation" x="144" y="1248" name="inst_C91FB783" locked="0" code="colorTimer = 10;&#xA;colorsToReplace = makeArray(c_red,make_color_rgb(0,255,0),c_blue)&#xA;/*&#xA;TODO: If we port this level to 2.0, make this use the new palette indexes. For now, it's MM9/10 directly.&#xA;*/&#xA;&#xA;var bright = make_color_rgb(0,130,140);&#xA;var dull = make_color_rgb(8,49,74);&#xA;var black = c_black;&#xA;&#xA;var i = 0;&#xA;colorsToApply[i++] = makeArray(bright,dull,black);&#xA;colorsToApply[i++] = makeArray(black,bright,dull);&#xA;colorsToApply[i++] = makeArray(dull,black,bright);&#xA;&#xA;alarm[0] = 2;//Acts as a way to offset the palette.&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstMM9Wily3" x="16" y="1312" w="16" h="16" xo="64" yo="96" id="11310250" name="inst_AF482DD0" depth="1000001" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

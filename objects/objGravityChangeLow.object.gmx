@@ -38,6 +38,11 @@ grav = 0;
 bubbleTimer = -1;
 
 shiftVisible = 1;
+
+playSound = true;
+
+killMe = false;
+mySFX = sfxGravityFlip;
 </string>
           </argument>
         </arguments>

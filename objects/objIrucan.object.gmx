@@ -34,6 +34,7 @@ healthpoints = healthpointsStart;
 contactDamage = 4;
 
 category = "aquatic, nature";
+bubbleTimer = -1;
 
 blockCollision = 0;
 grav = 0;
@@ -91,7 +92,7 @@ if (entityCanStep())
                 y -= 12;
                 yspeed = -5;
                 xspeed = 2.5 * image_xscale;
-                playSFX(sfxSplash);
+                playSFX(getGenericSFX(SFX_SPLASH));
                 ground = false;
             }
         }
@@ -119,7 +120,7 @@ if (entityCanStep())
         xspeed = 0;
         if (image_index == 0)
         {
-            playSFX(sfxSplash);
+            playSFX(getGenericSFX(SFX_SPLASH));
             image_index = 1;
             y += 8;
         }

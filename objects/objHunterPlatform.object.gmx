@@ -59,6 +59,7 @@ bubbleTimer = -1;
 
 despawnRange = 64;
 hasTriggered = false;
+noFlicker = true;
 </string>
           </argument>
         </arguments>

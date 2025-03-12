@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A flying enemy that waits in position, races toward the player, and then retreats out of reach. Its attack carries an unusual toxin.
+/// The toxin makes the player move slower and jump higher (similar to Fooley from GB V). Using creation code, you can reskin Nibul to its cousin Jupibul.
+/// If you use this enemy, make sure the toxin effect will go to good use. Otherwise, consider Sibul from GB V or Hornet Racer from CFTF instead.
+
+event_inherited();
 
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
@@ -45,15 +49,17 @@ init = 1;
 // @cc - Sets Nibul's sprite: 0 = Nibul, 1 = Jupibul
 col = 0;
 
+// @cc - Sets toxin duration
+toxinTimerMax = 360;
+
 targX = 0;
 targY = 0;
 toxin = false;
 imgIndex = 0;
 imgSpd = 0.5;
-toxinTimer = 0;
+toxinTimer = toxinTimerMax;
 drawTimer = 4;
 animBack = false;
-cosCounter = 0;
 </string>
           </argument>
         </arguments>
@@ -78,20 +84,6 @@ cosCounter = 0;
             <kind>1</kind>
             <string>event_inherited();
 
-if (init)
-{
-    init = 0;
-    switch (col)
-    {
-        case 1:
-            sprite_index = sprJupibul;
-            break;
-        default:
-            sprite_index = sprNibul;
-            break;
-    }
-}
-
 if (entityCanStep())
 {
     // Animation
@@ -115,49 +107,34 @@ if (entityCanStep())
     }
     
     // Movement
-    if (instance_exists(target))
+    switch (phase)
     {
-        switch (phase)
-        {
-            case 0:
+        case 0:
+            if (instance_exists(target)) || (targX != 0 &amp;&amp; targY != 0)
                 moveTimer--;
-                if (moveTimer &gt; 0)
+            if (moveTimer &gt; 0)
+                calibrateDirection();
+            
+            if (moveTimer &lt;= 0)
+            {
+                if (moveTimer == 0)
                 {
-                    calibrateDirection();
-                    
-                    cosCounter += .135;
-                    yspeed = -(cos(cosCounter) * 0.5);
-                }
-                
-                if (moveTimer &lt;= 0)
-                {
-                    if (moveTimer == 0)
+                    if (instance_exists(target))
                     {
                         targX = target.x;
                         targY = target.y;
                     }
-                    
-                    moveTowardPoint(targX, targY, 3);
-                    
-                    if (distance_to_point(targX, targY) &lt; 3) // else
-                    {
-                        yspeed = -2;
-                        xspeed = 0;
-                        phase = 1;
-                    }
-                    
-                    if (place_meeting(x, y, target))
-                    {
-                        if (!target.canHit)
-                        {
-                            yspeed = -2;
-                            xspeed = 0;
-                            phase = 1;
-                        }
-                        toxin = true;
-                    }
                 }
-                break;
+                moveTowardPoint(targX, targY, 3);
+                
+                if (distance_to_point(targX, targY) &lt; 3) // else
+                {
+                    yspeed = -2;
+                    xspeed = 0;
+                    phase = 1;
+                }
+            }
+            break;
             case 1:
                 if (bbox_top &lt;= view_yview)
                 {
@@ -170,95 +147,113 @@ if (entityCanStep())
                     targY = 0;
                 }
                 break;
+    }
+        
+    // Toxin effects
+    if (toxin) &amp;&amp; (instance_exists(target))
+    {
+        with (target)
+        {
+            // if there is no status effect object for current player, create one.
+            if (!instance_exists(objToxinHandler))
+                instance_create(x,y,objToxinHandler);
         }
         
-        // Toxin effects
-        if (toxin == true)
+        toxinTimer--;
+        if (toxinTimer == 0)
         {
-            with (target)
-            {
-                // if there is no status effect object for current player, create one.
-                if (!instance_exists(statusObject))
-                {
-                    statusObject = instance_create(x, y, objStatusEffect);
-                }
-                else
-                {
-                    statusObject.statusWalkSpeed = 1.3 / 2;
-                    statusObject.statusChangedWalk = true;
-                    statusObject.statusJumpSpeed = 4.75 / 2;
-                    statusObject.statusChangedJump = true;
-                    gravfactor = 0.25;
-                    if (isHit)
-                    {
-                        gravfactor = 1;
-                    }
-                }
-            }
-            
-            drawTimer--;
-            if (drawTimer == 0)
-            {
-                if (target.inked == false)
-                {
-                    target.inked = true;
-                }
-                else
-                {
-                    target.inked = false;
-                }
-                drawTimer = 4;
-            }
-            
-            toxinTimer++;
-            if (toxinTimer == 360)
-            {
-                toxinTimer = 0;
-                toxin = false;
-                with (target)
-                {
-                    if (instance_exists(statusObject))
-                    {
-                        statusObject.statusChangedWalk = false;
-                        statusObject.statusChangedJump = false;
-                        gravfactor = 1;
-                    }
-                }
-                target.inked = false;
-                drawTimer = 4;
-            }
+            toxin = false;
+            with (objToxinHandler)
+                instance_destroy();
         }
     }
 }
-else if (dead)
+image_index = imgIndex div 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
 {
-    healthpoints = healthpointsStart;
-    image_index = 0;
+    imgIndex = 0;
     phase = 0;
     moveTimer = 120;
     targX = 0;
     targY = 0;
-    if (instance_exists(target))
+    toxin = false;
+    toxinTimer = toxinTimerMax;
+    animBack = false;
+    drawTimer = 4;
+    if (col)
+        sprite_index = sprJupibul;
+}
+else
+{
+    with (objToxinHandler)
+        instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="18">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!toxin)
+{
+    with (other)
     {
-        with (target)
+        if (!instance_exists(objToxinHandler))
         {
-            inked = false;
-            
-            if (instance_exists(statusObject))
+            with(instance_create(x,y,objToxinHandler))
             {
-                statusObject.statusChangedWalk = false;
-                statusObject.statusChangedJump = false;
-                gravfactor = 1;
+                parent = other.id;
+                inkStatus = other.inked;
+                gravOriginal = other.gravfactor;
             }
         }
     }
-    toxin = false;
-    toxinTimer = 0;
-    animBack = false;
-    drawTimer = 4;
-    cosCounter = 0;
+    toxin = true;
+    with (objNibul) // Set all active Nibuls to use synchronised variables
+    {
+        toxin = true;
+        toxinTimer = other.toxinTimerMax;
+    }
 }
-image_index = imgIndex div 1;
 </string>
           </argument>
         </arguments>

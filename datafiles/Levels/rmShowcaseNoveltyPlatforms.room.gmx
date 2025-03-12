@@ -377,10 +377,6 @@
     <instance objName="objDamageSpike" x="1472" y="1680" name="inst_E5DD7243" locked="0" code="" scaleX="3" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDamageSpike" x="1280" y="1728" name="inst_80AEC8C2" locked="0" code="" scaleX="4" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDamageSpike" x="1376" y="1840" name="inst_C847994E" locked="0" code="" scaleX="4" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="1776" y="1488" name="inst_105295A7" locked="0" code="dir = -1;&#xA;active = 120;&#xA;totalTimer = 360;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="1776" y="1472" name="inst_1BABAF04" locked="0" code="startup = 120;&#xA;dir = -1;&#xA;active = 120;&#xA;totalTimer = 360;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="1776" y="1440" name="inst_16146237" locked="0" code="startup = 180;&#xA;dir = -1;&#xA;active = 120;&#xA;totalTimer = 360;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="1776" y="1408" name="inst_9647DF76" locked="0" code="startup = 240;&#xA;dir = -1;&#xA;active = 120;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="1760" y="1408" name="inst_D0731BEB" locked="0" code="" scaleX="4" scaleY="10" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1792" y="1344" name="inst_5904AF8C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="768" y="1760" name="inst_C610CA96" locked="0" code="" scaleX="1" scaleY="3" colour="4294967295" rotation="0"/>

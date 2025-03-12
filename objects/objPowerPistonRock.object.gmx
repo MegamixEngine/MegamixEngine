@@ -107,7 +107,7 @@ if (global.frozen == false)
                 inst.image_index = 1;
             }
         }
-        playSFX(sfxExplosion);
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM5));
         instance_destroy();
     }
     

@@ -38,6 +38,8 @@ category = "flying";
 blockCollision = 0;
 grav = 0;
 
+behaviourType = 1;
+
 // Enemy specific code
 active = false;
 distance = 32;
@@ -93,7 +95,7 @@ if (entityCanStep())
             }
             if (image_index &lt; 2)
             {
-                image_index += (20 / 60);
+                image_index += 0.1; //(20 / 60);
             }
             xspeed += 0.05 * sign(xspeed);
             if (x &lt;= xstart - distance)

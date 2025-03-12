@@ -41,6 +41,8 @@ yspeed = 0;
 grav = 0;
 
 playSFX(sfxIceSlasher);
+
+autoFireSet = 12;
 </string>
           </argument>
         </arguments>
@@ -63,19 +65,10 @@ playSFX(sfxIceSlasher);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop;
-
-xOffset = 16; // x offset from center of player
-yOffset = 0; // y offset from center of player
-bulletObject = objIceSlasher;
-bulletLimit = 2;
-weaponCost = 1;
-action = 1; // 0 - no frame; 1 - shoot; 2 - throw
-willStop = 0; // If this is 1, the player will halt on shooting ala Metal Blade.
-
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
-    i = fireWeapon(xOffset, yOffset, bulletObject, bulletLimit, weaponCost, action, willStop);
+    var ammoCost = 1 - (0.5 * (global.energySaver &gt; 0));
+    i = fireWeapon(16, 0, objIceSlasher, 2, ammoCost, 1, 0);
     
     // set starting speed
     if (instance_exists(i))
@@ -105,7 +98,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>weaponSetup("ICE SLASHER", global.nesPalette[15], global.nesPalette[26], sprWeaponIconsIceSlasher);
+            <string>weaponSetup("ICE SLASHER", global.nesPalette[$12], global.nesPalette[$20], sprWeaponIconsIceSlasher);
 </string>
           </argument>
         </arguments>

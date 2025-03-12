@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -32,9 +32,12 @@ respawn = false;
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+canHit = true;
 
 blockCollision = 0;
 grav = 0;
+
+reflectable = -1;
 
 // Enemy specific code
 moveDir = 180;
@@ -56,6 +59,9 @@ spd = 1.50;
 
 pangle = 0;
 col = 0;
+
+//cc explosion sprite
+explosionSprite = sprExplosion;
 </string>
           </argument>
         </arguments>
@@ -82,27 +88,42 @@ col = 0;
 
 if (entityCanStep())
 {
-    if (col == 0
-        &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
-        &lt;= 15)
-        image_index = ((2 * round(direction / 45))
-            + ((cooldownTimer mod 4) / 16));
-    else if (col == 0
-        &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
-        &gt; 15)
-        image_index = ((cooldownTimer mod 4) / 16);
+    //print ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16));
     
-    if (col == 1
-        &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
-        &lt;= 15)
-        image_index = (16 + (2 * round(direction / 45))
-            + ((cooldownTimer mod 4) / 16));
-    else if (col == 1
-        &amp;&amp; ((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
-        &gt; 15)
-        image_index = (16 + (cooldownTimer mod 4) / 16);
+    var _Offset = 0;    
     
+    _Offset = 16 * col;
+    
+    if (((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
+        &lt;= 15)
+    {
+        if (cooldownTimer mod 8 &lt; 4)
+        {
+            image_index = _Offset + ((2 * round(direction / 45))
+                + ((cooldownTimer mod 4) / 16));
+        }
+        else
+        {
+            image_index = _Offset + ((2 * round(direction / 45))
+                + ((cooldownTimer mod 4) / 16)) + 1;
+        }
+    }
+    else if (((2 * round(direction / 45)) + ((cooldownTimer mod 4) / 16))
+        &gt; 15)
+    {
+        if (cooldownTimer mod 8 &lt; 4)
+        {
+            image_index = _Offset + ((cooldownTimer mod 4) / 16);
+        }
+        else
+        {
+            image_index = _Offset + ((cooldownTimer mod 4) / 16) + 1;
+        }
+    }
+    
+        
     cooldownTimer += 1;
+        
     if (instance_exists(target))
     {
         switch (phase)
@@ -185,6 +206,65 @@ else if (dead)
 {
     phase = 0;
     startWaitTimer = 20;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//event_perform_object(prtEntity,ev_other,ev_user10);
+
+dead = 1;
+
+var _ex = instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
+_ex.sprite_index = explosionSprite;
+_ex.myItem = 0;
+
+if (itemDrop == objKey)
+{
+    _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objKey);
+    _ex.yspeed = -4;
+    _ex.homingTimer = 90;
+    _ex.despawnRange = -1;
+    playSFX(sfxKeySpawn);
+}
+else if (itemDrop == objEnergyElement)
+{
+    _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objEnergyElement);
+}
+else
+{
+    _ex.myItem = itemDrop;
+    _ex.code = itemCode;
+    _ex.script = itemScript;
+    _ex.disappearTime = dropDisappearTime;
+}
+
+if (itemDrop &amp;&amp; dropOnce)
+{
+    itemDrop = 0;
+}
+if (checkCheats(cheatEnums.allBossExplosion))
+{
+   playerExplosion();
+   _ex.visible = false;
 }
 </string>
           </argument>

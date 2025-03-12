@@ -28,7 +28,7 @@
             <string>/// changes colour when on-screen
 
 //@cc the colour to change to
-colour = global.nesPalette[7];
+colour = global.nesPalette[$7];
 </string>
           </argument>
         </arguments>

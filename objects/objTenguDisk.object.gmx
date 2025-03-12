@@ -83,7 +83,7 @@ image_speed = 0;
 
 event_inherited();
 
-if (!global.frozen)
+if (!global.frozen &amp;&amp; canDamage)
 {
     // Bounces off walls.
     if (xcoll != 0 &amp;&amp; ycoll * image_yscale &gt;= 0)

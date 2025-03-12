@@ -43,6 +43,8 @@ grav = 0.1;
 animBack = false;
 imgSpd = 0.2;
 imgIndex = 0;
+shaderColor = false;
+shaderColor = c_black;
 </string>
           </argument>
         </arguments>
@@ -113,6 +115,56 @@ if (entityCanStep())
 
 // do dem bettar dan game mekar staets (if you can't tell, I'm getting bored)
 image_index = imgIndex div 1;
+
+if (useShader)
+{
+    sparkleTimer ++;
+    if (!(sparkleTimer mod 6) &amp;&amp; sparkleTimer &lt; 30)
+    {
+        with (instance_create(bboxGetXCenter(), bboxGetYCenter(), objSlideDust))
+        {
+            sprite_index = sprShine;
+            image_xscale = choose(1, -1);
+            direction = irandom(360);
+            rotationMovement(xstart, ystart, irandom_range(5, 12), 0);
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+if (!useShader)
+{
+    event_inherited();
+}
+else//As wonderhooked fish are intangible, we don't need to worry about flash states.
+{
+    shaderSetColorreplace(make_color_rgb(0,236,220),shaderColor);
+    iFrames = 0;//Failsafe in case I missed something.
+    event_inherited();
+    shader_reset();
+    
+}
 </string>
           </argument>
         </arguments>

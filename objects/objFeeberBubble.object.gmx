@@ -31,10 +31,14 @@ healthpointsStart = 4;
 healthpoints = healthpointsStart;
 
 itemDrop = -1;
+bubbleTimer = -1;
 category = "aquatic";
+grav = 0;
 
 imgIndex = 0;
 damage = false;
+popTimer = 600;
+canPop = true;
 
 myLock = 0;
 
@@ -75,9 +79,16 @@ if (entityCanStep())
             target.y = y - (sprite_height/2) - 4;
             if (myLock == 0)
             {
-                myLock = lockPoolLock(global.playerLock[PL_LOCK_SHOOT],
-                    global.playerLock[PL_LOCK_CLIMB],
-                    global.playerLock[PL_LOCK_CHARGE]);
+                with (target)
+                {
+                    climbing = false;
+                    climbLock = lockPoolRelease(climbLock);
+                    shootStandStillLock = lockPoolRelease(shootStandStillLock);
+            
+                    other.myLock = lockPoolLock(localPlayerLock[PL_LOCK_SHOOT],
+                        localPlayerLock[PL_LOCK_CLIMB],
+                        localPlayerLock[PL_LOCK_CHARGE]);
+                }
             }
             
             if ((global.keyJumpPressed[target.playerID]) &amp;&amp; (!damage)
@@ -111,29 +122,53 @@ if (entityCanStep())
     if (!ground)
     {
         xspeed = 0;
+        yspeed = 1 * image_yscale;
     }
     else
     {
-        xspeed = 1 * image_xscale;
+        if (popTimer &gt; 0)
+            xspeed = 1 * image_xscale;
+    }
+    // Pop after a delay
+    if (popTimer &gt; 0) &amp;&amp; (canPop)
+        popTimer--;
+    if (popTimer == 0)
+    {
+        imgIndex = 4;
+        lockPoolRelease(myLock);
+        xspeed = 0;
+        yspeed = 0;
+        grav = 0;
+        canHit = false;
+        popTimer = -1;
+    }
+    if (popTimer == -1)
+    {
+        imgIndex += image_speed;
+        if (imgIndex &gt;= 5)
+            instance_destroy();
     }
     
     // Animation
-    if (animBack == false)
+    if (popTimer &gt; 0)
     {
-        imgIndex += image_speed;
-        if (imgIndex &gt;= 4)
+        if (animBack == false)
         {
-            animBack = true;
-            imgIndex = 3;
+            imgIndex += image_speed;
+            if (imgIndex &gt;= 4)
+            {
+                animBack = true;
+                imgIndex = 3;
+            }
         }
-    }
-    else
-    {
-        imgIndex -= image_speed;
-        if (imgIndex == 1)
+        else
         {
-            animBack = false;
-            imgIndex = 2;
+            imgIndex -= image_speed;
+            if (imgIndex == 1)
+            {
+                animBack = false;
+                imgIndex = 2;
+            }
         }
     }
 }

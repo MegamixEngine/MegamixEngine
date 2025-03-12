@@ -54,6 +54,10 @@ xMin = x - 256;
 xMax = x + 256;
 
 partner = noone;
+explosionSprite = sprExplosionWonderswan;
+deadTimerMax = 88;
+deadTimerRecur = 8;
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>

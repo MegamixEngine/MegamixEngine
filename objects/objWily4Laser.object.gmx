@@ -25,10 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A thin laser that is blocked by solid objects and other specified obstacles, which can be customized using creation code. Extremely versatile.
+/// By default, it does damage like any other gimmick or enemy, but it can be set to constantly drain health instead.
+/// Place the left edge of this object wherever you want the laser to start. In game, the laser will automatically extend until it hits a solid object.
+/// Rotate the laser in the editor, and adjust Snap X or Snap Y as needed if you want to fine-tune the alignment.
 
-/// A fast quick laser, but without insta death, rotatable in editor
-// Note: You just need to place one
+event_inherited();
+
 blockCollision = 0;
 grav = 0;
 hacks = false;
@@ -38,13 +41,20 @@ nonPreciseMask = mskWily4Laser;
 despawnRange = -1;
 contactDamage = 4;
 
-variation = 0; // cc 1: drain laser
+variation = 0; // 0: damage laser; 1: drain laser
 image_speed = 0.25;
 mySpeed = 32;
 
-obstacleList[0] = objConcreteShot;
-obstacleList[1] = objIceWall;
-obstacleList[2] = objPlantBarrier;
+obstacleList[0] = objChillSpike;
+obstacleList[1] = objChillSpikeLanded;
+obstacleList[2] = objConcreteShot;
+obstacleList[3] = objIceWall;
+obstacleList[4] = objSuperArmBlock;
+obstacleList[5] = objSuperArmBlock2x2;
+obstacleList[6] = objSuperArmBlockProjectile;
+obstacleList[7] = objSuperArmDebris;
+obstacleList[8] = objSuperArrow;
+obstacleList[9] = objWaterWave;
 </string>
           </argument>
         </arguments>

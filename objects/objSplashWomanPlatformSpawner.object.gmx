@@ -50,6 +50,7 @@ platformSpeed = 2;
 
 timer=0;
 
+childSprite = sprSplashWomanWaterPlatform;
 </string>
           </argument>
         </arguments>
@@ -90,6 +91,7 @@ if(entityCanStep())
             ID.startupTime = 30;
             ID.image_xscale=abs(image_xscale);
             ID.image_yscale=abs(image_yscale);
+            ID.sprite_index = childSprite;
         }
     }
     else

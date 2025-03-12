@@ -36,6 +36,8 @@ shiftVisible = 3;
 
 image_xscale = 1;
 
+playerID = 0;
+
 // Enemy specific code
 capture = noone;
 walkStore = 0;
@@ -45,13 +47,16 @@ dmgTimer = 0;
 dmgMax = 48;
 dmg = 2;
 hurtMega = false;
-playSFX(sfxHit);
+playSFX(getGenericSFX(SFX_HURT));
 pop = false;
 setMega = false;
 gloopLock = false;
 movementLock = false;
 
 category = "gloop";
+
+autoFireSet = 8;
+autoFireDelay = 0;
 </string>
           </argument>
         </arguments>
@@ -74,7 +79,22 @@ category = "gloop";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>lockPoolRelease(gloopLock);
+            <string>event_inherited();
+lockPoolRelease(gloopLock);
+with (capture)
+{
+    if (instance_exists(statusObject))
+    {
+        statusObject.statusChangedWalk = false;
+        
+        // reenable mega man's abilities
+        statusObject.statusCanJump = true;
+        statusObject.statusCanClimb = true;
+        statusObject.statusCanShoot = true;
+        statusObject.statusCanSlide = true;
+    }
+    climbLock = lockPoolRelease(climbLock);
+}
 </string>
           </argument>
         </arguments>
@@ -100,123 +120,147 @@ category = "gloop";
             <string>event_inherited();
 if (!global.frozen &amp;&amp; !pop)
 {
-    with (target)
+    if (autoFireDelay &gt; 0)
     {
-        // if there is no status effect object for current player, create one.
-        if (!instance_exists(statusObject))
+        autoFireDelay --;
+    }
+    
+    with (objMegaman)
+    {
+        if (playerID == other.playerID)
         {
-            statusObject = instance_create(x, y, objStatusEffect);
-        }
-        if (place_meeting(x, y, other) &amp;&amp; other.capture == noone)
-        {
-            other.capture = id;
-        }
-        if (other.capture == id)
-        {
-            with (other) // whilst glooped, gradually damage mega man.
+            // if there is no status effect object for current player, create one.
+            if (!instance_exists(statusObject))
             {
-                dmgTimer += 1;
-                if (dmgTimer == dmgMax)
-                {
-                    hurtMega = true;
-                    dmgTimer = 0;
-                }
+                statusObject = instance_create(x, y, objStatusEffect);
             }
-            if (other.hurtMega) // if the hurt mega is triggered, do damage once.
+            if (place_meeting(x, y, other) &amp;&amp; other.capture == noone)
             {
-                if (canHit &amp;&amp; other.dmg &gt; 0)
+                other.capture = id;
+            }
+            if (other.capture == id)
+            {
+var _flipGloopGrav = 0;
+if (sign(gravDir) != sign(other.grav))
+_flipGloopGrav = sign(gravDir);
+                with (other) // whilst glooped, gradually damage mega man.
                 {
-                    if (global.skullAmulet)
+if (_flipGloopGrav)
+{
+image_yscale = _flipGloopGrav;
+grav = abs(grav) * _flipGloopGrav;
+}
+                    dmgTimer += 1;
+                    if (dmgTimer == dmgMax)
                     {
-                        if (!(global.playerHealth[playerID] - other.dmg)
-                            &amp;&amp; global.playerHealth[playerID] &gt; 1)
-                        {
-                            other.dmg = global.playerHealth[playerID] - 1;
-                            playSFX(sfxMenuSelect);
-                        }
+                        hurtMega = true;
+                        dmgTimer = 0;
                     }
-                    global.playerHealth[playerID] -= other.dmg;
-                    playSFX(sfxHit);
                 }
-                other.hurtMega = false;
-            }
-            
-            // set status of mega man
-            if (instance_exists(statusObject))
-            {
-                statusObject.statusWalkSpeed = 1.3 / 2;
-                statusObject.statusChangedWalk = true;
-                
-                // disable mega man's abilities whilst glooped
-                statusObject.statusCanJump = false;
-                statusObject.statusCanClimb = false;
-                statusObject.statusCanSlide = false;
-                
-                statusObject.statusCanShoot = false;
-                // reset charge
-                if isCharge
+                if (other.hurtMega) // if the hurt mega is triggered, do damage once.
                 {
-                    isCharge = false;
-                    playerPalette();
+                    if (canHit &amp;&amp; other.dmg &gt; 0)
+                    {
+                        if (global.skullAmulet)
+                        {
+                            if (!(global.playerHealth[playerID] - other.dmg)
+                                &amp;&amp; global.playerHealth[playerID] &gt; 1)
+                            {
+                                other.dmg = global.playerHealth[playerID] - 1;
+                                playSFX(sfxSkullAmulet);
+                            }
+                        }
+                        global.playerHealth[playerID] -= other.dmg;
+                        playSFX(getGenericSFX(SFX_HURT));
+                    }
+                    other.hurtMega = false;
                 }
+                
+                // set status of mega man
+                if (instance_exists(statusObject))
+                {
+                    statusObject.statusWalkSpeed = 1.3 / 2;
+                    statusObject.statusChangedWalk = true;
+                    
+                    // disable mega man's abilities whilst glooped
+                    statusObject.statusCanJump = false;
+                    statusObject.statusCanClimb = false;
+                    statusObject.statusCanSlide = false;
+                    
+                    statusObject.statusCanShoot = false;
+                    // reset charge
+                    if isCharge
+                    {
+                        isCharge = false;
+                        playerPalette();
+                    }
+                }
+                if (climbing)
+                {
+                    climbing = false;
+                    climbLock = lockPoolRelease(climbLock);
+                }
+                other.x = x;
+                other.y = y + (6 * gravDir);
+                other.depth = depth - 10;
+                if ((gravDir &gt; 0 &amp;&amp; yspeed &lt; 0) || (gravDir &lt; 0 &amp;&amp; yspeed &gt; 0))
+                    yspeed = 0;
             }
-            if (climbing)
+            if (animNameID == 2)
+                other.image_index = spriteX - 2;
+            else if (other.fire)
+                other.image_index = 5;
+            else if (isSlide)
+                other.image_index = 3;
+            else
+                other.image_index = 1;
+            
+            // if player presses shoot button, attempt to break free of gloop
+            /*if (global.keyShootPressed[playerID] &amp;&amp; other.fire == 0)
             {
-                climbing = false;
-                climbLock = lockPoolRelease(climbLock);
+                other.fire = 5;
+                event_perform_object(objGloopBreaker, ev_other, ev_user14);
+            }*/
+            if (((global.keyShootPressed[playerID] &amp;&amp; !global.autoFire) || 
+                (global.keyShoot[playerID] &amp;&amp; global.autoFire &amp;&amp; other.autoFireDelay == 0)) 
+                &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            {
+                other.fire = 5;
+                other.autoFireDelay = other.autoFireSet;
+                event_perform_object(objGloopBreaker, ev_other, ev_user14);
             }
-            other.x = x;
-            other.y = y + 6;
-            other.depth = depth - 10;
-            if (yspeed &lt; 0)
-                yspeed = 0;
-        }
-        if (animNameID == 2)
-            other.image_index = spriteX - 2;
-        else if (other.fire)
-            other.image_index = 5;
-        else if (isSlide)
-            other.image_index = 3;
-        else
-            other.image_index = 1;
-        
-        // if player presses shoot button, attempt to break free of gloop
-        if (global.keyShootPressed[playerID] &amp;&amp; other.fire == 0)
-        {
-            other.fire = 5;
-            event_perform_object(objGloopBreaker, ev_other, ev_user14);
-        }
-        other.image_xscale = image_xscale;
-        
-
-        
-        // if breaking free, stop mega man's movement entirely
-        if (other.fire &gt; 0)
-        {
-            other.fire -= 1;
-            spriteY = 2;
-            if (instance_exists(statusObject))
-                statusObject.statusWalkSpeed = 0;
-            xspeed = 0;
-            if (!other.gloopLock)
-                other.gloopLock = lockPoolLock(localPlayerLock[PL_LOCK_MOVE]);
-        }
-        else if (!ground)
-        {
-            if (instance_exists(statusObject))
-                statusObject.statusWalkSpeed = 0;
-            xspeed = 0;
-        }
-        else if (playerIsLocked(PL_LOCK_MOVE))
-        {
-            if (instance_exists(statusObject))
-                statusObject.statusWalkSpeed = 1.3 / 2;
-            other.gloopLock = lockPoolRelease(other.gloopLock);
-        }
-        else
-        {
-            if (instance_exists(statusObject))
-                statusObject.statusWalkSpeed = 1.3 / 2;
+            other.image_xscale = image_xscale;
+            
+    
+            
+            // if breaking free, stop mega man's movement entirely
+            if (other.fire &gt; 0)
+            {
+                other.fire -= 1;
+                spriteY = 2;
+                if (instance_exists(statusObject))
+                    statusObject.statusWalkSpeed = 0;
+                xspeed = 0;
+                if (!other.gloopLock)
+                    other.gloopLock = lockPoolLock(localPlayerLock[PL_LOCK_MOVE]);
+            }
+            else if (!ground)
+            {
+                if (instance_exists(statusObject))
+                    statusObject.statusWalkSpeed = 0;
+                xspeed = 0;
+            }
+            else if (playerIsLocked(PL_LOCK_MOVE))
+            {
+                if (instance_exists(statusObject))
+                    statusObject.statusWalkSpeed = 1.3 / 2;
+                other.gloopLock = lockPoolRelease(other.gloopLock);
+            }
+            else
+            {
+                if (instance_exists(statusObject))
+                    statusObject.statusWalkSpeed = 1.3 / 2;
+            }
         }
     }
 }
@@ -229,7 +273,7 @@ if ((entityCanStep()) &amp;&amp; !pop)
             with (other)
             {
                 iFrames = 4;
-                playSFX(sfxEnemyHit); 
+                playSFX(getGenericSFX(SFX_ENEMYHIT)); 
                 healthpoints --;
             }
         

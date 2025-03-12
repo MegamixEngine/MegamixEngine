@@ -35,7 +35,7 @@ isVisible = false;
 image_speed = 0;
 image_index = 0;
 myFlag = -1; // If this is changed, octobulb will be ignored and the block will be active when the switch
-
+bubbleTimer = -1;
 // with this flag is active
 </string>
           </argument>

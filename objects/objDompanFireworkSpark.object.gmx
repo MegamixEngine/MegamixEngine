@@ -31,6 +31,7 @@ blockCollision = 0;
 grav = 0;
 
 contactDamage = 0;
+reflectable = 0; // fireworks stop for no shield
 image_speed = 0.15;
 
 yspeed = -6;

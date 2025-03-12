@@ -41,7 +41,12 @@ facePlayerOnSpawn = false;
 category = "nature";
 
 despawnRange = -1;
-
+rescursiveExplosion = false; //true;
+deadTimerMax = 48;
+deadTimerRecur = 4;
+//explosionSprite = sprExplosion;
+explosionSFX = sfxMM9ExplosionAlt;
+finalExplosionSprite = sprBigExplosion;
 // Enemy specific code
 image_speed = 0;
 image_index = 1;
@@ -63,10 +68,20 @@ cAngle = 0;
 cDistance = 8;
 addAngle = 8;
 
+flowerSet = 0;
+currentChild = objHanabiranFlower;
+
 // creation code variables
 
 //@cc if this is set to false, then the clock arm in his room won't be destroyed when he dies.
 destroyClockArm = true;
+
+//@cc set object and sprite of the flower. add elements to the array to alternate 'flower objects' every time hanabiran changes places
+childObject[0] = objHanabiranFlower;
+childSprite[0] = sprHanabiranFlower;
+//how long hanabiran takes to start firing flowers and change places
+flowerPhaseMax = 32;
+changePhaseMax = 48;
 </string>
           </argument>
         </arguments>
@@ -155,11 +170,12 @@ if (entityCanStep())
                 {
                     for (var i = 0; i &lt; 4; i++)
                     {
-                        var inst = instance_create((x + headX[0]) + cos((i * degtorad(90)) * cDistance), (y) + sin((i * degtorad(90)) * cDistance), objHanabiranFlower);
+                        var inst = instance_create((x + headX[0]) + cos((i * degtorad(90)) * cDistance), (y) + sin((i * degtorad(90)) * cDistance), childObject[flowerSet]);
                         inst.image_index = 2 * i;
                         inst.cAngle = 90 * i;
                         inst.parent = id;
                         inst.flowerNumber = i;
+                        inst.sprite_index = childSprite[flowerSet];
                     }
                     shotsFired = 0;
                 }
@@ -168,9 +184,9 @@ if (entityCanStep())
             {
                 animTimer = 5;
             }
-            if (attackTimer == 32 &amp;&amp; shotsFired &lt; 4) // fire off flower petals towards mega man. this is handled in that object's step code.
+            if (attackTimer == flowerPhaseMax &amp;&amp; shotsFired &lt; 4) // fire off flower petals towards mega man. this is handled in that object's step code.
             {
-                with (objHanabiranFlower)
+                with (currentChild)
                 {
                     if (flowerNumber == other.shotsFired &amp;&amp; parent == other.id)
                     {
@@ -180,7 +196,7 @@ if (entityCanStep())
                 shotsFired++;
                 attackTimer = 0;
             }
-            else if (attackTimer == 48) // change phase
+            else if (attackTimer == changePhaseMax) // change phase
             {
                 phase = 2;
                 attackTimer = 0;
@@ -188,7 +204,7 @@ if (entityCanStep())
             }
             break;
         case 2: // vanish 
-            with (objHanabiranFlower) // destroy existing attached flower petals
+            with (currentChild) // destroy existing attached flower petals
             {
                 if (!hasFired &amp;&amp; parent == other.id)
                 {
@@ -204,6 +220,10 @@ if (entityCanStep())
             {
                 attackTimer = 0;
                 oldLocation = instance_place(x, y, objHanabiranSpawnLocation);
+                flowerSet ++;
+                if (flowerSet &gt;= array_length_1d(childObject))
+                    flowerSet = 0;
+                currentChild = childObject[flowerSet];
                 canHit = false;
                 contactDamage = 0;
                 phase = 0;
@@ -221,6 +241,7 @@ else if (!insideView())
     attackTimer = 0;
     phase = -1;
     shotsFired = -1;
+    currentChild = childObject[0];
 }
 </string>
           </argument>
@@ -246,6 +267,53 @@ else if (!insideView())
             <kind>1</kind>
             <string>// if shot, stop firing.
 shotsFired = 4;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>    
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>currentChild = childObject[0];
 </string>
           </argument>
         </arguments>

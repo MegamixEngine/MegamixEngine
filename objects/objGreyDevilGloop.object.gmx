@@ -38,6 +38,7 @@ yspeed = -4;
 xspeed = 0;
 explod = false;
 playSFX(sfxGlooperFire);
+bubbleTimer = -1;
 </string>
           </argument>
         </arguments>
@@ -106,13 +107,13 @@ else if (dead == true)
 {
     if (!instance_exists(objGloop))
     {
-        with (instance_create(x, y, objGloop))
-        {
-            sprite_index = sprGreyDevilGloop;
-            healthpointsStart = 5;
-            healthpoints = healthpointsStart;
-            dmg = 4;
-        }
+        a = instance_create(x, y, objGloop);
+        
+        a.sprite_index = sprGreyDevilGloop;
+        a.healthpointsStart = 5;
+        a.healthpoints = healthpointsStart;
+        a.dmg = 4;
+        a.playerID = playerID;
     }
 }
 instance_destroy();

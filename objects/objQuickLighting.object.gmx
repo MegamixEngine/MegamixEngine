@@ -180,14 +180,28 @@ if (lightingSemi)
     draw_set_alpha(lightingRetain);
     draw_set_blend_mode_ext(bm_dest_color, bm_src_alpha);
     draw_set_color(lightingColor);
-    draw_rectangle(global.sectionLeft, global.sectionTop, global.sectionRight, global.sectionBottom, false);
+    if (shiftVisible &lt; 3)
+    {
+        draw_rectangle(global.sectionLeft, global.sectionTop, global.sectionRight, global.sectionBottom, false);
+    }
+    else //alternate draw method for Control Man boss room
+    {
+        draw_rectangle(view_xview, view_yview, view_xview+256, view_yview+224, false);
+    }
     draw_set_blend_mode(bm_normal);
 }
 
 draw_set_color(c_black);
 draw_set_alpha(1 - roundedLightingLevel);
 {
-    draw_rectangle(global.sectionLeft, global.sectionTop, global.sectionRight, global.sectionBottom, false);
+    if (shiftVisible &lt; 3)
+    {
+        draw_rectangle(global.sectionLeft, global.sectionTop, global.sectionRight, global.sectionBottom, false);
+    }
+    else //alternate draw method for Control Man boss room
+    {
+        draw_rectangle(view_xview, view_yview, view_xview+256, view_yview+224, false);
+    }
 }
 
 draw_set_alpha(1);

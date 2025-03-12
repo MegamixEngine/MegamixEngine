@@ -34,14 +34,20 @@ facePlayerOnSpawn = true;
 image_speed = 0;
 image_index = 0;
 image_xscale = 1;
+bubbleTimer = -1;
 
 // Enemy specific code
 capture = noone;
 animTimer = 5;
 calibrateDirection();
-playSFX(sfxLECBubble);
+init = 1;
+//playSFX(sfxLECBubble);
 pop = false;
 setMega = false;
+ySpeedMul = 1;
+
+mask = mskLECBubble;
+tmpMask = mask_index;
 </string>
           </argument>
         </arguments>
@@ -64,7 +70,16 @@ setMega = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>mask_index = tmpMask;
+event_inherited();
+
+if init {
+init = 0;
+if insideView() {
+playSFX(sfxLECBubble);
+}
+}
+
 if (!pop)
 {
     if (place_meeting(x, y + 2, objLadder))
@@ -118,7 +133,7 @@ if ((entityCanStep()) &amp;&amp; !pop)
     else if (place_meeting(x, y + 1, objTopSolid) &amp;&amp; place_meeting(x, y + 2, objLadder))
     {
         blockCollision = 0;
-        yspeed = 0.5;
+        yspeed = 0.5*ySpeedMul;
         xspeed = 0;
     }
     else if (ground)
@@ -130,7 +145,7 @@ if ((entityCanStep()) &amp;&amp; !pop)
     else
     {
         blockCollision = 1;
-        yspeed = 0.5;
+        yspeed = 0.5*ySpeedMul;
         xspeed = 0;
     }
     if ((x &lt;= view_xview + 16 || x &gt;= view_xview + view_wview - 16) &amp;&amp; capture != noone)
@@ -148,6 +163,7 @@ if (dead)
 {
     capture = noone;
 }
+mask_index = mask;
 </string>
           </argument>
         </arguments>
@@ -193,8 +209,9 @@ if (dead)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sprite_index, image_index, round(x), floor(y), 1, image_yscale, image_angle, image_blend, image_alpha);
-if ((iFrames == 1 || iFrames == 3) || (iceTimer &gt; 0))
+            <string>//draw_sprite_ext(mask,image_index,x,y,image_xscale,image_yscale,0,c_white,1);
+draw_sprite_ext(sprite_index, image_index, round(x), floor(y), 1, image_yscale, image_angle, image_blend, image_alpha);
+if ((iFrames mod 2 == 1) || (iceTimer &gt; 0))
 {
     var flashcol = c_white;
     if (iceTimer &gt; 0)

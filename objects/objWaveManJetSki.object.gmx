@@ -44,6 +44,7 @@ shootYOffset = 9;
 physicsLock = -1;
 
 inWater = -1;
+setPlayer = -1;
 </string>
           </argument>
         </arguments>
@@ -70,6 +71,10 @@ inWater = -1;
 {
     rider.vehicle = noone;
     physicsLock = lockPoolRelease(physicsLock);
+}
+with (objGlobalControl)
+{
+    alarm[2] = 8;
 }
 </string>
           </argument>
@@ -104,10 +109,9 @@ inWater = -1;
             viewPlayer = 0;
         }
         
-        
         with (rider)
         {
-            global.weapon[playerID] = 0;
+            setWeapon(0, playerID);
             playerPalette();
             
             if (!ground)
@@ -117,6 +121,11 @@ inWater = -1;
             
             playerHandleSprites("Bike");
         }
+    }
+    
+    if (active &amp;&amp; !instance_exists(rider))
+    {
+        instance_destroy();
     }
     
     // yOffset for shooting changes with animation index
@@ -165,7 +174,7 @@ inWater = -1;
         init = 0;
         waterPlat = instance_create(x, y + sprite_yoffset, objSolid);
         
-        // spawn additional jetskis if more players
+        /*// spawn additional jetskis if more players
         if (!place_meeting(x, y, object_index))
         {
             for (var i = 1; i &lt; global.playerCount; i += 1)
@@ -175,10 +184,11 @@ inWater = -1;
                     depth = i * 10;
                 }
             }
-        }
+        }*/
     }
     if (!active)
     {
+        var meObj = object_index;
         // Entering the wave bike
         with (objMegaman)
         {
@@ -188,55 +198,33 @@ inWater = -1;
                 {
                     if (place_meeting(x, y, other.id))
                     {
-                        active = true;
-                        rider = other.id;
-                        playerID = rider.playerID;
-                        depth = 0;
-                        
-                        with (rider)
+                        if (setPlayer == -1 || other.playerID == setPlayer)
                         {
-                            x = other.x;
-                            y = other.y;
-                            
-                            xspeed = 0;
-                            yspeed = 0;
-                            
-                            viewPlayer = 0;
-                            
-                            image_xscale = other.image_xscale;
-                            
-                            global.weapon[playerID] = 0;
-                            playerPalette();
-                            vehicle = other.id;
-                            
-                            // fully reset the state when entering
-                            if lockPoolExists(slideLock)
+                            active = true;
+                            rider = other.id;
+                            playerID = other.playerID;
+                            depth = 0;
+                            if (setPlayer == -1)
                             {
-                                slideLock = lockPoolRelease(slideLock);
-                            }
-                            if lockPoolExists(climbLock)
-                            {
-                                slideLock = lockPoolRelease(climbLock);
-                            }
-                            
-                            if instance_exists(objBreakDash)
-                            {
-                                with objBreakDash
+                                coopWarp(playerID,true,24,true,true,true);
+                                with (objCoOpWarpStar)
                                 {
-                                    instance_destroy();
+                                    spawnRide = meObj;
                                 }
                             }
+                            with (other)
+                            {
+                                if (isSlide)
+                                {
+                                    isSlide = false;
+                                    slideLock = lockPoolRelease(slideLock);
+                                    slideChargeLock = lockPoolRelease(slideChargeLock);
+                                    slideTimer = 0;
+                                }
+                            }
+                            event_user(2);
                         }
-                        
-                        physicsLock = lockPoolLock(
-                            rider.localPlayerLock[PL_LOCK_MOVE],
-                            rider.localPlayerLock[PL_LOCK_TURN],
-                            rider.localPlayerLock[PL_LOCK_SLIDE],
-                            rider.localPlayerLock[PL_LOCK_CHARGE],
-                            rider.localPlayerLock[PL_LOCK_CLIMB]);
                             
-                        
-                        break;
                     }
                 }
             }
@@ -246,13 +234,27 @@ inWater = -1;
     {
         if (abs(spd * image_xscale) &lt; maxSpeed)
         {
-            spd += 0.05 * image_xscale;
+            if (!instance_exists(objCoOpWarpStar))
+                spd += 0.05 * image_xscale;
         }
         
+        var myPL = 0;
+        var myS = screenRight();
+        if (image_xscale == -1)
+        {
+            myS = screenLeft();
+        }
+        with (instance_nearest(myS,middleYview(),objMegaman))
+        {
+            myPL = playerID;
+        }
         // Camera
-        global.prevXView = round(clamp(global.prevXView + spd, global.sectionLeft, global.sectionRight - view_wview));
-        global.cachedXView = round(clamp(global.cachedXView + spd, global.sectionLeft, global.sectionRight - view_wview));
-        
+        if (rider.playerID == myPL)
+        {
+            global.prevXView = round(clamp(global.prevXView + spd, global.sectionLeft, global.sectionRight - view_wview));
+            global.cachedXView = round(clamp(global.cachedXView + spd, global.sectionLeft, global.sectionRight - view_wview));
+        }
+            
         //
         // scroll = global.lockTransition;
         
@@ -279,8 +281,10 @@ inWater = -1;
         // Destroy
         with (objWaveManJetSkiStopper)
         {
+            var stPl;
             if ((other.bbox_left &gt; bbox_left &amp;&amp; other.image_xscale == 1)
-                || (other.bbox_right &gt; bbox_right &amp;&amp; other.image_xscale == -1))
+                || (other.bbox_right &lt; bbox_right &amp;&amp; other.image_xscale == -1))
+                &amp;&amp; (sign(image_xscale) == sign(other.image_xscale))
             {
                 with (other)
                 {
@@ -290,30 +294,37 @@ inWater = -1;
                         viewPlayer = 1;
                         canTurn = 1;
                         yspeed = -5;
+                        stPl = playerID;
                     }
                     global.enableSlide = true;
-                    playSFX(sfxExplosion);
+                    playSFX(getGenericSFX(SFX_EXPLOSIONMM5));
                     instance_create(x, y, objBigExplosion);
                     instance_destroy();
+                    
                 }
+                coopWarp(stPl,true,16,false,false,true);
             }
+
         }
         
         // Landing on water
-        if (place_meeting(x, y + 12 * rider.gravDir, objWater))
+        if (place_meeting(x, y + rider.gravDir, objWater))
         {
-            water = instance_place(x, y + 12, objWater);
-            if (y &lt; water.y - 12)
+            if (!instance_exists(waterPlat))
             {
-                if (!instance_exists(waterPlat))
-                {
-                    waterPlat = instance_create(water.x, water.y + 1, objTopSolid);
-                }
-                else
-                {
-                    waterPlat.x = x;
-                    waterPlat.y = water.y + 1;
-                }
+                waterPlat = instance_create(x, bbox_bottom + 1, objSolidEntity);
+                waterPlat.faction = 2;
+                waterPlat.fnsolid = 1;
+                waterPlat.isSolid = 1;
+                
+                // splash effect
+                instance_create(x, bbox_bottom, objSplash);
+                playSFX(getGenericSFX(SFX_SPLASH));
+            }
+            else
+            {
+                waterPlat.x = x;
+                waterPlat.y = bbox_bottom + 1;
             }
         }
         else if (instance_exists(waterPlat))
@@ -346,6 +357,79 @@ if (instance_exists(objSectionSwitcher) &amp;&amp; active)
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (setPlayer != -1)
+{
+    with (objMegaman)
+    {
+        if (playerID = other.setPlayer)
+        {
+            other.playerID = playerID;
+            other.rider = id;
+        }
+    }
+}
+with (rider)
+{
+    x = other.x;
+    y = other.y;
+    
+    xspeed = 0;
+    yspeed = 0;
+    
+    viewPlayer = 0;
+    
+    image_xscale = other.image_xscale;
+    
+    setWeapon(0, playerID);
+    playerPalette();
+    dispelUtilities();
+    vehicle = other.id;
+    
+    // fully reset the state when entering
+    if lockPoolExists(slideLock)
+    {
+        slideLock = lockPoolRelease(slideLock);
+    }
+    if lockPoolExists(climbLock)
+    {
+        slideLock = lockPoolRelease(climbLock);
+    }
+    
+    with (objBreakDash)
+        instance_destroy();
+    
+    with (objWaterShield)
+        instance_destroy();
+}
+
+physicsLock = lockPoolLock(
+    rider.localPlayerLock[PL_LOCK_MOVE],
+    rider.localPlayerLock[PL_LOCK_TURN],
+    rider.localPlayerLock[PL_LOCK_SLIDE],
+    rider.localPlayerLock[PL_LOCK_CHARGE],
+    rider.localPlayerLock[PL_LOCK_CLIMB]);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -370,18 +454,26 @@ if (instance_exists(objSectionSwitcher) &amp;&amp; active)
 else if (instance_exists(rider))
 {
     draw_sprite_ext(sprite_index, image_index, round(x), round(y) + yOffset, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
-    with (rider)
+    if (!instance_exists(objMegamanExit))
     {
-        visible = 1;
-        tx = x;
-        ty = y;
-        x = round(other.x) - 2 * other.image_xscale;
-        y = round(other.y) + other.yOffset - 5 * gravDir;
-        event_perform(ev_draw, 0);
-        x = tx;
-        y = ty;
-        visible = 0;
-        playerHandleSprites("Bike");
+       
+        with (rider)
+        {
+            visible = 1;
+            tx = x;
+            ty = y;
+            x = round(other.x) - 2 * other.image_xscale;
+            y = round(other.y) + other.yOffset - 5 * gravDir;
+            event_perform(ev_draw, 0);
+            x = tx;
+            y = ty;
+            visible = 0;
+            playerHandleSprites("Bike");
+        }
+    }
+    else
+    {
+        rider = noone;
     }
 }
 </string>

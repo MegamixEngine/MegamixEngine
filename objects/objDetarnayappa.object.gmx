@@ -153,7 +153,7 @@ if (entityCanStep())
             i.xspeed = 2;
             var i = instance_create(bbox_left, ycenter, objEnemyBullet);
             i.xspeed = -2;
-            playSFX(sfxEnemyShoot);
+            playSFX(sfxEnemyShootClassic);
         }
         if (timer &lt; 15)
         {

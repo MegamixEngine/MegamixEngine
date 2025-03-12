@@ -39,6 +39,7 @@ healthpoints = healthpointsStart;
 contactDamage = 4;
 respawnRange = 0;
 despawnRange = 16;
+behaviourType = 1;
 
 facePlayerOnSpawn = true;
 
@@ -72,34 +73,18 @@ animSpeed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (init)
-{
-    init = 0;
-    switch (col)
-    {
-        case 0:
-            sprite_index = sprSpringHead;
-            break;
-        case 1:
-            sprite_index = sprSpringHeadGrey;
-            break;
-        default:
-            sprite_index = sprSpringHead;
-            break;
-    }
-}
-
-event_inherited();
+            <string>event_inherited();
 
 if (entityCanStep())
 {
+    
     if (bounceTimer &gt; 0 || image_index != 0)
     {
         bounceTimer -= 1;
         animSpeed = 0.25;
         xspeed = 0;
     }
-    else
+    else if (slowSpeed != 0 || fastSpeed != 0)
     {
         if (checkFall(16 * image_xscale) || (xcoll != 0))
         {
@@ -122,6 +107,13 @@ if (entityCanStep())
             {
                 xspeed = fastSpeed * image_xscale;
             }
+        }
+    }
+    else
+    {
+        if (bounceTimer &lt;= 0)
+        {
+            bounceTimer = 128;
         }
     }
     image_speed = animSpeed;
@@ -180,10 +172,29 @@ if (entityCanStep())
           <argument>
             <kind>1</kind>
             <string>/// On spawn
-image_index = 0;
-image_speed = 0;
-bounceTimer = 0;
-animSpeed = 0;
+event_inherited();
+if (spawned)
+{
+    image_index = 0;
+    image_speed = 0;
+    bounceTimer = 0;
+    animSpeed = 0;
+    switch (col)
+    {
+        case 0:
+            sprite_index = sprSpringHead;
+            break;
+        case 1:
+            sprite_index = sprSpringHeadGrey;
+            break;
+        case 2:
+            sprite_index = sprSpringHeadOrange;
+            break;
+        default:
+            sprite_index = sprSpringHead;
+            break;
+    }
+}
 </string>
           </argument>
         </arguments>

@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Creation code (all optional):
+            <string>/// A hammerhead shark that floats in midair and drops to the ground when the player gets very close (based solely on horizontal distance).
+/// When it hits a solid object, it creates four small pieces of debris that arc away from itself, then it rises back up to its starting position.
+/// This enemy tends to work best when challenges and architecture are built around it, rather than trying to find a place for it in something you've already built.
+
+// Creation code (all optional):
 // radius = &lt;number&gt; // the distance between where Hammerfall detects Mega Man. default is 32
 event_inherited();
 respawn = true;
@@ -52,6 +56,8 @@ cooldownTimer = cooldownMax - 8;
 ground = false;
 direct = 0;
 col = 0;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

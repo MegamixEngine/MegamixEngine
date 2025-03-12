@@ -34,8 +34,8 @@ healthpointsStart = 28;
 healthpoints = healthpointsStart;
 
 // Health Bar
-healthBarPrimaryColor[1] = 16;
-healthBarSecondaryColor[1] = 33;
+healthBarPrimaryColor[1] = $13;
+healthBarSecondaryColor[1] = $27;
 
 pose = sprKomusoIntro;
 poseImgSpeed = 12 / 60;
@@ -59,22 +59,25 @@ locationX = 0;
 locationY = view_yview + 64;
 timesMoved = 0;
 guard = 0;
-shadowClones = ds_list_create();
+
 shadowClones[0] = 0;
 shadowClones[1] = 1;
 shadowClones[2] = 2;
 
 // Music
-music = "RnFBossNES.ogg";
-musicType = "OGG";
-musicLoopSecondsStart = 55.70;
-musicLoopSecondsEnd = 79.70;
-musicVolume = 0.8;
+music = "MegamixBossThemes.nsf";
+musicType = "VGM";
+musicVolume = 1;
+musicTrackNumber = 2;
+
+changesStates = true;
 
 // Damage Table
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -85,6 +88,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 2);
 enemyDamageValue(objBreakDash, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 0);
@@ -120,15 +127,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 4);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 0);
+enemyDamageValue(objChillSpike, 0);
 enemyDamageValue(objChillSpikeLanded, 0);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 6);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -260,12 +268,16 @@ if (entityCanStep())
                     y = locationY;
                     phase = 4;
                     with (objKomusoDoppler)
+                    {
                         phase = 3;
+                    }
                 }
                 break;
             case 4: // fire shots 
                 if (hasFired == false)
+                {
                     delay = 25;
+                }
                 imageTimerMax = 5;
                 imageNoMin = image_number - 1;
                 sprite_index = sprKomusoDoppler3;
@@ -287,7 +299,9 @@ if (entityCanStep())
                     playSFX(sfxKomusoShot);
                 }
                 if (image_index &gt; 3)
+                {
                     imageTimerMax = 6;
+                }
                 if (image_index &gt; 3 &amp;&amp; instance_number(objKomusoBullet)
                     &lt; 2 &amp;&amp; delay == 0)
                 {
@@ -327,7 +341,10 @@ if (entityCanStep())
                 grav = gravAccel;
                 if (xcoll != 0 &amp;&amp; delay == 0 &amp;&amp; timesMoved &lt; 10)
                 {
-                    image_xscale = image_xscale * -1;
+                    if (x &lt; middleXview())
+                        image_xscale = 1;
+                    else
+                        image_xscale = -1;
                     hasFired = false;
                     phase = 0;
                     attackTimer = 0;
@@ -369,7 +386,7 @@ if (entityCanStep())
                         - (view_wview / 4), view_yview + view_hview,
                         objKomusoFire);
                 }
-                phase = 9;
+                phase = 9; //10;    WHY WAS THIS 10?!
                 break;
             // phase 9 - no phase here - waiting for new phase!
             case 10: // teleport 
@@ -378,9 +395,12 @@ if (entityCanStep())
                 imageTimerMax = 3;
                 imageNoMin = image_number - 1;
                 if (image_index &gt;= 8)
+                {
                     canHit = false;
+                }
                 contactDamage = 0;
                 if (image_index &gt;= imageNoMin)
+                {
                     if (instance_exists(target))
                     {
                         x = target.x;
@@ -401,6 +421,7 @@ if (entityCanStep())
                         timesMoved += 1;
                         playSFX(sfxKomusoDoppler);
                     }
+                }
                 break;
             case 11: // teleport in 
                 imageNoMin = image_number - 1;
@@ -413,13 +434,21 @@ if (entityCanStep())
                     contactDamage = 4;
                 }
                 if (image_index &gt;= imageNoMin &amp;&amp; delay == 0)
+                {
+                    
+                    calibrateDirection();
+                    if (image_xscale == 0)
+                        image_xscale = choose(-1,1);
+                    delay = 10;
                     phase = 6;
+                }
                 break;
         }
     }
 }
 else
 { }
+
 </string>
           </argument>
         </arguments>
@@ -474,7 +503,10 @@ if (guard)
 with (objKomusoFire)
     instance_destroy();
 with (objKomusoDoppler)
+{
+    instance_create(bboxGetXCenter(),bboxGetYCenter(),objExplosion);
     instance_destroy();
+}
 with (objKomusoSmoke)
     instance_destroy();
 event_inherited();

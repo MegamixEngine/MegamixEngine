@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A robot seal that blows a ball on its nose, bounces it, then throws it at Mega Man.
-// Don't get close, or it'll run after you.
+            <string>/// A seal that creates a ball on its nose, bounces it three times, then throws it horizontally forward. The enemy will chase the player if they are too close.
+/// The enemy will turn around if it reaches the end of a platform. It is immune to non-piercing weapons when it has the ball, and the ball reflects shots.
+/// Suitable as a primary or secondary threat, depending on the setup.
 
 event_inherited();
 
@@ -42,7 +43,7 @@ ballSpeed = 3
 // Enemy specific code
 imgIndex = 0;
 imgSpd = 0.2;
-radius = 4 * 16;
+radius = 3 * 16; //4 * 16;
 
 moveTimer = 60;
 phase = 0;
@@ -105,8 +106,10 @@ if (entityCanStep())
                             {
                                 imgIndex = 8;
                                 var i = instance_create(x + 4 * image_xscale, y - 11, objOuOuBall);
+                                i.image_xscale = image_xscale;
                                 i.yspeed = -2;
                                 i.yStart = i.y;
+                                i.reflectable = 0;
                                 ball = i.id;
                             }
                             else
@@ -132,6 +135,8 @@ if (entityCanStep())
                                         ball.yspeed = 0;
                                         ball.grav = 0;
                                         ball.xspeed = ballSpeed * image_xscale;
+                                        ball.inFlight = true;
+                                        ball.reflectable = 1;
                                         hasAttacked = true;
                                         attackTimer = 10;
                                         playSFX(sfxBallBounce);
@@ -174,6 +179,7 @@ if (entityCanStep())
                     if (distance_to_object(target) &lt; radius)
                     {
                         imgIndex = 1;
+                        moveTimer = 1;
                         phase = 1;
                     }
                 }
@@ -181,22 +187,6 @@ if (entityCanStep())
             break;
         // Walk forwards
         case 1:
-            if (instance_exists(target))
-            {
-                if (distance_to_object(target) &lt; radius + 16)
-                {
-                    xspeed = 1 * image_xscale;
-                }
-                else
-                {
-                    calibrateDirection();
-                    imgIndex = 0;
-                    xspeed = 0;
-                    phase = 0;
-                    moveTimer = 60;
-                }
-            }
-            
             // Animation
             if (animBack == false)
             {
@@ -221,6 +211,36 @@ if (entityCanStep())
                 image_xscale *= -1;
                 xspeed = 1 * image_xscale;
             }
+            // Track player
+            moveTimer--;
+            if (moveTimer == 0)
+            {
+                if (instance_exists(target))
+                {
+                    if (distance_to_object(target) &lt; radius)// + 16)
+                    {
+                        calibrateDirection();
+                        xspeed = 1 * image_xscale;
+                        moveTimer = 60;
+                    }
+                    else
+                    {
+                        calibrateDirection();
+                        imgIndex = 0;
+                        xspeed = 0;
+                        phase = 0;
+                        moveTimer = 60;
+                    }
+                }
+                else
+                {
+                    calibrateDirection();
+                    imgIndex = 0;
+                    xspeed = 0;
+                    phase = 0;
+                    moveTimer = 60;
+                }
+            }
             break;
     }
 }
@@ -233,13 +253,6 @@ else if (dead)
     attackTimer = 30;
     bounces = 0;
     hasAttacked = false;
-    if (instance_exists(ball))
-    {
-        with (ball)
-        {
-            instance_destroy();
-        }
-    }
 }
 
 image_index = imgIndex div 1;
@@ -268,6 +281,37 @@ image_index = imgIndex div 1;
             <string>if ((image_index &gt; 3) &amp;&amp; (image_index &lt; 10))
 {
     other.guardCancel = 1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (instance_exists(ball))
+{
+    with (ball)
+    {
+        instance_create(bboxGetXCenter(),bboxGetYCenter(),objExplosion);
+        instance_destroy();
+    }
 }
 </string>
           </argument>

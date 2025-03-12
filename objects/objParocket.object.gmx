@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A rocket that flies high into the sky, then slowly drops down via parachute. If it lands
-// on the ground, or is destroyed, it releases a damaging explosion. Watch out!
+            <string>/// A rocket that flies high into the sky, then slowly drops down via parachute. If it hits a solid object or is destroyed, it explodes.
+/// When parachuting down, it glides slightly toward the player.
+/// Tends to work best in open areas, or in carefully crafted crowded areas.
 
 event_inherited();
 
@@ -164,7 +165,7 @@ if (entityCanStep())
                     itemDrop = -1;
                     i = instance_create(x, y, objHarmfulExplosion);
                     i.contactDamage = 6;
-                    playSFX(sfxMM9Explosion);
+                    playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
                 }
             }
             break;
@@ -208,7 +209,7 @@ else if (dead)
 
 if (sprite_index == sprParocketRise)
 {
-    var i = instance_create(x, y - (sprite_height / 2), objHarmfulExplosion);
+    var i = instance_create(x, y - 10, objHarmfulExplosion);
     i.contactDamage = 6;
 }
 else
@@ -216,7 +217,8 @@ else
     var i = instance_create(x, y, objHarmfulExplosion);
     i.contactDamage = 6;
 }
-playSFX(sfxMM9Explosion);
+stopSFX(getGenericSFX(SFX_ENEMYHIT));
+playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
 </string>
           </argument>
         </arguments>

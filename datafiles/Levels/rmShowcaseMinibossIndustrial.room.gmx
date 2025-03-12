@@ -10,7 +10,8 @@
   <persistent>0</persistent>
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
-  <code>playMusic("Mega_Man_10.nsf", "VGM", 31, 0, 0, 0, 1);
+  <code>playMusic("MM10/30_Wily2.mid","MIDI","MM10/MM10.sf2");
+//playMusic("Mega_Man_10.nsf", "VGM", 31, 0, 0, 0, 1);
 
 with objBossDoor
 {

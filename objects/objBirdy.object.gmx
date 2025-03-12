@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A fat bird from Uranus. It spits Chuncos out the nest on its head and fires three shots at a time.
+            <string>/// A stationary bird that creates a Chunco from its head, fires three shots, and then creates another Chunco if the previous one was destroyed.
+/// It follows a slow rhythm: shoot... shoot... shoot... pause (and create a Chunco if needed)...
+/// This is effectively two enemies in one, each with very different abilities, so be careful not to overcomplicate the challenge.
 
 event_inherited();
 

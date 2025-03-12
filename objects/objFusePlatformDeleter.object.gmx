@@ -107,7 +107,7 @@ if (entityCanStep())
             {
                 if (visible &amp;&amp; !dead)
                 {
-                    playSFX(sfxExplosion);
+                    playSFX(getGenericSFX(SFX_EXPLOSION));
                     event_user(EV_DEATH);
                 }
             }

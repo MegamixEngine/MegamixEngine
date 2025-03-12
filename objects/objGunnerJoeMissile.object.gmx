@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -30,11 +30,14 @@
 healthpoints = 1;
 healthpoints = healthpointsStart;
 contactDamage = 3;
+canHit = true;
 
 respawn = false;
 grav = 0;
 blockCollision = false;
 itemDrop = -1;
+bubbleTimer = -1;
+reflectable = -1;
 
 parent = noone;
 phase = 0;
@@ -46,6 +49,11 @@ jetTimer = 0;
 speed = 1.4;
 rotateChange = 2;
 totalChange = 0;
+
+// Added by SCATMAN's WORLD
+actuallyExplode = true;
+jetOffset = 0;
+jetOffsetMax = 8;
 </string>
           </argument>
         </arguments>
@@ -159,9 +167,10 @@ if (entityCanStep())
     }
     // Jet Animation
     jetTimer += 1;
+
     if (jetTimer &gt;= 4)
     {
-        // &lt;-- jet animation speed here
+        /*// &lt;-- jet animation speed here
         if (sprite_index == sprGunnerJoeMissile2)
         {
             sprite_index = sprGunnerJoeMissile;
@@ -169,12 +178,15 @@ if (entityCanStep())
         else
         {
             sprite_index = sprGunnerJoeMissile2;
-        }
-            
+        }*/
+        if (jetOffset == jetOffsetMax)
+            jetOffset = 0    
+        else
+            jetOffset = jetOffsetMax;
         jetTimer = 0;
     }
         
-    image_index = round((direction) / 45);
+    image_index = round((direction) / 45)+jetOffset;
 }
 else
 {
@@ -185,6 +197,58 @@ else
 }
 
 // image_index = (image_index div 1) + (col*8);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// On Die
+event_inherited();
+
+if (actuallyExplode)
+    instance_create(x, y, objExplosion);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// set angle on spawn
+image_index = clamp(round((direction) / 45),0,7);
 </string>
           </argument>
         </arguments>

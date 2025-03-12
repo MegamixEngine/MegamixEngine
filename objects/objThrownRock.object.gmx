@@ -84,10 +84,10 @@ if (entityCanStep())
         ID = instance_create(spriteGetXCenter(), spriteGetYCenter(),
             objRockExplosion);
         {
-            ID.xscale = image_xscale;
+            ID.image_xscale = image_xscale;
         }
         instance_destroy();
-        playSFX(sfxExplosion);
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM5));
     }
 }
 else if (dead == true)

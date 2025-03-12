@@ -178,7 +178,7 @@ if (entityCanStep())
     {
         i = instance_create(x, y, objHarmfulExplosion);
         i.contactDamage = 4;
-        playSFX(sfxMM9Explosion);
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
         itemDrop = -1;
     }
 }
@@ -241,7 +241,7 @@ if other.y &lt;= y - 2 &amp;&amp; image_index &gt;= 5
 
 i = instance_create(x, y, objHarmfulExplosion);
 i.contactDamage = 4;
-playSFX(sfxMM9Explosion);
+playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
 </string>
           </argument>
         </arguments>

@@ -37,6 +37,7 @@ category = "bulky, nature";
 
 doesIntro = false;
 rescursiveExplosion = false;
+explosionSFX = sfxExplosion2;
 
 // Enemy specific code
 phase = 0;
@@ -156,6 +157,14 @@ if (entityCanStep())
                     animBack = true;
                     a = instance_create(x + sprite_width * 0.22, y - 17, objSquidonMissile);
                     a.dir = image_xscale;
+                    with (a)
+                    {
+                        if (dir == -1)
+                            direction = 135;
+                        else
+                            direction = 45;
+                        imgIndex = round((direction) / 45);
+                    }
                     missle[place] = a;
                     place = -1;
                 }
@@ -166,7 +175,7 @@ if (entityCanStep())
                 if (waitTimer &gt; 20)
                 {
                     imgIndex -= imgSpd * 5;
-                    if (imgIndex &lt; 4)
+                    if (imgIndex &lt;= 4)
                     {
                         phase = 1;
                         animBack = false;
@@ -193,7 +202,7 @@ else if (dead)
     if (deadTimer == 2)
     {
         audio_stop_sound(sfxExplosion);
-        playSFX(sfxExplosion2);
+        playSFX(getGenericSFX(SFX_EXPLOSION2));
     }
 }
 

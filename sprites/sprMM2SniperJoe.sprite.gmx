@@ -14,10 +14,10 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>31</TextureGroup0>
+    <TextureGroup0>3</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>25</width>
+  <width>24</width>
   <height>24</height>
   <frames>
     <frame index="0">images\sprMM2SniperJoe_0.png</frame>

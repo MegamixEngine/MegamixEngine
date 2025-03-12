@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// An electric enemy that electrifies the ground beneath it and fires out five electric shots.
+            <string>/// An electric enemy that waits in the air, drops to electrify the ground beneath it, and rises back to fire five electric shots in different downward directions.
+/// The shots always follow the same pattern: left, right, slightly right, straight down, slightly left.
+/// It's a bit of a damage sponge, the electrified ground does significant damage, and the shots can be hard to dodge, so use this smartly and sparingly.
 
 event_inherited();
 

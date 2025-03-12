@@ -1,0 +1,5 @@
+#!/bin/sh
+if test -f "lw_MaGMML3.project.gmx"; then
+	echo "Lightweight Project exists -- please merge changes in and delete before pushing!";
+	exit 1;
+fi

@@ -15,17 +15,22 @@ if (isSolid)
         y = yprevious;
         x = xprevious;
         
+        /*
         with (objMegaman)
         {
-            savedgrav = grav;
-            grav = gravDir;
+            if(grav != gravDir)
+            {
+                savedgrav = grav;
+                grav = gravDir;
+            }
         }
+        */
         
         if (myyspeed != 0) // Vertical
         {   
             with (prtEntity)
             {
-                if (blockCollision && !dead)
+                if (id!=other.id && blockCollision && !dead)
                 {
                     if (other.fnsolid)
                     {
@@ -34,6 +39,10 @@ if (isSolid)
                             continue;
                         }
                     }
+                    
+                    if (!instance_exists(other.id))
+                        exit;
+                    
                     var epDir = sign(bboxGetYCenterObject(other.id) - bboxGetYCenter());
 
                     if(place_meeting(x, y, other.id))
@@ -94,6 +103,15 @@ if (isSolid)
                                 if (global.factionStance[other.faction, faction])
                                 {
                                     event_user(EV_DEATH);
+                                    
+                                    if (object_index != objMegaman)
+                                        playSFX(getGenericSFX(SFX_ENEMYHIT));
+                                    else
+                                    {
+                                        
+                                        if (checkCheats(cheatEnums.buddha) && canHit && iFrames == 0)
+                                            playerGetHit(28);
+                                    }
                                 }
                             }
                         }
@@ -116,7 +134,7 @@ if (isSolid)
             with (prtEntity)
             {
                 
-                if (blockCollision && !dead)
+                if (id!=other.id && blockCollision && !dead)
                 {
                     if (other.fnsolid)
                     {
@@ -131,12 +149,6 @@ if (isSolid)
                         continue;
                     }
                     
-                    /*
-                    if (object_index == objMegaman)
-                    {
-                        grav = gravDir;
-                    }
-                    */
                     var epIsOnPlat = false;
                     var epDir = sign(bboxGetXCenterObject(other.id) - bboxGetXCenter());
 
@@ -177,6 +189,15 @@ if (isSolid)
                                 if (global.factionStance[other.faction, faction])
                                 {
                                     event_user(EV_DEATH);
+                                    
+                                    if (object_index != objMegaman)
+                                        playSFX(getGenericSFX(SFX_ENEMYHIT));
+                                    else
+                                    {
+                                        
+                                        if (checkCheats(cheatEnums.buddha) && canHit && iFrames == 0)
+                                            playerGetHit(28);
+                                    }
                                 }
                             }
                         }
@@ -184,7 +205,6 @@ if (isSolid)
                         other.x -= myxspeed;
                     }
                 }
-                epIsOnPlat=false;
             }
         }
         
@@ -195,9 +215,11 @@ if (isSolid)
         yprevious = y;
         xprevious = x;
         
-        with (objMegaman)
+        /*with (objMegaman)
         {
             grav = savedgrav;
-        }
+        }*/
     }
+    
+    
 }

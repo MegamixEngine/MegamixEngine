@@ -28,74 +28,89 @@
             <string>global.nextRoom = -1;
 visible = 0;
 
-phase = 0; // 0: increasing the black rectangle's alpha
+playerID = 0;
+costumeID = 0;
 
+phase = 0; // 0: increasing the black rectangle's alpha
+menuPart = 0;
+pageDrawOffset = 0;
+
+//REGULAR MENU SPECIFIC STUFF
 option = 0;
-oldOption = 0;
+
 weaponOffset = 0;
 offsetTimer = -1;
 
-// get currently visible weapons
-weaponVisibleN = 0;
-for (var i = 0; i &lt;= global.totalWeapons; i++)
-{
-    if (global.weaponLocked[global.weaponHotbar[i]] &lt; 2)
-    {
-        weaponVisible[weaponVisibleN++] = i;
-    }
-}
-visibleWeapons = min(10, weaponVisibleN); // up to 10 visible
-
-for (var i = 0; i &lt; weaponVisibleN; i++)
-{
-    if (global.weapon[0] == global.weaponHotbar[weaponVisible[i]])
-    {
-        option = i;
-        oldOption = i;
-    }
-}
-woption = i;
-
 visibleWeapons = 10;
+
+event_user(14);
 
 oldWeapon = global.weapon[0];
 resetWeapon = false; // Should we, after exiting the menu, reset our weapon to the weapon that was used before the pause menu was opened?
 
-wtank = 0;
-mtank = 0;
+tankUsed = 0;
 
-retryConfirm = 0;
-exitConfirm = 0;
+confirm = 0;
 hotBarArrangeMode = false;
 
-playerID = 0;
-costumeID = 0;
+arrowTimer = 20;
+
+quickScrollTimer = 0;
+
+alterFlashEffect = 0;
+
+// Weapon wheel
+wheelBuffer = 0;
+wheelDirection = -1;
+
+// ITEM MENU - - - - - - -
+rowLength = 9;
+visibleRows = 4;
+
+swapStoreOption = 0;
+currentItem = 0;
+
+rowDrawOffset = 0;
+nextRowDrawOffset = 0;
+
+// sets the order of items in pause screen
+itemSortList = makeArray(
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+); // this code looks insane with all the items gutted out. i promise it's useful
+
+items = makeArray();
+var index = 0;
+
+for (var i = 0; i &lt; array_length_1d(itemSortList); i ++;)
+{
+    if (itemData(itemSortList[i], "NAME") != -1)
+    {
+        if (variable_global_get(itemData(itemSortList[i], "VAR")) != 0)
+        {
+            items[(index ++)] = itemSortList[i];
+        }
+    }
+}
+
+rows = max(visibleRows, ceil(array_length_1d(items) / rowLength));
+
+// - - - - - - - - - - - - - -
 
 // Stop charging
 with (objMegaman)
 {
-    playerPalette();
+    wheelDirection = 0;
+    wheelBuffer = 0;
+    
+    if (!inked)
+    {
+        playerPalette();
+    }
 }
 
-// set these here. makes everyone's lives easier.
-
-etankPositionX = 148;
-etankPositionY = 10;
-wtankPositionX = 178;
-wtankPositionY = 10;
-mtankPositionX = 210;
-mtankPositionY = 10;
-
-optionsPositionX = 136;
-optionsPositionY = 208;
-checkPositionX = 158;
-checkPositionY = 208;
-exitPositionX = 204;
-exitPositionY = 208;
-
-arrowTimer = 20;
-
-quickScrollTimer = 0; // 24;
+mouse_x_previous = 0;
+mouse_y_previous = 0;
+badgeSoundAlternator = 0;
 </string>
           </argument>
         </arguments>
@@ -124,11 +139,15 @@ if (instance_exists(objOptionsMenu))
     exit;
 }
 
+var prevWeapon = global.weapon[playerID];
+
 // do pause menu
 switch (phase)
 {
-    // Fading out
-    case 0:
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    case 0: // Fading out
+    
         with (objGlobalControl)
         {
             if (fadeAlpha == 1)
@@ -139,10 +158,14 @@ switch (phase)
                 showhealth = 0;
             }
         }
+        
         break;
+        
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     
-    // Fading in
-    case 1:
+    case 1: // Fading in
+    
         with (objGlobalControl)
         {
             if (fadeAlpha == 0)
@@ -150,206 +173,86 @@ switch (phase)
                 other.phase = 2;
             }
         }
-        event_user(0); // Moving the selection
         
+        event_user(0); // Moving the selection
+
         break;
-    
-    // Idle
-    case 2:
-        event_user(0); // Moving the selection
         
-        // Select the weapon/tank
-        if (global.keyJumpPressed[playerID] || global.keyPausePressed[playerID])
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    
+    case 2: // Idle
+    
+        event_user(menuPart); // Moving the selection
+        
+        //Switch pages
+        if (phase == 2) //Just making sure we haven't changed phases
         {
-            if (option &lt;= weaponVisibleN)
+            var wpnDir = (global.keyWeaponSwitchRightPressed[playerID] - global.keyWeaponSwitchLeftPressed[playerID]);
+            
+            if (wpnDir != 0)
             {
-                if (instance_exists(objMegaman.vehicle) &amp;&amp; option != 0)
-                {
-                    if (!objMegaman.vehicle.weaponsAllowed)
-                    {
-                        playSFX(sfxError);
-                        exit;
-                    }
-                }
+                var maxParts = 1; //Maximum page index
                 
-                global.nextRoom = -1;
-                phase = 3;
-                
-                global.weapon[playerID] = global.weaponHotbar[weaponVisible[option]];
-                playSFX(sfxMenuSelect);
-            }
-            else if (option == weaponVisibleN + 1) // E-Tank
-            {
-                if (global.eTanks &amp;&amp; global.playerHealth[playerID] &lt; 28)
+                if (global.nextRoom != -1)
                 {
-                    option = 99; // Nothing selected
-                    phase = 5;
-                    wtank = 0;
-                    mtank = 0;
-                    global.eTanks -= 1;
-                    eTankTimer = 0;
-                    loopSFX(sfxEnergyRestore);
-                }
-                else
-                {
-                    playSFX(sfxError);
-                }
-            }
-            else if (option == weaponVisibleN + 2) // W-Tank
-            {
-                // Check if weapon energy actually needs filling
-                var proceed;
-                proceed = false;
-                for (i = 0; i &lt; weaponVisibleN; i += 1)
-                {
-                    if (ceil(global.ammo[playerID, global.weaponHotbar[weaponVisible[i]]]) &lt; 28)
+                    var newPart = (menuPart + wpnDir);
+                    
+                    if (newPart == clamp(newPart, 0, maxParts))
                     {
-                        proceed = true;
-                    }
-                }
-                
-                if (global.wTanks &amp;&amp; proceed)
-                {
-                    option = 0; // Go back to weapon column
-                    phase = 6;
-                    mtank = 0;
-                    wtank = 1;
-                    global.wTanks -= 1;
-                    playSFX(sfxMenuSelect);
-                }
-                else
-                {
-                    playSFX(sfxError);
-                }
-            }
-            else if (option == weaponVisibleN + 3) // M-Tank
-            {
-                if (global.mTanks &gt; 0) // Check if health or weapon energy actually needs filling
-                {
-                    var proceed = false;
-                    for (i = 0; i &lt; weaponVisibleN; i += 1)
-                    {
-                        if (ceil(global.ammo[playerID, global.weaponHotbar[weaponVisible[i]]]) &lt; 28)
+                        if (menuPart == 0)
                         {
-                            proceed = true;
+                            swapStoreOption = option;
                         }
+                        else
+                        {
+                            option = swapStoreOption;
+                        }
+                        
+                        menuPart = newPart;
+                        phase = 6;
+                        playSFX(sfxMenuMove);
                     }
-                    
-                    if (ceil(global.playerHealth[playerID]) &lt; 28)
-                    {
-                        proceed = true;
-                    }
-                    
-                    if (proceed) // If proceed is still false after the past calculations, it seems there is nothing to fill
-                    {
-                        option = 99; // Nothing selected
-                        phase = 5;
-                        mtank = 1;
-                        wtank = 0;
-                        global.mTanks -= 1;
-                        eTankTimer = 0;
-                        loopSFX(sfxEnergyRestore);
-                    }
-                    else
-                    {
-                        playSFX(sfxError);
-                    }
-                }
-                else
-                {
-                    playSFX(sfxError);
-                }
-            }
-            else if (option == weaponVisibleN + 4) // Options
-            {
-                instance_create(x, y, objOptionsMenu);
-                playSFX(sfxMenuSelect);
-                exit;
-            }
-            else if (option == weaponVisibleN + 5) // Retry
-            {
-                if (!retryConfirm)
-                {
-                    retryConfirm = true;
-                    playSFX(sfxMenuSelect);
-                    exit;
-                }
-            }
-            else if (option == weaponVisibleN + 6) // Exit
-            {
-                if (!exitConfirm)
-                {
-                    exitConfirm = true;
-                    playSFX(sfxMenuSelect);
-                    exit;
                 }
             }
         }
-        
-        // Confirming exit
-        if (exitConfirm &amp;&amp; !global.nextRoom)
-        {
-            if (option == weaponVisibleN + 6)
-            {
-                if (global.keyJumpPressed[playerID]
-                    || global.keyPausePressed[playerID])
-                {
-                    returnFromLevel();
-                    playSFX(sfxMenuSelect);
-                }
-            }
-            else
-            {
-                exitConfirm = false;
-            }
-        }
-        
-        // Confirming retry
-        if (retryConfirm &amp;&amp; !global.nextRoom)
-        {
-            if (option == weaponVisibleN + 5)
-            {
-                if (global.keyJumpPressed[playerID]
-                    || global.keyPausePressed[playerID])
-                {
-                    global.nextRoom = room;
-                    playSFX(sfxMenuSelect);
-                }
-            }
-            else
-            {
-                retryConfirm = false;
-            }
-        }
-        
+
         break;
+        
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-    // Fading out
-    case 3:
+    case 3: // Fading out
+    
         with (objGlobalControl)
         {
             if (fadeAlpha == 1 &amp;&amp; global.nextRoom != 0)
             {
                 showhealth = 1;
+                
                 with (other)
                 {
                     if (resetWeapon)
                     {
                         global.weapon[playerID] = oldWeapon;
-                        with (objMegaman)
-                        {
-                            playerPalette();
-                        }
                     }
                     
+                    //Weapon has been changed
                     if (global.weapon[playerID] != oldWeapon)
                     {
+                        with (objMegaman)
+                        {
+                            autoFireDelay = 0;
+                        }
+                        
                         with (prtPlayerProjectile)
                         {
-                            instance_destroy();
+                            if (playerID == other.playerID)
+                            {
+                                instance_destroy();
+                            }
                         }
                     }
-                    
+
                     global.nextRoom = 0;
                     visible = 0;
                 }
@@ -359,112 +262,302 @@ switch (phase)
                 with (other)
                 {
                     audio_resume_all();
+                    
                     instance_destroy();
                     global.frozen = 0;
                 }
             }
         }
-        
+
         break;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    case 4: // Waiting for Health and Ammo to be restored
     
-    // E/M-Tank restoring health
-    case 5:
-        eTankTimer += 1;
-        if (eTankTimer &gt;= 3)
+        with (objGlobalControl)
         {
-            eTankTimer = 0;
-            
-            var proceed;
-            proceed = false;
-            
-            // Fill selected weapon w/ W Tank
-            if (wtank)
+            if ((increaseHealth == 0) &amp;&amp; (increaseAmmo == 0))
             {
-                if (global.ammo[playerID, global.weaponHotbar[weaponVisible[option]]] &lt; 28)
+                with (other)
                 {
-                    global.ammo[playerID, global.weaponHotbar[weaponVisible[option]]] = min(28,
-                        global.ammo[playerID, global.weaponHotbar[weaponVisible[option]]] + 1);
-                    proceed = true;
-                }
-            }
-            
-            // Fill all weapons - M-Tank only
-            if (mtank)
-            {
-                for (i = 1; i &lt; weaponVisibleN; i += 1)
-                {
-                    if (global.ammo[playerID, global.weaponHotbar[weaponVisible[i]]] &lt; 28)
+                    phase = 2; //Return to idle
+                    tankUsed = 0;
+                    
+                    if (optionReturn &gt;= 0)
                     {
-                        global.ammo[playerID, global.weaponHotbar[weaponVisible[i]]] = min(28,
-                            global.ammo[playerID, global.weaponHotbar[weaponVisible[i]]] + 1);
-                        proceed = true;
+                        option = optionReturn;
                     }
                 }
             }
-            
-            // Fill health
-            if ((global.playerHealth[playerID] &lt; 28) &amp;&amp; (!wtank))
-            {
-                global.playerHealth[playerID] = min(28,
-                    global.playerHealth[playerID] + 1);
-                proceed = true;
-            }
-            
-            if (!proceed)
-            {
-                eTankTimer = 0;
-                phase = 2;
-                if (!wtank)
-                {
-                    option = oldOption;
-                    global.weapon[playerID] = oldWeapon;
-                    with (objMegaman)
-                    {
-                        playerPalette();
-                    }
-                }
-                
-                audio_stop_sound(sfxEnergyRestore);
-            }
         }
-        
+
         break;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    case 6: // Swap menu pages
     
-    // W-Tank weapon selection
-    case 6:
-        event_user(0); // Moving the selection
+        var targetOffset = (256 * menuPart);
         
-        if (option &gt; 0 &amp;&amp; option &lt; weaponVisibleN)
+        var dis = (targetOffset - pageDrawOffset);
+        
+        //Move towards destination
+        pageDrawOffset += (min(abs(dis), 8) * sign(dis));
+        
+        //Destination reached
+        if (pageDrawOffset == targetOffset)
         {
-            if (global.keyJumpPressed[playerID] || global.keyPausePressed[playerID])
-            {
-                if (global.ammo[playerID, global.weaponHotbar[weaponVisible[option]]] &lt; 28)
-                {
-                    phase = 5;
-                    eTankTimer = 0;
-                    loopSFX(sfxEnergyRestore);
-                }
-                else
-                {
-                    playSFX(sfxError);
-                }
-            }
+            phase = 2;
+            currentItem = 0;
+            rowDrawOffset = 0;
         }
         
         break;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }
 
-// update stored player sprite
+// Update stored player sprite
 if (instance_exists(objMegaman))
 {
     with (objMegaman)
     {
         if (playerID == other.playerID)
         {
+            //Weapon has changed
+            if (prevWeapon != global.weapon[playerID])
+            {
+                playerPalette();
+                
+                initChargeTimer = 0;
+                chargeTimer = 0;
+                performShoot = 0;
+                releaseCharge = 0;
+                isCharge = 0;
+                autoFireDelay = 0;
+                fireHeld = false;
+            }
+            
             other.costumeID = costumeID;
         }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="24">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Get currently visible weapons
+
+weaponCount = 0;
+
+for (var i = 0; i &lt;= global.totalWeapons; i ++;)
+{
+    var weapon = global.weaponHotbar[i];
+    
+    //Not locked?
+    if (global.weaponLocked[weapon] &lt; 2 &amp;&amp; !global.weaponHidden[weapon])
+    {
+        weaponVisible[weaponCount] = weapon;
+        
+        if (phase != 2)
+        {
+            //Set which weapon to start the menu at
+            if (global.weapon[0] == weapon)
+            {
+                option = weaponCount;
+            }
+        }
+        
+        weaponCount ++;
+    }
+}
+
+visibleWeapons = min(10, weaponCount); // up to 10 visible
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///ITEM MENU
+
+var xDir = (global.keyRightPressed[playerID] - global.keyLeftPressed[playerID]);
+var yDir = (global.keyDownPressed[playerID]) - (global.keyUpPressed[playerID]);
+
+// Horizontal movement
+if (xDir != 0)
+{
+    playSFX(sfxMenuMove);
+
+    currentItem += xDir;
+    
+    if (currentItem % rowLength == 0 &amp;&amp; xDir &gt; 0)
+    {
+        currentItem -= rowLength;
+    }
+    else if ((currentItem + 1) % rowLength == 0 &amp;&amp; xDir &lt; 0)
+    {
+        currentItem += rowLength;
+    }
+}
+
+// Vertical movement
+if (yDir != 0)
+{
+    playSFX(sfxMenuMove);
+    
+    currentItem += (yDir * rowLength);
+
+    if (currentItem &lt; 0)
+    {
+        currentItem += (rows * rowLength);
+    }
+    else if (currentItem &gt;= (rows * rowLength))
+    {
+        currentItem -= (rows * rowLength);
+    }
+    
+    nextRowDrawOffset = (floor(currentItem / rowLength) - (2 - (yDir &lt; 0)));
+    nextRowDrawOffset = max(nextRowDrawOffset, 0);
+    nextRowDrawOffset = min(nextRowDrawOffset, max(0, (rows - visibleRows)));
+    nextRowDrawOffset *= 32;
+    
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// draw offset update
+if (rowDrawOffset != nextRowDrawOffset)
+{
+    rowDrawOffset += 4 * sign(nextRowDrawOffset - rowDrawOffset);
+}
+
+if (currentItem &lt; array_length_1d(items))
+{
+    var item = items[currentItem];
+    
+    if (global.keyJumpPressed[playerID])
+    {
+        // Enable/disable upgrades
+        if (itemData(item, "DISABLE"))
+        {
+            var variable = itemData(item, "VAR");
+            
+            variable_global_set(variable, -variable_global_get(variable));
+            
+            playSFX(sfxClamp);
+            
+            if (string_count("parallel", itemData(item, "DESC")) &gt; 0)
+            {
+                mm_ds_map_destroy(global.weaponID);
+                weaponSetup();
+            }
+        }
+        
+        // Use item
+        if (itemData(item, "USE"))
+        {
+            var itemName = itemData(item, "NAME");
+            
+            var cancelWeapon = false;
+            
+            /*switch(itemName)
+            {
+                // This is normally where code would go for usable items, but...
+                // Well, all of them have been gutted from the engine files.
+                // Idk. Make a case statement. Add your own    
+            }*/
+            
+            if (cancelWeapon)
+            {
+                if (global.weapon[playerID] != oldWeapon)
+                {
+                    with (objMegaman)
+                    {
+                        playerHandleSprites("Normal");
+                        autoFireDelay = 0;
+                    }
+                        
+                    with (prtPlayerProjectile)
+                    {
+                        if (playerID == other.playerID)
+                        {
+                            instance_destroy();
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // assign to special key (for Map, Alter Weapons, Compass)
+    if (global.keyMapPressed[playerID])
+    {
+        playSound = 1;
+        
+        if (itemData(item, "ASSIGN"))
+        {
+            var variable = itemData(item, "VAR");
+            playSound = 0;
+            
+            if (global.mapKeyQuickItem != variable)
+            {
+                global.mapKeyQuickItem = variable;
+                playSFX(sfxConcretePlatformUp);
+            }
+            else
+            {
+                global.mapKeyQuickItem = "";
+                playSFX(sfxConcretePlatformDown);
+            }
+        }
+    }
+}
+
+// exit
+if (global.keyPausePressed[playerID])
+{
+    global.nextRoom = -1;
+    phase = 3;
+
+    playSFX(getGenericSFX(SFX_UNPAUSE));
+}
+
 </string>
           </argument>
         </arguments>
@@ -487,66 +580,205 @@ if (instance_exists(objMegaman))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hotBarArrangeMode = (global.keyShoot[playerID]) * (hotBarArrangeMode + 1);
+            <string>///WEAPON WHEEL EDITOR
+var equip   = (global.keyJump[playerID] || global.keySlide[playerID]);
+var unequip = global.keyShoot[playerID];
 
+var newDirection = -1;
+
+if (global.WheelEnabled)
+{
+    if (global.analogStickTilt[playerID, 1] &gt; 0.75)
+    {
+        newDirection = round(global.analogStickDirection[playerID, 1] / 45) mod 8;
+        
+        wheelBuffer = max(16, wheelBuffer);
+        
+        if (global.keyWheelSwitchPressed[playerID])
+        {
+            equip = 1;
+            wheelBuffer = max(48, wheelBuffer);
+        }
+    }
+    else if (global.keyWheelSwitchPressed[playerID])
+    {
+        wheelBuffer = max(60, wheelBuffer);
+    }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+if (newDirection != -1) //Direction selected
+{
+    wheelDirection = newDirection; // Update direction
+    
+    if (equip || unequip) //Reassign slot
+    {
+        var prevWpn = global.wheelSetWep[playerID, wheelDirection];
+        var newWpn = -1;
+        
+        if (!unequip) // Jump - Equip; Shoot- Unequip;
+        {
+            newWpn = global.weapon[playerID];
+        }
+        
+        if (newWpn != prevWpn)
+        {
+            global.wheelSetWep[playerID, wheelDirection] = newWpn;
+            
+            if (newWpn &gt;= 0)
+            {
+                playSFX(sfxWeaponWheelEquip);
+            }
+            else
+            {
+                playSFX(sfxWeaponWheelSelect);
+            }
+        }
+    }
+}
+
+if (wheelBuffer) // Make the buffer run out
+{
+    wheelBuffer --;
+    exit; //Prevent next event to be executed
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///REGULAR MENU
+
+var maximum = 28;
+
+hotBarArrangeMode ++;
+hotBarArrangeMode *= global.keyShoot[playerID]
+hotBarArrangeMode *= !tankUsed; // Not during W-Tank
+hotBarArrangeMode *= (option != 0); //Can rearrange the base weapon
+
+// X-direction
 var xDir = (global.keyRightPressed[playerID] - global.keyLeftPressed[playerID]);
 
-var yDir = ((global.keyDownPressed[playerID] || (global.keyDown[playerID] &amp;&amp; quickScrollTimer &lt;= 0))
-    - (global.keyUpPressed[playerID] || (global.keyUp[playerID] &amp;&amp; quickScrollTimer &lt;= 0)));
+// Y-direction
+var yDir = (global.keyDown[playerID] - global.keyUp[playerID]);
+
+var quickScrollTimerStart = 24;
+
+if (yDir == 0) //No direction is held
+{
+    quickScrollTimer = quickScrollTimerStart; // &lt;-- time until quick scroll here
+}
+else
+{
+    if (quickScrollTimer != quickScrollTimerStart) // Activate during first frame
+    {
+        var wpnOptions = (weaponCount - 1);
+        var newOption = (option + yDir);
+        
+        // Cancel out if on the ends
+        if (newOption != clamp(newOption, 0, wpnOptions))
+        {
+            yDir = 0;
+        }
+        
+        if (quickScrollTimer &gt; 0) // Cancel if timer isn't run out
+        {
+            yDir = 0;
+        }
+        else // Reset timer
+        {
+            quickScrollTimer = 6; // slight pause between scrolls
+        }
+    }
+
+    quickScrollTimer --;
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+var ioption = option;
 
 if (yDir != 0)
 {
-    playSFX(sfxMenuMove);
-    
-    if (option &lt; weaponVisibleN)
+    if (option &lt; weaponCount)
     {
-        woption = option;
-        
-        if (hotBarArrangeMode) // swap weapons:
+        while(true)
         {
-            if (option + yDir &lt; weaponVisibleN &amp;&amp; option + min(yDir, 0) &gt;= 1)
+            option += yDir;
+            
+            if (hotBarArrangeMode) //Keep within range
             {
-                option += yDir;
-                swap(global.weaponHotbar, weaponVisible[option], weaponVisible[option - yDir]);
+                if (option != clamp(option, 1, (weaponCount - 1)))
+                {
+                    option = ioption;
+                }
+            }
+            else //Cycle
+            {
+                option = modf(option, weaponCount);
+            }
+            
+            //Check if the current weapon isn't disabled or if it is the buster
+            if (!global.weaponLocked[weaponVisible[option]] || option == 0)
+            {
+                break;
             }
         }
-        else
+        
+        //Swap weapons
+        if (hotBarArrangeMode)
         {
-            do
+            if (option != ioption)
             {
-                option += yDir;
-                if (option &gt;= weaponVisibleN)
+                var swapIndex1 = indexOf(global.weaponHotbar, weaponVisible[option]);
+                var swapIndex2 = indexOf(global.weaponHotbar, weaponVisible[ioption]);
+                
+                if ((swapIndex1 != -1) &amp;&amp; (swapIndex2 != -1))
                 {
-                    option = 0;
-                }
-                else if (option &lt; 0)
-                {
-                    option = weaponVisibleN - 1;
+                    if (swapIndex1 != swapIndex2)
+                    {
+                        swap(global.weaponHotbar, swapIndex1, swapIndex2);
+                        event_user(14); //Refresh
+                    }
                 }
             }
-                until (!global.weaponLocked[global.weaponHotbar[weaponVisible[option]]])
         }
     }
     else
     {
-        option -= 3 * (1 - ((option &lt;= weaponVisibleN + 3) * 2));
+        option -= (3 * (1 - ((option &lt;= weaponCount + 3) * 2)));
     }
 }
 
-if (xDir != 0 &amp;&amp; phase != 6)
+if (xDir != 0)
 {
-    playSFX(sfxMenuMove);
-    
-    if (option &lt; weaponVisibleN) // horizontal movements while on the weapon list
+    if (option &lt; weaponCount) // horizontal movements while on the weapon list
     {
-        option = weaponVisibleN + 2 - xDir;
+        option = (weaponCount + 2) - xDir;
     }
     else // horizontal movements while on the misc selections
     {
-        if ((option == weaponVisibleN + 1 &amp;&amp; xDir &lt; 0) // loop back to weapon list
-        || (option == weaponVisibleN + 3 &amp;&amp; xDir &gt; 0)
-            || (option == weaponVisibleN + 4 &amp;&amp; xDir &lt; 0)
-            || (option == weaponVisibleN + 6 &amp;&amp; xDir &gt; 0))
+        if ((option == weaponCount + 1 &amp;&amp; xDir &lt; 0) // loop back to weapon list
+         || (option == weaponCount + 3 &amp;&amp; xDir &gt; 0)
+         || (option == weaponCount + 4 &amp;&amp; xDir &lt; 0)
+         || (option == weaponCount + 6 &amp;&amp; xDir &gt; 0))
         {
             option = 0;
         }
@@ -557,63 +789,342 @@ if (xDir != 0 &amp;&amp; phase != 6)
     }
 }
 
-// do quick scroll timer
-if ((global.keyDown[playerID] &amp;&amp; option &lt; weaponVisibleN - 1)
-    - (global.keyUp[playerID] &amp;&amp; option) != 0)
+// Option has changed
+if (option != ioption)
 {
-    if (quickScrollTimer &lt;= 0) // slight pause between scrolls
-    {
-        quickScrollTimer = 6; // &lt;-- time until quick scroll here
-    }
-    
-    quickScrollTimer--;
-}
-else
-{
-    quickScrollTimer = 24; // &lt;-- time until quick scroll here
+    playSFX(sfxMenuMove);
+    confirm = 0;
 }
 
-// L + R resets weapon order
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// it only checks for one pressed because if it checked both you'd have to press both
-// buttons on the same frame, but if you could just hold the two buttons you would get
-// a very loud screeching noise every time you reset + it'd be easier to accidentally
-// sort
-if ((global.keyWeaponSwitchLeft[playerID] &amp;&amp; global.keyWeaponSwitchRightPressed[playerID])
-    || (global.keyWeaponSwitchLeftPressed[playerID] &amp;&amp; global.keyWeaponSwitchRight[playerID]))
+// Resets weapon order (currently commented out due to the controls overlapping with the page-switching)
+// Check if either have been pressed
+/*if (global.keyWeaponSwitchRightPressed[playerID] || global.keyWeaponSwitchLeftPressed[playerID])
 {
-    for (var i = 0; i &lt;= global.totalWeapons; i++)
+    //But both must be held
+    if (global.keyWeaponSwitchRight[playerID] &amp;&amp; global.keyWeaponSwitchLeft[playerID])
     {
-        if global.weaponHotbar[i] != i
+        for (var i = 0; i &lt;= global.totalWeapons; i ++;)
         {
-            global.weaponHotbar[i] = i;
+            if (global.weaponHotbar[i] != i)
+            {
+                global.weaponHotbar[i] = i;
+                playSFX(sfxMenuSelect);
+            }
+        }
+    
+        event_user(14);
+        
+        option = 0;
+    }
+}*/
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// Select the weapon/tank
+if (global.keyJumpPressed[playerID] || global.keyPausePressed[playerID]) &amp;&amp; (global.nextRoom == 0)
+{
+    var infiniteTanks = infiniteTanksEnabled();
+        
+    // The weapons
+    if ((option &gt;= 0) &amp;&amp; (option &lt; weaponCount))
+    {
+        var weapon = weaponVisible[option];
+        var canSelect = 1;
+        
+        if (tankUsed == 2) //Use W-Tank
+        {
+            //Can't recharge the health bar :)
+            if (option == 0)
+            {
+                canSelect = 0;
+            }
+            
+            //Is weapon already full?
+            if (global.ammo[playerID, weapon] &gt;= maximum)
+            {
+                canSelect = 0;
+            }
+            
+            if (canSelect)
+            {
+                phase = 4;
+                
+                with (objGlobalControl)
+                {
+                    increaseHealth = 0;
+                    increaseAmmo   = maximum;
+                    increaseWeapon = weapon;
+                    increasePID    = other.playerID;
+                }
+
+                if (!infiniteTanks)
+                {
+                    global.wTanks     = max((global.wTanks - 1), 0);
+                }
+                
+            }
+        }
+        else
+        {
+            // Check when using vehicles
+            if (option != 0)
+            {
+                with (objMegaman)
+                {
+                    if (playerID == other.playerID)
+                    {
+                        if (instance_exists(vehicle))
+                        {
+                            if (!vehicle.weaponsAllowed)
+                            {
+                                canSelect = 0;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (global.lockBuster)
+                    canSelect = 0;
+            }
+    
+            if (canSelect)
+            {
+                global.nextRoom = -1;
+                phase = 3;
+                
+                playSFX(getGenericSFX(SFX_UNPAUSE));
+            }
+        }
+        
+        if (!canSelect)
+        {
+            playSFX(sfxError);
+        }
+    }
+                
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    var optionReduced = (option - (weaponCount + 1));
+    
+    
+    // Everything past the weapons
+    switch (optionReduced)
+    {
+    
+    // Tanks
+    case 0: // E-Tank
+    case 1: // W-Tank
+    case 2: // M-Tank
+        
+        var myTanks
+        = ((global.eTanks) * (optionReduced == 0))
+        + ((global.wTanks) * (optionReduced == 1))
+        + ((global.mTanks) * (optionReduced == 2));
+        
+        if (myTanks) or (infiniteTanks)
+        {
+            //Check if we can use a tank
+            var canUseTank = 0;
+            
+            //Health
+            if ((optionReduced == 0) || (optionReduced == 2)) //E- &amp; M-Tank
+            {
+                if (global.playerHealth[playerID] &lt; maximum)
+                {
+                    canUseTank = 1;
+                }
+            }
+            
+            //Ammo
+            if ((optionReduced == 1) || (optionReduced == 2)) //W- &amp; M-Tank
+            {
+                for (var i = 1; i &lt; weaponCount; i ++;)
+                {
+                    var weapon = weaponVisible[i];
+                    
+                    if (!global.weaponLocked[weapon] &amp;&amp; !(weapon == 0 &amp;&amp; global.lockBuster))
+                    {
+                        if (ceil(global.ammo[playerID, weapon]) &lt; maximum)
+                        {
+                            canUseTank = 1;
+                        }
+                    }
+                }
+            }
+            
+            if (canUseTank) //Effect
+            {
+                tankUsed = (optionReduced + 1);
+                
+                switch (optionReduced)
+                {
+                    case 0: //E-Tank
+                        
+                        option = 0;
+                        optionReturn = -1;
+                        phase = 4;
+                        
+                        with (objGlobalControl)
+                        {
+                            increaseHealth = maximum;
+                            increaseAmmo   = 0;
+                            increaseWeapon = 0;
+                            increasePID    = other.playerID;
+                        }
+                        
+                        if (!infiniteTanks)
+                        {
+                            global.eTanks     = max((global.eTanks - 1), 0);
+                        }
+                        break;
+                        
+                    // - - - - - - - - - - - - - - - - - - - - - - - -
+                        
+                    case 1: //W-Tank
+                        
+                        option = 0; // Go back to weapon column so we can select a weapon to fill
+                        optionReturn = -1;
+                        
+                        playSFX(sfxMenuSelect);
+                        
+                        break;
+                    
+                    // - - - - - - - - - - - - - - - - - - - - - - - -
+                        
+                    case 2: //M-Tank
+                        
+                        optionReturn = option;
+                        option = -1;
+                        phase = 4;
+                        
+                        with (objGlobalControl)
+                        {
+                            increaseHealth = maximum;
+                            increaseAmmo   = maximum;
+                            increaseWeapon = -1;
+                            increasePID    = other.playerID;
+                        }
+                        
+                        if (!infiniteTanks)
+                        {
+                            global.mTanks     = max((global.mTanks - 1), 0);
+                        }
+                        break;
+                        
+                }
+            }
+            else
+            {
+                playSFX(sfxError);
+            }
+        }
+    
+        break;
+                        
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                      
+    case 3: // Options
+    
+        with (instance_create(x, y, objOptionsMenu))
+        {
+            playerID = other.playerID;
+        }
+        playSFX(sfxMenuSelect);
+        
+        break;
+                        
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                      
+    case 4: // Retry
+    
+        
+        if (confirm)
+        {
+            global.nextRoom = global.checkpoint;
+            global.endMusicOnRoomEnd = 1;
+            global.levelSong = "";
+            global.levelTrackNumber = 0;
+        }
+        else
+        {
+            confirm = 1;
+        }
+        
+        playSFX(sfxMenuSelect);
+        
+        break;
+                        
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                        
+    case 5: // Exit
+        
+        if (confirm)
+        {
+            if (global.stageIsHub)
+            {
+                resetReturnLayers();
+            }
+            
+            returnFromLevel(true, true);
             playSFX(sfxMenuSelect);
         }
-    }
-    
-    weaponVisibleN = 0;
-    for (var i = 0; i &lt;= global.totalWeapons; i++)
-    {
-        if (global.weaponLocked[global.weaponHotbar[i]] &lt; 2)
+        else
         {
-            weaponVisible[weaponVisibleN++] = i;
+            if (global.lockExitButton)
+            {
+                playSFX(sfxError);
+            }
+            else
+            {
+                confirm = 1;
+                playSFX(sfxMenuSelect);
+            }
         }
+            
+        break;
+                        
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            
     }
-    visibleWeapons = min(10, weaponVisibleN); // up to 10 visible
-    oldOption = 0;
 }
 
 // Set weapon
-global.weapon[playerID] = 0;
-if (option &lt; weaponVisibleN)
+if (option &gt;= 0)
 {
-    global.weapon[playerID] = global.weaponHotbar[weaponVisible[option]];
+    if (option &lt; weaponCount)
+    {
+        global.weapon[playerID] = weaponVisible[option];
+        
+        // Which weapon to focus
+        weaponOffset = (option - floor(visibleWeapons * 0.5));
+        
+        var maxFocus = (weaponCount - visibleWeapons - 1);
+        
+        weaponOffset = clamp(weaponOffset, 0, maxFocus);
+    }
+    else
+    {
+        tankUsed = 0;
+        
+        global.weapon[playerID] = 0;
+    }
 }
 
-with (objMegaman)
+// Snap focus in position if close enough - Or if out of bounds
+if ((abs(weaponOffset - offsetTimer) &lt; 0.05) || (offsetTimer &lt; 0))
 {
-    playerPalette();
+    offsetTimer = weaponOffset;
 }
+else
+{
+    //Slowly move into place
+    offsetTimer += ((weaponOffset - offsetTimer) / 8);
+}
+
 </string>
           </argument>
         </arguments>
@@ -636,214 +1147,811 @@ with (objMegaman)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// center in screen on nonstandard resolutions
-x = view_xview + (view_wview[0] - 256) / 2;
-y = view_yview + (view_hview[0] - 224) / 2;
+            <string>///SETUP
 
-// Menu
-if (phase != 0)
+// center in screen on nonstandard resolutions
+x = view_xview + ((view_wview[0] - 256) / 2) - pageDrawOffset;
+y = view_yview + ((view_hview[0] - 224) / 2);
+
+if (phase == 0)
 {
-    draw_set_halign(fa_left);
-    draw_set_valign(fa_top);
+    exit;
+}
+
+// Draw itself
+drawSelf();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///REGULAR MENU
+
+if (pageDrawOffset != 256)
+{
+
     draw_set_color(c_white);
-    draw_clear(c_black);
     
     var col;
-    col[0, 0] = global.nesPalette[0];
-    col[1, 0] = global.nesPalette[13];
-    col[0, 1] = global.primaryCol[0];
-    col[1, 1] = global.secondaryCol[0];
+    col[0, 0] = global.nesPalette[$0];
+    col[1, 0] = global.nesPalette[$10];
+    col[2, 0] = c_white;
+    
+    col[0, 1] = global.primaryCol[playerID];
+    col[1, 1] = global.secondaryCol[playerID];
+    col[2, 1] = c_white;
+    
     col[0, 2] = make_color_rgb(255, 228, 164);
     col[1, 2] = c_white;
+    col[2, 2] = c_white;
     
-    if (option &lt; weaponVisibleN)
+    if (alterFlashEffect) // FLASH
     {
-        weaponOffset = clamp(option - floor(visibleWeapons * 0.5), 0, weaponVisibleN - visibleWeapons - 1);
+        alterFlashEffect --;
+        
+        col[0, 0] = col[1, 0];
+        col[1, 0] = c_white;
+        
+        col[0, 1] = col[1, 1];
+        col[1, 1] = c_white;
     }
     
-    if (abs(weaponOffset - offsetTimer) &lt; 0.05 || offsetTimer &lt; 0)
-    {
-        offsetTimer = weaponOffset;
-    }
-    offsetTimer += (weaponOffset - offsetTimer) / 8;
     
-    // these actually go 'under' the pause menu, so they go before drawSelf.
     
-    // Options
-    draw_sprite_ext(sprGotoOptions, (option == weaponVisibleN + 4), x + optionsPositionX, y + optionsPositionY, 1, 1, 0, c_white, 1);
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-    // Checkpoint
-    draw_sprite_ext(sprGotoCheckpoint, (option == weaponVisibleN + 5) + retryConfirm * 2, x + checkPositionX, y + checkPositionY, 1, 1, 0, c_white, 1);
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-    // Exit
-    draw_sprite_ext(sprExit, (option == weaponVisibleN + 6) + exitConfirm * 2, x + exitPositionX, y + exitPositionY, 1, 1, 0, c_white, 1);
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-    // NOW draw itself
-    drawSelf();
     
-    // Icons, ammo bars and names
+    
+    // WEAPON ICONS/BARS - WEAPON-WHEEL
+    
     var wSep = 18; // Seperation between icons
-    var yOff = -round((offsetTimer mod 1) * wSep);
     
-    var surface = surface_create(112, (visibleWeapons + 1) * wSep);
+    var surfw = 112;
+    var surfh = 198;
+    var surface = mm_surface_create(surfw, surfh);
+    
     surface_set_target(surface);
     draw_clear_alpha(c_white, 0);
     
     draw_set_halign(fa_left);
-    for (i = max(0, floor(offsetTimer)); i &lt;= min(ceil(offsetTimer) + visibleWeapons, weaponVisibleN - 1); i++)
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    // WEAPON-WHEEL
+    if (wheelBuffer &gt; 0) // Draw weapon wheel editor
     {
-        var w = global.weaponHotbar[weaponVisible[i]];
-        var cl = (option == i);
+        var xCenter =  (surfw / 2);
+        var yCenter = ((surfh / 2) - 16);
         
-        // Icon
-        draw_sprite_ext(global.weaponIcon[w], 0, 0, yOff, 1, 1, 0, col[!cl, 2], 1);
-        draw_sprite_ext(global.weaponIcon[w], 1, 0, yOff, 1, 1, 0, col[0, cl], 1);
-        draw_sprite_ext(global.weaponIcon[w], 2, 0, yOff, 1, 1, 0, col[1, cl], 1);
-        draw_sprite_ext(global.weaponIcon[w], 3, 0, yOff, 1, 1, 0, col[1, 2], cl);
+        draw_set_halign(fa_center);
+        draw_text(xCenter, (yCenter - 72), "- WHEEL   #   EDITOR -");
+        draw_set_halign(fa_left);
         
-        if (!global.weaponLocked[w])
+        draw_set_color(make_color_rgb(0, 64, 88));
+        draw_circle((xCenter - 1), (yCenter - 1), 39, 0);
+        
+        draw_set_color(c_black);
+        draw_circle((xCenter - 1), (yCenter - 1), 39 / (pi / 2), 0);
+        
+        var dir = global.analogStickDirection[playerID, 1];
+        var dis = global.analogStickTilt[playerID, 1] * 12;
+        
+        draw_set_color(make_color_rgb(0, 136, 136));
+        
+        var cx = (xCenter - 1) + lengthdir_x(dis, dir);
+        var cy = (yCenter - 1) + lengthdir_y(dis, dir);
+        
+        draw_circle(cx, cy, 12, 0);
+        
+        draw_set_color(c_white);
+        
+        drawWeaponIcon(global.weapon[playerID], playerID, global.costumeID[? global.costumeSelected[playerID]], (xCenter - 8), (yCenter - 8), 1);
+        
+        drawWeaponWheel(playerID, xCenter, yCenter, wheelDirection);
+        
+        //Button prompts
+        var xx = 8;
+        var yy = yCenter + 64;
+        
+        //Assign
+        var buttons = makeArray("jump", "slide", "wheel2", "shoot");
+        
+        var buttonCount = array_length_1d(buttons);
+        
+        for (var i = 0; i &lt; buttonCount; i ++;)
         {
-            // Drawing ammo bars
-            ammo = ceil(global.playerHealth[playerID] * (i == 0) + global.ammo[playerID, w] * (i != 0));
-            
-            draw_sprite_ext(sprPauseMenuBarPrimary, ammo, 18, yOff + 8, 1, 1, 0, col[0, cl * (1 + (i == 0))], 1);
-            draw_sprite_ext(sprPauseMenuBarSecondary, ammo, 18, yOff + 8, 1, 1, 0, col[1, cl * (1 + (i == 0))], 1);
-            
-            // Draw infinite energy mark over relevant bars
-            if (global.infiniteEnergy[w])
+            if (i &lt; 2)
             {
-                draw_sprite_ext(sprInfinityMark, 0, 18 + 28, yOff + 8, 1, 1, 0, c_white, 1);
-                draw_sprite_ext(sprInfinityMark, 1, 18 + 28, yOff + 8, 1, 1, 0, col[0, cl], 1);
-                draw_sprite_ext(sprInfinityMark, 2, 18 + 28, yOff + 8, 1, 1, 0, col[1, cl], 1);
+                draw_text((xx + 10), yy, ",");
             }
             
-            // Name
-            draw_set_color(col[!cl, (cl * 2) - (cl * !(hotBarArrangeMode mod 8 &lt; 4))]);
+            drawButtonPrompt(buttons[i], xx, yy,false, playerID);
             
-            wname = global.weaponName[w];
-            dot = string_pos(" ", wname);
-            if (dot)
+            xx += 16;
+            
+            if (i == 2)
             {
-                wname = string_insert(".", string_delete(wname, 2, dot - 1), 2);
+                draw_text(xx, yy, "Assign");
+                
+                xx = 8;
+                yy += 16;
             }
-            
-            draw_text(18, yOff, wname);
-            draw_set_color(c_white);
-        }
-        else // draw the disabled stuff
-        {
-            draw_sprite_ext(sprPauseMenuWeaponDisabled, 0, 18, yOff, 1, 1, 0, c_white, 1);
+            else if (i == 3)
+            {
+                draw_text(xx, yy, "Unassign");
+            }
         }
         
-        yOff += wSep;
+        arrowTimer = 0;
     }
     
-    surface_reset_target();
-    draw_surface(surface, x + 22, y + 14);
-    surface_free(surface);
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-    arrowTimer++;
+    // WEAPONS
+    else
+    {
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_top);
+        
+        var yOff = -round((offsetTimer mod 1) * wSep) + 1;
+        var weaponStart = max(floor(offsetTimer), 0);
+        var weaponEnd   = min(ceil(offsetTimer + visibleWeapons), (weaponCount - 1));
+        
+        for (var i = weaponStart; i &lt;= weaponEnd; i ++;)
+        {
+            var xx = 2;
+            var yy = yOff;
+            
+            var w = weaponVisible[i];
+            var current = (option == i);
+            
+            // Icon
+            drawWeaponIcon(w, playerID, global.costumeID[? global.costumeSelected[playerID]], xx, yy, current, 1, 0);
+            
+            if (current)
+            {
+                buttonx = (xx - 10);
+                buttony = yy;
+            }
+            
+            xx += 20;
+            
+            if (!global.weaponLocked[w] &amp;&amp; !(w == 0 &amp;&amp; global.lockBuster))
+            {
+                // Name
+                draw_set_color(col[!current, (current * 2) - (current * !(hotBarArrangeMode mod 8 &lt; 4))]);
+    
+                wname = global.weaponName[w];
+                
+                dot = string_pos(" ", wname);
+                if (dot)
+                {
+                    wname = string_insert(".", string_delete(wname, 2, dot - 1), 2);
+                }
+                var wType = 0;
+                switch (wname)
+                {
+                    case "R.BIKE":wType++;
+                    case "R.JET":wType++;
+                    case "R.COIL":wType++;
+                    case "M.BUSTER":
+                    
+                    /*if (global.customCostumeEquipped[playerID] &amp;&amp; global.customCostumeTextLengths[playerID,wType+2] &gt; 0)
+                    {
+                        customCostume_DrawText(xx, yy, wType+2,false,fa_left,fa_top,playerID);
+                    }
+                    else
+                    {*/
+                        draw_text(xx, yy, wname);
+                    //}
+                    
+                    break;
+                    default:
+                        draw_text(xx, yy, wname);
+                    break;
+                    
+                }
+                
+                
+                draw_set_color(c_white);
+                
+                // Drawing ammo bars
+                if (i == 0) //Health
+                {
+                    var ammo = global.playerHealth[playerID];
+                    var colSlot = 2;
+                }
+                else //Ammo
+                {
+                    var ammo = global.ammo[playerID, w];
+                    var colSlot = 1;
+                }
+                
+                ammo = ceil(ammo);
+                colSlot *= current;
+                
+                yy += 8;
+                
+                // Draw the actual bar
+                for (var ii = 1; ii &lt;= 28; ii ++;)
+                {
+                    var xxx = xx + (2 * (ii - 1));
+                    
+                    draw_set_colour(col[0, colSlot]);
+                    
+                    if (ammo &gt;= ii)
+                    {
+                        draw_rectangle(xxx, (yy + 1), xxx, (yy + 6), 0);
+                        
+                        draw_set_colour(col[1, colSlot]);
+                    }
+                    
+                    draw_rectangle(xxx, (yy + 3), xxx, (yy + 4), 0);
+                }
+    
+                // Draw infinite energy mark over relevant bars
+                if (global.infiniteEnergy[w])
+                {
+                    shaderSetColorreplace(make_color_rgb(32, 32, 32), col[0, colSlot],
+                                          make_color_rgb(64, 64, 64), col[1, colSlot]);
+                    
+                    draw_sprite_ext(sprInfinityMark, 0, xx, yy, 1, 1, 0, c_white, 1);
+                    
+                    shader_reset();
+                }
+            }
+            else // Draw disabled
+            {
+                draw_sprite_ext(sprPauseMenuWeaponDisabled, 0, xx, yy, 1, 1, 0, c_white, 1);
+            }
+    
+            yOff += wSep;
+        }
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    var xx = (x + 22);
+    var yy = (y + 14);
+    
+    surface_reset_target();
+    draw_surface(surface, xx, yy);
+    mm_surface_free(surface);
+    
+    draw_set_color(c_white);
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    arrowTimer ++;
     
     draw_set_halign(fa_center);
     
-    // draw arrows
-    if (weaponOffset &gt; 0)
+    // Draw Arrows
+    if ((arrowTimer mod 40) &gt;= 20)
     {
-        draw_sprite_ext(sprArrow, 2, x + 74, y + 8, 1, 1, 0, c_white, arrowTimer mod 40 &lt; 20); // Up
-    }
-    else
-    {
-        draw_text(x + 78, y + 4, "- WEAPONS -");
+        var arrowUp     = (weaponOffset &gt; 0);
+        var arrowDown   = (weaponOffset &lt; (weaponCount - visibleWeapons - 1));
+        
+        var xx = (x + 78)
+        var yy = (y + 215);
+        
+        // Up
+        if (arrowUp)
+        {
+            draw_sprite(sprArrow, 2, xx - (6 * arrowDown), yy); 
+        }
+        
+        // Down
+        if (arrowDown)
+        {
+            draw_sprite(sprArrow, 3, xx + (6 * arrowUp), yy); 
+        }
     }
     
-    if (weaponOffset &lt; weaponVisibleN - visibleWeapons - 1)
+    
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    
+    
+    draw_set_halign(fa_middle);
+    draw_set_valign(fa_top);
+    
+    var optionReduced = (option - (weaponCount + 1));
+    
+    //Align the items along the bottom-center
+    
+    var tankFlash = (((arrowTimer / 12) mod 1) &lt; 0.5);
+    
+    var item    = 0;
+    var itemx   = 0;
+    var itemy   = 1;
+    var itemSpr = 2;
+    var itemImg = 3;
+    var itemPri = 4;
+    var itemSec = 5;
+    var itemCol = 6;
+    var itemStr = 7;
+    
+    var infiniteTanks = infiniteTanksEnabled();
+    var infiniteTanksText = "INF";
+    
+    //E-Tank
+    drawItem[item, 0] = 160;
+    drawItem[item, 1] = 32;
+    drawItem[item, 2] = sprETank;
+    drawItem[item, 3] = 0;
+    drawItem[item, 4] = make_colour_rgb(0, 236, 220);
+    drawItem[item, 5] = make_colour_rgb(0, 120, 255);
+    drawItem[item, 6] = (optionReduced == 0) || ((tankUsed == 1) * tankFlash);
+    drawItem[item, 7] = ternary(infiniteTanks,infiniteTanksText,zeroPad(clamp((global.eTanks), 0, global.maxETanks), 2));
+    item ++;
+    
+    //W-Tank
+    drawItem[item, 0] = drawItem[(item - 1), 0] + 30;
+    drawItem[item, 1] = drawItem[(item - 1), 1];
+    drawItem[item, 2] = sprWTank;
+    drawItem[item, 3] = 0;
+    drawItem[item, 4] = make_colour_rgb(0, 236, 220);
+    drawItem[item, 5] = make_colour_rgb(0, 120, 255);
+    drawItem[item, 6] = (optionReduced == 1) || ((tankUsed == 2) * tankFlash);
+    drawItem[item, 7] = ternary(infiniteTanks,infiniteTanksText,zeroPad(clamp((global.wTanks), 0, global.maxWTanks), 2));
+    
+    item ++;
+    
+    //M-Tank
+    drawItem[item, 0] = drawItem[(item - 1), 0] + 30;
+    drawItem[item, 1] = drawItem[(item - 1), 1];
+    drawItem[item, 2] = sprMTank;
+    drawItem[item, 3] = 0;
+    drawItem[item, 4] = make_colour_rgb(0, 236, 220);
+    drawItem[item, 5] = make_colour_rgb(0, 120, 255);
+    drawItem[item, 6] = (optionReduced == 2) || ((tankUsed == 3) * tankFlash);
+    drawItem[item, 7] = ternary(infiniteTanks,infiniteTanksText,zeroPad(clamp((global.mTanks), 0, global.maxMTanks), 2));
+    
+    item ++;
+    
+    //Option
+    drawItem[item, 0] = 148;
+    drawItem[item, 1] = 224;
+    drawItem[item, 2] = sprGotoOptions;
+    drawItem[item, 3] = (option == (weaponCount + 4));
+    drawItem[item, 4] = -1;
+    drawItem[item, 5] = -1;
+    drawItem[item, 6] = 0;
+    drawItem[item, 7] = "";
+    
+    item ++;
+    
+    //Retry
+    var img = (option == weaponCount + 5);
+    
+    drawItem[item, 0] = 182;
+    drawItem[item, 1] = drawItem[(item - 1), 1];
+    drawItem[item, 2] = sprGotoCheckpoint;
+    drawItem[item, 3] = (img + (img * confirm));
+    drawItem[item, 4] = -1;
+    drawItem[item, 5] = -1;
+    drawItem[item, 6] = 0;
+    drawItem[item, 7] = "";
+    
+    item ++;
+    
+    //Exit
+    var img = (option == weaponCount + 6);
+    
+    drawItem[item, 0] = 223;
+    drawItem[item, 1] = drawItem[(item - 1), 1];
+    drawItem[item, 2] = sprExit;
+    drawItem[item, 3] = (img + (img * confirm));
+    drawItem[item, 4] = -1;
+    drawItem[item, 5] = -1;
+    drawItem[item, 6] = 0;
+    drawItem[item, 7] = "";
+    
+    item ++;
+    
+    //Element
+    drawItem[item, 0] = 156;
+    drawItem[item, 1] = 108;
+    drawItem[item, 2] = sprEnergyElement;
+    drawItem[item, 3] = 0;
+    drawItem[item, 4] = -1;
+    drawItem[item, 5] = -1;
+    drawItem[item, 6] = 0;
+    drawItem[item, 7] = zeroPad(global.energyElements, 3);
+    
+    item ++;
+    
+    //Lives
+    drawItem[item, 0] = 184;
+    drawItem[item, 1] = drawItem[(item - 1), 1];
+    drawItem[item, 2] = sprLife;
+    drawItem[item, 3] = 0;
+    drawItem[item, 4] = -1;
+    drawItem[item, 5] = -1;
+    drawItem[item, 6] = 0;
+    drawItem[item, 7] = zeroPad(global.livesRemaining, 2);
+    
+    item ++;
+    
+    //Bolts
+    drawItem[item, 0] = 216;
+    drawItem[item, 1] = drawItem[(item - 1), 1];
+    drawItem[item, 2] = sprBoltBig;
+    drawItem[item, 3] = 0;
+    drawItem[item, 4] = make_colour_rgb(56, 184, 248);
+    drawItem[item, 5] = make_colour_rgb(0, 112, 236);
+    drawItem[item, 6] = 1;
+    drawItem[item, 7] = zeroPad(min(9999, global.bolts), 4);
+    
+    item ++;
+    
+    
+    
+    // - - - - - - -
+    
+    draw_set_font(global.font2);
+    
+    for (var i = 0; i &lt; item; i ++;)
     {
-        draw_sprite_ext(sprArrow, 3, x + 74, y + 215, 1, 1, 0, c_white, arrowTimer mod 40 &lt; 20); // Down
-    }
-    else
-    {
-        draw_text(x + 78, y + 212, "- WEAPONS -");
+        var sspr = drawItem[i, 2];
+        var simg = drawItem[i, 3];
+        
+        var xx = (x + drawItem[i, 0]);
+        var sx = (xx + sprite_get_xoffset(sspr));
+            sx -= (sprite_get_width(sspr) / 2);
+            
+        var yy = (y + drawItem[i, 1]);
+        var sy = (yy + sprite_get_yoffset(sspr));
+            sy -= sprite_get_height(sspr);
+            
+        var val  = drawItem[i, 7];
+    
+        if (drawItem[i, 4] != -1) //Recolor
+        {
+            var colSlot = drawItem[i, 6];
+            
+            shaderSetColorreplace(drawItem[i, 5], col[0, colSlot], drawItem[i, 4], col[1, colSlot]);
+        }
+        
+        if (sspr == sprLife) // costume override
+            drawPlayer(playerID, costumeID, 16, 13, sx + 8, sy - 1, 1, 1);
+        else
+            draw_sprite(sspr, simg, sx, sy);
+    
+        shader_reset();
+        
+        if (val != "")
+        {
+            draw_text((xx - 1), (yy + 1), val);
+        }
     }
     
-    // mega man
+    draw_set_font(global.font);
+    
+    //Draw button prompt
+    if (optionReduced = clamp(optionReduced, 0, 5))
+    {
+        var sspr = drawItem[optionReduced, 2];
+        
+        var xx = (x + drawItem[optionReduced, 0]) - 1;
+            xx -= (3 + (sprite_get_width(sspr) / 2));
+            
+        var yy = (y + drawItem[optionReduced, 1]) - 1;
+            yy -= (3 + (sprite_get_height(sspr)));
+        
+        drawButtonPrompt("jump", xx, yy,false, playerID);
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    // Mega Man
     with (objMegaman)
     {
         if (playerID == other.playerID)
         {
-            drawPlayer(playerID, costumeID, 0, 0, other.x + 172, other.y + 62, -1, 1);
+            var xx = other.x + 210
+            var yy = other.y + 71
+            
+            // sprite
+            drawPlayer(playerID, costumeID, 0, 0, xx, yy, -1, 1);
+    
+            // mugshot
+            //drawPlayer(playerID, costumeID, 17, 12, (xx - 44), (yy - 3), 1, 1);
+            drawPlayerMugshot(playerID,costumeID,(xx - 44),(yy - 3));
         }
     }
     
-    // health
-    draw_sprite_ext(sprPauseMenuBarPrimary, global.playerHealth[playerID], x + 144, y + 81, 1, 1, 0, col[0, 2], 1);
-    draw_sprite_ext(sprPauseMenuBarSecondary, global.playerHealth[playerID], x + 144, y + 81, 1, 1, 0, col[1, 2], 1);
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-    // E-Tank
-    draw_sprite_ext(sprETank, 2, x + etankPositionX, y + etankPositionY, 1, 1, 0, col[0, option == weaponVisibleN + 1], 1);
-    draw_sprite_ext(sprETank, 4, x + etankPositionX, y + etankPositionY, 1, 1, 0, col[1, option == weaponVisibleN + 1], 1);
-    
-    draw_text(x + etankPositionX + 8, y + etankPositionY + 18, zeroPad(global.eTanks, 2));
-    
-    // W-Tank
-    draw_sprite_ext(sprWTank, 2, x + wtankPositionX, y + wtankPositionY, 1, 1, 0, col[0, option == weaponVisibleN + 2], 1);
-    draw_sprite_ext(sprWTank, 4, x + wtankPositionX, y + wtankPositionY, 1, 1, 0, col[1, option == weaponVisibleN + 2], 1);
-    
-    draw_text(x + wtankPositionX + 8, y + wtankPositionY + 18, zeroPad(global.wTanks, 2));
-    
-    // M-Tank
-    draw_sprite_ext(sprMTank, 2, x + mtankPositionX, y + mtankPositionY, 1, 1, 0, col[0, option == weaponVisibleN + 3], 1);
-    draw_sprite_ext(sprMTank, 4, x + mtankPositionX, y + mtankPositionY, 1, 1, 0, col[1, option == weaponVisibleN + 3], 1);
-    
-    draw_text(x + mtankPositionX + 8, y + mtankPositionY + 18, zeroPad(global.mTanks, 2));
-    
-    // Bolts
-    draw_sprite_ext(sprBoltBig, 0, x + 210, y + 54, 1, 1, 0, c_white, 1);
-    draw_sprite_ext(sprBoltBig, 1, x + 210, y + 54, 1, 1, 0, col[0, 1], 1);
-    draw_sprite_ext(sprBoltBig, 2, x + 210, y + 54, 1, 1, 0, col[1, 1], 1);
-    
-    draw_text(x + 210 + 8, y + 54 + 18, zeroPad(global.bolts, 4));
-    
-    // Energy Elements
-    draw_sprite_ext(sprEnergyElement, 0, x + 148, y + 92, 1, 1, 0, c_white, 1);
-    
-    draw_text(x + 148 + 8, y + 92 + 18, zeroPad(global.energyElements, 3));
-    
-    // Side Collectible
-    draw_sprite_ext(sprKey, 0, x + 178, y + 92, 1, 1, 0, c_white, 1);
-    
-    draw_text(x + 178 + 8, y + 92 + 18, zeroPad(0, 3));
-
-    with (objMegaman)
-    {
-        if (playerID == other.playerID)
-        {
-            drawPlayer(playerID, costumeID, 16, 12, other.x + 216, other.y + 92, 1, 1);
-        }
-    }
-    
-    // lives remaining
-    var livesText = zeroPad(global.livesRemaining, 2);
-    if (!global.livesEnabled)
-    {
-        livesText = "--";
-    }
-    
-    draw_text(x + 216, y + 92 + 18, livesText);
-    
-    // energy saver
-    if (global.energySaver)
-    {
-        draw_sprite(sprEnergySaver, 0, x + 180, y + 160);
-    }
-    
-    // colored text overlays
+    // Colored text overlays
     if (global.showColoredTextOverlays)
     {
-        draw_sprite_ext(sprDot, 0, view_xview[0] + 16, view_yview[0], view_wview[0] - 32, view_hview[0], 0,
-            make_color_rgb(global.coloredTextOverlaysRed, global.coloredTextOverlaysGreen, global.coloredTextOverlaysBlue),
-            global.coloredTextOverlaysOpacity / 255);
+        var myColor = make_color_rgb(global.coloredTextOverlaysRed, global.coloredTextOverlaysGreen, global.coloredTextOverlaysBlue);
+        
+        draw_sprite_ext(sprDot, 0, (x + 16), y, view_wview[0] - 32, view_hview[0], 0, myColor, (global.coloredTextOverlaysOpacity / 255));
     }
 }
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+//Switch page prompt
+var dir; 
+var prompt = makeArray("switchleft", "switchright");
+
+for (ii = 0; ii &lt;= 1; ii ++;)
+{
+    var xx = x + 256;
+    var yy = (y + 193);
+    
+    dir = (ii - !ii);
+    
+    if (dir &gt; 0)
+    {
+        xx -= 20;
+    }
+    else
+    {
+        xx += 12;
+    }
+    
+    if (((arrowTimer / 96) mod 1) &lt; 0.5)
+    {
+        xx += dir;
+    }
+    
+    var surfw = 16;
+    var surfh = 26;
+    
+    var surf = mm_surface_create(surfw, surfh);
+    
+    surface_set_target(surf);
+    draw_clear_alpha(c_white, 0);
+    
+    // - - - - - -
+    
+    draw_set_color(c_black);
+    draw_rectangle(1, 1, surfw - 2, surfh - 2, 0);
+    
+    draw_set_blend_mode(bm_subtract);
+    draw_point(1, 1);
+    draw_point(surfw - 2, 1);
+    draw_point(1, surfh - 2);
+    draw_point(surfw - 2, surfh - 2);
+    
+    draw_set_blend_mode(bm_normal);
+    draw_set_color(c_white);
+    
+    var midx = (surfw / 2);
+    var midy = (surfw / 2);
+    
+    drawButtonPrompt(prompt[ii], (midx - 4), (midy - 4),false, playerID);
+    
+    draw_sprite_ext(sprUIArrow, 0, midx, (midy + 11), 1, 1, (180 * (dir &lt; 0)), c_white, 1);
+    
+    // - - - - - -
+    
+    surface_reset_target();
+    
+    var shader = shAddPartialOutline;
+    shader_set_safe(shader);
+    
+    var col = c_white;
+    shader_set_uniform_f(shader_get_uniform(shader,"u_color"), colour_get_red(col), colour_get_green(col), colour_get_blue(col));
+    shader_set_uniform_f(shader_get_uniform(shader,"offsetx"), 1 / surfw);
+    shader_set_uniform_f(shader_get_uniform(shader,"offsety"), 1 / surfh);
+    
+    draw_surface_ext(surf, (xx - (surfw / 2)), (yy - (surfh / 2)), 1, 1, 0, c_white, 1);
+    
+    shader_reset();
+    mm_surface_free(surf);
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+//Draw prompt hints
+
+draw_set_halign(0);
+
+
+var promptHintTimer = floor(arrowTimer / 128) mod (2);
+var promptHint = "";
+var promptHintButton = "";
+
+switch (promptHintTimer)
+{
+    case 0:
+    
+        promptHintButton = "shoot";
+        promptHint = "REARRANGE";
+        
+        break;
+    case 1:
+        if (global.WheelEnabled)
+        {
+            promptHintButton = "wheel";
+            promptHint = "WHEEL EDITOR";
+        }
+        else
+        {
+            promptHintButton = "shoot";
+            promptHint = "REARRANGE";
+        }
+        
+        break;
+}
+
+if (promptHintButton != "")
+{
+    var xx = (x + 8)
+    var yy = (y + 212);
+    
+    drawButtonPrompt(promptHintButton, xx, yy,false, playerID);
+    draw_text(xx + 12, yy, promptHint);
+}
+
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///ITEM MENU
+if (pageDrawOffset == 0)
+{
+    exit;
+}
+clearDrawState();
+var surf = mm_surface_create(211, 121);
+
+surface_set_target(surf);
+
+draw_clear_alpha(c_white, 0);
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+var xseperation = 23;
+var yseperation = 32;
+
+// ROWS
+for (var i = 0; i &lt; rows; i ++;)
+{
+    var yy = (yseperation * i) - rowDrawOffset;
+}
+
+// ITEMS
+for (var i = 0; i &lt; array_length_1d(items); i ++;)
+{
+    xx = 4 + (xseperation * (i mod rowLength));
+    yy = 3 + (yseperation * floor(i / rowLength)) - rowDrawOffset;
+
+    var variable    = itemData(items[i], "VAR");
+    var sprite      = itemData(items[i], "SPRITE");
+    var img         = itemData(items[i], "SUBIMG");
+    
+    draw_sprite(sprite, img, xx, yy);
+    
+    // Draw that the weapon is disabled
+    if (variable_global_get(variable) &lt; 0)
+    {
+        draw_sprite(sprDisabled, 0, xx, yy);
+    }
+    
+    // Draw that it is the quickitem
+    if (global.mapKeyQuickItem == variable)
+    {
+        drawButtonPrompt("map", (xx + 9), (yy + 9),false, playerID);
+    }
+}
+
+// CURSOR
+xx = (xseperation * (currentItem mod rowLength));
+yy = (yseperation * floor(currentItem / rowLength)) - rowDrawOffset;
+
+draw_sprite(sprPauseMenuCursor, 0, xx, yy - 1);
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+surface_reset_target();
+
+draw_surface(surf, (x + 279), (y + 36));
+
+mm_surface_free(surf);
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+//Instruction
+draw_set_halign(0);
+
+var instructionButton = "";
+var instruction = "";
+
+if (currentItem &lt; array_length_1d(items))
+{
+    var i = items[currentItem];
+    
+    // Name
+    var str = itemData(i, "NAME");
+    
+    draw_text((x + 286), (y + 164), str);
+    
+    // Description
+    var str = itemData(i, "DESC");
+    
+    draw_set_font(global.fontSmall);
+    draw_text_ext((x + 279), (y + 175), str, 8, 208);
+    draw_set_font(global.font);
+    
+    // Assign text
+    if (itemData(i, "ASSIGN"))
+    {
+        instructionButton = "map";
+        instruction = "ASSIGN / UNASSIGN";
+    }
+    else if (itemData(i, "DISABLE"))
+    {   
+        instructionButton = "jump";
+        instruction = "ENABLE / DISABLE";
+    }
+    else if (itemData(i, "USE"))
+    {   
+        instructionButton = "jump";
+        instruction = "USE";
+    }
+}
+
+if (instruction != "")
+{
+    var gap = 16;
+    
+    var xx = (x + 384) - ((string_width(instruction) + gap) / 2)
+    var yy = (y + 20);
+    
+    drawButtonPrompt(instructionButton, xx, yy, false, playerID);
+    draw_text(xx + gap, yy, instruction);
+}
+
 </string>
           </argument>
         </arguments>

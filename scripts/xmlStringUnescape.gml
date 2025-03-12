@@ -8,6 +8,6 @@ str = string_replace_all(str, "&gt;", ">");
 str = string_replace_all(str, "&lt;", "<");
 str = string_replace_all(str, "&quot;", '"');
 str = string_replace_all(str, "&#xA;", global.newLine);
-str = string_replace_all(str, "&amp;", "&amp");
+str = string_replace_all(str, "&amp;", "&");
 
 return str;

@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// An enemy that slowly flies towards Mega Man, occasionally firing shots.
+            <string>/// An enemy that slowly flies in a circle around the player, firing a bullet toward the player at specified intervals.
+/// Unlike with Rounder from MM5, Malmet's circles around the player are much broader, and player movement can disrupt the continuity of the circle.
+/// Because it doesn't stay still and forces the player to be constantly dodging, Malmet adds a layer of pressure to any challenge.
+
 event_inherited();
 
 healthpointsStart = 4;

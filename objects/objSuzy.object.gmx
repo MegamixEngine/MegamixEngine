@@ -92,6 +92,9 @@ firsttime = 1;
         case 2:
             sprite_index = sprSuzyBlue;
             break;
+        case 3:
+            sprite_index = sprSuzyRedNEWglovetheglove;
+            break;
         default:
             sprite_index = sprSuzyRed;
             break;

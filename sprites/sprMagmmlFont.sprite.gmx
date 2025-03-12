@@ -14,7 +14,7 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>44</TextureGroup0>
+    <TextureGroup0>209</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>8</width>
@@ -111,5 +111,10 @@
     <frame index="88">images\sprMagmmlFont_88.png</frame>
     <frame index="89">images\sprMagmmlFont_89.png</frame>
     <frame index="90">images\sprMagmmlFont_90.png</frame>
+    <frame index="91">images\sprMagmmlFont_91.png</frame>
+    <frame index="92">images\sprMagmmlFont_92.png</frame>
+    <frame index="93">images\sprMagmmlFont_93.png</frame>
+    <frame index="94">images\sprMagmmlFont_94.png</frame>
+    <frame index="95">images\sprMagmmlFont_95.png</frame>
   </frames>
 </sprite>

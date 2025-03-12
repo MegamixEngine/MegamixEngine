@@ -35,6 +35,7 @@ healthpoints = healthpointsStart;
 contactDamage = 3;
 
 category = "bird, flying";
+bubbleTimer = -1;
 
 blockCollision = 0;
 grav = 0;

@@ -50,25 +50,25 @@ shotsFired = 0;
 hasBomb = false;
 
 // store bomb location per frame
-bombX[0] = 9;
-bombY[0] = -9;
-bombX[1] = 7;
-bombY[1] = -15;
-bombX[2] = 9;
-bombY[2] = -8;
+bombX[0] = 7; //9;
+bombY[0] = -7; //-9;
+bombX[1] = 6; //7;
+bombY[1] = -14; //-15;
+bombX[2] = 8; //9;
+bombY[2] = -6; //-8;
 bombX[3] = -999;
 bombY[3] = -999;
-bombX[4] = 13;
-bombY[4] = -19;
-bombX[5] = 7;
-bombY[5] = -20;
-bombX[6] = 3;
-bombY[6] = -20;
+bombX[4] = 11; //13;
+bombY[4] = -18; //-19;
+bombX[5] = 5; //7;
+bombY[5] = -19; //-20;
+bombX[6] = 1; //3;
+bombY[6] = -19; //-20;
 grav = 0.25;
 
 // Health Bars
-healthBarPrimaryColor[1] = 18;
-healthBarSecondaryColor[1] = 33;
+healthBarPrimaryColor[1] = $15;
+healthBarSecondaryColor[1] = $27;
 
 // Music
 music = "Mega_Man_1.nsf";
@@ -79,6 +79,9 @@ musicTrackNumber = 8;
 enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
+enemyDamageValue(objBusterShotHalfChargedProto, 2);
+enemyDamageValue(objBusterShotChargedProto, 4);
+enemyDamageValue(objNormalBusterShot, 2);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -89,6 +92,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objBreakDash, 2);
 enemyDamageValue(objMagneticShockwave, 6);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -124,15 +131,16 @@ enemyDamageValue(objConcreteShot, 2);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 0);
 enemyDamageValue(objSuperArmDebris, 0);
-enemyDamageValue(objChillShot, 2);
+enemyDamageValue(objChillSpike, 2);
 enemyDamageValue(objChillSpikeLanded, 2);
 
 // Misc.
 enemyDamageValue(objPowerStone, 2);
 enemyDamageValue(objPlantBarrier, 2);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 0);
 </string>
           </argument>
@@ -194,27 +202,26 @@ if (!global.frozen)
                 hasBomb = true;
             }
             if (attackTimer &lt; 10)
-                image_index = 0;
-            if (attackTimer == 10)
-                image_index = 2;
+                image_index = 1;
             if (attackTimer == 15)
+                image_index = 0;
+            if (attackTimer == 25)
             {
                 image_index = 1;
                 with (instance_create(round(x + bombX[image_index] * image_xscale), round(y + bombY[image_index] * image_yscale), objBombManBomb))
                 {
                     xspeed = 0;
                     grav = 0.25;
-                    yspeed = -4;
+                    yspeed = -5; //-4
+                    image_xscale = other.image_xscale;
                     collectMe = true;
                 }
                 hasBomb = false;
-                attackTimer = 16;
+                attackTimer = 26;
             }
-            if (attackTimer == 17)
+            if (attackTimer == 27)
                 image_index = 0;
-            if (attackTimer == 30)
-                image_index = 0;
-            if (attackTimer == 58)
+            if (attackTimer == 50)
             {
                 canFillHealthBar = true;
                 isIntro = false;
@@ -237,7 +244,7 @@ if (entityCanStep())
             case 0: // choose attack 
                 if (ground)
                 {
-                    image_index = 0;
+                    image_index = 1;
                     xspeed = 0;
                 }
                 hasBomb = true;
@@ -260,11 +267,12 @@ if (entityCanStep())
                 {
                     image_index = 3;
                     hasBomb = false;
-                    with (instance_create(round(x + bombX[2] * image_xscale), round(y + bombY[2] * image_yscale), objBombManBomb))
+                    
+                    with (entityCreateChild(bombX[2], bombY[2], objBombManBomb))
                     {
                         if (instance_exists(target))
                         {
-                            xSpeedAim(x, y, target.x, target.y, yspeed, grav);
+                            xspeed = xSpeedAim(x, y, target.x, target.y, yspeed, grav);
                         }
                     }
                 }
@@ -373,9 +381,9 @@ event_inherited();
             <kind>1</kind>
             <string>if ((iFrames mod 4) &lt; 2 || !iFrames)
 {
-    if (hasBomb)
+    if (hasBomb) || (!hasTriggeredFall)
     {
-        draw_sprite_ext(sprBombManBomb, 0, round(x + bombX[image_index] * image_xscale), round(y + bombY[image_index] * image_yscale),
+        draw_sprite_ext(sprBombManBomb, (image_index == 0 || image_index == 2), round(x) + bombX[image_index] * image_xscale, round(y) + bombY[image_index] * image_yscale,
             image_xscale, image_yscale, image_angle, image_blend, image_alpha);
     }
 }

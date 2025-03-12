@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -33,6 +33,7 @@ respawn = false;
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 3;
+canHit = true;
 
 // enemy specific code
 xspeed = 0;
@@ -42,7 +43,7 @@ image_speed = 0;
 image_index = 0;
 animTimer = 0;
 
-reflectable = 0;
+//reflectable = 0;
 </string>
           </argument>
         </arguments>

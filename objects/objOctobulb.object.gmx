@@ -44,6 +44,7 @@ grav = 0;
 doesIntro = false;
 
 category = "bulky, nature";
+explosionSFX = sfxMM9Explosion;
 
 // Enemy specific code
 

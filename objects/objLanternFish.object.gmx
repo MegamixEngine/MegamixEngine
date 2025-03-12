@@ -35,13 +35,30 @@ healthpoints = healthpointsStart;
 contactDamage = 12;
 lockTransition = false;
 category = "aquatic";
+bubbleTimer = -1;
+
+// @cc - What object do I spawn?
+objectToSpawn = objShrink;
+forceObjectFacePlayerOnSpawn = false;
+// @cc - What is the maximum number of onscreen objects I can spawn?
+objectLimit = 2;
+
+killChildren = false; //if true, kill child objects when dying
+killPlaced = false; //this is here to not mess with entries, maybe? by default, you cant recreate Bubble Man's stage.
 
 doesIntro = false;
 
-image_speed = 0.15; // STOP USING THIS VARIABLE
+image_speed = 0.15; 
 
 alarmFish = 60;
 deadTimer = 0;
+
+deadDelay = 40;
+deadTimerMax = 120;
+deadFrame = 5;
+
+explosionSprite = sprCrashExplosion;
+explosionSFX = sfxEnemyHit;
 </string>
           </argument>
         </arguments>
@@ -68,16 +85,41 @@ deadTimer = 0;
 
 if (entityCanStep())
 {
+    if (killPlaced)
+    {
+        with (objectToSpawn)
+        {
+            if (dead &amp;&amp; hasDiedBefore)
+            {
+                instance_destroy();
+            }
+        }
+    
+    }
     image_speed = 0.15;
     if (alarmFish &gt; 0)
     {
         alarmFish -= 1;
     }
-    if (alarmFish == 0 &amp;&amp; instance_number(objShrink) &lt; 2)
+    
+    var objectCount = 0;
+    
+    with (objectToSpawn)
+    {
+        if (!dead)
+        {
+            objectCount++;
+        }
+    }
+    
+    if (alarmFish == 0 &amp;&amp; objectCount &lt; objectLimit)
     {
         alarmFish = 60;
-        a = instance_create(x + (15 * image_xscale), y - 10, objShrink);
+        a = instance_create(x + (15 * image_xscale), y - 10, objectToSpawn);
         a.respawn = false;
+        if (forceObjectFacePlayerOnSpawn) {
+        a.facePlayerOnSpawn = true;
+        }
     }
     if (image_index &gt;= 4)
     {
@@ -87,10 +129,19 @@ if (entityCanStep())
 else
 {
     image_speed = 0;
-    if (dead)
+    if (killed)
     {
-        image_index = 4;
+        if (deadTimer &lt; deadDelay)
+        {
+            if ((floor(deadTimer / 10) mod 2) == 0)
+                image_index = deadFrame - 1;
+            else
+                image_index = deadFrame;
+        }
+        else
+            image_index = deadFrame;
     }
+
 }
 </string>
           </argument>
@@ -138,9 +189,40 @@ alarmFish = 60;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (bboxGetYCenterObject(other.id) &gt; y - 65)
+            <string>if (bboxGetYCenterObject(other.id) &gt; y - 65) &amp;&amp; (other.object_index != objTornadoBlow)
 {
     other.guardCancel = 3;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+
+if (killChildren)
+{
+    with (objectToSpawn)
+    {
+        event_user(EV_DEATH);
+    }
 }
 </string>
           </argument>

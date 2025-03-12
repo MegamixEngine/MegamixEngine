@@ -103,10 +103,10 @@ with objDiarn
     <instance objName="objBossDoor" x="3584" y="608" name="inst_77E74137" locked="0" code="isTile = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoor" x="3568" y="624" name="inst_3A3E2E77" locked="0" code="isTile = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossDoor" x="3584" y="624" name="inst_F79ED613" locked="0" code="isTile = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objIronBall" x="3792" y="656" name="inst_1E90A487" locked="0" code="elementName = &quot;wily4&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objIronBall" x="3792" y="656" name="inst_1E90A487" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRotatingSpikePlatform" x="60" y="1318" name="inst_E6A26A61" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDefaultSpawn" x="128" y="1376" name="inst_F37EE89E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="3456" y="624" name="inst_E067A677" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="3456" y="624" name="inst_E067A677" locked="0" code="name = &quot;Boss corridor&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLadder" x="0" y="0" name="inst_F0A7B0DF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSpike" x="16" y="0" name="inst_51BD3207" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSpike" x="32" y="0" name="inst_BB04F473" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -212,7 +212,7 @@ with objDiarn
     <instance objName="objColton" x="1904" y="352" name="inst_2145856B" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;{&#xA;    x = x + 16;&#xA;    xstart = x;&#xA;}&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objColton" x="1968" y="304" name="inst_48E44E7B" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objColton" x="2192" y="336" name="inst_AEC52EA0" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;{&#xA;    x = x - 32;&#xA;    xstart = x;&#xA;}&#xA;" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1408" y="352" name="inst_B7ECB1E3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1408" y="352" name="inst_B7ECB1E3" locked="0" code="name = &quot;Midway point&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSuperArmBlock2x2" x="320" y="752" name="inst_A07862E3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSuperArmBlock2x2" x="384" y="752" name="inst_A3A082EA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSuperArmBlock2x2" x="544" y="752" name="inst_3D5B560C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -261,7 +261,7 @@ with objDiarn
     <instance objName="objRotatingSpikePlatform" x="1776" y="368" name="inst_DC740292" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRotatingSpikePlatform" x="1824" y="320" name="inst_BFA9D54B" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="1840" y="240" name="inst_367518D1" locked="0" code="if (global.difficulty == DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="5" scaleY="4" colour="4294967295" rotation="0"/>
-    <instance objName="objRotatingSpikePlatform" x="1696" y="336" name="inst_C4F085E1" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;&#xA;image_index = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objRotatingSpikePlatform" x="1696" y="336" name="inst_C4F085E1" locked="0" code="image_index = 4;&#xA;if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRotatingSpikePlatform" x="1856" y="400" name="inst_E3EEB314" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="2016" y="368" name="inst_F374375D" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
     <instance objName="objDestroyField" x="2080" y="384" name="inst_7E9F13DC" locked="0" code="if (global.difficulty &lt; DIFF_HARD)&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>

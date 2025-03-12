@@ -41,6 +41,9 @@ shooting2 = false;
 spriteTimer = 0;
 
 image_speed = 8 / 60;
+
+normalSprite = sprNewShotman
+shootSprite = sprNewShotmanShoot
 </string>
           </argument>
         </arguments>
@@ -111,7 +114,7 @@ if (entityCanStep())
                 i.stopAtSolid = 1;
                 
                 spriteTimer = 5;
-                sprite_index = sprNewShotmanShoot;
+                sprite_index = shootSprite;
             }
             
             if (shootTimer2 &gt;= shootTimerInterval2 * 6)
@@ -127,7 +130,7 @@ if (entityCanStep())
         spriteTimer -= 1;
         if (spriteTimer &lt;= 0)
         {
-            sprite_index = sprNewShotman;
+            sprite_index = normalSprite;
         }
     }
 }
@@ -137,7 +140,7 @@ else if (dead)
     shootTimer2 = 0;
     shooting2 = 0;
     spriteTimer = 0;
-    sprite_index = sprNewShotman;
+    sprite_index = normalSprite;
     image_index = 0;
 }
 </string>

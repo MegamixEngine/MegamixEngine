@@ -14,7 +14,6 @@ if (unitCase("Basic entity safety"))
         unitRequire(rmUnitTestRecordBasic >= 0);
         if (unitValid()) // ensure require did not fail
         {
-            global.beginStageOnRoomBegin = true;
             room_goto(rmUnitTestRecordBasic);
         }
     }
@@ -36,7 +35,7 @@ if (unitCase("Basic entity safety"))
         {
             randomize();
             global.unitTestRandSeed = irandom(RAND_MAX);
-            random_set_seed(global.unitTestRandSeed);
+            random_set_seed_safe(global.unitTestRandSeed);
             global.unitTestSeedCmp = irandom(RAND_MAX);
             global.unitTestTestInstance = noone;
         }
@@ -61,7 +60,7 @@ if (unitCase("Basic entity safety"))
                         unitEnd();
                         exit;
                     }
-                    random_set_seed(global.unitTestRandSeed);
+                    random_set_seed_safe(global.unitTestRandSeed);
                     global.unitTestTestInstance = instance_create(128, 90, objectIndex);
                     unitRequireEquals(irandom(RAND_MAX), global.unitTestSeedCmp, object_get_name(objectIndex) + " generated a random value in its create event, which is not allowed as it interferes with action replays.");
                 }

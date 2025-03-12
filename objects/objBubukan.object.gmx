@@ -85,6 +85,9 @@ init = 1;
         case 1:
             sprite_index = sprBubukanRed;
             break;
+        case 2:
+            sprite_index = sprBubukanOrangeNEWglovetheglove;
+            break;
     }
 }
 
@@ -177,7 +180,7 @@ if (entityCanStep())
                 xspeed = runSpd * image_xscale;
             }
             break;
-        case 5: // running around 
+        case 5: // running around
             if (!runCycleBack)
             {
                 imgIndex += imgSpd;
@@ -200,7 +203,7 @@ if (entityCanStep())
     }
     
     // turn around if a wall is run into
-    if (xspeed == 0 &amp;&amp; (phase == 1 || phase == 3 || phase == 5))
+    if (xcoll != 0 &amp;&amp; (phase == 1 || phase == 3 || phase == 5))
     {
         image_xscale = -image_xscale;
         if (phase == 1 || phase == 5)

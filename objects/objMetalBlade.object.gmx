@@ -41,6 +41,8 @@ grav = 0;
 playSFX(sfxMetalBlade);
 
 image_speed = 0.35;
+
+autoFireSet = 10;
 </string>
           </argument>
         </arguments>
@@ -95,9 +97,11 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
-    i = fireWeapon(16, 3, objMetalBlade, 3, 0.5, 2, 1);
+    var ammoCost = 0.5 - (0.075 * (global.energySaver &gt; 0));
+    
+    i = fireWeapon(4, 0, objMetalBlade, 3, ammoCost, 2, 1);
     if (instance_exists(i))
     {
         i.dir = 0;
@@ -163,6 +167,31 @@ if (!global.frozen)
           <argument>
             <kind>1</kind>
             <string>weaponSetup("METAL BLADE", make_color_rgb(136, 112, 0), make_color_rgb(255, 224, 168), sprWeaponIconsMetalBlade);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="17">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+direction = 67.5 + (45 * (image_xscale &lt; 0));
+speed = 4;
 </string>
           </argument>
         </arguments>

@@ -10,7 +10,8 @@
   <persistent>0</persistent>
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
-  <code>playMusic("Mega_Man_10.nsf", "VGM", 45, 0, 0, 0, 1);</code>
+  <code>playMusic("MM10/41_Endless.mid","MIDI","MM10/MM10.sf2");
+//playMusic("Mega_Man_10.nsf", "VGM", 45, 0, 0, 0, 1);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

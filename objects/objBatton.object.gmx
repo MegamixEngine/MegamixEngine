@@ -35,14 +35,18 @@ healthpoints = healthpointsStart;
 contactDamage = 4;
 
 category = "cluster, flying, nature";
+facePlayerOnSpawn = false;
 
 // Enemy specific code
 alarmChange = 0;
 animTimer = 0;
 started = 0;
+phase = 0;
 
 grav = 0;
 blockCollision = 0;
+
+behaviourType = 1;
 </string>
           </argument>
         </arguments>
@@ -69,59 +73,79 @@ blockCollision = 0;
 
 if (entityCanStep())
 {
-    if (instance_exists(target))
+    switch (phase)
     {
-        started = 1;
+        case 0: // OG Code
+            if (instance_exists(target))
+            {
+                started = 1;
+            }
+            
+            if (started)
+            {
+                if (alarmChange &gt; 0)
+                {
+                    alarmChange -= 1;
+                }
+            }
+            
+            if (alarmChange == 60 || alarmChange == 56 || alarmChange == 52
+                || alarmChange == 48)
+            {
+                image_index += 1;
+            }
+            if (alarmChange == 44)
+            {
+                yspeed = 0.5;
+            }
+            
+            if (alarmChange == 0)
+            {
+                yspeed = 0;
+                if (instance_exists(target))
+                {
+                    mp_linear_step(target.x, target.y + 18, 0.5, false);
+                }
+                else
+                {
+                    mp_linear_step(x, y - 10, 0.5, false);
+                }
+            }
+            break;
+        case 1: // Fly up
+            if (!checkSolid(0, 0))
+            {
+                blockCollision = 1;
+            }
+            if (yspeed == 0)
+            {
+                image_index = 0;
+                phase = 0;
+                started = 0;
+                alarmChange = irandom_range(120, 220);
+                animTimer = 0;
+                blockCollision = 0;
+            }
+            break;
     }
-    
-    if (started)
-    {
-        if (alarmChange &gt; 0)
-        {
-            alarmChange -= 1;
-        }
-    }
-    
-    if (alarmChange == 60 || alarmChange == 56 || alarmChange == 52
-        || alarmChange == 48)
-    {
-        image_index += 1;
-    }
-    if (alarmChange == 44)
-    {
-        yspeed = 0.5;
-    }
-    
-    if (alarmChange == 0)
-    {
-        yspeed = 0;
-        if (instance_exists(target))
-        {
-            mp_linear_step(target.x, target.y + 18, 0.5, false);
-        }
-        else
-        {
-            mp_linear_step(x, y - 10, 0.5, false);
-        }
-    }
-    
+    // Animation
     if (alarmChange &lt; 44)
     {
         animTimer += 1;
         if (animTimer == 4)
         {
             animTimer = 0;
-            if (image_index == 3)
-            {
-                image_index = 4;
-            }
-            else if (image_index == 4)
+            if (image_index == 4)
             {
                 image_index = 5;
             }
-            else
+            else if (image_index == 3) || (image_index == 5)
             {
-                image_index = 3;
+                image_index = 2;
+            }
+            else if (image_index == 2)
+            {
+                image_index = 4;
             }
         }
     }
@@ -154,6 +178,8 @@ alarmChange = irandom_range(120, 220);
 image_index = 0;
 animTimer = 0;
 started = 0;
+image_xscale = 1;
+phase = 0;
 </string>
           </argument>
         </arguments>
@@ -179,6 +205,35 @@ started = 0;
             <string>if (image_index == 0)
 {
     other.guardCancel = 1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="18">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// Fly up after damaging Mega Man
+if (alarmChange &lt; 44)
+{
+    phase = 1;
+    yspeed = -2;
+    speed = 0;
 }
 </string>
           </argument>

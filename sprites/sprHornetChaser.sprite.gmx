@@ -2,25 +2,27 @@
 <sprite>
   <type>0</type>
   <xorig>7</xorig>
-  <yorigin>8</yorigin>
+  <yorigin>10</yorigin>
   <colkind>0</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>0</bbox_left>
-  <bbox_right>14</bbox_right>
+  <bbox_right>16</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>15</bbox_bottom>
+  <bbox_bottom>18</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>46</TextureGroup0>
+    <TextureGroup0>1</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>15</width>
-  <height>16</height>
+  <width>17</width>
+  <height>19</height>
   <frames>
     <frame index="0">images\sprHornetChaser_0.png</frame>
     <frame index="1">images\sprHornetChaser_1.png</frame>
+    <frame index="2">images\sprHornetChaser_2.png</frame>
+    <frame index="3">images\sprHornetChaser_3.png</frame>
   </frames>
 </sprite>

@@ -37,8 +37,12 @@ category = "bulky, nature";
 
 introSprite = sprEscarooIntro;
 
+explosionSFX = sfxExplosion2;
+
 sprite_index = sprEscaroo;
 mask_index = sprEscaroo;
+bombSprite = sprEscarooBomb;
+eyeSprite = sprEscarooEyes
 x = xstart + image_xscale * (abs(sprite_get_xoffset(sprEscaroo) - sprite_get_xoffset(sprEscarooPreview)));
 y -= image_yscale * (abs(sprite_get_yoffset(sprEscaroo) - sprite_get_yoffset(sprEscarooPreview)));
 xstart = x;
@@ -81,15 +85,18 @@ if (entityCanStep())
     shootTimer += 1;
     if (shootTimer == 160 + 90)
     {
-        instance_create(x - 4 * image_xscale, y - 40, objEscarooBomb);
+        snailBomb = instance_create(x - 4 * image_xscale, y - 40, objEscarooBomb);
+        snailBomb.sprite_index = bombSprite;
         shootTimer = 0;
     }
     if (!instance_exists(eye) &amp;&amp; introDone)
     {
         eye = instance_create(x + 34 * image_xscale, y + 1, objEscarooEyes);
+        eye.sprite_index = eyeSprite;
         eye.parent = id;
         eye.image_xscale = image_xscale;
         eye.dead = false;
+        eye.target = target;
     }
 }
 else if (!insideView())

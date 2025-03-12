@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>/// initialization
 
+mm_init();
+
 //// global initialization ////
 
 // set random seed
@@ -37,6 +39,7 @@ engineConfig();
 
 /// global variable setup
 globalInit();
+alarm[11] = 2; // initialize some things later to avoid some glitches. Also doing everything at once can cause gms to sometimes crash
 
 //// instance variables private to objGlobalControl ////
 
@@ -46,21 +49,50 @@ fadestep = 0.2;
 fadeinterval = 3;
 fadetimer = 0;
 
-// health bar
+// UI variabless
 showhealth = 0;
-increaseHealth = false;
-increaseAmmo = false;
-increaseTimer = 0;
-increaseWeapon = 0;
+
 depthstart = depth;
 depthAlter = 0;
 
+costume = 0;
+chargeTimer = 0;
+chargeTime = 0;
+
+uiSurface = -1;
+
+shakex = 0;
+shakey = 0;
+
+// Variables for handling regaining health/ammo
+increaseTimer  = 0;
+increasePID    = 0;
+increaseWeapon = 0;
+increaseHealth = 0;
+increaseAmmo   = 0;
+
+trickleChargeMode = false;
+
+//
+
+confirmedCheckpoint = 0;
+stageStartFlag = false;
+
+// screenshots
+screenshotNum = 0;
+
 // save icon
 saveTimer = -1;
-saveFrame = 0;
 
-// list of pickups (prevents pickup respawning)
-pickups = ds_list_create();
+// Game quitting behaviour
+quitTimer = 0;
+
+// checkpoint notification
+checkpointTimer = -1;
+
+// display music
+displayMusic = 0;
+displayMusic_FadeIn = 0;
 
 // used for pausing
 setfrozen = 0;
@@ -69,32 +101,143 @@ setfrozen = 0;
 obj[0] = prtEntity;
 obj[1] = prtEffect;
 
+// keep track of connected controllers for each possible player
+controllerID = allocateArray(12, -1);
+
 /// User-specific globals ////
 
 // new save file
-freshSaveFile();
+saveLoadGame(SL_INIT);
 
 // default options
-freshOptions();
+saveLoadOptions(SL_INIT);
 
 // load user's options (if they exist)
 saveLoadOptions(false);
 
-/// set up display ///
+saveLoadGame(false);
 
-setScreenSize(global.screensize);
+
+// set vsync
 display_reset(0, global.vsync);
+
+
+//Formerly objDebug Menu variables, need outside to prevent crashes with debug disabled.
+global.isInvincible = false;
+global.alwaysHealth = false;
+global.freeMovement = false;
+
+// recording input
+global.recordInputMode = 0; // 0: naught, 1: record, 2: playback
+global.recordInputFidelityMessageBuffer = "";
+
+//// Create other control objects ////
+if (DEBUG_ENABLED)
+{
+    instance_create(0, 0, objDebugMenu);
+}
+
+//Used to load a room passed as parameter
+init = 1;
+
+// rebuild weapon list to account for alternative palettes
+mm_ds_map_destroy(global.weaponID);
+weaponSetup();
+
+adjustScreen = 0;
+
+rumbleClearAll();
+
+controllerTypes = array_create(12);//Used to determine axes for unusual controllers (Namely problematic DInput ones).
+
+roomGotoOverride = 0; //Adding this so that the subgames can show the ending menu before exiting them
+
+forceFade = 0; //so we don't have manually re-code screen fading out functionality for every damn object that needs it...
+
+//multiplayer var storage
+pCOff[0] = 43;
+pCOff[1] = 38;
+pCOff[2] = 35;
+pCOff[3] = 34;
+playerSet[0,0] = 0;
+respawnTimer[0] = 0;
+respawnLocation[0] = -1;
+for (var i = 0; i &lt; 4; i++)
+{
+    playerSet[i,0] = -1;
+    playerSet[i,1] = -1;
+    respawnTimer[i] = 0;
+    respawnLocation[i] = -1;
+}
+
+memoryLeak_MemorySize = 0;
+memoryLeak_Counter = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// initialization 2
 
 //// Create other control objects ////
 instance_create(0, 0, objMusicControl);
-instance_create(0, 0, objDebugControl);
 instance_create(0, 0, objMobileControl);
+instance_create(0, 0, objShaderControl);
 
-//Used to load a room passed as parameter
-init=1;
+/// set up display ///
+setScreenSize(global.screensize); // must do this a bit after startup to prevent the game disappearing from the taskbar
 
 // show disclaimer
 room_goto(rmDisclaimer);
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// respawn timer reset
+
+global.respawnAllowed = true;
+
+for (var i = 0; i &lt; MAX_PLAYERS; i++;)
+{
+    global.respawnTimer[i] = floor(global.respawnTime / 2);
+}
 </string>
           </argument>
         </arguments>
@@ -117,22 +260,29 @@ room_goto(rmDisclaimer);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// death -- restart
-global.nextRoom = global.checkpoint;
-
-// game over
-if (global.livesRemaining &lt;= 0 &amp;&amp; global.livesEnabled &amp;&amp; global.inGame)
+            <string>/// Death - Restart
+var iRoom = global.checkpoint;
+// Game Over
+if (global.inGame)
 {
-    // recordings should stop
-    if (global.recordInputMode != 0)
+    if (global.livesEnabled)
     {
-        global.recordInputDeath = true;
-    }
-    else
-    {
-        global.nextRoom = rmGameOver;
+        if (global.livesRemaining &lt;= 0)
+        {
+            // recordings should stop
+            if (global.recordInputMode != 0)
+            {
+                global.recordInputDeath = true;
+            }
+            else
+            {
+                iRoom = rmGameOver;
+            }
+        }
     }
 }
+
+global.nextRoom = iRoom;
 </string>
           </argument>
         </arguments>
@@ -155,73 +305,200 @@ if (global.livesRemaining &lt;= 0 &amp;&amp; global.livesEnabled &amp;&amp; glob
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// camera update, flicker, and fade
+            <string>///CAMERA, FLICKER
 
-if (!instance_exists(objSectionSwitcher) &amp;&amp; global.inGame)
+with (objMegaman)
 {
-    // Camera
-    playerCamera(1);
+    if (playerID == 0)
+    {
+        other.costume = costumeID;
+        other.chargeTime = chargeTime;
+        other.chargeTimer = chargeTimer;
+    }
+}
+
+if (global.inGame)
+{
+    if (!instance_exists(objSectionSwitcher))
+    {
+        // Camera
+        playerCamera(1);
+        
+        with (prtCustomCamera)
+        {
+            event_user(0);
+        }
+    }
     
-    // screen shaking
     if (!global.frozen)
     {
-        view_xview[0] += choose(-global.shakeFactorX, 0, global.shakeFactorX);
-        view_yview[0] += choose(-global.shakeFactorY, 0, global.shakeFactorY);
-    }
-    
-    with (prtCustomCamera)
-    {
-        event_user(0);
-    }
-}
-
-// Flicker
-depthAlter = !depthAlter;
-if (depthAlter)
-{
-    depth = 10;
-}
-
-for (i = 0; i &lt;= 1; i += 1)
-{
-    with (obj[i])
-    {
-        if (depth &lt; 100000 &amp;&amp; !noFlicker)
+        // Flicker. See draw event for why this was re-enabled.
+        depthAlter = !depthAlter;
+        
+        if (depthAlter &amp;&amp; !instance_exists(objSectionSwitcher))
         {
-            depth = floor(depth) + (irandom(99) * 0.01);
+            depth = 10;
         }
-    }
-}
-
-if (global.nextRoom != 0 || fadeAlpha &gt; 0)
-{
-    fadetimer += (1 + instance_exists(objPauseMenu));
-    
-    if (fadetimer &gt;= fadeinterval)
-    {
-        if (global.nextRoom &amp;&amp; fadeAlpha == 1)
+        if (global.playerCount &gt; 1)
         {
-            global.previousRoom = room;
-            room_goto(global.nextRoom);
+              with (objMegaman)
+              {
+                    depth = floor(depth) + ((playerID+45) * 0.01);
+              }
         }
         
-        fadeAlpha += fadestep * (1 - (2 * (global.nextRoom == 0)));
-        fadeAlpha = max(0, min(1, fadeAlpha));
-        
-        fadetimer = 0;
-        if (fadeAlpha == 1)
+        //Flicker effect for entities and effects
+        for (var i = 0; i &lt; 2; i ++;)
         {
-            fadetimer = -5;
-        }
-        else if (global.nextRoom == 0 &amp;&amp; fadeAlpha == 0)
-        {
-            if (!instance_exists(objPauseMenu))
+            with (obj[i])
             {
-                global.frozen = false;
+                if (depth &lt; 100000 &amp;&amp; !noFlicker)
+                {
+                    depth = floor(depth) + (irandom(99) * 0.01);
+                }
             }
         }
     }
 }
+
+if (!global.frozen)
+{
+    shakex += (global.shakeFactorX * choose(-1, 0, 1));
+    shakey += (global.shakeFactorY * choose(-1, 0, 1));
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///FADE
+
+//What alpha is our goal?
+var fadeGoal = (global.nextRoom != 0) or (forceFade);
+
+//Handle fade
+if (fadeAlpha != fadeGoal)
+{
+    var pauseMenu = instance_exists(objPauseMenu);
+    
+    fadetimer += (1 + pauseMenu);
+
+    if (fadetimer &gt;= fadeinterval)
+    {
+        fadetimer = 0;
+        
+        //Adjust
+        fadeAlpha += (fadestep * sign(fadeGoal - fadeAlpha))
+        fadeAlpha = clamp(fadeAlpha, 0, 1);
+        
+        //Finally reached the fadeGoal
+        if (fadeAlpha == fadeGoal)
+        {
+            if (!fadeAlpha) //Fade is 0
+            {
+                if (global.nextRoom &lt;= 0) //End frozen state
+                {
+                    if (!pauseMenu)
+                    {
+                        global.frozen = false;
+                    }
+                }
+            }
+        }
+    }
+}
+else //Reached our desired fade
+{
+    if (fadeAlpha) //Fade is full
+    {
+        if (global.nextRoom) //Go to next room
+        {
+            var canContinue = 1;
+            
+            //Check for checkpoint
+            if (global.endStageOnRoomEnd)
+            {
+                if (!confirmedCheckpoint)
+                {
+                    //Check if checkpoint file exists
+                    var rmName = roomExternalGetName(global.nextRoom);
+                    
+                    //Confirm/Decline checkpoint
+                    if (slExists(rmName, 1)) and (global.checkpointSavesEnabled)
+                    {
+                        canContinue = 0;
+                        
+                        if (!instance_exists(objCutsceneSkipMenu))
+                        {
+                            playSFX(getGenericSFX(SFX_PAUSE));
+                            with (instance_create(x,y,objCutsceneSkipMenu))
+                            {
+                                type = 2;
+                                
+                                parent = other;
+                                active = true;
+                                autoSkip = false;
+                                
+                                depth = -20000000;
+                            }
+                        }
+                        
+                        //This code moved to the cutscene skip menu
+                        /*
+                        //Confirm
+                        if (global.keyJumpPressed[0])
+                        {
+                            stageStartFlag = true;
+                            confirmedCheckpoint = 1;
+                        }
+                        else
+                        {
+                            //Decline
+                            if (global.keyShootPressed[0])
+                            {
+                                slDelete(rmName, 1);
+                            }
+                        }
+                        */
+                    }
+                }
+            }
+            
+            //Go to room
+            if (canContinue)
+            {
+                if (!roomGotoOverride)
+                {
+                    global.previousRoom = room;
+                    
+                    room_goto(global.nextRoom);
+                    
+                    //global.nextRoom = 0;
+                    forceFade = false;
+                }
+            }
+        }
+        
+        fadetimer = -5;
+    }
+}
+
 </string>
           </argument>
         </arguments>
@@ -245,21 +522,28 @@ if (global.nextRoom != 0 || fadeAlpha &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Load room from parameter
-if(init &amp;&amp; room == rmDisclaimer)
+if (init &amp;&amp; (room == rmDisclaimer))
 {
-    init=0;
-    if(parameter_count()&gt;1)
+    init = 0;
+    global.externalRooms = array_create(0);
+    if (DEBUG_ENABLED)
     {
-        var filename = "+" + parameter_string(1);
-        if(filename!="+" &amp;&amp; stringEndsWith(filename,".room.gmx"))
+        if(parameter_count()&gt;1)
         {
-        
-            var nrm = roomExternalLoad(filename);
-            goToLevel(nrm);
-            exit;
+            var filename = "+" + parameter_string(1);
+            if(filename!="+" &amp;&amp; stringEndsWith(filename,".room.gmx"))
+            {
+                var nrm = roomExternalLoad(filename);
+                goToLevel(nrm);
+                exit;
+            }
         }
     }
+    
 }
+
+
+
 </string>
           </argument>
         </arguments>
@@ -280,12 +564,34 @@ if(init &amp;&amp; room == rmDisclaimer)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// revert camera effects
-
-if (!instance_exists(objSectionSwitcher) &amp;&amp; global.inGame)
+            <string>/// Revert camera effects
+if (global.inGame)
 {
-    view_xview[0] = global.cachedXView;
-    view_yview[0] = global.cachedYView;
+    if (!instance_exists(objSectionSwitcher))
+    {
+        view_xview[0] = global.cachedXView;
+        view_yview[0] = global.cachedYView;
+    }
+}
+
+if (adjustScreen)
+{
+    adjustScreen --;
+
+    if (global.fullscreen == 1)
+    {
+        window_set_position(0, 0);
+
+        if (!adjustScreen)
+        {
+            if (global.initfullscreen)
+            {
+                global.initfullscreen = 0;
+
+                setScreenSize(global.screensize);
+            }
+        }
+    }
 }
 </string>
           </argument>
@@ -309,8 +615,8 @@ if (!instance_exists(objSectionSwitcher) &amp;&amp; global.inGame)
             <kind>1</kind>
             <string>/// game timers
 
-global.roomTimer += 1;
-global.gameTimer += 1;
+global.roomTimer++;
+global.gameTimer++;
 </string>
           </argument>
         </arguments>
@@ -331,158 +637,581 @@ global.gameTimer += 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// player input
-// Inputs
+            <string>///Controls, and rumble timers
 
-// Gamepad info
-xinputDeviceCount = 0;
-for (var i = 0; i &lt; 4; i++)
-{
-    if (gamepad_is_connected(i))
-        xinputDeviceCount++;
-}
+var wheelEnabled = global.WheelEnabled;
+var deadZone = 0.33;
+var keys, buttons;
 
-var n_connected = 0;
-for (var i = 0; i &lt; gamepad_get_device_count(); i += 1)
+/// player input
+for (var i = 0; i &lt; global.playerCount; i++) 
 {
-    if (gamepad_is_connected(i))
-        n_connected += 1;
-}
-n_connected = min(n_connected, global.playerCount);
-for (i = 0; i &lt; global.playerCount; i += 1)
-{
-    // Input
-    keyLeftHold = global.keyLeft[i];
-    keyRightHold = global.keyRight[i];
-    keyUpHold = global.keyUp[i];
-    keyDownHold = global.keyDown[i];
-    keyJumpHold = global.keyJump[i];
-    keyShootHold = global.keyShoot[i];
-    keySlideHold = global.keySlide[i];
-    keyPauseHold = global.keyPause[i];
-    keyWeaponSwitchLeftHold = global.keyWeaponSwitchLeft[i];
-    keyWeaponSwitchRightHold = global.keyWeaponSwitchRight[i];
-    
-    // Check keys
-    global.keyLeft[i] = keyboard_check(global.leftKey[i]);
-    global.keyRight[i] = keyboard_check(global.rightKey[i]);
-    global.keyUp[i] = keyboard_check(global.upKey[i]);
-    global.keyDown[i] = keyboard_check(global.downKey[i]);
-    global.keyJump[i] = keyboard_check(global.jumpKey[i]);
-    global.keyShoot[i] = keyboard_check(global.shootKey[i]);
-    global.keySlide[i] = keyboard_check(global.slideKey[i]);
-    global.keyPause[i] = keyboard_check(global.pauseKey[i])
-        || (keyboard_check_pressed(vk_escape)
-        &amp;&amp; global.escapeBehavior == 1);
-    global.keyWeaponSwitchLeft[i] = keyboard_check(
-        global.weaponSwitchLeftKey[i]);
-    global.keyWeaponSwitchRight[i] = keyboard_check(
-        global.weaponSwitchRightKey[i]);
-    
-    jp = i;
-    
-    if (n_connected &gt; 0)
+    switch(i)
     {
-        if (!gamepad_is_connected(jp))
+        case 0:
+            keys = global.keyboardBind0;
+            buttons = global.gamepadBind0;
+            break;
+            
+        case 1:
+            keys = global.keyboardBind1;
+            buttons = global.gamepadBind1;
+            break;
+            
+        case 2:
+            keys = global.keyboardBind2;
+            buttons = global.gamepadBind2;
+            break;
+            
+        case 3:
+            keys = global.keyboardBind3;
+            buttons = global.gamepadBind3;
+            break;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    // | | | | | | | | | | | | | | | | | | | | | | | | |
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    // Keyboard input
+    keyRight    = keyboard_check(keys[INPUT_RIGHT]);
+    keyUp       = keyboard_check(keys[INPUT_UP]);
+    keyLeft     = keyboard_check(keys[INPUT_LEFT]);
+    keyDown     = keyboard_check(keys[INPUT_DOWN]);
+    
+    keyJump     = keyboard_check(keys[INPUT_JUMP]);
+    keyShoot    = keyboard_check(keys[INPUT_SHOOT]);
+    keySlide    = keyboard_check(keys[INPUT_SLIDE]);
+    
+    keyWeaponSwitchLeft     = keyboard_check(keys[INPUT_WEAPONLEFT]);
+    keyWeaponSwitchRight    = keyboard_check(keys[INPUT_WEAPONRIGHT]);
+    keyWheelSwitch          = keyboard_check(keys[INPUT_WEAPONWHEEL]);
+    
+    keyPause    = keyboard_check(keys[INPUT_PAUSE]);
+    keyMap      = keyboard_check(keys[INPUT_QUICKITEM]);
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    // | | | | | | | | | | | | | | | | | | | | | | | | |
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    //Clear analog sticks
+    global.analogStickTilt[     i, 0] = 0;
+    global.analogStickDirection[i, 0] = 0;
+    
+    global.analogStickTilt[     i, 1] = 0;
+    global.analogStickDirection[i, 1] = 0;
+    
+    // Check for Gamepad Input (if applicable)
+    var cID = controllerID[i];
+    
+    if (cID != -1)
+    {
+        // Gamepad inputs
+        keyRight    += gamepad_button_check_cross(cID, buttons[INPUT_RIGHT]);
+        keyUp       += gamepad_button_check_cross(cID, buttons[INPUT_UP]);
+        keyLeft     += gamepad_button_check_cross(cID, buttons[INPUT_LEFT]);
+        keyDown     += gamepad_button_check_cross(cID, buttons[INPUT_DOWN]);
+        
+        keyJump     += gamepad_button_check_cross(cID, buttons[INPUT_JUMP]);
+        keyShoot    += gamepad_button_check_cross(cID, buttons[INPUT_SHOOT]);
+        keySlide    += gamepad_button_check_cross(cID, buttons[INPUT_SLIDE]);
+        
+        keyWeaponSwitchLeft  += gamepad_button_check_cross(cID, buttons[INPUT_WEAPONLEFT]);
+        keyWeaponSwitchRight += gamepad_button_check_cross(cID, buttons[INPUT_WEAPONRIGHT]);
+        keyWheelSwitch       += gamepad_button_check_cross(cID, buttons[INPUT_WEAPONWHEEL]);
+        
+        keyPause    += gamepad_button_check_cross(cID, buttons[INPUT_PAUSE]);
+        keyMap      += gamepad_button_check_cross(cID, buttons[INPUT_QUICKITEM]);
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        // Handle analog sticks
+        var axis = gamepad_axis_count(cID);
+        var offsetX = gp_axislh;
+        var offsetY = gp_axislv;
+        if (controllerTypes[cID] == 2)//Override offsets for Sega Genesis/Mega Drive Mini controller.
         {
-            jp += 4 - xinputDeviceCount;
+            offsetX = 0;//floor(mouse_x/32)-3;
+            offsetY = 4;//floor(mouse_y/32)-3;
+            axis = 2;
         }
-        if (gamepad_is_connected(jp))
+        
+        for (var ii = 0; ii &lt; axis; ii += 2;) // 0 = left-stick / 1 = right-stick
         {
-            if (gamepad_axis_count(jp) &gt;= 2)
+            var index = (ii / 2);
+            
+            var axisX = gamepad_axis_value(cID, ii+offsetX),//gp_axislh + ii),
+                axisY = gamepad_axis_value(cID, ii+offsetY);//gp_axislv + ii);
+            
+            //How much the stick has been tilt
+            global.analogStickTilt[i, index] = point_distance(0, 0, axisX, axisY);
+            
+            if (global.analogStickTilt[i, index] &gt; deadZone) //Deadzone check
             {
-                // Check D-Pad first
+                global.analogStickDirection[i, index] = point_direction(0, 0, axisX, axisY);
+            }
+            else //If deadzone not reached - reset to 0
+            {
+                global.analogStickTilt[i, index] = 0;
+            }
+        }
+        /*printErr(global.analogStickTilt);
+        printErr(global.analogStickDirection);
+        printErr(controllerTypes);
+        printErr(offsetX);
+        printErr(offsetY);*/
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        // Left analog stick to move
+        if (global.analogStickTilt[i, 0])
+        {
+            var range = 60;
+            
+            for (var ii = 0; ii &lt; 4; ii ++;)
+            {
+                var difference = abs((ii * 90) - global.analogStickDirection[i, 0]);
+                var press = ((difference &lt;= range) || (difference &gt;= (360 - range)));
                 
-                var dPad = false;
-                if (joystick_has_pov(jp))
+                switch(ii)
                 {
-                    var angle = joystick_pov(jp);
-                    if (angle != -1)
-                        dPad = true;
-                    switch (angle)
-                    {
-                        case 0:
-                            global.keyUp[i] += 1;
-                            break;
-                        case 45:
-                            global.keyRight[i] += 1;
-                            global.keyUp[i] += 1;
-                            break;
-                        case 90:
-                            global.keyRight[i] += 1;
-                            break;
-                        case 135:
-                            global.keyDown[i] += 1;
-                            global.keyRight[i] += 1;
-                            break;
-                        case 180:
-                            global.keyDown[i] += 1;
-                            break;
-                        case 225:
-                            global.keyLeft[i] += 1;
-                            global.keyDown[i] += 1;
-                            break;
-                        case 270:
-                            global.keyLeft[i] += 1;
-                            break;
-                        case 315:
-                            global.keyLeft[i] += 1;
-                            global.keyUp[i] += 1;
-                            break;
-                    }
+                    case 0:
+                        keyRight += press;
+                        break;
+                        
+                    case 1:
+                        keyUp += press;
+                        break;
+                        
+                    case 2:
+                        keyLeft += press;
+                        break;
+                        
+                    case 3:
+                        keyDown += press;
+                        break;
                 }
-                
-                // Analog Stick position
-                if (!dPad)
+            }
+        }
+        
+        if (i == 0) //Only relevant for player 1
+        {
+            if (global.buttonPromptOverride)
+            {
+                global.buttonPromptType = global.buttonPromptOverride;
+            }
+            else
+            {
+                var newPrompt = 1;
+                var str = gamepad_get_description(cID);
+                //Sadly, Switch controller in Steam Big Picture just shows as a normal 360 controller.
+                if (string_pos("PLAYSTATION", string_upper(str)) || string_pos("SONY DUALSHOCK", string_upper(str)))
+                //PS4 controllers don't use an actual PLAYSTATION label.
                 {
-                    var axX = gamepad_axis_value(jp, gp_axislh);
-                    var axY = gamepad_axis_value(jp, gp_axislv);
-                    if ((abs(axY) &gt; 0.4) || (abs(axX) &gt; 0.36))
+                    newPrompt = 2;
+                }
+                else if (string_pos("MAYFLASH GAMECUBE", string_upper(str)))
+                {
+                    newPrompt = 6;
+                }
+                else if (string_pos("SWITCH PRO", string_upper(str)))
+                {
+                    newPrompt = 3;
+                }
+                else if (string_pos("3B CONTROLLER", string_upper(str)) &amp;&amp; gamepad_button_count(cID) == 10 &amp;&amp; gamepad_axis_count(cID) == 5)//Sega Genesis Mini Controller
+                {//Does not work with Steam Input.
+                    newPrompt = 4;
+                    //printErr(gamepad_button_count(cID));
+                }
+                else if (string_pos("NINTENDO N64 CONTROLLER", string_upper(str)))
+                {//This is probably the most unique controller usable in modern day (X/Y not existing), so I felt it necessitated some inputs.
+                //Note: Only works with steam input.
+                    newPrompt = 5;
+                }
+                /*printErr(gamepad_get_description(cID));
+                printErr(gamepad_button_count(cID));
+                printErr(gamepad_axis_count(cID));*/
+                // Set the button-prompts to gamepad-mode
+                if (global.buttonPromptType != newPrompt)
+                {
+                    var buttons = gamepad_button_count(cID);
+                    
+                    for (var ii = 0; ii &lt; buttons; ii ++;)
                     {
-                        gamepadStick = point_direction(0, 0, axX, axY);
-                        global.keyLeft[i] += (gamepadStick &gt;= 120
-                            &amp;&amp; gamepadStick &lt;= 240);
-                        global.keyRight[i] += ((gamepadStick &lt;= 60)
-                            || gamepadStick &gt;= 300);
-                        global.keyUp[i] += (gamepadStick &gt;= 30
-                            &amp;&amp; gamepadStick &lt;= 150);
-                        global.keyDown[i] += (gamepadStick &gt;= 210
-                            &amp;&amp; gamepadStick &lt;= 330);
+                        if (gamepad_button_check_cross(cID, ii))
+                        {
+                            global.buttonPromptType = newPrompt;
+                            break;
+                        }
                     }
                 }
             }
-            global.keyJump[i] += gamepad_button_check(jp,
-                global.joystick_jumpKey[i]);
-            global.keyShoot[i] += gamepad_button_check(jp,
-                global.joystick_shootKey[i]);
-            global.keySlide[i] += gamepad_button_check(jp,
-                global.joystick_slideKey[i]);
-            global.keyPause[i] += gamepad_button_check(jp,
-                global.joystick_pauseKey[i]);
-            global.keyWeaponSwitchLeft[i] += gamepad_button_check(jp,
-                global.joystick_weaponSwitchLeftKey[i]);
-            global.keyWeaponSwitchRight[i] += gamepad_button_check(jp,
-                global.joystick_weaponSwitchRightKey[i]);
+        }
+        
+        
+        
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    // | | | | | | | | | | | | | | | | | | | | | | | | |
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    // Set the button-prompts to key-mode
+    if (global.buttonPromptType &amp;&amp; !global.buttonPromptOverride)
+    {
+        if (keyboard_check(vk_anykey)) 
+        {
+            global.buttonPromptType = 0;
+        }   
+    }
+    
+    // SPECIAL STUFF
+    
+    // Mirror left &amp; right if mirrored
+    if (checkCheats(cheatEnums.mirrorMode))
+    {
+        var keyLeftSub = keyLeft;
+        
+        keyLeft  = keyRight;
+        keyRight = keyLeftSub;
+    }
+    
+    // Manipulate stuff if pressing the weapon-wheel button
+    var checkWheelInputs = keyWheelSwitch;
+    if (global.holdToggle)
+    {
+        with (objMegaman)
+        {
+            if (playerID == i)
+                checkWheelInputs = usingWheel;
         }
     }
     
-    // Key pressed stuff
-    global.keyLeftPressed[i] = global.keyLeft[i] &amp;&amp; !keyLeftHold;
-    global.keyRightPressed[i] = global.keyRight[i] &amp;&amp; !keyRightHold;
-    global.keyUpPressed[i] = global.keyUp[i] &amp;&amp; !keyUpHold;
-    global.keyDownPressed[i] = global.keyDown[i] &amp;&amp; !keyDownHold;
-    global.keyJumpPressed[i] = global.keyJump[i] &amp;&amp; !keyJumpHold;
-    global.keyShootPressed[i] = global.keyShoot[i] &amp;&amp; !keyShootHold;
-    global.keySlidePressed[i] = global.keySlide[i] &amp;&amp; !keySlideHold;
-    global.keyPausePressed[i] = global.keyPause[i] &amp;&amp; !keyPauseHold;
-    global.keyWeaponSwitchLeftPressed[i] = global.keyWeaponSwitchLeft[i]
-        &amp;&amp; !keyWeaponSwitchLeftHold;
-    global.keyWeaponSwitchRightPressed[i] = global.keyWeaponSwitchRight[i]
-        &amp;&amp; !keyWeaponSwitchRightHold;
+    if (checkWheelInputs &amp;&amp; wheelEnabled)
+    {
+        if (keyRight || keyUp || keyLeft || keyDown)
+        {
+            global.analogStickDirection[i, 1] = point_direction(0, 0, (keyRight - keyLeft), (keyDown - keyUp));
+            
+            global.analogStickTilt[i, 1] = 1;
+            
+            keyRight    = 0;
+            keyUp       = 0;
+            keyLeft     = 0;
+            keyDown     = 0;
+        }
+    }
+    
+    if (cID != -1)
+    {
+        keyWheelSwitch += gamepad_button_check_cross(cID, global.gamepadBind0[INPUT_WEAPONWHEEL2]); //Right stick
+    }
+    
+    // Use Numpad to control the right stick-position (for weapon-wheel)
+    if (i == 0 &amp;&amp; global.playerCount == 1) // Only first player, when in single player.
+    {
+        var ii = 0;
+        
+        wkey[(ii ++)] = vk_numpad6;
+        wkey[(ii ++)] = vk_numpad9;
+        wkey[(ii ++)] = vk_numpad8;
+        wkey[(ii ++)] = vk_numpad7;
+        wkey[(ii ++)] = vk_numpad4;
+        wkey[(ii ++)] = vk_numpad1;
+        wkey[(ii ++)] = vk_numpad2;
+        wkey[(ii ++)] = vk_numpad3;
+        
+        for (var iii = 0; iii &lt; ii; iii ++;)
+        {
+            if (keyboard_check(wkey[iii]))
+            {
+                global.analogStickDirection[i, 1] = (iii * 45);
+                global.analogStickTilt[i, 1] = 1;
+            }
+        }
+        
+        if (keyboard_check(vk_numpad5))
+        {
+            keyWheelSwitch ++;
+        }
+    }
+    
+    //Use 'esc' to press pause
+    if (global.escapeBehavior == 1)
+    {
+        keyPause += keyboard_check_pressed(vk_escape);
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    // | | | | | | | | | | | | | | | | | | | | | | | | |
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    // Set key presses
+    global.keyRightPressed[i]   = keyRight &amp;&amp; !global.keyRight[i];
+    global.keyUpPressed[i]      = keyUp &amp;&amp; !global.keyUp[i];
+    global.keyLeftPressed[i]    = keyLeft &amp;&amp; !global.keyLeft[i];
+    global.keyDownPressed[i]    = keyDown &amp;&amp; !global.keyDown[i];
+    
+    global.keyJumpPressed[i]    = keyJump &amp;&amp; !global.keyJump[i];
+    global.keyShootPressed[i]   = keyShoot &amp;&amp; !global.keyShoot[i];
+    global.keySlidePressed[i]   = keySlide &amp;&amp; !global.keySlide[i];
+    global.keyPausePressed[i]   = keyPause &amp;&amp; !global.keyPause[i];
+    
+    global.keyWeaponSwitchLeftPressed[i]    = keyWeaponSwitchLeft   &amp;&amp; !global.keyWeaponSwitchLeft[i];
+    global.keyWeaponSwitchRightPressed[i]   = keyWeaponSwitchRight  &amp;&amp; !global.keyWeaponSwitchRight[i];
+    
+    global.keyMapPressed[i]         = keyMap            &amp;&amp; !global.keyMap[i];
+    global.keyWheelSwitchPressed[i] = keyWheelSwitch    &amp;&amp; !global.keyWheelSwitch[i];
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    // | | | | | | | | | | | | | | | | | | | | | | | | |
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    // Set which keys are being held
+    global.keyRight[i]   = sign(keyRight);
+    global.keyUp[i]      = sign(keyUp);
+    global.keyLeft[i]    = sign(keyLeft);
+    global.keyDown[i]    = sign(keyDown);
+    
+    global.keyJump[i]    = sign(keyJump);
+    global.keyShoot[i]   = sign(keyShoot);
+    global.keySlide[i]   = sign(keySlide);
+    global.keyPause[i]   = sign(keyPause);
+    
+    global.keyWeaponSwitchLeft[i]    = sign(keyWeaponSwitchLeft);
+    global.keyWeaponSwitchRight[i]   = sign(keyWeaponSwitchRight);
+    
+    global.keyMap[i]         = sign(keyMap);
+    global.keyWheelSwitch[i] = sign(keyWheelSwitch);
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    // | | | | | | | | | | | | | | | | | | | | | | | | |
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    
+    //Rumble support.
+    if (os_type == os_windows)//This is just a future proof for Megamix 2.0. In *theory* this can also work with PS4 and Xbox One, but you can't really develop for those anymore.
+    {
+        if (gamepad_is_connected(cID) &amp;&amp; global.joystick_rumbleType[i])
+        {
+            var triggerChange = false;//As we have no clue whether calling the function when there's no change will send potentially wasteful signals to the controller, check first if the values have changed.
+            for (var j = cID*2; j &lt; (cID*2)+2; j++)
+            {
+                var pCurr = rumbleCurrent[j];
+                if (rumbleTimers[j] &gt;= 0)
+                {
+                    rumbleTimers[j]--;
+                }
+                else if (rumbleTimers[j] &lt;= 0)
+                {
+                    rumbleCurrent[j] = 0;
+                    rumblePriority[cID] = -100;//Shared between motors.
+                }
+
+                rumbleCurrent[j] = min(1,max(0,rumbleCurrent[j]-rumbleDampenAmount[j]));//gamepad_set_vibration(i,0,0);
+                
+                
+                if (pCurr != rumbleCurrent[j])
+                {
+                    triggerChange = true;
+                    
+                    
+                }
+                //printErr(rumbleCurrent[i]);
+            }
+            if (triggerChange)
+            {
+                gamepad_set_vibration(cID,rumbleCurrent[cID*2],rumbleCurrent[(cID*2)+1]);
+            }
+        }
+    }
+
+    
+
 }
 
 // recorded controls dubbing:
 recordInputHandle();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Hotkeys
+
+//Skip after-death waiting
+if (global.keySlide[0] || global.autoCutsceneSkip == 2)
+{
+    if (alarm[0] &gt; 1)
+    {
+        alarm[0] = 1;
+    }
+}
+
+// - - - - - - - - - - - - - - - - - - - - -
+
+// Screenshot
+if (keyboard_check_pressed(vk_f9))
+{
+    var screenshot = "";
+    
+    while (true)
+    {
+        screenshotNum ++;
+        screenshot = working_directory + "\screenshots\screenshot" + string(screenshotNum) + ".png";
+        
+        if (!file_exists(screenshot))
+        {
+            break;
+        }
+    }
+    
+    screen_save(screenshot);
+    
+    print("SCREENSHOT SAVED", WL_SHOW, c_orange);
+    
+    playSFX(sfxKeyGet);
+}
+
+// - - - - - - - - - - - - - - - - - - - - -
+
+// Reset game
+if (keyboard_check_pressed(vk_f2))
+{
+    audio_stop_all();
+    stopMusic();
+    game_restart();
+}
+// - - - - - - - - - - - - - - - - - - - - -
+
+// Change screen size
+if (keyboard_check_pressed(vk_f3))
+{
+    var pre = global.screensize;
+    
+    setScreenSize(global.screensize + 1);
+    
+    if (global.screensize == pre)
+    {
+        setScreenSize(1);
+    }
+}
+
+// - - - - - - - - - - - - - - - - - - - - -
+
+// Toggle fullscreen
+if (keyboard_check_pressed(vk_f4))
+{  
+    global.fullscreen = !(global.fullscreen &gt; 0)
+    setScreenSize(global.screensize);   
+}
+// Toggle fullscreen
+if (DEBUG_ENABLED)//Need this since I'm testing disabling gig for memory leak detection.
+{
+    
+    if (keyboard_check_pressed(vk_f5)) //I
+    {
+        if (get_string("Start memory test?","") == "yes")
+        {
+            instance_create(0,0,objDebugging_MemoryTestSuite);
+        }
+    }
+}
+// - - - - - - - - - - - - - - - - - - - - -
+
+// Reset
+if ((keyboard_check_pressed(vk_control) &amp;&amp; keyboard_check(ord('R'))) || (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('R'))))
+|| ((keyboard_check_pressed(vk_control) &amp;&amp; keyboard_check(ord('Y'))) || (keyboard_check(vk_control) &amp;&amp; keyboard_check_pressed(ord('Y'))))
+{
+    var preventLeave = (!view_enabled || (room == rmDisclaimer || room == rmTitleScreen || room == rmOptions || room == rmFileSelect || room == rmCastleIntro));
+    
+    with (objMegaman)
+    {
+        if (playerIsLocked(PL_LOCK_PAUSE))
+            preventLeave = true;
+    }
+    
+    if (!global.resetShortcuts)
+        preventLeave = true;
+    
+    if (!preventLeave)
+    {
+        if (keyboard_check(ord('R')))
+        {
+            if (global.playerHealth[0] &lt;= 0)
+            {
+                with (objGlobalControl)
+                    alarm[0] = 0;
+                global.nextRoom = global.checkpoint;
+            }
+            else
+            {
+                global.nextRoom = room;
+            }
+        }
+        else
+        {
+            var rmName = roomExternalGetName(getRoom(global.stage));
+            
+            //Confirm/Decline checkpoint
+            if (slExists(rmName, 1))
+            {
+                slDelete(rmName, 1);
+            }
+                    
+            levelStateReset();
+            goToLevel(getRoom(global.stage), 0);
+        }
+        
+        global.endMusicOnRoomEnd = 1;
+        global.levelSong = "";
+        global.levelTrackNumber = -1;
+        global.tempSongData = -1;
+        global.tempSongData_MIDI = -1;
+    }
+}
+
+
+// Quit (Hold down the escape key)
+if (global.escapeBehavior == 0 &amp;&amp; saveTimer &lt;= 0)
+{
+    if (!keyboard_check(vk_escape))
+    {
+        quitTimer = 0;
+    }
+    else
+    {
+        var interval = 30;
+        
+        if ((quitTimer / interval) &gt;= 3)
+        {
+            game_end();
+        }
+        else if ((quitTimer mod interval) == 0)
+        {
+            playSFX(sfxReflect);
+        }
+        
+        quitTimer += (1 + DEBUG_ENABLED); // Faster in debug mode
+    }
+}
+
 </string>
           </argument>
         </arguments>
@@ -504,10 +1233,12 @@ recordInputHandle();
           <argument>
             <kind>1</kind>
             <string>/// freeze / unfreeze game objects
+
 if (global.frozen)
 {
     var len = array_length_1d(obj);
-    for (i = 0; i &lt; len; i += 1)
+    
+    for (var i = 0; i &lt; len; i ++;)
     {
         with (obj[i])
         {
@@ -516,42 +1247,53 @@ if (global.frozen)
                 pre_hsp = hspeed;
                 pre_vsp = vspeed;
                 pre_spe = speed;
-                pre_isp = image_speed;
-                hspeed = 0;
-                vspeed = 0;
-                speed = 0;
+                
+                hspeed  = 0;
+                vspeed  = 0;
+                speed   = 0;
+                
+                pre_isp     = image_speed;
                 image_speed = 0;
+                
+                pre_tmlrun       = timeline_running;
+                timeline_running = false;
+                
                 frozen = 1;
             }
-            
-            for (_i = 0; _i &lt;= 11; _i += 1)
+
+            for (var _i = 0; _i &lt;= 11; _i ++;)
             {
                 if (alarm[_i] &gt; 0)
                 {
-                    alarm[_i] += 1;
+                    alarm[_i] ++;
                 }
             }
         }
     }
+    
     setfrozen = 1;
 }
 else if (setfrozen) // Stop Freeze
 {
     var len = array_length_1d(obj);
+    
     for (i = 0; i &lt; len; i += 1)
     {
         with (obj[i])
         {
             if (frozen)
             {
-                hspeed = pre_hsp;
-                vspeed = pre_vsp;
-                speed = pre_spe;
+                hspeed  = pre_hsp;
+                vspeed  = pre_vsp;
+                speed   = pre_spe;
                 image_speed = pre_isp;
+                timeline_running = pre_tmlrun;
+                
                 frozen = 0;
             }
         }
     }
+    
     setfrozen = 0;
 }
 </string>
@@ -593,21 +1335,32 @@ with (objMegaman)
 with (objMegaman)
 {
     if (global.playerHealth[playerID] &gt; global.respawnDonateThreshold)
-    {
         global.respawnAllowed = true;
-    }
+    else
+        global.respawnAllowed = false;
+        
     if (playerIsLocked(PL_LOCK_PAUSE))
     {
         global.respawnAllowed = false;
     }
 }
 
+//in these situations, players cannot respawn.
 if (instance_exists(objAutoScroller))
 {
     global.respawnAllowed = false;
 }
 
-for (i = 0; i &lt; global.playerCount; i += 1)
+if (instance_exists(objWaveManJetSki))
+{
+    with (objWaveManJetSki)
+    {
+        if (active)
+            global.respawnAllowed = false;
+    }
+}
+
+for (var i = 0; i &lt; global.playerCount; i += 1)
 {
     if (global.respawnTimer[i] &gt;= 0)
     {
@@ -619,13 +1372,13 @@ for (i = 0; i &lt; global.playerCount; i += 1)
                 global.respawnTimer[i] = -1;
             }
         }
-        
+
         if (!instance_exists(prtBoss)
             &amp;&amp; global.respawnTimer[i] &gt; global.respawnTime)
         {
             global.respawnTimer[i] = global.respawnTime;
         }
-        
+
         if (global.keyPausePressed[i] &amp;&amp; global.respawnAllowed
             &amp;&amp; !global.respawnTimer[i])
         {
@@ -633,7 +1386,7 @@ for (i = 0; i &lt; global.playerCount; i += 1)
             var nogo = false;
             with (objMegaman)
             {
-                if (playerID == i)
+                if (playerID == i || isSlide)
                 {
                     nogo = true;
                 }
@@ -642,18 +1395,18 @@ for (i = 0; i &lt; global.playerCount; i += 1)
             {
                 continue;
             }
-            
+
             if (!global.respawnAllowed)
             {
                 playSFX(sfxError);
                 continue;
             }
             playSFX(sfxMenuSelect);
-            
+
             // determine respawn health:
             var donators = 1;
             var respawn_health = 0;
-            
+
             with (objMegaman)
             {
                 if (global.playerHealth[playerID]
@@ -662,6 +1415,7 @@ for (i = 0; i &lt; global.playerCount; i += 1)
                     donators += 1;
                 }
             }
+            
             with (objMegaman)
             {
                 donate = floor(global.playerHealth[playerID] / donators)
@@ -670,42 +1424,66 @@ for (i = 0; i &lt; global.playerCount; i += 1)
                 respawn_health += donate;
                 global.playerHealth[playerID] -= donate;
             }
-            
+
             // respawn player at random other player's coords
-            targetPlayer = instance_find(objMegaman,
-                irandom(instance_number(objMegaman) - 1));
-            prev_checkpoint = global.checkpoint;
-            global.checkpoint = -1;
+            var targetPlayer = instance_find(objMegaman, irandom(instance_number(objMegaman) - 1));
             
-            p = instance_create(targetPlayer.x, targetPlayer.y, objMegaman);
-            p.gravfactor = targetPlayer.gravfactor;
-            p.inWater = targetPlayer.inWater;
-            p.grav = targetPlayer.grav;
-            p.gravWater = targetPlayer.gravWater;
-            with (p)
+            //prev_checkpoint = global.checkpoint;
+            //global.checkpoint = -1;
+
+            with (instance_create(targetPlayer.x, targetPlayer.y, objMegaman))
             {
+                instance_create(x, y, objExplosion);
+                
+                playerID = i; // Set ID
+                
+                //Set attributes
+                gravfactor  = targetPlayer.gravfactor;
+                inWater     = targetPlayer.inWater;
+                grav        = targetPlayer.grav;
+                gravWater   = targetPlayer.gravWater;
+                gravDir = targetPlayer.gravDir;
+                image_xscale = targetPlayer.image_xscale;
+                image_yscale = targetPlayer.image_yscale;
+                
+                // For now, let's just have new players pop in
+                canHit = true;
+                iFrames = 0;
+
                 // teleporting init
-                teleportLock = lockPoolLock(
-                    localPlayerLock[PL_LOCK_MOVE],
-                    localPlayerLock[PL_LOCK_PHYSICS],
-                    localPlayerLock[PL_LOCK_SHOOT],
-                    localPlayerLock[PL_LOCK_CLIMB],
-                    localPlayerLock[PL_LOCK_CHARGE],
-                    localPlayerLock[PL_LOCK_PAUSE],
-                    localPlayerLock[PL_LOCK_TURN],
-                    localPlayerLock[PL_LOCK_GRAVITY]);
-                canHit = false;
+                // teleportLock = lockPoolLock(
+                //     localPlayerLock[PL_LOCK_MOVE],
+                //     localPlayerLock[PL_LOCK_PHYSICS],
+                //     localPlayerLock[PL_LOCK_SHOOT],
+                //     localPlayerLock[PL_LOCK_CLIMB],
+                //     localPlayerLock[PL_LOCK_CHARGE],
+                //     localPlayerLock[PL_LOCK_PAUSE],
+                //     localPlayerLock[PL_LOCK_TURN],
+                //     localPlayerLock[PL_LOCK_GRAVITY]);
+                // canHit = false;
             }
-            
-            global.checkpoint = prev_checkpoint;
-            p.playerID = i;
+
+            //global.checkpoint = prev_checkpoint;
+            for (var d = 0; d &lt; global.playerCount; d ++)
+            {
+                if (respawnLocation[d] == i)
+                {
+                    respawnLocation[d] = -1;
+                    respawnTimer[d] = 0;
+                }
+                
+            }
             global.playerHealth[i] = respawn_health;
             global.respawnTimer[i] = -1;
+            
             objGlobalControl.alarm[0] = -1;
             global.decrementLivesOnRoomEnd = false;
+            
+            global.keyPausePressed[i] = 0;
         }
     }
 }
+
 </string>
           </argument>
         </arguments>
@@ -733,91 +1511,326 @@ for (i = 0; i &lt; global.playerCount; i += 1)
 x = view_xview[0] + 16;
 y = view_yview[0] + 16;
 
+var maximum = 28;
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 // Infinite energy handling
-for (i = 0; i &lt;= global.totalWeapons; i += 1)
+for (i = 0; i &lt;= global.totalWeapons; i ++;)
 {
-    if (global.infiniteEnergy[i])
+    if (global.infiniteEnergy[i] || (checkCheats(cheatEnums.infiniteWeapons)))
     {
-        for (j = 0; j &lt; global.playerCount; j += 1)
+        for (j = 0; j &lt; global.playerCount; j ++;)
         {
-            global.ammo[j, i] = 28;
+            global.ammo[j, i] = maximum;
         }
     }
 }
 
-if (increaseHealth || increaseAmmo) // Increase Health and/or Ammo
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// Increase Health and/or Ammo
+if ((increaseHealth != 0) || (increaseAmmo != 0))
 {
-    if (global.healthEffect) // Instant
+    //Energy balancer
+    if (global.energyBalancer &gt; 0)
     {
-        if (increaseHealth)
+        if ((increasePID &gt;= 0) &amp;&amp; (increaseWeapon &gt;= 0)) //Only possible if we want to fill a specific weapon
         {
-            global.playerHealth[increasePID] = ceil(global.playerHealth[increasePID] + increaseHealth);
-            playSFX(sfxEnergyRestore);
-            
-            increaseHealth = 0;
-        }
-        if (increaseAmmo)
-        {
-            global.ammo[increasePID, increaseWeapon] = ceil(global.ammo[increasePID, increaseWeapon] + increaseAmmo);
-            playSFX(sfxEnergyRestore);
-            
-            increaseAmmo = 0;
+            if (increaseTimer == 0) //Only can be changed during the first frame
+            {
+                if (increaseAmmo != 0)
+                {
+                    //Ammo limit
+                    var destinedAmmo = (maximum * (increaseAmmo &gt; 0));
+                    
+                    //Ammo already at limit?
+                    var switchWeapon = (global.ammo[increasePID, increaseWeapon] == destinedAmmo);
+                    switchWeapon += (increaseWeapon == 0); //Or do we have the base-weapon equipped?
+                    
+                    if (switchWeapon) 
+                    {
+                        var ammoDifference = -1;
+                        var subDifference  = 0;
+                        
+                        for (var i = 1; (i &lt;= global.totalWeapons); i ++;) //Compare all weapons
+                        {
+                            subDifference = abs(destinedAmmo - global.ammo[increasePID, i]);
+                            
+                            if (ammoDifference &lt; subDifference) //Set new weapon
+                            {
+                                increaseWeapon = i;
+                                ammoDifference = subDifference;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-    else
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    if (increasePID &gt;= 0) //Specific player
     {
-        increaseTimer += 1;
+        pStart = increasePID;
+        pEnd = pStart;
+    }
+    else //All players
+    {
+        pStart = 0;
+        pEnd = (global.playerCount - 1);
+    }
+    
+    if (increaseWeapon &gt;= 0) //Specific weapon
+    {
+        wStart = increaseWeapon;
+        wEnd = wStart;
+    }
+    else //All weapons
+    {
+        wStart = 0;
+        wEnd = global.totalWeapons;
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    var instant = global.healthEffect; //Instant?
+    
+    var subtract = ((increaseHealth + increaseAmmo) &lt; 0); //We only need this for the pitch-change
+    var sfx = getGenericSFX(SFX_REFILL); //Our SFX
+    
+    var playSfx = 0; //Needed for instant
+    
+    var healthChange = increaseHealth; //Instant
+    var ammoChange   = increaseAmmo; //Instant
+    
+    if (!instant) // Tick for tick
+    {
+        var perTick = (1 / 3);
         
-        if (!(increaseTimer mod 3))
-        {
-            increaseHealth *= (global.playerHealth[increasePID] &lt; 28);
-            if (increaseHealth)
-            {
-                global.playerHealth[increasePID] = floor(global.playerHealth[increasePID]) + 1;
-                increaseHealth = max(increaseHealth - 1, 0);
-            }
-            increaseAmmo *= (global.ammo[increasePID, increaseWeapon] &lt; 28);
-            if (increaseAmmo)
-            {
-                global.ammo[increasePID, increaseWeapon] = floor(global.ammo[increasePID, increaseWeapon]) + 1;
-                increaseAmmo = max(increaseAmmo - 1, 0);
-            }
-        }
+        healthChange = (min(perTick, abs(healthChange)) * sign(healthChange));
+        ammoChange   = (min(perTick, abs(ammoChange)) * sign(ammoChange));
     }
     
-    if (!increaseHealth &amp;&amp; !increaseAmmo)
+    var healthEnd = 1;
+    var ammoEnd   = 1;
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    for (var i = pStart; (i &lt;= pEnd); i ++;) //Cycle through players
     {
-        global.frozen = false;
+        //Health &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+        var oldVal   = global.playerHealth[i];
+        var newVal   = oldVal + healthChange;
+        var clampVal = clamp(newVal, 0, maximum);
+        
+        if (clampVal != oldVal) //New clamped value is different from old value
+        {
+            //Set health
+            global.playerHealth[i] = clampVal;
+            
+            playSfx = 1;
+            healthEnd = 0; //Don't end the effect yet
+        }
+        
+        // &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+        
+        //Ammo &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+        for (var ii = wStart; (ii &lt;= wEnd); ii ++;) //Cycle through weapons
+        {
+            var oldVal   = global.ammo[i, ii];
+            var newVal   = oldVal + ammoChange;
+            var clampVal = clamp(newVal, 0, maximum);
+            
+            if (clampVal != oldVal) //New clamped value is different from old value
+            {
+                //Set Ammo
+                global.ammo[i, ii] = clampVal;
+
+                playSfx = 1;
+                ammoEnd = 0; //Don't end the effect yet
+            }
+        }
+        
+        // &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+    }
+    
+    //Subtract
+    increaseHealth -= healthChange;
+    increaseHealth *= !healthEnd;
+    
+    increaseAmmo -= ammoChange;
+    increaseAmmo *= !ammoEnd;
+    
+    // - - - - - - -
+    
+    //End it
+    if ((increaseHealth == 0) &amp;&amp; (increaseAmmo == 0))
+    {
         increaseTimer = 0;
-        if (!global.healthEffect)
+        
+        if (!instant) //Stop frozen and sound
         {
-            audio_stop_sound(sfxEnergyRestore);
+            global.frozen = resetFrozen;
+            audio_stop_sound(sfx);
+            playSfx = 0;
         }
     }
-    
-    // make sure ammo never goes past 28
-    if (global.playerHealth[increasePID] &gt; 28)
+    else //It's not over yet
     {
-        global.playerHealth[increasePID] = 28;
+        if (increaseTimer == 0) //First frame
+        {
+            resetFrozen = global.frozen;
+            global.frozen = 1; //FREEZE
+        }
+        else
+        {
+            playSfx = 0;
+        }
+        
+        increaseTimer ++;
     }
     
-    if (global.ammo[increasePID, increaseWeapon] &gt; 28)
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    //Play SFX
+    if (playSfx)
     {
-        global.ammo[increasePID, increaseWeapon] = 28;
+        audio_stop_sound(sfx);
+        var mySound = audio_play_sound(sfx, 60, !instant);
+        audio_sound_gain( mySound, soundGetVolume(1), 0);
+        
+        if (subtract) //Change pitch when subtracting
+        {
+            audio_sound_pitch(mySound, 0.8);
+        }
     }
 }
+else
+{
+    resetFrozen = 0;
+    
+    if (trickleChargeMode) //Trigger trickle
+    {
+        if (!global.frozen)
+        {
+            increaseAmmo   = trickleChargeMode;
+            increaseWeapon = -1;
+            increasePID    = -1;
+            
+            trickleChargeMode = 0;
+        }
+    }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // Screen shake handling
 if (!global.frozen)
 {
     if (global.shakeTimer &gt; 0)
     {
-        global.shakeTimer -= 1;
+        global.shakeTimer --;
     }
     else
     {
         global.shakeFactorX = 0;
         global.shakeFactorY = 0;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="75">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Check for controller connects/disconnects
+
+if (async_load[? "event_type"] == "gamepad discovered")
+{
+    
+    var index = async_load[? "pad_index"];
+    //printErr(index);
+    //print(string(index) + string(gamepad_get_description(index)),WL_SHOW);
+    if (false)//string_pos("MAYFLASH GAMECUBE", string_upper(gamepad_get_description(index))))
+    {//When mayflashes are plugged in, use a special setup, since they start at controller port 4 for some reason.
+    //Nvm, this didn't work. Or rather, the mayflash bindings are so broken that the player needs to use Steam Input.
+    //print("Use Steam Input for Mayflash Adapters.",WL_SHOW);
+        var success = false;
+        for (var i = 3; i &gt;= 0; i--)
+        {
+            if (controllerID[i] == -1)
+            {
+                controllerID[i] = index;
+                success = true;
+                break;
+            }
+        }
+        if (!success)
+        {//Port order will break with this but idk how else to work it atm. And it won't matter for MaGMML3 anyhow.
+            for (var i = 4; i &lt; 12; i++)
+            {
+                if (controllerID[i] == -1)
+                {
+                    controllerID[i] = index;
+                    break;
+                }
+            }
+        }
+        
+    }
+    
+    for (var i = 0; i &lt; 12; i++)
+    {
+        if (controllerID[i] == -1)
+        {
+            controllerID[i] = index;
+            break;
+        }
+    }
+    
+    switch (string_upper(gamepad_get_description(index)))
+    {
+        case "3B CONTROLLER":
+            if (gamepad_button_count(index) == 10 &amp;&amp; gamepad_axis_count(index) == 5)//Yeah for some reason this has 5 axes on a technical standpoint, *but* it gives an easier means to prevent false-positives.
+            {
+                controllerTypes[index] = 2;
+            }
+            else
+            {
+                controllerTypes[index] = 0;
+            }
+        break;
+        
+        default:
+            controllerTypes[index] = 0;
+        break;
+    }
+}
+else if (async_load[? "event_type"] == "gamepad lost")
+{
+    var index = indexOf(controllerID, async_load[? "pad_index"]);
+
+    if (index != -1)
+    {
+        controllerID[index] = -1;
     }
 }
 </string>
@@ -842,34 +1855,71 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>cleanMem('clean');
+            <string>
+rumbleClearAll();
+weaponSetInit();
+alarm[0] = -1;
 
 setfrozen = 0;
+confirmedCheckpoint = 0;
 
-if (global.endStageOnRoomEnd)
+if (global.endMusicOnRoomEnd)
+{
+    global.endMusicOnRoomEnd = false;
+    stopMusic();
+}
+
+if (global.endStageOnRoomEnd) //Exiting stage
 {
     stageEnd();
-}
-else if (global.decrementLivesOnRoomEnd)
-{
-    // lose a life
-    if (global.inGame)
+    
+    if (global.nextRoom)
     {
-        global.livesRemaining--;
+        var str = roomExternalGetName(global.nextRoom);
+            str = string_replace(str, ".room.gmx", "");
+        
+        if (slExists(str, 1)) and (global.checkpointSavesEnabled)
+        {
+            global.shownCastleIntro = true;
+            saveLoadCheckpoint(0, str);
+        }
     }
-    global.decrementLivesOnRoomEnd = false;
-    if (global.livesRemaining &lt; 0)
+}
+else
+{
+    if (global.decrementLivesOnRoomEnd)
     {
-        global.inGame = false;
+        // lose a life
+        if (global.inGame &amp;&amp; global.livesEnabled)
+        {
+            global.livesRemaining --;
+        }
+        
+        global.decrementLivesOnRoomEnd = false;
+        
+        if (global.livesRemaining &lt; 0)
+        {
+            global.inGame = false;
+            
+            //Delete checkpoint save upon running out of lives
+            var rmName = roomExternalGetName(global.nextRoom);
+            
+            if (slExists(rmName, 1))
+            {
+                slDelete(rmName, 1);
+            }
+        }
     }
 }
 
 // objMegaman clean-up
 with (objMegaman)
+{
     instance_destroy();
+}
 
 // weapon clean up
-for (i = 0; i &lt;= global.playerCount; i += 1)
+for (i = 0; i &lt;= global.playerCount; i ++;)
 {
     global.weapon[i] = 0;
 }
@@ -878,10 +1928,46 @@ global.lockBuster = false;
 
 global.timeStopped = false;
 
-application_surface_draw_enable(true);
+//Reset screen shake
+screenShake(0, 0, 0);
+
+global.displayCornerUI = true;
+
+if (!checkCheats(cheatEnums.mirrorMode))
+{
+    application_surface_draw_enable(true);
+}
 
 // forcibly reset control locks
 globalLockReset();
+
+global.stageIsHub = false;//Set to true in hub levels room CC, gets unset here as we switch stages.
+
+with (instance_id[array_length_1d(instance_id)-1])
+{
+    /*
+    From GMS:
+    NOTE: If the create event of the instance actually creates further instances, 
+    those instances will be next in the order for running their code, 
+    before going to the next instance set in this list. 
+    
+    In order to prevent conflicts with the memory manager, it must always be created by the final object in the 
+    room at the time.
+    Thankfully it's just a defer call so it shouldn't cause issues.
+    
+    If this doesn't work and the game *still* crashes,
+    easiest solution would be to have an always active, but not persistent, object placed in every room
+    that just calls this action.
+    
+    Obviously not pleasant.
+    */
+    
+    defer(ev_other,ev_room_end,depth,
+    defer,makeArray(ev_other,ev_room_end,depth,
+    mm_callCleanup,array_create(0),0),0);
+}
+//To get around issues of instance order and how that could break things with memory cleanup, defer this to the very end.
+//DOUBLE defer it, in order to prevent any issues by other defers.
 </string>
           </argument>
         </arguments>
@@ -904,196 +1990,209 @@ globalLockReset();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// setup room, spawn players, etc.
-joystick_connected = 0;
-if (joystick_exists(1))
-{
-    joystick_connected = true;
-}
-
-// global.frozen = false;
-global.aliveBosses = 0;
-
-global.lockTransition = false;
-global.switchingSections = false;
-
-global.keyCoinTotal = 0;
-global.keyCoinCollected = 0;
-global.keyNumber = 0;
+            <string>/// Setup room
 
 global.nextRoom = 0;
-
-view_wview[0] = min(global.screenWidth, room_width);
-view_hview[0] = min(global.screenHeight, room_height);
-
-room_speed = global.gameSpeed;
-
-showhealth = 0;
 global.roomTimer = 0;
 
-// begin level if flag set
-if (global.beginStageOnRoomBegin &amp;&amp; global.hasTeleported)
-{
-    // Delete this if you actually desire levels to begin by teleporter.
-    // (Note that MaGMML-esque hub teleporters should not trigger this because they should not set hasTeleported to true.)
-    printErr("Warning: A new stage began by teleporting in. This is probably not intended behaviour. See objGlobalControl:Room Start event for details.");
-}
+global.roomvolume = 1;
+
+global.cameraPanMode = 0;
+
+//Get and save name of current room
+var str = roomExternalGetName(room);
+    str = string_replace(str, ".room.gmx", "");
+
+global.roomName = str;
+
+saveTimer = -1;
+
+// - - - - - - - - - - - - - - - - - - - - - - - -
+
+//Set default camera variables
+view_wview[0] = min(global.screenWidth , room_width);
+view_hview[0] = min(global.screenHeight, room_height);
+view_wport[0] = view_wview[0];
+view_hport[0] = view_hview[0];
+
+room_speed = global.gameSpeed;
+showhealth = 0;
+
+// - - - - - - - - - - - - - - - - - - - - - - - -
 
 global.inGame = (instance_exists(objDefaultSpawn) || global.hasTeleported);
 
-assert(!global.beginStageOnRoomBegin || global.inGame, "Began a stage but nowhere for player to spawn.");
+// We are in a level room
+if (global.inGame)
+{
+    levelSetup();
+}
+
+var lastSize = memoryLeak_MemorySize;
+memoryLeak_MemorySize = MECLMM_GetMemory();
+
+if (DEBUG_ENABLED)
+{
+    if (memoryLeak_MemorySize &gt; 2000 &amp;&amp; memoryLeak_MemorySize &gt; lastSize &amp;&amp; memoryLeak_Counter == 0)
+    {
+        print("DEVTEAM WARNING: Memory Size above 2GB. Possible memory leak.",WL_SHOW,c_yellow);
+        defer(ev_step,ev_step_normal,0,print,makeArray("Please report to a developer. Thanks :)",WL_SHOW),180);
+        //Please see mm_init if you're haphazardly creating data structures like this.
+        memoryLeak_Counter++;
+    }
+}
+
+if (memoryLeak_MemorySize &gt; 3000 &amp;&amp; memoryLeak_MemorySize &gt; lastSize)
+{
+    memoryLeak_Counter++;
+    if (memoryLeak_Counter &gt; 3)
+    {
+        print("WARNING: Memory Size above 3GB for prolonged period.",WL_SHOW,c_yellow);
+        defer(ev_step,ev_step_normal,0,print,makeArray("Game may crash soon. Save and relaunch!",WL_SHOW,c_yellow),180);
+    }
+    
+}
+    
+    
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Spawn Player, Start the stage in terms of timing.
+
+global.canCheat = 0;
+global.cheatsActive = 0;
+
+global.bolts = round(global.bolts);
 
 if (global.inGame)
 {
-    if (DEBUG_SPAWN)
-        show_debug_message("Level Start (objGlobalControl) " + roomExternalGetName(room));
-    showhealth = 1;
-    
-    // set room settings
-    view_enabled = true;
-    view_visible[0] = true;
-    room_speed = 60;
-    
-    // quadrant size
-    for (i = 0; i &lt;= 7; i += 1)
+    //Entered stage - check for checkpoint status
+    if (!global.checkpoint)
     {
-        if (string_pos("bgQuad", background_get_name(background_index[i])) == 1)
-        {
-            global.quadWidth = background_get_width(background_index[i]);
-            global.quadHeight = background_get_height(background_index[i]);
-            global.quadMarginTop = (global.quadHeight - view_hview[0]) / 2;
-            global.quadMarginBottom = global.quadMarginTop;
-            background_index[i] = -1;
-        }
-    }
-    
-    view_wview[0] = global.quadWidth;
-    
-    // Destroy collected pickups
-    var str, slash, totalPickups;
-    
-    totalPickups = ds_list_size(pickups);
-    for (var i = 0; i &lt;= totalPickups; i += 1)
-    {
-        str = ds_list_find_value(pickups, i);
-        if (!is_string(str))
-        {
-            break;
-        }
-        slash = string_pos('/', str);
-        if (room == real(string_copy(str, 1, slash - 1)))
-        {
-            with (real(string_delete(str, 1, slash)))
-            {
-                visible = 0;
-                instance_destroy();
-            }
-        }
-    }
-    
-    // Place section borders
-    for (var v = 0; v &lt; room_height; v += global.quadHeight)
-        for (var i = 0; i &lt; room_width; i += global.quadWidth)
-        {
-            with (instance_create(i, v, objStopScrollingVertical))
-            {
-                image_xscale = global.quadWidth / sprite_get_width(sprite_index);
-            }
-        }
-    
-    // Delete vertical border to make vertical scrolling possible
-    with (objStopScrollingVertical)
-    {
-        if (place_meeting(x, y, objSectionFreeVerticalScrolling))
-        {
-            instance_destroy();
-        }
-    }
-    
-    // Connect Horizontal borders
-    /*with (objStopScrollingHorizontal)
-    {
-        if (!place_meeting(x, y - 12, object_index))
-        {
-            while (place_meeting(x, y + 12, object_index))
-            {
-                with (instance_place(x, y + 12, object_index))
-                {
-                    other.image_yscale += image_yscale;
-                    instance_destroy();
-                }
-            }
-        }
-    }*/
-    
-    ds_list_clear(global.borderlist);
-    
-    with (objStopScrollingHorizontal)
-    {
-        ds_list_add(global.borderlist, "h" + string(x) + "s" + string(y) + "e" + string(y + sprite_height));
-        instance_destroy();
-    }
-    with (objStopScrollingVertical)
-    {
-        ds_list_add(global.borderlist, "v" + string(y) + "s" + string(x) + "e" + string(x + sprite_width));
-        instance_destroy();
-    }
-    
-    // determine starting location
-    var spawn_x, spawn_y;
-    
-    // three ways to enter a room: teleporting, respawning, or level start
-    if (global.hasTeleported)
-    {
-        // just teleported in
-        if (global.teleportX || global.teleportY)
-        {
-            spawn_x = global.teleportX;
-            spawn_y = global.teleportY;
-        } // if coordinates were not specified, use the DefaultSpawn coordinates
-        else
-        {
-            assert(instance_exists(objDefaultSpawn));
-            spawn_x = objDefaultSpawn.x;
-            spawn_y = objDefaultSpawn.y;
-        }
-    }
-    else 
-    {
-        if (global.checkpoint == room)
-        {
-            // respawn after death
-            spawn_x = global.checkpointX;
-            spawn_y = global.checkpointY;
+        var rm = global.roomName;
         
-            // reset health
-            for (var i = 0; i &lt; global.playerCount; i++)
-            {
-                global.playerHealth[i] = 28;
-            }
-        }
-        else
+        /*if (slExists(rm, 1))
         {
-            // Level start. Use default spawn location.
-            global.checkpoint = room;
-            global.checkpointX = objDefaultSpawn.x;
-            global.checkpointY = objDefaultSpawn.y;
-            global.respawnAnimation = objDefaultSpawn.respawnAnimation;
-            global.freeMovement = false;
-            if (instance_exists(objMegaman))
-            {
-                objMegaman.showDuringReady = objDefaultSpawn.showDuringReady;
-            }
-            spawn_x = global.checkpointX;
-            spawn_y = global.checkpointY;
+            saveLoadCheckpoint(0, rm);
+        }*/
         
-            stageStart();
+        var cname = global.checkpointName;
+        
+        if (cname != "")
+        {
+            //This is the proper room
+            if (cname == rm)
+            {
+                global.checkpoint = room;
+            }
+            else //Redirect to sub-room
+            {
+                global.nextRoom = getRoom(cname);
+                
+                //global.hasTeleported = 1;
+                global.checkpoint = global.nextRoom;
+            }
         }
     }
     
-    // Create players
-    for (var i = 0; i &lt; global.playerCount; i += 1)
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    // Determine starting location
+    // Priority goes pretty much likes this
+    // Teleport location &gt; Checkpoint &gt; Default Spawn &gt; First screen
+    
+    var spawn_x     = (view_wview[0] / 2); //Default
+    var spawn_y     = (view_hview[0] / 2); //Default
+    var spawn_dir   = 1; //Default
+    var spawn_anim  = 1;
+    
+    // Use default spawn-position
+    with (objDefaultSpawn)
     {
+        spawn_x     = x;
+        spawn_y     = y;
+        spawn_dir   = image_xscale;
+        spawn_anim  = respawnAnimation;
+    }
+    
+    //Return to checkpoint
+    if (global.checkpoint == room) 
+    {
+        //Use checkpoint position
+        spawn_x     = global.checkpointX;
+        spawn_y     = global.checkpointY;
+        spawn_dir   = global.checkpointDir;
+        spawn_anim  = global.respawnAnimation;
+        
+        // Health reset
+        for (var i = 0; i &lt; global.playerCount; i++;)
+        {
+            global.playerHealth[i] = 28;
+        }
+    }
+    
+    // Telport location
+    if (global.hasTeleported) //We have teleported while already in a stage
+    {
+        if (global.teleportX || global.teleportY) // Coordinates have been specified
+        {
+            spawn_x     = global.teleportX;
+            spawn_y     = global.teleportY;
+            spawn_dir   = global.teleportDir;
+            spawn_anim  = global.respawnAnimation;
+        }
+    }
+    
+    //Set spawn location as new checkpoint
+    if (!global.checkpoint || global.stageIsHub) //Do this if we do not have a checkpoint or we are in a hub-room
+    {
+        stageStart();
+        setCheckpoint(1, spawn_x, spawn_y, spawn_dir, spawn_anim, 1);
+    }
+    else if(stageStartFlag)
+    {
+        stageStart();
+        stageStartFlag = false;
+    }
+
+    //Cheats allowed?
+    
+    var canCheat = global.isCheatFile;
+
+    if (global.stageIsHub &amp;&amp; !global.isCheatFile)
+    {
+        canCheat = false;
+    }
+    
+    global.canCheat = canCheat;
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    // Determined spawn position - Now spawn players
+    for (var i = 0; i &lt; global.playerCount; i++)
+    {
+        global.respawnTimer[i] = -1;
+        
         if (global.playerHealth[i] &lt;= 0)
         {
             continue;
@@ -1101,23 +2200,33 @@ if (global.inGame)
         
         with (instance_create(spawn_x, spawn_y, objMegaman))
         {
-            playerID = i;
-            readyTimer -= playerID * 12;
+            image_xscale = spawn_dir;
             
-            if (global.hasTeleported)
+            playerID = i;
+            //print(playerID);
+            depth = 0 + playerID;
+            
+            if (global.hasTeleported) // Quick teleport animation
             {
                 showReady = false;
+                
                 teleporting = true;
                 landy = y;
+                
+                if (global.usedDoor)
+                {
+                    global.respawnAnimation = 4;
+                    global.usedDoor = false;
+                }
             }
-            else
+            else // Full 'READY' animation
             {
-                // teleport in
                 showReady = true;
-                readyTimer = 0;
+                
+                readyTimer = 0// - (playerID * 12);
                 canHit = false;
             }
-            
+
             teleportLock = lockPoolLock(
                 localPlayerLock[PL_LOCK_MOVE],
                 localPlayerLock[PL_LOCK_PHYSICS],
@@ -1133,45 +2242,88 @@ if (global.inGame)
         }
     }
     
-    // combine objects to save on CPU
-    combineObjects(objSolid);
-    combineObjects(objSpike);
-    combineObjects(objDamageSpike);
-    combineObjects(objIce);
-    combineObjects(objWater);
-    combineObjects(objStandSolid);
-    combineObjects(objTopSolid, true, false);
-    combineObjects(objLadder, false, true);
-    with (prtBossDoor)
-        event_user(3);
-    
     setSection(spawn_x, spawn_y, 1);
     playerCamera(1);
     
     // defer deactivating objects until after room start
     // this allows objects with room start events to run those
     var activate;
-    activate[0] = 2;
-    activate[1] = 1;
+        activate[0] = 2;
+        activate[1] = 1;
+    
     defer(ev_step, ev_step_begin, depth, reAndDeactivateObjects, activate);
     with (prtEntity)
     {
         beenOutsideView = true;
         dead = true;
     }
+    
     global.hasTeleported = false;
+    
+    // Manage return layers
+    // If we are within a return layer - delete it and all layers beyond
+    var layers = global.returnLayers;
+    var delete = 0;
+    
+    for (var i = 0; i &lt; layers; i ++;)
+    {
+        if (global.returnLayer[i] == room)
+        {
+            delete = 1;
+        }
+        
+        if (delete)
+        {
+            global.returnLayers --;
+        }
+    }
 }
-
-// if the new room's view size is different, adjust the screen size accordingly
-if (surface_get_width(application_surface) != view_wview[0] * global.screensize
-    || surface_get_height(application_surface) != view_hview[0] * global.screensize)
+if (!global.displayCheck &amp;&amp; global.displayForce)
 {
-    setScreenSize(global.screensize, false);
+    displayName = (room_speed * 10) * global.inGame;
+}
+else
+{
+    displayName = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///MAGMML3 stuff
+if (global.inGame)
+{
+    for (var i = 0; i &lt; cheatEnums.length; i ++)
+    {
+        if (global.cheats[i])
+        {
+            global.cheatsActive = true;
+            continue;
+        }
+    }
+    
+    if (global.cheatsActive &amp;&amp; !instance_exists(objCheatManager))
+    {
+        instance_create(x, y, objCheatManager);
+    }
 }
 
-// next room should not launch a new level
-global.beginStageOnRoomBegin = false;
-global.beginHubOnRoomBegin = false;
 </string>
           </argument>
         </arguments>
@@ -1198,15 +2350,48 @@ global.beginHubOnRoomBegin = false;
 saveLoadOptions(true);
 saveLoadGame(true);
 
-// End cleanMem
-cleanMem('clear');
-cleanMem('free');
+for (var i = 0; i &lt; 5; i++)
+{
+    if (sprite_exists(global.customCostumeDisplay[i]))
+    {
+        sprite_delete(global.customCostumeDisplay[i]);
+    }
+}
+
+
+
+sprite_delete(global.customBorder_Sprite);
+
+for (var j = 0; j &lt; MAX_PLAYERS; j++)
+{
+    //Get rid of costume sprites
+    if (sprite_exists(global.playerSprite[global.customCostumeIndex+j]))
+    {
+        sprite_delete(global.playerSprite[global.customCostumeIndex+j]);
+    }
+    for (var i = 0; i &lt; array_length_1d(global.customSounds); i++)
+    {
+        
+//        loadCustomCostume_Sounds[]
+        if (global.customSounds[j,i] &gt;= 0 &amp;&amp; audio_exists(global.customSounds[j,i]))
+        {
+            audio_destroy_stream(global.customSounds[j,i]);
+        }
+    }
+}
+mm_ScorchedEarth();
+
+font_delete(global.font);
+font_delete(global.font2);
+font_delete(global.fontSmall);
+font_delete(global.fontSmall2);
+font_delete(global.fontTiny);
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="73">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -1223,60 +2408,335 @@ cleanMem('free');
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_halign(fa_center);
+            <string>///DRAW APP-SURFACE / UI
+//We will only draw it manually
+application_surface_draw_enable(false);
+//Shader
 
-if (global.showControllerOverlay)
+var appSurf = application_surface;
+
+if (global.screenShader &gt; 0 || global.paletteShader &gt; 0)
 {
-    drawControllerOverlay(view_xview + view_wview - 28, view_yview + view_hview);
+    with (objShaderControl)
+    {
+        draw_set_blend_mode_ext(bm_one,bm_zero);
+        event_user(2);
+        if (global.screenShader &lt;= SHADERS_1XSTART)
+        {
+            surface_copy(appSurf, 0, 0, currentFrame);
+        }
+        else
+        {//Complication as a result of surface needing to be bigger than app surface (Which currentFrame isn't).
+            appSurf = compositeSurf;
+        }
+        
+        draw_set_blend_mode(bm_normal);
+        
+    }
 }
 
-// Show FPS
-if (global.showFPS)
+//-------------------------------------------------------------------------
+
+var border = (global.fullscreenBorder * (global.borderVisibility || global.fullscreen));
+
+var screensize = global.screensize;
+
+var xscale = 1;
+var yscale = 1;
+
+if (global.screenRatio) //Make 4:3
 {
-    draw_set_halign(fa_right);
-    draw_set_valign(fa_bottom);
-    draw_text(view_xview + view_wview - (28 - ((global.showControllerOverlay == 0) * 28)) - ((global.showControllerOverlay == 1) * 4), view_yview + view_hview,
-        string(fps));
+    xscale = 1.17;
+}
+global.mouseScreenRatio = xscale;
+if (global.screenShader &gt;= SHADERS_1XSTART)//!global.adaptiveResolution)
+{
+    //printErr(floor(mouse_x/8));
+    xscale *= global.screensize/(global.screenShader-SHADERS_1XSTART+1);
+    yscale *= global.screensize/(global.screenShader-SHADERS_1XSTART+1);   
 }
 
-draw_set_valign(fa_top);
-draw_set_halign(fa_center);
+var mirror = checkCheats(cheatEnums.mirrorMode);
 
-// Save icon
-if (saveTimer &gt;= 0)
+//Properties of our display
+var windowWidth =  window_get_width();
+var windowHeight = window_get_height();
+
+// Properties of the application_surface
+var appsurfw = surface_get_width(appSurf)  * xscale;
+var appsurfh = surface_get_height(appSurf) * yscale;
+
+//Position where we will draw the application_surface
+var appsurfx = (windowWidth  - appsurfw) / 2;
+var appsurfy = (windowHeight - appsurfh) / 2;
+
+
+global.mouseStartX = appsurfx;
+global.mouseStartY = appsurfy;
+
+
+//-------------------------------------------------------------------------
+
+//Draw Border Artwork
+if (border)
 {
-    saveTimer -= 0.5;
-    draw_sprite(sprSavingIcon, saveFrame, view_xview + 2 + 7, view_yview + 224 - 16 + 5);
-    draw_text(view_xview + 16 + 32 + 4 + 2, view_yview + 224 - 10 - 4, "SAVING...");
+    //Border
+    var spr = sprBorders;
+    var img = max(0, border - 1);
     
-    if (saveTimer mod 4 == 0)
+    if (global.fullscreenBorder-1 &gt;= sprite_get_number(sprBorders))
     {
-        saveFrame = !saveFrame;
+        spr = global.customBorder_Sprite;
+        img = 0;
     }
-}
+    
+    //Scale
+    var xs = windowWidth  / sprite_get_width(spr);
+    var ys = windowHeight / sprite_get_height(spr);
 
-// Screen iFrames
-draw_set_color(c_white);
-draw_set_alpha(1);
-if (!global.frozen)
+    if (global.borderColor &gt;= 0) &amp;&amp; (global.hueApplication == 1 || global.hueApplication == 0) //Set color
+    {
+        var shader = shRecolor;
+        shader_set_safe(shader);
+
+        var col = make_colour_hsv(global.borderColor, 200, 255);
+        shader_set_uniform_f(shader_get_uniform(shader, "color1"), colour_get_red(col), colour_get_green(col), colour_get_blue(col));
+    }
+    else //Standard color
+    {
+        var shader = shBrightnessSaturation;
+        shader_set_safe(shader);
+        shader_set_uniform_f(shader_get_uniform(shader, "saturation"), global.borderSaturation);
+    }
+
+    shader_set_uniform_f(shader_get_uniform(shader, "brightness"), global.borderBrightness);
+
+    //The border
+    texture_set_interpolation(true);
+    draw_sprite_ext(spr, img, 0, 0, xs, ys, 0, c_white,1);
+    //print(spr);
+    texture_set_interpolation(false);
+
+    shader_reset();
+
+    //Draw rectangle
+    draw_set_color(c_black);
+    draw_rectangle(appsurfx, appsurfy, appsurfx + appsurfw, appsurfy + appsurfh, false);
+    draw_set_color(c_white);
+}
+else //If no border - Draw black background
 {
-    if (global.flashTimer &gt; 0)
-    {
-        global.flashTimer -= 1;
-        draw_sprite_ext(sprDot, image_index, view_xview, view_yview, view_wview, view_hview, image_angle, image_blend, image_alpha);
-    }
+    draw_clear(c_black);
 }
 
-draw_set_color(c_white);
+//-------------------------------------------------------------------------
+
+var xx = appsurfx;
+var yy = appsurfy;
+
+//Manipulate for Mirror-Mode
+if (mirror)
+{
+    xx += appsurfw;
+    xscale = -xscale;
+}
+
+//Screen shaking
+xx += (shakex * global.screensize);
+shakex = 0;
+
+yy += (shakey * global.screensize);
+shakey = 0;
+
+if (global.screenShader &lt;= 2)
+{
+    if (floor(screensize) != screensize) //Fix tearing during non-integer scaling
+    {
+        var shader = shFixTextureTear;
+        shader_set_safe(shader);
+        shader_set_uniform_f(shader_get_uniform(shader,"offsetx"), 1 / surface_get_width( appSurf));
+        shader_set_uniform_f(shader_get_uniform(shader,"offsety"), 1 / surface_get_height(appSurf));
+    }
+}
+draw_set_blend_mode_ext(bm_one,bm_zero);
+//Draw application_surface
+
+
+draw_surface_ext(appSurf, xx, yy, xscale, yscale, 0, c_white, 1);
+
+draw_set_blend_mode(bm_normal);
+shader_reset();
+
+//Shadow
+/* No longer used; didn't come out as good as I expected with the borders we have.
+if (border)
+{
+    var thicc = (global.screensize * 2);
+    
+    var sx1 = (xx + thicc);
+    var sx2 = (xx + appsurfw);
+    var sx3 = (sx2 + thicc);
+    
+    var sy1 = (yy + thicc);
+    var sy2 = (yy + appsurfh);
+    var sy3 = (sy2 + thicc);
+    
+    draw_set_color(c_black);
+    
+    draw_rectangle(sx1, sy2, sx2, sy3, 0);
+    draw_rectangle(sx2, sy1, sx3, sy2, 0);
+    draw_rectangle(sx2, sy2, sx3, sy3, 0);
+    
+    draw_set_color(c_white);
+}*/
+
+//-------------------------------------------------------------------------
+
+// - DRAW UI-SURFACE -
+if (uiSurface != -1)
+{
+    if (surface_exists(uiSurface))
+    {
+        var scale = global.screensize;
+        var halfWidth = (surface_get_width(uiSurface) / 2);
+        
+        for (var i = 0; i &lt; 2; i ++;)
+        {
+            if (i == 0) //Left half
+            {
+                var left = 0;
+                var xx = (appsurfx - (halfWidth * scale));
+            }
+            else //Right half
+            {
+                var left = halfWidth;
+                var xx = (appsurfx + appsurfw);
+            }
+            
+            draw_surface_part_ext(uiSurface, left, 0, halfWidth, sprite_get_height(uisprite), xx, appsurfy, scale, scale, c_white, 1);
+        }
+        
+        mm_surface_free(uiSurface);
+    }
+    
+    uiSurface = -1;
+}
+
+//-------------------------------------------------------------------------
+
+var drawFps = global.showFPS;
+var widthFps = (8 * string_length(room_speed)) + 2;
+
+var drawControls = global.showControllerOverlay;
+var widthControls = 32;
+
+var surfWidth = /*(widthFps * drawFps) + */(widthControls * drawControls);
+var surfHeight = 12;
+
+var xx = 0;
+var scale = global.screensize;
+
+if (window_get_cursor() == cr_none)
+{
+    draw_sprite_ext(sprPointan,0,device_mouse_x_to_gui(0),device_mouse_y_to_gui(0),1,1,0,c_white,1);
+}
+
+/*if (surfWidth &gt; 0 &amp;&amp; global.displayCornerUI)
+{
+    surfWidth += 2;
+    surfHeight += 2;
+    
+    var surf = mm_surface_create(surfWidth, surfHeight);
+    
+    surface_set_target(surf);
+    
+    draw_clear_alpha(c_white, 0);
+    
+    //
+    
+    col = make_colour_rgb(0, 50, 134);
+    
+    draw_sprite_ext(sprDot, 0, 0, 0, surfWidth, surfHeight, 0, col, 1);
+    
+    draw_sprite_ext(sprDot, 0, 1, 0, surfWidth - 2, 1, 0, c_white, 1);
+    draw_sprite_ext(sprDot, 0, 1, surfHeight - 1, surfWidth - 2, 1, 0, c_white, 1);
+    
+    draw_sprite_ext(sprDot, 0, 0, 1, 1, surfHeight - 2, 0, c_white, 1);
+    draw_sprite_ext(sprDot, 0, surfWidth - 1, 1, 1, surfHeight - 2, 0, c_white, 1);
+    
+    draw_sprite_ext(sprDot, 0, 1, 1, surfWidth - 2, 1, 0, c_black, 1);
+    draw_sprite_ext(sprDot, 0, 1, 1, 1, surfHeight - 2, 0, c_black, 1);
+    
+    /*if (drawFps)
+    {
+        draw_set_color(c_white);
+        draw_set_halign(1);
+        draw_set_valign(1);
+        
+        draw_text((widthFps / 2) + 1, (surfHeight / 2) + 1, string(fps));
+        
+        xx += widthFps;
+    }*/
+    
+    /*if (drawControls)
+    {
+        drawControllerOverlay((xx + 1), 1);
+    }
+    
+    //
+    
+    surface_reset_target();
+    
+    xx = (windowWidth - (surfWidth * scale));
+    yy = (windowHeight - (surfHeight * scale));
+    alpha = (1 / 1.28) * 0.9;
+    
+    draw_surface_ext(surf, xx, yy, scale, scale, 0, c_white, alpha);
+    
+    mm_surface_free(surf);
+}*/
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///CONSOLE
+//if !DEBUG_ENABLED exit; KEEP.
+
 draw_set_halign(fa_left);
-draw_set_valign(fa_top);
+draw_set_valign(fa_bottom);
 
-if (fadeAlpha &gt; 0)
+var displayLeft = 0;
+var displayTop = 0;
+var displayBottom = window_get_height();
+
+for (var i = 0; i &lt; CONSOLE_MAX &amp;&amp; i &lt; global.consoleN; i++)
 {
-    draw_sprite_ext(sprDot, 0, view_xview, view_yview, view_wview, view_hview, 0, c_black, fadeAlpha);
+    var messageN = global.consoleN - i - 1;
+    
+    draw_set_color(global.consoleColour[messageN]);
+    draw_set_alpha(roundTo(clamp(lerp(5, 0, global.consoleTimer[messageN] / 120), 0, 1), 0.2));
+    draw_text_transformed(displayLeft, displayTop + displayBottom - 12 * i*CONSOLE_SCALE, global.consoleMessage[messageN],CONSOLE_SCALE,CONSOLE_SCALE,0);
+    draw_set_alpha(1);
 }
 
-depth = depthstart;
+//#event draw_end|MOVED TO OBJMUSICCONTROL
+
 </string>
           </argument>
         </arguments>
@@ -1299,209 +2759,255 @@ depth = depthstart;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (showhealth)
+            <string>
+///Healthbars
+
+var show = showhealth;
+
+if (showhealth)
 {
-    var dx = view_xview + 16;
-    var dy = view_yview + 17;
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-    draw_enable_alphablend(false);
+    var drawx = view_xview+16 - shakex;
+    var drawy = view_yview+17 - shakey;
     
-    /// Draw HUD
-    for (z = 0; z &lt; global.playerCount; z += 1)
+    if (!checkCheats(cheatEnums.invisibleHealthbars))
     {
-        draw_sprite_ext(sprHealthbarBackground, 0, dx, dy, 1, 1, image_angle,
-            c_black, image_alpha);
+        var dx = drawx;
+        var dy = drawy;
         
-        // Respawn indicators
-        if (global.respawnTimer[z] &gt;= 0)
+        if (cheatsAllowed())
         {
-            draw_set_color(c_white);
-            draw_set_halign(fa_left);
-            draw_set_valign(fa_middle);
+            var xeddie = drawx;
+            var yeddie = (drawy + 56);
             
-            if (global.respawnTimer[z] &gt; 0)
-            {
-                draw_text(dx, dy + 28, ceil(global.respawnTimer[z] / 60));
-            }
-            else if (global.respawnAllowed)
-            {
-                draw_text(dx, dy + 28, "R#E#A#D#Y");
-            }
-            
-            draw_set_valign(fa_top);
-        }
-        else
-        {
-            // normal healthbar
-            var pcol = make_color_rgb(252, 228, 160);
-            var scol = c_white;
-            
-            // low health -- red color
-            if (global.playerHealth[z] &lt;= global.respawnDonateThreshold &amp;&amp; global.playerCount &gt; 1)
-            {
-                scol = pcol;
-                pcol = global.nesPalette[5];
-            }
-            
-            for (i = 1; i &lt;= ceil(global.playerHealth[z]); i += 1)
-            {
-                draw_sprite_ext(sprHealthbarPrimary, 0, dx + 1,
-                    dy + (sprite_get_height(sprHealthbarBackground) - i * 2),
-                    1, 1, 0, pcol, 1);
-                draw_sprite_ext(sprHealthbarSecondary, 0, dx + 1,
-                    dy + (sprite_get_height(sprHealthbarBackground) - i * 2),
-                    1, 1, 0, scol, 1);
-            }
-            
-            var display = true;
-            
-            // Weapons
-            if (global.weapon[z] != 0) // Weapon energy
-            {
-                c = round(global.ammo[z, global.weapon[z]]);
-            }
-            else // Charge bar
-            {
-                c = 0;
-                with (objMegaman)
-                {
-                    if (playerID == other.z)
-                    {
-                        other.c = min(28, floor(chargeTimer) / 2);
-                    }
-                }
-                display = global.chargeBar;
-            }
-            
-            if (display)
-            {
-                draw_sprite_ext(sprHealthbarBackground, 0, dx - 8, dy, 1, 1,
-                    image_angle, global.outlineCol[z], image_alpha);
-                for (i = 1; i &lt;= c; i += 1)
-                {
-                    draw_sprite_ext(sprHealthbarPrimary, 0, dx - 8 + 1, dy
-                        + (sprite_get_height(sprHealthbarBackground) - i * 2),
-                        1, 1, 0, global.primaryCol[z], 1);
-                    draw_sprite_ext(sprHealthbarSecondary, 0, dx - 8 + 1, dy
-                        + (sprite_get_height(sprHealthbarBackground) - i * 2),
-                        1, 1, 0, global.secondaryCol[z], 1);
-                }
-                if (global.infiniteEnergy[global.weapon[z]])
-                {
-                    draw_sprite_ext(sprInfinityMarkVertical, 0, dx - 8, dy + 28, 1,
-                        1, 0, c_white, 1);
-                    draw_sprite_ext(sprInfinityMarkVerticalPrimary, 0, dx - 8,
-                        dy + 28, 1, 1, 0, global.primaryCol[z], 1);
-                    draw_sprite_ext(sprInfinityMarkVerticalSecondary, 0, dx - 8,
-                        dy + 28, 1, 1, 0, global.secondaryCol[z], 1);
-                }
-            }
+            draw_sprite(sprEddieIcon, 0, xeddie, yeddie);
         }
         
-        dx += 24;
-    }
-    
-    var bossFade = 0;
-    var healthIndex = 0;
-    with (prtBoss) // Boss healthbars
-    {
-        if (!quickSpawn&amp;&amp;drawHealthBar &amp;&amp; healthParent == -1)
+        draw_enable_alphablend(false);
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        /// Draw HUD
+        for (z = 0; z &lt; global.playerCount; z ++;)
         {
-            var dxx = dx + ((healthIndex - 1) * 8); // Multibosses
             
-            // Initial black bg for healthbar
-            draw_sprite_ext(sprHealthbarBackground, 0, dxx, dy, 1, 1, 0, c_black, 1);
-            
-            // Choose color to draw
-            var currentExtraHealthBar = 0;
-            var myPrimaryColor, mySecondaryColor;
-            var _currentHealth = 0;
-            
-            if (fillingHealthBar) //Intro health bar
+            draw_sprite_ext(sprHealthbarBackground, 0, dx, dy, 1, 1, image_angle, c_black, image_alpha);
+    
+            // Respawn indicators
+            if (global.respawnTimer[z] &gt;= 0 &amp;&amp; global.playerCount &gt;= 2)
             {
-                _currentHealth = ceil(healthBarHealth);
-            }
-            else 
-            {
-                if (shareMode==1) //Combine health bars if needed
-                {
-                    with (prtBoss)
-                    {
-                        if (id == other.id || (healthParent==other.id &amp;&amp; drawHealthBar))
-                        {
-                            _currentHealth += healthpoints;
-                        }
-                    }
-                }
-                else
-                {
-                    _currentHealth = healthpoints;
-                }
-            }
-            // draw the health within the healthbar.
-            for (i = 1; i &lt;= ceil(_currentHealth); i += 1;)
-            {
-                // If the boss has more than 28 health, use this math to find out what 'layer' of
-                // health the boss is currently on. It's i-1/28 because if it was i/28, it would start
-                // a new health layer at the max health (28) rather than 1 over, when it should
-                // overflow.
+                draw_set_color(c_white);
+                draw_set_halign(fa_left);
+                draw_set_valign(fa_middle);
                 
-                if ((i mod 28) == 1) // Set new colors for the health bar
+                var str = "";
+    
+                if (global.respawnTimer[z] &gt; 0)
                 {
-                    currentExtraHealthBar = ((i - 1) / 28);
-                    if (manualColors)
+                    str = ceil(global.respawnTimer[z] / 60);
+                }
+                else if (global.respawnAllowed)
+                {
+                    str = "R#E#A#D#Y";
+                }
+                
+                draw_text(dx, dy + 28, str);
+                draw_set_valign(fa_top);
+            }
+            else
+            {
+                // normal healthbar
+                var pcol = make_color_rgb(252, 224, 168); //(252, 228, 160);
+                var scol = c_white;
+    
+                // low health -- red color
+                if (global.playerHealth[z] &lt;= global.respawnDonateThreshold &amp;&amp; global.playerCount &gt; 1)
+                {
+                    scol = pcol;
+                    pcol = global.nesPalette[$5];
+                }
+    
+                for (i = 1; i &lt;= (ceil(global.playerHealth[z])); i ++;)
+                {
+                    draw_sprite_ext(sprHealthbarPrimary     , 0, dx + 1, dy + (sprite_get_height(sprHealthbarBackground) - i * 2), 1, 1, 0, pcol, 1);
+                    draw_sprite_ext(sprHealthbarSecondary   , 0, dx + 1, dy + (sprite_get_height(sprHealthbarBackground) - i * 2), 1, 1, 0, scol, 1);
+                }
+    
+                var display = true;
+    
+                // Weapons
+                if (global.weapon[z] != 0) // Weapon energy
+                {
+                    c = ceil(global.ammo[z, global.weapon[z]]);
+                }
+                else // Charge bar
+                {
+                    c = 0;
+                    
+                    display = global.chargeBar;//No point in a charge bar without charging.
+                    with (objMegaman)
                     {
-                        myPrimaryColor = healthBarPrimaryColor[currentExtraHealthBar + 1];
-                        mySecondaryColor = healthBarSecondaryColor[currentExtraHealthBar + 1];
+                        if (playerID == other.z)
+                        {
+                            other.c = min(28, floor(chargeTimer) / 2);
+                        }
+                        
+                        if (global.characterSelected[playerID] == CHAR_BASS)
+                            display = false;
+                    }
+                }
+    
+                if (display)
+                {
+                    draw_sprite_ext(sprHealthbarBackground, 0, dx - 8, dy, 1, 1, image_angle, global.outlineCol[z], image_alpha);
+                    
+                    for (i = 1; i &lt;= c; i ++;)
+                    {
+                        draw_sprite_ext(sprHealthbarPrimary, 0, dx - 8 + 1, dy + (sprite_get_height(sprHealthbarBackground) - i * 2), 1, 1, 0, global.primaryCol[z], 1);
+                        draw_sprite_ext(sprHealthbarSecondary, 0, dx - 8 + 1, dy + (sprite_get_height(sprHealthbarBackground) - i * 2), 1, 1, 0, global.secondaryCol[z], 1);
+                    }
+                    
+                    draw_enable_alphablend(true);
+                    
+                    if (global.infiniteEnergy[global.weapon[z]])
+                    {
+                        draw_sprite_ext(sprInfinityMarkVertical, 0, dx - 8, dy + 28, 1, 1, 0, c_white, 1);
+                        draw_sprite_ext(sprInfinityMarkVertical, 1, dx - 8, dy + 28, 1, 1, 0, global.primaryCol[z], 1);
+                        draw_sprite_ext(sprInfinityMarkVertical, 2, dx - 8, dy + 28, 1, 1, 0, global.secondaryCol[z], 1);
+                        //draw_sprite_ext(sprInfinityMarkVertical, 3, dx - 8, dy + 28, 1,
+                        //    1, 0, c_white, 1);
+                    }
+                    
+                    draw_enable_alphablend(false);
+                }
+            }
+            
+            dx += 24;
+        }
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+        // Boss healthbars
+        var bossFade = 0;
+        var healthIndex = 0;
+        
+        var healthbarObj;
+        healthbarObj[0] = prtBoss;
+        healthbarObj[1] = prtMiniBoss;
+        
+        for (var p = 0; p &lt; array_length_1d(healthbarObj); p ++)
+        {
+            with (healthbarObj[p])
+            {
+                if (healthbarObj[p] == prtBoss &amp;&amp; !quickSpawn &amp;&amp; drawHealthBar &amp;&amp; healthParent == -1)
+                || (healthbarObj[p] == prtMiniBoss &amp;&amp; drawHealthBar)
+                {
+                    var dxx = dx + ((healthIndex - 1) * 8); // Multibosses
+        
+                    // Initial black bg for healthbar
+                    draw_sprite_ext(sprHealthbarBackground, 0, dxx, dy, 1, 1, 0, healthBarBackgroundColor, 1);
+        
+                    // Choose color to draw
+                    var currentExtraHealthBar = 0;
+                    var myPrimaryColor, mySecondaryColor;
+                    var _currentHealth = 0;
+        
+                    if (healthbarObj[p] == prtBoss)
+                    {
+                        if (fillingHealthBar) //Intro health bar
+                        {
+                            _currentHealth = ceil(healthBarHealth);
+                        }
+                        else
+                        {
+                            if (shareMode == 1) //Combine health bars if needed
+                            {
+                                with (prtBoss)
+                                {
+                                    if (id == other.id || (healthParent==other.id &amp;&amp; drawHealthBar))
+                                    {
+                                        _currentHealth += healthpoints;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                _currentHealth = healthpoints;
+                            }
+                        }
                     }
                     else
                     {
-                        // if the colors chosen are higher numbered than valid colors on the NES palette, default to the last in the index (black)
-                        myPrimaryColor = global.nesPalette[min(54, (healthBarPrimaryColor[1] + (healthBarColorSkip * (currentExtraHealthBar))))];
-                        mySecondaryColor = global.nesPalette[min(54, (healthBarSecondaryColor[1] + (healthBarColorSkip * (currentExtraHealthBar))))];
+                        _currentHealth = healthpoints;
+                    }
+                    
+                    // draw the health within the healthbar.
+                    for (i = 1; i &lt;= ceil(_currentHealth); i += 1;)
+                    {
+                        // If the boss has more than 28 health, use this math to find out what 'layer' of
+                        // health the boss is currently on. It's i-1/28 because if it was i/28, it would start
+                        // a new health layer at the max health (28) rather than 1 over, when it should
+                        // overflow.
+        
+                        if ((i mod 28) == 1) // Set new colors for the health bar
+                        {
+                            currentExtraHealthBar = ((i - 1) / 28);
+                            
+                            if (manualColors &amp;&amp; ((currentExtraHealthBar + 1) &lt; array_length_1d(healthBarPrimaryColor)))
+                            {
+                                myPrimaryColor = healthBarPrimaryColor[currentExtraHealthBar + 1];
+                                mySecondaryColor = healthBarSecondaryColor[currentExtraHealthBar + 1];
+                            }
+                            else
+                            {
+                                // if the colors chosen are higher numbered than valid colors on the NES palette, default to the last in the index (black)
+                                myPrimaryColor = global.nesPalette[min($3E, (healthBarPrimaryColor[1] + (healthBarColorSkip * (currentExtraHealthBar))))];
+                                mySecondaryColor = global.nesPalette[min($3E, (healthBarSecondaryColor[1] + (healthBarColorSkip * (currentExtraHealthBar))))];
+                            }
+                        }
+        
+                        // now actually draw the pellets themselves, using all the info we've gatehred.
+                        draw_sprite_ext(sprHealthbarPrimary, 0, dxx + 1,
+                            dy + (sprite_get_height(sprHealthbarBackground)) - ((i - (currentExtraHealthBar * 28)) * 2),
+                            1, 1, 0, myPrimaryColor, 1);
+                        draw_sprite_ext(sprHealthbarSecondary, 0, dxx + 1,
+                            dy + (sprite_get_height(sprHealthbarBackground)) - ((i - (currentExtraHealthBar * 28)) * 2),
+                            1, 1, 0, mySecondaryColor, 1);
+                    }
+                    healthIndex += 1;
+                }
+        
+                if (healthbarObj[p] == prtBoss)
+                {
+                    if (isIntro &amp;&amp; introType == 3) // MM6 intro fading
+                    {
+                        bossFade = max(bossFade, introFade);
                     }
                 }
-                
-                // now actually draw the pellets themselves, using all the info we've gatehred.
-                draw_sprite_ext(sprHealthbarPrimary, 0, dxx + 1,
-                    dy + (sprite_get_height(sprHealthbarBackground)) - ((i - (currentExtraHealthBar * 28)) * 2),
-                    1, 1, 0, myPrimaryColor, 1);
-                draw_sprite_ext(sprHealthbarSecondary, 0, dxx + 1,
-                    dy + (sprite_get_height(sprHealthbarBackground)) - ((i - (currentExtraHealthBar * 28)) * 2),
-                    1, 1, 0, mySecondaryColor, 1);
             }
-            healthIndex += 1;
         }
         
-        if (isIntro &amp;&amp; introType == 3) // MM6 intro fading
+        draw_enable_alphablend(true);
+    
+        if (bossFade &gt; 0)
         {
-            bossFade = max(bossFade, introFade);
+            draw_sprite_ext(sprDot, 0, 0, 0, view_wview, view_hview, 0, c_black, bossFade);
         }
     }
     
-    draw_enable_alphablend(true);
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-    if (bossFade &gt; 0)
-    {
-        draw_sprite_ext(sprDot, 0, view_xview, view_yview, view_wview, view_hview, 0, c_black, bossFade);
-    }
+    //Moved keys and minimap to musiccontrol.
     
-    // reset position
-    var dx = view_xview + 16;
-    var dy = view_yview + 17;
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-    // Keys
-    for (i = 0; i &lt; global.keyNumber; i += 1)
-    {
-        draw_sprite_ext(sprKeyHud, 0, dx + 8, dy + (8 * i), 1, 1, 0, c_white, 1);
-    }
     
-    // Key coins
-    for (i = 0; i &lt; global.keyCoinTotal; i += 1)
-    {
-        draw_sprite_ext(sprKeyCoinHUD, !(i &lt; global.keyCoinCollected),
-            view_xview + (8 * i), view_yview + view_hview - 8, 1, 1, 0, c_white, 1);
-    }
+    /*
+    The fix for flickering with backgrounds/tiles was removed due to possible game-wide issues. See commit for details.
+    */
+    
+    
 }
 </string>
           </argument>

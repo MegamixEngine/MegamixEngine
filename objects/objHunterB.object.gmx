@@ -39,7 +39,7 @@ ground = false;
 attackTimer = 0;
 onOrOff = false;
 clone = noone;
-phase = 0;
+phase = -1;
 spd = 2;
 delay = 0;
 hasFired = false;
@@ -49,8 +49,8 @@ horVer = "h";
 partnerItemDrop = -1; //this can be set to anything in creation code but -1 makes sure that it doesn't drop any items by default
 
 // Health Bar
-healthBarPrimaryColor[1] = 35;
-healthBarSecondaryColor[1] = 22;
+healthBarPrimaryColor[1] = $19;
+healthBarSecondaryColor[1] = $29;
 
 // Music
 music = "Mega_Man_4GB.gbs";
@@ -61,6 +61,8 @@ musicTrackNumber = 20;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -71,6 +73,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objBreakDash, 4);
 enemyDamageValue(objMagneticShockwave, 6);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 4);
@@ -106,15 +112,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 3);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 4);
 
 // Misc.
 enemyDamageValue(objPowerStone, 4);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -144,20 +151,13 @@ event_inherited();
 // all of hunter's events trigger when the game isn't frozen. he isn't weak to flash stopper, so no need to check whether that is used or not!
 if (entityCanStep())
 {
-    if (isIntro)
-    {
-        with (objHunterPlatform)
-        {
-            timerMax = 9999;
-            timerN = timerMax;
-        }
-    }
     if (isFight == true)
     {
         // this sets up hunter's movement variables.
         image_speed = 0;
         attackTimer += 1;
-        grav = 0;
+        if (phase &gt; 0)
+            grav = 0;
         if (delay &gt; 0)
             delay -= 1;
         
@@ -171,7 +171,7 @@ if (entityCanStep())
         
         
         // if meeting up with clone, move platforms in arena.
-        if (place_meeting(x, y, clone) &amp;&amp; !hasFired)
+        if (place_meeting(x, y, clone) &amp;&amp; !hasFired &amp;&amp; object_index != objHunterBPartner)
         {
             with (objHunterPlatform)
             {
@@ -196,22 +196,35 @@ if (entityCanStep())
         }
         switch (phase)
         {
-            case 0: // config 
+            case -1: // config platforms
                 with (objHunterPlatform)
                     forceMove = true;
-                if (object_index != objHunterBPartner &amp;&amp; xspeed == 0)
+                phase++;
+                break;
+            case 0: // Spawn partner 
+                if (object_index != objHunterBPartner &amp;&amp; yspeed == 0)
                 {
                     xspeed = -2;
                     horVer = "h";
                     phase = 1;
                     onOrOff = false;
+                    hasFired = true;
                     if (!instance_exists(clone))
                         clone = instance_create(x, y, objHunterBPartner);
-                    clone.clone = id;
-                    clone.itemDrop = partnerItemDrop;
-                    clone.healthParent = id;//Share health bars
+                    with (clone)
+                    {
+                        clone = other.id;
+                        itemDrop = other.partnerItemDrop;
+                        healthParent = other.id;//Share health bars
+                        image_xscale = other.image_xscale;
+                        xspeed = 2;
+                        horVer = "h";
+                        phase = 3;
+                        onOrOff = true;
+                    }
+                    
                 }
-                else if (object_index == objHunterBPartner &amp;&amp; xspeed == 0)
+                else if (object_index == objHunterBPartner &amp;&amp; yspeed == 0) // In case someone places the partner object, I GUESS...
                 {
                     xspeed = 2;
                     horVer = "h";
@@ -385,33 +398,14 @@ if (entityCanStep())
                 break;
         }
     }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="21">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (image_index == 5)
-{
-    with (instance_create(x, y - 8, objHunterBullet))
-        image_index = 1;
+    else // No use setting this in isIntro if it *has* no intro - Spin
+    {
+        with (objHunterPlatform)
+        {
+            timerMax = 9999;
+            timerN = timerMax;
+        }
+    }
 }
 </string>
           </argument>
@@ -445,6 +439,34 @@ with (objHunterPlatform)
     timerN = timerMax;
 }
 event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="19">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (image_index != 5) &amp;&amp; (healthpoints &gt; 0)
+{
+    with (instance_create(x, y - 8, objHunterBullet))
+        image_index = 1;
+}
 </string>
           </argument>
         </arguments>

@@ -22,7 +22,7 @@ y2 = argument3;
 obj = argument4;
 prec = argument5;
 notme = argument6;
-dsid = ds_list_create();
+dsid = mm_ds_list_create();
 
 with (obj)
 {
@@ -38,7 +38,7 @@ with (obj)
 
 if (ds_list_empty(dsid))
 {
-    ds_list_destroy(dsid);
+    mm_ds_list_destroy(dsid);
     dsid = noone;
 }
 

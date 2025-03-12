@@ -14,7 +14,7 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>18</TextureGroup0>
+    <TextureGroup0>203</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>64</width>
@@ -29,7 +29,5 @@
     <frame index="6">images\sprYamatoMan_6.png</frame>
     <frame index="7">images\sprYamatoMan_7.png</frame>
     <frame index="8">images\sprYamatoMan_8.png</frame>
-    <frame index="9">images\sprYamatoMan_9.png</frame>
-    <frame index="10">images\sprYamatoMan_10.png</frame>
   </frames>
 </sprite>

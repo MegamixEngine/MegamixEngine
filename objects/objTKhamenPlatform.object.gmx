@@ -95,7 +95,7 @@ if (entityCanStep())
             if (destroy)
             {
                 event_user(EV_DEATH);
-                playSFX(sfxEnemyHit);
+                playSFX(getGenericSFX(SFX_ENEMYHIT));
             }
             
             // Movement

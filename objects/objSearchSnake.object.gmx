@@ -37,7 +37,7 @@ pierces = 0;
 blockCollision = 1;
 grav = 0;
 
-playSFX(sfxBuster);
+playSFX(getGenericSFX(SFX_BUSTER));
 
 calibrated = false;
 phase = 0;
@@ -52,6 +52,8 @@ _velY = 0;
 _prevCollision = 0;
 
 gravDir = 1;
+
+autoFireSet = 10;
 </string>
           </argument>
         </arguments>
@@ -75,10 +77,14 @@ gravDir = 1;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+
 image_xscale = 1;
 image_yscale = 1;
+
 if (!global.frozen &amp;&amp; canDamage)
 {
+    
     if (phase == 0) // Coming out
     {
         if (xcoll != 0)
@@ -221,9 +227,10 @@ else if (!canDamage)
           <argument>
             <kind>1</kind>
             <string>/// Fire weapon
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+if (performShoot)
 {
-    i = fireWeapon(13, 0, objSearchSnake, 3, 0.5, 1, 0);
+    var ammoCost = 0.5 - (0.075 * (global.energySaver &gt; 0));
+    i = fireWeapon(13, 0, objSearchSnake, 3, ammoCost, 1, 0);
     if (i)
     {
         i.yspeed = -3 * image_yscale;
@@ -240,6 +247,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
         {
             i._groundDir = 90;
         }
+        autoFireDelay = i.autoFireSet;
     }
 }
 </string>

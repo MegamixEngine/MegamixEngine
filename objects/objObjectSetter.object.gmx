@@ -33,6 +33,29 @@
 // only one autotiler runs this code:
 if (id == object_index.id)
 {
+    /*
+    var doTileSplit = false;
+    if(image_xscale == -1)
+    {
+        image_xscale = 1;
+        x -= 16;
+        doTileSplit = true;
+    }*/
+    
+    var doPrint = false;
+    var file = -1;
+    var printerInstance = 0;
+    var doCombine = true;
+    
+    var printerObjectList = -1;
+    
+    if (DEBUG_ENABLED &amp;&amp; global.keyLeft[0] &amp;&amp; global.keyUp[0] &amp;&amp; global.keyMap[0])
+    {
+        doPrint = true;
+        file = file_text_open_write("AutoTilerDump/" + room_get_name(room) + "-autoTilerDump.txt")
+        printerObjectList = mm_ds_list_create();
+    }
+    
     var beginTime = get_timer();
     print("Autotile begin (instance " + string(id) + ")", WL_VERBOSE);
     
@@ -65,11 +88,11 @@ if (id == object_index.id)
     
     // map from (layer, bg) -&gt; (automapper id)
     for (var i = 0; i &lt; global.tileLayersN; i++)
-        global.automapper[i] = ds_map_create();
+        global.automapper[i] = mm_ds_map_create(false);
     
     // set of instances which were placed during the autotiler process
     // maps (instance id) -&gt; (true)
-    var placed_instances = ds_map_create();
+    var placed_instances = mm_ds_map_create();
     
     // each object scans for a key and parses it
     with (object_index)
@@ -85,19 +108,20 @@ if (id == object_index.id)
     {
         // list each tile on each layer
         var layer = global.tileLayers[layerIndex];
-        var tid = tile_get_ids_at_depth(layer);
-        var tid_n = array_length_1d(tid);
+        
+        /*
+        if(doTileSplit)
+        {
+            var tid = tile_get_ids_at_depth(layer);
+            var tid_n = array_length_1d(tid);
+            for (var i = 0; i &lt; tid_n; i++)
+            {
+                splitTile(tid[i], grid, grid);
+            }
+        }*/
         
         print("Layer " + string(layer) + "...", WL_VERBOSE);
-        print("  Splitting tiles...", WL_VERBOSE);
-        var tile_split_time = get_timer();
-        
-        // split tiles into 16x16
-        for (var i = 0; i &lt; tid_n; i++)
-        {
-            splitTile(tid[i], grid, grid);
-        }
-        print("  (" + string((get_timer() - tile_split_time) / 1000) + " ms)");
+
         print("  Placing instances...", WL_VERBOSE);
         
         // look at every tile in room and place objects
@@ -108,8 +132,9 @@ if (id == object_index.id)
         
         for (var i = 0; i &lt; tid_n; i++)
         {
+            var tile = tid[i];
             // determine which objObjectSetter has the associated tileset
-            var bg = tile_get_background(tid[i]);
+            var bg = tile_get_background(tile);
             
             var automapperID = ds_map_find_value(global.automapper[layerIndex], bg);
             
@@ -118,27 +143,81 @@ if (id == object_index.id)
                 continue;
             }
             
-            with (automapperID)
+            var tWidth = tile_get_width(tile);
+            var tHeight = tile_get_height(tile);
+            if(!( (tWidth % grid == 0 ) &amp;&amp; (tHeight % grid == 0) ))
             {
-                // figure out which object to place according to tileset key (which is determined in user defined 0)
-                var key_lookup_x = floor(tile_get_left(tid[i])/grid) - key_left;
-                var key_lookup_y = floor(tile_get_top(tid[i])/grid) - key_top;
-                if( (key_lookup_x&lt;0) || (key_lookup_x &gt; coordW-1) || (key_lookup_y&lt;0) || (key_lookup_y&gt;coordH-1) )
+                print("objTileSetter: skiping tile with size that can't be divided by the grid size ", WL_VERBOSE);
+                continue;
+            }
+            
+            var hTiles = floor(tWidth/grid);
+            var vTiles = floor(tHeight/grid);
+            var tileLeftStart = tile_get_left(tile);
+            var tileTopStart = tile_get_top(tile);
+            var tileXStart = tile_get_x(tile)
+            var tileYStart = tile_get_y(tile)
+            var tileX, tileY, tileLeft, tileTop;
+            
+            for(var vTile = 0; vTile &lt; vTiles; ++vTile)
+            {
+                for(var hTile = 0; hTile &lt; hTiles; ++hTile)
                 {
-                    break;
-                }
-                var obj_id = coord[# key_lookup_x, key_lookup_y];
-                if (obj_id &gt;= 0)
-                {
-                    with (instance_create(floor(tile_get_x(tid[i]) / grid) * grid, floor(tile_get_y(tid[i]) / grid) * grid, obj_id))
+                    tileY = tileYStart + grid*vTile;
+                    tileX = tileXStart + grid*hTile;
+                    tileLeft = tileLeftStart + grid*hTile;
+                    tileTop = tileTopStart + grid*vTile;
+                    
+                    with (automapperID)
                     {
-                        placed_instances[? id] = true;
-                        isTile = true;
-                        visible = false;
-                        instance_placed_n++;
+                        // figure out which object to place according to tileset key (which is determined in user defined 0)
+                        var key_lookup_x = floor(tileLeft/grid) - key_left;
+                        var key_lookup_y = floor(tileTop/grid) - key_top;
+                        if( !((key_lookup_x&lt;0) || (key_lookup_x &gt; coordW-1) || (key_lookup_y&lt;0) || (key_lookup_y&gt;coordH-1)) )
+                        {
+                            var obj_id = coord[# key_lookup_x, key_lookup_y];
+                            if (obj_id &gt;= 0)
+                            {
+                                with (instance_create(floor(tileX / grid) * grid, floor(tileY / grid) * grid, obj_id))
+                                {
+                                    placed_instances[? id] = true;
+                                    isTile = true;
+                                    visible = false;
+                                    
+                                    if(object_index == prtBossDoor || object_is_ancestor(object_index, prtBossDoor))
+                                    {
+                                        id.layer = layer;
+                                    }
+                                    
+                                    if (doPrint)
+                                    {
+                                        if (!doCombine)
+                                        {
+                                            file_text_write_string(file,'    &lt;instance objName="' + object_get_name(object_index) + '" x="' + string(x) + 
+                                            '" y="' + string(y) + 
+                                            '" name="AT_' + string(printerInstance++) + 
+                                            '" locked="0" code="isTile = true; visible = false;" scaleX="' + string(image_xscale) + 
+                                            '" scaleY="' + string(image_yscale) + 
+                                            '" colour="4294967295' +// string(image_blend) + 
+                                            '" rotation="0' +// string(image_angle) 
+                                            + '"/&gt;');
+                                            file_text_writeln(file);
+                                        }
+                                        else
+                                        {
+                                            ds_list_add(printerObjectList,id);
+                                        }
+                                    }
+                                    
+                                    instance_placed_n++;
+                                    
+                                }   
+                            }
+                        }
                     }
                 }
             }
+            
         }
         
         print("  Placed " + string(instance_placed_n) + " instances.", WL_VERBOSE);
@@ -152,7 +231,7 @@ if (id == object_index.id)
     print("  Freeing legend grids...", WL_VERBOSE);
     with (object_index)
     {
-        ds_grid_destroy(coord);
+        mm_ds_grid_destroy(coord);
     }
     
     print("  Destroying secondary autotilers...", WL_VERBOSE);
@@ -166,10 +245,10 @@ if (id == object_index.id)
     
     print("  Freeing layer -&gt; autotiler map", WL_VERBOSE);
     for (var i = 0; i &lt; global.tileLayersN; i++)
-        ds_map_destroy(global.automapper[i]);
+        mm_ds_map_destroy(global.automapper[i]);
     
     print("  Freeing placed instances map", WL_VERBOSE);
-    ds_map_destroy(placed_instances);
+    mm_ds_map_destroy(placed_instances);
     
     print("Finished object setting. Overall time taken: " + string((get_timer() - beginTime) / 1000) + " ms.", WL_VERBOSE);
     instance_destroy();
@@ -178,6 +257,89 @@ if (id == object_index.id)
     print("  Pre-processing: " + string(preplace_time / 1000) + " ms");
     print("  tile placing: " + string(place_time / 1000) + " ms");
     print("  Freeing resources: " + string(free_time / 1000) + " ms");
+    if (doPrint)
+    {
+        
+        
+        if (doCombine)
+        {
+            
+            for (var i = 0; i &lt; obj_n; i++)
+            {
+                var hori = true;
+                var vert = true;
+                switch (obj[i])
+                {
+                    case objLadder:
+                        hori = false;
+                    break;
+                    case objTopSolid:
+                        vert = false;
+                    break;
+                    case objBossBarrier:
+                    case objBossDoor:
+                    case objBossDoorVertical:
+                    case objLineHorizontalDrop:
+                    case objSlopeR:
+                    case objSlopeL:
+                    case objSlopeRLong:
+                    case objSlopeLLong:
+                    case objLiftRail:
+                    case objLiftHole:
+                    case objLiftEnd:
+                    case objLineVertical:
+                    case objLineHorizontal:
+                    case objLineTopLeft:
+                    case objLineTopRight:
+                    case objLineBottomLeft:
+                    case objLineBottomRight:
+                    case objLineVerticalDrop:
+                    case objCossackSnow:
+                        hori = false;
+                        vert = false;
+                    break;
+                    
+                    //CHECK WHICH CAN BE FIRST!!!
+                    
+                }
+                if (hori || vert)
+                {
+                    combineObjectsFromList(obj[i],hori,vert,printerObjectList);//combineObjects
+                }
+            }
+        }
+        
+        
+        
+        while (ds_list_size(printerObjectList) &gt; 0)
+        {
+            
+            with (ds_list_find_value(printerObjectList,0))
+            {
+                file_text_write_string(file,'    &lt;instance objName="' + object_get_name(object_index) + '" x="' + string(x) + 
+                                '" y="' + string(y) + 
+                                '" name="AT_' + string(printerInstance++) + 
+                                '" locked="0" code="isTile = true; visible = false;" scaleX="' + string(image_xscale) + 
+                                '" scaleY="' + string(image_yscale) + 
+                                '" colour="4294967295' +// string(image_blend) + 
+                                '" rotation="0' +// string(image_angle) 
+                                + '"/&gt;');
+                                file_text_writeln(file);
+                
+            }
+            ds_list_delete(printerObjectList,0);
+        }
+        
+        
+        
+        
+        
+        
+        
+        file_text_close(file);
+        mm_ds_list_destroy(printerObjectList);
+        print("Dumped level auto-tile to appdata.",WL_SHOW);
+    }
 }
 </string>
           </argument>
@@ -273,7 +435,7 @@ ds_map_replace(global.automapper[layerIndex], key_bg, id);
 
 coordW = ceil(key_width/grid);
 coordH = ceil(key_height/grid);
-coord = ds_grid_create(coordW, coordH);
+coord = mm_ds_grid_create(coordW, coordH);
 
 for (var i = 0; i &lt; coordW; i++)
 {
@@ -312,6 +474,15 @@ obj[23] = objLineBottomLeft;
 obj[24] = objLineBottomRight;
 obj[25] = objLineVerticalDrop;
 obj[26] = objCossackSnow;
+obj[27] = objRailTopLeft;
+obj[28] = objRailTopRight;
+obj[29] = objRailBottomLeft;
+obj[30] = objRailBottomRight;
+obj[31] = objRailHorizontal;
+obj[32] = objRailHorizontalHole;
+obj[33] = objRailVertical;
+obj[34] = objRailVerticalHole;
+obj[35] = objRailBumper;
 obj_n = array_length_1d(obj);
 
 // scan key for objects

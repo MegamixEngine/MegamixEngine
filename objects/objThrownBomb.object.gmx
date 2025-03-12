@@ -36,6 +36,7 @@ canHit = true;
 blockCollision = 0;
 
 col = 0;
+image_index = col;
 explod = false;
 
 yspeed = -6.5;
@@ -117,7 +118,7 @@ var ID;
             ID.xscale = image_xscale;
         }
         instance_destroy();
-        playSFX(sfxExplosion);
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM5));
 </string>
           </argument>
         </arguments>

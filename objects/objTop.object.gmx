@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -31,7 +31,9 @@ respawn = false;
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
+canHit = true;
 contactDamage = 2;
+bubbleTimer = -1;
 
 // Enemy specific code
 xspeed = -1.5 * image_xscale;
@@ -148,9 +150,32 @@ if (spawned)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>dead = 1;
+            <string>event_inherited();
 
-instance_create(bboxGetXCenter(), bboxGetYCenter() - 4, objExplosion);
+var _ex = instance_create(bboxGetXCenter(), bboxGetYCenter()-4, objExplosion);
+
+if (itemDrop == objKey)
+{
+    _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objKey);
+    _ex.yspeed = -4;
+    _ex.homingTimer = 90;
+    playSFX(sfxKeySpawn);
+}
+else if(itemDrop == objEnergyElement)
+{
+    _ex = instance_create(bboxGetXCenter() - 8, bboxGetYCenter() - 8, objEnergyElement);
+}
+else
+{
+    _ex.myItem = itemDrop;
+    _ex.code = itemCode;
+    _ex.script = itemScript;
+    _ex.disappearTime = dropDisappearTime;
+}
+if(itemDrop &amp;&amp; dropOnce)
+{
+    itemDrop = 0;
+}
 </string>
           </argument>
         </arguments>

@@ -25,7 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A supersized Telly that moves horizontally. Its behavior depends on whether or not the player is riding a sled (Gimmicks &gt; MM8 &gt; objMegaman8Sled).
+/// With a sled, it stops above the player and rapidly drops a series of bombs in one spot, then resumes moving.
+/// Otherwise, it dips down shortly after appearing, rapidly drops a series of bombs as it moves, returns to its original height, pauses, then resumes moving.
+/// In either case, after it attacks once, it never attacks again. Keep this in mind when designing challenges.
+
+event_inherited();
 
 healthpointsStart = 4;
 healthpoints = healthpointsStart;

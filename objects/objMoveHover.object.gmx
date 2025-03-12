@@ -80,8 +80,11 @@ if (entityCanStep())
         if (moveTimer &gt;= shiftTime - 10)
         {
             animTimer = 0;
-            image_xscale = moveDir;
-            image_index = 3;
+            if (moveDir != 0)
+            {
+                image_xscale = moveDir;
+                image_index = 3;
+            }
             with (prtEntity)
                 if (ground &amp;&amp; place_meeting(x, y + 1, other))
                     shiftObject(0, -4 * other.image_yscale, true);
@@ -146,7 +149,11 @@ animTimer = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var dir = point_direction(x, y, other.x, other.y);
+            <string>moveDir = sign(other.xspeed);
+moveTimer = shiftTime;
+playSFX(getGenericSFX(SFX_ENEMYHIT));
+
+/*var dir = point_direction(x, y, other.x, other.y);
 
 
 if (dir &lt; 70 || dir &gt; 290)
@@ -164,7 +171,7 @@ else if (dir &gt; 110 &amp;&amp; dir &lt; 250)
 else
 {
     other.guardCancel = 2;
-}
+}*/
 </string>
           </argument>
         </arguments>

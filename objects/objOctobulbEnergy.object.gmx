@@ -66,12 +66,14 @@ image_speed = 0.35;
             <kind>1</kind>
             <string>event_inherited();
 
-if (entityCanStep)
+if (entityCanStep())
 {
     path_speed = spd;
 }
-else if (dead)
+else// if (dead)
+{
     path_speed = 0;
+}
 </string>
           </argument>
         </arguments>

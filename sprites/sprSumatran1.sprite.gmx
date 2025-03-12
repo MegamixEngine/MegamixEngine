@@ -14,11 +14,11 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>52</TextureGroup0>
+    <TextureGroup0>194</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>64</width>
-  <height>32</height>
+  <height>33</height>
   <frames>
     <frame index="0">images\sprSumatran1_0.png</frame>
     <frame index="1">images\sprSumatran1_1.png</frame>

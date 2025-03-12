@@ -6,18 +6,18 @@
   <colkind>0</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>-1</sepmasks>
-  <bboxmode>0</bboxmode>
+  <bboxmode>2</bboxmode>
   <bbox_left>0</bbox_left>
   <bbox_right>41</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>31</bbox_bottom>
+  <bbox_bottom>30</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>81</TextureGroup0>
+    <TextureGroup0>193</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>42</width>
+  <width>43</width>
   <height>32</height>
   <frames>
     <frame index="0">images\sprBubukanOrange_0.png</frame>

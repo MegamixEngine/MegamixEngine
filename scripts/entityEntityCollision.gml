@@ -1,4 +1,4 @@
-/// entityEntityCollision()
+/// entityEntityCollision(damageValue?)
 // invoked when two entities collide.
 
 guardCancel = 0; // the way the bullet is ignored.
@@ -6,10 +6,12 @@ guardCancel = 0; // the way the bullet is ignored.
 if (argument_count > 0)
 {
     global.damage = argument[0];
+    global.damageIsContact = 2;//Special mark, but treated the same internally.
 }
 else
 {
     global.damage = contactDamage;
+    global.damageIsContact = true;
 }
 
 // Ignore this bullet if the enemy is choosing to
@@ -149,9 +151,18 @@ if (global.damage != 0)
                 {
                     parent = prtPlayerProjectile;
                 }
-                
                 event_perform_object(parent, ev_other, ev_user10);
                 itemDrop = -1;
+                
+                // Hacky reset for these two bastards' slowdown effect
+                if (object_index == objFooley) || (object_index == objNibul)
+                {
+                    if (object_index == objFooley)
+                        with (objFooleyFlash)
+                            instance_destroy();
+                    with (objToxinHandler)
+                        instance_destroy();
+                }
             }
             else
             {

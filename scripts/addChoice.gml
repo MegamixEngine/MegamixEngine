@@ -1,8 +1,13 @@
-/// addChoice(number, text)
-var i = instance_nearest(x, y, objDialogueBox);
+/// addChoice(_text, _textbox = noone)
+// Adds an option for the player to choose at the end of this dialogue box
 
-_on = argument0; // on = option_number
-_option = argument1;
+var _text = argument[0];
+var _textbox; if (argument_count > 1) _textbox = argument[1]; else _textbox = noone;
 
-i.optionText[_on] = _option;
-i.optionCount += 1;
+if (!instance_exists(_textbox))
+    _textbox = instance_nearest(x, y, objDialogueBox);
+
+with (_textbox)
+{
+    optionText[optionCount++] = _text;
+}

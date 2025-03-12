@@ -27,9 +27,71 @@
             <kind>1</kind>
             <string>event_inherited();
 stopOnFlash = false;
+
+
+
+//creation code
 grav = 0.11;
 contactDamage = 4;
 image_speed = 0.2;
+
+bounceSpeed = -3; //bounce yspeed
+bounceSpeedReduce = 0; //if set, reduce bounce by this much
+spd = 1; //xspeed
+spriteHitbox = sprite_index; //hurtbbox against mega man.
+explosionObject = noone; //if set, create this when destroyed
+explosionSprite = noone;
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>mask_index = spriteHitbox ;
+event_inherited();
+mask_index = sprite_index;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+mask_index = sprite_index;
 </string>
           </argument>
         </arguments>
@@ -58,15 +120,53 @@ if (entityCanStep())
 {
     if (ground)
     {
-        xspeed = 1 * image_xscale;
-        yspeed = -3;
+        xspeed = spd * image_xscale;
+        yspeed = bounceSpeed;
+        if (bounceSpeed &lt; 0)
+            bounceSpeed += bounceSpeedReduce;
+        else
+            bounceSpeed = 0;
     }
     
     if (xcoll != 0)
     {
-        instance_destroy();
+    
+        if (!insideView())
+        {
+            explosionObject = noone;
+        }
+    event_user(EV_DEATH);
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (explosionObject != noone)
+{
+    var inst = instance_create(x,y,explosionObject);
+    if (explosionSprite != noone)
+        inst.sprite_index = explosionSprite;
+}
+event_inherited();
 </string>
           </argument>
         </arguments>

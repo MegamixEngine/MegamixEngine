@@ -162,9 +162,9 @@ if (entityCanStep())
 var drew;
 drew = 0;
 
-if (iFrames == 1 || iFrames == 3)
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(true, c_white, 0, 0);
+    hitFlashEffect(true,c_white);//d3d_set_fog(true, c_white, 0, 0);
 }
 
 var drew;
@@ -175,25 +175,29 @@ if (topblock &gt; 0)
     draw_sprite_part(sprite_index, image_index, 0, 0, sprite_width, topblock,
         x - sprite_xoffset, bbox_top);
     drew = 1;
-    if (topblock &gt; 1 &amp;&amp; bottomBlock &lt;= 0)
-    {
-        animTimer += 1;
-        if (animTimer &gt; 2)
+    
+        if (topblock &gt; 1 &amp;&amp; bottomBlock &lt;= 0)
         {
-            animTimer = 0;
-            sparkindex += 1;
-            if (sparkindex == 3)
+            animTimer += 1;
+            if (animTimer &gt; 2)
             {
-                sparkindex = 0;
+                animTimer = 0;
+                sparkindex += 1;
+                if (sparkindex == 3)
+                {
+                    sparkindex = 0;
+                }
             }
-        }
-        
-        sparkblock = (collision_point(x, y, objSolid, false, false));
-        if (!sparkblock)
-        {
-            sparkblock = (collision_point(x, y + 12, objSolid, false, false));
-        }
-        draw_sprite(sprMoleSpark, sparkindex, x, (sparkblock.bbox_top));
+            
+            sparkblock = (collision_point(x, y, objSolid, false, false));
+            if (!sparkblock)
+            {
+                sparkblock = (collision_point(x, y + 12, objSolid, false, false));
+            }
+            with(sparkblock)
+            {
+            draw_sprite(sprMoleSpark, other.sparkindex, other.x, (bbox_top));
+            }
     }
 }
 if (bottomBlock &gt; 0)
@@ -220,7 +224,11 @@ if (bottomBlock &gt; 0)
         {
             sparkblock = (collision_point(x, y - 12, objSolid, false, false));
         }
-        draw_sprite(sprMoleSpark, sparkindex, x, (sparkblock.bbox_bottom));
+       with(sparkblock)
+            {
+            
+        draw_sprite(sprMoleSpark, other.sparkindex, other.x, (bbox_bottom));
+        }
     }
 }
 
@@ -239,10 +247,11 @@ if (!drew)
     }
 }
 
-if (iFrames == 1 || iFrames == 3)
+if (iFrames mod 2 == 1)
 {
-    d3d_set_fog(false, 0, 0, 0);
+    hitFlashEffect(false);//d3d_set_fog(false, 0, 0, 0);
 }
+
 </string>
           </argument>
         </arguments>

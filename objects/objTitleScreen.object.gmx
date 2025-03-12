@@ -25,21 +25,53 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>playMusic('Mega_Man_1GB.GBS', "VGM", 0, 0, 0, 0, 1);
+            <string>// reset all game state
+engineConfig();
+saveLoadGame(SL_INIT);
+stopMusic();
+global.levelSong = "";
+
+global.displayCornerUI = true;
+
+debugHash = "";
+
+// -- NOTE FROM PMB: Custom costume loading placed here for --
+// -- now until a save select screen is made for the game. --
+/*if (global.customCostumeEquipped[0])
+{
+    var costError = loadCustomCostume(global.customCostumeFilename[0],0);
+    
+    if (costError != 0)
+    {
+        global.customCostumeEquipped[0] = false;
+        global.costumeSelected[0] = global.costumeName[0];
+    }
+}*/
+
+/*Note from Gannio: This is a debug routine specifically meant to test texture paging, but also has other helpful features.
+Please don't remove it as it helps check bottlenecking.*/
+if (DEBUG_ENABLED &amp;&amp; global.keySlide[0] &amp;&amp; global.keyMap[0])
+{
+    print("Debug Bar Toggled.",WL_SHOW);
+    show_debug_overlay(true);
+}
+else
+{
+    show_debug_overlay(false);
+}
 
 canProceed = true;
 drawtext = 0;
 
 option = 0;
-options = 2;
+
+options[0] = "GAME START";
+options[1] = "OPTIONS";
+options[2] = "EXIT";
 
 wait = 16;
 
 demoTimer = 0;
-
-// reset all game state
-engineConfig();
-freshSaveFile();
 </string>
           </argument>
         </arguments>
@@ -72,27 +104,22 @@ freshSaveFile();
         exit;
     }
     
-    if ((demoTimer++) mod 500 == 495)
+    // leeeeet's not deal with this right now
+    /*if ((demoTimer++) mod 500 == 495)
     {
         if (!recordInputPlayback(
             choose("Recordings/demoPharaohMan.mrc",
             "Recordings/demoHoneyWoman.mrc")))
             canProceed = false;
         exit;
-    }
-    dir = global.keyDownPressed[0] - global.keyUpPressed[0];
+    }*/
+    
+    var dir = global.keyDownPressed[0] - global.keyUpPressed[0];
     if (dir != 0)
     {
         demoTimer = 0;
-        option += dir;
-        if (option == -1)
-        {
-            option = options - 1;
-        }
-        if (option == options)
-        {
-            option = 0;
-        }
+        option = modf(option + dir, array_length_1d(options));
+        optionTimer = 0;
         playSFX(sfxMenuMove);
     }
     
@@ -104,12 +131,15 @@ freshSaveFile();
             case 0: // Start 
                 canProceed = false;
                 playSFX(sfxMenuSelect);
-                global.nextRoom = rmRoomSelect;
+                global.nextRoom = rmFileSelect;
                 break;
             case 1: // Options 
                 canProceed = false;
                 playSFX(sfxMenuSelect);
                 global.nextRoom = rmOptions;
+                break;
+            case 2: // Exit
+                game_end();
                 break;
         }
     }
@@ -142,9 +172,16 @@ draw_set_color(c_white);
 draw_set_valign(fa_top);
 draw_set_halign(fa_left);
 
+draw_text(view_xview,view_yview+224-8,VERSION_STRING);
+
 if (drawtext)
 {
-    draw_text(96, 160, "GAME START##OPTIONS");
+    var titleString = "";
+    
+    for (var i = 0; i &lt; array_length_1d(options); i ++)
+        titleString += (options[i] + "##");
+    
+    draw_text(96, 160, titleString);
 }
 if (canProceed)
 {

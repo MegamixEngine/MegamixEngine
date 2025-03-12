@@ -42,6 +42,8 @@ contactDamage = 0;
 blockCollision = 0;
 grav = 0;
 
+bubbleTimer = -1;
+
 // Enemy specific code
 
 //@cc The object to spawn.
@@ -64,6 +66,12 @@ countOwn = false;
 // and the object is set to objEnemyBullet, then the spawner will create a bullet moving left. (This is an alternative to the code variable above,
 // and is more reliable since GML code execution from a string is not fully-featured.)
 script = scrNoEffect;
+
+//@cc number of arguments
+scriptArgC = 0;
+
+//@cc array containing arguments (will be cropped to `scriptArgC`)
+scriptArgV = makeArray(0);
 
 //@cc string containing GML code to execute. If you put, say, code = "xspeed = -3" and the object is set to objEnemyBullet,
 // then the spawner will create a bullet moving left.
@@ -185,7 +193,8 @@ if (entityCanStep())
                 
                 // setup
                 respawn = false;
-                script_execute(other.script);
+                scriptExecuteNargs(other.script, other.scriptArgV, other.scriptArgC);
+                
                 if (other.code != "")
                     stringExecutePartial(other.code);
             }

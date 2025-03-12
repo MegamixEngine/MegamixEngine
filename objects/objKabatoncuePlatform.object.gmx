@@ -69,8 +69,8 @@ enemyObject = objKabatoncue; //@cc the object index of the object over the platf
 if (entityCanStep())
 {
     // Snap downwards if a piece is missing
-    if (!place_meeting(x, y + 8, objSolid)
-        &amp;&amp; !place_meeting(x, y + 8, objKabatoncuePlatformPiece))
+    if (!place_meeting(x, y + 4, objSolid)
+        &amp;&amp; !place_meeting(x, y + 4, objKabatoncuePlatformPiece))
     {
         shiftObject(0, 16, 1);
         var _yprev = y;
@@ -90,9 +90,16 @@ if (entityCanStep())
         if (!place_meeting(x, ystart + (height + 1) * 16,
             objKabatoncuePlatformPiece))
         {
-            plat = instance_create(x, ystart + (height + 1) * 16,
+            /*plat = instance_create(x, ystart + (height + 1) * 16,
                 objKabatoncuePlatformPiece);
-            plat.offset = 16;
+            plat.offset = 16;*/
+            with (instance_create(x, ystart + (height + 1) * 16,
+                objKabatoncuePlatformPiece))
+            {
+                offset = 16;
+                if (!place_meeting(x, y - 1, objKabatoncuePlatform))
+                    image_index = 1;
+            }
         }
     }
     else
@@ -136,27 +143,26 @@ if (entityCanStep())
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
-height = 0;
-
-while (!collision_rectangle(x - 4, y + 16, x + 4, y + 16 + (height * 16), objSolid, false, true) &amp;&amp; height &lt; 32)
-{
-    height += 1;
-}
 if (spawned)
 {
+    height = 0;
+    
+    while (!collision_rectangle(x - 4, y + 16, x + 4, y + 16 + (height * 16), objSolid, false, true) &amp;&amp; height &lt; 32)
+    {
+        height += 1;
+    }
     // set boss to find
     if (instance_exists(enemyObject))
     {
         bossID = instance_nearest(x, y, enemyObject);
     }
-}
-
-if (height &gt; 0)
-{
-    for (i = 1; i &lt;= height; i += 1)
+    
+    if (height &gt; 0)
     {
-        instance_create(x, y + i * 16, objKabatoncuePlatformPiece);
+        for (i = 1; i &lt;= height; i += 1)
+        {
+            instance_create(x, y + i * 16, objKabatoncuePlatformPiece);
+        }
     }
 }
 </string>

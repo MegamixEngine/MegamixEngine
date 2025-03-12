@@ -48,6 +48,8 @@ imgSpd = 0.09;
 imgIndex = 0;
 image_speed = 0;
 image_index = 0;
+
+cannonBallSprite = sprCannonBall;
 </string>
           </argument>
         </arguments>
@@ -98,6 +100,8 @@ if (entityCanStep())
                 ball = instance_create(x + sprite_width / 2,
                     y - sprite_height * 0.8,
                     objCannonBall); // sprite_width is negative when xscale is
+                ball.image_xscale = image_xscale;
+                ball.sprite_index = cannonBallSprite
                 playSFX(sfxCannonShoot);
                 imgIndex = 2;
                 shootTimer += 1; // so it doesn't loop like a doof

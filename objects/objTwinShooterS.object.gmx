@@ -25,10 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// creation code
+            <string>/// A miniature version of the Twin Shooter G miniboss. Moves a specified distance up and down, shooting a pair of horizontal lasers at specified intervals.
+/// Unlike its larger counterpart, this version does not teleport or deflect shots.
+/// Works equally well as the focal point of a combat encounter or as a secondary threat in a platforming challenge.
+
+// creation code
 // moveDist = &lt;number&gt;;   - The distance the enemy moves before turning back on itself. Default is 76.;
 // cooldownMax = &lt;number&gt;; - How long between firing.
 // image_yscale = 1 or -1 //(Use editor for this!!) // if -1, Twin Shooter will go up instead of down at beginning.
+
 event_inherited();
 respawn = true;
 healthpointsStart = 5;
@@ -51,6 +56,8 @@ direct = -1;
 storeYScale = 0;
 moveDist = 76;
 moveDir = 0;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

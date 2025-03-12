@@ -120,7 +120,7 @@ if (entityCanStep())
     if ((!noSpeedException &amp;&amp; xspeed == 0) || ground)
     {
         instance_create(x, y, objExplosion);
-        playSFX(sfxEnemyHit);
+        playSFX(getGenericSFX(SFX_ENEMYHIT));
         instance_destroy();
     }
     

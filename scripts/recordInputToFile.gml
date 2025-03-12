@@ -7,7 +7,7 @@
 if (global.recordInputMode != 0)
     return -1;
 
-if (!instance_exists(objMegaman))
+if (!instance_exists(objMegaman) && argument_count > 1)
     return -1;
 
 global.recordInputSkipSpawn = argument_count <= 1;

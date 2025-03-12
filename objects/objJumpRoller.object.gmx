@@ -95,7 +95,7 @@ if (entityCanStep())
             if (flameTimer == 30 || flameTimer == 40)
             {
                 playSFX(sfxJumpRollerFlame);
-                instance_create(x, y - 4, objJumpRollerFlame);
+                instance_create(x, y - 3, objJumpRollerFlame);
                 
                 if (flameTimer == 40)
                 {

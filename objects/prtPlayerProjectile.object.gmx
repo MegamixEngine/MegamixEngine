@@ -36,7 +36,6 @@ penetrate = 0;
 pierces = 0;
 contactDamage = 1;
 respawn = false;
-killOverride = false;
 
 grav = 0;
 dieToSpikes = 0;
@@ -51,11 +50,17 @@ playerID = 0;
 costumeID = 0;
 parent = global.playerProjectileCreator; // don't mind this - this is handled in playerShoot.
 
+autoFireSet = 8;
+
 if (instance_exists(parent))
 {
     playerID = parent.playerID;
     costumeID = parent.costumeID;
 }
+
+//Combo variables for Rift Wanderer
+killCombo = 0;
+comboPoints = 0;
 </string>
           </argument>
         </arguments>

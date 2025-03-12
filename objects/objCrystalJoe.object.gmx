@@ -47,6 +47,9 @@ animTimer = 0;
 bulletID = -10;
 image_speed = 0;
 image_index = 0;
+
+//Unhardcoding
+projectileSprite = sprCrystalJoeCrystal;
 </string>
           </argument>
         </arguments>
@@ -82,6 +85,7 @@ if (entityCanStep())
         bulletID = instance_create(x + 21 * image_xscale, y,
             objCrystalJoeBullet);
         bulletID.image_xscale = image_xscale;
+        bulletID.sprite_index = projectileSprite;
     }
     else if (shooting)
     {

@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A flying enemy that drops sparks that, on impact with the ground, become waves that charge
-// across surfaces.
+            <string>/// A flying magnet that moves horizontally in one direction, dropping a spark at specified intervals. It will turn around if it hits a wall.
+/// On impact with the ground, the spark becomes a wave that moves along floors and walls, disappearing if it hits a ceiling (or the bottom of a platform).
+/// Carefully planned architecture is the key to using this enemy effectively.
 
 event_inherited();
 

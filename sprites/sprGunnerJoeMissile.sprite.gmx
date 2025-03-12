@@ -7,14 +7,14 @@
   <coltolerance>0</coltolerance>
   <sepmasks>-1</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>2</bbox_left>
-  <bbox_right>19</bbox_right>
-  <bbox_top>2</bbox_top>
-  <bbox_bottom>19</bbox_bottom>
+  <bbox_left>0</bbox_left>
+  <bbox_right>20</bbox_right>
+  <bbox_top>0</bbox_top>
+  <bbox_bottom>21</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>68</TextureGroup0>
+    <TextureGroup0>198</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>21</width>
@@ -28,5 +28,13 @@
     <frame index="5">images\sprGunnerJoeMissile_5.png</frame>
     <frame index="6">images\sprGunnerJoeMissile_6.png</frame>
     <frame index="7">images\sprGunnerJoeMissile_7.png</frame>
+    <frame index="8">images\sprGunnerJoeMissile_8.png</frame>
+    <frame index="9">images\sprGunnerJoeMissile_9.png</frame>
+    <frame index="10">images\sprGunnerJoeMissile_10.png</frame>
+    <frame index="11">images\sprGunnerJoeMissile_11.png</frame>
+    <frame index="12">images\sprGunnerJoeMissile_12.png</frame>
+    <frame index="13">images\sprGunnerJoeMissile_13.png</frame>
+    <frame index="14">images\sprGunnerJoeMissile_14.png</frame>
+    <frame index="15">images\sprGunnerJoeMissile_15.png</frame>
   </frames>
 </sprite>

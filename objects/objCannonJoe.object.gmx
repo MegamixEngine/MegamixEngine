@@ -101,6 +101,7 @@ if (entityCanStep())
             {
                 image_index = 1;
                 instance_create(x + 21 * image_xscale, y - 2, objCannonjoeBullet);
+                playSFX(sfxEnemyShoot);
             }
         }
         

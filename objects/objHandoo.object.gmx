@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A strange enemy from Uranus, it jumps towards Mega Man, tosses its hands at him, and then
-// runs after him. Also, it deflects shots just by blinking.
+            <string>/// This enemy jumps toward the player until it gets close, launches its hands one at a time in the direction of the player, and then chases the player on foot.
+/// Also, it deflects shots just by blinking.
+/// Handoo is VERY slow to act, so it's best used in situations where the player may be too occupied with other hazards to deal with it immediately.
 
 event_inherited();
 
@@ -36,6 +37,7 @@ contactDamage = 3;
 
 facePlayerOnSpawn = true;
 
+imgIndex = 0;
 imgSpd = 0.1;
 animBack = false;
 
@@ -78,17 +80,17 @@ if (entityCanStep())
             {
                 if (hasBlinked == false)
                 {
-                    image_index += imgSpd;
+                    imgIndex += imgSpd;
                 }
-                if (image_index &gt;= 3)
+                if (imgIndex &gt;= 3)
                 {
                     animBack = true;
                     hasBlinked = true;
                 }
                 if (animBack == true)
                 {
-                    image_index -= imgSpd;
-                    if (image_index == 0)
+                    imgIndex -= imgSpd;
+                    if (imgIndex == 0)
                     {
                         animBack = false;
                         
@@ -100,7 +102,7 @@ if (entityCanStep())
                             {
                                 phase = 2;
                                 moveTimer = 30;
-                                image_index = 5;
+                                imgIndex = 5;
                                 facePlayer = false;
                             }
                             else
@@ -116,7 +118,7 @@ if (entityCanStep())
             }
             else
             {
-                image_index = 0;
+                imgIndex = 0;
             }
             break;
         
@@ -125,12 +127,12 @@ if (entityCanStep())
             moveTimer--;
             if (moveTimer == 10)
             {
-                image_index = 4;
+                imgIndex = 4;
             }
             if (moveTimer &lt;= 0)
             {
-                image_index = 3;
-                if (image_index == 3)
+                imgIndex = 3;
+                if (imgIndex == 3)
                 {
                     y -= 3;
                     yspeed -= 4;
@@ -142,7 +144,7 @@ if (entityCanStep())
         
         // Punching
         case 2:
-            if ((floor(image_index) == 12) || (floor(image_index) == 17))
+            if ((floor(imgIndex) == 13) || (floor(imgIndex) == 19))
             {
                 moveTimer--;
                 if (moveTimer == 29)
@@ -154,17 +156,17 @@ if (entityCanStep())
                 
                 if (moveTimer == 0)
                 {
-                    image_index += 1;
+                    imgIndex += 1;
                     moveTimer = 30;
                 }
             }
             else
             {
-                image_index += imgSpd;
+                imgIndex += imgSpd;
             }
-            if (image_index &gt; 19)
+            if (imgIndex &gt; 21)
             {
-                image_index = 21;
+                imgIndex = 23;
                 phase = 3;
             }
             break;
@@ -192,20 +194,20 @@ if (entityCanStep())
             // Animation
             if (!animBack)
             {
-                image_index += 0.2;
-                if (image_index &gt;= 23)
+                imgIndex += 0.2;
+                if (imgIndex &gt;= 25)
                 {
                     animBack = true;
-                    image_index = 21;
+                    imgIndex = 23;
                 }
             }
             else
             {
-                image_index -= 0.2;
-                if (image_index &lt;= 20)
+                imgIndex -= 0.2;
+                if (imgIndex &lt; 22)
                 {
                     animBack = false;
-                    image_index = 21;
+                    imgIndex = 23;
                 }
             }
             break;
@@ -216,7 +218,7 @@ if (entityCanStep())
             {
                 xspeed = 0;
                 yspeed = 0;
-                image_index = 4;
+                imgIndex = 4;
                 moveTimer = 60;
                 inAir = false;
                 phase = 0;
@@ -229,11 +231,12 @@ else if (dead)
 {
     healthpoints = healthpointsStart;
     phase = 0;
-    image_index = 0;
+    imgIndex = 0;
     moveTimer = 60;
     hasBlinked = false;
     animBack = false;
 }
+image_index = imgIndex div 1;
 </string>
           </argument>
         </arguments>

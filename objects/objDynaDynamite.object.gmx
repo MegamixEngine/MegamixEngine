@@ -83,7 +83,7 @@ if (!global.frozen)
             expl = instance_create(x, y, objHarmfulExplosion);
             expl.contactDamage = 4;
             expl.stopOnFlash = false;
-            playSFX(sfxExplosion);
+            playSFX(sfxDynaManBomb);
             instance_destroy();
         }
     }

@@ -10,48 +10,39 @@
 if (argument_count <= 0)
     return 0;
 
-// check all lock pools exist:
-for (var lp = 0; lp < argument_count; lp++)
+for (var IDKey = 1; true; IDKey++)
 {
-    if (!lockPoolExists(argument[lp]))
+    var poolKey = ds_map_find_first(global.lockPoolMap);
+    var isUniqueID = true;
+    while (!is_undefined(poolKey))//for (//var i = 0; i < argument_count; i++)
     {
-        printErr("Attempted to check out lock on non-existent lock pool, id: " + string(argument[lp]));
-        assert(false);
-        return -1;
-    }
-    if (global.lockPoolTombstone[argument[lp]])
-    {
-        printErr("Attempted to check out lock on lock pool slated for deletion (tombstoned), id: " + string(argument[lp]));
-        assert(false);
-        return -1;
-    }
-}
-
-// find common lock value
-for (var lv = 0; true; lv++)
-{
-    var commonAvailability = true;
-    for (var lockPoolID = 0; lockPoolID < global.lockPoolN; lockPoolID++)
-    {
-        // check if lock value available in this pool:
-        if (lv < global.lockPoolLockCount[lockPoolID])
+        //Check every pool map until we find a unique value.
+        if (ds_map_exists(getLockMap(poolKey),IDKey))
         {
-            if (global.lockPoolLockTable[lockPoolID, lv])
-            {
-                commonAvailability = false;
-                continue;
-            }
-        }
+            isUniqueID = false;
+            //show_message("NOT UNIQUE");
+            break;
+            //var submapRef = ds_map_find_value(global.lockPoolMap,argument[i]);
+            //if (ds_map_exists(submapRef,))
+            
+            //ds_map_add(submapRef,);//ds_map_replace(global.lockPoolMap,argument[i],val+1);
+            //return 1;
+            
+            //var current = ds_map_find_value(global.lockPoolMap,argument[i]);
+            
+        }//var array = global.lockPoolMap[argument[i]];
+        poolKey = ds_map_find_next(global.lockPoolMap,poolKey);
     }
-    if (!commonAvailability)
-        continue;
-    
-    // add lock to all pools:
-    for (var lp = 0; lp < argument_count; lp++)
+    if (isUniqueID)
     {
-        var lockPoolID = argument[lp];
-        global.lockPoolLockTable[lockPoolID, lv] = true;
-        global.lockPoolLockCount[lockPoolID] = max(global.lockPoolLockCount[lockPoolID], lv + 1);
+        for (var i = 0; i < argument_count; i++)
+        {//Now go and apply that unique value to every pool map in the arguments!
+            var poolMap = getLockMap(argument[i]);
+            ds_map_add(poolMap,IDKey,true)
+            //poolKey = ds_map_find_next(global.lockPoolMap,poolKey);
+            
+        }
+        //printErr(IDKey);
+        return IDKey + 1;//This plus 1 is to keep compatibility with MaGMML3, but might also be required?
     }
-    return lv + 1;
 }

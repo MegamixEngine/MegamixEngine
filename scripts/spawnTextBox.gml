@@ -1,30 +1,32 @@
-// spawnTextBox(screenTop, endEvent, name, name color, text)
-// argument0: 0 at the top; 1 in the middel; 2 at the bottom
+/// spawnTextBox(boxPosition, endEvent, name, name color, text, ...)
+// Spawns a textbox for characters to speak
+// argument0: 0 at the top; 1 in the bottom
 // argument1: what event 'event_user(x)' it triggers after closing it. If it's -1, it defaults to just freeing MM.
 // argument2: name;
 // argument3: name color;
-// argument4-15: the text that should be displayed, place after the last argument you need a -1
+// argument4, 5, 6, ...: the text that should be displayed, each argument representing a block of dialogue
 
-// spawn textbox
-var i = instance_create(x, y, objDialogueBox);
-if ((object_index==objNPC||object_is_ancestor(object_index,objNPC))&&npcID != 0)
-{
-    i.parent = npcID;
-}
-i.pos = argument[0];
-i.origin = id;
-i.o_event = argument[1];
-i.name = argument[2];
-i.nameCol = argument[3];
+// No way to add in the font argument from the other textbox scripts without affecting all instances of this script call so far,
+// due to how varying arguments work.
+//
+// Instead, just do this:
+// var textbox = spawnTextBox(...);
+// textbox.textFont = [font];
 
-// insert text
-for (var ca = 4; ca <= 15 && ca < argument_count; ca += 1)
-{
+//Convert the texts from varying argument list to array
+var _text_list = array_create(0);
+
+for (var ca = 4; ca < argument_count; ca++) {
+    // If the argument provided was '-1', we will skip this one
+    if (argument[ca] == -1)
+        continue;
+    
+    // If the argument provided was any other non-string value,
+    // we skip not just this argument, but all arguments that come after this one
     if (!is_string(argument[ca]))
-    {
-        exit;
-    }
-    ds_list_add(i.text, argument[ca]);
+        break;
+    
+    arrayAppend(_text_list, argument[ca]);
 }
 
-return(i);
+return spawnTextBoxUsingArray(argument[0], argument[1], argument[2], argument[3], _text_list);

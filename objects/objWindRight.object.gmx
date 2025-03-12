@@ -69,11 +69,9 @@ dir = "right";
 // Do wind
 if (instance_place(x, y, objMegaman)) // check for the player
 {
-    var player = instance_place(x, y, objMegaman);
-    
-    if (player)
+    with (objMegaman)
     {
-        with (player)
+        if (place_meeting(x, y, other.id))
         {
             if (!global.frozen &amp;&amp; !climbing)
             {
@@ -97,6 +95,7 @@ if (instance_place(x, y, objMegaman)) // check for the player
                             shiftObject(0, other.mySpeed, 1);
                         }
                         break;
+
                 }
             }
         }

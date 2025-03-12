@@ -28,7 +28,7 @@
             <string>event_inherited();
 
 //@cc set the depth in creation code to change what layer this applies to.
-layer = 1000000;
+myLayer = 1000000;//1.9: The term layer was renamed to myLayer due to problems with gig recognizing it as a GMS2 keyword.
 
 if (place_meeting(x, y, objSolid))
 {
@@ -61,6 +61,8 @@ grav = 0;
 blockCollision = 0;
 shiftVisible = 1;
 bubbleTimer = -1;
+
+init = true;
 </string>
           </argument>
         </arguments>
@@ -83,83 +85,68 @@ bubbleTimer = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>if (init)
+{
+    // remove solids under self
+    depth = myLayer;
+    
+    carveSolid(bbox_left, bbox_top, bbox_bottom, bbox_right, true);
+    with (objSolid)
+    {
+        if (place_meeting(x, y, other))
+        {
+            other.isSolid = true;
+            instance_destroy();
+        }
+    }
+    
+    // place pickups under the super arm block so they become Hidden Boys
+    if (place_meeting(x, y, prtPickup))
+    {
+        with instance_place(x, y, prtPickup)
+        {
+            depth = other.myLayer + 1;
+            blockCollision = 0;
+            grav = 0;
+        }
+    }
+    
+    // find underlying tiles
+    for (var ix = bbox_left + 8; ix &lt; bbox_right; ix += 16)
+    {
+        for (var iy = bbox_top + 8; iy &lt; bbox_bottom; iy += 16)
+        {
+            var tile = tile_layer_find(depth, ix, iy);
+            if (tile != -1)
+            {
+                tileOffsetX[tileN] = tile_get_x(tile) - x;
+                tileOffsetY[tileN] = tile_get_y(tile) - y;
+                tileLeft[tileN] = tile_get_left(tile);
+                tileTop[tileN] = tile_get_top(tile);
+                tileWidth[tileN] = tile_get_width(tile);
+                tileHeight[tileN] = tile_get_height(tile);
+                tiles[tileN++] = tile_get_background(tile);
+                tile_delete(tile);
+            }
+        }
+    }
+    
+    if (tileN &lt;= 0)
+    {
+        printErr("Warning: a super arm block at " + string(x) + "," + string(y) + " had no underlying tiles. (Did you remember to set its layer to the tile layer?)");
+    }
+    init = false;
+}
+
+event_inherited();
 
 // change depth
 if (superArmHoldOwner != noone)
 {
     depth = 1;
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="4">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>// remove solids under self
-depth = layer;
 
-carveSolid(bbox_left, bbox_top, bbox_bottom, bbox_right, true);
-with (objSolid)
-{
-    if (place_meeting(x, y, other))
-    {
-        other.isSolid = true;
-        instance_destroy();
-    }
-}
 
-// place pickups under the super arm block so they become Hidden Boys
-if (place_meeting(x, y, prtPickup))
-{
-    with instance_place(x, y, prtPickup)
-    {
-        depth = other.layer + 1;
-        blockCollision = 0;
-        grav = 0;
-    }
-}
-
-// find underlying tiles
-for (var ix = bbox_left + 8; ix &lt; bbox_right; ix += 16)
-{
-    for (var iy = bbox_top + 8; iy &lt; bbox_bottom; iy += 16)
-    {
-        var tile = tile_layer_find(depth, ix, iy);
-        if (tile != -1)
-        {
-            tileOffsetX[tileN] = tile_get_x(tile) - x;
-            tileOffsetY[tileN] = tile_get_y(tile) - y;
-            tileLeft[tileN] = tile_get_left(tile);
-            tileTop[tileN] = tile_get_top(tile);
-            tileWidth[tileN] = tile_get_width(tile);
-            tileHeight[tileN] = tile_get_height(tile);
-            tiles[tileN++] = tile_get_background(tile);
-            tile_delete(tile);
-        }
-    }
-}
-
-if (tileN &lt;= 0)
-{
-    printErr("Warning: a super arm block at " + string(x) + "," + string(y) + " had no underlying tiles. (Did you remember to set its layer to the tile layer?)");
-}
 </string>
           </argument>
         </arguments>

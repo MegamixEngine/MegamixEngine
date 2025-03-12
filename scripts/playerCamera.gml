@@ -2,12 +2,12 @@
 // argument0: 1 = focus on Mega Man instantaneously
 // Handles the camera
 
-var vx = 0;
-var vy = 0;
-var vn = 0;
-var fc = 0;
-var inx = argument0;
-var iny = argument0;
+var playerx = 0;
+var playery = 0;
+var playerNumber = 0;
+
+var instantx = argument0;
+var instanty = argument0;
 var xsp = 0;
 
 global.prevXView = view_xview[0];
@@ -15,82 +15,110 @@ global.prevYView = view_yview[0];
 view_xview[0] = global.cachedXView;
 view_yview[0] = global.cachedYView;
 
-// average location of players
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// Average location of players
 with (objMegaman)
 {
     if (viewPlayer && (!teleporting || teleporting && global.hasTeleported))
     {
-        vx += x;
+        // Nothing special for x-coordinate
+        playerx += x;
         xsp += abs(xspeed);
+        
+        // Special stuff for y-coordinate
         
         // Focus instantaneously
         if (argument0)
         {
-            vy += y;
-        } // otherwise do this
-        else
+            playery += y;
+        }
+        else // Otherwise do this
         {
             if (ground)
             {
-                vy += y;
+                playery += y;
             }
             else
             {
                 var ydiv = y - (view_yview + view_hview * 0.5);
-                if (abs(ydiv) >= (view_hview * 0.2))
+                
+                var threshold = (view_hview * 0.2);
+                
+                if (abs(ydiv) >= threshold)
                 {
-                    vy += y - ((view_hview * 0.2) * sign(ydiv));
-                    iny = 1;
+                    playery += y - (threshold * sign(ydiv));
+                    instanty = 1;
                 }
             }
         }
-        vn += 1;
+        
+        playerNumber ++;
     }
 }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // Follow the players
-if (vn != 0)
+if (playerNumber > 0)
 {
-    if (vx != 0)
+    if (playerx != 0) // X-coordinates
     {
-        vx = (vx / vn) - view_wview * 0.5;
+        playerx = (playerx / playerNumber) - (view_wview[0] * 0.5);
         
-        if (inx)
+        if (instantx)
         {
-            view_xview = vx;
+            view_xview[0] = playerx;
         }
         else if (!global.frozen)
         {
-            view_xview += (max(min(ceil(xsp / vn), abs(vx - view_xview)), abs(vx - view_xview) / 4)) * sign(vx - view_xview);
+            var xdif = playerx - view_xview[0];
+            
+            var xshift = min(ceil(xsp / playerNumber), abs(xdif)); // Camera-shift can't exceed xspeed
+                xshift = max(xshift, abs(xdif) / 4); // But can't be less than a 1/4 of the x-difference
+            
+            view_xview[0] += (xshift * sign(xdif));
         }
     }
-    if (vy != 0)
+    
+    if (playery != 0) // Y-coordinates
     {
-        vy = (vy / vn) - view_hview * 0.5;
+        playery = (playery / playerNumber) - (view_hview[0] * 0.5);
         
-        if (iny)
+        if (instanty)
         {
-            view_yview = vy;
+            view_yview[0] = playery;
         }
         else if (!global.frozen)
         {
-            view_yview += ((vy - view_yview) / 8);
+            view_yview[0] += ((playery - view_yview[0]) / 8);
         }
     }
 }
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 // Stop at section borders
-var bound_left = max(global.sectionLeft, global.borderLockLeft),
-    bound_right = min(global.sectionRight, global.borderLockRight) - view_wview,
-    bound_top = max(global.sectionTop + global.quadMarginTop, global.borderLockTop),
-    bound_bottom = min(global.sectionBottom - global.quadMarginBottom, global.borderLockBottom) - view_hview;
+var bound_left      = max(global.sectionLeft, global.borderLockLeft),
+    bound_right     = min(global.sectionRight, global.borderLockRight) - view_wview[0],
+    bound_top       = max(global.sectionTop + global.quadMarginTop, global.borderLockTop),
+    bound_bottom    = min(global.sectionBottom - global.quadMarginBottom, global.borderLockBottom) - view_hview[0];
 
-view_xview = clamp(view_xview, bound_left, bound_right);
-view_yview = clamp(view_yview, bound_top, bound_bottom);
+view_xview[0] = clamp(view_xview[0], bound_left, bound_right);
+view_yview[0] = clamp(view_yview[0], bound_top , bound_bottom);
 
-view_xview = round(view_xview);
-view_yview = round(view_yview);
+//view_xview[0] = roundTo(view_xview[0], 1 / global.screensize);
+//view_yview[0] = roundTo(view_yview[0], 1 / global.screensize);
+
+if (global.roundCamera)
+{
+    view_xview[0] = round(view_xview[0]);
+    view_yview[0] = round(view_yview[0]);
+}
+
+//printErr(string(view_xview[0]));
 
 // cached
 global.cachedXView = view_xview[0];
 global.cachedYView = view_yview[0];
+

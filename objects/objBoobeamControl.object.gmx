@@ -46,8 +46,8 @@ introType = 2; // no intro
 blockCollision = 0; // doesnt interact with blocks
 
 // Health Bar
-healthBarPrimaryColor[1] = 37;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $2B;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_2.nsf";

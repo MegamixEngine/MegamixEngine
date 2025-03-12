@@ -25,7 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A spiked wheel. The basic version immediately drops from the air, bounces slightly, and rolls slowly forward.
+/// The "Chase" version is the same, except it moves faster and careens back and forth in an effort to hit the player.
+/// The "Stationary" version stays in place. It is effectively a damage spike, except you can destroy or damage boost through it.
+/// By default, the basic and "Chase" versions stop when they hits a wall. With creation code, you can set them to be destroyed instead.
+/// Basic is best in horizontal scrolling sections or with a custom spawner; "Chase" and "Stationary" are more all-purpose.
+
+event_inherited();
 
 healthpointsStart = 8;
 healthpoints = healthpointsStart;
@@ -35,6 +41,8 @@ category = "grounded";
 
 facePlayerOnSpawn = true;
 
+behaviourType = 1;
+
 // Enemy specific code
 image_speed = 0.3;
 
@@ -43,6 +51,10 @@ action = 0;
 maxSpeed = 3;
 accel = 0.1;
 grav = 0;
+
+xs = 0;
+ys = 0;
+mode = "";
 
 if (object_index == objCuttingWheel)
 {
@@ -56,6 +68,8 @@ if (object_index == objCuttingWheelStationary)
 {
     mode = 'stationary';
 }
+
+killOnCollide = false; //if set, cutting wheel is destroyed when hitting wall
 </string>
           </argument>
         </arguments>
@@ -156,6 +170,12 @@ if (entityCanStep())
                 }
             }
         }
+    }
+    
+    if (killOnCollide &amp;&amp; xcoll != 0)
+    {
+        itemDrop = -1;
+        event_user(EV_DEATH);
     }
 }
 else if (dead)

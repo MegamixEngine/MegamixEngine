@@ -40,6 +40,7 @@ canHit = false;
 grav = 0;
 blockCollision = 0;
 bubbleTimer = -1;
+behaviourType = 1;
 
 isSolid = 2;
 

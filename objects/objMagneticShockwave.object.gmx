@@ -35,15 +35,27 @@ penetrate = 1;
 pierces = 2;
 attackDelay = 9;
 
+particleSprite = sprMagneticShockwaveParticle;
+explosionSprite = sprExplosion;
+
+
 playSFX(sfxEnemyBoost);
+
 
 imgIndex = 0;
 imgSpeed = 0.05;
+
 spawnTimer = 10;
 
 number = 0;
 
 timer = 0;
+
+inWater = -1;
+
+multPal[0] = $0C4CC8;
+multPal[1] = $D73F5C;
+multPal[2] = $3CBCF0;
 </string>
           </argument>
         </arguments>
@@ -85,10 +97,13 @@ if (!global.frozen)
             spawnTimer--;
             if (!spawnTimer &amp;&amp; insideView())
             {
-                i = instance_create(x + (28 * image_xscale), y, objMagneticShockwave);
+                i = instance_create(x + (28 * sign(image_xscale)), y, objMagneticShockwave);
                 i.number = number + 1;
                 i.image_xscale = image_xscale;
                 i.image_yscale = image_yscale;
+                i.faction = faction;
+                i.contactDamage = contactDamage;
+                i.playerID = playerID;
             }
         }
     }
@@ -99,9 +114,16 @@ if (!global.frozen)
         if (!positionCollision(x - 8, y + image_yscale) || !positionCollision(x + 8, y + image_yscale))
         {
             i = instance_create(x, y, objSingleLoopEffect);
-            i.sprite_index = sprExplosion;
+            i.sprite_index = explosionSprite;
             i.image_index = 1;
             i.image_speed = 0.15;
+            i.useShader = (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1);
+            
+            i.replaceColor[0] = $ADCFFF;
+            i.replaceColor[1] = $FFFFFF;
+            
+            i.newColor[0] = global.multiplayerPalette[playerID,global.weapon[playerID]];
+            i.newColor[1] = merge_color(global.multiplayerPalette[playerID,global.weapon[playerID]],c_white,0.85);
         }
     }
     
@@ -109,9 +131,14 @@ if (!global.frozen)
     if (!(timer mod 3))
     {
         i = instance_create(irandom_range(x - 7, x + 7), y, objSingleLoopEffect);
-        i.sprite_index = sprMagneticShockwaveParticle;
+        i.sprite_index = particleSprite;
         i.image_speed = 0.4;
         i.vspeed = (-irandom(25) / 10 * (1 - ((timer mod 6) == 0) * 1.33)) * image_yscale;
+        i.useShader = (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1);
+        i.replaceColor[0] = multPal[0];
+        i.newColor[0] = global.multiplayerPalette[playerID,global.weapon[playerID]];
+        i.replaceColor[1] = multPal[2];
+        i.newColor[1] = merge_color(global.multiplayerPalette[playerID,global.weapon[playerID]],c_white,0.75);
     }
 }
 
@@ -138,9 +165,16 @@ image_index = floor(imgIndex);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; !shootStandStillLock)
+            <string>/// i am magneto, master of magnet
+
+if (performShoot)
 {
-    fireWeapon(28, 13, objMagneticShockwave, 1, 4, 1, 1);
+    var ammoCost = 4 - (1 * (global.energySaver &gt; 0));
+    
+    var i = fireWeapon(28, 13, objMagneticShockwave, 1, ammoCost, 1, 1);
+    
+    autoFireDelay = 32;
+
 }
 </string>
           </argument>
@@ -219,12 +253,66 @@ specialDamageValue("mets", 0);
 repeat (32)
 {
     i = instance_create(irandom_range(bbox_left, bbox_right), irandom_range(bbox_top, bbox_bottom), objSingleLoopEffect);
-    i.sprite_index = sprMagneticShockwaveParticle;
+    i.sprite_index = particleSprite;
     i.image_speed = 0.25;
     i.vspeed = -0.1 * image_yscale;
+    i.useShader = (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1);
+    i.replaceColor[0] = multPal[0];
+    i.newColor[0] = global.multiplayerPalette[playerID,global.weapon[playerID]];
+    i.replaceColor[1] = multPal[2];
+    i.newColor[1] = merge_color(global.multiplayerPalette[playerID,global.weapon[playerID]],c_white,0.75);
 }
 
+
+playSFX(sfxBetaSword_Aura);
+repeat (4)
+{
+    i = instance_create(irandom_range(bbox_left, bbox_right), irandom_range(bbox_top, bbox_bottom), objSingleLoopEffect);
+    i.sprite_index = explosionSprite;
+    i.image_speed = 0.20;
+    i.vspeed = -0.3 * image_yscale;
+    i.useShader = (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1);
+    i.replaceColor[0] = multPal[0];
+    i.newColor[0] = global.multiplayerPalette[playerID,global.weapon[playerID]];
+}
+
+
 event_user(EV_DEATH);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1)
+{
+    
+    shaderSetColorreplace(
+            multPal[0], global.multiplayerPalette[playerID,global.weapon[playerID]],
+            multPal[2], merge_color(global.multiplayerPalette[playerID,global.weapon[playerID]],c_white,0.75)
+        );
+}
+event_inherited();
+if (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1)
+{
+    shader_reset();
+}
 </string>
           </argument>
         </arguments>

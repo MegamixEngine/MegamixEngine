@@ -25,7 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// A weather controlling robot. Depending on its phase and looks, it'll trigger specific weather effects.
+            <string>/// More of a gimmick than an enemy, and a very complex one at that. Floats up and down. Hit one with any weapon to make it rain.
+/// Once it's raining, hit another Tel Tel with an ice weapon to make it snow. Then, hit yet another Tel Tel with a fire weapon to clear away the weather. Repeat.
+/// Tel Tel is indestructible, but it will fall off the screen when hit by a weapon that changes the weather, along with any other Tel Tels on screen.
+/// The rain affects a variety of fire enemies and gimmicks. See the Create event of objTelTelWeatherControl (in the Projectiles subfolder) for a complete list.
+/// The snow makes Revealing Tiles (Gimmicks &gt; MM7 &gt; objRevealingTiles) visible by covering them with snow.
+/// Weather persists across screen transitions. To cancel it upon entering a section, place objTelTelWeatherCancel (in this same folder) anywhere in the section.
+/// You can use creation code to specify which objects trigger the snow and clear effects. They don't necessarily have to be ice and fire, or even weapons!
+/// If you're going to use Tel Tel, make it the star of your level, and test each setup thoroughly. Also note that the visual effects may bother some players.
+
 event_inherited();
 
 healthpointsStart = 999;
@@ -54,7 +62,7 @@ canIce = false;
 
 // Tables for what triggers certain weather effects
 snowSource[0] = objIceWall;
-snowSource[1] = objChillShot;
+snowSource[1] = objChillSpike;
 snowSource[2] = objChillSpikeLanded;
 snowSource[3] = objIceSlasher;
 

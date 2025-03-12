@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// creation code (all optional)
+            <string>/// A spiked pillar that moves like one of the hands on an analog clock.
+/// Use creation code to customize a variety of details.
+/// Adds spice to certain miniboss fights and also works as a more general timing gimmick.
+
+// creation code (all optional)
 // cAngle = &lt;number&gt;; // the angle the clock arm starts off at.
 // length = &lt;number&gt;; // the number of pieces this arm is made of.
 // attackTimerMax = &lt;number&gt;; // the amount of time it takes to rotate
@@ -39,6 +43,7 @@ contactDamage = 4;
 
 canHit = false;
 
+blockCollision = 0;
 grav = 0;
 bubbleTimer = -1;
 cDistance = 0;
@@ -90,7 +95,7 @@ if (entityCanStep())
             inst.length = 0;
             inst.cDistance = pieceGap * i;
             inst.cAngle = cAngle;
-            inst.destroyTimer = 18 + (16 * i);
+            inst.destroyTimer = 8 * i; //18 + (16 * i);
             inst.attackTimerMax = attackTimerMax;
             inst.addAngle = addAngle;
             inst.respawn = false;
@@ -128,7 +133,7 @@ if (entityCanStep())
         destroyTimer = 0;
         instance_create(x, y, objExplosion);
         dead = true;
-        playSFX(sfxEnemyHit);
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
     }
 }
 if (dead)

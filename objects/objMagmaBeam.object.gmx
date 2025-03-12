@@ -45,6 +45,9 @@ timer = 0;
 isFrozen = 0;
 
 parent = -1;
+
+// An attempt at fixing the hitboxes with the Magma Beams. 
+//extendTime = true;
 </string>
           </argument>
         </arguments>
@@ -178,7 +181,12 @@ if (entityCanStep())
         }
         else // descend (initial)
         {
+            /*extendTime = !extendTime;
+            if (extendTime)
+            {
+                image_yscale += sign(image_yscale);*/
             image_yscale += 0.5 * sign(image_yscale);
+            //}
             
             // collision_line(x - sint * 15 * i, y + cost * 15 * i, x - sint * 15 * i + abs(image_yscale) * 16 * cost, y + cost * 15 * i - sint * 16 * abs(image_yscale), objMegaman, false, fal
         }
@@ -188,6 +196,19 @@ if (entityCanStep())
         image_index = image_index mod 3;
         
         isSolid = 0;
+        
+        var iceW = instance_place(x, y, objIceWall);
+        if (instance_exists(iceW) &amp;&amp; !isFrozen)
+        {
+            isFrozen = 240;
+            isSolid = 1;
+            if (instance_exists(iceW)) {
+            with (iceW)
+            {
+                event_user(EV_DEATH);
+            }
+            }
+        }
     }
     else
     {
@@ -231,11 +252,11 @@ contactDamage = 28 * !isSolid;
     other.guardCancel = 2;
     
     if (other.object_index == objIceWall || other.object_index == objConcreteShot
-        || other.object_index == objIceSlasher)
+        || other.object_index == objIceSlasher || other.object_index == objChillSpike || other.object_index == objChillSpikeLanded)
     {
         isFrozen = 240;
         isSolid = 1;
-        
+        stopSFX(sfxMagmaBeam);
         with (other)
         {
             event_user(EV_DEATH);
@@ -275,7 +296,7 @@ else
 
 for (var i = min(1.5, abs(image_yscale / 3)); i &lt; abs(image_yscale); i += 3)
 {
-    playSFX(sfxMM3Explode);
+    playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
     with (instance_create(x, y, objBigExplosion))
     {
         direction = other.image_angle - 90;

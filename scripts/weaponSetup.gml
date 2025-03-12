@@ -49,21 +49,24 @@ User Defined Events 0-6 are all left for the users to use with their own weapons
 if (argument_count <= 0) // Setup of the weapon system
 {
     // Initial Setup for weapons
-    lr = 4000; // there's no object_last or object_total or anything, so uh. hmph
-    
+
     global.totalWeapons = -1; // Set this to -1 for now. Mega Buster auto-becomes ID 0
     
     // You can override the weapon order if you want, but this can all just be set to go automatically.
     // See any event user 0 of the default weapons for more info.
     
-    global.weaponID = ds_map_create();
+    if (variable_global_exists("global.weaponID"))
+    {
+        mm_ds_map_destroy(global.weaponID);
+    }
+    global.weaponID = mm_ds_map_create(true);
     
     // Get weapon objects
-    for (obj = 0; obj < lr; obj += 1)
+    for (wobj = 0; /*wobj < lr*/object_exists(wobj); wobj += 1)
     {
-        if (object_exists(obj))
+        if (object_exists(wobj))
         {
-            event_perform_object(obj, ev_other, ev_user12); // EV_WEAPON_SETUP
+            event_perform_object(wobj, ev_other, ev_user12); // EV_WEAPON_SETUP
         }
     }
     
@@ -72,13 +75,16 @@ if (argument_count <= 0) // Setup of the weapon system
     {
         for (var j = 0; j <= global.totalWeapons; j++)
         {
-            for (var i = 0; i < global.playerCount; i++)
+            for (var i = 0; i < MAX_PLAYERS; i++)
             {
                 global.ammo[i, j] = 0;
             }
             global.infiniteEnergy[j] = false;
             global.weaponLocked[j] = false;
+            global.weaponHidden[j] = false;
         }
+        //Moved here to avoid it getting reset all the time.
+        global.weaponHotbar[global.totalWeapons] = global.totalWeapons;
     }
     
     global.lockBuster = false;
@@ -97,7 +103,6 @@ else // Setup of each of the weapons
     
     global.weaponIcon[global.totalWeapons] = argument[3];
     
-    global.weaponID[? obj] = global.totalWeapons;
-    global.weaponObject[global.totalWeapons] = obj;
-    global.weaponHotbar[global.totalWeapons] = global.totalWeapons;
+    global.weaponID[? wobj] = global.totalWeapons;
+    global.weaponObject[global.totalWeapons] = wobj;
 }

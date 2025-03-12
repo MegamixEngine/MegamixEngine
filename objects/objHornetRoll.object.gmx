@@ -3,7 +3,7 @@
   <spriteName>sprHornetRollPlace</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A roll-up platform that extends when hit, pauses a moment, then completely contracts for a specified amount of time before resetting.
+/// Use creation code to change the length and timing of the platform.
+/// Useful for time-sensitive challenges requiring interaction from the player to initiate.
+
+event_inherited();
 
 sprite_index = sprHornetRoll;
 

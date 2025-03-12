@@ -37,6 +37,10 @@ phase = 0;
 imgIndex = 0;
 imgSpd = 0.1;
 moveTimer = 120;
+
+dpsTimer = 0;
+shieldDamageCount = 0;
+shieldDPS = 5;
 </string>
           </argument>
         </arguments>
@@ -60,7 +64,12 @@ moveTimer = 120;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
+if (dpsTimer &gt; 0)
+{
+    dpsTimer -= 1;
+    if (dpsTimer == 0)
+        shieldDamageCount = 0;
+}
 if (entityCanStep())
 {
     if (ground)
@@ -96,7 +105,8 @@ if (entityCanStep())
                     playSFX(sfxEnemyShootClassic);
                 }
                 
-                imgIndex += imgSpd;
+                if (imgIndex &gt;= 4)
+                    imgIndex += imgSpd;
                 
                 if (imgIndex &gt;= 6)
                 {
@@ -157,7 +167,14 @@ image_index = imgIndex div 1;
             <kind>1</kind>
             <string>if (phase == 0)
 {
-    if (other.object_index == objBusterShotCharged)
+    if (other.sprite_index == sprBassBullet) // Bass Mode failsafe
+    {
+        if (dpsTimer == 0)
+            dpsTimer = 60;
+        shieldDamageCount += 1;
+    }
+        
+    if (other.object_index == objBusterShotCharged) || (other.object_index == objBusterShotChargedProto) || (shieldDamageCount &gt;= shieldDPS)
     {
         other.guardCancel = 1;
         phase = 1;

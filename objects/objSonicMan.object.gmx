@@ -47,18 +47,22 @@ bobAround = false;
 skewerPhase = 1;
 
 // Health Bar
-healthBarPrimaryColor[1] = 22;
-healthBarSecondaryColor[1] = 17;
+healthBarPrimaryColor[1] = $19;
+healthBarSecondaryColor[1] = $14;
 
 // Music
 music = "Mega_Man_5GB.gbs";
 musicType = "VGM";
 musicTrackNumber = 5;
 
+doPlayerExplosion = false;
+
 // Damage Table
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 4);
@@ -69,6 +73,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 1);
 enemyDamageValue(objBreakDash, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -104,15 +112,16 @@ enemyDamageValue(objConcreteShot, 2);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 2);
+enemyDamageValue(objChillSpike, 2);
 enemyDamageValue(objChillSpikeLanded, 2);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 3);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -261,6 +270,7 @@ if (entityCanStep())
                 if (attackTimer == 56)
                 {
                     image_index = 11;
+                    playSFX(sfxMMDosGenericShoot1);
                     grav = 0.45;
                     yspeed = -2;
                     
@@ -278,6 +288,7 @@ if (entityCanStep())
                 {
                     xspeed = 0;
                     attackTimer = 0;
+                    playSFX(sfxMMDosLandingSound);
                     phase = 0;
                 }
                 break;
@@ -297,6 +308,7 @@ if (entityCanStep())
                 {
                     xspeed = 0;
                     attackTimer = -24;
+                    playSFX(sfxMMDosLandingSound);
                     phase = 0;
                 }
                 break;
@@ -327,9 +339,12 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (objSonicMine)
+            <string>event_inherited();
+
+with (objSonicMine)
     instance_destroy();
-event_inherited();
+    
+playerExplosion(sprExplosionClassic,1.3,-1,sfxMMDosDeath,global.nesPalette[$2C],global.nesPalette[$36]);
 </string>
           </argument>
         </arguments>

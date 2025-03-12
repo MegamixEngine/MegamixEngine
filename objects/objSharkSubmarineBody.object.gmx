@@ -3,7 +3,7 @@
   <spriteName>sprSharkSubmarineBody</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>2</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <parentName>prtSharkSubmarine</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -41,6 +41,8 @@ hatch2 = noone;
 /* hatch2Index = 0;
 hatch2IFrames = 0;
 hatch2Health = 14 ;*/
+
+playBossMusic = false; //cc plays boss theme or not
 </string>
           </argument>
         </arguments>
@@ -95,6 +97,35 @@ if (!global.frozen)
             hatch2.yOffset = 49 ;*/
         }
     }
+    if (isDying)
+    {
+        slowdeathTimer++;
+        if (slowdeathTimer == 40)
+        {
+            if (!finalDeath)
+            {
+                event_user(EV_DEATH);
+            }
+        }
+        if (finalDeath)
+        {
+            if (slowdeathTimer &gt;= 40) &amp;&amp; (slowdeathTimer &lt; 155)
+            {
+                if (slowdeathTimer mod 20 == 0)
+                {
+                    instance_create(random_range(x,x+170*image_xscale),random_range(y-110,y+40),objBigExplosion);
+                    playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+                }
+            }
+            if (slowdeathTimer == 160)
+                with(prtSharkSubmarine)
+                    event_user(EV_DEATH);
+        }
+        /*else
+        {
+            event_user(EV_DEATH);
+        }*/
+    }
 }
 
 if (isFight &amp;&amp; !killed) // Keeping track of health.
@@ -102,18 +133,18 @@ if (isFight &amp;&amp; !killed) // Keeping track of health.
     healthpoints = 0;
     if (instance_exists(hatch1))
     {
-        healthpoints += hatch1.healthpoints;
+        healthpoints += max(hatch1.healthpoints,0);
     }
     if (instance_exists(hatch2))
     {
-        healthpoints += hatch2.healthpoints;
+        healthpoints += max(hatch2.healthpoints,0);
     }
 }
 
 // Attack pattern.
 if (entityCanStep() &amp;&amp; !killed &amp;&amp; !stop)
 {
-    if (isFight)
+    if (isFight) &amp;&amp; (!isDying)
     {
         if (healthpoints &lt;= 0)
         {
@@ -179,7 +210,12 @@ if (entityCanStep() &amp;&amp; !killed &amp;&amp; !stop)
     instance_create(x, y, objExplosion);
     instance_destroy();
 }
-event_inherited();
+if (!isDying)
+{
+    isDying = true;
+}
+else
+    event_inherited();
 </string>
           </argument>
         </arguments>

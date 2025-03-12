@@ -56,8 +56,8 @@ barrier2 = 0; // Barrier 2 - used when returning
 targX = 0;
 
 // Health Bar
-healthBarPrimaryColor[1] = 19;
-healthBarSecondaryColor[1] = 13;
+healthBarPrimaryColor[1] = $16;
+healthBarSecondaryColor[1] = $10;
 
 // Music
 music = "Mega_Man_5.nsf";
@@ -68,6 +68,8 @@ musicTrackNumber = 10;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -78,6 +80,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 6);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 4);
@@ -113,15 +119,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 2);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 2);
 enemyDamageValue(objSuperArmDebris, 2);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 4);
 
 // Misc.
 enemyDamageValue(objPowerStone, 4);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 3);
+enemyDamageValue(objBlockDropper, 3);
 enemyDamageValue(objIceSlasher, 2);
 </string>
           </argument>
@@ -186,9 +193,8 @@ if (!global.frozen)
             {
                 if (attackTimer == 10)
                 {
-                    var i = instance_create(x, y, objBigExplosion);
-                    with (i)
-                        playSFX(sfxExplosion);
+                    instance_create(x, y, objBigExplosion);
+                    playSFX(getGenericSFX(SFX_EXPLOSIONMM5));
                 }
                 if (attackTimer == 20)
                 {
@@ -254,7 +260,7 @@ if (entityCanStep())
                         
                         if (image_index == 2.4)
                         {
-                            var i = instance_create(x + 24 * image_xscale, y - 6, objEnemyBullet);
+                            var i = entityCreateChild(24, -6, objEnemyBullet);
                             i.sprite_index = sprDarkShot;
                             i.xspeed = 4 * image_xscale;
                             i.contactDamage = 6;
@@ -283,19 +289,22 @@ if (entityCanStep())
             // Fire barriers
             case 1:
                 attackTimer++;
-                if (objDarkBarrier.orbit == false)
+                if (instance_exists(objDarkBarrier))
                 {
-                    if (attackTimer &gt;= 20)
+                    if (objDarkBarrier.orbit == false)
                     {
-                        image_speed = 0.1;
-                        if (image_index == 2)
+                        if (attackTimer &gt;= 20)
                         {
-                            image_index = 3;
-                            image_speed = 0;
-                            yspeed = -6;
-                            xspeed = xSpeedAim(x, y, targX, y);
-                            attackTimer = -20;
-                            phase = 2;
+                            image_speed = 0.1;
+                            if (image_index == 2)
+                            {
+                                image_index = 3;
+                                image_speed = 0;
+                                yspeed = -6;
+                                xspeed = xSpeedAim(x, y, targX, y);
+                                attackTimer = -28;
+                                phase = 2;
+                            }
                         }
                     }
                 }
@@ -304,7 +313,15 @@ if (entityCanStep())
             case 2:
                 if (ground)
                 {
-                    image_index = 0;
+                    if (attackTimer &lt; -20)
+                    {
+                        image_index = 1;
+                        attackTimer++;
+                    }
+                    else
+                    {
+                        image_index = 0;
+                    }
                     xspeed = 0;
                     
                     if (!instance_exists(objDarkBarrier))

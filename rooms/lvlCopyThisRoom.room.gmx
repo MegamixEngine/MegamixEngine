@@ -57,7 +57,12 @@
     <instance objName="objSolid" x="144" y="160" name="inst_07774C3D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSolid" x="96" y="160" name="inst_5A9CB10F" locked="0" code="visible = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
-  <tiles/>
+  <tiles>
+    <tile bgName="bgBasic" x="144" y="160" w="16" h="16" xo="64" yo="32" id="86767805" name="inst_7B8DB932" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="128" y="160" w="16" h="16" xo="64" yo="32" id="86767806" name="inst_9E1AD4C6" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="96" y="160" w="16" h="16" xo="64" yo="32" id="86767807" name="inst_D026A7DD" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+    <tile bgName="bgBasic" x="112" y="160" w="16" h="16" xo="64" yo="32" id="86767808" name="inst_AB57920B" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
+  </tiles>
   <PhysicsWorld>0</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>
   <PhysicsWorldLeft>0</PhysicsWorldLeft>

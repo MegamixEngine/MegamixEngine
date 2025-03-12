@@ -74,12 +74,6 @@ parent = noone;
             <kind>1</kind>
             <string>event_inherited();
 
-xs = xspeed;
-if (!ground)
-{
-    xspeed = 0;
-}
-
 if (ground &amp;&amp; image_index == 0)
 {
     image_index = 1;
@@ -87,7 +81,15 @@ if (ground &amp;&amp; image_index == 0)
 
 if (entityCanStep())
 {
-    xspeed = xs;
+    //xspeed = xs;
+    if (!ground)
+    {
+        xspeed = 0;
+    }
+    else if (ground &amp;&amp; cooldownTimer &gt; 60)
+    {
+        xspeed = 1.5 * image_xscale;
+    }
     
     canCollide--;
     
@@ -129,7 +131,7 @@ if (entityCanStep())
         xspeed = 1.5 * image_xscale;
     }
     
-    if (blockCollision &amp;&amp; checkSolid(xspeed, 0) || x &lt; global.sectionLeft || x &gt; global.sectionRight)
+    if (blockCollision &amp;&amp; checkSolid(xspeed, 0) || x &lt; global.sectionLeft || x &gt; global.sectionRight || y &gt; global.sectionBottom)
     {
         instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
         instance_destroy();

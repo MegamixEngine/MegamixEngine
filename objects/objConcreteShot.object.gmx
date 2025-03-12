@@ -45,6 +45,8 @@ animTimer = 0;
 image_speed = 0;
 
 nextgrav = 0;
+
+autoFireSet = 14;
 </string>
           </argument>
         </arguments>
@@ -101,6 +103,22 @@ if (!global.frozen)
     else if (isBlock)
     {
         destroyTimer++;
+        
+        if (destroyTimer &gt;= -10 &amp;&amp; destroyTimer &lt;= -8)
+        {
+            // prevent random item drops
+            if (instance_place(x, y, objExplosion))
+            {
+                with (instance_place(x, y, objExplosion))
+                {
+                    if (myItem &lt;= 0)
+                    {
+                        instance_destroy();
+                        visible = 0;
+                    }
+                }
+            }
+        }
         
         // become a real block!
         if (destroyTimer == 0)
@@ -169,13 +187,15 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
-    i = fireWeapon(25, -1, objConcreteShot, 3, 2, 1, 0);
-    if (instance_exists(i)) // Set starting speed
+    var ammoCost = 2 - (1 * (global.energySaver &gt; 0));
+    i = fireWeapon(25, -1, objConcreteShot, 3, ammoCost, 1, 0);
+    if (i) // Set starting speed
     {
         i.xspeed = 3.5 * image_xscale;
         i.grav = i.grav * image_yscale;
+        autoFireDelay = i.autoFireSet;
         playSFX(sfxConcreteShot1);
     }
 }
@@ -254,14 +274,17 @@ weaponSetup("CONCRETE SHOT", make_color_rgb(111, 111, 111), make_color_rgb(184, 
 
 if (global.damage &gt;= other.healthpoints)
 {
+    if (sprite_get_width(other.sprite_index) &gt; 42
+    || sprite_get_height(other.sprite_index) &gt; 42)
+    {
+        playSFX(sfxEnemyHit);
+        instance_destroy();
+        exit;
+    }
+    
     playSFX(sfxConcreteShot2);
     x = bboxGetXCenterObject(other);
     y = bboxGetYCenterObject(other);
-    
-    if (other.itemDrop == 0)
-    {
-        other.itemDrop = -1;
-    }
     
     isBlock = true;
     

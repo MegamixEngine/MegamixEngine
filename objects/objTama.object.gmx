@@ -41,12 +41,24 @@ category = "bulky, nature";
 
 dir = image_xscale;
 
+explosionSFX = sfxMM3Explode;
+
 // Enemy specific code
 shootTimer = 0;
 image_speed = 0;
 tailWag = 0;
 endTimer = 250;
 tailIndex = 0;
+
+deadFrame = 0; //@cc if set, display this frame when exploding
+deadFrameMax = 2; // @cc if set, animation to this frame
+deadFrameRecur = 8;
+deadTimerRecur = 5; //@cc how often explosions occur
+deadTimerMax = 48; //@cc how long the boss explodes for
+
+childObject = objTamaFlea;
+
+
 </string>
           </argument>
         </arguments>
@@ -114,7 +126,7 @@ if (entityCanStep()
     {
         for (i = 0; i &lt;= 2; i += 1)
         {
-            flea = instance_create(x - 8 * image_xscale, y, objTamaFlea);
+            flea = instance_create(x - 8 * image_xscale, y, childObject);
             flea.xspeed = image_xscale + (sign(image_xscale)*((i+5) / 5));
             flea.yspeed = -(3 + i);
         }
@@ -123,7 +135,7 @@ if (entityCanStep()
         image_index = 3;
     if (shootTimer == 145)
     {
-        if (instance_exists(objTamaFlea))
+        if (instance_exists(childObject))
             shootTimer -= 4;
         image_index = 0;
     }
@@ -174,18 +186,21 @@ else if (!insideView())
 }
 else
 {
-    if (iFrames == 1 || iFrames == 3)
+    if (iFrames mod 2 == 1)
     {
-        d3d_set_fog(true, c_white, 0, 0);
+        hitFlashEffect(true,c_white);
     }
     
     draw_self();
-    draw_sprite_ext(sprite_index, 5 + tailIndex, round(x), round(y),
-        image_xscale, image_yscale, image_angle, image_blend, image_alpha);
-    
-    if (iFrames == 1 || iFrames == 3)
+    if (deadTimer == 0)
     {
-        d3d_set_fog(false, 0, 0, 0);
+        draw_sprite_ext(sprite_index, 5 + tailIndex, round(x), round(y),
+            image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+    }
+    
+    if (iFrames mod 2 == 1)
+    {
+        hitFlashEffect(false);
     }
 }
 </string>

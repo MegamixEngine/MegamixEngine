@@ -32,6 +32,7 @@ healthpoints = healthpointsStart;
 contactDamage = 3;
 
 category = "aquatic, flying";
+bubbleTimer = -1;
 
 grav = 0;
 blockCollision = true;

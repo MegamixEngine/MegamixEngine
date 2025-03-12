@@ -190,7 +190,7 @@ else
 // "split" is set in user defined 11.
 if (split &amp;&amp; contactDamage &gt; 0)
 {
-    playSFX(sfxClassicExplosion);
+    playSFX(getGenericSFX(SFX_EXPLOSIONCLASSIC));
     i = instance_create(x, y, objCrazyRazySplit);
     i.respawn = false;
 }

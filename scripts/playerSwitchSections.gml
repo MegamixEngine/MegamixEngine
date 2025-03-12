@@ -39,7 +39,7 @@ if (instance_exists(objSectionSwitcher))
 // Right
 if (x > (global.sectionRight - 8) && place_meeting(x - xspeed + 6, y, objSectionArrowRight))
 {
-    if (!place_meeting(global.sectionRight, y, objSolid) || !blockCollision)
+    if (!place_meeting(global.sectionRight, y, objSolid) || !blockCollision || global.freeMovement)
     {
         x = global.sectionRight - 6;
         setSection(x + 64, (view_yview + view_hview * 0.5), 1);
@@ -55,7 +55,7 @@ if (x > (global.sectionRight - 8) && place_meeting(x - xspeed + 6, y, objSection
 // Left
 if (x < (global.sectionLeft + 8) && place_meeting(x - xspeed - 6, y, objSectionArrowLeft))
 {
-    if (!place_meeting(global.sectionLeft, y, objSolid) || !blockCollision)
+    if (!place_meeting(global.sectionLeft, y, objSolid) || !blockCollision || global.freeMovement)
     {
         x = global.sectionLeft + 6;
         setSection(x - 64, (view_yview + view_hview * 0.5), 1);
@@ -71,8 +71,8 @@ if (x < (global.sectionLeft + 8) && place_meeting(x - xspeed - 6, y, objSectionA
 // Down
 if (bboxGetYCenter() > (global.sectionBottom - (6 + (plat > 0) * 8)) && position_meeting(x, global.sectionBottom - 8, objSectionArrowDown))
 {
-    if ((climbing || gravDir == 1 || plat || playerIsLocked(PL_LOCK_GRAVITY))
-        && (!place_meeting(x, global.sectionBottom, objSolid)))
+    if ((climbing || gravDir == 1 || plat || (playerIsLocked(PL_LOCK_GRAVITY)) || global.freeMovement)
+        && (!place_meeting(x, global.sectionBottom, objSolid) || global.freeMovement))
     {
         if (!plat)
         {
@@ -91,8 +91,8 @@ if (bboxGetYCenter() > (global.sectionBottom - (6 + (plat > 0) * 8)) && position
 // Up
 if (bboxGetYCenter() < (global.sectionTop + (6 + (plat > 0) * 8)) && position_meeting(x, global.sectionTop + 8, objSectionArrowUp))
 {
-    if ((climbing || gravDir == -1 || plat || playerIsLocked(PL_LOCK_GRAVITY))
-        && (!place_meeting(x, global.sectionTop, objSolid) || !blockCollision))
+    if ((climbing || gravDir == -1 || plat || (playerIsLocked(PL_LOCK_GRAVITY)) || global.freeMovement)
+        && (!place_meeting(x, global.sectionTop, objSolid) || !blockCollision || global.freeMovement))
     {
         if (!plat)
         {

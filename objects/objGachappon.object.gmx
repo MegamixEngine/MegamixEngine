@@ -44,6 +44,10 @@ phase = 0;
 shootCount = 0;
 phaseRepeatCount = 0;
 prevPhase = 0;
+
+//cc
+forwardSprite = sprEnemyBullet;
+lobSprite = sprTotemPolenProjectile;
 </string>
           </argument>
         </arguments>
@@ -128,7 +132,8 @@ if (entityCanStep())
                 {
                     animFrame = 1;
                     var i = instance_create(x, y - 64, objEnemyBullet);
-                    i.sprite_index = sprTotemPolenProjectile;
+                    i.sprite_index = lobSprite;
+                    i.image_xscale = image_xscale;
                     i.blockCollision = false;
                     i.grav = 0.25;
                     i.yspeed = -5;
@@ -164,6 +169,8 @@ if (entityCanStep())
                     timer = -1;
                     var i = instance_create(x + 8 * image_xscale, y - 4, objEnemyBullet);
                     i.xspeed = 3.5 * image_xscale;
+                    i.sprite_index = forwardSprite;
+                    i.image_xscale = image_xscale;
                     i.contactDamage = 2;
                 }
             }

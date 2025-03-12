@@ -6,7 +6,7 @@
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>prtEntity</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <maskName>mskTomBoy</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -228,7 +228,32 @@ else if (dead)
             <kind>1</kind>
             <string>dead = 1;
 
-instance_create(bboxGetXCenter(), bboxGetYCenter() - 16, objExplosion);
+var _ex = instance_create(bboxGetXCenter(), bboxGetYCenter() - 16, objExplosion);
+
+if (itemDrop == objKey)
+{
+    _ex = instance_create(myX - 8, myY - 8, objKey);
+    _ex.yspeed = -4;
+    _ex.homingTimer = 90;
+    _ex.despawnRange = -1;
+    playSFX(sfxKeySpawn);
+}
+else if (itemDrop == objEnergyElement)
+{
+    _ex = instance_create(myX - 8, myY - 8, objEnergyElement);
+}
+else
+{
+    _ex.myItem = itemDrop;
+    _ex.code = itemCode;
+    _ex.script = itemScript;
+    _ex.disappearTime = dropDisappearTime;
+}
+
+if (itemDrop &amp;&amp; dropOnce)
+{
+    itemDrop = 0;
+}
 </string>
           </argument>
         </arguments>

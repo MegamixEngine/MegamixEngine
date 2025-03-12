@@ -10,11 +10,11 @@
   <bbox_left>3</bbox_left>
   <bbox_right>23</bbox_right>
   <bbox_top>2</bbox_top>
-  <bbox_bottom>11</bbox_bottom>
+  <bbox_bottom>10</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>63</TextureGroup0>
+    <TextureGroup0>196</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>27</width>

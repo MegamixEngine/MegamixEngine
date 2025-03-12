@@ -1,0 +1,10 @@
+Manual changes made to the soundfont include:
+- Remove duplicate regions in instruments
+- Multiply decay by 4
+- Divide attack by 2
+- Adjust sustain based on OST version
+- Instrument 90 (Used only in Blade Man) adjusted by ear
+
+Manual changes made to the MIDI files include:
+- Correct maximum/minimum pitch bends flipped in conversion process
+- Correct loop points

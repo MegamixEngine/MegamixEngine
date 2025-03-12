@@ -2,7 +2,7 @@
 <sprite>
   <type>0</type>
   <xorig>36</xorig>
-  <yorigin>40</yorigin>
+  <yorigin>39</yorigin>
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
@@ -10,11 +10,11 @@
   <bbox_left>26</bbox_left>
   <bbox_right>47</bbox_right>
   <bbox_top>16</bbox_top>
-  <bbox_bottom>71</bbox_bottom>
+  <bbox_bottom>70</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>6</TextureGroup0>
+    <TextureGroup0>194</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>72</width>
@@ -25,5 +25,7 @@
     <frame index="2">images\sprDachoneG_2.png</frame>
     <frame index="3">images\sprDachoneG_3.png</frame>
     <frame index="4">images\sprDachoneG_4.png</frame>
+    <frame index="5">images\sprDachoneG_5.png</frame>
+    <frame index="6">images\sprDachoneG_6.png</frame>
   </frames>
 </sprite>

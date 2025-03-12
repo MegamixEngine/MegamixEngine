@@ -43,6 +43,8 @@ itemDrop = -1;
 lockTransition = false;
 
 phaseMultiple = 8; // Multiply in if arguments involving the timer.
+isDying = false;
+explodeTimer = 0;
 
 bodyShark = noone; // The shark part that made this.
 leftShark = noone; // Copied from the shark part that made this.
@@ -54,10 +56,15 @@ timer = phaseMultiple * 7; // Timer for making a dolphin.
 hatchIndex = 0;
 image_speed = 0;
 
+rescursiveExplosion = 1;
+
 // Damage Table
 enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
+enemyDamageValue(objBusterShotHalfChargedProto, 2);
+enemyDamageValue(objBusterShotChargedProto, 4);
+enemyDamageValue(objNormalBusterShot, 2);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -68,6 +75,10 @@ enemyDamageValue(objThunderBeam, 3);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 3);
 enemyDamageValue(objIceWall, 0);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -103,15 +114,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 3);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 0);
+enemyDamageValue(objChillSpike, 0);
 enemyDamageValue(objChillSpikeLanded, 0);
 
 // Misc.
 enemyDamageValue(objPowerStone, 2);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 2);
+enemyDamageValue(objBlockDropper, 2);
 enemyDamageValue(objIceSlasher, 0);
 </string>
           </argument>
@@ -146,34 +158,53 @@ if (entityCanStep())
         image_xscale = bodyShark.image_xscale;
         image_yscale = bodyShark.image_yscale;
         
-        // Opening (0) or closing (60) hatch.
-        if (timer &lt;= 0 || timer == phaseMultiple * 6)
+        if (!isDying)
         {
-            hatchIndex = 1;
-        }
-        if (timer == phaseMultiple) // Hatch fully opened.
-        {
-            hatchIndex = 2;
-        }
-        if (timer == phaseMultiple * 3) // DOLPHIN, LAUNCH!
-        {
-            with (instance_create(x, y + 13 * image_yscale,
-                objSharkSubmarineDolphin))
+            // Opening (0) or closing (60) hatch.
+            if (timer &lt;= 0 || timer == phaseMultiple * 6)
             {
-                image_yscale = other.image_yscale;
-                grav *= image_yscale;
-                if (instance_exists(other.target))
+                hatchIndex = 1;
+            }
+            if (timer == phaseMultiple) // Hatch fully opened.
+            {
+                hatchIndex = 2;
+            }
+            if (timer == phaseMultiple * 3) // DOLPHIN, LAUNCH!
+            {
+                with (instance_create(x, y + 13 * image_yscale,
+                    objSharkSubmarineDolphin))
                 {
-                    calibrateDirection(other.target);
+                    image_yscale = other.image_yscale;
+                    grav *= image_yscale;
+                    if (instance_exists(other.target))
+                    {
+                        calibrateDirection(other.target);
+                    }
                 }
             }
+            if (timer &gt;= phaseMultiple * 7) // Hatch fully closed.
+            {
+                hatchIndex = 0;
+            }
+            timer++;
+            image_index = hatchIndex; // Making sure the hitbox changes when opened.
         }
-        if (timer &gt;= phaseMultiple * 7) // Hatch fully closed.
+        //Death animation
+        else
         {
-            hatchIndex = 0;
+            explodeTimer++;
+            if (explodeTimer == 15)
+            {
+                instance_create(x-15*image_xscale,y+7,objBigExplosion);
+                playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+            }
+            if (explodeTimer == 30)
+            {
+                instance_create(x+10*image_xscale,y-9,objBigExplosion);
+                playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+                event_user(EV_DEATH);
+            }
         }
-        timer++;
-        image_index = hatchIndex; // Making sure the hitbox changes when opened.
     }
     else
     {
@@ -202,13 +233,23 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
-visible = false;
-
-// dead = 1;
-
-// instance_create(bboxGetXCenter(), bboxGetYCenter(), objHarmfulExplosion);
-// playSFX(sfxMM3Explode);
+            <string>if(!isDying)
+{
+    visible = false;
+    instance_create(x,y,objBigExplosion);
+    playSFX(getGenericSFX(SFX_EXPLOSIONMM9Alt));
+    iFrames = 0;
+    stopSFX(getGenericSFX(SFX_ENEMYHIT));
+    canHit = false;
+    isDying = true;
+    hatchIndex = 3;
+}
+else
+{
+    event_inherited();
+    xplX = -1;
+    xplY = -1;
+}
 </string>
           </argument>
         </arguments>
@@ -280,11 +321,11 @@ if (instance_exists(bodyShark))
                     }
                 }
                 
-                d3d_set_fog(true, flashcol, 0, 0);
+                hitFlashEffect(true,flashcol);
                 draw_sprite_ext(sprSharkSubmarineBodyHatch, hatchIndex, x, round(y),
                     bodyShark.image_xscale, bodyShark.image_yscale,
                     image_angle, image_blend, image_alpha);
-                d3d_set_fog(false, 0, 0, 0);
+                hitFlashEffect(false);
                 
                 if (iceTimer &gt; 0 &amp;&amp; (iceTimer &gt; iceBlinkTime || (iceTimer &lt;= iceBlinkTime &amp;&amp; iceTimer mod 4 == 0)))
                 {

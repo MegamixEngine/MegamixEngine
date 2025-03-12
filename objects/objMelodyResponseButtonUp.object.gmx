@@ -37,13 +37,22 @@ doIt = 0;
 
 blockCollision = 0;
 grav = 0;
-
+bubbleTimer = -1;
 
 respawnRange = -1;
 despawnRange = -1;
 
 image_index = 0;
 image_speed = 0;
+
+
+
+mySFX[0] = sfxMelodyResponseButton_A;
+mySFX[1] = sfxMelodyResponseButton_B;
+mySFX[2] = sfxMelodyResponseButton_C;
+mySFX[3] = sfxMelodyResponseButton_D;
+mySFX[4] = sfxMelodyResponseButton_E;
+mySFX[5] = sfxMelodyResponseButton_F;
 
 
 
@@ -285,7 +294,7 @@ if (entityCanStep())
         {
             var getListNumber = randomList[currentRotation];
             attackTimer = 0;
-            playSFX(sfxGrabBuster);
+            //playSFX(sfxGrabBuster);
             with (objMelodyResponseButtonUp)
             {
                 if (num == getListNumber)
@@ -293,6 +302,7 @@ if (entityCanStep())
                     animationTimer = 25;
                     pressed = false;
                     alarm[1] = 1;
+                    playSFXPitched(mySFX[num mod 6],1-(floor(num/5)*0.2));
                 }
             }
             currentRotation++;
@@ -441,6 +451,7 @@ if (entityCanStep())
                 if (!pressed) // one off variable to play button press sound
                 {
                     playSFX(sfxCrashBombArm);
+                    playSFXPitched(mySFX[num mod 6],1-(floor(num/5)*0.2));
                     pressed = true;
                 }
             }

@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A flying enemy that alternates between pausing and lunging toward the player. It explodes when destroyed.
+/// By default, it will also self-destruct if not defeated quickly enough. This can be customized with creation code.
+/// Adds a layer of pressure to any challenge.
+
+event_inherited();
 
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
@@ -39,7 +43,10 @@ blockCollision = 0;
 facePlayerOnSpawn = true;
 
 // Enemy specific code
+// @cc - Sets time until Sibul self-destructs. Set to -1 to disable self-destruct.
 countDown = 720;
+
+_countDown = countDown
 imgSpd = 0.1;
 moveSpeed = 0;
 accel = 0.1;
@@ -75,24 +82,7 @@ moveTimer = 60;
 if (entityCanStep())
 {
     // Animation
-    if (animBack == false)
-    {
-        imgIndex += imgSpd;
-        if (imgIndex &gt;= 4)
-        {
-            imgIndex = 3;
-            animBack = true;
-        }
-    }
-    else if (animBack == true)
-    {
-        imgIndex -= imgSpd;
-        if (imgIndex &lt; 0)
-        {
-            imgIndex = 1;
-            animBack = false;
-        }
-    }
+    imgIndex += imgSpd;
     
     // Movement
     switch (phase)
@@ -141,14 +131,16 @@ if (entityCanStep())
     }
     
     // Self destruct after several seconds
-    countDown--;
-    if (countDown == 0)
+    if (_countDown &gt; 0)
+        _countDown--;
+    if (_countDown == 0)
     {
         dead = true;
         itemDrop = -1;
         i = instance_create(x, y, objHarmfulExplosion);
         i.contactDamage = 6;
-        playSFX(sfxMM9Explosion);
+        i.stopOnFlash = false;
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
     }
 }
 else if (dead)
@@ -156,7 +148,7 @@ else if (dead)
     healthpoints = healthpointsStart;
     imgIndex = 0;
     phase = 0;
-    countDown = 720;
+    _countDown = countDown;
     imgSpd = 0.1;
     moveSpeed = 0;
     targX = x;
@@ -193,7 +185,8 @@ if ((other.object_index != objTornadoBlow) &amp;&amp; (other.object_index != obj
 {
     i = instance_create(x, y, objHarmfulExplosion);
     i.contactDamage = 6;
-    playSFX(sfxMM9Explosion);
+    stopSFX(getGenericSFX(SFX_ENEMYHIT));
+    playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
     
     if ((other.object_index == objSlashClaw) || (other.object_index == objBreakDash))
     {

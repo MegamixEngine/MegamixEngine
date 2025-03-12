@@ -30,7 +30,7 @@
 
 event_inherited();
 
-respawn = false;
+//respawn = false;
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
@@ -44,6 +44,18 @@ floatTimer = 0;
 init = 0;
 canStep = false;
 moveDir = 1;
+
+
+absSpeed = 0;
+chaseX = -1;
+chaseY = -1;
+attackTimer = 0;
+refY = y;
+
+angle = 0;
+
+//creation code
+homeSpd = 0; //if set, petite devil chases.
 </string>
           </argument>
         </arguments>
@@ -72,7 +84,10 @@ moveDir = 1;
 if (init == 0)
 {
     // Set the correct color
-    absSpeed = 3;
+
+    if (absSpeed = 0)
+        absSpeed = 3;
+    blinkTimer = irandom(80);
     canStep = true;
     
     init = 1;
@@ -120,8 +135,45 @@ if (entityCanStep())
         xspeed = cos(degtorad(angle)) * absSpeed * moveDir;
         yspeed = -sin(degtorad(angle)) * absSpeed;
     }
-    else
+    else 
+    {
         absSpeed = 0;
+        if (homeSpd &gt; 0)
+        {
+            if (chaseX == -1)
+            {
+                if (instance_exists(target))
+                {
+                    chaseX = target.x;
+                    chaseY = target.y;
+                }
+                else
+                {
+                    chaseX = xstart;
+                    chaseY = screenTop(-128);
+                }
+            }
+            if (instance_exists(target))
+            {
+                mp_linear_step(chaseX, chaseY, homeSpd, false);
+            }
+            
+            if (chaseX != -1)
+            {
+            
+                if (distance_to_point(chaseX,chaseY) &lt;= 8)
+                {
+                    attackTimer ++;
+                }
+                if (attackTimer &gt;= 32)
+                {
+                    
+                    chaseX = xstart;
+                    chaseY = screenTop(-128);
+                }
+            }
+        }
+    }
     
     // Floating
     floatTimer += 1;
@@ -138,6 +190,17 @@ if (entityCanStep())
         else if (y &gt; refY)
             yspeed -= 0.005;
     }
+}
+else if (dead)
+{
+    attackTimer = 0;
+    chaseX = -1;
+    chaseY = -1;
+    floatTimer = 0;
+    init = 0;
+    canStep = false;
+    moveDir = 1;
+    homeSpd = 0;
 }
 </string>
           </argument>

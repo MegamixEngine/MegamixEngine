@@ -33,7 +33,16 @@ deathTimerMax = 10;
 drawingPlayer = 0;
 parent = -1;
 
+playerID = 0;
+costumeID = 0;
+
+spriteX = 0;
+spriteY = 0;
+
+flashCol = -1;
+
 image_alpha = 0.4;
+
 </string>
           </argument>
         </arguments>
@@ -58,14 +67,16 @@ image_alpha = 0.4;
             <kind>1</kind>
             <string>event_inherited();
 
-if (!global.frozen)
+if (global.frozen)
 {
-    deathTimer++;
-    
-    if (deathTimer == deathTimerMax)
-    {
-        instance_destroy();
-    }
+    exit;
+}
+
+deathTimer++;
+
+if (deathTimer == deathTimerMax)
+{
+    instance_destroy();
 }
 </string>
           </argument>
@@ -89,13 +100,44 @@ if (!global.frozen)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (drawingPlayer &amp;&amp; instance_exists(parent))
+            <string>
+var xx = scrRoundProperly(x);
+var yy = scrRoundProperly(y);
+
+if (drawingPlayer) 
 {
-    drawPlayer(parent.playerID, parent.costumeID, spriteX, spriteY, x, y, image_xscale, image_yscale);
+    if (instance_exists(parent))
+    {
+        playerID = parent.playerID;
+        costumeID = parent.costumeID;
+    }
+    drawPlayer(playerID, costumeID, spriteX, spriteY, xx, yy, image_xscale, image_yscale);
 }
-else
+else 
 {
-    event_inherited();
+    if (flashCol &gt;= 0)
+    {
+        d3d_set_fog(true, flashCol, 0, 0);
+    }
+    
+    if (useShader)
+    {
+        shaderSetColorreplace(
+            replaceColor[0], newColor[0],
+            replaceColor[1], newColor[1],
+        );
+        event_inherited();
+        shader_reset();
+    }
+    else
+    {
+        drawSelf();
+    }
+    
+    if (flashCol &gt;= 0)
+    {
+        d3d_set_fog(false, 0, 0, 0);
+    }
 }
 </string>
           </argument>

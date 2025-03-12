@@ -74,6 +74,10 @@ if (entityCanStep())
     {
         iaction = action;
         actionTimer += 1;
+        if (action &lt; 9)
+        {
+            calibrateDirection();
+        }
         switch (action)
         {
             case 1:
@@ -81,7 +85,7 @@ if (entityCanStep())
                 {
                     action += 1;
                     image_index += 1;
-                    calibrateDirection();
+                    //calibrateDirection();
                 }
                 break;
             case 2:
@@ -102,7 +106,7 @@ if (entityCanStep())
                 }
                 break;
             case 6:
-                if (actionTimer == 3)
+                if (actionTimer == 6)
                 {
                     // image_index = 7;
                     action += 1;
@@ -112,7 +116,7 @@ if (entityCanStep())
             case 7:
                 if (actionTimer == 3)
                 {
-                    // image_index = 8;
+                    // image_index = 7;
                     action += 1;
                     image_index = 8;
                 }
@@ -120,34 +124,42 @@ if (entityCanStep())
             case 8:
                 if (actionTimer == 3)
                 {
-                    // image_index = 7;
-                    action = 8.25;
-                    image_index = 7;
-                }
-                break;
-            case 8.25:
-                if (actionTimer == 3)
-                {
-                    // image_index = 6;
-                    action = 8.5;
-                    image_index = 6;
-                }
-                break;
-            case 8.5:
-                if (actionTimer == 3)
-                {
-                    // image_index = 7;
-                    action = 9;
-                    image_index = 7;
+                    // image_index = 8;
+                    action += 1;
+                    image_index = 9;
                 }
                 break;
             case 9:
                 if (actionTimer == 3)
                 {
+                    // image_index = 7;
+                    action = 9.25;
+                    image_index = 8;
+                }
+                break;
+            case 9.25:
+                if (actionTimer == 3)
+                {
+                    // image_index = 6;
+                    action = 9.5;
+                    image_index = 7;
+                }
+                break;
+            case 9.5:
+                if (actionTimer == 3)
+                {
+                    // image_index = 7;
+                    action = 10;
+                    image_index = 8;
+                }
+                break;
+            case 10:
+                if (actionTimer == 3)
+                {
                     // image_index = 9
                     action += 1;
-                    image_index = 9;
-                    i = instance_create(x + 3 * image_xscale, y - 24,
+                    image_index = 10;
+                    i = instance_create(x + 3 * image_xscale, y - 23,
                         objEnemyBullet);
                     with (i)
                     {
@@ -185,24 +197,17 @@ if (entityCanStep())
                     }
                 }
                 break;
-            case 10:
             case 11:
             case 12:
+            case 13:
                 if (actionTimer == 5)
                 {
                     action += 1;
                     image_index += 1;
                 }
                 break;
-            case 13:
-                if (actionTimer == 80)
-                {
-                    action += 1;
-                    image_index += 1;
-                }
-                break;
             case 14:
-                if (actionTimer == 6)
+                if (actionTimer == 80)
                 {
                     action += 1;
                     image_index += 1;
@@ -216,6 +221,13 @@ if (entityCanStep())
                 }
                 break;
             case 16:
+                if (actionTimer == 6)
+                {
+                    action += 1;
+                    image_index += 1;
+                }
+                break;
+            case 17:
                 if (actionTimer == 6)
                 {
                     action = 1;

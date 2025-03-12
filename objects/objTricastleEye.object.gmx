@@ -34,6 +34,8 @@ respawn = false;
 hasCannon = false;
 cannon = noone;
 category = "bulky, rocky";
+killOverride = false;
+explosionSFX = sfxMM9Explosion;
 
 phase = 3;
 timer = -1;
@@ -136,6 +138,39 @@ if (entityCanStep())
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (spawned)
+{
+    if (hasCannon &amp;&amp; !instance_exists(cannon))
+    {
+        cannon = instance_create(bbox_left - 3, bbox_top - 16, objTricastleCannon);
+        cannon.angle = 90;
+        cannon.newAngle = 90;
+        cannon.image_index = 6;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="21">
       <action>
         <libid>1</libid>
@@ -179,17 +214,27 @@ if (other.object_index == objTornadoBlow)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>playSFX(sfxMM3Explode);
-instance_create(bbox_left + sprite_width / 2, bbox_top + sprite_height / 2, objBigExplosion);
+            <string>playSFX(explosionSFX);
+instance_create(bbox_left + sprite_width / 2, (bbox_top + sprite_height / 2)-2, objBigExplosion);
 if (hasCannon)
 {
     with (cannon)
     {
-        instance_create(bbox_left + sprite_width / 2, bbox_top + sprite_height / 2, objBigExplosion);
+        instance_create((bbox_left + sprite_width / 2)-9, (bbox_top + sprite_height / 2)+2, objBigExplosion);
         instance_destroy();
     }
 }
-instance_destroy();
+else
+{
+    if (owner.drawDoor) // Make shutter go boom if we're drawing it
+        instance_create(bbox_left+sprite_width/2, y + 27, objBigExplosion);
+}
+
+if(respawn==2){ //Added so Tricastle counts for points in Rift Wanderer
+    dead = true
+}else{
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>

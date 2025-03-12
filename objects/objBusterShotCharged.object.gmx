@@ -27,16 +27,19 @@
             <kind>1</kind>
             <string>event_inherited();
 
-bulletLimitCost = 3;
+bulletLimitCost = 3 + (12 * (global.shotUpgrade &gt; 0));
 
 contactDamage = 3;
+inWater = -1;
 
 imgIndex = 0;
 
 penetrate = 0;
 pierces = 1;
 
-playSFX(sfxBusterCharged);
+playSFX(getGenericSFX(SFX_BUSTERCHARGED,playerID));
+
+graphicsOverride = false;
 </string>
           </argument>
         </arguments>
@@ -64,6 +67,10 @@ playSFX(sfxBusterCharged);
 if (!global.frozen)
 {
     imgIndex += 0.5;
+    if (imgIndex &gt;= 4)
+    {
+        imgIndex = 0;
+    }
 }
 
 image_index = floor(imgIndex);
@@ -91,7 +98,20 @@ image_index = floor(imgIndex);
             <kind>1</kind>
             <string>if (!dead)
 {
-    draw_sprite_ext(sprite_index, round(image_index), round(x), round(y), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+    if (graphicsOverride)
+    {
+        event_inherited();
+    }
+    else
+    {
+        drawPlayer(playerID, costumeID, 12 + image_index, 13, round(x), 
+            round(y - 4 * image_yscale), image_xscale, image_yscale);
+    }
+}
+    
+/*if (!dead)
+{
+    draw_sprite_ext(sprite_index, round(image_index), round(x), round(y), image_xscale, image_yscale, image_angle, c_red, image_alpha);
     
     if (round(image_index) == 2)
     {

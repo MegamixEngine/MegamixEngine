@@ -89,9 +89,9 @@ if (entityCanStep())
     sinCounter += .02;
     yspeed = (cos(sinCounter) * .7);
     
-    if (!audio_is_playing(sfxWilyUFO) &amp;&amp; playUFOSounds)
+    if (!audio_is_playing(sfxAdamski) &amp;&amp; playUFOSounds)
     {
-        playSFX(sfxWilyUFO);
+        playSFX(sfxAdamski);
     }
 }
 else if (dead)

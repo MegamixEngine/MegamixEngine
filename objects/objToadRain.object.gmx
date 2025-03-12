@@ -50,7 +50,7 @@ alarm[0] = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var inst;
+            <string>/*var inst;
 inst = instance_place(x - 4, y, object_index);
 if (inst!=noone&amp;&amp;inst.object_index==object_index&amp;&amp;inst.parent==parent)
 {

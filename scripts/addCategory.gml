@@ -1,12 +1,21 @@
 /// addCategory(entity, category)
 /// adds a category to the given entity
-var entity = argument0;
-var category = argument1;
-if (entity.category == "")
+
+var _instance = argument[0];
+var _toAdd = argument[1];
+
+if (instance_exists(_instance))
 {
-    entity.category = category;
+    with (_instance)
+    {
+        if (_instance.category == "")
+        {
+            _instance.category = _toAdd;
+        }
+        else if (!hasCategory(_instance.category, _toAdd))
+        {
+            _instance.category += ", " + _toAdd;
+        }
+    }
 }
-else if (!hasCategory(entity.category, category))
-{
-    entity.category += ", " + category;
-}
+

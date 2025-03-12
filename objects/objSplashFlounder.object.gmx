@@ -38,6 +38,9 @@ despawnRange = -1;
 blockCollision = 0;
 grav = 0;
 
+inWater = -1;
+bubbleTimer = -1;
+
 // Enemy specific code
 xspeed = 0;
 yspeed = 0;

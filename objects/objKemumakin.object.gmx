@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// This enemy flies in a random pattern, leaving clouds of smoke that obstruct your view before flying away. The color of the smoke is randomized.
+/// Unlike other enemies, it does no contact damage. You can hit it, but it can't hit you!
+/// Adds a layer of unpredictability to otherwise predictable challenges. Works well with custom spawners. May require extra finessing to use effectively and fairly.
+
+event_inherited();
 
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
@@ -103,7 +107,7 @@ if (entityCanStep())
                         &amp;&amp; target.vehicle.y &lt; view_yview + view_hview)
                     {
                         if (target.vehicle.object_index == objMegaman8Sled)
-                            xspeed = target.vehicle.maxSpeed * target.vehicle.dir;
+                            xspeed = target.vehicle.maxSpeed * target.vehicle.image_xscale;
                         else
                             xspeed = abs(target.vehicle.xspeed) * target.vehicle.image_xscale;
                     }

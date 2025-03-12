@@ -19,7 +19,7 @@
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>other</whoName>
+        <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
@@ -41,6 +41,8 @@ grav = 0;
 image_speed = 0.5;
 
 playSFX(sfxSparkShock);
+
+autoFireSet = 10;
 </string>
           </argument>
         </arguments>
@@ -65,12 +67,14 @@ playSFX(sfxSparkShock);
             <kind>1</kind>
             <string>// EV_WEAPON_CONTROL
 
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+if (performShoot)
 {
-    i = fireWeapon(25, -1, objSparkShock, 2, 1, 1, 0);
+    var ammoCost = 1 - (0.5 * (global.energySaver &gt; 0));
+    i = fireWeapon(25, -1, objSparkShock, 2, ammoCost, 1, 0);
     if (i) // set starting speed
     {
         i.xspeed = image_xscale * 5;
+        autoFireDelay = i.autoFireSet;
     }
 }
 </string>
@@ -126,7 +130,7 @@ if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
 if (global.damage == -1)
 {
     global.damage = 0;
-    if (other.boss &gt; 0)
+    if (other.boss &gt; 0 || other.object_index == objSecurityCrystal)
     {
         global.damage = 1;
     }

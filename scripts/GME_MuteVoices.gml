@@ -1,8 +1,11 @@
-/// GME_MuteVoices(mask)
+/// GME_MuteVoices(_mask)
 
 var _mask = argument0;
 
 with (objMusicControl)
 {
-    GameMusicEmu_MuteVoices(_mask);
+    if (playing)
+    {
+        GameMusicEmu_MuteVoices(_mask);
+    }
 }

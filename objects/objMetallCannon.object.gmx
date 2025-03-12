@@ -37,6 +37,7 @@ contactDamage = 4;
 category = "cannons, mets";
 
 facePlayerOnSpawn = true;
+behaviourType = 1;
 
 // Enemy specific code
 radius = 80;
@@ -49,6 +50,7 @@ popUporDown = false;
 turnAroundBrightEyes = false;
 turnAroundOffset = 0;
 imageOffset = 0;
+hasTurned = false;
 
 col = 0;
 </string>
@@ -75,7 +77,7 @@ col = 0;
             <kind>1</kind>
             <string>event_inherited();
 
-image_index = (7 * col) + imageOffset;
+image_index = (8 * col) + imageOffset;
 
 if (entityCanStep())
 {
@@ -94,20 +96,28 @@ if (entityCanStep())
                 imageOffset = 2;
                 break;
             case 1:
-                imageOffset = 3;
-                break;
-            case 2:
                 imageOffset = 5;
                 break;
-            case 3:
+            case 2:
                 imageOffset = 6;
                 break;
+            case 3:
+                imageOffset = 7;
+                break;
             case 4:
-                image_xscale = image_xscale * -1;
+                if (!hasTurned)
+                {
+                    image_xscale = image_xscale * -1;
+                    hasTurned = true;
+                }
+                imageOffset = 5;
+                break;
+            case 5:
                 imageOffset = 2;
                 turnAroundOffset = 0;
                 cooldownImageTimer = 0;
                 turnAroundBrightEyes = false;
+                hasTurned = false;
                 break;
         }
     }
@@ -121,7 +131,7 @@ if (entityCanStep())
             turnAroundBrightEyes = true;
             cooldownImageTimer = 0;
         }
-        if (!activated &amp;&amp; abs(target.x - x) &lt;= radius &amp;&amp; !turnAroundBrightEyes)
+        if (!activated &amp;&amp; (abs(target.x - x) &lt;= radius || imageOffset == 2) &amp;&amp; !turnAroundBrightEyes)
         {
             activated = true;
         }
@@ -155,6 +165,10 @@ if (entityCanStep())
                 cooldownImageMax = 10;
                 mask_index = sprMetallCannonMask2;
                 break;
+            case 5:
+                cooldownImageMax = 6;
+                mask_index = sprMetallCannon;
+                break;
         }
         
         if (cooldownImageTimer == cooldownImageMax &amp;&amp; imageOffset &lt; 4)
@@ -166,7 +180,13 @@ if (entityCanStep())
         if (cooldownImageTimer == cooldownImageMax &amp;&amp; imageOffset == 4)
         {
             cooldownImageTimer = 0;
-            imageOffset = 1;
+            imageOffset = 5;
+        }
+        
+        if (cooldownImageTimer == cooldownImageMax &amp;&amp; imageOffset == 5)
+        {
+            cooldownImageTimer = 0;
+            imageOffset = 0;
         }
         
         if (imageOffset == 4 &amp;&amp; !popUporDown)
@@ -174,6 +194,7 @@ if (entityCanStep())
             popUporDown = true;
             i = instance_create(x + image_xscale * 12,
                 spriteGetYCenter() + 7, objMetCannonShot);
+            i.image_xscale = image_xscale;
             i.xspeed = image_xscale * 2;
             i.image_index = col;
             playSFX(sfxMetallCannon);
@@ -186,7 +207,7 @@ if (entityCanStep())
     }
 }
 
-image_index = (7 * col) + imageOffset;
+image_index = (8 * col) + imageOffset;
 </string>
           </argument>
         </arguments>
@@ -216,6 +237,7 @@ image_index = 0;
 imageOffset = 0;
 activated = false;
 popUporDown = false;
+hasTurned = false;
 mask_index = sprMetallCannon;
 </string>
           </argument>

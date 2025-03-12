@@ -64,6 +64,7 @@ at = 3;
 
 
 image_speed = 0;
+obj = objArigockGSpike;
 </string>
           </argument>
         </arguments>
@@ -123,7 +124,7 @@ if (entityCanStep())
         {
             // create projectile
             playSFX(sfxCannonShoot);
-            with (instance_create(x + 8, y - 16, objArigockGSpike))
+            with (instance_create(x + 8, y - 16, obj))
             {
                 yspeed = other.high_shot_yspeed;
                 switch (other.col)

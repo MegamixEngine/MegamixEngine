@@ -35,6 +35,8 @@ category = "flying";
 
 grav = 0;
 
+behaviourType = 1;
+
 // Enemy specific code
 oldmask = mask_index;
 phase = 1;
@@ -94,6 +96,7 @@ if (entityCanStep())
                 grav = 0.25;
                 phase = 3;
                 phasetimer = 0;
+                calibrateDirection();
             }
             break;
         case 3: // Launch the speer of DEATH 
@@ -102,7 +105,7 @@ if (entityCanStep())
                 image_index += 1;
                 if (image_index == 11)
                 {
-                    i = instance_create(x + 28 * image_xscale, y - 8, objEnemyBullet);
+                    i = instance_create(x + 28 * image_xscale, y - 7, objEnemyBullet);
                     i.sprite_index = sprUmbrella;
                     i.xspeed = 2 * image_xscale;
                 }
@@ -146,6 +149,96 @@ else if (dead)
     phasetimer = 0;
     grav = 0;
     image_index = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="21">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (phase == 1)
+{
+    other.guardCancel = 2;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Ugly death event
+
+dead = 1;
+
+var myX, myY;
+if (mask_index != sprRackaserMask)
+{
+    myX = x;
+    myY = bboxGetYCenter();
+}
+else
+{
+    myX = bboxGetXCenter();
+    myY = bboxGetYCenter();
+}
+
+var _ex = instance_create(myX, myY, objExplosion);
+
+if (itemDrop == objKey)
+{
+    _ex = instance_create(myX - 8, myY - 8, objKey);
+    _ex.yspeed = -4;
+    _ex.homingTimer = 90;
+    _ex.despawnRange = -1;
+    playSFX(sfxKeySpawn);
+}
+else if (itemDrop == objEnergyElement)
+{
+    _ex = instance_create(myX - 8, myY - 8, objEnergyElement);
+}
+else
+{
+    _ex.myItem = itemDrop;
+    _ex.code = itemCode;
+    _ex.script = itemScript;
+    _ex.disappearTime = dropDisappearTime;
+}
+
+if (itemDrop &amp;&amp; dropOnce)
+{
+    itemDrop = 0;
 }
 </string>
           </argument>

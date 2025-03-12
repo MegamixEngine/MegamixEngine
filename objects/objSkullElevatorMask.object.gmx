@@ -72,21 +72,21 @@ if (instance_exists(parent))
         // move up
         with (parent)
         {
-            if (global.flag[myFlag] &gt; 0 &amp;&amp; global.flag[myFlag] &lt; 1)
-            {
+            //if (global.flag[myFlag] &gt; 0 &amp;&amp; global.flag[myFlag] &lt; 1)
+            //{
                 if (global.flagParent[myFlag].active)
                 {
-                    other.yspeed = -0.5;
+                    other.y = y; // other.yspeed = -0.5
                 }
                 else
                 {
-                    other.yspeed = 0.5;
+                    other.y = y;
                 }
-            }
-            else
+            //}
+            /*else
             {
                 other.yspeed = 0;
-            }
+            }*/
         }
     }
 }
@@ -112,11 +112,11 @@ if (instance_exists(parent))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!global.frozen)
+            <string>if (!parent.active)//(!global.frozen)
 {
     draw_sprite_part_ext(parent.sprite_index, 1, 0, 0, 52,
         sprite_height * global.flag[parent.myFlag],
-        round(x) - sprite_xoffset, round(y) - sprite_yoffset - (3 * global.flag[parent.myFlag] &lt;= .93), image_xscale, image_yscale, image_blend, image_alpha);
+        round(x) - sprite_xoffset, round(y) - sprite_yoffset - ((3 * global.flag[parent.myFlag]) &lt;= .93), image_xscale, image_yscale, image_blend, image_alpha);
 }
 </string>
           </argument>

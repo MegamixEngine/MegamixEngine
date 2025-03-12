@@ -32,14 +32,22 @@ healthpoints = healthpointsStart;
 contactDamage = 3;
 
 category = "cluster, flying, nature";
+facePlayerOnSpawn = false;
+image_xscale = 1;
 
 blockCollision = 0;
 grav = 0;
+
+behaviourType = 1;
 
 // Enemy specific code
 action = 1;
 actionTimer = 0;
 animTimer = 0;
+imgIndex = 0;
+
+// @cc - Change colour (0 = red wings (default); 1 = pink wings)
+col = 0;
 </string>
           </argument>
         </arguments>
@@ -68,16 +76,16 @@ if (entityCanStep())
 {
     switch (action)
     {
-        case 1:
-            if (image_index &gt; 0 || actionTimer &gt; 0 || instance_exists(target))
+        case 1: // Hide within wings
+            if (imgIndex &gt; 0 || actionTimer &gt; 0 || instance_exists(target))
             {
                 actionTimer += 1;
             }
-            if (image_index == 0)
+            if (imgIndex == 0)
             {
                 if (actionTimer == 128)
                 {
-                    image_index += 1;
+                    imgIndex += 1;
                     actionTimer = 0;
                 }
             }
@@ -85,21 +93,22 @@ if (entityCanStep())
             {
                 if (actionTimer == 6)
                 {
-                    image_index += 1;
+                    imgIndex += 1;
                     actionTimer = 0;
                 }
             }
-            if (image_index == 3)
+            if (imgIndex == 3)
             {
                 action = 2;
                 y += 3;
             }
             break;
-        case 2:
+        case 2: // Follow Mega Man
             if (actionTimer == 0 &amp;&amp; instance_exists(target))
             {
                 yspeed = 0;
                 move_towards_point(target.x, target.y + 8, 0.5);
+                calibrateDirection();
             }
             actionTimer += 1;
             if (actionTimer &gt; 128)
@@ -108,34 +117,31 @@ if (entityCanStep())
             }
             if (place_meeting(x, y, target))
             {
-                if (!target.canHit)
-                {
-                    action = 3;
-                    actionTimer = 0;
-                    yspeed = -2;
-                    speed = 0;
-                }
+                action = 3;
+                actionTimer = 0;
+                yspeed = -2;
+                speed = 0;
             }
             break;
-        case 3:
+        case 3: // Fly away after hitting Mega Man
             if (!checkSolid(0, 0))
             {
                 blockCollision = 1;
             }
             if (yspeed == 0)
             {
-                image_index = 2;
+                imgIndex = 2;
                 action = 4;
                 blockCollision = 0;
             }
             break;
-        case 4:
+        case 4: // Curl back into wings
             actionTimer += 1;
             if (actionTimer == 6)
             {
-                image_index -= 1;
+                imgIndex -= 1;
                 actionTimer = 0;
-                if (image_index == 0)
+                if (imgIndex == 0)
                 {
                     action = 1;
                     actionTimer = 64;
@@ -150,10 +156,10 @@ if (entityCanStep())
         if (animTimer == 6)
         {
             animTimer = 0;
-            image_index += 1;
-            if (image_index == 7)
+            imgIndex += 1;
+            if (imgIndex == 7)
             {
-                image_index = 3;
+                imgIndex = 3;
             }
         }
     }
@@ -162,10 +168,12 @@ else if (dead)
 {
     action = 1;
     actionTimer = 0;
-    image_index = 0;
+    imgIndex = 0;
     animTimer = 0;
     blockCollision = 0;
+    image_xscale = -1;
 }
+image_index = imgIndex + (7 * col);
 </string>
           </argument>
         </arguments>
@@ -188,7 +196,7 @@ else if (dead)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (image_index == 0)
+            <string>if (image_index == 0) || (image_index == 7)
 {
     other.guardCancel = 1;
 }

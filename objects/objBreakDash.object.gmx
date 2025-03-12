@@ -6,7 +6,7 @@
   <depth>-10</depth>
   <persistent>0</persistent>
   <parentName>prtPlayerProjectile</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <maskName>mskMegaman</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -36,13 +36,14 @@ pierces = 2;
 attackDelay = 8;
 killOverride = true;
 
+drawMe = false;
 visible = 0;
 
 shiftVisible = 3;
 despawnRange = -1;
+inWater = -1;
 
-playSFX(sfxBreakDash); // needs its own sfx later
-
+// Break Dash-specific
 flashTimer = 0;
 flashOffset = 0;
 
@@ -53,6 +54,9 @@ dashTimer = 35;
 dashSpeed = 2.5;
 
 breakDashLock = false;
+
+airDash = false; // for pit
+playedSound = false;
 </string>
           </argument>
         </arguments>
@@ -76,7 +80,6 @@ breakDashLock = false;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
 if (instance_exists(parent))
 {
     with(parent)
@@ -84,6 +87,7 @@ if (instance_exists(parent))
         lockPoolRelease(other.breakDashLock);
         hitTimer = 0;
         iFrames = 50;
+        canHit = true;
     }
 }
 </string>
@@ -109,6 +113,12 @@ if (instance_exists(parent))
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+if (!playedSound)
+{
+    playedSound = true;
+    playSFX(sfxBreakDash);
+}
 
 // check for parent
 if (!instance_exists(parent))
@@ -145,21 +155,36 @@ if (!global.frozen)
         }
         animTimer = 0;
     }
-    
+
     with (parent) // Mega Man anim + movement forcing
     {
-        if (!other.breakDashLock &amp;&amp; ground)
+        if (!other.breakDashLock &amp;&amp; (ground || other.airDash))
         {
-            other.breakDashLock = lockPoolLock(
-                localPlayerLock[PL_LOCK_MOVE],
-                localPlayerLock[PL_LOCK_SHOOT],
-                localPlayerLock[PL_LOCK_SLIDE],
-                localPlayerLock[PL_LOCK_TURN]);
-            xspeed=0;
-            yspeed=0;
+            if (!other.airDash)
+            {
+                xspeed = 0;
+                yspeed = 0;
+                
+                other.breakDashLock = lockPoolLock(
+                    localPlayerLock[PL_LOCK_MOVE],
+                    localPlayerLock[PL_LOCK_SHOOT],
+                    localPlayerLock[PL_LOCK_SLIDE],
+                    localPlayerLock[PL_LOCK_TURN]);
+            }
+            else
+            {
+                other.breakDashLock = lockPoolLock(
+                    localPlayerLock[PL_LOCK_MOVE],
+                    localPlayerLock[PL_LOCK_SHOOT],
+                    localPlayerLock[PL_LOCK_SLIDE],
+                    localPlayerLock[PL_LOCK_TURN]//,
+                    //localPlayerLock[PL_LOCK_JUMP],
+                    /*localPlayerLock[PL_LOCK_CLIMB]*/);
+            }
         }
         
-        if (!ground) // No air break dashes, sorry :c
+        var keepGoing = true;
+        if (!ground &amp;&amp; !other.airDash) // No air break dashes, sorry :c
         {
             other.dashTimer = 0;
         }
@@ -168,19 +193,32 @@ if (!global.frozen)
             playerHandleSprites("Break");
             xspeed = other.dashSpeed * other.image_xscale; // movement force
             iFrames = -1;
+            
+            if (other.airDash)
+            {
+                if (!ground)
+                {
+                    if (inWater)
+                    {
+                        yspeed = 0;
+                    }
+                    else
+                    {
+                        yspeed = -grav;
+                    }
+                }
+            }
         }
     }
-    if(isLocked(global.playerLock[PL_LOCK_MOVE])&amp;&amp;
+    if (isLocked(global.playerLock[PL_LOCK_MOVE]) &amp;&amp;
     isLocked(global.playerLock[PL_LOCK_TURN]))
     {
-        dashTimer=0;
-        with(parent)
-            xspeed=0;
+        dashTimer = 0;
+        with (parent)
+            xspeed = 0;
     }
     
-    
-    // Destroy timer
-    dashTimer -= 1;
+    dashTimer --;
     if (dashTimer &lt;= 0)
     {
         xspeed = 0;
@@ -216,130 +254,62 @@ else if (global.switchingSections)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var chargeTime = 40; // Set charge time for this weapon
-var initChargeTime = 20;
+            <string>var ammoCost = 3 - (1 * (global.energySaver &gt; 0));
 
-// Shooting buster shots if not charged.
-if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; !instance_exists(objBreakDash))
+if (ammoCanAfford(playerID))
 {
-    i = fireWeapon(16, 0, objNormalBusterShot, 3, 0, 1, 0);
-    if (i)
-    {
-        i.xspeed = image_xscale * 5; // zoom
-    }
+    // Set charge time for this weapon
+    chargeTime = 40; 
+    initChargeTime = 20;
 }
 
-//////////////
-// Charging //
-//////////////
-
-if (global.ammo[playerID, global.weapon[playerID]] &gt; 0)
+if (performShoot) //Shoot
 {
-    if ((global.keyShoot[playerID] || (isSlide &amp;&amp; chargeTimer &gt; 0))
-        &amp;&amp; !playerIsLocked(PL_LOCK_CHARGE))
+    var canAirDash = false;
+    
+    if (!releaseCharge || !ammoCanAfford(playerID) || ((!ground &amp;&amp; !canAirDash &amp;&amp; (global.autoFire || (checkCheats(cheatEnums.instantCharge)))))) //Not charged
     {
-        if (!isShoot)
+        var i = fireWeapon(16, 0+(1*(global.characterSelected[playerID] == CHAR_PROTOMAN)), objNormalBusterShot, 3 + (12 * (global.shotUpgrade &gt; 0)), 0, 1, 0);
+        if (i)
         {
-            isCharge = true;
-            if (!isSlide)
+            i.xspeed = (image_xscale * 5);
+        }
+        
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    
+    //Release charge shot
+    else
+    {
+        if (!canAirDash)
+        {
+            if (!ground || playerIsLocked(PL_LOCK_SLIDE))
             {
-                initChargeTimer += 1;
-            }
-            if (initChargeTimer &gt;= initChargeTime)
-            {
-                chargeTimer += 1;
-                if (chargeTimer == 1)
-                {
-                    playSFX(sfxCharging);
-                }
-                if (chargeTimer &lt; chargeTime)
-                {
-                    var chargeTimeDiv, chargeCol;
-                    chargeTimeDiv = round(chargeTime / 3);
-                    if (chargeTimer &lt; chargeTimeDiv)
-                    {
-                        chargeCol = make_color_rgb(168, 0, 32); // Dark red
-                    }
-                    else if (chargeTimer &lt; chargeTimeDiv * 2)
-                    {
-                        chargeCol = make_color_rgb(228, 0,
-                            88); // Red (dark pink)
-                    }
-                    else
-                    {
-                        chargeCol = make_color_rgb(248, 88,
-                            152); // Light red (pink)
-                    }
-                    if (chargeTimer mod 6 &gt;= 0 &amp;&amp; chargeTimer mod 6 &lt; 3)
-                    {
-                        global.outlineCol[playerID] = chargeCol;
-                    }
-                    else
-                    {
-                        global.outlineCol[playerID] = c_black;
-                    }
-                }
-                else
-                {
-                    if (chargeTimer == chargeTime)
-                    {
-                        audio_stop_sound(sfxCharging);
-                        playSFX(sfxCharged);
-                    }
-                    switch (floor(chargeTimer / 3 mod 3))
-                    {
-                        case 0:
-                            global.primaryCol[playerID] = global.weaponSecondaryColor[global.weaponID[? objBreakDash]];
-                            global.secondaryCol[playerID] = c_black;
-                            global.outlineCol[playerID] = global.weaponPrimaryColor[global.weaponID[? objBreakDash]];
-                            break;
-                        case 1:
-                            global.primaryCol[playerID] = c_black;
-                            global.secondaryCol[playerID] = global.weaponPrimaryColor[global.weaponID[? objBreakDash]];
-                            global.outlineCol[playerID] = global.weaponSecondaryColor[global.weaponID[? objBreakDash]];
-                            break;
-                        case 2:
-                            global.primaryCol[playerID] = global.weaponPrimaryColor[global.weaponID[? objBreakDash]];
-                            global.secondaryCol[playerID] = global.weaponSecondaryColor[global.weaponID[? objBreakDash]];
-                            global.outlineCol[playerID] = c_black;
-                            break;
-                    }
-                }
+                isCharge = 0;
             }
         }
-    }
-    else // Release the charge shot
-    {
-        if (chargeTimer != 0 &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT) &amp;&amp; !isHit)
+            
+        if (isCharge == 2)
         {
-            // Climbing constantly flips your xscale, so here just rely on a seperate variable set w/ direction keys and stuff in playerStep
-            if (climbing)
+            var i = fireWeapon(0, 0, objBreakDash, 999, ammoCost, 0, 0);
+                
+            if (i)
             {
-                image_xscale = climbShootXscale;
+                i.image_xscale = image_xscale;
+                i.y = y;
+                var myDepth = depth
+                var mX = sign(image_xscale);
+                if (xDir == 0 &amp;&amp; min(0,yDir) == 0)
+                {
+                    xDir = image_xscale;
+                }
             }
-            
-            /////////////////////
-            // ACTUAL SHOOTING //
-            /////////////////////
-            
-            // full charge
-            if (chargeTimer &gt;= chargeTime &amp;&amp; ground)
-            {
-                a = instance_create(x, y, objBreakDash);
-                a.image_xscale = image_xscale;
-                global.ammo[playerID, global.weapon[playerID]] = max(0,
-                    global.ammo[playerID, global.weapon[playerID]] - 3);
-            }
-            
-            // reset all charging stuff
-            chargeTimer = 0;
-            initChargeTimer = 0;
-            audio_stop_sound(sfxCharged);
-            audio_stop_sound(sfxCharging);
-            playerPalette(); // Reset the colors
+            applyRumble(playerID,0,.75,.05,60);
         }
     }
 }
+
 </string>
           </argument>
         </arguments>
@@ -418,7 +388,7 @@ specialDamageValue(objSpine, 3);
         if (healthpoints - global.damage &lt;= 0)
         {
             par = object_get_parent(object_index);
-            if (par == prtMiniBoss || par == prtBoss || par == prtPickup)
+            if (par == prtMiniBoss || par == prtBoss || par == prtPickup || !killOverride)
             {
                 exit;
             }
@@ -440,6 +410,17 @@ specialDamageValue(objSpine, 3);
             _i.grav = 0.125;
             _i.xspeed = xs;
             _i.yspeed = -2;
+            if (object_index == objShadowClone) // yay woohoo clone hell
+            {
+                _i.spriteX = spriteX;
+                _i.spriteY = spriteY;
+                _i.targetCID = targetCID;
+            }
+            if (object_index == objCamouflametall) // Camouflametall disguise
+            {
+                _i.targetCID = player_costume_id;
+            }
+            
         }
         else
         {
@@ -449,6 +430,7 @@ specialDamageValue(objSpine, 3);
             }*/
         }
     }
+    applyRumble(parent.playerID,0,.75,.1,60);
 }
 </string>
           </argument>
@@ -473,6 +455,29 @@ specialDamageValue(objSpine, 3);
           <argument>
             <kind>1</kind>
             <string>playSFX(sfxReflect);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// Nope
 </string>
           </argument>
         </arguments>

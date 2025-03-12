@@ -27,9 +27,10 @@
             <kind>1</kind>
             <string>event_inherited();
 
-bulletLimitCost = 3;
+bulletLimitCost = 3 + (12 * (global.shotUpgrade &gt; 0));
 
 contactDamage = 3;
+inWater = -1;
 
 imgIndex = 0;
 
@@ -37,6 +38,8 @@ penetrate = 0;
 pierces = 1;
 
 playSFX(sfxBusterProtoCharged);
+
+graphicsOverride = false;
 </string>
           </argument>
         </arguments>
@@ -64,9 +67,36 @@ playSFX(sfxBusterProtoCharged);
 if (!global.frozen)
 {
     imgIndex += 0.5;
+    if (imgIndex &gt;= 2 + (2 * graphicsOverride))
+        imgIndex = 0;
 }
 
 image_index = floor(imgIndex);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="17">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (!graphicsOverride)
+    sprite_index = sprBusterShotHalfChargedProto;
 </string>
           </argument>
         </arguments>
@@ -91,12 +121,19 @@ image_index = floor(imgIndex);
             <kind>1</kind>
             <string>if (!dead)
 {
-    draw_sprite_ext(sprite_index, round(image_index), round(x), round(y), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
-    
-    if (round(image_index) == 0)
+    if (graphicsOverride)
     {
-        draw_sprite_ext(sprBusterShotChargedProtoColourMask, 0, round(x), round(y), image_xscale, image_yscale, image_angle, global.primaryCol[0], image_alpha);
-        draw_sprite_ext(sprBusterShotChargedProtoColourMask, 1, round(x), round(y), image_xscale, image_yscale, image_angle, global.secondaryCol[0], image_alpha);  
+        event_inherited();
+    }
+    else
+    {
+        draw_sprite_ext(sprite_index, round(image_index), round(x), round(y), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+        
+        if (round(image_index) == 0) &amp;&amp; (sprite_index != sprBusterShotHalfChargedProto)
+        {
+            draw_sprite_ext(sprBusterShotChargedProtoColourMask, 0, round(x), round(y), image_xscale, image_yscale, image_angle, global.primaryCol[0], image_alpha);
+            draw_sprite_ext(sprBusterShotChargedProtoColourMask, 1, round(x), round(y), image_xscale, image_yscale, image_angle, global.secondaryCol[0], image_alpha);  
+        }
     }
 }
 </string>

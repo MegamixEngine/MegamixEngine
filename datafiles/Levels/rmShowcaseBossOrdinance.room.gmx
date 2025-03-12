@@ -82,11 +82,11 @@
     <instance objName="objBossBarrier" x="240" y="320" name="inst_038B95E6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="240" y="336" name="inst_97584755" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="768" y="224" name="inst_3B4BDDD7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="368" y="336" name="inst_BCAFBEDE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="368" y="336" name="inst_BCAFBEDE" locked="0" code="name = &quot;Crash Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCrashMan" x="736" y="384" name="inst_A8C1037F" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="752" y="368" name="inst_277E1069" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="752" y="384" name="inst_CC2921BE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="896" y="384" name="inst_17094A58" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="896" y="384" name="inst_17094A58" locked="0" code="name = &quot;Dyna Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="1024" y="224" name="inst_1C9C18CF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objDynaMan" x="1248" y="384" name="inst_D80A13EB" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objLifeEnergyBig;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="752" y="352" name="inst_C86B5796" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -170,8 +170,8 @@
     <instance objName="objRailVertical" x="2768" y="352" name="inst_D6EAD90E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRailVertical" x="2768" y="368" name="inst_314D3516" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRailVertical" x="2592" y="368" name="inst_49E1D964" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objRounderV2" x="2624" y="272" name="inst_B54D94E4" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objRounderV2" x="2752" y="400" name="inst_9F633FBB" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objRounderII" x="2624" y="272" name="inst_B54D94E4" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objRounderII" x="2752" y="400" name="inst_9F633FBB" locked="0" code="useEndStageBehavior = false;&#xA;itemDrop = objYashichi;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="2816" y="224" name="inst_227FCB35" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="2288" y="320" name="inst_B10EDEE3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="2288" y="336" name="inst_491E7362" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -183,9 +183,9 @@
     <instance objName="objBossBarrier" x="2800" y="384" name="inst_C01B3D05" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="2800" y="368" name="inst_8F8E3BE0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrolling" x="3072" y="224" name="inst_1C78D702" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1408" y="384" name="inst_D491D2B2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1920" y="384" name="inst_95E2733D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="2416" y="368" name="inst_95D37755" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1408" y="384" name="inst_D491D2B2" locked="0" code="name = &quot;Ballade&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1920" y="384" name="inst_95E2733D" locked="0" code="name = &quot;Dangan Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="2416" y="368" name="inst_95D37755" locked="0" code="name = &quot;Rounder II&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objETank" x="48" y="176" name="inst_E92C25AF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="384" y="336" name="inst_CAA96A09" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="912" y="384" name="inst_70E36544" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -236,7 +236,7 @@
     <instance objName="objBossBarrier" x="3312" y="368" name="inst_6ABF48F0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="3312" y="384" name="inst_082AF90F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBossBarrier" x="3312" y="400" name="inst_C8AB7006" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="2944" y="384" name="inst_57B4F356" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="2944" y="384" name="inst_57B4F356" locked="0" code="name = &quot;Commando Man&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objStopScrollingHorizontal" x="3584" y="224" name="inst_998AA34B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTeleporter" x="3552" y="400" name="inst_10B53630" locked="0" code="light = 1;&#xA;myRoom = lvlShowcaseHUB;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objETank" x="2960" y="384" name="inst_D6663F39" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

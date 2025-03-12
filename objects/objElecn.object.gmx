@@ -39,6 +39,8 @@ category = "floating";
 blockCollision = 0;
 grav = 0;
 
+behaviourType = 1;
+
 // Enemy specific code
 
 //@cc true = drop in enterance from a shoot (default); false = just appears like any other enemy

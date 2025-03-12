@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// An otherwise stationary enemy that hops straight up and down, catches a junk cube that falls from the sky, and crushes it into pieces that fly in 8 directions.
+/// While holding the junk cube and its eyes are closed, it is immune to non-piercing weapons.
+/// The debris from the junk cube makes it viable to place this enemy anywhere, but with the right positioning, the falling cube itself can be an additional hazard.
+
+event_inherited();
 
 healthpointsStart = 6;
 contactDamage = 6;

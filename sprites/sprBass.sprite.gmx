@@ -10,15 +10,15 @@
   <bbox_left>0</bbox_left>
   <bbox_right>916</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>661</bbox_bottom>
+  <bbox_bottom>712</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>22</TextureGroup0>
+    <TextureGroup0>1</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>917</width>
-  <height>662</height>
+  <height>713</height>
   <frames>
     <frame index="0">images\sprBass_0.png</frame>
     <frame index="1">images\sprBass_1.png</frame>

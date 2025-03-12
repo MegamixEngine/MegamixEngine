@@ -100,25 +100,33 @@ if (entityCanStep())
         
         // shoot spear
         case 2:
-            if (imgIndex &lt; 7)
+            /*if (imgIndex &lt; 7)
             {
                 imgIndex += imgSpd;
             }
             else
-            {
+            {*/
                 timer += 1;
                 if (timer &gt;= 30)
                 {
-                    phase = 3;
+                    /*phase = 3;
                     timer = 0;
-                    imgIndex = 0;
+                    imgIndex = 0;*/
+                    
+                    imgIndex += imgSpd;
+                    if (imgIndex &gt;= 8)
+                    {
+                        phase = 3;
+                        timer = 0;
+                        imgIndex = 0;
+                    }
                 }
-            }
+            //}
             
-            if (imgIndex &gt;= 8)
+            /*if (imgIndex &gt;= 8)
             {
                 imgIndex = 7;
-            }
+            }*/
             
             break;
         
@@ -215,6 +223,32 @@ imgIndex = 4;
         }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+instance_create(bboxGetXCenter(),bboxGetYCenter(),objBigExplosion);
+stopSFX(getGenericSFX(SFX_ENEMYHIT));
+playSFX(getGenericSFX(SFX_EXPLOSION2));
 </string>
           </argument>
         </arguments>

@@ -31,7 +31,7 @@ healthpointsStart = 28;
 healthpoints = healthpointsStart;
 
 pose = sprMetalIntro;
-poseImgSpeed = 0.2;
+poseImgSpeed = 0.1; //0.2;
 contactDamage = 6; // 3 blades
 
 ground = false;
@@ -48,8 +48,8 @@ flashTimer = 0;
 bladeThrow = 5;
 
 // Health Bar
-healthBarPrimaryColor[1] = 18;
-healthBarSecondaryColor[1] = 34;
+healthBarPrimaryColor[1] = $15;
+healthBarSecondaryColor[1] = $28;
 
 // Music
 music = "Mega_Man_2.nsf";
@@ -60,6 +60,8 @@ musicTrackNumber = 17;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -70,6 +72,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objBreakDash, 0);
 enemyDamageValue(objMagneticShockwave, 6);
 enemyDamageValue(objIceWall, 1);
+
+reflectedDamage = 28;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -105,15 +111,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 0);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 2);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 1);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 0);
 </string>
           </argument>
@@ -143,14 +150,19 @@ if (entityCanStep())
 {
     if (isFight == true)
     {
-        flashTimer += 1;
-        if (flashTimer == (60 * 7) + 1)
+        if (instance_exists(objMM2Conveyor))
         {
-            if (instance_exists(objMM2Conveyor))
+            flashTimer += 1;
+            if (flashTimer == (60 * 7) + 1)
+            {
                 with (objMM2Conveyor)
+                {
                     dir = -dir;
-            flashTimer = 0;
-            playSFX(sfxGravityFlip);
+                    iFrames = 20;
+                }
+                flashTimer = 0;
+                playSFX(sfxGravityFlip);
+            }
         }
         
         switch (phase)
@@ -165,8 +177,14 @@ if (entityCanStep())
                 
                 if (instance_exists(target))
                 {
-                    if (global.keyShootPressed[target.playerID]
-                        || attackTimer &gt;= 60 * 3)
+                    var beginAttack = 0;
+                    
+                    if (target.object_index == objMegaman)
+                    {
+                        beginAttack = (global.keyShootPressed[target.playerID]);
+                    }
+                    
+                    if (beginAttack || (attackTimer &gt;= (60 * 3)))
                     {
                         // randomize();
                         yspeed = -choose(3, 5, 7);
@@ -235,8 +253,25 @@ if (entityCanStep())
                     if (throwTimer == bladeThrow)
                     {
                         playSFX(sfxMetalBlade);
-                        instance_create(x + image_xscale * 8, y,
-                            objMetalManBlade);
+                        with (entityCreateChild(8, 0, objMetalManBlade))
+                        {
+                            var spd;
+                            spd = 4;
+                            if (instance_exists(target))
+                            {
+                                var angle = point_direction(spriteGetXCenter(), spriteGetYCenter(),
+                                    spriteGetXCenterObject(target),
+                                    spriteGetYCenterObject(target));
+                                
+                                xspeed = cos(degtorad(angle)) * spd;
+                                yspeed = -sin(degtorad(angle)) * spd;
+                            }
+                            else
+                            {
+                                xspeed = spd;
+                                yspeed = 0;
+                            }
+                        }
                     }
                     if (throwTimer &gt;= bladeThrow * 2)
                     {
@@ -294,7 +329,7 @@ else
 // if it looks like a metal blade, and smells like a metal blade, and feels like a metal blade...
 if (other.sprite_index == sprMetalBlade)
 {
-    global.damage = 6969;
+    global.damage = 28;
 }
 </string>
           </argument>
@@ -318,11 +353,12 @@ if (other.sprite_index == sprMetalBlade)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (objMetalManBlade)
+            <string>event_inherited();
+with (objMetalManBlade)
+{
     instance_create(x, y, objExplosion);
-instance_destroy();
-
-event_inherited();
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>
@@ -346,7 +382,8 @@ event_inherited();
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-if (flashTimer == floor(flashTimer / (60 * 7)) * (60 * 7) &amp;&amp; flashTimer &gt; 0)
+// Nope
+/*if (flashTimer == floor(flashTimer / (60 * 7)) * (60 * 7) &amp;&amp; flashTimer &gt; 0)
 {
     draw_set_color(c_white);
     draw_rectangle(view_xview - 1, view_yview - 1, view_xview + view_wview + 1,

@@ -90,7 +90,7 @@ if (entityCanStep())
             <string>dead = 1;
 visible = 0;
 instance_create(bboxGetXCenter(), bboxGetYCenter(), objHarmfulExplosion);
-playSFX(sfxBalladeCrackerExplosion);
+playSFX(getGenericSFX(SFX_EXPLOSIONBALLADE));
 </string>
           </argument>
         </arguments>

@@ -39,6 +39,9 @@ shootTimer = 0;
 image_speed = 0;
 tailWag = 0;
 endTimer = -1;
+
+explosionSprite = sprCrashExplosion;
+explosionSFX = sfxEnemyHit;
 </string>
           </argument>
         </arguments>
@@ -73,14 +76,14 @@ if (entityCanStep()
 {
     if (shootTimer == 0)
         image_index = 0;
-    if (shootTimer == 15 || shootTimer == 15 + 10 || shootTimer == 15 + 10 + 10)
+    if (shootTimer == 15 || shootTimer == 36)//(shootTimer == 15 || shootTimer == 15 + 10 || shootTimer == 15 + 10 + 10)
         image_index = 1;
-    if (shootTimer == 17 || shootTimer == 17 + 10 || shootTimer == 17 + 10 + 10)
+    if (shootTimer == 22 || shootTimer == 43)//(shootTimer == 17 || shootTimer == 17 + 10 || shootTimer == 17 + 10 + 10)
         image_index = 2;
-    if (shootTimer == 20 || shootTimer == 20 + 10 || shootTimer == 20 + 10 + 10)
+    if (shootTimer == 29 || shootTimer == 50)//(shootTimer == 20 || shootTimer == 20 + 10 || shootTimer == 20 + 10 + 10)
         image_index = 0;
     
-    if (shootTimer == 65)
+    if (shootTimer == 60) //65)
     {
         image_index = 3;
         endTimer = choose(120, 100, 80);
@@ -101,7 +104,7 @@ if (entityCanStep()
     
     tailWag += 1;
     
-    if (tailWag &gt; 45)
+    if (tailWag &gt; 75) //45)
     {
         if (tailWag == floor(tailWag / 4) * 4)
         {
@@ -111,7 +114,7 @@ if (entityCanStep()
                 sprite_index = sprHotDog;
         }
     }
-    if (tailWag &gt;= 70)
+    if (tailWag &gt;= 100) //70)
     {
         sprite_index = sprHotDog;
         tailWag = 0;

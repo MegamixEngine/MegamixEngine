@@ -38,6 +38,8 @@ shootTimer = 0;
 shotCharge = 0;
 parent = noone;
 
+shotChargeLength = 25;
+
 image_speed = 0;
 image_index = 0;
 imgIndex = 0;
@@ -84,7 +86,7 @@ if (entityCanStep())
             visible = !visible;
         }
         
-        if (shootTimer &gt;= 25) // &lt;-- time between charge increases here
+        if (shootTimer &gt;= shotChargeLength) // &lt;-- time between charge increases here
         {
             shotCharge += 1;
             shootTimer = 0;

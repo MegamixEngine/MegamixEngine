@@ -127,7 +127,7 @@ if (entityCanStep())
             else
             {
                 imgIndex -= imgSpd;
-                if (imgIndex &lt; 3)
+                if (imgIndex &lt;= 3)
                 {
                     imgIndex = 4;
                     animBack = false;
@@ -135,7 +135,7 @@ if (entityCanStep())
             }
             
             // detection
-            if (ground&amp;&amp;xspeed == 0 || checkSolid(sprite_width / 2, 0, 1, 1))
+            if (ground&amp;&amp;xspeed == 0 || ground&amp;&amp;checkSolid(sprite_width / 2, 0, 1, 1))
             {
                 // jump
                 phase = 3;
@@ -190,7 +190,7 @@ else if (dead)
     imgIndex = 0;
 }
 
-image_index = imgIndex div 1;
+image_index = floor(imgIndex);
 </string>
           </argument>
         </arguments>

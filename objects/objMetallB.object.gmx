@@ -36,6 +36,8 @@ contactDamage = 1;
 
 category = "mets";
 
+behaviourType = 1;
+
 // Enemy specific code
 radius = 4 * 16; // Four blocks; the radius that MM needs to enter to trigger the shooting of the met
 timer = 0;

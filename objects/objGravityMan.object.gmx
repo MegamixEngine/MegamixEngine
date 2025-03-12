@@ -31,7 +31,7 @@ healthpointsStart = 28;
 healthpoints = healthpointsStart;
 
 pose = sprGravityIntro;
-poseImgSpeed = 0.25;
+poseImgSpeed = 0.23;
 contactDamage = 5; // 4 shots
 
 ground = false;
@@ -43,7 +43,7 @@ myGrav = 1;
 
 // Health Bar
 healthBarPrimaryColor[1] = 18;
-healthBarSecondaryColor[1] = 40;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_5.nsf";
@@ -54,6 +54,8 @@ musicTrackNumber = 10;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -64,6 +66,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 6);
 enemyDamageValue(objIceWall, 1);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -86,7 +92,7 @@ enemyDamageValue(objPharaohShot, 1);
 enemyDamageValue(objBlackHoleBomb, 4);
 enemyDamageValue(objMagicCard, 2);
 
-// MaG48MML
+// MaG48HMML
 enemyDamageValue(objFlameMixer, 2);
 enemyDamageValue(objRainFlush, 1);
 enemyDamageValue(objSparkShock, 2);
@@ -98,16 +104,17 @@ enemyDamageValue(objSaltWater, 1);
 enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 4);
 
-// MaG48MML
+// MaG24HMML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 4);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 1);
-enemyDamageValue(objBrickWeapon, 1);
+enemyDamageValue(objBlockDropper, 1);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -320,14 +327,17 @@ else
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
 if (instance_exists(objMegaman))
 {
-    i = instance_create(objMegaman.x - 8, objMegaman.y - 8, objGravityFlipDown);
-    with (i)
+    with (objMegaman)
     {
-        event_perform(ev_step, ev_step_normal);
-        instance_destroy();
+    
+        i = instance_create(x - 8, y - 8, objGravityFlipDown);
+        with (i)
+        {
+            event_perform(ev_step, ev_step_normal);
+            instance_destroy();
+        }
     }
 }
 

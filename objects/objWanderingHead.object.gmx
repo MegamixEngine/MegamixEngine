@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A disembodied head that bounces diagonally off of solid objects, pausing for a moment before changing direction.
+/// It always starts by moving diagonally up. You'll need to manually set its starting direction, despite what the creation code says.
+/// Best used in areas with interesting architecture. Also works well with custom spawners.
+
+event_inherited();
 
 healthpointsStart = 3;
 healthpoints = healthpointsStart;
@@ -34,12 +38,12 @@ contactDamage = 6;
 facePlayerOnSpawn = true;
 grav = 0;
 category = "bird";
-despawnRange=8;
+despawnRange = 8;
 
 // @cc - Determines how fast Wandering Head moves
 moveSpeed = 2;
 
-animTimer = 4;
+animTimer = 6; //4;
 
 xPrev = 0;
 yPrev = 0;
@@ -113,7 +117,7 @@ if (entityCanStep())
             {
                 image_index = 4;
             }
-            animTimer = 4;
+            animTimer = 6; //4;
         }
     }
     else if (image_index == 2)
@@ -134,7 +138,7 @@ if (entityCanStep())
             {
                 image_index = 3;
             }
-            animTimer = 4;
+            animTimer = 6; //4;
         }
     }
     
@@ -144,7 +148,7 @@ if (entityCanStep())
         if (animTimer == 0)
         {
             image_index = 0;
-            animTimer = 4;
+            animTimer = 6; //4;
         }
     }
 }
@@ -179,8 +183,8 @@ if(spawned)
     xPrev = xspeed;
     yPrev = yspeed;
     image_index = 0;
-    animTimer = 4;
-    despawnRange=8+abs(moveSpeed);
+    animTimer = 6; //4;
+    despawnRange = 8 + abs(moveSpeed);
 }
 </string>
           </argument>

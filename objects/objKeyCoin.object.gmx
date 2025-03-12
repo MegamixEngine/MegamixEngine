@@ -25,8 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// A collectable item that makes a key once 5 are collected
+            <string>///a key coin. if you collect enough of these, you get a key
+//by default, you get one key for collecting all the key coins in each section
+//this can be customized by placing a manager object in the section and configuring that
 event_inherited();
+
+//this shouldn't matter too much, since they're static
+respawnRange = -1;
+despawnRange = -1;
 
 image_speed = 0.2;
 grabable = 0;
@@ -36,13 +42,13 @@ respawnupondeath = true;
 grav = 0;
 blockCollision = 0;
 
-alarm[8] = 1;
+controller = noone;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="8">
+    <event eventtype="7" enumb="25">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -59,7 +65,14 @@ alarm[8] = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.keyCoinTotal += 1;
+            <string>///Create a coin manager automatically, if needed
+event_inherited();
+
+if spawned &amp;&amp; (controller == noone) &amp;&amp; !instance_exists(objKeyCoinManager)
+{
+    print("Key coin automatically made a manager at " + string(x) + ", " + string(y));
+    instance_create(x, y, objKeyCoinManager);
+}
 </string>
           </argument>
         </arguments>
@@ -82,20 +95,63 @@ alarm[8] = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.keyCoinCollected += 1;
+            <string>///When collected...
 
-if (global.keyCoinCollected == global.keyCoinTotal)
+//throw nonfatal error if controller somehow despawned
+if !instance_exists(controller)
 {
-    i = instance_create(spriteGetXCenter() - 8, spriteGetYCenter() - 8,
-        objKey);
-    i.yspeed = -4;
-    i.homingTimer = 90;
-    playSFX(sfxKeySpawn);
+    printErr("Controller for coin is not spawned at (" + string(x) + ", " + string(y) + ")");
+    playSFX(sfxError);
+    playSFX(sfxKeyCoinNotGet);
+    var c = instance_create(x, y, objKeyCoinDiscard);
+    c.sprite_index = sprite_index;
+    instance_destroy();
+    exit;
 }
 
-instance_destroy();
-instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
-playSFX(sfxBolt);
+//add a coin
+controller.coinsObtained++;
+
+//if there are awards left...
+if controller.awardIndex &lt; array_length_1d(controller.coinKeyAwards)
+{
+    var guiAnimVal;
+    //award a key if circumstances are right
+    if (controller.coinsObtained &gt;= controller.coinKeyAwards[controller.awardIndex])
+    {
+        controller.awardIndex++;
+        guiAnimVal = 10;
+        if global.keyNumber &lt; 7
+            global.keyNumber += 1;
+        else
+            instance_create(x, y, objKey);
+        playSFX(sfxKeySpawn);
+    }
+    else
+    {   //else, normal collection
+        guiAnimVal = 4;
+        playSFX(sfxBolt);
+    }
+    
+    //set animation values based on display mode
+    if controller.displayMode = 0
+        controller.coinAnimTimer[controller.coinsObtained - 1] = guiAnimVal;
+    else
+        controller.coinAnimTimer = guiAnimVal;
+    
+    //die
+    instance_create(bboxGetXCenter(), bboxGetYCenter(), objExplosion);
+    instance_destroy();
+    exit;
+}
+else
+{   //if no awards are left, dink uselessly
+    playSFX(sfxKeyCoinNotGet);
+    var c = instance_create(x, y, objKeyCoinDiscard);
+    c.sprite_index = sprite_index;
+    instance_destroy();
+    exit;
+}
 </string>
           </argument>
         </arguments>

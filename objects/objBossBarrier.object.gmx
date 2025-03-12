@@ -35,6 +35,14 @@ isSolid = true;
 
 //@cc how long until it starts looking for minibosses/bosses
 delay = 32;
+//@cc if true, then set destruction timer to above delay timer.
+bossTimerSet = false;
+
+tileLayer = 1000000; //@cc what tile layer to destroy
+
+itemDrop = noone; //@cc create item on destruction
+
+detectItems = false; //@cc if true, boss barrier waits until collectabiles are collected
 
 active = 1;
 
@@ -52,11 +60,18 @@ grav = 0;
 blockCollision = 0;
 dieToSpikes = 0;
 
+delayStart = -1; //this is not creation code and is set by the object.
+
 fnsolid = 1;
+itemDrop = noone;
 if(place_meeting(x,y,objSpike))
 {
     isSolid=0;
 }
+
+
+
+
 </string>
           </argument>
         </arguments>
@@ -83,6 +98,13 @@ if(place_meeting(x,y,objSpike))
 
 if (!global.frozen &amp;&amp; !instance_exists(objSectionSwitcher))
 {
+    if (delayStart == -1)
+    {
+        if (bossTimerSet)
+            delayStart = delay;
+        else
+            delayStart = 24; //to maintain megamix base functionality and not break stuff
+    }
     var bossThere = 0;
     
     if (instance_exists(prtBoss) || instance_exists(prtMiniBoss))
@@ -90,11 +112,19 @@ if (!global.frozen &amp;&amp; !instance_exists(objSectionSwitcher))
         bossThere = 1;
     }
     
+    if (detectItems)
+    {
+       if (instance_exists(objLifeEnergyBig) || instance_exists(objWeaponEnergyBig) || instance_exists(objBoltBig))
+       {
+            bossThere = 1;
+       }
+    }
+    
     if (active)
     {
         if (bossThere)
         {
-            delay = 24;
+            delay = delayStart;
         }
         else if (insideView())
         {
@@ -128,13 +158,15 @@ if (!global.frozen &amp;&amp; !instance_exists(objSectionSwitcher))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (i = 0; i &lt; image_xscale; i += 1) // X
+            <string>var storeLayer = tileLayer;
+for (i = 0; i &lt; image_xscale; i += 1) // X
 {
     for (j = 0; j &lt; image_yscale; j += 1) // Y
     {
-        if (tile_layer_find(1000000, x + i * 16, y + j * 16))
+        var _tile = findTileWithSplit(storeLayer, x + i * 16, y + j * 16);
+        if (_tile)
         {
-            tile_layer_delete_at(1000000, x + i * 16, y + j * 16);
+            tile_delete(_tile);
             instance_create(x + 8 + i * 16, y + 8 + j * 16, objExplosion);
         }
         var sld = collision_rectangle(bbox_left + 8, bbox_top + 8, bbox_right - 8,
@@ -167,6 +199,11 @@ if (!global.frozen &amp;&amp; !instance_exists(objSectionSwitcher))
             bbox_bottom - 8, prtBossDoor, 1, 1);
         }
     }
+}
+
+if (itemDrop != noone &amp;&amp; itemDrop != -1)
+{
+    instance_create(spriteGetXCenter(),spriteGetYCenter(),itemDrop);
 }
 
 instance_destroy();

@@ -42,6 +42,7 @@ facePlayer = true;
 state = 0;
 timer = 0;
 animTimer = 0;
+hasThrown = false;
 </string>
           </argument>
         </arguments>
@@ -112,10 +113,22 @@ if (entityCanStep())
         animTimer += 1;
         if (animTimer &gt;= 12)
         {
+            image_index = 1; //0;
+            animTimer = 0;
+            /*timer = -45;
+            state = 2;*/
+        }
+    }
+    if (image_index == 1) &amp;&amp; (hasThrown)
+    {
+        animTimer += 1;
+        if (animTimer &gt;= 4)
+        {
             image_index = 0;
             animTimer = 0;
             timer = -45;
             state = 2;
+            hasThrown = false;
         }
     }
 }
@@ -123,6 +136,7 @@ else if (dead)
 {
     grav = 0;
     blockCollision = 0;
+    hasThrown = false;
     state = 0;
     timer = 0;
     animTimer = 0;

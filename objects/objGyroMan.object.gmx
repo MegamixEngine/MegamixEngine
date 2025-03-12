@@ -46,10 +46,11 @@ hasFired = false;
 strMMX = 0;
 strMMY = 0;
 grav = 0.24;
+introProp = 0; //Handles propeller animation in intro
 
 // Health Bar
-healthBarPrimaryColor[1] = 35;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $29;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_5.nsf";
@@ -60,6 +61,8 @@ musicTrackNumber = 10;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 2);
@@ -70,6 +73,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objBreakDash, 1);
 enemyDamageValue(objMagneticShockwave, 1);
 enemyDamageValue(objIceWall, 2);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 5);
@@ -92,7 +99,7 @@ enemyDamageValue(objPharaohShot, 1);
 enemyDamageValue(objBlackHoleBomb, 1);
 enemyDamageValue(objMagicCard, 2);
 
-// MaG48MML
+// MaG48HMML
 enemyDamageValue(objFlameMixer, 2);
 enemyDamageValue(objRainFlush, 4);
 enemyDamageValue(objSparkShock, 2);
@@ -104,16 +111,17 @@ enemyDamageValue(objSaltWater, 1);
 enemyDamageValue(objConcreteShot, 2);
 enemyDamageValue(objHomingSniper, 2);
 
-// MaG48MML
+// MaG24HMML
+enemyDamageValue(objWaterWave, 1);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 2);
 
 // Misc.
 enemyDamageValue(objPowerStone, 1);
 enemyDamageValue(objPlantBarrier, 4);
-enemyDamageValue(objBrickWeapon, 4);
+enemyDamageValue(objBlockDropper, 4);
 enemyDamageValue(objIceSlasher, 1);
 </string>
           </argument>
@@ -158,7 +166,18 @@ if (!global.frozen)
     {
         // custom intro:
         if (y &lt;= ystart &amp;&amp; !hasTriggeredFall)
+        {
             y += 4;
+            introProp++;
+            if (introProp == 4) 
+            {
+                introProp = 0;
+                if (image_index == 7)
+                    image_index = 8;
+                else
+                    image_index = 7;
+            }
+        }
         if (y &gt;= ystart || hasTriggeredFall)
         {
             hasTriggeredFall = true;
@@ -192,7 +211,7 @@ if (entityCanStep())
         image_speed = 0;
         attackTimer += 1;
         if (yspeed != 0) // gyro man's flying animation. this goes through several "phases" so we reference it outside of the phase switch.
-            image_index = 6 + ((attackTimer / 2) mod 2);
+            image_index = 7 + ((attackTimer / 2) mod 2);
         if (instance_exists(target))
         {
             strMMX = target.x;
@@ -224,9 +243,15 @@ if (entityCanStep())
                 if (attackTimer == 8)
                 {
                     image_index = 5;
-                    var sd = instance_create(x, y - 8, objGyroShot); // gyro attack is the vertical vartiety by default, if the xspeed is 1 then it'll find the correct speed in the gyro attack object.
+                    var sd = entityCreateChild(8, -8, objGyroShot); // gyro attack is the vertical vartiety by default, if the xspeed is 1 then it'll find the correct speed in the gyro attack object.
                     sd.xspeed = 1;
                     sd.yspeed = 0;
+                    with (sd)
+                        calibrateDirection();
+                }
+                if (attackTimer == 12)
+                {
+                    image_index = 6;
                 }
                 if (attackTimer == 24)
                 {
@@ -251,7 +276,10 @@ if (entityCanStep())
                     grav = 0;
                     yspeed = -2;
                     with (instance_create(x, y, objExplosion))
+                    {
                         sprite_index = sprGyroDust;
+                        image_speed = 0.2;
+                    }
                     blockCollision = 0; // disable collision, just in case someone puts in a cieling in the arena
                     phase = 3;
                 }
@@ -260,7 +288,9 @@ if (entityCanStep())
                 if (y &lt;= view_yview + view_hview / 2 &amp;&amp; !hasFired) // whilst flying, create gyro attack at halfway point of screen.
                 {
                     hasFired = true;
-                    instance_create(x, y - 8, objGyroShot);
+                    var sd = entityCreateChild(8, -8, objGyroShot);
+                    with (sd)
+                        calibrateDirection();
                 }
                 if (y &lt;= view_yview - 8) // if outside of play arena, goto mega man's position, and then try to fall onto him
                 {
@@ -313,7 +343,10 @@ else
           <argument>
             <kind>1</kind>
             <string>with (objGyroShot)
+{
+    instance_create(bboxGetXCenter(),bboxGetYCenter(),objExplosion);
     instance_destroy();
+}
 event_inherited();
 </string>
           </argument>

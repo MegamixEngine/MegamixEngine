@@ -25,9 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Space: the final frontier. These are the voyages of the starship Gunner Joe.
-// Its constant mission: to destroy Mega Man. To use homing missiles and diving attacks.
-// To boldly go where no Joe has gone before!
+            <string>/// A Joe piloting a personal spacecraft. It hovers in place until the player gets close, then repeatedly swoops at the player.
+/// After a set interval, it fires a single homing missile. It will only fire another missile if the previous one is destroyed.
+/// Adds a layer of pressure to any challenge.
 
 event_inherited();
 
@@ -47,7 +47,7 @@ image_speed = 0.3;
 radius = 64;
 // @cc - how fast Gunner Joe moves horizontally
 moveSpeed = 1;
-// @cc - how fast Gunner Joe moves vetrivally
+// @cc - how fast Gunner Joe moves vertically
 flySpeed = 1;
 
 moveTimer = 120;

@@ -53,6 +53,9 @@ direct = -1;
 moveDist = 32;
 moveDir = 0;
 shootAngle = 35;
+
+childSprite = sprEnemyBulletMM5;
+childImgSpeed = 0;
 </string>
           </argument>
         </arguments>
@@ -131,12 +134,16 @@ if (entityCanStep())
         {
             ID.dir = getAngle + shootAngle;
             ID.xscale = image_xscale;
+            ID.sprite_index = childSprite;
+            ID.image_speed = childImgSpeed;
         }
         ID = instance_create(x + image_xscale * 8, spriteGetYCenter(),
             objMM5AimedBullet);
         {
             ID.dir = getAngle - shootAngle;
             ID.xscale = image_xscale;
+            ID.sprite_index = childSprite;
+            ID.image_speed = childImgSpeed;
         }
         playSFX(sfxEnemyShootClassic);
     }

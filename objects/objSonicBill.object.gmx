@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>/// A bullet that lies in wait. When the player gets horizontally close enough, it glides forward along the ground.
+/// It explodes when it either reaches the player's horizontal position (even if the player is above or below it) or hits a wall.
+/// Tends to work best when used in large open spaces or carefully designed tight spaces.
+
+event_inherited();
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
@@ -34,11 +38,16 @@ contactDamage = 3;
 category = "grounded";
 
 facePlayerOnSpawn = true;
+/// NOTE: Due to how its sprite is aligned, you should manually flip its X direction in the editor to face the intended direction.
+
+behaviourType = 1;
 
 // Enemy specific code
 activated = false;
 radius = 80;
 explod = false;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

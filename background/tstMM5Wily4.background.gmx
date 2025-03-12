@@ -10,10 +10,10 @@
   <HTile>-1</HTile>
   <VTile>-1</VTile>
   <TextureGroups>
-    <TextureGroup0>0</TextureGroup0>
+    <TextureGroup0>164</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>256</width>
-  <height>96</height>
+  <width>240</width>
+  <height>160</height>
   <data>images\tstMM5Wily4.png</data>
 </background>

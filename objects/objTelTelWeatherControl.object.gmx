@@ -52,6 +52,8 @@ weakToRain[11] = objMechaDragonFire;
 weakToRain[12] = objHeatMan;
 weakToRain[13] = objPUOilFire;
 weakToRain[14] = objFireBlockFire;
+
+rainSprite = sprTelTelRain;
 </string>
           </argument>
         </arguments>
@@ -99,7 +101,7 @@ if (!global.frozen)
                         if ((object_index != objHeatMan) || (object_index == objHeatMan &amp;&amp; isFight))
                         {
                             healthpoints = 0;
-                            playSFX(sfxSplash);
+                            playSFX(getGenericSFX(SFX_SPLASH));
                             event_user(EV_DEATH);
                         }
                     }
@@ -157,7 +159,9 @@ instance_destroy();
           <argument>
             <kind>1</kind>
             <string>// Rain/snow drawing + animation
+if !global.frozen {
 animTimer++;
+}
 
 switch (global.telTelWeather)
 {
@@ -171,7 +175,7 @@ switch (global.telTelWeather)
         draw_set_alpha(storealpha);
         
         // Sky darkens before rain
-        if (animTimer mod 10 == 0)
+        if (animTimer mod 10 == 0 &amp;&amp; !global.frozen)
         {
             if (darkenAlpha &lt; (1 / 4))
             {
@@ -180,10 +184,14 @@ switch (global.telTelWeather)
         }
         
         // Weather img
-        if (animTimer mod 3 == 0)
+        if (animTimer mod 5 == 0 &amp;&amp; !global.frozen)
         {
             weatherImg += 1;
-            if (weatherImg &gt; 3)
+            if (weatherImg &gt; 3) &amp;&amp; (rainSprite = sprTelTelRain)
+            {
+                weatherImg = 0;
+            }
+            if (weatherImg &gt; 7) &amp;&amp; (rainSprite = sprTelTel2Rain)
             {
                 weatherImg = 0;
             }
@@ -191,13 +199,23 @@ switch (global.telTelWeather)
         var tr = instance_exists(objToadRain);
         var dox = view_xview mod 16;
         var doy = view_yview mod 16;
-        for (var i = view_xview - 16; i &lt;= view_xview + view_wview + 16; i += 16)
+        var xMultiplier = 1;
+        if (rainSprite = sprTelTel2Rain) {
+        xMultiplier = 2;
+        }
+        for (var i = view_xview - 16; i &lt;= view_xview + view_wview + 16; i += (16*xMultiplier))
         {
             for (var e = view_yview - 16; e &lt;= view_yview + view_hview + 16; e += 16)
             {
                 if (!tr || (tr &amp;&amp; !place_meeting(i - dox, e - doy, objToadRain)))
                 {
-                    draw_sprite_ext(sprTelTelRain, weatherImg, i - dox, e - doy, 1, 1, 0, c_white, darkenAlpha * 3);
+                if rainSprite = sprTelTelRain {
+                    draw_sprite_ext(rainSprite, weatherImg, i - dox, e - doy, 1, 1, 0, c_white, darkenAlpha * 3);
+                    }
+                if (rainSprite = sprTelTel2Rain)
+                {
+                draw_sprite_ext(rainSprite, weatherImg, i - dox, e - doy, 1, 1, 0, c_white, darkenAlpha * 3);
+                }
                 }
             }
         }
@@ -205,7 +223,7 @@ switch (global.telTelWeather)
     
     // Snow
     case 2: // Weather img 
-        if (animTimer mod 7 == 0)
+        if (animTimer mod 7 == 0 &amp;&amp; !global.frozen)
         {
             weatherImg += 1;
             if (weatherImg &gt; 3)

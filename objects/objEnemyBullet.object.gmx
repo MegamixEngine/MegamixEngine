@@ -47,6 +47,7 @@ yspeed = 0;
 
 script = scrNoEffect;
 code = "";
+
 </string>
           </argument>
         </arguments>
@@ -92,14 +93,10 @@ if (entityCanStep())
         x -= xcoll;
         y -= ycoll;
     }
+    
     if (alarmDie &gt;= 0)
-    {
         alarmDie -= 1;
-        if (alarmDie == 0)
-        {
-            instance_destroy();
-        }
-    }
+    
     script_execute(script);
     if (code != "")
     {
@@ -109,6 +106,12 @@ if (entityCanStep())
     {
         xspeed = cos(degtorad(dir)) * spd;
         yspeed = -sin(degtorad(dir)) * spd;
+    }
+    
+    // lol why?
+    if (alarmDie == 0)
+    {
+        instance_destroy();
     }
 }
 else
@@ -142,8 +145,10 @@ else
 if (canHit)
 {
     instance_create(x, y, objExplosion);
-    playSFX(sfxEnemyHit);
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
 }
+
+
 </string>
           </argument>
         </arguments>
@@ -173,14 +178,14 @@ if (canHit)
     else
         dead = true;
     instance_create(x, y, objHarmfulExplosion);
-    playSFX(sfxExplosion);
-    stopSFX(sfxEnemyHit);
+    playSFX(explosionSFX);
+    stopSFX(getGenericSFX(SFX_ENEMYHIT));
 }
 else if (dieOnHit)
 {
     canHit = true;
     event_user(EV_DEATH);
-    stopSFX(sfxEnemyHit);
+    stopSFX(getGenericSFX(SFX_ENEMYHIT));
 }
 </string>
           </argument>

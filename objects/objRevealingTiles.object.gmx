@@ -71,7 +71,9 @@ prevWeather = global.telTelWeather;
             <kind>1</kind>
             <string>if(!insideSection(x,y))
 {
+    skipDraw = true;
     instance_deactivate_object(id);
+    exit;
 }
 skipDraw=false;
 if(instance_exists(objTelTelWeatherControl))
@@ -161,11 +163,11 @@ if (!surface_exists(sectionSurface) || !surface_exists(sectionSurfaceMask))
 {
     sectionWidth = sectionRight - sectionLeft;
     sectionHeight = sectionBottom - sectionTop;
-    surface_free(sectionSurface);
-    surface_free(sectionSurfaceMask);
+    mm_surface_free(sectionSurface);
+    mm_surface_free(sectionSurfaceMask);
     
-    sectionSurface = surface_create(sectionWidth, sectionHeight);
-    sectionSurfaceMask = surface_create(sectionWidth, sectionHeight);
+    sectionSurface = mm_surface_create(sectionWidth, sectionHeight);
+    sectionSurfaceMask = mm_surface_create(sectionWidth, sectionHeight);
 }
 </string>
           </argument>
@@ -189,8 +191,8 @@ if (!surface_exists(sectionSurface) || !surface_exists(sectionSurfaceMask))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>surface_free(sectionSurface);
-surface_free(sectionSurfaceMask);
+            <string>mm_surface_free(sectionSurface);
+mm_surface_free(sectionSurfaceMask);
 </string>
           </argument>
         </arguments>

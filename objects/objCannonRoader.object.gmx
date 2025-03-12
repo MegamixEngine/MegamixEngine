@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A rocket-powered Roader that charges at Mega Man and explodes on death.
+            <string>/// A rocket-powered Roader that rolls forward and explodes when destroyed. If the player gets close, it pauses and then charges in the direction it's facing.
+/// When rolling, it will turn around at walls and ledges. But when charging, it will zoom off of ledges and explode on walls.
+/// Suitable for "look, then act" challenges, as well as certain reflex-based challenges.
 
 event_inherited();
 
@@ -95,6 +97,7 @@ if (entityCanStep())
         {
             if (abs(target.x - x) &lt;= 48)
             {
+                calibrateDirection();
                 charge = true;
             }
         }
@@ -112,13 +115,21 @@ if (entityCanStep())
         // Charge forward after countdown
         if (moveTimer &lt;= 0)
         {
+            if (moveTimer == 0)
+            {
+                if (instance_exists(target))
+                {
+                    if (abs(target.x - x) &lt;= 48)
+                        calibrateDirection();
+                }
+            }
             xspeed = chargeSpeed * image_xscale;
             
             if (xcoll != 0)
             {
                 dead = true;
                 instance_create(x, bboxGetYCenter(), objHarmfulExplosion);
-                playSFX(sfxMM9Explosion);
+                playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
             }
         }
     }
@@ -160,7 +171,8 @@ if (dead)
     if ((other.object_index != objTornadoBlow) &amp;&amp; (other.object_index != objBlackHoleBomb))
     {
         instance_create(x, bboxGetYCenter(), objHarmfulExplosion);
-        playSFX(sfxMM9Explosion);
+        stopSFX(getGenericSFX(SFX_ENEMYHIT));
+        playSFX(getGenericSFX(SFX_EXPLOSIONMM9));
         
         if ((other.object_index == objSlashClaw) || (other.object_index == objBreakDash))
         {

@@ -2,7 +2,7 @@
 <sprite>
   <type>0</type>
   <xorig>20</xorig>
-  <yorigin>24</yorigin>
+  <yorigin>23</yorigin>
   <colkind>0</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
@@ -14,7 +14,7 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>13</TextureGroup0>
+    <TextureGroup0>203</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>40</width>
@@ -28,6 +28,5 @@
     <frame index="5">images\sprChillIntro_5.png</frame>
     <frame index="6">images\sprChillIntro_6.png</frame>
     <frame index="7">images\sprChillIntro_7.png</frame>
-    <frame index="8">images\sprChillIntro_8.png</frame>
   </frames>
 </sprite>

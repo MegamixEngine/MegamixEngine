@@ -35,14 +35,15 @@ healthpoints = healthpointsStart;
 contactDamage = 4;
 
 category = "aquatic, floating";
+bubbleTimer = -1;
 
 blockCollision = 0;
 grav = 0;
 
-facePlayer = true;
-
 // Enemy specific code
 image_speed = 0.1; // STOP USING THIS VARIABLE
+startDir = -1;
+facePlayerOnSpawn = false;
 
 popDelay = 64;
 popDelayStart = popDelay;
@@ -93,6 +94,7 @@ if (entityCanStep())
             if (collision_line(x - 512, y, x + 512, y, target, false, true))
             {
                 sineWave = true;
+                calibrateDirection();
                 xspeed = image_xscale;
             }
         }
@@ -135,6 +137,7 @@ event_inherited();
 popDelay = popDelayStart;
 sineWave = false;
 sinCounter = 0;
+image_xscale = startDir;
 </string>
           </argument>
         </arguments>

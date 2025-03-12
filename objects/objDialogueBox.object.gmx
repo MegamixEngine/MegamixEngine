@@ -3,7 +3,7 @@
   <spriteName>sprDialogueBox</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-10000001</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,54 +25,133 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>// Dialogue Boxes. Allow characters to speak.
+event_inherited();
 
+// CONSTANTS
+CARRIAGE_RETURN_CHAR = chr(13);
+LINE_FEED_CHAR = chr(10);
+TEXTBOX_WIDTH = 256;
+TEXTBOX_HEIGHT = sprite_height;
+TEXTBOX_SPRITE = sprite_index;
+OPTION_HEIGHT = 18;
+MUGSHOT_SECTION_WIDTH = 48;
+RIGHT_BORDER_WIDTH = 8;
+TEXT_START_X = 43; // Starting position of the text, relative to the textbox
+TEXT_START_Y = 19;
+MAX_LINE_WIDTH = TEXTBOX_WIDTH - TEXT_START_X - 4; // Max. width for a line possible before a new line is needed
+MUGSHOT_X = 5;
+MUGSHOT_Y = 18;
+DRAW_NAME = true;
+NAME_X = 43;
+NAME_Y = 6;
+TEXT_ONLY = false;
+
+// Built-in variables
 image_speed = 0;
 
-textLength = 0;
-showtext = 0;
+// Textbox settings
+boxPosition = 0; // 0 - Top of the screen; 1 - Bottom of the screen
+boxOffset = 8; // Used to shift the box into &amp; out of the screen
+skinIndex = 0; // Determines the image_index for the textbox (&amp; the option boxes)
 
-phase = 1;
-timer = 14;
-
-name = '...';
+// Name of character speaking
+name = "...";
 nameCol = c_white;
-itext = "Sorry Nothing";
 
-sprite_index = sprMugshots;
-mugshotIndex = 0;
+// Mugshot of character
+sprite_index = sprGenericMugshots;
+mugshotIndex = 0; // Used for player mugshots
 mugshotIndexStart = 0;
 mugshotIndexEnd = 0;
 mugshotSpeed = 0;
+mugshotPlayer = false; //Are we drawing a player's mugshot?
+blinkDelay = 0;
 
-optionPos = 0;
-optionCount = 0;
-for (i = 0; i &lt;= 4; i += 1)
-{
-    optionText[i] = "";
-}
+_im = 0; // needed for animationLoop
+blinkTimer = 0;
 
-pos = 0;
-boxOffset = 8;
-origin = 0;
-o_event = 0;
+// Character's dialogue
+text = ""; // Character's current line of text
+textList = mm_ds_list_create(); // All of the speaker's dialogue
 
-text = ds_list_create();
+// Text Effects
+textColourMap = mm_ds_map_create(); // Stores the colour changes in the speaker's current line of text
+textMotionMap = mm_ds_map_create(); // Stores the motion effects in the speaker's current line of text
+textDelayMap = mm_ds_map_create(); // Stores the delay points in the speaker's current line of text
+textEmojiMap = mm_ds_map_create(); // Stores the emojis for the speaker's current line of text
+textLiteralHashes = array_create(0); // Stores the instances in the speaker's current line of text where '#' is used literally (i.e. not a line break)
+textInstantTypePoint = -1; // The point in the dialogue where text gets instantly typed out
+textAutoAdvancePoint = -1; // The point in the dialogue where the textbox auto-advances
 
-_im = 0; // variable for animationLoop
+// How text gets rendered
+textLength = 0; // Full length of the current line of text
+charsTyped = 0; // How many characters of the current line of text we've typed
+textTimer = 0; // A constantly growing variable you can reference in text events, e.g. shaking text.
+textSpeed = 0.5; // Controls the speed at which text gets typed out
+textSpeedMulti = 4; // Multiplies textSpeed by this much if the jump button is held
+canSkipText = true; // Does pressing the pause button go right to the end of the dialogue line?
+textDelay = 16; // This must be 0 before text can advance
+textBlip = -1; //sfxMenuScrollDown; // Can be used to have a sound play as text is typed (-1 means no sound)
+blipCount = 0;
 
-// MegaMan specific
-with (objMegaman)
-{
+// Text Font
+textFont = global.font;
+fontCharWidth = 8; // -1 means the font is not mono, and the width of each char must be calculated on the fly
+fontCharHeight = 8;
+
+// Emojis
+emojiSprite = sprDot;
+emojiImageIndex = 0;
+
+// Dialogue Options once at the end of the text list
+optionPos = 0; // Which option is selected
+optionCount = 0; // How many options to choose from
+optionText[0] = ""; // Text on each option presented
+
+// State Variables
+phase = 0;
+phaseTimer = 0;
+
+// Used to freeze textboxes when a Cutscene Skip menu is called
+frozen = 0;
+
+// Lock to stop player movement
+dialogueLock = playerLockMovement();
+with (objMegaman) { // playerLockMovement doesn't cut the yspeed...
     xspeed = 0;
     yspeed = 0;
 }
 
-dialogueLock = playerLockMovement();
+// Keep a reference to the entity that spawned this textbox,
+// to prevent interaction with npcs besides the one being talked to.
+parent = noone;
+parentEvent = 0;
 
-offset = 0; // This is a constantly growing variable you can reference in text events, e.g. a constantly waving text.
+playerID = 0;
 
-parent = 0; //need to prevent interaction with npcs besides the one being talked to.
+// == TEXT EFFECTS ==
+// In this dialogue system, the char "/" is used to denote an effect applied to the upcoming chars
+// The uses of "/" is as follows ('X' represents a digit):
+//
+// - /CXX = Changes the text color for the upcoming chars. Expects an index from the global.nesPalette array. (e.g. /C27 to make blue text)
+// - /DXXX = Pauses the dialogue box mid-type for the duration provided. (e.g. /D120 to pause for 120 frames, or 2 seconds)
+// - /EXX = Represents a sprite in the text, sorta like an emoji (from a set list, see the getTextboxEmoji script)
+// - /A = Textbox advances itself, closing itself if on the last block of dialogue (won't close if there's an option to choose)
+// - /I = Text gets typed out instantly until we hit the end of the string
+// - /X = Applies a motion effect for the upcoming chars (0 = normal; 1 = shakey; 2 = wavey; 3 = tornado)
+// - // = We wish to actually draw a '/' char
+// - /# = We wish to draw a '#' char without triggering a line break
+// - /" = We wish to draw a ' char in a string made with ''
+// - /' = We wish to draw a " char in a string made with ""
+
+alarm[0] = 1;
+
+strPID = 0;
+strCID = 0;
+
+depth = -9999999;
+
 </string>
           </argument>
         </arguments>
@@ -96,23 +175,63 @@ parent = 0; //need to prevent interaction with npcs besides the one being talked
           <argument>
             <kind>1</kind>
             <string>dialogueLock = playerFreeMovement(dialogueLock);
+mm_ds_list_destroy(textList);
+mm_ds_map_destroy(textColourMap);
+mm_ds_map_destroy(textMotionMap);
+mm_ds_map_destroy(textDelayMap);
+mm_ds_map_destroy(textEmojiMap);
 
-with (origin)
+with (parent)
 {
-    if (other.o_event != -1)
+    if (other.parentEvent != -1)
     {
-        event_user(other.o_event);
+        event_user(other.parentEvent);
     }
-}
-
-ds_list_destroy(text);
-with (objNPC)
-{
-    if (npcID == other.parent)
+    
+    if (object_index == objNPC || object_is_ancestor(object_index, objNPC))
     {
         event_user(2);
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Check if this textbox is nameless
+if (name == "")
+{
+    TEXTBOX_SPRITE = sprDialogueBoxNameless;
+    TEXTBOX_HEIGHT = sprite_get_height(TEXTBOX_SPRITE);
+    DRAW_NAME = false;
+    TEXT_START_X = 43;
+    TEXT_START_Y = 5;
+    MUGSHOT_X = 5;
+    MUGSHOT_Y = 5;
+}
+
+// Also get information on the font to use for this textbox
+draw_set_font(textFont);
+fontCharWidth = ternary(textFont == global.fontSmall, -1, string_width("A"));
+fontCharHeight = string_height("A");
+draw_set_font(global.font);
 </string>
           </argument>
         </arguments>
@@ -135,116 +254,669 @@ with (objNPC)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch (phase)
+            <string>if (frozen)
 {
-    case 1: // Move in box 
-        boxOffset--;
-        if (boxOffset &lt;= 0)
+    exit;
+}
+
+var start = (global.keyPause[playerID]);
+var startPress = (global.keyJumpPressed[playerID] || global.keyPausePressed[playerID]);
+
+var yDir = global.keyDownPressed[playerID] - global.keyUpPressed[playerID];
+var jump = global.keyJump[playerID];
+var slide = global.keySlide[playerID];
+
+switch (phase)
+{
+        
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      
+    case 0: // Textbox appears
+        
+        if (--boxOffset &lt;= 0)
         {
             boxOffset = 0;
-            showtext = 1;
-            phase = 2;
-            itext = ds_list_find_value(text, 0);
-        }
-        break;
-    case 2: // Increase visible text 
-        timer--;
-        if (!timer)
-        {
-            textLength += 0.5 + (1.5 * (global.keyJump[0] || global.keyPause[0]));
-        }
-        if (timer &lt; 4 &amp;&amp; global.keyPausePressed[0])
-        {
-            textLength = string_length(itext);
+            phase = 1;
+            phaseTimer = 16; // Short delay before the text gets typed
+            
+            event_user(0);
         }
         
-        if (textLength &gt;= string_length(itext))
-        {
-            textLength = string_length(itext);
-            timer = 12;
-            phase = 3;
-        }
         break;
-    case 3: // Go to next block of text 
-        timer--;
-        if (!timer)
+        
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        
+    case 1: // Typing out our text
+    
+        //Get speed
+        var textSpeedApply = textSpeed;
+        
+        if (jump || start) //Speed up!
         {
-            if (optionCount &gt; 0 &amp;&amp; ds_list_size(text) == 1) // Move between options
+            textSpeedApply *= textSpeedMulti;
+        }
+        
+        // Skip to the end
+        var autoAdvance = false;
+        
+        if (canSkipText)
+        {
+            if ((start) &amp;&amp; (textDelay &lt;= 0)) //Skip!
             {
-                var mv = global.keyDownPressed[0] - global.keyUpPressed[0];
-                if (mv != 0)
+                autoAdvance = inClosedRange(textAutoAdvancePoint, 1, textLength);
+                charsTyped = textLength;
+            }
+        }
+        
+        // - - - - - - - - - - - -
+        
+        var prevCharsTyped = floor(charsTyped);
+        
+        if (textDelay &lt;= 0) //Wait for delay
+        {
+            charsTyped += textSpeedApply; //Advance text
+        }
+        else
+        {
+            textDelay -= textSpeedApply;
+        }
+        
+        var actualCharsTyped = floor(charsTyped);
+        
+        //Have we gotten to the next char yet?
+        if (actualCharsTyped != prevCharsTyped) 
+        {
+            // BLIP - - - - - - - - - - - -
+            var tb = textBlip;
+            if (textBlip == -1)
+            {
+                tb = getGenericSFX(SFX_TEXTBLIP); //Do this here so TTYD (and maybe others) can alternate their sounds.
+            }
+
+            var can_blip = true,
+            var blip_char = string_char_at(text, actualCharsTyped);
+            
+            if (blip_char == " ")
+            {
+                can_blip = false;
+                blipCount = 0;//Reset so one-character words still say something.
+            }
+            else if (blip_char == "#") // Don't blip, unless this is an actual '#' &amp; not a line break
+            {
+                can_blip = indexOf(textLiteralHashes, actualCharsTyped) != -1;
+            }
+            
+            if (can_blip)
+            {
+                if (tb &gt; 0)// If we have a blip sfx, we should play it
                 {
-                    playSFX(sfxTextBox);
+                    var mySound = playSFXNoStop(tb,.7);
                     
-                    optionPos += mv;
-                    if (optionPos &lt; 0)
-                    {
-                        optionPos = optionCount - 1;
-                    }
-                    if (optionPos &gt;= optionCount)
-                    {
-                        optionPos = 0;
+                    //audio_sound_pitch(mySound, choose(0.95, 1, 1.05));
+                }
+                blipCount++;
+            }
+            
+            // - - - - - - - - - - - -
+            
+            // Check if we reached the auto-advance point, if one is set
+            if (inClosedRange(textAutoAdvancePoint, prevCharsTyped, actualCharsTyped)) {
+                autoAdvance = true;
+            } else if (inClosedRange(textInstantTypePoint, prevCharsTyped, actualCharsTyped)) { // Check if we reached the instant-type point. Again, if one is set
+                charsTyped = textLength;
+            } else
+            {
+                // Check if we should perform a text delay
+                // This is a for-loop as it's possible to reach a delay point while typing out multiple characters at once
+                for (var i = prevCharsTyped + 1; i &lt;= actualCharsTyped; i++)
+                {
+                    if (!is_undefined(textDelayMap[? i])) {
+                        textDelay = textDelayMap[? i];
+                        charsTyped = i;
+                        break;
                     }
                 }
             }
+        }
+        
+        // - - - - - - - - - - - -
+        
+        if (autoAdvance)
+        {
+            // If we have another block of dialogue, load that one
+            // If we're at the end, close the text box
+            // (unless we want the player to choose an option)
+            if (!ds_list_empty(textList))
+                event_user(1);
+            else if (optionCount &lt;= 0)
+                event_user(2);
+            else
+                event_user(3);
             
-            if (global.keyJumpPressed[0] || global.keyPausePressed[0])
+        }
+        else if (charsTyped &gt;= textLength)
+        {
+            event_user(3);
+        }
+        
+        break;
+        
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      
+    case 2: // Full line typed out
+        
+        var hasOptions = (optionCount &gt; 0);
+        var hasTextLeft = !ds_list_empty(textList);
+        var selectOption = (hasOptions &amp;&amp; !hasTextLeft);
+        
+        if (phaseTimer &lt;= 0)
+        {
+            if (selectOption) //Option to select
             {
-                ds_list_delete(text, 0);
-                
-                if (!ds_list_empty(text)) // Get next block of code
+                // Move between options
+                if (yDir != 0)
                 {
-                    itext = ds_list_find_value(text, 0);
-                    timer = 2;
-                    phase = 1;
-                    playSFX(sfxTextBox);
+                    playSFX(getGenericSFX(SFX_TEXTCONTINUE));
+                    
+                    optionPos = (optionPos + yDir) mod optionCount;
+                    optionPos = optionPos + optionCount;
+                    optionPos = optionPos mod optionCount;
                 }
-                else // No more text left
+                
+                if (startPress)
                 {
-                    if (optionCount &gt; 0)
+                    if (phaseTimer &lt;= -8) // A small buffer to make it less likely for the player to choose an option before they even know what the choices are
                     {
                         playSFX(sfxMenuSelect);
+                        
                         if (optionText[optionPos] != "")
                         {
-                            with (objNPC)
+                            with (parent)
                             {
-                                if (active &amp;&amp; npcID == other.parent)
-                                {
-                                    option_chosen = objDialogueBox.optionPos;
-                                    if (option_text[option_chosen] != "")
-                                    {
-                                        var d = instance_nearest(x, y, objDialogueBox);
-                                        d.dialogueLock = playerFreeMovement(d.dialogueLock);
-                                        prev_index = d.image_index;
-                                        with (d)
-                                            instance_destroy();
-                                        event_user(0);
-                                        active = false;
+                                if (object_index == objNPC || object_is_ancestor(object_index, objNPC)) {
+                                    if (active) {
+                                        option_chosen = other.optionPos;
+                                        
+                                        if (option_text[option_chosen] != "") {
+                                            with (other) {
+                                                dialogueLock = playerFreeMovement(dialogueLock);
+                                                other.prev_index = image_index;
+                                                instance_destroy();
+                                            }
+                                            
+                                            event_user(0);
+                                            active = false;
+                                        }
                                     }
                                 }
                             }
                         }
+                        
+                        event_user(2);
                     }
-                    phase = 4;
-                    showtext = 0;
                 }
-                textLength = 0;
+            }
+            else //No option to select
+            {
+                var advance = startPress;
+                
+                if (slide) //Auto advance when holding slide
+                {
+                    if ((phaseTimer &lt;= -24) || start)
+                    {
+                        advance = 1;
+                    }
+                }
+                
+                if (advance)
+                {
+                    if (hasTextLeft) //Next block
+                    {
+                        event_user(1);
+                    }
+                    else //Close down
+                    {
+                        var nd = getGenericSFX(SFX_TEXTEND);
+                        if (nd &gt; 0)
+                        {
+                            playSFX(nd);
+                        }
+                        
+                        event_user(2);
+                    }
+                }
             }
         }
+        
+        phaseTimer --;
+        
+        phaseTimer -= (slide);
+        
         break;
-    case 4: // Move away box 
-        boxOffset++;
-        if (boxOffset == 8)
+        
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      
+    case 3: // Textbox disappears
+        
+        if (++boxOffset &gt;= 8)
         {
             visible = 0;
             instance_destroy();
         }
+        
         break;
+        
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      
 }
 
-animationLoop(mugshotIndexStart, mugshotIndexEnd, mugshotSpeed);
+if (blinkTimer &gt;= blinkDelay)
+{
+    animationLoop(mugshotIndexStart, mugshotIndexEnd, mugshotSpeed);
+    
+    if (image_index = mugshotIndexStart)
+    {
+        blinkTimer = 0;
+    }
+}
+else
+{
+    blinkTimer++;
+}
 
-offset += 1;
+textTimer ++;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// DONE TYPING TEXT
+
+charsTyped = textLength;
+phase = 2;
+phaseTimer = 8;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// CLOSE
+
+phase = 3;
+text = "";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// NEXT BLOCK OF TEXT
+
+phase = 1;
+phaseTimer = 4;
+
+event_user(0);
+
+playSFX(getGenericSFX(SFX_TEXTCONTINUE));
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// FORMAT TEXT
+if (ds_list_empty(textList)) { // If the textList is empty, just give a blank line
+    text = "";
+    textLength = 0;
+    charsTyped = 0;
+    exit;
+}
+
+// Reset variables
+ds_map_clear(textColourMap);
+ds_map_clear(textMotionMap);
+ds_map_clear(textDelayMap);
+ds_map_clear(textEmojiMap);
+textLiteralHashes = array_create(0);
+textInstantTypePoint = -1;
+textAutoAdvancePoint = -1;
+charsTyped = 0;
+textDelay = 0;
+
+draw_set_font(textFont);
+
+// The line of text as it is in the textList, with all requested text effects present
+var raw_line = textList[| 0];
+// The line as it will be read through by the Dialogue Box
+// Auto-line breaks have been added in, and all text effects have been extracted out into textEffects
+var processed_line = "";
+
+// -- Let the text parsing begin -- 
+var current_line_width = 0, // Width of the line we're currently working on (in pixels)
+    index = 1, // Because GMS decided that strings have to start at 1, not 0
+    check_word = true, // If true, the parser will check the current word to see if it would trigger a word wrap
+    ignore_next_line_break = false, // Used for when a manual line break after a word coincides with an automated one
+    
+var debug_msg = false;
+
+if (debug_msg)
+    show_debug_message("New Text Block");
+
+while (raw_line != "") {
+    var _char = string_char_at(raw_line, 1);
+    
+    if (_char == CARRIAGE_RETURN_CHAR) {
+        raw_line = string_delete(raw_line, 1, 1);
+        continue;
+    }
+    
+    // If this is the beginning of a word, check to see if this word approaches the limit of the current line
+    // we need to know in advance if we need to place this word on a new line
+    if (check_word) {
+        switch (_char) {
+            case " ":
+            case LINE_FEED_CHAR:
+            case "#":
+                break; //These characters do not signify the start of a word
+            
+            case "/": //Only break if it's not leading to a literal / or #
+                if (string_char_at(raw_line, 2) != "/" &amp;&amp; string_char_at(raw_line, 2) != "#")
+                    break;
+            
+            default:
+                var end_point = string_length(raw_line),
+                    seek_char = "",
+                    word_width = 0;
+                
+                // We will seek ahead of the raw line until we hit the end of this word
+                // Let's assume we've hit the end of the word once we hit a ' ', a '#', or the end of the string
+                for (var i = 1; i &lt;= end_point; i++) {
+                    seek_char = string_char_at(raw_line, i);
+                    
+                    if (seek_char == "/") { // Effect
+                        // Effects aren't actually part of the word, so we need to jump over them
+                        var seek_effect_type = string_char_at(raw_line, i + 1);
+                        
+                        switch (seek_effect_type) {
+                            case "C": i += 3; break; // Colour
+                            case "D": i += 4; break; // Delay
+                            
+                            case "E": // Emoji
+                                getTextboxEmoji(real(string_copy(raw_line, i + 2, 2)));
+                                i += 3;
+                                word_width += sprite_get_width(emojiSprite);
+                                break;
+                            
+                            case "/": // Literal '/'
+                                i += 1;
+                                word_width += string_width("/");
+                                break;
+                                
+                            case "#": // Literal '#'
+                                i += 1;
+                                word_width += string_width("\#");
+                                break;
+                            
+                            case '"': //Apostrophe escape character (/")
+                                i += 1;
+                                word_width += string_width("'");
+                                break;
+                            
+                            case "'": //Quotation mark escape character (/')
+                                i += 1;
+                                word_width += string_width('"');
+                                break;
+                            
+                            default: // Motion Effects, Instant-Type, Auto-Advance
+                                i += 1;
+                                break;
+                        }
+                    } else if (seek_char == " " || seek_char == LINE_FEED_CHAR || seek_char == "#") { // End of the word
+                        break; // Stop the for-loop, we've reached the end of the word
+                    } else {
+                        word_width += string_width(seek_char);
+                    }
+                }
+                
+                if (debug_msg) {
+                    show_debug_message(
+                        "Upcoming word"
+                        + " | Word Length: " + string(word_width)
+                        + " | Current Line Length: " + string(current_line_width)
+                        + " | New Line Length: " + string(current_line_width + word_width)
+                        + " | Will Cause Linebreak: " + string(current_line_width + word_width &gt; MAX_LINE_WIDTH)
+                    );
+                }
+                
+                // Will this word put us over the end of the current line?
+                // If so, make a new line
+                if (current_line_width + word_width &gt; MAX_LINE_WIDTH) {
+                    // If this is the first word of the current line,
+                    // and it's so long that it exceeds the full width of the textbox
+                    // Forego making the new line (it shall become victim to the auto line-break system)
+                    if (!(current_line_width == 0 &amp;&amp; word_width &gt; MAX_LINE_WIDTH)) {
+                        if (debug_msg)
+                            show_debug_message("Line Break | Line Length: " + string(current_line_width));
+                        
+                        processed_line += "#";
+                        current_line_width = 0;
+                        index++;
+                    }
+                } else if (current_line_width + word_width == MAX_LINE_WIDTH) {
+                    ignore_next_line_break = true;
+                }
+                
+                check_word = false;
+                break;
+        }
+    }
+    
+    switch (_char) 
+    {
+        case "/": // Text Effects
+            var effect_type = string_char_at(raw_line, 2);
+            
+            switch (effect_type) {
+                case "C": // Text Colour (/CXX)
+                    var col_effect = real_fromHex(string_copy(raw_line, 3, 2));
+                    if (col_effect &lt; array_length_1d(global.nesPalette)) // Error checking
+                        textColourMap[? index] = global.nesPalette[col_effect];
+                    raw_line = string_delete(raw_line, 1, 4);
+                    break;
+                
+                case "D": // Delay (/DXXX)
+                    textDelayMap[? index - 1] = real(string_copy(raw_line, 3, 3));
+                    raw_line = string_delete(raw_line, 1, 5);
+                    break;
+                
+                case "E": // Emoji (/EXX)
+                    textEmojiMap[? index] = real(string_copy(raw_line, 3, 2));
+                    getTextboxEmoji(textEmojiMap[? index]);
+                    processed_line += "A"; // Takes the emoji's place in the actual string
+                    current_line_width += sprite_get_width(emojiSprite);
+                    index++;
+                    raw_line = string_delete(raw_line, 1, 4);
+                    break;
+                
+                case "I": // Instant-Type (/I)
+                    if (textInstantTypePoint == -1)
+                        textInstantTypePoint = index;
+                    raw_line = string_delete(raw_line, 1, 2);
+                    break;
+                
+                case "A": // Auto-Advance (/A)
+                    if (textAutoAdvancePoint == -1)
+                        textAutoAdvancePoint = index - 1;
+                    raw_line = string_delete(raw_line, 1, 2);
+                    break;
+                
+                case "/": // Literal '/' (//)
+                    processed_line += "/";
+                    current_line_width += string_width("/");
+                    index++;
+                    raw_line = string_delete(raw_line, 1, 2);
+                    break;
+                
+                case "#": // Literal '#' (/#)
+                    arrayAppend(textLiteralHashes, index);
+                    processed_line += "#";
+                    current_line_width += string_width("\#");
+                    index++;
+                    raw_line = string_delete(raw_line, 1, 2);
+                    break;
+                
+                case '"': //Apostrophe escape character (/")
+                    processed_line += "'";
+                    current_line_width += string_width("'");
+                    index++;
+                    raw_line = string_delete(raw_line, 1, 2);
+                    break;
+                
+                case "'": //Quotation mark escape character (/')
+                    processed_line += '"';
+                    current_line_width += string_width('"');
+                    index++;
+                    raw_line = string_delete(raw_line, 1, 2);
+                    break;
+                
+                default: // Motion (/X)
+                    textMotionMap[? index] = real(effect_type);
+                    raw_line = string_delete(raw_line, 1, 2);
+                    break;
+            }
+            break;
+        
+        case " ": // Space
+        case LINE_FEED_CHAR: // The original objDialogueBox interpreted this as a space, so we'll do the same here.
+            if (ignore_next_line_break) {
+                ignore_next_line_break = false;
+            } else {
+                processed_line += " ";
+                index++;
+                current_line_width += string_width(" ");
+            }
+            
+            raw_line = string_delete(raw_line, 1, 1);
+            check_word = true;
+            break;
+        
+        case "#": // Line Break
+            if (ignore_next_line_break) {
+                //current_line_length++;
+                ignore_next_line_break = false;
+            } else {
+                if (debug_msg)
+                    show_debug_message("Line Break | Line Length: " + string(current_line_width));
+                
+                processed_line += "#";
+                current_line_width = 0;
+                index++;
+            }
+            
+            raw_line = string_delete(raw_line, 1, 1);
+            check_word = true;
+            break;
+        
+        default: // Any other char
+            processed_line += _char;
+            current_line_width += string_width(_char);
+            index++;
+            raw_line = string_delete(raw_line, 1, 1);
+            
+            break;
+    }
+    
+    // If we're at the limit of the current line, make a new one
+    // (unless we've reached the end of the text)
+    if (current_line_width &gt;= MAX_LINE_WIDTH &amp;&amp; raw_line != "") {
+        if (debug_msg)
+            show_debug_message("Line Break | Line Length: " + string(current_line_width));
+        
+        processed_line += "#";
+        current_line_width = 0;
+        index++;
+    }
+}
+
+text = processed_line;
+
+
+textLength = string_length(text);
+ds_list_delete(textList, 0);
+draw_set_font(global.font);
+
+textDelay = 8;
+
+// Set the text delay if the text will begin with any
+if (!is_undefined(textDelayMap[? 0]))
+    textDelay = textDelayMap[? 0];
 </string>
           </argument>
         </arguments>
@@ -267,130 +939,272 @@ offset += 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Box
-var ypos = view_yview - 8 * boxOffset;
-if (pos == 1)
+            <string>///DRAW TEXTBOX
+
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+draw_set_color(c_white);
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+var x_pos = view_xview[0] - objGlobalControl.shakex;
+var y_pos = view_yview[0] - objGlobalControl.shakey;
+
+var boxHeight = (8 * boxOffset);
+
+if (boxPosition == 0) //Top
 {
-    ypos = view_yview + view_hview + 8 * boxOffset;
+    y_pos -= boxHeight;
 }
-draw_sprite_part_ext(sprDialogueBox, 0, 0, 0, 48, 64, view_xview[0], ypos, 1, 1, image_blend, image_alpha); // mugshot section
-draw_sprite_part_ext(sprDialogueBox, 0, 48, 0, 1, 64, view_xview[0] + 48, ypos, view_wview[0] - 56, 1, image_blend, image_alpha); // content section
-draw_sprite_part_ext(sprDialogueBox, 0, 48, 0, 8, 64, view_xview[0] + view_wview[0] - 8, ypos, 1, 1, image_blend, image_alpha); // right border
-
-draw_sprite_part(sprDialogueBox, 0, 1, 4, 2, 4, view_xview + 4 + (floor(offset / 8) mod 10) * 2, ypos + 4); // moving light
-
-// text
-if (showtext)
+else //Down
 {
-    draw_sprite_part(sprite_index, -1, 0, 0, 32, 32, view_xview[0] + 5, ypos + 18);
+    y_pos += view_hview[0] - TEXTBOX_HEIGHT + boxHeight;
+}
+
+//Counteract shaking
+var txtx = objGlobalControl.shakex;
+var txty = objGlobalControl.shakey;
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// Textbox
+if (!TEXT_ONLY)
+{
+    var _img_index = skinIndex;
     
-    draw_set_halign(fa_left);
-    draw_set_valign(fa_left);
-    draw_set_color(c_white);
+    var spr = TEXTBOX_SPRITE;
+    var img = _img_index;
     
-    if (string_length(name)) // Draw name
+    draw_sprite_part_ext(spr, img, 0, 0, MUGSHOT_SECTION_WIDTH, TEXTBOX_HEIGHT, x_pos, y_pos, 1, 1, image_blend, image_alpha); // mugshot section
+    draw_sprite_part_ext(spr, img, MUGSHOT_SECTION_WIDTH, 0, 1, TEXTBOX_HEIGHT, x_pos + MUGSHOT_SECTION_WIDTH, y_pos, TEXTBOX_WIDTH - (MUGSHOT_SECTION_WIDTH + RIGHT_BORDER_WIDTH), 1, image_blend, image_alpha); // content section
+    draw_sprite_part_ext(spr, img, MUGSHOT_SECTION_WIDTH, 0, RIGHT_BORDER_WIDTH, TEXTBOX_HEIGHT, x_pos + TEXTBOX_WIDTH - RIGHT_BORDER_WIDTH, y_pos, 1, 1, image_blend, image_alpha); // right border
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    // Mugshot
+    var xx = (x_pos + MUGSHOT_X)
+    var yy = (y_pos + MUGSHOT_Y);
+    
+    if (!mugshotPlayer)
     {
-        draw_text_colour(view_xview[0] + 43, ypos + 6, name, nameCol, nameCol, nameCol, nameCol, 1);
+        draw_sprite_part(sprite_index, -1, 0, 0, 32, 32, xx, yy);
     }
-    
-    // These variables checks if the current line reaches over the boundry.
-    var line = 0;
-    var length = floor((view_wview[0] - 56) / 8);
-    var count = 0;
-    
-    var effect = 0; // /0 = normal text, /1 = shakey /2 = wavey
-    var colour = c_white; // /C0 = white, /C1 = red, /C2 = yellow, /C3 = green, /C3 = blue
-    
-    for (i = 1; i &lt;= textLength; i += 1) // we're going to draw the text individually, that way we can apply all sorts of effects to it.
+    else
     {
-        drawChar = string_char_at(itext, i);
+        var cid = global.costumeID[? global.costumeSelected[0]];
         
-        if (drawChar == "/") // Get effects
+        drawPlayerMugshot(0, cid, (xx + 16), (yy + 12));
+        
+        nameCol = getPlayerNameColor();
+    }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// Name
+if (DRAW_NAME)
+{
+    if (name != "")
+    {
+        var xx = (x_pos + NAME_X);
+        var yy = (y_pos + NAME_Y);
+        
+        //hardcoded exception for 48H's :fire: Man
+        if (name == ":fire: Man")
         {
-            if (string_char_at(itext, i + 1) == "C") // Color
-            {
-                var col1 = string_char_at(itext, i + 2);
-                var col2 = string_char_at(itext, i + 3);
-                var col3 = col1 + col2;
-                colour = global.nesPalette[real(col3)];
-                i += 3;
-                continue;
+            draw_sprite(spr48HFireEmoji,0,xx,yy);
+            
+            draw_set_color(nameCol);
+            
+            draw_text(xx, yy, "   Man");
+            
+            draw_set_color(c_white);
+        }
+        else
+        {
+            draw_set_color(nameCol);
+            
+            draw_text(xx, yy, name);
+            
+            draw_set_color(c_white);
+        }
+    }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// Text
+if (text != "")
+{
+    var draw_char = "",
+        start_x = x_pos + TEXT_START_X,
+        char_x = start_x,
+        char_y = y_pos + TEXT_START_Y,
+        char_col = c_white,
+        char_motion = 0,
+        offset_x = 0,
+        offset_y = 0;
+    
+    draw_set_font(textFont);
+    
+    for (var i = 1; i &lt;= charsTyped; i++)
+    {
+        draw_char = string_char_at(text, i);
+        
+        if (draw_char == "#") // Potential Line Break
+        {
+            if (indexOf(textLiteralHashes, floor(i)) == -1) { // Line Break
+                char_x = start_x;
+                char_y += fontCharHeight;
+                draw_char = "";
+            } else { // If defined, it means this is a literal '#' to draw. No line break.
+                draw_char = "\#";
             }
-            else if (string_digits(string_char_at(itext, i + 1)) != "") // Movement
+        }
+        
+        // Check for a colour change on this char
+        if (!is_undefined(textColourMap[? i]))
+            char_col = textColourMap[? i];
+        
+        // Check for a motion change on this char
+        if (global.showMovingText) {
+            if (!is_undefined(textMotionMap[? i]))
+                char_motion = textMotionMap[? i];
+        }
+        
+        if (draw_char != "")
+        {
+            // Apply motion to this char
+            switch (char_motion)
             {
-                if (global.showMovingText)
-                {
-                    effect = real(string_char_at(itext, i + 1));
-                }
+                case 1: //Shake
+                    offset_x = choose(1, 0, -1) * !frozen;
+                    offset_y = choose(1, 0, -1) * !frozen;
+                    break;
                 
-                i += 1;
-                continue;
-            }
-        }
-        else if (drawChar == "#") // Line break
-        {
-            line += 1;
-            count = 0;
-            continue;
-        }
-        
-        // New line handling
-        e = 1;
-        while (i + e &lt;= string_length(itext)) // Check for something that seperates words
-        {
-            check = string_char_at(itext, i + e);
-            if (check == " " || check == "/" || check == "#")
-            {
-                break;
-            }
-            e++;
-        }
-        
-        if (count + e &gt; length + 1)
-        {
-            line += 1;
-            count = 0;
-        }
-        
-        // Process effect
-        switch (effect)
-        {
-            case 1: // Shakey 
-                xd = choose(1, 0, -1);
-                yd = choose(1, 0, -1);
-                break;
-            case 2: // Wavey 
-                xd = 0;
-                yd = cos((offset + i * 8) / 8);
-                break;
-            default: // also 0 - Normal 
-                xd = 0;
-                yd = 0;
-                break;
-        }
-        
-        // Finally draw a single letter *clap*
-        draw_text_colour(view_xview[0] + 43 + (count * 8) + xd, ypos + 19 + (line * 8) + yd, drawChar, colour, colour, colour, colour, 1);
-        
-        count += 1;
-    }
-    
-    // Extra Options
-    if (phase == 3 &amp;&amp; !timer)
-    {
-        if (optionCount &gt; 0 &amp;&amp; ds_list_size(text) == 1)
-        {
-            for (i = 1; i &lt;= optionCount; i += 1)
-            {
-                draw_sprite_part_ext(sprDialogueOptionBox, 0, 0, 0, 8, 18, view_xview[0], ypos + 45 + 18 * i, 1, 1, image_blend, image_alpha);
-                draw_sprite_part_ext(sprDialogueOptionBox, 0, 8, 0, 8, 18, view_xview[0] + 8, ypos + 45 + 18 * i, (view_wview[0] / 8) - 2, 1, image_blend, image_alpha);
-                draw_sprite_part_ext(sprDialogueOptionBox, 0, 16, 0, 8, 18, view_xview[0] + view_wview - 8, ypos + 45 + 18 * i, 1, 1, image_blend, image_alpha);
-                draw_text(view_xview[0] + 19, ypos + 51 + 18 * i, optionText[i - 1]);
+                case 2: //Wave
+                    offset_x = 0;
+                    offset_y = round(cos((textTimer + i * 8) / 8));
+                    break;
+                
+                case 3: //Tornado
+                    offset_x = round(cos((textTimer + i * 8) / 8));
+                    offset_y = round(sin((textTimer + i * 8) / 8));
+                    break;
+                
+                default: //None
+                    offset_x = 0;
+                    offset_y = 0;
+                    break;
             }
             
-            draw_sprite(sprOptionsCursor, offset * 0.2, view_xview[0] + 9, ypos + 51 + 18 * (optionPos + 1));
+            if (!is_undefined(textEmojiMap[? i]))
+            {
+                getTextboxEmoji(textEmojiMap[? i]);
+                if (emojiSprite == sprInputPromptKey)
+                {
+                    var inputString = "";
+                    
+                    switch (emojiImageIndex)
+                    {
+                        case 0: inputString = "left"; break;
+                        case 1: inputString = "right"; break;
+                        case 2: inputString = "up"; break;
+                        case 3: inputString = "down"; break;
+                        case 4: inputString = "jump"; break;
+                        case 5: inputString = "shoot"; break;
+                        case 6: inputString = "slide"; break;
+                        case 7: inputString = "pause"; break;
+                        case 8: inputString = "map"; break;
+                        case 9: inputString = "switchleft"; break;
+                        case 10: inputString = "switchright"; break;
+                        case 11: inputString = "wheel"; break;
+                        case 12: inputString = "wheel2"; break;
+                    }
+                    
+                    drawButtonPrompt(inputString,char_x + offset_x, char_y + offset_y, false, playerID);
+                }
+                else
+                {
+                    draw_sprite_ext(emojiSprite, emojiImageIndex, char_x + offset_x, char_y + offset_y, 1, 1, image_angle, image_blend, 1);
+                }
+                char_x += sprite_get_width(emojiSprite);
+            }
+            else
+            {
+                
+                draw_text_color(char_x + offset_x, char_y + offset_y, draw_char, char_col, char_col, char_col, char_col, 1);
+                
+                
+                if (fontCharWidth == -1)
+                    char_x += string_width(draw_char);
+                else
+                    char_x += fontCharWidth;
+            }
         }
     }
+    
+    draw_set_font(global.font);
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    // Extra Options
+    var drawOptions = 0;
+    
+    if ((phase == 2) &amp;&amp; (phaseTimer &lt;= 0))
+    {
+        if (optionCount &gt; 0 &amp;&amp; ds_list_empty(textList))
+        {
+            drawOptions = 1;
+        }
+    }
+    
+    if (drawOptions)
+    {
+        var option_y_pos = y_pos;
+        if (boxPosition == 0) //Up
+        {
+            option_y_pos += (TEXTBOX_HEIGHT - 1);
+        }
+        else //Down
+        {
+            option_y_pos -= (OPTION_HEIGHT * optionCount) - 1;
+        }
+        
+        var spr = sprDialogueOptionBox;
+        var img = skinIndex;
+        
+        //Draw each option box
+        for (var i = 0; i &lt; optionCount; i++)
+        {
+            yy = (option_y_pos + (OPTION_HEIGHT * i));
+            
+            draw_sprite_part_ext(spr, img, 0, 0, 8, OPTION_HEIGHT, x_pos, yy, 1, 1, image_blend, image_alpha);
+            draw_sprite_part_ext(spr, img, 8, 0, 8, OPTION_HEIGHT, x_pos + 8, yy, (TEXTBOX_WIDTH / 8) - 2, 1, image_blend, image_alpha);
+            draw_sprite_part_ext(spr, img, 16, 0, 8, OPTION_HEIGHT, x_pos + TEXTBOX_WIDTH - 8, yy, 1, 1, image_blend, image_alpha);
+            draw_text(x_pos + 19, yy + 6, optionText[i]);
+            
+            if (optionPos == i)
+            {
+                var bx = (x_pos + 7);
+                var by = (yy + 5);
+            
+                drawButtonPrompt("jump", bx, by, false, playerID);
+            }
+        }
+    }
+    else
+    {
+        /*if (phase == 2)
+        {
+            var bx = (x_pos + TEXTBOX_WIDTH - 14)
+            var by = (y_pos + TEXTBOX_HEIGHT + 3);
+            
+            drawButtonPrompt("jump", bx, by, false, playerID);
+        }*/
+    }
+     
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
     // colored text overlays
     if (global.showColoredTextOverlays)
@@ -398,17 +1212,28 @@ if (showtext)
         draw_set_color(make_color_rgb(global.coloredTextOverlaysRed, global.coloredTextOverlaysGreen, global.coloredTextOverlaysBlue));
         draw_set_alpha(global.coloredTextOverlaysOpacity / 255);
         
-        draw_rectangle(view_xview[0] + 38, ypos, view_xview[0] + view_wview[0], ypos + 62, false); // main text
+        draw_rectangle(x_pos + 38, y_pos, x_pos + TEXTBOX_WIDTH, y_pos + TEXTBOX_HEIGHT - 1, false); // main text
         
-        if (phase == 3 &amp;&amp; !timer &amp;&amp; optionCount &gt; 0 &amp;&amp; ds_list_size(text) == 1)
+        if (drawOptions)
         {
-            draw_rectangle(view_xview[0], ypos + 45 + 18, view_xview[0] + view_wview[0], ypos + 45 + 17 + 18 * optionCount, false); // dialogue options
+            draw_rectangle(x_pos, y_pos + TEXTBOX_HEIGHT, x_pos + TEXTBOX_WIDTH, y_pos + TEXTBOX_HEIGHT + (OPTION_HEIGHT * optionCount) - 1, false); // dialogue options
         }
         
         draw_set_color(c_white);
         draw_set_alpha(1);
     }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
 }
+/*
+if (global.playerCount &gt; 1)
+{
+    drawPlayerNumber(playerID, (x_pos + 5), (y_pos + 1) + ((!DRAW_NAME) * 34));
+}*/
+
+clearDrawState();
+
 </string>
           </argument>
         </arguments>
@@ -431,7 +1256,8 @@ if (showtext)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// No
+            <string>/// NOTHING
+
 </string>
           </argument>
         </arguments>

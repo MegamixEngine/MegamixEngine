@@ -43,8 +43,8 @@ delayPipe = 0;
 introType = 0;
 
 // Health Bar
-healthBarPrimaryColor[1] = 25;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $1C;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_3.nsf";
@@ -77,10 +77,13 @@ musicTrackNumber = 13;
 // Handle Intro
 if (!global.frozen)
 {
-    with (objKamegoroTornadoMakerH)
+    if (instance_exists(objKamegoroTornadoMakerH))
     {
-        if (id != other.chosenPipe)
-            attackTimer = 0;
+        with (objKamegoroTornadoMakerH)
+        {
+            if (id != other.chosenPipe)
+                attackTimer = 0;
+        }
     }
     bubbleTimer = 0;
     image_speed = 0;
@@ -125,11 +128,14 @@ if (entityCanStep())
         contactDamage = 8;
         if (!instance_exists(objKamegoroTornado) &amp;&amp; delayPipe == 0)
         {
-            var inst = instance_find(objKamegoroTornadoMakerH, irandom(instance_number(objKamegoroTornadoMakerH) - 1));
-            if (chosenPipe != inst.id)
+            if (instance_exists(objKamegoroTornadoMakerH))
             {
-                chosenPipe = inst.id;
-                delayPipe = 64;
+                var inst = instance_find(objKamegoroTornadoMakerH, irandom(instance_number(objKamegoroTornadoMakerH) - 1));
+                if (chosenPipe != inst.id)
+                {
+                    chosenPipe = inst.id;
+                    delayPipe = 64;
+                }
             }
         }
         switch (phase)
@@ -225,11 +231,17 @@ else
             <kind>1</kind>
             <string>event_inherited();
 with (objKamegoro)
+{
+    instance_create(bboxGetXCenter(),bboxGetYCenter(),objExplosion);
     instance_destroy();
+}
 with (objKamegoroTornado)
     instance_destroy();
 with (objKamegoroShell)
+{
+    instance_create(bboxGetXCenter(),bboxGetYCenter(),objExplosion);
     instance_destroy();
+}
 with (objKamegoroTornadoMakerH)
 {
     kamegoroDead = true;

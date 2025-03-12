@@ -127,24 +127,24 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
         transition_anim -= 1;
         image_index = 1;
     }
-    
-    // set leverfields to active / inactive depending on state
-    with (objLeverField)
+}
+
+// set leverfields to active / inactive depending on state
+with (objLeverField)
+{
+    if (other.state == 0)
     {
-        if (other.state == 0)
-        {
-            if (tag == other.uptag)
-                active = true;
-            if (tag == other.downtag)
-                active = false;
-        }
-        else if (other.state == 1)
-        {
-            if (tag == other.uptag)
-                active = false;
-            if (tag == other.downtag)
-                active = true;
-        }
+        if (tag == other.uptag)
+            active = true;
+        if (tag == other.downtag)
+            active = false;
+    }
+    else if (other.state == 1)
+    {
+        if (tag == other.uptag)
+            active = false;
+        if (tag == other.downtag)
+            active = true;
     }
 }
 </string>

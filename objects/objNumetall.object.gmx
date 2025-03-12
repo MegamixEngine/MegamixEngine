@@ -32,6 +32,8 @@ grav = 0.25 * image_yscale;
 blockCollision = true;
 category = "mets";
 
+behaviourType = 1;
+
 // Enemy specific code
 animFrame = 0;
 phase = 0;
@@ -39,6 +41,8 @@ timer = 0;
 accelerating = true;
 accel = 0.0125;
 maxSpeed = 0.70;
+
+projectileObject = objNumetallGlob;
 </string>
           </argument>
         </arguments>
@@ -183,7 +187,7 @@ if (entityCanStep())
                 var i = -45;
                 repeat (3)
                 {
-                    var b = instance_create(x + 8 * image_xscale, y - 8 * image_yscale, objNumetallGlob);
+                    var b = instance_create(x + 8 * image_xscale, y - 8 * image_yscale, projectileObject);
                     b.angle = i;
                     i += 45;
                     b.image_xscale = image_xscale;

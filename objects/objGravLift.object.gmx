@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.gravityLiftBulletMap = -1;
+            <string>/// Creates an anti-gravity effect where the player slowly rises upward, and can only move horizontally by attacking.
+/// The faster you attack, the faster you move. Once in motion, you will drift until you attack enough in the opposite direction to negate your momentum.
+/// Place only one of these objects in a section; it will affect the entire section. Frequently used in continuous vertical scrolling sections.
+
+global.gravityLiftBulletMap = -1;
 global.gravityLiftXSpeedMap = -1;
 
 // -1: up
@@ -59,10 +63,10 @@ liftAccel = 0.05;
     // create map if it doesn't exit
     if (global.gravityLiftXSpeedMap == -1 || !ds_exists(global.gravityLiftXSpeedMap, ds_type_map))
     {
-        global.gravityLiftXSpeedMap = ds_map_create();
-        global.gravityLiftBulletMap = ds_map_create();
-        global.gravityLiftLockMap = ds_map_create();
-        global.gravityLiftLockJumpMap = ds_map_create();
+        global.gravityLiftXSpeedMap = mm_ds_map_create();
+        global.gravityLiftBulletMap = mm_ds_map_create();
+        global.gravityLiftLockMap = mm_ds_map_create();
+        global.gravityLiftLockJumpMap = mm_ds_map_create();
         defer(ev_other, ev_room_end, 0, dsDestroy, makeArray(global.gravityLiftXSpeedMap, ds_type_map));
         defer(ev_other, ev_room_end, 0, dsDestroy, makeArray(global.gravityLiftBulletMap, ds_type_map));
         defer(ev_other, ev_room_end, 0, dsDestroy, makeArray(global.gravityLiftLockMap, ds_type_map));
@@ -196,10 +200,10 @@ if (global.gravityLiftXSpeedMap != -1)
         }
         if (ds_exists(global.gravityLiftXSpeedMap, ds_type_map))
         {
-            ds_map_destroy(global.gravityLiftXSpeedMap);
-            ds_map_destroy(global.gravityLiftBulletMap);
-            ds_map_destroy(global.gravityLiftLockMap);
-            ds_map_destroy(global.gravityLiftLockJumpMap);
+            mm_ds_map_destroy(global.gravityLiftXSpeedMap);
+            mm_ds_map_destroy(global.gravityLiftBulletMap);
+            mm_ds_map_destroy(global.gravityLiftLockMap);
+            mm_ds_map_destroy(global.gravityLiftLockJumpMap);
         }
         global.gravityLiftXSpeedMap = -1;
     }

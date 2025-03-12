@@ -38,6 +38,7 @@ healthpoints = 15;
 blockCollision = false;
 grav = 0;
 doesIntro = false;
+explosionSFX = sfxMM9Explosion;
 category = "bulky";
 
 // Enemy specific code
@@ -396,8 +397,16 @@ if (instance_exists(objTheKeeperElectricBarH))
     {
         if (!dead)
         {
-            instance_create(spriteGetXCenter(), spriteGetYCenter(), objBigExplosion);
-            playSFX(sfxMM3Explode);
+            if (object_index == objTheKeeperElectricBarV)
+            {
+                instance_create(spriteGetXCenter(), bbox_top + 8, objExplosion);
+                instance_create(spriteGetXCenter(), bbox_bottom - 8, objExplosion);
+            }
+            else
+            {
+                instance_create(bbox_left + 8, spriteGetYCenter(), objExplosion);
+                instance_create(bbox_right - 8, spriteGetYCenter(), objExplosion);
+            }
             instance_destroy();
         }
     }

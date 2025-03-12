@@ -89,7 +89,7 @@ if (!global.frozen)
         var i = instance_create(x, y, objDustManDebris);
         i.xspeed = 2;
         i.yspeed = 2;
-        i.image_index = 4;
+        i.image_index = 0;
         i = instance_create(x, y, objDustManDebris);
         i.xspeed = -2;
         i.yspeed = 2;
@@ -101,7 +101,7 @@ if (!global.frozen)
         i = instance_create(x, y, objDustManDebris);
         i.xspeed = -2;
         i.yspeed = -2;
-        i.image_index = 0;
+        i.image_index = 2;
         instance_destroy();
     }
 }

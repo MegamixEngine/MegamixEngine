@@ -59,8 +59,8 @@ spriteRun[1] = sprCutRun;
 spriteJump[1] = sprCutJump;
 
 // Healthbar colours
-healthBarPrimaryColor[1] = 18;
-healthBarSecondaryColor[1] = 40;
+healthBarPrimaryColor[1] = $15;
+healthBarSecondaryColor[1] = $30;
 
 // Music
 music = "Mega_Man_1.nsf";
@@ -71,6 +71,9 @@ musicTrackNumber = 8;
 enemyDamageValue(objBusterShot, 2);
 enemyDamageValue(objBusterShotHalfCharged, 2);
 enemyDamageValue(objBusterShotCharged, 4);
+enemyDamageValue(objBusterShotHalfChargedProto, 2);
+enemyDamageValue(objBusterShotChargedProto, 4);
+enemyDamageValue(objNormalBusterShot, 2);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -81,6 +84,10 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objMagneticShockwave, 1);
 enemyDamageValue(objIceWall, 2);
 enemyDamageValue(objBreakDash, 4);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 2);
@@ -116,15 +123,16 @@ enemyDamageValue(objConcreteShot, 4);
 enemyDamageValue(objHomingSniper, 1);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 2);
 enemyDamageValue(objSuperArmBlockProjectile, 14);
 enemyDamageValue(objSuperArmDebris, 2);
-enemyDamageValue(objChillShot, 1);
+enemyDamageValue(objChillSpike, 1);
 enemyDamageValue(objChillSpikeLanded, 2);
 
 // Misc.
 enemyDamageValue(objPowerStone, 4);
 enemyDamageValue(objPlantBarrier, 0);
-enemyDamageValue(objBrickWeapon, 4);
+enemyDamageValue(objBlockDropper, 4);
 enemyDamageValue(objIceSlasher, 0);
 </string>
           </argument>
@@ -153,11 +161,11 @@ if (entityCanStep())
 {
     if (isFight == true)
     {
-        if (!(((xspeed &gt; 0 &amp;&amp; !checkSolid(xspeed + 2, 0, 0, 1))
+        /*if (!(((xspeed &gt; 0 &amp;&amp; !checkSolid(xspeed + 2, 0, 0, 1))
             || (xspeed &lt; 0 &amp;&amp; !checkSolid(xspeed - 2, 0, 0, 1)))))
         {
             x -= xspeed;
-        }
+        }*/
         if (delay &gt; 0)
             delay -= 1;
         switch (phase)
@@ -188,14 +196,15 @@ if (entityCanStep())
                     sprite_index = spriteRun[cutter];
                     xspeed = image_xscale * 1.5;
                     getLastXspeed = xspeed;
+                    if (xcoll != 0)
+                        yspeed = -6;
                 }
                 else
                 {
                     sprite_index = spriteJump[cutter];
                     xspeed = getLastXspeed;
                 }
-                if (xspeed == 0 &amp;&amp; ground)
-                    yspeed = -6;
+                
                 if (instance_exists(target))
                     if (distance_to_point(target.x, y) &lt; 48 &amp;&amp; ground)
                     {
@@ -225,7 +234,7 @@ if (entityCanStep())
                 else if (attackTimer == 10)
                 {
                     image_single = 1;
-                    instance_create(x, y, objCutBullet);
+                    entityCreateChild(0, 0, objCutBullet);
                 }
                 if (attackTimer &lt;= 0)
                 {
@@ -287,10 +296,7 @@ if (entityCanStep())
         if (instance_exists(target) &amp;&amp; ((hasKnockback == false)
             || (hasKnockback == true &amp;&amp; knockbackTimer &lt;= -1)))
         {
-            if (x &gt; target.x)
-                image_xscale = -1;
-            else
-                image_xscale = 1;
+            calibrateDirection();
         }
     }
     if (instance_exists(objCutBullet))

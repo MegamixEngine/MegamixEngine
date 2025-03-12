@@ -46,17 +46,21 @@ startY = y;
 delay = 0;
 
 // AI variables
-radius = 116;
+radius = 116; //activation radius. set to -1 to.. disable it.
 activated = false;
 falling = false;
 imageOffset = 0;
-cooldownMax = 234;
+cooldownMax = 234; //cc code - how long it takes the enemy to shoot. set to -1 to never shoot.
 cooldownTimer = cooldownMax - 8;
 shootAngle = 30;
 ground = false;
 direct = 0;
 
 col = 0;
+
+childObject = objMM5AimedBullet;
+childSprite = sprEnemyBullet;
+twinShot = true;
 </string>
           </argument>
         </arguments>
@@ -98,7 +102,7 @@ if (entityCanStep())
     if (activated == true || y &gt; startY)
     {
         cooldownTimer += 1;
-        if (cooldownTimer &gt;= cooldownMax)
+        if (cooldownTimer &gt;= cooldownMax &amp;&amp; cooldownMax != -1)
         {
             // Shoot
             cooldownTimer = 0;
@@ -115,21 +119,28 @@ if (entityCanStep())
                 getAngle = point_direction(x, y, x + (45), 45);
                 direct = -1;
             }
+
+                var ID;
+                ID = instance_create(x, spriteGetYCenter(), childObject);
+                {
+                    ID.dir = getAngle + (twinShot * shootAngle);
+                    ID.xscale = direct;
+                    ID.spd = 1.65;
+                    ID.sprite_index = childSprite;
+                }
+                if (twinShot)
+                {
+                    ID = instance_create(x, spriteGetYCenter(), childObject);
+                    {
+                        ID.dir = getAngle - shootAngle;
+                        ID.xscale = direct;
+                        ID.spd = 1.65;
+                        ID.sprite_index = childSprite;
+                    }
+                }
+                playSFX(sfxEnemyShootClassic);
             
-            var ID;
-            ID = instance_create(x, spriteGetYCenter(), objMM5AimedBullet);
-            {
-                ID.dir = getAngle + shootAngle;
-                ID.xscale = direct;
-                ID.spd = 1.65;
-            }
-            ID = instance_create(x, spriteGetYCenter(), objMM5AimedBullet);
-            {
-                ID.dir = getAngle - shootAngle;
-                ID.xscale = direct;
-                ID.spd = 1.65;
-            }
-            playSFX(sfxEnemyShootClassic);
+            calibrateDirection();
         }
     }
     
@@ -137,7 +148,7 @@ if (entityCanStep())
     if (instance_exists(target))
     {
         // basic AI, if Mega Man is within range, activate bounder.
-        if (abs(target.x - x) &lt;= radius)
+        if (abs(target.x - x) &lt;= radius &amp;&amp; radius != -1)
             activated = true;
         else
             activated = false;
@@ -229,6 +240,7 @@ specialDamageValue(objSlashClaw, 3);
 specialDamageValue(objSakugarne, 3);
 specialDamageValue(objSuperArrow, 3);
 specialDamageValue(objWireAdapter, 3);
+specialDamageValue(objWaterWave, 3); // Accurate to MM5
 </string>
           </argument>
         </arguments>

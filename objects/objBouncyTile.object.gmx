@@ -110,6 +110,10 @@ if (!global.frozen)
                     {
                         with (meg)
                         {
+                            if (climbing)
+                            {
+                                global.BounceXVel[pid] = 0;
+                            }
                             if (ground &amp;&amp; abs(global.BounceXVel[pid]) &lt; 0.2)
                             {
                                 global.BounceXVel[pid] = 0;

@@ -156,8 +156,8 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objRightScrollingNES" x="1280" y="480" name="inst_7A21C3ED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrollingNES" x="2560" y="480" name="inst_C6F58AA5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRightScrollingNES" x="2816" y="480" name="inst_7FB6A2BD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="1408" y="656" name="inst_AF59762D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCheckpoint" x="4736" y="624" name="inst_6902C6A6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="1408" y="656" name="inst_AF59762D" locked="0" code="name = &quot;Midway point&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCheckpoint" x="4736" y="624" name="inst_6902C6A6" locked="0" code="name = &quot;Boss corridor&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBatabattan" x="1616" y="608" name="inst_EA78EA4D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objBatabattan" x="1712" y="608" name="inst_E4CBCF59" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objHeliButon" x="1664" y="560" name="inst_29BDF5A7" locked="0" code="variation = 1;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -250,7 +250,7 @@ if global.difficulty &lt; DIFF_HARD
     <instance objName="objLifeEnergySmall" x="4480" y="524" name="inst_2D993EF6" locked="0" code="grav = 0;&#xA;&#xA;if global.difficulty == DIFF_HARD&#xA;{&#xA;    instance_destroy();&#xA;}&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="4512" y="492" name="inst_A8269AE0" locked="0" code="grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objLifeEnergySmall" x="4544" y="524" name="inst_1B6831FC" locked="0" code="grav = 0;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objPlantMan" x="5056" y="656" name="inst_4F4C0CF6" locked="0" code="music = &quot;Mega_Man_6.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 12;&#xA;introType = 3;&#xA;&#xA;elementName = &quot;plant&quot;;&#xA;elementCode = &quot;weaponReward(objPlantBarrier); weaponReward(objRushJet);&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objPlantMan" x="5056" y="656" name="inst_4F4C0CF6" locked="0" code="music = &quot;Mega_Man_6.nsf&quot;;&#xA;musicType = &quot;VGM&quot;;&#xA;musicTrackNumber = 12;&#xA;introType = 3;&#xA;&#xA;elementCode = &quot;weaponReward(objPlantBarrier); weaponReward(objRushJet);&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWater" x="288" y="336" name="inst_F0BF557D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objWater" x="288" y="352" name="inst_A3B0E67B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEasyPlatform32" x="3072" y="640" name="inst_BD582631" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

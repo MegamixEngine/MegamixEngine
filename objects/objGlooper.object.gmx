@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Creation Code (All optional)
+            <string>/// A sturdy, stationary frog that shoots globs of gloop straight ahead.
+/// The globs will stick to the player, limiting movement and draining health and absorbing shots until destroyed.
+/// Many players find this enemy to be extremely annoying, so use with caution.
+
+// Creation Code (All optional)
 // shotMax = &lt;number&gt; // how long Glooper waits before firing.
 event_inherited();
 respawn = true;
@@ -44,6 +48,8 @@ shooting = false;
 img = 0;
 hasFired = false;
 bubble = noone;
+
+explosionSprite = sprExplosionWonderswan;
 </string>
           </argument>
         </arguments>

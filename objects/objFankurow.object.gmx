@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A robot owl that pulls Mega Man towards it with its fan, before pushing him back with its wings.
+            <string>/// An owl that pulls the player toward it with its fan, then pushes the player away with its wings, then pauses for a moment.
+/// Standing still, the player will be pushed and pulled about 4 tiles by default. To place Fankurow in the air, add this creation code: grav = 0
+/// Useful in a variety of platforming challenges and certain combat challenges. To make Fankurow an indestructible gimmick, add this: invincible = true
 
 event_inherited();
 
@@ -38,16 +40,22 @@ category = "semi bulky, bird, nature";
 facePlayerOnSpawn = true;
 facePlayer = true;
 
+//creation code
+pullDuration = 120;
+moveTimerStart = 30;
+pullSpd = -0.5;
+pullStartDir = 1;
+
+
 // enemy specific code
 phase = 0;
 moveTimer = 30;
-pullDuration = 120;
 pullTimer = 0;
 pullSpd = -0.5;
 pullDir = 1;
 
 animBack = true;
-imgSpd = 0.4;
+imgSpd = 0.2;
 imgIndex = 0;
 </string>
           </argument>
@@ -72,15 +80,17 @@ imgIndex = 0;
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-
-if(entityCanStep())
+if (pullSpd != 0)
 {
-    if (phase != 0)
+    if(entityCanStep())
     {
-        with (objMegaman)
+        if (phase != 0)
         {
-            if(!teleporting &amp;&amp; readyTimer==0)
-                playerBlow(other.pullSpd * other.pullDir * other.image_xscale);
+            with (objMegaman)
+            {
+                if(!teleporting &amp;&amp; readyTimer==0)
+                    playerBlow(other.pullSpd * other.pullDir * other.image_xscale);
+            }
         }
     }
 }
@@ -136,7 +146,7 @@ if (entityCanStep())
             else
             {
                 phase = 2;
-                imgIndex = 5;
+                imgIndex = 0;
             }
             break;
         // Push
@@ -146,28 +156,15 @@ if (entityCanStep())
                 pullTimer--;
                 pullDir = -1;
                 
-                if (animBack == true)
-                {
-                    imgIndex -= imgSpd;
-                    if (imgIndex &lt; 4)
-                    {
-                        imgIndex = 5;
-                        animBack = false;
-                    }
-                }
-                else
-                {
-                    imgIndex += imgSpd;
-                    if (imgIndex &gt;= 7)
-                    {
-                        imgIndex = 5;
-                        animBack = true;
-                    }
-                }
+                imgIndex += imgSpd;
+                if (imgIndex &gt;= 1) &amp;&amp; (imgIndex &lt; 4)
+                    imgIndex = 4;
+                if (imgIndex &gt;= 8)
+                    imgIndex = 0;
             }
             else
             {
-                if (imgIndex &lt; 7)
+                if (imgIndex &lt; 8)
                 {
                     imgIndex += imgSpd;
                 }
@@ -176,7 +173,7 @@ if (entityCanStep())
                     imgIndex = 0;
                     phase = 0;
                     moveTimer = 30;
-                    animBack = true;
+                    //animBack = true;
                 }
             }
             break;
@@ -187,23 +184,12 @@ if (entityCanStep())
 else if (dead)
 {
     phase = 0;
-    pullDir = 1;
+    pullDir = pullStartDir;
     pullTimer = 0;
     imgIndex = 0;
-    moveTimer = 30;
+    moveTimer = moveTimerStart;
     animBack = true;
 }
-
-
-
-
-
-
-
-
-
-
-
 image_index = imgIndex div 1;
 </string>
           </argument>

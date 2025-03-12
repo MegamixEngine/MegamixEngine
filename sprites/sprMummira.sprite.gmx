@@ -2,7 +2,7 @@
 <sprite>
   <type>0</type>
   <xorig>21</xorig>
-  <yorigin>51</yorigin>
+  <yorigin>50</yorigin>
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>-1</sepmasks>
@@ -10,11 +10,11 @@
   <bbox_left>11</bbox_left>
   <bbox_right>30</bbox_right>
   <bbox_top>24</bbox_top>
-  <bbox_bottom>50</bbox_bottom>
+  <bbox_bottom>49</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>41</TextureGroup0>
+    <TextureGroup0>193</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>42</width>
@@ -36,5 +36,6 @@
     <frame index="13">images\sprMummira_13.png</frame>
     <frame index="14">images\sprMummira_14.png</frame>
     <frame index="15">images\sprMummira_15.png</frame>
+    <frame index="16">images\sprMummira_16.png</frame>
   </frames>
 </sprite>

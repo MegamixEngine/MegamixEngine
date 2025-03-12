@@ -36,7 +36,57 @@ isSolid = true;
 facePlayerOnSpawn = true;
 category = "cannons";
 
-shootTimer = choose(60, 120, 180, 240);
+shootTimer = -1;
+
+shotsFired = 0;
+img = 0;
+animationDelay = 0;
+
+//creation code
+
+facePlayerOnSpawn = true; //face the player when spawning
+facePlayer = false; //face the player at all times
+
+//animation - tyhorn has no animation by default but can be defined here
+idleStart = 0;
+idleEnd = 0;
+idleSpeed = 0.1; //idle animation speed
+shotTell = 30; //how long to show a shooting tell animation
+afterFrame = 15; //how long to disable the afterframe
+deadFrame = -1; // if -1, use current animation frame when dying, otherwise set to this frame.
+
+//if you want a degree of randomness to his shot pattern, define how long here;
+randomArray[0] = 60;
+randomArray[1] = 120;
+randomArray[2] = 180;
+randomArray[3] = 240;
+
+//projectile array setup
+shotObject[0] = objTyhornBall; //object type fired from tyhorn, can add additional object types by adding a new array entry
+shotSprite[0] = sprTyhornBall; //sprite for fired object type. MUST be defined per array entry in shotObject
+shotSmoke[0] = noone; //if defined, create 'smoke object';
+
+shotTimerMax[0] = -1; //how long before shooting. CAN be defined per array entry in shotObject, if minus -1, randomize
+//shotSpeed array, x,0 = set shot speed, x,1 = xspeed, x,2 = yspeed;
+shotSpeed[0,0] = 1; // 1 = set speed; 0 = don't set shot speed;
+shotSpeed[0,1] = 2; //xspeed of projectile
+shotSpeed[0,2] = -2; //yspeed of projectile
+shotFrame[0] = -1; //define firing animation tell image frame. if -1, then dont.
+shotAfterFrame[0] = -1; //define after firing animation tell image frame. if -1, then dont.
+shotAfterDelay[0] = 0; //if defined, add an additional delay to next shot in the array
+
+shotOffsetX[0] = 30; //how many pixels from center x the laser is created from. CAN be defined per array entry in shotObject
+shotOffsetY[0] = -27; //how many pixels from center y the laser is created from. CAN be defined per array entry in shotObject
+shotSFX[0] = sfxCannonShoot; //what sfx is played if any when projectile is fired. CAN be defined per array entry
+
+defineGuardTop = -47; //where the top of tyhorn's hitbox starts
+defineGuardBottom = -15; // where the bottom of tyhorn's hitbox ends
+defineGuardFront = 20; //where the front of tyhorn's hitbox
+defineGuardBack = -1; //define where the back of tyhorn's hitbox is
+guardType = 1; //0 = entire body is weakpoint, 1 == defined guard is weakpoint, 2 = opposite is weakpoint;
+cancelType = 2; // 1 =  Regular reflecting , 2 = Ignore collision, 3 = Reflect non-piercing entities / Ignore piercing entities , 4 = Reflect regardless of the "penetrate" variable 
+
+debugGuard = false; //if true, then show guard box when drawing. for debugging purposes should normally be left to false.
 </string>
           </argument>
         </arguments>
@@ -64,14 +114,147 @@ shootTimer = choose(60, 120, 180, 240);
 if (entityCanStep())
 {
     shootTimer--;
+    if (animationDelay &gt; 0)
+    {
+        animationDelay --;
+        img = 0;
+    }
+    else
+    {
+        image_index = floor(img);
+        img += idleSpeed;
+        if (floor(img) &gt; idleEnd)
+            img = 0;
+        var sF = shotFrame[0];
+        if (array_length_1d(shotFrame) &gt; 1)
+        {
+            sF = shotFrame[shotsFired];
+        }
+        if (sF != -1)
+        {
+            if (shootTimer &lt; shotTell)
+                image_index = sF;
+        }
+    }
+    
+    
+    
     if (shootTimer &lt;= 0)
     {
-        i = instance_create(x + 30 * image_xscale, y - 27, objTyhornBall);//35
-        i.xspeed = 2 * image_xscale;
-        i.yspeed = -2;
-        playSFX(sfxCannonShoot);
-        shootTimer = choose(60, 120, 180);
+        
+        var sD = shotAfterDelay[0];
+        if (array_length_1d(shotAfterDelay))
+            sD = shotAfterDelay[shotsFired];
+        var sO = shotSmoke[0];
+        if (array_length_1d(shotSmoke) &gt; 1)
+            sO = shotSmoke[shotsFired];        
+        var iX = shotOffsetX[0];
+        var iY = shotOffsetY[0];
+        if (array_length_1d(shotOffsetX) &gt; 1)
+            iX = shotOffsetX[shotsFired];
+        if (array_length_1d(shotOffsetY) &gt; 1)
+            iY = shotOffsetY[shotsFired];
+         
+        
+        var sAF = shotAfterFrame[0];
+        if (array_length_1d(shotAfterFrame) &gt; 1)
+        {
+            sAF = shotAfterFrame[shotsFired];
+        }
+         
+         
+        var shotBool = shotSpeed[0,0]; 
+        var xS = shotSpeed[0,1];
+        var yS = shotSpeed[0,2];
+        if (array_height_2d(shotSpeed) &gt; 1)
+        {
+            shotBool = shotSpeed[shotsFired,0];
+            if (shotBool)
+            {
+                xS = shotSpeed[shotsFired,1];
+                yS = shotSpeed[shotsFired,2];
+            }
+        }
+  
+            
+        var shS = shotSFX[0];
+        if (array_length_1d(shotSFX) &gt; 1)
+        {
+            shS = shotSFX[shotsFired];
+        }
+        
+        
+        i = instance_create(x + iX * image_xscale, y + iY * image_yscale, shotObject[shotsFired]);//35
+        if (sO != noone)
+        {
+            with i
+                instance_create(x,y,sO);
+        }
+        i.parent = id;
+        i.sprite_index = shotSprite[shotsFired];
+        i.image_xscale = image_xscale;
+        if (shotBool)
+        {
+            i.xspeed = xS * image_xscale;
+            i.yspeed = yS * image_yscale;
+        }
+        if (shS != noone)
+        {
+            playSFX(shS);
+        }    
+        var ts = array_length_1d(randomArray)-1;
+        
+        
+        shotsFired ++;
+        
+        if (shotsFired &gt;= array_length_1d(shotObject))
+                shotsFired = 0;
+                
+        if (shotTimerMax[shotsFired] == -1)
+        {
+            shootTimer =  randomArray[ts] + sD;
+        }
+        else
+        {
+            shootTimer = shotTimerMax[shotsFired] + sD;
+        }
+
+        if (sAF != -1)
+        {
+            image_index = sAF;
+            animationDelay = shotTell;
+        }
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>img = idleStart;
+animationDelay = 0;
+//shotsFired = 0;
+if (shotTimerMax[0] == -1)
+{
+    var ts = array_length_1d(randomArray)-1;
+    shootTimer = randomArray[ts];
 }
 </string>
           </argument>
@@ -95,14 +278,93 @@ if (entityCanStep())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (other.id == collision_rectangle(x - 1 * image_xscale, y - 47, x + 20 * image_xscale, y - 15, other.id, false, false))
+            <string>var trigGuard = true;
+if (guardType == 0)
+    trigGuard = false;
+
+if (guardType == 1)
+{
+    if other.id == collision_rectangle(x + defineGuardBack * image_xscale, y + defineGuardTop, x + defineGuardFront * image_xscale, y + defineGuardBottom , other.id, false, false)
+        trigGuard = false
+}
+if (guardType == 2)
+{
+    if other.id == !collision_rectangle(x + defineGuardBack * image_xscale, y + defineGuardTop, x + defineGuardFront * image_xscale, y + defineGuardBottom , other.id, false, false)
+        trigGuard = false
+}
+if (!trigGuard)
 {
     other.guardCancel = 0;
 }
 else
 {
-    other.guardCancel = 2;
+    other.guardCancel = cancelType;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+if (deadFrame != -1)
+{
+    image_index = deadFrame;
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+
+
+
+if (debugGuard)
+{
+    var col = draw_get_color();
+    var alp = draw_get_alpha();
+    draw_set_color(c_green);
+    draw_set_alpha(0.5);
+    draw_rectangle(x + defineGuardBack * image_xscale, y + defineGuardTop, x + defineGuardFront * image_xscale, y + defineGuardBottom,true);
+    draw_set_color(col);
+    draw_set_alpha(alp);
+}
+
 </string>
           </argument>
         </arguments>

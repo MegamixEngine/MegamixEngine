@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// A hammerheaded enemy that smacks the ground and sends debris flying up and down. The
-// debris is also affected by gravity-affecting objects, such as water and 0.5 Grav switches.
+            <string>/// A hammerheaded enemy that chases the player when far away and smacks the ground when close, creating four small pieces of debris that arc away from itself.
+/// While walking, it will fall off ledges and stop at walls. Note that the debris is affected by gravity-affecting objects, such as water and 0.5 Grav switches.
+/// Tends to be most effective when placed above or below the player, as its proximity trigger is based solely on horizontal distance, not vertical.
 
 event_inherited();
 

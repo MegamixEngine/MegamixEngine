@@ -32,6 +32,8 @@ contactDamage = 0;
 
 canHit = false;
 itemDrop = -1;
+inWater = false;
+bubbleTimer = -1;
 
 respawnRange = -1;
 despawnRange = -1;
@@ -45,7 +47,6 @@ stopOnFlash = false;
 caughtPlayer = noone;
 despawnTimer = 0;
 caughtTimer = 0;
-honeyLock = false;
 </string>
           </argument>
         </arguments>
@@ -70,7 +71,13 @@ honeyLock = false;
             <kind>1</kind>
             <string>event_inherited();
 
-honeyLock = lockPoolRelease(honeyLock);
+with (caughtPlayer)
+{
+    if (honeyLock)
+    {
+        honeyLock = lockPoolRelease(honeyLock);
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -93,13 +100,19 @@ honeyLock = lockPoolRelease(honeyLock);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
+            <string>/// player is caught
+if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
 {
     if (instance_exists(caughtPlayer))
     {
         with (caughtPlayer)
         {
-            spriteX = 13;
+            if (!instance_exists(objRushCycle))
+            {
+                spriteX = 13;
+                spriteY = 0;
+            }
+            
             playerPalette(); // Reset colors
             
             // player wiggle
@@ -107,11 +120,8 @@ honeyLock = lockPoolRelease(honeyLock);
             {
                 other.caughtTimer++;
             }
+            
             other.caughtXScalePrev = image_xscale;
-            if(isLocked(other.honeyLock))
-            {
-                lockPoolRelease(other.honeyLock);
-            }
         }
     }
 }
@@ -146,51 +156,92 @@ if (!dead &amp;&amp; !global.frozen &amp;&amp; !global.timeStopped)
         {
             with (other)
             {
-                if (place_meeting(x, y, other) &amp;&amp; other.ground /*&amp;&amp; other.bbox_bottom &lt;= bbox_bottom */ )
+                if (place_meeting(x, y, other) &amp;&amp; other.ground)
                 {
-                    caughtPlayer = other.id;
-                    caughtXScalePrev = other.image_xscale;
-                    other.xspeed = 0;
-                    other.isSlide = 0;
-                    honeyLock = lockPoolLock(
-                        other.localPlayerLock[PL_LOCK_MOVE],
-                        other.localPlayerLock[PL_LOCK_SLIDE],
-                        other.localPlayerLock[PL_LOCK_GRAVITY],
-                        other.localPlayerLock[PL_LOCK_SHOOT],
-                        other.localPlayerLock[PL_LOCK_CLIMB]);
+                    if (!other.honeyLock)
+                    {
+                        // undo any active player locks
+                        with (other)
+                        {
+                            climbing = false;
+                            isSlide = false;
+                            climbLock = lockPoolRelease(climbLock);
+                            slideLock = lockPoolRelease(slideLock);
+                            slideChargeLock = lockPoolRelease(slideChargeLock);
+                            mask_index = mskMegaman;
+                            xspeed = 0;
+                            
+                            with (objRushCycle)
+                            {
+                                if (playerID == other.playerID)
+                                {
+                                    // Teleport away
+                                    i = instance_create(x, y, objRushTeleport);
+                                    i.upordown = 'up';
+                                    i.parent = parent;
+                                    i.image_yscale = image_yscale;
+                                    
+                                    instance_destroy();
+                                }
+                            }
+                            
+                            with (objBreakDash)
+                            {
+                                if (playerID == other.playerID)
+                                    instance_destroy();
+                            }
+                        }
+                        
+                        // honey lock
+                        with (other)
+                        {
+                            honeyLock = lockPoolLock(
+                                localPlayerLock[PL_LOCK_MOVE],
+                                localPlayerLock[PL_LOCK_JUMP],
+                                localPlayerLock[PL_LOCK_GRAVITY],
+                                localPlayerLock[PL_LOCK_SHOOT],
+                                localPlayerLock[PL_LOCK_CHARGE],
+                                localPlayerLock[PL_LOCK_SLIDE],
+                                localPlayerLock[PL_LOCK_CLIMB]);
+                            
+                            shiftObject(other.x - x, 0, true);
+                        }
+                        
+                        caughtPlayer = other.id;
+                        caughtXScalePrev = other.image_xscale;
+                    }
                 }
             }
         }
     }
-    else
+    else if (caughtTimer &gt;= 8 + ((global.difficulty == DIFF_HARD) * 2))
     {
-        // trap player
+        // release player
         with (caughtPlayer)
         {
-            climbing = false;
-            isShoot = 0;
-            isSlide = false;
-            mask_index = mskMegaman;
-            xspeed = 0;
+            if (honeyLock)
+            {
+                honeyLock = lockPoolRelease(honeyLock);
+            }
         }
-        caughtPlayer.x = x;
-        caughtPlayer.y = y - (caughtPlayer.bbox_bottom - caughtPlayer.y) + 1;
         
-        // time player is caught
-        if (caughtTimer &gt;= 8 + ((global.difficulty == DIFF_HARD) * 2))
-        {
-            honeyLock = lockPoolRelease(honeyLock);
-            instance_create(x, y, objExplosion);
-            instance_destroy();
-            exit;
-        }
+        instance_create(x, y, objExplosion);
+        instance_destroy();
+        exit;
     }
     
     // despawn timer
     despawnTimer += 1;
     if (despawnTimer &gt;= 370)
     {
-        honeyLock = lockPoolRelease(honeyLock);
+        with (caughtPlayer)
+        {
+            if (honeyLock)
+            {
+                honeyLock = lockPoolRelease(honeyLock);
+            }
+        }
+        
         instance_destroy();
         exit;
     }

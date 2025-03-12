@@ -100,7 +100,7 @@ if (mask != noone &amp;&amp; mask_index == mask)
     }
     if (delete)
     {
-        sprite_delete(mask);
+        mm_sprite_delete(mask);
         mask = noone;
     }
 }
@@ -137,17 +137,17 @@ if (init)
         size = 16;
     
     var surf;
-    surf = surface_create(256, 224);
+    surf = mm_surface_create(256, 224);
     surface_set_target(surf);
     draw_clear_alpha(c_black, 0);
     draw_set_color(c_red);
     draw_rectangle(0, 0, 16, 28 + size * 8, false);
-    mask = sprite_create_from_surface(surf, 0, 0, 16, 28 + size * 8, false, false, 8, 27 + size * 8);
+    mask = mm_sprite_create_from_surface(surf, 0, 0, 16, 28 + size * 8, false, false, 8, 27 + size * 8);
     sprite_collision_mask(mask, false, 0, 0, 0, 0, 0, 1, 255);
     mask_index = mask;
     
     surface_reset_target();
-    surface_free(surf);
+    mm_surface_free(surf);
     
     //Change sprite colour
     switch (col)
@@ -283,6 +283,7 @@ if (entityCanStep())
                 {
                     phase = 0;
                     timer = -1;
+                    calibrateDirection();
                 }
             }
             break;
@@ -296,7 +297,7 @@ if (entityCanStep())
             }
             else
             {
-                calibrateDirection();
+                //calibrateDirection();
                 var timerEnd = 30 * 4;
                 timer += 1;
                 if (timer == 1)
@@ -388,22 +389,33 @@ animTimer = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (other.bbox_top &gt; y - 18 - sz * 8 &amp;&amp; phase == 3)
+            <string>if (other.object_index != objTornadoBlow)
 {
-    other.guardCancel = 1;
-    if (other.penetrate &gt;= 2)
+    if (other.bbox_top &gt; y - 18 - sz * 8 &amp;&amp; phase == 3)
+    {
+        other.guardCancel = 1;
+        if (other.penetrate &gt;= 2)
+        {
+            global.damage = 0;
+            other.guardCancel = 2;
+        }
+    }
+    else if (phase != 3)
+    {
+        global.damage = 0;
+        if (other.bbox_top &lt;= y - 18 - sz * 8)
+            other.guardCancel = 2;
+        else
+            other.guardCancel = 1;
+    }
+}
+else
+{
+    if (phase == 0)
     {
         global.damage = 0;
         other.guardCancel = 2;
     }
-}
-else if (phase != 3)
-{
-    global.damage = 0;
-    if (other.bbox_top &lt;= y - 18 - sz * 8)
-        other.guardCancel = 2;
-    else
-        other.guardCancel = 1;
 }
 </string>
           </argument>
@@ -528,7 +540,7 @@ if (!instance_exists(self))
 }
 if (mask != noone)
 {
-    sprite_delete(mask);
+    mm_sprite_delete(mask);
     mask = noone;
 }
 </string>

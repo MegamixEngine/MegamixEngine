@@ -47,6 +47,8 @@ playSFX(sfxSlashClaw);
 
 // lock pools
 slashLock = false;
+
+autoFireSet = 20;
 </string>
           </argument>
         </arguments>
@@ -160,9 +162,10 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.keyShootPressed[playerID] &amp;&amp; !playerIsLocked(PL_LOCK_SHOOT))
+            <string>if (performShoot)
 {
-    i = fireWeapon(5, -2, objSlashClaw, 1, 1, 1, 1);
+    var ammoCost = 1 - (0.5 * (global.energySaver &gt; 0));
+    i = fireWeapon(5, -2, objSlashClaw, 1, ammoCost, 1, 1);
     if (instance_exists(i))
     {
         i.xs = i.x - x;

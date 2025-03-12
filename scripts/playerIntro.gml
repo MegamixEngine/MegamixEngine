@@ -2,14 +2,7 @@
 var init = argument0;
 
 // Set teleport sounds
-if (global.teleportSound)
-{
-    warpInSFX = sfxTeleportInClassic;
-}
-else
-{
-    warpInSFX = sfxTeleportIn;
-}
+warpInSFX = getGenericSFX(SFX_TELEIN);
 
 // Initialization of the spawning animation (after READY)
 if (init)
@@ -22,6 +15,7 @@ if (init)
             teleportTimer = 0;
             global.lockTransition = true;
             break;
+            
         case 2: // fall in 
             landy = y;
             y = view_yview - 32;
@@ -29,6 +23,7 @@ if (init)
             teleportTimer = 0;
             global.lockTransition = true;
             break;
+            
         case 3: // jump in 
             landy = y;
             y = view_yview + view_hview + 32;
@@ -37,8 +32,10 @@ if (init)
             teleportTimer = 0;
             blockCollision = 0;
             break;
+            
         case 4: // standing (do nothing basically) 
             break;
+            
         case 8: // Come in from skull elevator
         /* goToX = x + (64 * image_xscale);
             getX = x;
@@ -46,6 +43,7 @@ if (init)
             skullHeight = 0 ;*/ 
             teleportTimer = 0;
             break;
+            
         default:
             landy = y;
             y = view_yview - 32;
@@ -53,8 +51,8 @@ if (init)
             global.lockTransition = true;
             break;
     }
-} // Actually perform sequence
-else
+}
+else // Actually perform sequence
 {
     switch (global.respawnAnimation)
     {
@@ -78,8 +76,8 @@ else
                     {
                         teleportImg = 1;
                     }
-                    else if (teleportTimer == 6)
-                    {
+                    else if (teleportTimer == 6) 
+                    { 
                         teleportImg = 0;
                     }
                     else if (teleportTimer == 9)
@@ -97,7 +95,19 @@ else
                         
                         teleportLock = lockPoolRelease(teleportLock);
                         ground = true;
-                        global.lockTransition = false;
+                        var multiDone = true;
+                        with (objMegaman)
+                        {
+                            if (id != other && teleporting)
+                            {
+                                multiDone = false;
+                                break;
+                            }
+                        }
+                        if (multiDone)
+                        {
+                            global.lockTransition = false;
+                        }
                         exit;
                     }
                     teleportTimer += 1;
@@ -158,8 +168,8 @@ else
             {
                 if (teleportTimer == 0)
                 {
-                    playSFX(sfxLand);
                     y = landy;
+                    getGenericSFX(SFX_JUMP);
                 }
                 else
                 {
@@ -170,6 +180,7 @@ else
                     canHit = true;
                     iFrames = 0;
                     ground = true;
+                    blockCollision = true;
                     global.lockTransition = false;
                     exit;
                 }
@@ -225,8 +236,8 @@ else
                 
                 if (ground)
                 {
-                    playSFX(sfxLand);
                     introFakeYspeed = 0;
+                    playSFX(getGenericSFX(SFX_JUMP));
                 }
                 
                 // cancel animation + release player

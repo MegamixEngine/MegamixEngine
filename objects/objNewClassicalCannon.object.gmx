@@ -274,6 +274,7 @@ if (entityCanStep())
                 {
                     i.image_index = 1;
                 }
+                i.explosionSFX = sfxMM9ExplosionAlt;
             }
             else
             {

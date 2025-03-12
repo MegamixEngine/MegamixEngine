@@ -63,7 +63,7 @@ event_inherited();
 
 if (entityCanStep())
 {
-    if (animTimer mod 12 == 0)
+    if (springTimer == -1) //(animTimer mod 12 == 0)
         calibrateDirection();
     
     animTimer += 1;
@@ -75,18 +75,26 @@ if (entityCanStep())
         spd = 1 / 30;
         image_index += 2;
     }
-    xspeed = image_xscale * spd;
+    
     if (loadTimer &lt;= 0)
     {
         if (!instance_exists(objGiantSpringerMissile))
         {
-            instance_create(x, y - 20, objGiantSpringerMissile);
+            instance_create(x, y - 19, objGiantSpringerMissile);
             loadTimer = 60;
         }
     }
     else
         loadTimer -= 1;
     
+    xspeed = image_xscale * spd;
+if (xcoll != 0)
+{
+//shiftObject(-xcoll * 2, 0, 1);
+image_xscale = -image_xscale;
+xspeed = -xcoll;
+}
+
     // spring out if mega man draws too near:
     if (springTimer &lt;= 0)//-30
     {
@@ -95,11 +103,34 @@ if (entityCanStep())
             if (point_distance(x, y, other.x, other.y - 16) &lt; 60)
             {
                 other.target = id;
-                other.springTimer = 110;
+                other.springTimer = 49;
+                other.xspeed = 0;
             }
         }
     }
-    if (springTimer &gt; -50)
+    // springing
+    if (springTimer &gt; 0)
+    {
+        xspeed = 0;
+        loadTimer = 60;
+        image_index = 3 + ((springTimer div 6) mod 4);
+        if (image_index == 3) //|| (springTimer == 54)
+            image_index = 5;
+        if (image_index == 6)
+            mask_index = sprGiantSpringerMskB;
+        if (image_index == 4)
+            mask_index = sprGiantSpringerMskC;
+        // Hacky spring animation fix
+        if (springTimer == 1)
+        {
+            with (objMegaman)
+            {
+                if (point_distance(x, y, other.x, other.y - 16) &lt; 60)
+                    other.springTimer = 25;
+            }
+        }
+    }
+    if (springTimer &gt; -50) // Countdown
         springTimer -= 1;
 }
 else if (dead)
@@ -107,20 +138,6 @@ else if (dead)
     loadTimer = 60;
     springTimer = 0;
     animTimer = 0;
-}
-
-// springing
-if (springTimer &gt; 0)
-{
-    xspeed = 0;
-    loadTimer = 60;
-    image_index = 3 + ((springTimer div 6) mod 4);
-    if (image_index == 3)
-        image_index = 5;
-    if (image_index == 6)
-        mask_index = sprGiantSpringerMskB;
-    if (image_index == 4)
-        mask_index = sprGiantSpringerMskC;
 }
 </string>
           </argument>

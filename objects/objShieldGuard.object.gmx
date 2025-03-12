@@ -49,6 +49,10 @@ moveSpeed = 1;
 imgSpeed = 0.2;
 turnSpeed = 0.05;
 hasShield = true;
+
+dpsTimer = 0;
+shieldDamageCount = 0;
+shieldDPS = 5;
 </string>
           </argument>
         </arguments>
@@ -73,6 +77,13 @@ hasShield = true;
             <kind>1</kind>
             <string>// set this so xcoll can be used
 event_inherited();
+
+if (dpsTimer &gt; 0)
+{
+    dpsTimer -= 1;
+    if (dpsTimer == 0)
+        shieldDamageCount = 0;
+}
 
 if (entityCanStep())
 {
@@ -149,7 +160,15 @@ else if (dead)
     {
         if (sign(bboxGetXCenterObject(other.id) - bboxGetXCenter()) == image_xscale)
         {
-            if ((other.object_index == objBusterShotCharged) || (other.object_index == objBreakDash))
+            if (other.sprite_index == sprBassBullet) // Bass Mode failsafe
+            {
+                if (dpsTimer == 0)
+                    dpsTimer = 60;
+                shieldDamageCount += 1;
+            }
+    
+            if ((other.object_index == objBusterShotCharged) || (other.object_index == objBusterShotChargedProto)
+             || (other.object_index == objBreakDash) || (shieldDamageCount &gt;= shieldDPS))
             {
                 sprite_index = sprShieldGuardNoShield;
                 var i = instance_create(x, y, objShieldGuardShield);

@@ -108,6 +108,8 @@ if (entityCanStep())
         if (hangCountdown)
         {
             hangCountdown -= 1;
+            if (image_index &gt;= 5)
+                image_index = 1;
         }
         if (hangCountdown &lt;= 0)
         {

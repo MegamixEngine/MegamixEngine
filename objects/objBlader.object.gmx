@@ -42,14 +42,31 @@ grav = 0;
 facePlayerOnSpawn = true;
 
 // Enemy specific code
-image_speed = 0.25;
-
-timer = 0;
+image_speed = 0;
+targetY = 0;
+attackTimer = 0;
 phase = 1;
+//cooldown = 0;
 
 //@cc 0 = green (default); 1 = blue
-col = 0;
+col = 0; //if -1, then dont set in code, and use sprite_index instead.
 init = 1;
+xspeedDive = true;//if true, dive takes xspeed into consideration, else use moveSpeed
+radius = 48; //size of detection radius
+moveSpeed = 1.5; //how fast it moves
+diveMult = 24; //multiplier that affects the diving speed
+shotSound[0] = noone; //if defined, play this sound when diving
+imgSpd = 0.25; //speed of animation
+attackTimerMax = 30; //how long before diving
+
+shotObject[0] = noone; //if defined, fire this object type before dive.
+shotSprite[0] = noone; //sprite for fired object type abocve. If not defined, use object default sprite
+
+shotObject[1] = noone; //if defined, fire this object at dive peak
+shotSprite[1] = noone; //sprite for fired object type abocve. If not defined, use object default sprite
+shotSound[1] = noone;//if defined, play this sound at peak of dive
+
+
 </string>
           </argument>
         </arguments>
@@ -76,14 +93,17 @@ init = 1;
 if (init)
 {
     init = 0;
-    switch (col)
+    if (col != -1)
     {
-        case 0:
-            sprite_index = sprBlader;
-            break;
-        case 1:
-            sprite_index = sprBladerBlue;
-            break;
+        switch (col)
+        {
+            case 0:
+                sprite_index = sprBlader;
+                break;
+            case 1:
+                sprite_index = sprBladerBlue;
+                break;
+        }
     }
 }
 
@@ -91,45 +111,100 @@ event_inherited();
 
 if (entityCanStep())
 {
-    image_speed = 0.25;
-    timer++;
+    image_speed = imgSpd;
+    attackTimer++;
     switch (phase)
     {
         case 1: // Look for target 
-            xspeed = 1.5 * image_xscale;
-            if (target &amp;&amp; timer &gt;= 30)
+            xspeed = moveSpeed * image_xscale;
+            if (blockCollision)
             {
-                if (abs(target.x - x) &lt; 48 &amp;&amp; yspeed == 0 &amp;&amp; round(target.y) != round(y))
+                xSpeedTurnaround();
+            }
+            if (target &amp;&amp; attackTimer &gt;= attackTimerMax)
+            {
+                if (abs(target.x - x) &lt; radius &amp;&amp; yspeed == 0 &amp;&amp; round(target.y) != round(y))
                 {
-                    xspeed = (target.x - x) / 24;
-                    yspeed = (target.y - y) / 24;
+                    if (xspeedDive)
+                        xspeed = (target.x - x) / diveMult;
+                    else
+                        xspeed = moveSpeed;
+
+                    yspeed = (target.y - y) / diveMult;
+
                     targetY = target.y;
                     phase = 2;
                     calibrateDirection();
+                    
+                    if (shotSound[0] != noone)
+                    {
+                        playSFX(shotSound[0]);
+                    }
+                    
+                    if (shotObject[0] != noone)
+                    {
+                        var inst = instance_create(spriteGetXCenter(),spriteGetYCenter(),shotObject[0]);
+                        if (shotSprite[0] != noone)
+                        {
+                            inst.sprite_index = shotSprite[0];
+                            inst.mask_index = inst.sprite_index;
+                        }
+                        inst.image_xscale = image_xscale;
+                        inst.image_yscale = image_yscale;
+                        inst.dir = sign(image_xscale);
+                        
+                    }
                 }
             }
             break;
         case 2: // Swoop at target 
             yspeed += 0.025 * sign(yspeed);
             xspeed += 0.025 * sign(xspeed);
-            if (sign(y - targetY) == sign(yspeed))
+            
+            if ((sign(y - targetY) == sign(yspeed)) || (blockCollision &amp;&amp; ycoll != 0))
             {
                 phase = 3;
-                yspeed = -yspeed;
+                if (blockCollision)
+                    yspeed = -max(yspeed,1);
+                else
+                    yspeed = -yspeed;
             }
             break;
         case 3: // Move back to original height 
             yspeed -= 0.025 * sign(yspeed);
             xspeed -= 0.025 * sign(xspeed);
+            if (blockCollision)
+            {
+                xSpeedTurnaround();
+            }
             if (sign(y - ystart) == sign(yspeed))
             {
-                timer = 0;
+                attackTimer = 0;
                 phase = 1;
                 xspeed = 0;
                 yspeed = 0;
                 shiftObject(0, ystart - y, blockCollision);
-                cooldown = 30;
+                //cooldown = cooldownMax;
                 calibrateDirection();
+            
+                if (shotSound[1] != noone)
+                {
+                    playSFX(shotSound[1]);
+                }
+                
+                if (shotObject[1] != noone)
+                {
+                    var inst = instance_create(spriteGetXCenter(),spriteGetYCenter(),shotObject[1]);
+                    if (shotSprite[1] != noone)
+                    {
+                        inst.sprite_index = shotSprite[1];
+                        inst.mask_index = inst.sprite_index;
+                    }
+                    inst.image_xscale = image_xscale;
+                    inst.image_yscale = image_yscale;
+                    inst.dir = sign(image_xscale);
+                    
+                }
             }
             break;
     }
@@ -163,7 +238,7 @@ else
             <string>/// On spawn
 event_inherited();
 
-timer = 0;
+attackTimer = 0;
 phase = 1;
 </string>
           </argument>

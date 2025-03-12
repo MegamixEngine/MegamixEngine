@@ -39,7 +39,8 @@ for (i = 1; i &lt;= 4; i += 1)
     block[i - 1] = noone;
 }
 
-wait = 600;
+waitStart = 600;
+wait = waitStart;
 </string>
           </argument>
         </arguments>
@@ -139,7 +140,7 @@ else if (dead)
 {
     timer = 0;
     image_index = 0;
-    wait = 600;
+    wait = waitStart;
     for (i = 1; i &lt;= 4; i += 1)
     {
         if (instance_exists(block[i - 1]))

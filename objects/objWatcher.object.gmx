@@ -114,6 +114,7 @@ if (entityCanStep())
                     i = instance_create(x + (8 * image_xscale), y + (22 * image_yscale), objEnemyBullet);
                     i.xspeed = 3 * image_xscale;
                     i.sprite_index = sprWatcherBullet;
+                    i.image_xscale = image_xscale;
                     i.imageSpeed = 0.3;
                 }
             }

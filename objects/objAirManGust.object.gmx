@@ -46,14 +46,10 @@ yspeed = 0;
 
 reflectable = 0;
 
-if (instance_exists(objAirMan))
-{
-    x = objAirMan.x;
-    y = objAirMan.y;
-    
-    xspeed = (xstart - x) / 20;
-    yspeed = (ystart - y) / 20;
-}
+
+parent = noone;
+
+initCheck = false;
 </string>
           </argument>
         </arguments>
@@ -76,11 +72,7 @@ if (instance_exists(objAirMan))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!instance_exists(objAirMan))
-{
-    instance_destroy();
-    exit;
-}
+            <string>
 event_inherited();
 
 if (global.frozen == false)
@@ -146,6 +138,44 @@ else
           <argument>
             <kind>1</kind>
             <string>other.guardCancel = 3;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// set to parent
+if (!initCheck)
+{
+    if (instance_exists(parent))
+    {
+        x = parent.x;
+        y = parent.y;
+        
+        xspeed = (xstart - x) / 20;
+        yspeed = (ystart - y) / 20;
+    }
+    else
+        instance_destroy();
+    initCheck = true;
+
+}
 </string>
           </argument>
         </arguments>

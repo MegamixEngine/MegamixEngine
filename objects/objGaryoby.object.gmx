@@ -45,6 +45,7 @@ enemyDamageValue(objThunderBeam, 1);
 enemyDamageValue(objBreakDash, 3);
 enemyDamageValue(objLaserTrident, 2);
 enemyDamageValue(objMagicCard, 2);
+enemyDamageValue(objWaterWave, 3);
 
 image_speed = 0.2;
 ground = 1;

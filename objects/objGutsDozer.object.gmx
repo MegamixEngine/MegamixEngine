@@ -37,6 +37,9 @@ contactDamage = 4;
 
 moveSpeed = 1 / 3;
 dstX = 0;
+doPlayerExplosion = false;
+isDying = false;
+explodeTimer = 0;
 
 introType = 2;
 shootTimer = 0;
@@ -49,8 +52,8 @@ animTimerTreads = 0;
 animTimerMouth = 0;
 
 // Health Bar
-healthBarPrimaryColor[1] = 33;
-healthBarSecondaryColor[1] = 47;
+healthBarPrimaryColor[1] = $27;
+healthBarSecondaryColor[1] = $37;
 
 // Music
 music = "Mega_Man_2.nsf";
@@ -61,6 +64,8 @@ musicTrackNumber = 17;
 enemyDamageValue(objBusterShot, 1);
 enemyDamageValue(objBusterShotHalfCharged, 1);
 enemyDamageValue(objBusterShotCharged, 3);
+enemyDamageValue(objBusterShotHalfChargedProto, 1);
+enemyDamageValue(objBusterShotChargedProto, 3);
 
 // MaGMML3
 enemyDamageValue(objSparkChaser, 1);
@@ -71,6 +76,10 @@ enemyDamageValue(objThunderBeam, 2);
 enemyDamageValue(objBreakDash, 0);
 enemyDamageValue(objMagneticShockwave, 2);
 enemyDamageValue(objIceWall, 0);
+
+reflectedDamage = -1;
+if (reflectedDamage &gt; -1) 
+enemyDamageValue(prtEnemyProjectile,reflectedDamage);
 
 // MaGMML2
 enemyDamageValue(objHornetChaser, 1);
@@ -106,15 +115,16 @@ enemyDamageValue(objConcreteShot, 1);
 enemyDamageValue(objHomingSniper, 4);
 
 // MaG24HMML
+enemyDamageValue(objWaterWave, 0);
 enemyDamageValue(objSuperArmBlockProjectile, 1);
 enemyDamageValue(objSuperArmDebris, 1);
-enemyDamageValue(objChillShot, 0);
+enemyDamageValue(objChillSpike, 0);
 enemyDamageValue(objChillSpikeLanded, 0);
 
 // Misc.
 enemyDamageValue(objPowerStone, 2);
 enemyDamageValue(objPlantBarrier, 5);
-enemyDamageValue(objBrickWeapon, 0);
+enemyDamageValue(objBlockDropper, 0);
 enemyDamageValue(objIceSlasher, 0);
 </string>
           </argument>
@@ -140,8 +150,6 @@ enemyDamageValue(objIceSlasher, 0);
             <kind>1</kind>
             <string>with (mySolid)
     instance_destroy();
-with (objMet)
-    event_user(EV_DEATH);
 </string>
           </argument>
         </arguments>
@@ -240,6 +248,7 @@ if (entityCanStep())
                         yspeed = -5;
                         grav = 0.25;
                         xspeed = other.image_xscale;
+                        sprite_index = sprFlashShot;
                     }
                 }
                 else
@@ -279,20 +288,51 @@ if (entityCanStep())
     else
     {
         // set starting position
-        if (insideView())
+        if (!isDying)
         {
-            calibrateDirection();
-            grav = 0;
-            blockCollision = 0;
-            if (image_xscale == 1)
+            if (insideView())
             {
-                x = view_xview[0] + 1;
-                dstX = arenaCentre + stopDist;
+                calibrateDirection();
+                grav = 0;
+                blockCollision = 0;
+                if (image_xscale == 1)
+                {
+                    x = view_xview[0] + 1;
+                    dstX = arenaCentre + stopDist;
+                }
+                else
+                {
+                    x = view_xview[0] + view_wview[0] - 1;
+                    dstX = arenaCentre - stopDist;
+                }
             }
-            else
+        }
+        // Death animation
+        else
+        {
+            var _x = random_range(bbox_left,bbox_right);
+            var _y = random_range(bbox_top,bbox_bottom);
+            
+            explodeTimer++;
+            if (explodeTimer mod 2 == 0)
             {
-                x = view_xview[0] + view_wview[0] - 1;
-                dstX = arenaCentre - stopDist;
+                repeat(4)
+                {
+                    i = instance_create(_x, _y, objExplosion);
+                    i.sprite_index = sprCrashExplosion;
+                }
+            }
+            if (explodeTimer mod 8 == 0)
+            {
+                playSFX(getGenericSFX(SFX_ENEMYHIT));
+            }
+            if (explodeTimer mod 16 == 0)
+            {
+                i = instance_create(_x, _y, objBigExplosion);
+            }
+            if (explodeTimer == 180)
+            {
+                event_user(EV_DEATH);
             }
         }
     }
@@ -336,9 +376,6 @@ if (isFight &amp;&amp; !dead)
     mySolid.isSolid = 2;
     mySolid.visible = false;
 }
-else
-    with (mySolid)
-        instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -386,6 +423,56 @@ if ((other.x - x) * image_xscale &gt; -60)
     other.guardCancel = 2; // hit head:
 else if ((other.x - x) * image_xscale &gt; -90 &amp;&amp; other.y &lt; y - 40)
     other.guardCancel = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="20">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (objMet)
+    event_user(EV_DEATH);
+if (!isDying)
+{
+    isFight = false;
+    isDying = true;
+    canHit = false;
+    contactDamage = 0;
+    if (instance_exists(child))
+    {
+        child.contactDamage = 0;
+    }
+    iFrames = 0;
+    xspeed = 0;
+    yspeed = 0;
+    mySolid.xspeed = 0;
+    mySolid.yspeed = 0;
+    with(instance_create(random_range(bbox_left,bbox_right),random_range(bbox_top,bbox_bottom),objExplosion))
+        sprite_index = sprCrashExplosion;
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
+}
+else
+{
+    with(mySolid)
+        instance_destroy();
+    event_inherited();
+    playSFX(getGenericSFX(SFX_ENEMYHIT));
+}
 </string>
           </argument>
         </arguments>
@@ -449,15 +536,41 @@ if (instance_exists(child))
 {
     if (drawBoss) // actually draw itself
     {
-        if ((iFrames mod 4) &lt; 2 || !iFrames)
+        if (!isDying)
         {
-            event_user(2);
+            if ((iFrames mod 4) &lt; 2 || !iFrames)
+            {
+                event_user(2);
+            }
+            else // Hitspark
+            {
+                //d3d_set_fog(true, c_white, 0, 0);
+                sprite_index = sprGutsDozerHurt;
+                event_user(2);
+                if (instance_exists(child))
+                {
+                    draw_sprite_ext(sprGutsDozerHand, 1, round(x - 58 * image_xscale), round(y - 16 - child.yOffset), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+                }
+                sprite_index = sprGutsDozer;
+                //d3d_set_fog(false, 0, 0, 0);
+            }
         }
-        else // Hitspark
+        else
         {
-            d3d_set_fog(true, c_white, 0, 0);
-            event_user(2);
-            d3d_set_fog(false, 0, 0, 0);
+            if (explodeTimer mod 40 &lt; 10)
+            {
+                hitFlashEffect(true,c_white);
+                event_user(2);
+                if (instance_exists(child))
+                {
+                    draw_sprite_ext(sprGutsDozerHand, 1, round(x - 58 * image_xscale), round(y - 16 - child.yOffset), image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+                }
+                hitFlashEffect(false);
+            }
+            else
+            {
+                event_user(2);
+            }
         }
     }
 }

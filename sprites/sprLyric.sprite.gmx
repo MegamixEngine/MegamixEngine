@@ -14,11 +14,11 @@
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
-    <TextureGroup0>50</TextureGroup0>
+    <TextureGroup0>194</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
   <width>24</width>
-  <height>16</height>
+  <height>17</height>
   <frames>
     <frame index="0">images\sprLyric_0.png</frame>
     <frame index="1">images\sprLyric_1.png</frame>
@@ -44,5 +44,11 @@
     <frame index="21">images\sprLyric_21.png</frame>
     <frame index="22">images\sprLyric_22.png</frame>
     <frame index="23">images\sprLyric_23.png</frame>
+    <frame index="24">images\sprLyric_24.png</frame>
+    <frame index="25">images\sprLyric_25.png</frame>
+    <frame index="26">images\sprLyric_26.png</frame>
+    <frame index="27">images\sprLyric_27.png</frame>
+    <frame index="28">images\sprLyric_28.png</frame>
+    <frame index="29">images\sprLyric_29.png</frame>
   </frames>
 </sprite>

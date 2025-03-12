@@ -114,7 +114,7 @@ startAngle = 0;
 rotateStartRangeTurn = 0;
 rotateEndRangeTurn = 0;
 
-myLasers = ds_list_create();
+myLasers = mm_ds_list_create();
 </string>
           </argument>
         </arguments>
@@ -137,7 +137,7 @@ myLasers = ds_list_create();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_list_destroy(myLasers);
+            <string>mm_ds_list_destroy(myLasers);
 </string>
           </argument>
         </arguments>
@@ -407,7 +407,10 @@ if (spawned)
     // default death variation sprite
     if (variation == 0 &amp;&amp; sprite == -1)
     {
-        sprite = sprQuickLaser;
+        if (image_angle &gt; 90) &amp;&amp; (image_angle &lt; 271)
+            sprite = sprQuickLaserUpsideDown;
+        else
+            sprite = sprQuickLaser;
     }
 }
 </string>
@@ -455,7 +458,7 @@ if (spawned)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_list_destroy(myLasers);
+            <string>mm_ds_list_destroy(myLasers);
 </string>
           </argument>
         </arguments>

@@ -40,6 +40,7 @@ animTime = 5;
 canHit = false;
 isSolid = 1;
 hasBelt=false;
+pushOff=true;
 
 respawn = true;
 
@@ -52,6 +53,8 @@ shiftVisible = 1;
 bubbleTimer = -1;
 
 dir = sign(image_xscale);
+
+image_speed = 0;
 
 if (image_xscale &lt; 0)
 {
@@ -130,6 +133,8 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
                             shiftObject(exspd, 0, 1);    
                         else
                             shiftObject(exspd*sign(grav), 0, 1);  
+                        if(!place_meeting(x,y+2*sign(grav), other) &amp;&amp; other.pushOff)
+                            shiftObject(0, sign(grav), 1);
                     }
                 }
             }
@@ -160,12 +165,15 @@ if (!global.frozen &amp;&amp; !dead &amp;&amp; !global.timeStopped)
             <kind>1</kind>
             <string>if ((!global.frozen &amp;&amp; !global.timeStopped) || instance_exists(objSectionSwitcher))
 {
-    imgalarm += 1;
+    imgalarm += (1 - (.5 * instance_exists(objSectionSwitcher)));
     if (imgalarm &gt;= animTime)
     {
         imgalarm = 0;
         img = (img+1) mod animFrames;
     }
+    
+    if ((ceil(iFrames / 2) mod 2 &amp;&amp; iFrames &gt; 0))
+        d3d_set_fog(true, c_white, 0, 0);
 }
 
 var imgadd;
@@ -190,6 +198,9 @@ for (i = 0; i &lt; image_xscale; i += 1)
     }
     draw_sprite(sprite_index, img + imgadd, x + i * 16, y);
 }
+
+d3d_set_fog(false, 0, 0, 0);
+
 </string>
           </argument>
         </arguments>

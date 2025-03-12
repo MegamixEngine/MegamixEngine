@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -31,6 +31,7 @@
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 3;
+canHit = true;
 
 grav = 0;
 blockCollision = 0;
@@ -118,7 +119,7 @@ if (entityCanStep())
             <string>dead = 1;
 
 // probably don't want to spew projectiles past this shield huh
-if (hitterID != 0)
+if (instance_exists(hitterID))
 {
     if (hitterID.object_index == objWaterShield)
     {

@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>// Creation code (all optional):
-// col = &lt;number&gt; (0 = orange (default); 1 = green; 2 = blue; 3 = red;)
+// col = &lt;number&gt; (0 = orange (default); 1 = green; 2 = blue; 3 = red; 4 = orange w/ green eye;)
 
 event_inherited();
 
@@ -38,6 +38,7 @@ category = "cluster, floating";
 
 blockCollision = 0;
 grav = 0;
+facePlayer = true;
 
 // Enemy specific code
 imageOffset = 0;

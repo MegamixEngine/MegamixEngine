@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>prtEntity</parentName>
+  <parentName>prtEnemyProjectile</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -34,6 +34,7 @@ itemDrop = -1;
 healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 4;
+canHit = true;
 
 blockCollision = 0;
 grav = 0;
