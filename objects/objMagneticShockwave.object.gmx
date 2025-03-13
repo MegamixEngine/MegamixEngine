@@ -264,19 +264,6 @@ repeat (32)
 }
 
 
-playSFX(sfxBetaSword_Aura);
-repeat (4)
-{
-    i = instance_create(irandom_range(bbox_left, bbox_right), irandom_range(bbox_top, bbox_bottom), objSingleLoopEffect);
-    i.sprite_index = explosionSprite;
-    i.image_speed = 0.20;
-    i.vspeed = -0.3 * image_yscale;
-    i.useShader = (global.multiplayerColors &amp;&amp; global.playerCount &gt; 1);
-    i.replaceColor[0] = multPal[0];
-    i.newColor[0] = global.multiplayerPalette[playerID,global.weapon[playerID]];
-}
-
-
 event_user(EV_DEATH);
 </string>
           </argument>

@@ -184,25 +184,13 @@ for (var i = 0; i < MAX_PLAYERS; i++)
         global.customCostumeChargeType[i] = 0;
         global.customCostumeChargePrimary[i] = 0;
         global.customCostumeChargeSecondary[i] = 0;
-        
-        global.storedCustomCostume[i] = -1;
-    }
-    
-    // To recall the custom costume after Abandoned Mine's costume override. 
-    if (global.storedCustomCostume[i] != -1)
-    {
-        global.playerSprite[custCostume] = global.storedCustomCostume[i];
-        global.storedCustomCostume[i] = -1;
     }
 }
-
-// -- COMMENTS FROM 48H. MAY NOT BE THE CASE HERE. --
 
 // Moved to freshSaveFile(). 
 //global.customCostumeFilename = "";
 //global.customCostumeEquipped = false;
 
-// Custom costume shop variables. 
 // Contains externally loaded sprites. 
 // Made global so as to 25ear them out if resetting the game. 
 for (var i = 0; i < 12; i++)//Increased to 12 for new menu.

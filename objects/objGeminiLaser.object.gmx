@@ -214,9 +214,9 @@ if (performShoot)
             xOffset -= 5;
         }
         
-        yOffset += 4 * sign(image_yscale);
-        /*
-        if (climbing)
+        yOffset += ((4 + global.costumeShotOffset[costumeID]) * sign(image_yscale));
+        
+        /*if (climbing)
         {
             image_xscale = climbShootXscale;
             yOffset = 2 * sign(image_yscale);

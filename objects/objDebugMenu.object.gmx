@@ -1872,8 +1872,8 @@ if (subMenu == debugMenus.COSTUME_VIEW)
     
                 viewCol[option - 3] += dir;
                 if (viewCol[option - 3] &lt; 0)
-                    viewCol[option - 3] = array_length_1d(global.nesPalette) - 1;
-                else if (viewCol[option - 3] &gt;= array_length_1d(global.nesPalette))
+                    viewCol[option - 3] = array_length_1d(global.nesOldIndexToNew) - 1;
+                else if (viewCol[option - 3] &gt;= array_length_1d(global.nesOldIndexToNew))
                     viewCol[option - 3] = 0;
             }
             break;
@@ -3480,7 +3480,27 @@ switch (subMenu)
             case 3:
             case 4:
             case 5:
-                str += ternary(colorsOn, viewCol[(checkOption) - 3], "XXX");
+                // I cannot believe that I have to MANUALLY get the hex value
+                /*var hexPrint = "$";
+                if (colorsOn)
+                {
+                    var numOpt = viewCol[(checkOption) - 3];
+                    hexPrint += string(floor(numOpt / 16));
+                    
+                    var hexMod = numOpt % 16;
+                    switch (hexMod)
+                    {
+                        case 10: hexPrint += "A"; break;
+                        case 11: hexPrint += "B"; break;
+                        case 12: hexPrint += "C"; break;
+                        case 13: hexPrint += "D"; break;
+                        case 14: hexPrint += "E"; break;
+                        case 15: hexPrint += "F"; break;
+                        default: hexPrint += string(hexMod); break;
+                    }
+                }*/
+                
+                str += ternary(colorsOn, string(viewCol[(checkOption) - 3]), "XXX");
                 break;
 
             // inked mode
@@ -4130,8 +4150,8 @@ if (DEBUG_ENABLED)
                 else
                 {
                     drawCostume(global.playerSprite[viewCostumeID], viewSpriteX, viewSpriteY, drawXCoord, drawYCoord, 1, 1,
-                        c_white, global.nesPalette[viewCol[0]],
-                        global.nesPalette[viewCol[1]], global.nesPalette[viewCol[2]], 1, 1, 1, 1);
+                        c_white, global.nesPalette[global.nesOldIndexToNew[viewCol[0]]],
+                        global.nesPalette[global.nesOldIndexToNew[viewCol[1]]], global.nesPalette[global.nesOldIndexToNew[viewCol[2]]], 1, 1, 1, 1);
                 }
         
                 if (viewMode)

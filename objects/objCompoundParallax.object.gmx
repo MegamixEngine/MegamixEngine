@@ -46,7 +46,7 @@ event_inherited();
     //creation code variables
 
 //@cc array that contains all layer-specific information
-//don't edit this directly: use the script scrParallaxAddLayer to add a layer instead
+//don't edit this directly: use the script parallaxObjectAddLayer to add a layer instead
 layers[0, 0] = undefined;
 
 /*
