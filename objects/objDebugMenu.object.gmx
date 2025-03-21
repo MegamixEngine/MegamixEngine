@@ -778,7 +778,7 @@ if (subMenu == debugMenus.MAIN)
                 with (objMegaman)
                 {
                     global.characterSelected[playerID] += other.dir;
-                    global.characterSelected[playerID] = modf(global.characterSelected[playerID], MAX_PLAYERS);
+                    global.characterSelected[playerID] = modf(global.characterSelected[playerID], MAX_CHARACTERS);
                     
                     weaponSetup();
                     playerPalette();

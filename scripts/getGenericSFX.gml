@@ -362,7 +362,7 @@ switch(argument[0])
         return sfxMenuSelect;
     break;
     case SFX_WHISTLE:
-        if (costumeID == 1 || costumeID == 10)
+        if (costumeID == 1)
         {
             return sfxProtoWhistleShort;
         }

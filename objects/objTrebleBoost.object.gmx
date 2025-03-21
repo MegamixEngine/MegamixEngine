@@ -307,29 +307,6 @@ if (!global.frozen)
                 event_user(1);
             }
         }
-        /*if (global.rareWeapons[9] || global.rareWeapons[10])
-        {
-            if (global.gameTimer % 3 == 0)
-            {
-                with (instance_create(bboxGetXCenter(), bboxGetYCenter(), objSlideDust))
-                {
-                    sprite_index = sprShine; image_xscale = choose(1, -1); direction = irandom(360);
-                    rotationMovement(xstart, ystart, irandom_range(1, 16), 0);
-                }
-            }
-            
-            if (global.gameTimer % 5 == 0 &amp;&amp; instance_exists(objMegaman))
-            {
-                with (instance_create(x, y - 4*abs(image_yscale), objTrailEffect))
-                {
-                    drawingPlayer = true;
-                    parent = instance_nearest(x, y, objMegaman);
-                    spriteX = 9;
-                    spriteY = 12;
-                    image_xscale = other.image_xscale; image_yscale = other.image_yscale;
-                }
-            }
-        }*/
     }
     else if (alarm[1] &lt; 0)
     {
@@ -490,30 +467,6 @@ if (!global.frozen)
                 image_xscale *= -1;
             }
             //checkGround();
-            /*if (global.rareWeapons[9] || global.rareWeapons[10])
-            {
-                if (global.gameTimer % 3 == 0)
-                {
-                    with (instance_create(bboxGetXCenter(), bboxGetYCenter(), objSlideDust))
-                    {
-                        sprite_index = sprShine; image_xscale = choose(1, -1); direction = irandom(360);
-                        rotationMovement(xstart, ystart, irandom_range(1, 16), 0);
-                    }
-                }
-                
-                if (global.gameTimer % 5 == 0 &amp;&amp; instance_exists(objMegaman))
-                {
-                    with (instance_create(x, y - 4*abs(image_yscale), objTrailEffect))
-                    {
-                        drawingPlayer = true;
-                        parent = instance_nearest(x, y, objMegaman);
-                        spriteX = 9;
-                        spriteY = 12;
-                        image_xscale = other.image_xscale; image_yscale = other.image_yscale;
-                    }
-                }
-            }*/
-            
         }
         
         

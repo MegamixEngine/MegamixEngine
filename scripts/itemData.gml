@@ -21,7 +21,6 @@ switch (argument0)
     case 0:
         itemName = "Energy Balancer";
         itemDescription = "If your current weapon doesn't need energy when you pick up an ammo refill, the weapon with the least energy will be refilled instead.";
-        //itemDescription = "Automatically sends weapon energy to the weapon with the least energy if no energy is needed for the current weapon.";
         itemSprite = sprUpgrades; itemSubimg = 0;
         itemVariable = "energyBalancer"; itemCanDisable = true; itemCanAssign = false;
         break;
@@ -29,8 +28,7 @@ switch (argument0)
     // Energy Saver
     case 1:
         itemName = "Energy Saver";
-        itemDescription = "Reduces the cost of using Special Weapons. It seems to be an outdated model that only works with the weapons you brought to the tournament...";
-        //itemDescription = "Cuts the cost of using Special Weapons. It seems to be an outdated model...";
+        itemDescription = "Reduces the cost of using Special Weapons.";
         itemSprite = sprUpgrades; itemSubimg = 1;
         itemVariable = "energySaver"; itemCanDisable = true; itemCanAssign = false;
         break;
@@ -78,7 +76,7 @@ switch (argument0)
     // Step Booster
     case 7:
         itemName = "Step Booster";
-        itemDescription = "Increases the speed at which you climb ladders. Known to improve mental well-being.";
+        itemDescription = "Increases the speed at which you climb ladders.";
         itemSprite = sprUpgrades; itemSubimg = 7;
         itemVariable = "stepBooster"; itemCanDisable = true; itemCanAssign = false;
         break;
@@ -95,7 +93,6 @@ switch (argument0)
     case 9:
         itemName = "Trickle Charge";
         itemDescription = "Slightly refills the energy of all Special Weapons anytime you reach a checkpoint.";
-        //itemDescription = "Whenever you reach a checkpoint for the first time, your Weapon Energy for all Special Weapons is refilled slightly.";
         itemSprite = sprUpgrades; itemSubimg = 9;
         itemVariable = "trickleCharge"; itemCanDisable = true; itemCanAssign = false;
         break;

@@ -176,6 +176,8 @@ spinFrame += spinSpeed;
     var drawY = y - 16;
     var p = clamp(roundTo((fadeInTimer) / 45, 1 / 3), 0, 1);
     
+    var costumeID = global.costumeID[? global.costumeSelected[i]];
+    
     // determine weapon colours
     var cp, cs, ap = 1, as = 1;
     var wpn = 0;
@@ -198,7 +200,7 @@ spinFrame += spinSpeed;
     }
     else
     {
-        cp = getWeaponPrimaryColor(wpn, global.costumeID[? global.costumeSelected[i]]);
+        cp = getWeaponPrimaryColor(wpn, costumeID);
     }
     
     if (global.weaponSecondaryColor[wpn] &lt; 0)
@@ -208,14 +210,14 @@ spinFrame += spinSpeed;
     }
     else
     {
-        cs = getWeaponSecondaryColor(wpn, global.costumeID[? global.costumeSelected[i]]);
+        cs = getWeaponSecondaryColor(wpn, costumeID);
     }
     
     // draw player
-    drawCostume(global.playerSprite[i], floor(spinFrame) mod 10, 12, drawX, drawY, 1, 1, c_white, cp, cs, c_black, 1, ap, as, 1);
+    drawCostume(global.playerSprite[costumeID], floor(spinFrame) mod 10, 12, drawX, drawY, 1, 1, c_white, cp, cs, c_black, 1, ap, as, 1);
     
     // fade darken
-    drawCostume(global.playerSprite[i], floor(spinFrame) mod 10, 12, drawX, drawY, 1, 1, c_black, c_black, c_black, c_black, p, 0, 0, 0);
+    drawCostume(global.playerSprite[costumeID], floor(spinFrame) mod 10, 12, drawX, drawY, 1, 1, c_black, c_black, c_black, c_black, p, 0, 0, 0);
 }
 
 clearDrawState();

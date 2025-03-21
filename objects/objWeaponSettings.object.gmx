@@ -137,10 +137,8 @@ global.lockBuster = false;
 
 for (var i = 0; i &lt;= global.totalWeapons; i += 1)
 {
-    if (indexOf(global.weaponSet[global.equippedWeaponSet], global.weaponObject[i]) &lt;= -1)
-        global.weaponLocked[i] = 2;
-    else
-        global.weaponLocked[i] = false;
+    if (global.weaponLocked[i] == true)
+		      global.weaponLocked[i] = false;
     global.infiniteEnergy[i] = false;
 }
 
@@ -199,9 +197,7 @@ global.lockBuster = false;
 
 for (i = 0; i &lt;= global.totalWeapons; i += 1)
 {
-    if (indexOf(global.weaponSet[global.equippedWeaponSet], global.weaponObject[i]) &lt;= -1)
-        global.weaponLocked[i] = 2;
-    else
+    if (global.weaponLocked[i] == true)
         global.weaponLocked[i] = false;
     global.infiniteEnergy[i] = false;
 }

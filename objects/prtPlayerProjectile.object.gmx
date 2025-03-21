@@ -57,10 +57,6 @@ if (instance_exists(parent))
     playerID = parent.playerID;
     costumeID = parent.costumeID;
 }
-
-//Combo variables for Rift Wanderer
-killCombo = 0;
-comboPoints = 0;
 </string>
           </argument>
         </arguments>

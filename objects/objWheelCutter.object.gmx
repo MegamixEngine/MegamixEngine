@@ -330,28 +330,15 @@ if (detach || parent.isSlide || parent.teleporting || parent.isHit)
 
 with (parent)
 {
-    if (climbing)
+    if (stepTimer &gt;= stepFrames)
     {
-        other.yy = 3;
-        other.xx = 17;
-    }
-    else if (!ground)
-    {
-        other.yy = -1;
-        other.xx = 19;
+        other.yy = 4;
+        other.xx = 21;
     }
     else
     {
-        if (stepTimer &gt;= stepFrames)
-        {
-            other.yy = 4;
-            other.xx = 21;
-        }
-        else
-        {
-            other.yy = 4;
-            other.xx = 23;
-        }
+        other.yy = 4;
+        other.xx = 23;
     }
 }
 

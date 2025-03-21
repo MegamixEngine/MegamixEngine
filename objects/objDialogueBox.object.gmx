@@ -1009,25 +1009,11 @@ if (DRAW_NAME)
         var xx = (x_pos + NAME_X);
         var yy = (y_pos + NAME_Y);
         
-        //hardcoded exception for 48H's :fire: Man
-        if (name == ":fire: Man")
-        {
-            draw_sprite(spr48HFireEmoji,0,xx,yy);
+        draw_set_color(nameCol);
             
-            draw_set_color(nameCol);
-            
-            draw_text(xx, yy, "   Man");
-            
-            draw_set_color(c_white);
-        }
-        else
-        {
-            draw_set_color(nameCol);
-            
-            draw_text(xx, yy, name);
-            
-            draw_set_color(c_white);
-        }
+        draw_text(xx, yy, name);
+        
+        draw_set_color(c_white);
     }
 }
 

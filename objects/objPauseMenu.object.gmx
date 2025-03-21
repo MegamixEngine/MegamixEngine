@@ -481,12 +481,6 @@ if (currentItem &lt; array_length_1d(items))
             variable_global_set(variable, -variable_global_get(variable));
             
             playSFX(sfxClamp);
-            
-            if (string_count("parallel", itemData(item, "DESC")) &gt; 0)
-            {
-                mm_ds_map_destroy(global.weaponID);
-                weaponSetup();
-            }
         }
         
         // Use item

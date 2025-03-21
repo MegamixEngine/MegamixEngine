@@ -230,7 +230,7 @@ else
         instance_create(bbox_left+sprite_width/2, y + 27, objBigExplosion);
 }
 
-if(respawn==2){ //Added so Tricastle counts for points in Rift Wanderer
+if(respawn==2){
     dead = true
 }else{
     instance_destroy();

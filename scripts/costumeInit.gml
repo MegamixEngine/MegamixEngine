@@ -47,7 +47,7 @@ global.playerSprite[1] = sprProtoman;
 global.costumeName[1] = "Proto Man";
 global.costumeNameShort[1] = global.costumeName[1];
 global.costumeReadyText[1] = "READY";
-global.costumeShotOffset[1] = 2;
+global.costumeShotOffset[1] = 3;
 global.costumeExtendedSpin[1] = false;
 
 global.costumeBusterName[1] = "PROTO BUSTER";

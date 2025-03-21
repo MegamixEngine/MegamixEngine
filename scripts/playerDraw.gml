@@ -20,7 +20,7 @@ if (showReady)
     var stopEarly = global.keySlide[playerID] || global.autoCutsceneSkip == 2;
     var canEnd = ((readyTimer >= 80) || stopEarly) || global.stageIsHub;
     
-    if (costumeID == 1 || costumeID == 10 || global.customCostumeEquipped[playerID]) // We are Protoman/Break Man. and not in multiplayer
+    if (costumeID == 1 || global.customCostumeEquipped[playerID]) // We are Protoman/Break Man. and not in multiplayer
     {
         if (global.playerCount == 1 && !global.protoWhistle)
         {

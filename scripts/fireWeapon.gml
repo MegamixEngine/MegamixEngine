@@ -130,9 +130,6 @@ if (instance_exists(i))
     
     autoFireDelay = i.autoFireSet;
     lastWeapon = i.object_index;
-    
-    if (global.characterSelected[playerID] == CHAR_PROTOMAN) && (wobj == objBusterShot || wobj == objNormalBusterShot) && (global.playerSprite[costumeID] == sprProtoman) // Use normal lemons for Proto Man mode
-        i.graphicsOverride = true;
     return (i);
 }
 
