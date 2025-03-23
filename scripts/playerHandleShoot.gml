@@ -18,7 +18,7 @@ var isProtoBuster = (global.characterSelected[playerID] == CHAR_PROTOMAN && glob
 var chargeup = 0;
 var shootLocked = playerIsLocked(PL_LOCK_SHOOT);
 
-if (!playerIsLocked(PL_LOCK_CHARGE)) //Handle charge
+if (!playerIsLocked(PL_LOCK_CHARGE) && global.enableCharge) //Handle charge
 {
     var useToggle = 0;
     

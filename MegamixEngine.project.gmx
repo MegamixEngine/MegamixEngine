@@ -6674,10 +6674,6 @@
         <script>scripts\coopWarp.gml</script>
         <script>scripts\dispelUtilities.gml</script>
       </scripts>
-      <scripts name="Proto">
-        <script>scripts\playerStepEventProto.gml</script>
-        <script>scripts\playerHandleSpritesProto.gml</script>
-      </scripts>
       <scripts name="Bass">
         <script>scripts\bassModeHandleSupports.gml</script>
         <script>scripts\bassModeHandleSpriteYRewrite.gml</script>

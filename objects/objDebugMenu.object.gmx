@@ -2050,7 +2050,7 @@ if (subMenu == debugMenus.ROOMS)
                 
                 for (var i = 1; i &lt;= global.totalWeapons; i ++)
                 {
-                    if (arrayContains(global.weaponSet[global.equippedWeaponSet], global.weaponObject[i]) &amp;&amp; global.weaponObject[i] != objRushCoil)
+                    if (arrayContains(global.weaponSet[global.equippedWeaponSet], global.weaponObject[i]) &amp;&amp; global.weaponObject[i] != objRushCoil  &amp;&amp; global.weaponObject[i] != objTrebleBoost)
                         global.weaponLocked[i] = 2;
                 }
                 

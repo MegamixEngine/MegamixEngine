@@ -8,7 +8,7 @@ var locked = true;
 if (argument_count > 1)
     locked = argument[1];
 
-if (locked && global.weaponLocked[global.weaponID[? obj]] < 2)
+if (!(locked == 1 && global.weaponLocked[global.weaponID[? obj]] >= 2))
     global.weaponLocked[global.weaponID[? obj]] = locked;
 
 if (obj == objBusterShot && locked == false)
