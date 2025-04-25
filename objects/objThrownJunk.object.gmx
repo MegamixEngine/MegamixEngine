@@ -64,6 +64,7 @@ if (!global.frozen &amp;&amp; !global.timeStopped)
             if (butts.visible &amp;&amp; instance_exists(target))
             {
                 butts.image_index = 2;
+                butts.hasThrown = true;
                 thrown = true;
                 if (instance_exists(target))
                 {
