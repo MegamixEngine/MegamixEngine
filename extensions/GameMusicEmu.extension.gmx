@@ -61,7 +61,7 @@
       <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>2097160</CopyToMask>
+          <CopyToMask>8</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
@@ -82,10 +82,12 @@
           <name>GameMusicEmu_StartTrack</name>
           <externalName>JGameMusicEmu_StartTrack</externalName>
           <kind>12</kind>
-          <help>GameMusicEmu_StartTrack(track_number)</help>
+          <help>GameMusicEmu_StartTrack(track_number,loops?,failsafeEndTime)</help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>3</argCount>
           <args>
+            <arg>2</arg>
+            <arg>2</arg>
             <arg>2</arg>
           </args>
         </function>
@@ -226,19 +228,70 @@
           <argCount>0</argCount>
           <args/>
         </function>
+        <function>
+          <name>GameMusicEmu_LoadFile</name>
+          <externalName>GameMusicEmu_LoadFile</externalName>
+          <kind>12</kind>
+          <help>GameMusicEmu_LoadFile(filename)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>GameMusicEmu_SetVolume</name>
+          <externalName>GameMusicEmu_SetVolume</externalName>
+          <kind>12</kind>
+          <help>GameMusicEmu_SetVolume(vol)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>GameMusicEmu_PauseTrack</name>
+          <externalName>GameMusicEmu_PauseTrack</externalName>
+          <kind>12</kind>
+          <help>GameMusicEmu_PauseTrack(doPause)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>GameMusicEmu_Init</name>
+          <externalName>GameMusicEmu_Init</externalName>
+          <kind>12</kind>
+          <help>GameMusicEmu_Init</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>GameMusicEmu_CleanUp</name>
+          <externalName>GameMusicEmu_CleanUp</externalName>
+          <kind>12</kind>
+          <help>GameMusicEmu_CleanUp</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
       </functions>
       <constants/>
     </file>
     <file>
       <filename>gme.dll</filename>
       <origname>extensions\gme.dll</origname>
-      <init></init>
-      <final></final>
+      <init>GameMusicEmu_Init</init>
+      <final>GameMusicEmu_Cleanup</final>
       <kind>1</kind>
       <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>1011880130</CopyToMask>
+          <CopyToMask>743440578</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles>
@@ -269,10 +322,12 @@
           <name>GameMusicEmu_StartTrack</name>
           <externalName>GameMusicEmu_StartTrack</externalName>
           <kind>12</kind>
-          <help>GameMusicEmu_StartTrack(track_number)</help>
+          <help>GameMusicEmu_StartTrack(track_number,loops?,failsafeEndTime)</help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>3</argCount>
           <args>
+            <arg>2</arg>
+            <arg>2</arg>
             <arg>2</arg>
           </args>
         </function>
@@ -416,7 +471,130 @@
           <argCount>0</argCount>
           <args/>
         </function>
+        <function>
+          <name>GameMusicEmu_LoadFile</name>
+          <externalName>GameMusicEmu_LoadFile</externalName>
+          <kind>12</kind>
+          <help>GameMusicEmu_LoadFile(filename)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>GameMusicEmu_SetVolume</name>
+          <externalName>GameMusicEmu_SetVolume</externalName>
+          <kind>12</kind>
+          <help>GameMusicEmu_SetVolume(volumeLevel)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>GameMusicEmu_StopTrack</name>
+          <externalName>GameMusicEmu_StopTrack</externalName>
+          <kind>12</kind>
+          <help>GameMusicEmu_StopTrack()</help>
+          <returnType>2</returnType>
+          <argCount>-1</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>GameMusicEmu_PauseTrack</name>
+          <externalName>GameMusicEmu_PauseTrack</externalName>
+          <kind>12</kind>
+          <help>GameMusicEmu_PauseTrack(doPause)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>GameMusicEmu_Init</name>
+          <externalName>GameMusicEmu_Init</externalName>
+          <kind>12</kind>
+          <help>GameMusicEmu_Init()</help>
+          <returnType>2</returnType>
+          <argCount>-1</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>GameMusicEmu_Cleanup</name>
+          <externalName>GameMusicEmu_Cleanup</externalName>
+          <kind>12</kind>
+          <help>GameMusicEmu_Cleanup()</help>
+          <returnType>2</returnType>
+          <argCount>-1</argCount>
+          <args/>
+        </function>
       </functions>
+      <constants/>
+    </file>
+    <file>
+      <filename>gme_core.dll</filename>
+      <origname>extensions\gme_core.dll</origname>
+      <init></init>
+      <final></final>
+      <kind>1</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>1011880130</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles>
+        <ProxyFile>
+          <Name>gme_core.dll</Name>
+          <TargetMask>1048640</TargetMask>
+        </ProxyFile>
+      </ProxyFiles>
+      <functions/>
+      <constants/>
+    </file>
+    <file>
+      <filename>SDL2.dll</filename>
+      <origname>extensions\SDL2.dll</origname>
+      <init></init>
+      <final></final>
+      <kind>1</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>1011880130</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles>
+        <ProxyFile>
+          <Name>SDL2.dll</Name>
+          <TargetMask>1048640</TargetMask>
+        </ProxyFile>
+      </ProxyFiles>
+      <functions/>
+      <constants/>
+    </file>
+    <file>
+      <filename>libusb-1.0.dll</filename>
+      <origname>extensions\libusb-1.0.dll</origname>
+      <init></init>
+      <final></final>
+      <kind>1</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>1011880130</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles>
+        <ProxyFile>
+          <Name>libusb-1.0.dll</Name>
+          <TargetMask>1048640</TargetMask>
+        </ProxyFile>
+      </ProxyFiles>
+      <functions/>
       <constants/>
     </file>
   </files>

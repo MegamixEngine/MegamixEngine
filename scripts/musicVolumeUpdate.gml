@@ -19,8 +19,5 @@ else if (global.levelSongType == "OGG")
 }
 else
 {
-    with (objMusicControl)
-    {
-        audio_sound_gain(sound_index, _vol, 0);
-    }
+    GameMusicEmu_SetVolume(_vol);
 }
