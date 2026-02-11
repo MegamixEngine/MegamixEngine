@@ -1,3 +1,6 @@
 [submodule "meta/GMSCacheManager"]
 	path = meta/GMSCacheManager
 	url = https://github.com/Gannio/GMSCacheManager
+[submodule "meta/game-music-emu-GameMaker"]
+	path = meta/game-music-emu-GameMaker
+	url = https://github.com/Gannio/game-music-emu-GameMaker
